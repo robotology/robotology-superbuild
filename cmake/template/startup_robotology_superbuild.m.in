@@ -1,0 +1,55 @@
+%% startup_codyco_superbuild.m
+%  Run this script only once to permanently add the required folders for using MATLAB toolbox (e.g. WBToolbox, mexWholeBodyModel) to your 
+%  MATLAB path. 
+
+fprintf('\nMATLAB Toolbox\n');
+
+installDir = '@CMAKE_BINARY_DIR@/install';
+mexDir     = [installDir, filesep, 'mex'];
+mexWrapDir = [mexDir, filesep, 'mexwbi-wrappers'];
+mexUtDir   = [mexDir, filesep, 'mexwbi-utilities'];
+shareDir   = [installDir, filesep, 'share/WB-Toolbox'];
+imgDir     = [shareDir, filesep, 'images'];
+
+if exist(mexDir, 'dir')
+    addpath(mexDir);
+end
+
+if exist(mexUtDir, 'dir')
+    addpath(mexUtDir);
+end
+
+if exist(mexWrapDir, 'dir')
+    addpath(mexWrapDir);
+end
+
+if exist(shareDir, 'dir')
+    addpath(shareDir);
+end
+
+if exist(imgDir, 'dir')
+    addpath(imgDir);
+end
+
+fileDir               = userpath;
+pathSeparatorLocation = strfind(fileDir, pathsep);
+
+if isempty(fileDir)
+    error('Empty userpath. Please set the userpath before running this script');
+elseif size(pathSeparatorLocation, 2) > 1
+    error('Multiple userpaths. Please set a single userpath before running this script');
+end
+
+if (~isempty(pathSeparatorLocation))
+    fileDir(pathSeparatorLocation) = [];
+end
+
+fprintf('Saving paths to %s\n\n', [fileDir, filesep, 'pathdef.m']);
+
+if (~savepath([fileDir, filesep, 'pathdef.m']))
+    fprintf(['A file called pathdef.m has been created in your %s folder.\n', ...
+        'This should be enough to permanentely add all the MATLAB-Toolbox to ', ...
+        'your MATLAB installation.\n'], fileDir);
+else
+    disp('There was an error generating pathdef.m To proceed please manually add the contents of variables mexDir, mexUtDir, mexWrapDir, shareDir and imgDir to your matlabpath');
+end
