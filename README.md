@@ -40,29 +40,32 @@ instruct  the superbuild on which packages should be built and which one should 
 
 ### Profile CMake options
 The profile CMake options specify which subset of the robotology packages will be built by the superbuild.
-Note that any dependencies of the included packages that is not available in the system will be downloaded, compiled and installed as well.
+Note that any dependencies of the included packages that is not available in the system will be downloaded, compiled and installed as well. All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 
 | CMake Option | Description | Main packages included | Default Value | Profile-specific documentation |
-| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing) . [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` |  |
-| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control . | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`WBI-Toolbox-controllers`](https://github.com/robotology-playground/WBI-Toolbox-controllers) | `ON` |  |
+|:------------:|:-----------:|:---------------------:|:-------------:|:----:|
+| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing) . [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` |  | 
+| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control . | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`WBI-Toolbox-controllers`](https://github.com/robotology-playground/WBI-Toolbox-controllers) | `OFF` | |
 
 ### Dependencies CMake options
-The dependencies CMAke options specify if the packages dependending on something installed in the system should be installed or not.
-| CMake Option | Description | Packages affected     | Default Value |
-| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/). |  | `ON` on Linux and macOS, `OFF` on Windows   |
-| `ROBOTOLOGY_USES_LUA`  | Include software and plugins that depend on the [Lua scripting language](https://www.lua.org/). | `YARP` | `OFF` |
-| `ROBOTOLOGY_USES_PYTHON`  | Include software and plugins that depend on the [Python scripting language](https://www.python.org/). | `iDynTree` | `OFF` |
-| `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `iDynTree` | `OFF` |
-| `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/). | `iDynTree`  | `OFF` |
+The dependencies CMAke options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`. 
+
+| CMake Option | Description |Default Value | Dependency-specific documentation |
+|:------------:|:-----------:|:-------------:|:---------------------------------:|
+| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   |  | 
+| `ROBOTOLOGY_USES_LUA`  | Include software and plugins that depend on the [Lua scripting language](https://www.lua.org/). | `OFF` |  | 
+| `ROBOTOLOGY_USES_PYTHON`  | Include software and plugins that depend on the [Python scripting language](https://www.python.org/).  | `OFF` |  |
+| `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` |  | 
+| `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  |
 
 Installation
 ============
 We provide different instructions on how to install codyco-superbuild, depending on your operating system:
-* [**Windows**](#windows): use the superbuild with Microsoft Visual Studio
-* [**macOS**](#macOS): use the superbuild with Xcode or GNU make
-* [**Linux**](#linux): use the superbuild with make
+* [**Windows**](#windows): use the superbuild with Microsoft Visual Studio,
+* [**macOS**](#macOS): use the superbuild with Xcode or GNU make,
+* [**Linux**](#linux): use the superbuild with make.
 
-Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html)
+Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html).
 
 ## Linux
 ### System Dependencies
@@ -286,7 +289,8 @@ To switch back, just manually switch the branches back to `master` and set  `YCM
 Profile-specific documentation
 ===================================
 
-## Core (`ROBOTOLOGY_ENABLE_CORE` option)
+## Core 
+This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 
 ### Configuration
 **TODO**
@@ -294,7 +298,8 @@ Profile-specific documentation
 ### Check the installation
 **TODO**
 
-## Dynamics (`ROBOTOLOGY_ENABLE_DYNAMICS` option)
+## Dynamics
+This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 
 ### Configuration
 **TODO**
@@ -305,7 +310,8 @@ Profile-specific documentation
 Dependencies-specific documentation
 ===================================
 
-## Gazebo (`ROBOTOLOGY_USES_GAZEBO` option)
+## Gazebo
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option.
 
 ### Configuration
 **TODO**
@@ -313,7 +319,8 @@ Dependencies-specific documentation
 ### Check the installation
 **TODO**
 
-## MATLAB (`ROBOTOLOGY_USES_MATLAB` option)
+## MATLAB
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
 
 ### Configuration
 If [MATLAB](mathworks.com/products/matlab/) is installed on your computer, the robotology-superbuild
@@ -346,7 +353,8 @@ For more info on configuring MATLAB software with the codyco-superbuild, please 
 ### Check the installation
 **TODO**
 
-## Octave (`ROBOTOLOGY_USES_OCTAVE` option)
+## Octave 
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
 
 ### Configuration
 Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
@@ -355,7 +363,8 @@ Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Oc
 **TODO**
 
 
-## Python (`ROBOTOLOGY_USES_PYTHON` option)
+## Python
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
 
 ### Configuration
 **TODO**
@@ -363,7 +372,8 @@ Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Oc
 ### Check the installation
 **TODO**
 
-## Lua (`ROBOTOLOGY_USES_LUA` option)
+## Lua 
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_LUA` CMake option.
 
 ### Configuration
 **TODO**
@@ -392,6 +402,6 @@ Mantainers
 ==========
 
 | Profile  | Mantainer                     |
-|:========:|:=============================:|
-| Core     | Silvio Traversaro @traversaro |
-| Dynamics | Silvio Traversaro @traversaro |
+|:--------:|:-----------------------------:|
+| Core     | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
+| Dynamics | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
