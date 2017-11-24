@@ -1,8 +1,8 @@
 # robotology-superbuild
 
 **THIS REPOSITORY IS STILL IN ALPHA base, and is not expected to work.**
-**If you are searching for the superbuild mantained by the Advanced Robotics department at the Italian Institute of Technology,
-formerly called robotology-superbuild, please check https://github.com/ADVRHumanoids/advr-superbuild. **
+
+**If you are searching for the superbuild mantained by the Advanced Robotics department at the Italian Institute of Technology, formerly called robotology-superbuild, please check https://github.com/ADVRHumanoids/advr-superbuild. **
 
 
 This is a meta repository (so-called "superbuild") that uses [CMake](https://cmake.org/) and [YCM](https://github.com/robotology/ycm) to automatically
