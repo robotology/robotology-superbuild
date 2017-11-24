@@ -410,6 +410,7 @@ Technically speaking, there are a few differences:
 and of the build directories. For the sake of simplicity, the `robotology-superbuild` just save robotology projects in the robotology
 directory and all external projects in the external directory.
 * Support for software that depends on Gazebo (gazebo-yarp-plugins, icub-gazebo, ...) is enabled by default in Linux and macOS .
+* In the `robotology-superbuild` the compilation for dynamics-related software (iDynTree, balancing and walking controllers) needs to be explicity enabled using the `ROBOTOLOGY_ENABLE_DYNAMICS` that is `OFF` by default. 
 
 Mantainers
 ==========
