@@ -36,15 +36,26 @@ option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Pyt
 option(ROBOTOLOGY_USES_OCTAVE "Enable compilation of software that depend on Octave" FALSE)
 
 ## Enable packages that depend on the Gazebo simulator
-option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo" FALSE)
+if(WIN32)
+  set(ROBOTOLOGY_USES_GAZEBO_DEFAULT FALSE)
+else()
+  set(ROBOTOLOGY_USES_GAZEBO_DEFAULT TRUE)
+endif()
+option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo" ${ROBOTOLOGY_USES_GAZEBO_DEFAULT})
 
-# Enable/disable different components 
+# Enable/disable different profiles
 option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." TRUE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
+
+# Mark as advanced all the profiles that do not have a mantainer
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
+mark_as_advanced(ROBOTOLOGY_ENABLE_GRASPING)
 option(ROBOTOLOGY_ENABLE_IOL "Enable compilation of software necessary for the Interactive Objects Learning demo." FALSE)
+mark_as_advanced(ROBOTOLOGY_ENABLE_IOL)
 option(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH "Enable compilation of software necessary on the pc running on the Ethernet-based iCub robot." FALSE)
+mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH)
 option(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN "Enable compilation of software necessary on the pc running on the CAN-based iCub robot." FALSE)
+mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
 
 #set default build type to "Release" in single-config generators
@@ -98,10 +109,15 @@ endif()
 if(ROBOTOLOGY_ENABLE_DYNAMICS)
   find_or_build_package(iDynTree)
   find_or_build_package(codyco-modules)
-  if(ROBOTOLOGY_USES_MATLAB)
+  if(ROBOTOLOGY_USES_MATLAB OR ROBOTOLOGY_USES_OCTAVE)
     find_or_build_package(yarp-matlab-bindings)
-    find_or_build_package(WBToolbox)
-    find_or_build_package(WBIToolboxControllers)
+  endif()
+  if(ROBOTOLOGY_USES_MATLAB)
+    find_or_build_package(qpOASES)
+    if(NOT ROBOTOLOGY_NOT_USE_SIMULINK)
+      find_or_build_package(WBToolbox)
+      find_or_build_package(WBIToolboxControllers)
+    endif()
   endif()  
 endif()
 

@@ -5,8 +5,13 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
+find_or_build_package(WBToolbox QUIET)
+find_or_build_package(qpOASES QUIET)
+
 ycm_ep_helper(WBIToolboxControllers TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology-playground/WBI-Toolbox-controllers.git
               TAG master
-              COMPONENT robotology)
+              COMPONENT robotology
+              DEPENDS WBToolbox
+                      qpOASES)
