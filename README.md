@@ -10,17 +10,30 @@ download and compile software developed in the robotology GitHub organization, s
 
 [CMake](https://cmake.org/) is an open-source, cross-platform family of tools designed to build, test and package software.
 A YCM Superbuild is a CMake project whose only goal is to download and build several other projects.
-If you are familiar with ROS, it is something similar to catkin or ament workspace, but using only CMake to enhance portability.
+If you are familiar with ROS, it is something similar to catkin or ament workspace, but using pure CMake for portability reasons.
 You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html).
 
 Table of Contents
 =================
   * [Superbuild structure](#superbuild-structure)
+    * [Profile CMake options](#profile-cmake-options)
+    * [Dependencies CMake options](#dependencies-cmake-options)
   * [Installation](#installation)
     * [Linux](#linux)
     * [macOS](#macos)
     * [Windows](#windows)
   * [Update](#update)
+  * [Profile-specific documentation](#profile-specific-documentation)
+    * [Core profile](#core)
+    * [Dynamics profile](#dynamics)
+  * [Dependencies-specific documentation](#dependencies-specific-documentation)
+    * [Gazebo simulator](#gazebo)
+    * [Lua](#lua)
+    * [MATLAB](#matlab)
+    * [Octave](#octave)
+    * [Python](#python)
+  * [FAQs](#faqs)
+  * [Mantainers](#mantainers)
 
 Superbuild structure
 ====================
@@ -29,8 +42,7 @@ Superbuild structure
 For each project, the repository will be downloaded in the `robotology/<package_name>` subdirectory
 of the superbuild root. The build directory for a given project will be instead the `robotology/<package_name>` subdirectory
 of the superbuild build directory. All the software packages are installed using the `install` directory of the build as installation prefix.
-If there is any non-robotology dependency handled by the superbuild as it is not easily in the system, it will located in the `external` directory
-instead of the `robotology` one.
+If there is any non-robotology dependency handled by the superbuild as it is not easily in the system, it will located in the `external` directory instead of the `robotology` one.
 
 
 ## Superbuild CMake options
@@ -44,19 +56,19 @@ Note that any dependencies of the included packages that is not available in the
 
 | CMake Option | Description | Main packages included | Default Value | Profile-specific documentation |
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
-| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing) . [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` |  | 
-| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control . | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`WBI-Toolbox-controllers`](https://github.com/robotology-playground/WBI-Toolbox-controllers) | `OFF` | |
+| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing) . [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) | 
+| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control . | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`WBI-Toolbox-controllers`](https://github.com/robotology-playground/WBI-Toolbox-controllers) | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 
 ### Dependencies CMake options
 The dependencies CMAke options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`. 
 
 | CMake Option | Description |Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
-| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   |  | 
-| `ROBOTOLOGY_USES_LUA`  | Include software and plugins that depend on the [Lua scripting language](https://www.lua.org/). | `OFF` |  | 
-| `ROBOTOLOGY_USES_PYTHON`  | Include software and plugins that depend on the [Python scripting language](https://www.python.org/).  | `OFF` |  |
-| `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` |  | 
-| `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  |
+| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   | [Documentation on Gazebo dependency.](#gazebo) | 
+| `ROBOTOLOGY_USES_LUA`  | Include software and plugins that depend on the [Lua scripting language](https://www.lua.org/). | `OFF` | [Documentation on Lua dependency.](#lua) | 
+| `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) | 
+| `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  [Documentation on Octave dependency.](#octave) |
+| `ROBOTOLOGY_USES_PYTHON`  | Include software and plugins that depend on the [Python scripting language](https://www.python.org/).  | `OFF` | [Documentation on Python dependency.](#python)  |
 
 Installation
 ============
@@ -319,6 +331,16 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake opt
 ### Check the installation
 **TODO**
 
+## Lua 
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_LUA` CMake option.
+
+### Configuration
+**TODO**
+
+### Check the installation
+**TODO**
+
+
 ## MATLAB
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
 
@@ -365,15 +387,6 @@ Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Oc
 
 ## Python
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
-
-### Configuration
-**TODO**
-
-### Check the installation
-**TODO**
-
-## Lua 
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_LUA` CMake option.
 
 ### Configuration
 **TODO**
