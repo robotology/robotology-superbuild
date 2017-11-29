@@ -8,4 +8,5 @@ ycm_ep_helper(wholeBodyInterface TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/wholebodyinterface.git
               TAG master
-              COMPONENT robotology)
+              COMPONENT dynamics
+              FOLDER robotology)

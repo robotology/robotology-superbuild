@@ -24,4 +24,5 @@ ycm_ep_helper(icub-grasp-demo  TYPE GIT
                                        segmentation
                                        himrep
                                        stereo-vision
-                               COMPONENT robotology)
+                               COMPONENT grasping
+                               FOLDER robotology)

@@ -16,7 +16,8 @@ ycm_ep_helper(iDynTree TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/idyntree.git
               TAG master
-              COMPONENT robotology
+              COMPONENT dynamics
+              FOLDER robotology
               CMAKE_ARGS -DIDYNTREE_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
                          -DIDYNTREE_USES_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DIDYNTREE_USES_OCTAVE:BOOL=${ROBOTOLOGY_USES_OCTAVE}

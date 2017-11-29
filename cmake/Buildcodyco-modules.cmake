@@ -23,6 +23,7 @@ ycm_ep_helper(codyco-modules TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/codyco-modules.git
               TAG master
-              COMPONENT robotology
+              COMPONENT dynamics
+              FOLDER robotology
               DEPENDS ${codyco-module_DEPENDS}
               CMAKE_ARGS -DCODYCO_USES_KDL:BOOL=OFF)

@@ -17,7 +17,8 @@ ycm_ep_helper(YARP TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/yarp.git
                    TAG master
-                   COMPONENT robotology
+                   COMPONENT core
+                   FOLDER robotology
                    DEPENDS RTF
                    CMAKE_ARGS -DCREATE_IDLS:BOOL=ON
                               -DCREATE_GUIS:BOOL=ON

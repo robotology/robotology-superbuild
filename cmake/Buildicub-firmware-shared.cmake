@@ -11,4 +11,5 @@ ycm_ep_helper(icub-firmware-shared TYPE GIT
                                    STYLE GITHUB
                                    REPOSITORY robotology/icub-firmware-shared.git
                                    DEPENDS YARP
-                                   COMPONENT robotology)
+                                   COMPONENT iCub
+                                   FOLDER robotology)

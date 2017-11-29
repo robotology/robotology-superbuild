@@ -9,4 +9,5 @@ ycm_ep_helper(icub-gazebo-wholebody
               STYLE GITHUB
               REPOSITORY robotology-playground/icub-gazebo-wholebody.git
               TAG master
-              COMPONENT robotology)
+              COMPONENT dynamics
+              FOLDER robotology)

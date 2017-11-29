@@ -86,7 +86,9 @@ endif()
 
 # Bootstrap YCM
 # Version working after https://github.com/robotology/ycm/issues/108
-set(YCM_TAG 9ffc3a48d99dd1bed603e796ec61638463c4790d)
+set(YCM_FOLDER robotology)
+set(YCM_COMPONENT core)
+set(YCM_TAG 250b19c08cf99e52e89497418261163197500e44)
 # Workaround disabling hash warning until we fix https://github.com/robotology/codyco-superbuild/issues/162
 set(YCM_SKIP_HASH_CHECK TRUE)
 include(YCMBootstrap)
