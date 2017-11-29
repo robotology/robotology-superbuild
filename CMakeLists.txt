@@ -9,6 +9,9 @@ project(robotology-superbuild NONE)
 ## by CMake to describe packages (in Config*.cmake files)
 enable_language(C)
 
+## FindACE requires CXX
+enable_language(CXX)
+
 # Disable in source build
 if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
    message(FATAL_ERROR "In-source builds of robotology-superbuild are not allowed. "
@@ -96,7 +99,7 @@ include(YCMBootstrap)
 include(FindOrBuildPackage)
 include(YCMEPHelper)
 
-# Core 
+# Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(RTF)
   find_or_build_package(YARP)

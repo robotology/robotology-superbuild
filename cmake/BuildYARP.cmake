@@ -5,6 +5,9 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
+find_package(ACE QUIET)
+find_package(SQLite QUIET)
+find_package(Eigen3 QUIET)
 find_or_build_package(RTF QUIET)
 
 if(ROBOTOLOGY_USES_PYTHON)
@@ -19,7 +22,11 @@ ycm_ep_helper(YARP TYPE GIT
                    TAG master
                    COMPONENT core
                    FOLDER robotology
-                   DEPENDS RTF
+                   DEPENDS YCM
+                           ACE
+                           SQLite
+                           Eigen3
+                           RTF
                    CMAKE_ARGS -DCREATE_IDLS:BOOL=ON
                               -DCREATE_GUIS:BOOL=ON
                               -DYARP_USE_SYSTEM_SQLITE:BOOL=ON
