@@ -8,4 +8,5 @@ include(FindOrBuildPackage)
 ycm_ep_helper(rfsmTools TYPE GIT
                         STYLE GITHUB
                         REPOSITORY robotology/rfsmTools.git
-                        COMPONENT robotology)
+                        COMPONENT core
+                        FOLDER robotology)

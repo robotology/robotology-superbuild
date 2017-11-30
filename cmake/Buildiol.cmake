@@ -26,4 +26,5 @@ ycm_ep_helper(iol  TYPE GIT
                            himrep
                            stereo-vision
                            speech
-                   COMPONENT robotology)
+                   COMPONENT IOL
+                   FOLDER robotology)

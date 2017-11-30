@@ -12,6 +12,7 @@ ycm_ep_helper(WBIToolboxControllers TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology-playground/WBI-Toolbox-controllers.git
               TAG master
-              COMPONENT robotology
+              COMPONENT dynamics
+              FOLDER robotology
               DEPENDS WBToolbox
                       qpOASES)

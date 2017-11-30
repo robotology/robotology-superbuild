@@ -19,8 +19,9 @@ endif()
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/icub-main.git
-                   DEPENDS YARP
-                   COMPONENT robotology
+                   DEPENDS ${ICUB_DEPENDS}
+                   COMPONENT iCub
+                   FOLDER robotology
                    CMAKE_CACHE_ARGS -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
                                     -DENABLE_icubmod_cartesiancontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_gazecontrollerclient:BOOL=ON

@@ -35,7 +35,8 @@ ycm_ep_helper(GazeboYARPPlugins TYPE GIT
                                 STYLE GITHUB
                                 REPOSITORY robotology/gazebo-yarp-plugins.git
                                 TAG master
-                                COMPONENT robotology
+                                COMPONENT core
+                                FOLDER robotology
                                 DEPENDS YARP
                                         gazebo
                                 CMAKE_ARGS -DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=OFF)

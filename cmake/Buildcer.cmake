@@ -12,6 +12,7 @@ ycm_ep_helper(cer TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/cer.git
               TAG master
-              COMPONENT robotology
+              COMPONENT R1
+              FOLDER robotology
               DEPENDS YARP
                       ICUB)

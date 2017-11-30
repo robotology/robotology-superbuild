@@ -13,7 +13,8 @@ ycm_ep_helper(navigation TYPE GIT
                          STYLE GITHUB
                          REPOSITORY robotology/navigation.git
                          TAG master
-                         COMPONENT robotology
+                         COMPONENT navigation
+                         FOLDER robotology
                          DEPENDS YARP
                                  ICUB
                                  ICUBcontrib)

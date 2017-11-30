@@ -15,7 +15,8 @@ ycm_ep_helper(WBToolbox TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/WB-Toolbox.git
               TAG master
-              COMPONENT robotology
+              COMPONENT dynamics
+              FOLDER robotology
               DEPENDS YARP
                       ICUB
                       iDynTree

@@ -9,6 +9,9 @@ project(robotology-superbuild NONE)
 ## by CMake to describe packages (in Config*.cmake files)
 enable_language(C)
 
+## FindACE requires CXX
+enable_language(CXX)
+
 # Disable in source build
 if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
    message(FATAL_ERROR "In-source builds of robotology-superbuild are not allowed. "
@@ -86,7 +89,9 @@ endif()
 
 # Bootstrap YCM
 # Version working after https://github.com/robotology/ycm/issues/108
-set(YCM_TAG 9ffc3a48d99dd1bed603e796ec61638463c4790d)
+set(YCM_FOLDER robotology)
+set(YCM_COMPONENT core)
+set(YCM_TAG 250b19c08cf99e52e89497418261163197500e44)
 # Workaround disabling hash warning until we fix https://github.com/robotology/codyco-superbuild/issues/162
 set(YCM_SKIP_HASH_CHECK TRUE)
 include(YCMBootstrap)
@@ -94,7 +99,7 @@ include(YCMBootstrap)
 include(FindOrBuildPackage)
 include(YCMEPHelper)
 
-# Core 
+# Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(RTF)
   find_or_build_package(YARP)
@@ -151,6 +156,8 @@ if(ROBOTOLOGY_USES_MATLAB)
   # The following line is to properly configure the matlab and simulink software installed by the superbuild
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
 endif()
+
+ycm_write_dot_file(robotology-superbuild.dot)
 
 set_package_properties(Git PROPERTIES TYPE RUNTIME)
 set_package_properties(Subversion PROPERTIES TYPE RUNTIME)

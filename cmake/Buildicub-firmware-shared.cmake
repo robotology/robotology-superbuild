@@ -5,10 +5,8 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
-find_or_build_package(YARP QUIET)
-
 ycm_ep_helper(icub-firmware-shared TYPE GIT
                                    STYLE GITHUB
                                    REPOSITORY robotology/icub-firmware-shared.git
-                                   DEPENDS YARP
-                                   COMPONENT robotology)
+                                   COMPONENT iCub
+                                   FOLDER robotology)

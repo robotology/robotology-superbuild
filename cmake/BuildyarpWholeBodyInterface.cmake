@@ -14,7 +14,8 @@ ycm_ep_helper(yarpWholeBodyInterface TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/yarp-wholebodyinterface.git
               TAG master
-              COMPONENT robotology
+              COMPONENT dynamics
+              FOLDER robotology
               CMAKE_ARGS -DYARPWBI_USES_KDL:BOOL=OFF
               DEPENDS YARP
                       ICUB

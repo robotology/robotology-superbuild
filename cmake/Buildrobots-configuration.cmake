@@ -11,4 +11,5 @@ ycm_ep_helper(robots-configuration TYPE GIT
                                    STYLE GITHUB
                                    REPOSITORY robotology/robots-configuration.git
                                    DEPENDS YARP
-                                   COMPONENT robotology)
+                                   COMPONENT iCub
+                                   FOLDER robotology)

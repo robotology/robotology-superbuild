@@ -1,5 +1,5 @@
 #=============================================================================
-# Copyright 2013-2014 iCub Facility, Istituto Italiano di Tecnologia
+# Copyright 2013-2014 Istituto Italiano di Tecnologia (IIT)
 #   Authors: Daniele E. Domenichelli <daniele.domenichelli@iit.it>
 #
 # Distributed under the OSI-approved BSD License (the "License");
@@ -58,7 +58,7 @@ function(_YCM_CLEAN_PATH _path _envvar)
     if(NOT WIN32)
         string(REPLACE ";" ":" _var_new "${_var_new}")
     endif()
-    set(ENV{${_envvar}} ${_var_new})
+    set(ENV{${_envvar}} "${_var_new}")
 endfunction()
 
 
@@ -78,6 +78,7 @@ if(NOT DEFINED USE_SYSTEM_YCM OR USE_SYSTEM_YCM)
     endif()
     if(YCM_FOUND)
         message(STATUS "YCM found in ${YCM_MODULE_DIR}.")
+        set_property(GLOBAL APPEND PROPERTY YCM_PROJECTS YCM)
         return()
     endif()
 endif()
