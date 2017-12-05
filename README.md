@@ -143,7 +143,7 @@ user@host:~$ sudo ldconfig
 ### System Dependencies
 To install Eigen and CMake, it is possible to use [Homebrew](http://brew.sh/):
 ```
-brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml
+brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml ipopt
 ```
 
 ### Superbuild
