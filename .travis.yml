@@ -26,7 +26,7 @@ matrix:
       compiler: clang
       env: TRAVIS_CMAKE_GENERATOR="Xcode", TRAVIS_BUILD_TYPE="Debug"
 
-before_script:
+before_install:
   # Update homebrew on osx
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
 
