@@ -157,7 +157,7 @@ if(ROBOTOLOGY_USES_MATLAB)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
 endif()
 
-ycm_write_dot_file(robotology-superbuild.dot)
+ycm_write_dot_file(${CMAKE_CURRENT_BINARY_DIR}/robotology-superbuild.dot)
 
 set_package_properties(Git PROPERTIES TYPE RUNTIME)
 set_package_properties(Subversion PROPERTIES TYPE RUNTIME)
