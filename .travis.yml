@@ -52,6 +52,7 @@ install:
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export Qt5_DIR="/usr/local/opt/qt5/lib/cmake/Qt5"; fi
   
   # Install apt dependencies 
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install build-essential cmake3 libboost-system-dev libboost-filesystem-dev libboost-thread-dev libeigen3-dev libtinyxml-dev libace-dev libgsl0-dev libcv-dev libhighgui-dev libcvaux-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev libqt5opengl5-dev libqcustomplot-dev; fi  
 script:
   - cmake --version
