@@ -1,0 +1,67 @@
+sudo: required
+dist: trusty
+osx_image: xcode8.3
+language: cpp
+
+cache:
+  ccache: true
+  directories:
+    - /usr/local/Cellar
+
+matrix:
+  include:
+    - os: linux
+      compiler: clang
+      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Debug"
+    - os: linux
+      compiler: clang
+      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Release"
+    - os: linux
+      compiler: gcc
+      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Debug"
+    - os: linux
+      compiler: gcc
+      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Release"
+  allow_failures:
+    - os: osx
+      compiler: clang
+      env: TRAVIS_CMAKE_GENERATOR="Xcode", TRAVIS_BUILD_TYPE="Debug"
+
+before_install:
+  # Update homebrew on osx
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
+
+  # Add additional repositories
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap homebrew/science; fi
+  
+  # Use PPA to have a recent version of eigen
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository ppa:nschloe/eigen-backports -y; fi
+
+  # Install ccache on osx
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ccache; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
+
+  # Use ccache also for clang and clang++ on linux
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ]; then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang; fi; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ]; then export CFLAGS="-Qunused-arguments"; fi; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang++; fi; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-Qunused-arguments"; fi; fi
+
+install:
+  # Install homebrew dependencies 
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export Qt5_DIR="/usr/local/opt/qt5/lib/cmake/Qt5"; fi
+  
+  # Install apt dependencies 
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install build-essential cmake3 libboost-system-dev libboost-filesystem-dev libboost-thread-dev libeigen3-dev libtinyxml-dev libace-dev libgsl0-dev libcv-dev libhighgui-dev libcvaux-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev libqt5opengl5-dev libqcustomplot-dev; fi  
+script:
+  - cmake --version
+  - mkdir build
+  - cd build
+  - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+  - cmake --build . --config ${TRAVIS_BUILD_TYPE}
+
+notifications:
+  email:
+    - pegua1@gmail.com
