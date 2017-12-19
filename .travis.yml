@@ -22,6 +22,7 @@ matrix:
     - os: linux
       compiler: gcc
       env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Release"
+  allow_failures:
     - os: osx
       compiler: clang
       env: TRAVIS_CMAKE_GENERATOR="Xcode", TRAVIS_BUILD_TYPE="Debug"
