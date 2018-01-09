@@ -156,6 +156,21 @@ if(ROBOTOLOGY_USES_MATLAB)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
 endif()
 
+# Configure a basic setup.sh for *nix system
+if(ROBOTOLOGY_USES_GAZEBO)
+  # TODO(traversaro): make sure that Gazebo exports this, for now hardcode
+  if(APPLE)
+    set(GAZEBO_SETUP_SH_PATH "/usr/local/share/gazebo/setup.sh")
+  else()
+    set(GAZEBO_SETUP_SH_PATH "/usr/share/gazebo/setup.sh")
+  endif()
+endif()
+
+if(NOT WIN32)
+  include(ConfigureFileWithCMakeIf)
+  configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.sh.in ${CMAKE_BINARY_DIR}/install/share/${PROJECT_NAME}/setup.sh @ONLY)
+endif()
+
 ycm_write_dot_file(${CMAKE_CURRENT_BINARY_DIR}/robotology-superbuild.dot)
 
 set_package_properties(Git PROPERTIES TYPE RUNTIME)

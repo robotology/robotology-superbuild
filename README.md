@@ -123,14 +123,29 @@ Currently the YCM superbuild does not support building a global install target, 
 To use this binaries and libraries, you should update the `PATH` and `LD_CONFIG_PATH` environment variables.
 
 An easy way is to add this lines to the '.bashrc` file in your home directory:
+```bash
+export ROBOTOLOGY_SUPERBUILD_ROOT=/directory/where/you/downloaded/robotology-superbuild/
+export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/install
+# Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
+export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
+# YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp
+                                     :$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub
+# Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 ```
-export ROBOTOLOGY_SUPERBUILD_ROOT=/directory/where/you/downloaded/robotology-superbuild
-export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/lib
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/codyco
-                                     :$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp
-                                     :$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/iCub
+
+Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
+* [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
+* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
+* [`ROBOTOLOGY_USES_MATLAB`](#matlab)
+
+As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
+all the necessary enviromental variables:
 ```
+source $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh
+```
+
 To use the updated `.bashrc` in your terminal you should run the following command:
 ```bash
 user@host:~$ source ~/.bashrc
@@ -182,18 +197,26 @@ To use this binaries you should update the `PATH` environment variables.
 
 An easy way is to add these lines to the `.bashrc` or `.bash_profile` file in your home directory:
 ```bash
-ROBOTOLOGY_SUPERBUILD_ROOT=/directory/where/you/downloaded/robotology-superbuild
-export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/codyco
-                                     :$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp
-                                     :$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/iCub
+export ROBOTOLOGY_SUPERBUILD_ROOT=/directory/where/you/downloaded/robotology-superbuild/
+export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/install
+# Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
+export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
+# YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp
+                                     :$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub
+# Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 ```
 
-Most of the modules in the robotology-superbuild are correctly configured to automatically find the libraries.
-If you create a new application or library that need to be linked to robotology-superbuild libraries (or if you are having issues with the dynamic loader) add also the following line to your `.bashrc` or `.bash_profile`.
+Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
+* [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
+* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
+* [`ROBOTOLOGY_USES_MATLAB`](#matlab)
 
-```bash
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/lib
+As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
+all the necessary enviromental variables:
+```
+source $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh
 ```
 
 To use the updated `.bashrc` in your terminal you should run the following command:
@@ -248,11 +271,16 @@ Currently the YCM superbuild does not support building a global install target, 
 
 To use this binaries and libraries, you should update the necessary environment variables.
 
-Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you clone the robotology-superbuild repository.
+Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you cloned the robotology-superbuild repository.
 
-Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin` to your PATH
+Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin` to your PATH.
 
-Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/codyco`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp` and `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/icub` to your [YARP\_DATA\_DIRS](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
+Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp` and `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/icub` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
+
+Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
+* [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
+* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
+* [`ROBOTOLOGY_USES_MATLAB`](#matlab)
 
 Update
 ======
@@ -310,7 +338,8 @@ Profile-specific documentation
 This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 
 ### Configuration
-**TODO**
+The configuration necessary to use the software installed in the Core profile is provided in
+operating system-specific installation documentation. 
 
 ### Check the installation
 **TODO**
@@ -319,10 +348,9 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 
 ### Configuration
-**TODO**
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
+If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to `YARP_DATA_DIRS`.
 
-### Check the installation
-**TODO**
 
 Dependencies-specific documentation
 ===================================
@@ -330,8 +358,25 @@ Dependencies-specific documentation
 ## Gazebo
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option.
 
+**Warning: at the moment the Gazebo simulator does not support Windows, so this option is only supported 
+on Linux and macOS.**
+
 ### Configuration
-**TODO**
+To enable the `ROBOTOLOGY_USES_GAZEBO` option, first ensure that Gazebo is installed on your machine, following the 
+instructions available at http://gazebosim.org/tutorials?cat=install . Make sure to install also the 
+development files, i.e. `libgazebo*-dev` on Debian/Ubuntu. 
+
+Once the superbuild with `` enabled has been compiled, it is necessary to append a few superbuild-specific path to the Gazebo enviromental variables:
+~~~
+# Gazebo related env variables (see http://gazebosim.org/tutorials?tut=components#EnvironmentVariables )
+# This is /usr/local/share/gazebo/setup.sh if Gazebo was installed in macOS using homebrew
+source /usr/share/gazebo/setup.sh
+export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
+export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models
+export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
+~~~
+
+The `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to the Gazebo enviromental variables. 
 
 ### Check the installation
 **TODO**
@@ -344,7 +389,6 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_LUA` CMake option
 
 ### Check the installation
 **TODO**
-
 
 ## MATLAB
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
@@ -375,7 +419,7 @@ Another way is to run (only once) the script `startup_robotology_superbuild.m` i
 For more info on configuring MATLAB software with the robotology-superbuild, please check the [WB-Toolbox README](https://github.com/robotology/WB-Toolbox).
 
 **Note: tipically we assume that a user that selects the `ROBOTOLOGY_USES_MATLAB` also has Simulink installed in his computer. If this is not the case, you can enable the advanced CMake option `ROBOTOLOGY_NOT_USE_SIMULINK` to compile all the subprojects that depend on MATLAB, but disable the subprojecs that depend on Simulink (i.e. the
-[WB-Toolbox](https://github.com/robotology/WB-Toolbox) ).**
+[WB-Toolbox](https://github.com/robotology/WB-Toolbox) ) if tou have enabled the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake options.**
 
 ### Check the installation
 **TODO**

@@ -1,0 +1,24 @@
+# Automatically generated setup file for @PROJECT_NAME@
+
+export ROBOTOLOGY_SUPERBUILD_ROOT=@PROJECT_SOURCE_DIR@
+export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=@PROJECT_BINARY_DIR@/install
+# Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
+export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
+# YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub
+# Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
+export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}
+
+@cmakeif ROBOTOLOGY_USES_GAZEBO
+# ROBOTOLOGY_USES_GAZEBO-specific lines
+# Gazebo related env variables (see http://gazebosim.org/tutorials?tut=components#EnvironmentVariables )
+source @GAZEBO_SETUP_SH_PATH@
+export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
+export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models
+export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
+@endcmakeif ROBOTOLOGY_USES_GAZEBO
+
+@cmakeif ROBOTOLOGY_ENABLE_DYNAMICS
+# ROBOTOLOGY_ENABLE_DYNAMICS-specific lines
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/codyco
+@endcmakeif ROBOTOLOGY_ENABLE_DYNAMICS
