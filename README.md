@@ -73,9 +73,9 @@ The dependencies CMAke options specify if the packages dependending on something
 Installation
 ============
 We provide different instructions on how to install codyco-superbuild, depending on your operating system:
-* [**Windows**](#windows): use the superbuild with Microsoft Visual Studio,
+* [**Linux**](#linux): use the superbuild with make,
 * [**macOS**](#macOS): use the superbuild with Xcode or GNU make,
-* [**Linux**](#linux): use the superbuild with make.
+* [**Windows**](#windows): use the superbuild with Microsoft Visual Studio.
 
 Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html).
 
@@ -96,6 +96,8 @@ sudo apt-get -t jessie-backports install cmake libeigen3-dev
 ~~~
 * In **Ubuntu 14.04** (`trusty`) a recent version of CMake is available in the official repositories in the [`cmake3` package](https://packages.ubuntu.com/trusty/cmake3). To install a recent version of Eigen you can use a [PPA](https://launchpad.net/~nschloe/+archive/ubuntu/eigen-backports).
 
+If you enabled any [dependency specific CMake option](#dependencies-cmake-options) you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 
 ### Superbuild
 If you didn't already configured your git, you have to set your name and email to sign your commits:
@@ -145,6 +147,9 @@ To install Eigen and CMake, it is possible to use [Homebrew](http://brew.sh/):
 ```
 brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml ipopt
 ```
+
+If you enabled any [dependency specific CMake option](#dependencies-cmake-options) you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 
 ### Superbuild
 If you didn't already configured your git, you have to set your name and email to sign your commits:
@@ -257,7 +262,7 @@ git command:
 git pull
 ~~~
 However, for running the equivalent of `git pull` on all the repositories managed by
-the codyco-superbuild, you have to execute in your build system the appropriate target.
+the robotology-superbuild, you have to execute in your build system the appropriate target.
 To do this, make sure to be in the `build` directory of the `robotology-superbuild` and execute:
 ~~~
 make update-all
