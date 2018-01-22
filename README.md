@@ -72,7 +72,7 @@ The dependencies CMAke options specify if the packages dependending on something
 
 Installation
 ============
-We provide different instructions on how to install codyco-superbuild, depending on your operating system:
+We provide different instructions on how to install robotology-superbuild, depending on your operating system:
 * [**Linux**](#linux): use the superbuild with make,
 * [**macOS**](#macOS): use the superbuild with Xcode or GNU make,
 * [**Windows**](#windows): use the superbuild with Microsoft Visual Studio.
@@ -118,7 +118,7 @@ You can configure the ccmake environment if you know you will use some particula
 See [Superbuild CMake options](#superbuild-cmake-options) for a list of available options.
 
 ### Configure your environment
-Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `codyco-superbuild/build/install/bin` and all libraries in `codyco-superbuild/build/install/lib`.
+Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
 To use this binaries and libraries, you should update the `PATH` and `LD_CONFIG_PATH` environment variables.
 
@@ -157,10 +157,10 @@ If you didn't already configured your git, you have to set your name and email t
 git config --global user.name FirstName LastName
 git config --global user.email user@email.domain
 ```
-Finally it is possible to install CoDyCo software using the YCM superbuild:
+Finally it is possible to install robotology software using the superbuild:
 ```bash
-git clone https://github.com/robotology/codyco-superbuild.git
-cd codyco-superbuild
+git clone https://github.com/robotology/robotology-superbuild.git
+cd robotology-superbuild
 mkdir build
 cd build
 ```
@@ -237,7 +237,7 @@ git config --global user.name FirstName LastName
 git config --global user.email user@email.domain
 ```
 After that you can clone the superbuild repository as any other git repository, and generate the Visual Studio solution using the CMake gui. Then you open the generated solution with Visual Studio and build the target `all`.
-Visual Studio will then download, build and install in a local directory all the CoDyCo software and its dependencies.
+Visual Studio will then download, build and install in a local directory all the robotology software and its dependencies.
 If you prefer to work from the command line, you can also compile the `all` target using the following command (if you are in the `robotology-superbuild/build` directory:
 ~~~
 cmake --build . --config Release
@@ -248,7 +248,7 @@ Currently the YCM superbuild does not support building a global install target, 
 
 To use this binaries and libraries, you should update the necessary environment variables.
 
-Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you clone the codyco-superbuild repository.
+Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you clone the robotology-superbuild repository.
 
 Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin` to your PATH
 
@@ -360,10 +360,10 @@ can install some projects that depend on MATLAB, in particular:
 
 
 To use this software, you can simply enable its compilation using the `ROBOTOLOGY_USES_MATLAB` CMake option.
-Once this software has been compiled by the superbuild, you just need to add some directories of the codyco-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install`) to [the MATLAB path](http://mathworks.com/help/matlab/matlab_env/add-folders-to-search-path-upon-startup-on-unix-or-macintosh.html).
+Once this software has been compiled by the superbuild, you just need to add some directories of the robotology-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install`) to [the MATLAB path](http://mathworks.com/help/matlab/matlab_env/add-folders-to-search-path-upon-startup-on-unix-or-macintosh.html).
 In particular you need to add to the MATLAB path the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/mex` directory and all the subdirectories `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/WB-Toolbox`.
 
-As an example, you could add this line to your MATLAB script that uses the codyco-superbuild matlab software:
+As an example, you could add this line to your MATLAB script that uses the robotology-superbuild matlab software:
 ~~~
     addpath(['robotology_superbuild_install_folder'  /mex])
     addpath(genpath(['robotology_superbuild_install_folder'  /share/WB-Toolbox]))available
@@ -372,7 +372,7 @@ Anyway we strongly suggest that you add this directories to the MATLAB path in r
 for example by modifying the `startup.m` or the `MATLABPATH` enviromental variable [as described in official MATLAB documentation](http://mathworks.com/help/matlab/matlab_env/add-folders-to-search-path-upon-startup-on-unix-or-macintosh.html).
 Another way is to run (only once) the script `startup_robotology_superbuild.m` in the `$ROBOTOLOGY_SUPERBUILD_ROOT/build` folder. This should be enough to permanently add the required paths for all the toolbox that use MATLAB.
 
-For more info on configuring MATLAB software with the codyco-superbuild, please check the [WB-Toolbox README](https://github.com/robotology/WB-Toolbox).
+For more info on configuring MATLAB software with the robotology-superbuild, please check the [WB-Toolbox README](https://github.com/robotology/WB-Toolbox).
 
 **Note: tipically we assume that a user that selects the `ROBOTOLOGY_USES_MATLAB` also has Simulink installed in his computer. If this is not the case, you can enable the advanced CMake option `ROBOTOLOGY_NOT_USE_SIMULINK` to compile all the subprojects that depend on MATLAB, but disable the subprojecs that depend on Simulink (i.e. the
 [WB-Toolbox](https://github.com/robotology/WB-Toolbox) ).**
