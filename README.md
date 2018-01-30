@@ -28,10 +28,8 @@ Table of Contents
     * [Dynamics profile](#dynamics)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
-    * [Lua](#lua)
     * [MATLAB](#matlab)
-    * [Octave](#octave)
-    * [Python](#python)
+    * [Octave](#octave) 
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
@@ -65,10 +63,8 @@ The dependencies CMAke options specify if the packages dependending on something
 | CMake Option | Description |Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
 | `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   | [Documentation on Gazebo dependency.](#gazebo) | 
-| `ROBOTOLOGY_USES_LUA`  | Include software and plugins that depend on the [Lua scripting language](https://www.lua.org/). | `OFF` | [Documentation on Lua dependency.](#lua) | 
 | `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) | 
 | `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  [Documentation on Octave dependency.](#octave) |
-| `ROBOTOLOGY_USES_PYTHON`  | Include software and plugins that depend on the [Python scripting language](https://www.python.org/).  | `OFF` | [Documentation on Python dependency.](#python)  |
 
 Installation
 ============
@@ -139,6 +135,8 @@ Software installed by the following [profile](#profile-cmake-options) or [depend
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
+* [`ROBOTOLOGY_USES_OCTAVE`](#octave)
+
 
 As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
 all the necessary enviromental variables:
@@ -212,6 +210,7 @@ Software installed by the following [profile](#profile-cmake-options) or [depend
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
+* [`ROBOTOLOGY_USES_OCTAVE`](#octave)
 
 As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
 all the necessary enviromental variables:
@@ -279,8 +278,8 @@ Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp` and `$ROBOTOLOGY_S
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
-* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
+* [`ROBOTOLOGY_USES_OCTAVE`](#octave)
 
 Update
 ======
@@ -342,7 +341,7 @@ The configuration necessary to use the software installed in the Core profile is
 operating system-specific installation documentation. 
 
 ### Check the installation
-**TODO**
+Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify if your installation was successful.
 
 ## Dynamics
 This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
@@ -379,16 +378,7 @@ export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INST
 The `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to the Gazebo enviromental variables. 
 
 ### Check the installation
-**TODO**
-
-## Lua 
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_LUA` CMake option.
-
-### Configuration
-**TODO**
-
-### Check the installation
-**TODO**
+Follow the steps in https://github.com/robotology/icub-gazebo#usage to check if the Gazebo-based iCub simulation works fine. 
 
 ## MATLAB
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
@@ -421,27 +411,11 @@ For more info on configuring MATLAB software with the robotology-superbuild, ple
 **Note: tipically we assume that a user that selects the `ROBOTOLOGY_USES_MATLAB` also has Simulink installed in his computer. If this is not the case, you can enable the advanced CMake option `ROBOTOLOGY_NOT_USE_SIMULINK` to compile all the subprojects that depend on MATLAB, but disable the subprojecs that depend on Simulink (i.e. the
 [WB-Toolbox](https://github.com/robotology/WB-Toolbox) ) if tou have enabled the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake options.**
 
-### Check the installation
-**TODO**
-
 ## Octave 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
 
 ### Configuration
 Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
-
-### Check the installation
-**TODO**
-
-
-## Python
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
-
-### Configuration
-**TODO**
-
-### Check the installation
-**TODO**
 
 FAQs
 ====

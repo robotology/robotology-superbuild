@@ -34,9 +34,12 @@ option(ROBOTOLOGY_USES_MATLAB "Enable compilation of software that depend on Mat
 option(ROBOTOLOGY_NOT_USE_SIMULINK "Disable compilation of software that depend on Simulink" FALSE)
 
 ## Other dynamic languages options
-option(ROBOTOLOGY_USES_LUA "Enable compilation of software that depend on Lua" FALSE)
-option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Python" FALSE)
 option(ROBOTOLOGY_USES_OCTAVE "Enable compilation of software that depend on Octave" FALSE)
+option(ROBOTOLOGY_USES_LUA "Enable compilation of software that depend on Lua" FALSE)
+mark_as_advanced(ROBOTOLOGY_USES_LUA)
+option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Python" FALSE)
+mark_as_advanced(ROBOTOLOGY_USES_PYTHON)
+
 
 ## Enable packages that depend on the Gazebo simulator
 if(WIN32)
@@ -60,6 +63,8 @@ mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH)
 option(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN "Enable compilation of software necessary on the pc running on the CAN-based iCub robot." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
+mark_as_advanced(ROBOTOLOGY_ENABLE_R1_ROBOT)
+
 
 #set default build type to "Release" in single-config generators
 if(NOT CMAKE_CONFIGURATION_TYPES)
