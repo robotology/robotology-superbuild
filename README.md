@@ -125,8 +125,7 @@ export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/in
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp
-                                     :$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 ```
@@ -200,8 +199,7 @@ export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/in
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp
-                                     :$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 ```
