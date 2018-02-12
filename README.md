@@ -13,6 +13,10 @@ A YCM Superbuild is a CMake project whose only goal is to download and build sev
 If you are familiar with ROS, it is something similar to catkin or ament workspace, but using pure CMake for portability reasons.
 You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html).
 
+| System  | Status | 
+|:------:|:------:|
+|  Linux   |  [![Build Status](https://travis-ci.org/robotology/robotology-superbuild.svg?branch=master)](https://travis-ci.org/robotology/robotology-superbuild)     | 
+
 Table of Contents
 =================
   * [Superbuild structure](#superbuild-structure)
