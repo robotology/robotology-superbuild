@@ -55,10 +55,11 @@ Note that any dependencies of the included packages that is not available in the
 | CMake Option | Description | Main packages included | Default Value | Profile-specific documentation |
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
 | `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing) . [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) | 
-| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control . | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`WBI-Toolbox-controllers`](https://github.com/robotology-playground/WBI-Toolbox-controllers) | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
+| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`WBI-Toolbox-controllers`](https://github.com/robotology-playground/WBI-Toolbox-controllers) | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
+| `ROBOTOLOGY_ENABLE_IHMC` | The robotology-playground package necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
 
 ### Dependencies CMake options
-The dependencies CMAke options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`. 
+The dependencies CMake options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`. 
 
 | CMake Option | Description |Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
@@ -347,6 +348,13 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 ### Configuration
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
 If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to `YARP_DATA_DIRS`.
+
+## IHMC
+This profile is enabled by the `ROBOTOLOGY_ENABLE_IHMC` CMake option.
+
+### Configuration
+The package depends on [Asio](https://think-async.com/). If you are using Linux you can install Asio by typing `sudo apt-get install libasio-dev`.  
+See the package [documentation](https://github.com/robotology-playground/ihmc-ors-yarp#regenerate-the-idl-messages) if you need to regenerate the `idl messages`.
 
 
 Dependencies-specific documentation
