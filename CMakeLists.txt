@@ -64,6 +64,8 @@ option(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN "Enable compilation of software necessar
 mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_R1_ROBOT)
+option(ROBOTOLOGY_ENABLE_IHMC "Enable compilation of software necessary to use YARP with IHMC Open Robotic Software." FALSE)
+mark_as_advanced(ROBOTOLOGY_ENABLE_IHMC)
 
 
 #set default build type to "Release" in single-config generators
@@ -153,6 +155,11 @@ endif()
 if(ROBOTOLOGY_ENABLE_R1_ROBOT)
   find_or_build_package(navigation)
   find_or_build_package(cer)
+endif()
+
+# IHMC Open Robotic Software
+if(ROBOTOLOGY_ENABLE_IHMC)
+  find_or_build_package(ihmc-ors-yarp)
 endif()
 
 
