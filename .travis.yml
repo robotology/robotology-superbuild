@@ -69,4 +69,7 @@ script:
 
 notifications:
   email:
+    # CORE, DYNAMICS mantainer
     - pegua1@gmail.com
+    # IHMC mantainer
+    - gabriele.nava@mail.polimi.it
