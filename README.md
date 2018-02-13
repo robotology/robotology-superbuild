@@ -60,7 +60,7 @@ Note that any dependencies of the included packages that is not available in the
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
 | `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing) . [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) | 
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`WBI-Toolbox-controllers`](https://github.com/robotology-playground/WBI-Toolbox-controllers) | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
-| `ROBOTOLOGY_ENABLE_IHMC` | The robotology-playground package necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
+| `ROBOTOLOGY_ENABLE_IHMC` | The robotology software packages necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
 
 ### Dependencies CMake options
 The dependencies CMake options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`. 
@@ -97,8 +97,10 @@ sudo apt-get -t jessie-backports install cmake libeigen3-dev
 ~~~
 * In **Ubuntu 14.04** (`trusty`) a recent version of CMake is available in the official repositories in the [`cmake3` package](https://packages.ubuntu.com/trusty/cmake3). To install a recent version of Eigen you can use a [PPA](https://launchpad.net/~nschloe/+archive/ubuntu/eigen-backports).
 
-If you enabled any [dependency specific CMake option](#dependencies-cmake-options) you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+If you enabled any [profile](#profile-cmake-options) or [dependency](#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
+
 
 ### Superbuild
 If you didn't already configured your git, you have to set your name and email to sign your commits:
@@ -165,7 +167,8 @@ To install Eigen and CMake, it is possible to use [Homebrew](http://brew.sh/):
 brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml ipopt
 ```
 
-If you enabled any [dependency specific CMake option](#dependencies-cmake-options) you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+If you enabled any [profile](#profile-cmake-options) or [dependency](#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 
 ### Superbuild
@@ -242,10 +245,16 @@ for the time being it is easier for you to use Linux or macOS.
 
 ### System Dependencies
 Most of the robotology software is developed using the C/C++ language. For this reason, you should have Visual Studio installed on your computer to build it.
-In particular to  install some dependencies of our software we rely on the binary installers provided by [the official iCub software](http://wiki.icub.org/wiki/ICub_Software_Installation).
+In particular to  install the system dependencies of our software we rely on the binary installers of YARP
+( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5
+and the binary installer of ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, OpenCV, SDL, Qt5 and GLUT.
+
+You can use those installers just to install YARP and iCub dependencies, as the latest version of YARP and ICUB will be installed by the superbuild itself.
+
+Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
+* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
 
 You will also need some additional software, as listed afterwards.
-Some of this software can be easily installed using [Chocolatey](https://chocolatey.org), a tool to simplify software installation on Windows.
 
 #### Git
 Most of the robotology software is hosted on Git repositories, so you will need Git to download them.
@@ -339,6 +348,10 @@ Profile-specific documentation
 ## Core 
 This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 
+### System Dependencies
+The steps necessary to install the system dependencies of the Core profile are provided in
+operating system-specific installation documentation.
+
 ### Configuration
 The configuration necessary to use the software installed in the Core profile is provided in
 operating system-specific installation documentation. 
@@ -349,6 +362,10 @@ Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify 
 ## Dynamics
 This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 
+### System Dependencies
+The steps necessary to install the system dependencies of the Dynamics profile are provided in
+operating system-specific installation documentation, and no additional system dependency is required.
+
 ### Configuration
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
 If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to `YARP_DATA_DIRS`.
@@ -356,10 +373,34 @@ If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/shar
 ## IHMC
 This profile is enabled by the `ROBOTOLOGY_ENABLE_IHMC` CMake option.
 
-### Configuration
-The package depends on [Asio](https://think-async.com/). If you are using Linux you can install Asio by typing `sudo apt-get install libasio-dev`.  
-See the package [documentation](https://github.com/robotology-playground/ihmc-ors-yarp#regenerate-the-idl-messages) if you need to regenerate the `idl messages`.
+### System Dependencies
+The software installed by this profile requires the [Asio](https://think-async.com/) library.
 
+#### Linux
+Install asio and the necessary development files using the following command:
+~~~
+sudo apt-get install libasio-dev
+~~~
+
+#### macOS
+Install asio using the following command:
+~~~
+brew install asio
+~~~
+
+#### Windows
+The [Asio](https://think-async.com/) library is an [header-only C++ library](https://en.wikipedia.org/wiki/Header-only), so you can just download it from http://think-async.com/Asio/Download
+and extract it in a directory. You can set the enviromental variable `Asio_ROOT` to point to the directory that contains the asio `README` file
+so that our [FindAsio CMake module](https://github.com/robotology-playground/ihmc-ors-yarp/blob/master/cmake/FindAsio.cmake) is able to find the library.
+
+### Configuration
+See the [ihmc-ors-yarp documentation](https://github.com/robotology-playground/ihmc-ors-yarp#regenerate-the-idl-messages) if you need to regenerate the `idl messages`.
+
+####  Check the installation
+To check that the device was correctly found by YARP, if you run the command `yarpdev --list` in its output you should find a line similar to:
+~~~
+[INFO]Device "bridge_ihmc_ors", available on request (found in <install_prefix>/lib/yarp/bridge_ihmc_ors.so library).
+~~~
 
 Dependencies-specific documentation
 ===================================
@@ -370,12 +411,12 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake opt
 **Warning: at the moment the Gazebo simulator does not support Windows, so this option is only supported 
 on Linux and macOS.**
 
-### Configuration
-To enable the `ROBOTOLOGY_USES_GAZEBO` option, first ensure that Gazebo is installed on your machine, following the 
-instructions available at http://gazebosim.org/tutorials?cat=install . Make sure to install also the 
-development files, i.e. `libgazebo*-dev` on Debian/Ubuntu. 
+### System Dependencies
+Install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
+Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
-Once the superbuild with `` enabled has been compiled, it is necessary to append a few superbuild-specific path to the Gazebo enviromental variables:
+### Configuration
+Once the superbuild with `ROBOTOLOGY_USES_GAZEBO` enabled has been compiled, it is necessary to append a few superbuild-specific path to the Gazebo enviromental variables:
 ~~~
 # Gazebo related env variables (see http://gazebosim.org/tutorials?tut=components#EnvironmentVariables )
 # This is /usr/local/share/gazebo/setup.sh if Gazebo was installed in macOS using homebrew
@@ -392,6 +433,17 @@ Follow the steps in https://github.com/robotology/icub-gazebo#usage to check if 
 
 ## MATLAB
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
+
+**Warning: differently from other optional dependencies, MATLAB is a commercial product that requires a license to be used.**
+
+### System Dependencies
+If MATLAB is not installed on your computer, install it following the instruction in https://mathworks.com/help/install/ .
+Once you installed it, make sure that the directory containing the `matlab` executable is present in the `PATH` of your system,
+as [CMake's FindMatlab module](https://cmake.org/cmake/help/v3.5/module/FindMatlab.html) relies on this to find MATLAB.
+
+**Note: tipically we assume that a user that selects the `ROBOTOLOGY_USES_MATLAB` also has Simulink installed in his computer.
+If this is not the case, you can enable the advanced CMake option `ROBOTOLOGY_NOT_USE_SIMULINK` to compile all the subprojects that depend on MATLAB, but disable the subprojecs that depend on Simulink (i.e. the
+[WB-Toolbox](https://github.com/robotology/WB-Toolbox) ) if you have enabled the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake options.**
 
 ### Configuration
 If [MATLAB](mathworks.com/products/matlab/) is installed on your computer, the robotology-superbuild
@@ -418,11 +470,25 @@ Another way is to run (only once) the script `startup_robotology_superbuild.m` i
 
 For more info on configuring MATLAB software with the robotology-superbuild, please check the [WB-Toolbox README](https://github.com/robotology/WB-Toolbox).
 
-**Note: tipically we assume that a user that selects the `ROBOTOLOGY_USES_MATLAB` also has Simulink installed in his computer. If this is not the case, you can enable the advanced CMake option `ROBOTOLOGY_NOT_USE_SIMULINK` to compile all the subprojects that depend on MATLAB, but disable the subprojecs that depend on Simulink (i.e. the
-[WB-Toolbox](https://github.com/robotology/WB-Toolbox) ) if tou have enabled the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake options.**
-
 ## Octave 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
+
+### System Dependencies
+
+#### Linux
+Install octave and the necessary development files using the following command:
+~~~
+sudo apt-get install liboctave-dev
+~~~
+
+#### macOS
+Install octave using the following command:
+~~~
+brew install octave
+~~~
+
+#### Windows
+The `ROBOTOLOGY_USES_OCTAVE` option has never been tested on Windows.
 
 ### Configuration
 Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
