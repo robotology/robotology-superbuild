@@ -518,3 +518,4 @@ Mantainers
 |:--------:|:-----------------------------:|
 | Core     | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Dynamics | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
+| IHMC | Gabriele Nava [@gabrielenava](https://github.com/gabrielenava) |
