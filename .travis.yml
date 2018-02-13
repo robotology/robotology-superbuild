@@ -51,15 +51,20 @@ install:
   # Install homebrew dependencies 
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export Qt5_DIR="/usr/local/opt/qt5/lib/cmake/Qt5"; fi
-  
+  # ROBOTOLOGY_USES_IHMC
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install asio; fi
+
   # Install apt dependencies 
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install build-essential cmake3 coinor-libipopt-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libeigen3-dev libtinyxml-dev libace-dev libgsl0-dev libcv-dev libhighgui-dev libcvaux-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev libqt5opengl5-dev libqcustomplot-dev; fi  
+  # ROBOTOLOGY_USES_IHMC
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install libasio-dev; fi
+
 script:
   - cmake --version
   - mkdir build
   - cd build
-  - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+  - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_IHMC:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
   - cmake --build . --config ${TRAVIS_BUILD_TYPE}
 
 notifications:
