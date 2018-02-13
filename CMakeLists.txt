@@ -52,6 +52,7 @@ option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Ga
 # Enable/disable different profiles
 option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." TRUE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
+option(ROBOTOLOGY_ENABLE_IHMC "Enable compilation of software necessary to use YARP with the IHMC Open Robotic Software." FALSE)
 
 # Mark as advanced all the profiles that do not have a mantainer
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
@@ -64,8 +65,6 @@ option(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN "Enable compilation of software necessar
 mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_R1_ROBOT)
-option(ROBOTOLOGY_ENABLE_IHMC "Enable compilation of software necessary to use YARP with the IHMC Open Robotic Software." FALSE)
-mark_as_advanced(ROBOTOLOGY_ENABLE_IHMC)
 
 
 #set default build type to "Release" in single-config generators
