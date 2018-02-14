@@ -30,6 +30,7 @@ Table of Contents
   * [Profile-specific documentation](#profile-specific-documentation)
     * [Core profile](#core)
     * [Dynamics profile](#dynamics)
+    * [IHMC profile](#ihmc)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
     * [MATLAB](#matlab)
