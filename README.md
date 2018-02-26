@@ -245,17 +245,12 @@ For this reason if you plan to do use the robotology software with the Gazebo si
 for the time being it is easier for you to use Linux or macOS.
 
 ### System Dependencies
-Most of the robotology software is developed using the C/C++ language. For this reason, you should have Visual Studio installed on your computer to build it.
-In particular to  install the system dependencies of our software we rely on the binary installers of YARP
-( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5
-and the binary installer of ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, OpenCV, SDL, Qt5 and GLUT.
 
-You can use those installers just to install YARP and iCub dependencies, as the latest version of YARP and ICUB will be installed by the superbuild itself.
+As Windows does not have a widely used system [package manager](https://en.wikipedia.org/wiki/Package_manager) such as the one that are available on Linux or macOS, installing the system dependencies is slightly more compliated. However, we try to document every step necessary for the installation, but you find something that you don't understand in the documentation, please [open an issue](https://github.com/robotology/robotology-superbuild/issues/new).  
 
-Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
-* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
-
-You will also need some additional software, as listed afterwards.
+#### Visual Studio
+Most of the robotology software is developed using the C/C++ language. For this reason, you should have [Visual Studio](https://www.visualstudio.com/), the official Microsoft compiler for Windows, installed on your computer to compile the software in the superbuild. Visual Studio 2015 and Visual Studio 2017 are both supported by the superbuild.
+Pay attention to enable the C++ support when first installing the Visual Studio compiler, as by default C++ support is not installed. 
 
 #### Git
 Most of the robotology software is hosted on Git repositories, so you will need Git to download them.
@@ -265,15 +260,56 @@ You can download the Git installer at http://msysgit.github.io/ .
 To install CMake you can use the official installer available at http://www.cmake.org/cmake/resources/software.html .
 It is recommended to install the latest version of CMake.
 
-### Superbuild
+#### Rapid Enviroment Editor
+While this tool is not strictly required, it is convenient to install the [Rapid Environment Editor](https://www.rapidee.com/en/download) to easily modify the value of the [environment variables](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx) in Windows. 
+
+#### System Libraries
+The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine, as it would be too time intensive to build those libraries in the superbuild itself. There are two ways to install these libraries in your machine, either using the installer of YARP and iCub dependencies (the recommended way) or using [vcpkg](https://github.com/Microsoft/vcpkg) (not recommended, as it can takes several hours).
+
+##### YARP and iCub installers 
+The robotology project is currently providing binary installers for YARP and for the iCub libraries. 
+As the idea of the superbuild is to easily permit compilation from source of YARP, iCub and all related software, 
+we use these installers only to install the **dependencies** of these libraries, not to install YARP and iCub themselfs. 
+In particular you have to run the binary installer of YARP
+( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5
+and the binary installer of ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, OpenCV, SDL, Qt5 and GLUT.
+**Important: make sure that you are installing the 64-bit installers, if you want to compile the robotology-superbuild using the the 64-bit compiler!**
+These installers will set automatically all the enviroment variables necessary to make sure that these libraries are found by CMake, and they will modify the `PATH` enviroment variable to make sure that the libraries can be used when launching the programs that use them.  
+
+##### vcpkg 
+**Note: if you already installed the YARP and iCub dependencies installers, you don't need to install vcpkg at all!**
+**Note: using vcpkg is not trivial, and is not currently recommended for new users. Furthermore, some dependencies such as ipopt and sdl1 are not available in vcpkg.**
+The vcpkg ports that need to be installed for providing all the necessary dependencies to the superbuild are:
+~~~
+ ./vcpkg install --triplet x64-windows ace gsl eigen3 opencv freeglut ode sdl2 qt5
+~~~
+Use the `x86-windows` triplet only if you want to compile the superbuild using the 32-bit compiler. 
+The default way to use the libraries provided by vcpkg in CMake is to use the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects). 
+However, using a CMake toolchain is not currently supported by the superbuild, as the toolchain should be manually passed 
+when configuring each CMake-based subproject of the superbuild. 
+For this reason, to use the libraries installed by the superbuild, it is necessary to use the `CMAKE_PREFIX_PATH`,  `CMAKE_PROGRAM_PATH` and `PATH` environment variables. In particular, if your vcpkg is installed in `${VCPKG_ROOT}`, 
+you need to add `${VCPKG_ROOT}/installed/x64-windows` and `${VCPKG_ROOT}/installed/x64-windows/debug` to `CMAKE_PREFIX_PATH`,
+`${VCPKG_ROOT}/installed/x64-windows/tools` to `CMAKE_PROGRAM_PATH` and `${VCPKG_ROOT}/installed/x64-windows/bin` and `${VCPKG_ROOT}/installed/x64-windows/debug/bin` to `PATH`. 
+
+
+### Superbuild``
 If you didn't already configured your git, you have to set your name and email to sign your commits:
 ```
 git config --global user.name FirstName LastName
 git config --global user.email user@email.domain
 ```
-After that you can clone the superbuild repository as any other git repository, and generate the Visual Studio solution using the CMake gui. Then you open the generated solution with Visual Studio and build the target `all`.
+After that you can clone the superbuild repository as any other git repository, i.e. if you use terminal you can write:
+~~~
+git clone https://github.com/robotology/robotology-superbuild
+~~~
+or you can use your preferred Git GUI. 
+
+Once you cloned the repository, you can generate the Visual Studio solution using the CMake GUI.
+See the nicely written [CGold documentation](http://cgold.readthedocs.io/en/latest/first-step/generate-native-tool/gui-visual-studio.html) if you do not know how to generate a Visual Studio solution from a CMake project.
+
+You can then open the generated solution with Visual Studio and build the target `all`.
 Visual Studio will then download, build and install in a local directory all the robotology software and its dependencies.
-If you prefer to work from the command line, you can also compile the `all` target using the following command (if you are in the `robotology-superbuild/build` directory:
+If you prefer to work from the command line, you can also compile the `all` target using the following command (if you are in the `robotology-superbuild/build` directory, and the directory of the `cmake.exe` exectuable is in the [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) :
 ~~~
 cmake --build . --config Release
 ~~~
@@ -302,8 +338,8 @@ git command:
 git pull
 ~~~
 However, for running the equivalent of `git pull` on all the repositories managed by
-the robotology-superbuild, you have to execute in your build system the appropriate target.
-To do this, make sure to be in the `build` directory of the `robotology-superbuild` and execute:
+the robotology-superbuild, you have to run in your build system the appropriate target.
+To do this, make sure to be in the `build` directory of the `robotology-superbuild` and run:
 ~~~
 make update-all
 make
