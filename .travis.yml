@@ -22,7 +22,6 @@ matrix:
     - os: linux
       compiler: gcc
       env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Release"
-  allow_failures:
     - os: osx
       compiler: clang
       env: TRAVIS_CMAKE_GENERATOR="Xcode", TRAVIS_BUILD_TYPE="Debug"
@@ -49,7 +48,7 @@ before_install:
 
 install:
   # Install homebrew dependencies 
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml dartsim/dart/ipopt; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export Qt5_DIR="/usr/local/opt/qt5/lib/cmake/Qt5"; fi
   # ROBOTOLOGY_USES_IHMC
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install asio; fi
