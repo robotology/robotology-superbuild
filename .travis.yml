@@ -29,9 +29,6 @@ matrix:
 before_install:
   # Update homebrew on osx
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
-
-  # Add additional repositories
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap homebrew/science; fi
   
   # Use PPA to have a recent version of eigen
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository ppa:nschloe/eigen-backports -y; fi
@@ -48,7 +45,7 @@ before_install:
 
 install:
   # Install homebrew dependencies 
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml dartsim/dart/ipopt; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml dartsim/dart/ipopt osrf/simulation/gazebo9; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export Qt5_DIR="/usr/local/opt/qt5/lib/cmake/Qt5"; fi
   # ROBOTOLOGY_USES_IHMC
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install asio; fi
