@@ -27,8 +27,9 @@ matrix:
       env: TRAVIS_CMAKE_GENERATOR="Xcode", TRAVIS_BUILD_TYPE="Debug"
 
 before_install:
-  # Update homebrew on osx
+  # Update homebrew on osx and upgrade 
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew upgrade; fi
   
   # Use PPA to have a recent version of eigen
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository ppa:nschloe/eigen-backports -y; fi
