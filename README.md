@@ -1,7 +1,5 @@
 # robotology-superbuild
 
-**THIS REPOSITORY IS STILL IN ALPHA base, and is not expected to work.**
-
 **If you are searching for the superbuild mantained by the Advanced Robotics department at the Italian Institute of Technology, formerly called robotology-superbuild, please check https://github.com/ADVRHumanoids/advr-superbuild.**
 
 
