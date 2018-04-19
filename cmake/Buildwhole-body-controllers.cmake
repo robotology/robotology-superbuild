@@ -10,7 +10,7 @@ find_or_build_package(qpOASES QUIET)
 
 ycm_ep_helper(whole-body-controllers TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology-playground/whole-body-controllers.git
+              REPOSITORY robotology/whole-body-controllers.git
               TAG master
               COMPONENT dynamics
               FOLDER robotology
