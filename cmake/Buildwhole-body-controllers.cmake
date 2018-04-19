@@ -8,9 +8,9 @@ include(FindOrBuildPackage)
 find_or_build_package(WBToolbox QUIET)
 find_or_build_package(qpOASES QUIET)
 
-ycm_ep_helper(WBIToolboxControllers TYPE GIT
+ycm_ep_helper(whole-body-controllers TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology-playground/WBI-Toolbox-controllers.git
+              REPOSITORY robotology-playground/whole-body-controllers.git
               TAG master
               COMPONENT dynamics
               FOLDER robotology
