@@ -1,6 +1,5 @@
 sudo: required
 dist: trusty
-osx_image: xcode8.3
 language: cpp
 
 cache:
@@ -23,6 +22,7 @@ matrix:
       compiler: gcc
       env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Release"
     - os: osx
+      osx_image: xcode9.3beta
       compiler: clang
       env: TRAVIS_CMAKE_GENERATOR="Xcode", TRAVIS_BUILD_TYPE="Debug"
 
