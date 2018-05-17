@@ -9,7 +9,7 @@ download and compile software developed in the robotology GitHub organization, s
 [CMake](https://cmake.org/) is an open-source, cross-platform family of tools designed to build, test and package software.
 A YCM Superbuild is a CMake project whose only goal is to download and build several other projects.
 If you are familiar with ROS, it is something similar to catkin or ament workspace, but using pure CMake for portability reasons.
-You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html).
+You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/index.html).
 
 | System  | Status | 
 |:------:|:------:|
