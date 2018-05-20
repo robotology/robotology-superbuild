@@ -22,6 +22,7 @@ ycm_ep_helper(ICUB TYPE GIT
                    DEPENDS ${ICUB_DEPENDS}
                    COMPONENT iCub
                    FOLDER robotology
+                   CMAKE_ARGS -DICUB_INSTALL_WITH_RPATH:BOOL=ON
                    CMAKE_CACHE_ARGS -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
                                     -DENABLE_icubmod_cartesiancontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_gazecontrollerclient:BOOL=ON
