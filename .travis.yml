@@ -56,7 +56,7 @@ install:
 
   # Install apt dependencies 
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install build-essential cmake3 coinor-libipopt-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libeigen3-dev libtinyxml-dev libace-dev libgsl0-dev libcv-dev libhighgui-dev libcvaux-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev libqt5opengl5-dev libqcustomplot-dev; fi  
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install build-essential cmake3 coinor-libipopt-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libeigen3-dev libtinyxml-dev libace-dev libgsl0-dev libopencv-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev libqt5opengl5-dev libqcustomplot-dev; fi  
   # ROBOTOLOGY_USES_IHMC
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install libasio-dev; fi
 
