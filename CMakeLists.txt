@@ -38,7 +38,6 @@ option(ROBOTOLOGY_USES_OCTAVE "Enable compilation of software that depend on Oct
 option(ROBOTOLOGY_USES_LUA "Enable compilation of software that depend on Lua" FALSE)
 mark_as_advanced(ROBOTOLOGY_USES_LUA)
 option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Python" FALSE)
-mark_as_advanced(ROBOTOLOGY_USES_PYTHON)
 
 
 ## Enable packages that depend on the Gazebo simulator
@@ -177,6 +176,14 @@ if(ROBOTOLOGY_USES_GAZEBO)
     set(GAZEBO_SETUP_SH_PATH "/usr/local/share/gazebo/setup.sh")
   else()
     set(GAZEBO_SETUP_SH_PATH "/usr/share/gazebo/setup.sh")
+  endif()
+endif()
+
+if (NOT WIN32)
+  if(APPLE)
+      set(SHLIB_ENV_VAR "DYLD_LIBRARY_PATH")
+  else()
+      set(SHLIB_ENV_VAR "LD_LIBRARY_PATH")
   endif()
 endif()
 

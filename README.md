@@ -32,7 +32,8 @@ Table of Contents
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
     * [MATLAB](#matlab)
-    * [Octave](#octave) 
+    * [Octave](#octave)
+    * [Python](#python)
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
@@ -122,7 +123,7 @@ See [Superbuild CMake options](#superbuild-cmake-options) for a list of availabl
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
-To use this binaries and libraries, you should update the `PATH` and `LD_CONFIG_PATH` environment variables.
+To use this binaries and libraries, you should update the `PATH` and `LD_LIBRARY_PATH` environment variables.
 
 An easy way is to add this lines to the '.bashrc` file in your home directory:
 ```bash
@@ -134,6 +135,7 @@ export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
@@ -204,6 +206,8 @@ Currently the YCM superbuild does not support building a global install target, 
 
 To use this binaries you should update the `PATH` environment variables.
 
+Append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to your `DYLD_LIBRARY_PATH`.
+
 An easy way is to add these lines to the `.bashrc` or `.bash_profile` file in your home directory:
 ```bash
 export ROBOTOLOGY_SUPERBUILD_ROOT=/directory/where/you/downloaded/robotology-superbuild/
@@ -214,6 +218,7 @@ export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
@@ -326,7 +331,7 @@ Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to t
 
 Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin` to your PATH.
 
-Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/iCub` and `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
+Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/iCub` and `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/ICUBcontrib` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
@@ -539,6 +544,16 @@ FAQs
 ====
 
 See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-faq.7.html).
+
+## Python
+
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
+
+### Configuration
+Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/lib/python2.7/dist-packages` to your `PYTHONPATH`. This is done automatically on Linux and macOS if you source the provided `setup.sh` script.
+
+### Check the installation
+The folder mentioned in the configuration section should contain `*.py` files which correspond to the generated python bindings. Open a python interpreter and try to import modules.
 
 ### Which are the differences between the `robotology-superbuild` and the `codyco-superbuild` ?
 
