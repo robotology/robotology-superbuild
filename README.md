@@ -540,11 +540,6 @@ The `ROBOTOLOGY_USES_OCTAVE` option has never been tested on Windows.
 ### Configuration
 Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
 
-FAQs
-====
-
-See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-faq.7.html).
-
 ## Python
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
@@ -554,6 +549,11 @@ Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/lib/python2.7/dist-packages` 
 
 ### Check the installation
 The folder mentioned in the configuration section should contain `*.py` files which correspond to the generated python bindings. Open a python interpreter and try to import modules.
+
+FAQs
+====
+
+See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-faq.7.html).
 
 ### Which are the differences between the `robotology-superbuild` and the `codyco-superbuild` ?
 
