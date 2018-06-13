@@ -135,6 +135,7 @@ export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
+# Extend LD_LIBRARY_PATH (see http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80)
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
 ```
 
@@ -204,9 +205,7 @@ xcodebuild -configuration Release
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
-To use this binaries you should update the `PATH` environment variables.
-
-Append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to your `DYLD_LIBRARY_PATH`.
+To use this binaries you should update the `PATH` environment variables and append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to your `DYLD_LIBRARY_PATH`.
 
 An easy way is to add these lines to the `.bashrc` or `.bash_profile` file in your home directory:
 ```bash
@@ -218,6 +217,7 @@ export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
+# Extend DYLD_LIBRARY_PATH (see https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/UsingDynamicLibraries.html )
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
 ```
 
