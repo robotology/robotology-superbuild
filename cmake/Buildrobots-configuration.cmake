@@ -6,10 +6,13 @@ include(YCMEPHelper)
 include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
+find_or_build_package(ICUBcontrib QUIET)
+
 
 ycm_ep_helper(robots-configuration TYPE GIT
                                    STYLE GITHUB
                                    REPOSITORY robotology/robots-configuration.git
                                    DEPENDS YARP
+                                           ICUBcontrib
                                    COMPONENT iCub
                                    FOLDER robotology)
