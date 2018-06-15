@@ -7,6 +7,7 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
+
 ycm_ep_helper(robots-configuration TYPE GIT
                                    STYLE GITHUB
                                    REPOSITORY robotology/robots-configuration.git
