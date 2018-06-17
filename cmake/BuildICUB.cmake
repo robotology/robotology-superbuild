@@ -28,6 +28,7 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_gazecontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_serial:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
                                     -DENABLE_icubmod_serialport:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
+                                    -DENABLE_icubmod_skinWrapper:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
                                     -DENABLE_icubmod_dragonfly2:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
                                     -DENABLE_icubmod_portaudio:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
                                     -DENABLE_icubmod_sharedcan:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN}
@@ -37,10 +38,12 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_canBusSkin:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN}
                                     -DENABLE_icubmod_canBusVirtualAnalogSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN}
                                     -DENABLE_icubmod_cfw2can:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN}
-                                    -DENABLE_icubmod_embObjStrain:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
-                                    -DENABLE_icubmod_embObjMais:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
+                                    -DENABLE_icubmod_embObjFTsensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
+                                    -DENABLE_icubmod_embObjIMU:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
                                     -DENABLE_icubmod_embObjInertials:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
+                                    -DENABLE_icubmod_embObjMais:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
                                     -DENABLE_icubmod_embObjMotionControl:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
                                     -DENABLE_icubmod_embObjSkin:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
+                                    -DENABLE_icubmod_embObjStrain:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
                                     -DENABLE_icubmod_embObjVirtualAnalogSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
                                     -DENABLE_icubmod_parametricCalibratorEth:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH})
