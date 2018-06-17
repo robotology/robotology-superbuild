@@ -16,6 +16,10 @@ else()
   set(YARP_COMPILE_BINDINGS OFF)
 endif()
 
+if(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH OR ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
+  set(ROBOTOLOGY_ENABLE_ICUB_ROBOT ON)
+endif()
+
 ycm_ep_helper(YARP TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/yarp.git
@@ -31,7 +35,6 @@ ycm_ep_helper(YARP TYPE GIT
                               -DCREATE_GUIS:BOOL=ON
                               -DYARP_USE_SYSTEM_SQLITE:BOOL=ON
                               -DCREATE_LIB_MATH:BOOL=ON
-                              -DDOX_GENERATE_XML:BOOL=OFF
                               -DCREATE_OPTIONAL_CARRIERS:BOOL=ON
                               -DENABLE_yarpcar_bayer:BOOL=ON
                               -DENABLE_yarpcar_tcpros:BOOL=ON
@@ -41,14 +44,10 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpidl_thrift:BOOL=ON
                               -DCREATE_DEVICE_LIBRARY_MODULES:BOOL=ON
                               -DENABLE_yarpcar_human:BOOL=ON
-                              -DENABLE_yarpcar_mjpeg:BOOL=OFF
                               -DENABLE_yarpcar_rossrv:BOOL=ON
                               -DENABLE_yarpmod_fakebot:BOOL=ON
-                              -DENABLE_yarpmod_opencv_grabber:BOOL=OFF
-                              -DYARP_COMPILE_TESTS:BOOL=OFF
+                              -DENABLE_yarpmod_imuBosch_BNO055:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
                               -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
                               -DYARP_COMPILE_RTF_ADDONS:BOOL=ON
-                              -DYARP_DOXYGEN_XML:BOOL=OFF
-                              -DYARP_DOXYGEN_TAGFILE:BOOL=OFF
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON})
