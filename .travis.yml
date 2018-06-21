@@ -7,6 +7,46 @@ cache:
   ccache: true
   directories:
     - /usr/local/Cellar
+    
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-5.0
+    packages:
+      # gcc
+      - gcc-5
+      - g++-5
+      # clang
+      - clang-5.0
+      # build tools
+      - cmake3 
+      - valgrind
+      - ccache
+      # libraries
+      - qtbase5-dev
+      - qtdeclarative5-dev
+      - qtmultimedia5-dev
+      - libqt5opengl5-dev
+      - libboost-system-dev 
+      - libboost-filesystem-dev 
+      - libboost-thread-dev
+      - libace-dev 
+      - libgsl0-dev 
+      - libcv-dev 
+      - libhighgui-dev 
+      - libcvaux-dev 
+      - libtinyxml-dev
+      - libode-dev 
+      # Bindings
+      - swig
+      # C# bindings
+      - mono-mcs
+      # Lua bindings
+      - liblua5.1-0-dev
+      - lua5.1
+      # Python bindings
+      - python-dev
 
 matrix:
   include:
@@ -46,6 +86,12 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ]; then export CFLAGS="-Qunused-arguments"; fi; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang++; fi; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-Qunused-arguments"; fi; fi
+
+  # Force gcc-5
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "gcc" ]; then export CC=gcc-5; export CXX=g++-5; fi; fi
+
+  # Force clang-5.0
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ]; then export CC=clang-5.0; export CXX=clang++-5.0; fi; fi
 
 install:
   # Install homebrew dependencies 
