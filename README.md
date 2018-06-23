@@ -58,7 +58,7 @@ Note that any dependencies of the included packages that is not available in the
 
 | CMake Option | Description | Main packages included | Default Value | Profile-specific documentation |
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
-| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common) . [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
+| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-tests`](https://github.com/robotology/icub-tests). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_IHMC` | The robotology software packages necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
 
@@ -132,7 +132,7 @@ export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/in
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 # Extend LD_LIBRARY_PATH (see http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80)
@@ -214,7 +214,7 @@ export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/in
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 # Extend DYLD_LIBRARY_PATH (see https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/UsingDynamicLibraries.html )
@@ -300,7 +300,7 @@ you need to add `${VCPKG_ROOT}/installed/x64-windows` and `${VCPKG_ROOT}/install
 `${VCPKG_ROOT}/installed/x64-windows/tools` to `CMAKE_PROGRAM_PATH` and `${VCPKG_ROOT}/installed/x64-windows/bin` and `${VCPKG_ROOT}/installed/x64-windows/debug/bin` to `PATH`. 
 
 
-### Superbuild``
+### Superbuild
 If you didn't already configured your git, you have to set your name and email to sign your commits:
 ```
 git config --global user.name FirstName LastName
@@ -331,7 +331,7 @@ Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to t
 
 Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin` to your PATH.
 
-Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/iCub` and `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/ICUBcontrib` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
+Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/iCub`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/ICUBcontrib` and `$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
