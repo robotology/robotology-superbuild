@@ -76,11 +76,11 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${ROBOTOLOGY_BUILD_TYPES})
 endif()
 
-# Optionally load a file named ProjectsTags
+# Optionally load a file named ProjectsTagsMaster
 # for overwriting the desired branch/tag/commit
 # of the included subprojects of the superbuild
 # Useful for having superbuild "branches"
-include(ProjectsTags OPTIONAL)
+include(ProjectsTagsMaster OPTIONAL)
 
 #Set CMake policies
 if(NOT CMAKE_VERSION VERSION_LESS 3.0)
