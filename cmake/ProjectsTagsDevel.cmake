@@ -1,6 +1,6 @@
 set(ICUB_TAG devel)
 set(RTF_TAG devel)
-set(WBToolbox_TAG feature/newFactoryAndNewCMakeStructure)
+set(WBToolbox_TAG devel)
 set(YARP_TAG devel)
 set(codyco-modules_TAG devel)
 set(icub-tests_TAG devel)
