@@ -508,7 +508,7 @@ can install some projects that depend on MATLAB, in particular:
 
 To use this software, you can simply enable its compilation using the `ROBOTOLOGY_USES_MATLAB` CMake option.
 Once this software has been compiled by the superbuild, you just need to add some directories of the robotology-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install`) to [the MATLAB path](http://mathworks.com/help/matlab/matlab_env/add-folders-to-search-path-upon-startup-on-unix-or-macintosh.html).
-In particular you need to add to the MATLAB path the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/mex` directory and all the subdirectories `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/WB-Toolbox`.
+In particular you need to add to the MATLAB path the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/mex` directory and all the subdirectories `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/WBToolbox`.
 
 As an example, you could add this line to your MATLAB script that uses the robotology-superbuild matlab software:
 ~~~

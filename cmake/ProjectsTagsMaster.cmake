@@ -5,4 +5,4 @@ macro(set_tag tag_name tag_value)
 endmacro()
 
 set_tag(RTF_TAG d06f411e8c976018c62f520577a03085a4c300bf)
-set_tag(WBToolbox_TAG e7998ffc391f876a991bcd20f9d0eaf4266827f9)
+set_tag(WBToolbox_TAG 0ff5ca4aecc607e1f1901abffe3b7c960a4e6b11)
