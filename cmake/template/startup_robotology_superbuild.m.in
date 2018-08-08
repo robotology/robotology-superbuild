@@ -8,7 +8,7 @@ installDir = '@CMAKE_BINARY_DIR@/install';
 mexDir     = [installDir, filesep, 'mex'];
 mexWrapDir = [mexDir, filesep, 'mexwbi-wrappers'];
 mexUtDir   = [mexDir, filesep, 'mexwbi-utilities'];
-shareDir   = [installDir, filesep, 'share/WB-Toolbox'];
+shareDir   = [installDir, filesep, 'share/WBToolbox'];
 imgDir     = [shareDir, filesep, 'images'];
 
 if exist(mexDir, 'dir')
