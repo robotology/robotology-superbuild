@@ -14,32 +14,29 @@ stages:
   - osx
   - deploy
 
-compiler:
-  - gcc
-  - clang
-
 env:
   global:
     - TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
   matrix:
-    - TRAVIS_BUILD_TYPE="Release" UBUNTU="xenial"
-    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="xenial"
-    - TRAVIS_BUILD_TYPE="Release" UBUNTU="bionic"
-    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="bionic"
+    include:
+      - compiler: gcc
+        env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:xenial"
+      - compiler: clang
+        env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:xenial"
+      - compiler: clang
+        env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:bionic"
+      - compile: gcc
+        env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:bionic"
+      - compiler: gcc
+        env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="debian:stable"
+      - compile: clang
+        env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="debian:sid"
 
 # ===================
 # STAGE: test (linux)
 # ===================
 
 before_script:
-  - >-
-    if [ "$UBUNTU" = "xenial" ] ; then
-      export DOCKER_IMAGE_NAME=ubuntu:xenial
-    elif [ "$UBUNTU" = "bionic" ] ; then
-      export DOCKER_IMAGE_NAME=ubuntu:bionic
-    else
-      travis_terminate 1
-    fi
   - docker pull $DOCKER_IMAGE_NAME
 
 script:
