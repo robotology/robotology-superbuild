@@ -19,17 +19,23 @@ env:
     - TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
   matrix:
     include:
-      - compiler: gcc
+      - os: linux
+        compiler: gcc
         env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:xenial"
-      - compiler: clang
+      - os: linux
+        compiler: clang
         env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:xenial"
-      - compiler: clang
+      - os: linux
+        compiler: clang
         env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:bionic"
-      - compile: gcc
+      - os: linux
+        compiler: gcc
         env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:bionic"
-      - compiler: gcc
+      - os: linux
+        compiler: gcc
         env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="debian:stable"
-      - compile: clang
+      - os: linux
+        compile: clang
         env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="debian:sid"
 
 # ===================
