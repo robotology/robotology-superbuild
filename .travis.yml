@@ -17,26 +17,27 @@ stages:
 env:
   global:
     - TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
-  matrix:
-    include:
-      - os: linux
-        compiler: gcc
-        env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:xenial"
-      - os: linux
-        compiler: clang
-        env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:xenial"
-      - os: linux
-        compiler: clang
-        env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:bionic"
-      - os: linux
-        compiler: gcc
-        env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:bionic"
-      - os: linux
-        compiler: gcc
-        env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="debian:stable"
-      - os: linux
-        compile: clang
-        env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="debian:sid"
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:xenial"
+    - os: linux
+      compiler: clang
+      env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:xenial"
+    - os: linux
+      compiler: clang
+      env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:bionic"
+    - os: linux
+      compiler: gcc
+      env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:bionic"
+    - os: linux
+      compiler: gcc
+      env: TRAVIS_BUILD_TYPE="Release" DOCKER_IMAGE_NAME="ubuntu:stable"
+    - os: linux
+      compiler: clang
+      env: TRAVIS_BUILD_TYPE="Debug" DOCKER_IMAGE_NAME="ubuntu:sid"
 
 # ===================
 # STAGE: test (linux)
