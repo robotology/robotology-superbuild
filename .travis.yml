@@ -13,37 +13,25 @@ stages:
   - test # Default stage with job matrix
   - osx
 
+compiler:
+  - gcc
+  - clang
+
 env:
   global:
     - TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
-
-matrix:
-  include:
-    - os: linux
-      compiler: gcc
-      env: TRAVIS_BUILD_TYPE="Release" DOCKER_REPO="ubuntu" DOCKER_TAG="xenial"
-    - os: linux
-      compiler: clang
-      env: TRAVIS_BUILD_TYPE="Debug" DOCKER_REPO="ubuntu" DOCKER_TAG="xenial"
-    - os: linux
-      compiler: clang
-      env: TRAVIS_BUILD_TYPE="Release" DOCKER_REPO="ubuntu" DOCKER_TAG="bionic"
-    - os: linux
-      compiler: gcc
-      env: TRAVIS_BUILD_TYPE="Debug" DOCKER_REPO="ubuntu" DOCKER_TAG="bionic"
-    - os: linux
-      compiler: gcc
-      env: TRAVIS_BUILD_TYPE="Release" DOCKER_REPO="debian" DOCKER_TAG="stable"
-    - os: linux
-      compiler: clang
-      env: TRAVIS_BUILD_TYPE="Debug" DOCKER_REPO="debian" DOCKER_TAG="sid"
+  matrix:
+    - TRAVIS_BUILD_TYPE="Release" UBUNTU="xenial"
+    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="xenial"
+    - TRAVIS_BUILD_TYPE="Release" UBUNTU="bionic"
+    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="bionic"
 
 # ===================
 # STAGE: test (linux)
 # ===================
 
 before_script:
-  - docker pull $DOCKER_REPO:$DOCKER_TAG
+  - docker pull ubuntu:$UBUNTU
 
 script:
   - >-
@@ -56,7 +44,7 @@ script:
       --env TRAVIS_BUILD_DIR \
       --env TRAVIS_BUILD_TYPE \
       --env TRAVIS_CMAKE_GENERATOR \
-      $DOCKER_REPO:$DOCKER_TAG \
+      ubuntu:$UBUNTU \
       sh .ci/install_debian_and_script.sh
 
 # ==========
