@@ -1,117 +1,98 @@
-sudo: required
 dist: trusty
-osx_image: xcode8.3
 language: cpp
+services: docker
+
+os: linux
 
 cache:
-  ccache: true
   directories:
-    - /usr/local/Cellar
-    
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-5.0
-    packages:
-      # gcc
-      - gcc-5
-      - g++-5
-      # clang
-      - clang-5.0
-      # build tools
-      - cmake3 
-      - valgrind
-      - ccache
-      # libraries
-      - qtbase5-dev
-      - qtdeclarative5-dev
-      - qtmultimedia5-dev
-      - libqt5opengl5-dev
-      - libboost-system-dev 
-      - libboost-filesystem-dev 
-      - libboost-thread-dev
-      - libace-dev 
-      - libgsl0-dev 
-      - libcv-dev 
-      - libhighgui-dev 
-      - libcvaux-dev 
-      - libtinyxml-dev
-      - libode-dev 
-      # Bindings
-      - swig
-      # C# bindings
-      - mono-mcs
-      # Lua bindings
-      - liblua5.1-0-dev
-      - lua5.1
-      # Python bindings
-      - python-dev
+    - $HOME/.ccache
+    - $HOME/Library/Caches/Homebrew
 
-matrix:
-  include:
-    - os: linux
-      compiler: clang
-      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Debug"
-    - os: linux
-      compiler: clang
-      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Release"
-    - os: linux
-      compiler: gcc
-      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Debug"
-    - os: linux
-      compiler: gcc
-      env: TRAVIS_CMAKE_GENERATOR="Unix Makefiles", TRAVIS_BUILD_TYPE="Release"
-  allow_failures:
-    - os: osx
-      compiler: clang
-      env: TRAVIS_CMAKE_GENERATOR="Xcode", TRAVIS_BUILD_TYPE="Debug"
+stages:
+  - test # Default stage with job matrix
+  - osx
 
-before_install:
-  # Update homebrew on osx
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
+compiler:
+  - gcc
+  - clang
 
-  # Add additional repositories
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap homebrew/science; fi
-  
-  # Use PPA to have a recent version of eigen
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository ppa:nschloe/eigen-backports -y; fi
+env:
+  global:
+    - TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
+  matrix:
+    - TRAVIS_BUILD_TYPE="Release" UBUNTU="xenial"
+    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="xenial"
+    - TRAVIS_BUILD_TYPE="Release" UBUNTU="bionic"
+    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="bionic"
 
-  # Install ccache on osx
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ccache; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
+# ===================
+# STAGE: test (linux)
+# ===================
 
-  # Use ccache also for clang and clang++ on linux
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ]; then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang; fi; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ]; then export CFLAGS="-Qunused-arguments"; fi; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then sudo ln -s ../../bin/ccache /usr/lib/ccache/clang++; fi; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-Qunused-arguments"; fi; fi
-
-  # Force gcc-5
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "gcc" ]; then export CC=gcc-5; export CXX=g++-5; fi; fi
-
-  # Force clang-5.0
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then if [ "$CC" == "clang" ]; then export CC=clang-5.0; export CXX=clang++-5.0; fi; fi
-
-install:
-  # Install homebrew dependencies 
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export Qt5_DIR="/usr/local/opt/qt5/lib/cmake/Qt5"; fi
-  # ROBOTOLOGY_USES_IHMC
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install asio; fi
-
-  # Install apt dependencies 
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install build-essential cmake3 coinor-libipopt-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libeigen3-dev libtinyxml-dev libace-dev libgsl0-dev libopencv-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev libqt5opengl5-dev libqcustomplot-dev; fi  
-  # ROBOTOLOGY_USES_IHMC
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install libasio-dev; fi
+before_script:
+  - docker pull ubuntu:$UBUNTU
 
 script:
-  - cmake --version
-  - mkdir build
-  - cd build
-  - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_IHMC:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
-  - cmake --build . --config ${TRAVIS_BUILD_TYPE}
+  - >-
+    docker run -it \
+      -v $TRAVIS_BUILD_DIR:$TRAVIS_BUILD_DIR \
+      -v $HOME/.ccache:$HOME/.ccache \
+      -w $TRAVIS_BUILD_DIR \
+      --env CC \
+      --env CXX \
+      --env TRAVIS_BUILD_DIR \
+      --env TRAVIS_BUILD_TYPE \
+      --env TRAVIS_CMAKE_GENERATOR \
+      ubuntu:$UBUNTU \
+      sh .ci/install_debian_and_script.sh
+
+# ==========
+# STAGE: osx
+# ==========
+
+stage_osx:
+  install: &osx_install
+    # Setup ccache
+    - brew update
+    - brew install ccache
+    - export PATH="/usr/local/opt/ccache/libexec:$PATH"
+    # Install dependencies
+    - brew install ace asio eigen boost tinyxml swig qt5 gsl pkg-config jpeg sqlite tinyxml
+    - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
+  script: &osx_script
+    - cd $TRAVIS_BUILD_DIR/.ci
+    - sh ./script.sh
+
+# ======================
+# BUILD JOBS FROM STAGES
+# ======================
+
+jobs:
+  include:
+    # ---------
+    # STAGE OSX
+    # ---------
+    - &osx_template
+      stage: osx
+      os: osx
+      osx_image: xcode9.4
+      before_install: skip
+      install: *osx_install
+      before_script: skip
+      script: *osx_script
+      after_failure: skip
+      after_success: skip
+      after_script: skip
+      env:
+        TRAVIS_CMAKE_GENERATOR="Xcode"
+        TRAVIS_BUILD_TYPE="Debug"
+    - <<: *osx_template
+      compiler: clang
+      env:
+        TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
+        TRAVIS_BUILD_TYPE="Debug"
+
 
 notifications:
   email:
