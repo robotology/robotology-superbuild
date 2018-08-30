@@ -88,7 +88,7 @@ Complete documentation on how to use a YCM-based superbuild is available in the 
 ### System Dependencies
 On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMake and Eigen (and other dependencies necessary for the software include in `robotology-superbuild`) using `apt-get`:
 ```
-sudo apt-get install libeigen3-dev build-essential cmake cmake-curses-gui coinor-libipopt-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libtinyxml-dev libace-dev libgsl0-dev libopencv-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev qml-module-qtquick2 qml-module-qtquick-window2 qml-module-qtmultimedia qml-module-qtquick-dialogs qml-module-qtquick-controls qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings libsdl1.2-dev
+sudo apt-get install libeigen3-dev build-essential cmake cmake-curses-gui coinor-libipopt-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libtinyxml-dev libace-dev libgsl0-dev libopencv-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev qml-module-qtquick2 qml-module-qtquick-window2 qml-module-qtmultimedia qml-module-qtquick-dialogs qml-module-qtquick-controls qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings libsdl1.2-dev libxml2-dev
 ```
 
 In particular, the version that we require are at least 3.3-beta2 for the [Eigen matrix library](http://eigen.tuxfamily.org) and at least 3.0 for the [CMake build system](https://cmake.org/).
@@ -278,13 +278,14 @@ While this tool is not strictly required, it is convenient to install the [Rapid
 #### System Libraries
 The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine, as it would be too time intensive to build those libraries in the superbuild itself. There are two ways to install these libraries in your machine, either using the installer of YARP and iCub dependencies (the recommended way) or using [vcpkg](https://github.com/Microsoft/vcpkg) (not recommended, as it can takes several hours).
 
-##### YARP and iCub installers 
-The robotology project is currently providing binary installers for YARP and for the iCub libraries. 
+##### YARP, iCub installers
+The robotology project is currently providing binary installers for YARP and iCub libraries, and one additional installer for additional dependencies.
 As the idea of the superbuild is to easily permit compilation from source of YARP, iCub and all related software, 
+
 we use these installers only to install the **dependencies** of these libraries, not to install YARP and iCub themselfs. 
 In particular you have to run the binary installer of YARP
-( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5
-and the binary installer of ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, OpenCV, SDL, Qt5 and GLUT.
+( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5, the binary installer of ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, OpenCV, SDL, Qt5 and GLUT and the robotology-additional-dependencies
+installer ( https://github.com/robotology-playground/robotology-additional-dependencies ) to install LibXML2 .
 **Important: make sure that you are installing the 64-bit installers, if you want to compile the robotology-superbuild using the the 64-bit compiler!**
 These installers will set automatically all the enviroment variables necessary to make sure that these libraries are found by CMake, and they will modify the `PATH` enviroment variable to make sure that the libraries can be used when launching the programs that use them.  
 
@@ -293,7 +294,7 @@ These installers will set automatically all the enviroment variables necessary t
 **Note: using vcpkg is not trivial, and is not currently recommended for new users. Furthermore, some dependencies such as ipopt and sdl1 are not available in vcpkg.**
 The vcpkg ports that need to be installed for providing all the necessary dependencies to the superbuild are:
 ~~~
- ./vcpkg install --triplet x64-windows ace gsl eigen3 opencv freeglut ode sdl2 qt5
+ ./vcpkg install --triplet x64-windows ace gsl eigen3 opencv freeglut ode sdl2 qt5 libxml2
 ~~~
 Use the `x86-windows` triplet only if you want to compile the superbuild using the 32-bit compiler. 
 The default way to use the libraries provided by vcpkg in CMake is to use the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects). 
