@@ -57,9 +57,12 @@ stage_osx:
     - brew update
     - brew install ccache
     - export PATH="/usr/local/opt/ccache/libexec:$PATH"
-    # Install dependencies
+    # Install dependencies available from Homebrew/core
     - brew install ace asio eigen boost tinyxml swig qt5 gsl pkg-config jpeg sqlite tinyxml
     - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
+    # Install Gazebo
+    - brew tap osrf/simulation
+    - brew install gazebo9
   script: &osx_script
     - cd $TRAVIS_BUILD_DIR/.ci
     - sh ./script.sh
