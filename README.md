@@ -464,7 +464,6 @@ on Linux and macOS.**
 Install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
 Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
-**Note for macOS uses: at the moment the gazebo9 formula is available on homebrew, but it is not working. Please use the gazebo8 formula until this issue: https://github.com/robotology/robotology-superbuild/issues/52 is fixed, thanks.**
 
 ### Configuration
 Once the superbuild with `ROBOTOLOGY_USES_GAZEBO` enabled has been compiled, it is necessary to append a few superbuild-specific path to the Gazebo enviromental variables:

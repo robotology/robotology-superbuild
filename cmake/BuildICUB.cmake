@@ -16,6 +16,13 @@ if(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH OR ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
   list(APPEND ICUB_DEPENDS icub-firmware-shared)
 endif()
 
+# See discussion in https://github.com/robotology/icub-main/issues/551
+if (APPLE)
+  set(ICUBMAIN_COMPILE_SIMULATORS OFF)
+else()
+  set(ICUBMAIN_COMPILE_SIMULATORS ON)
+endif()
+
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/icub-main.git
@@ -46,4 +53,5 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_embObjSkin:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
                                     -DENABLE_icubmod_embObjStrain:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
                                     -DENABLE_icubmod_embObjVirtualAnalogSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
-                                    -DENABLE_icubmod_parametricCalibratorEth:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH})
+                                    -DENABLE_icubmod_parametricCalibratorEth:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH}
+                                    -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS})
