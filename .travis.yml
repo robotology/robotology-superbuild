@@ -55,6 +55,7 @@ stage_osx:
   install: &osx_install
     # Setup ccache
     - brew update
+    - brew upgrade
     - brew install ccache
     - export PATH="/usr/local/opt/ccache/libexec:$PATH"
     # Install dependencies available from Homebrew/core
