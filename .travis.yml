@@ -55,14 +55,25 @@ stage_osx:
   install: &osx_install
     # Setup ccache
     - brew update
+    - brew upgrade
     - brew install ccache
     - export PATH="/usr/local/opt/ccache/libexec:$PATH"
-    # Install dependencies
+    # Install dependencies available from Homebrew/core
     - brew install ace asio eigen boost tinyxml swig qt5 gsl pkg-config jpeg sqlite tinyxml
     - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
+    # Workaround for https://github.com/travis-ci/travis-ci/issues/8826
+    - brew cask uninstall oclint
+    # Install Gazebo
+    - brew tap osrf/simulation
+    - brew install gazebo9
+    # Install beautifier for Xcode output 
+    - gem install xcpretty-travis-formatter
   script: &osx_script
     - cd $TRAVIS_BUILD_DIR/.ci
-    - sh ./script.sh
+    - sh -c './script.sh'
+  script: &osx_script_xcode
+    - cd $TRAVIS_BUILD_DIR/.ci
+    - sh -c './script.sh | xcpretty -f `xcpretty-travis-formatter`'
 
 # ======================
 # BUILD JOBS FROM STAGES
@@ -80,7 +91,7 @@ jobs:
       before_install: skip
       install: *osx_install
       before_script: skip
-      script: *osx_script
+      script: *osx_script_xcode
       after_failure: skip
       after_success: skip
       after_script: skip
@@ -88,6 +99,7 @@ jobs:
         TRAVIS_CMAKE_GENERATOR="Xcode"
         TRAVIS_BUILD_TYPE="Debug"
     - <<: *osx_template
+      script: *osx_script
       compiler: clang
       env:
         TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
