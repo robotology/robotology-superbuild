@@ -66,9 +66,14 @@ stage_osx:
     # Install Gazebo
     - brew tap osrf/simulation
     - brew install gazebo9
+    # Install beautifier for Xcode output 
+    - gem install xcpretty-travis-formatter
   script: &osx_script
     - cd $TRAVIS_BUILD_DIR/.ci
-    - sh ./script.sh
+    - sh -c './script.sh'
+  script: &osx_script_xcode
+    - cd $TRAVIS_BUILD_DIR/.ci
+    - sh -c './script.sh | xcpretty -f `xcpretty-travis-formatter`'
 
 # ======================
 # BUILD JOBS FROM STAGES
@@ -86,7 +91,7 @@ jobs:
       before_install: skip
       install: *osx_install
       before_script: skip
-      script: *osx_script
+      script: *osx_script_xcode
       after_failure: skip
       after_success: skip
       after_script: skip
@@ -94,6 +99,7 @@ jobs:
         TRAVIS_CMAKE_GENERATOR="Xcode"
         TRAVIS_BUILD_TYPE="Debug"
     - <<: *osx_template
+      script: *osx_script
       compiler: clang
       env:
         TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
