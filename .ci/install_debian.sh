@@ -21,6 +21,5 @@ apt-get install -y python-dev
 # Octave
 apt-get install -y liboctave-dev
 
-
-
-
+# Gazebo (use distro packages to support both Ubuntu and Debian)
+apt-get install -y libgazebo*-dev
