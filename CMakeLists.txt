@@ -151,6 +151,8 @@ endif()
 
 # iCub Robot
 if(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH OR ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
+  # Workaround for https://github.com/robotology/robotology-superbuild/issues/127
+  find_or_build_package(icub-firmware-shared)
   find_or_build_package(ICUB)
   find_or_build_package(robots-configuration)
 endif()
