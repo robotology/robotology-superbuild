@@ -151,6 +151,7 @@ endif()
 
 # iCub Robot
 if(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH OR ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
+  find_or_build_package(icub-firmware-shared)
   find_or_build_package(ICUB)
   find_or_build_package(robots-configuration)
 endif()
