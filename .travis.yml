@@ -21,10 +21,10 @@ env:
   global:
     - TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
   matrix:
-    - TRAVIS_BUILD_TYPE="Release" UBUNTU="xenial"
-    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="xenial"
-    - TRAVIS_BUILD_TYPE="Release" UBUNTU="bionic"
-    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="bionic"
+    - TRAVIS_BUILD_TYPE="Release" UBUNTU="xenial", ROBOTOLOGY_ENABLE_DYNAMICS=TRUE
+    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="xenial", ROBOTOLOGY_ENABLE_DYNAMICS=TRUE
+    - TRAVIS_BUILD_TYPE="Release" UBUNTU="bionic", ROBOTOLOGY_ENABLE_DYNAMICS=TRUE
+    - TRAVIS_BUILD_TYPE="Debug" UBUNTU="bionic", ROBOTOLOGY_ENABLE_DYNAMICS=TRUE
 
 # ===================
 # STAGE: test (linux)
@@ -57,6 +57,7 @@ stage_osx:
     - brew update
     - brew install ccache
     - export PATH="/usr/local/opt/ccache/libexec:$PATH"
+    - export ROBOTOLOGY_ENABLE_DYNAMICS=FALSE
     # Install dependencies available from Homebrew/core
     - brew install ace asio eigen boost tinyxml swig qt5 gsl pkg-config jpeg sqlite tinyxml
     - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
