@@ -473,14 +473,14 @@ Once the superbuild with `ROBOTOLOGY_USES_GAZEBO` enabled has been compiled, it 
 # This is /usr/local/share/gazebo/setup.sh if Gazebo was installed in macOS using homebrew
 source /usr/share/gazebo/setup.sh
 export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
-export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models
+export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/iCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share
 export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
 ~~~
 
 The `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to the Gazebo enviromental variables. 
 
 ### Check the installation
-Follow the steps in https://github.com/robotology/icub-gazebo#usage to check if the Gazebo-based iCub simulation works fine. 
+Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine. 
 
 ## MATLAB
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
