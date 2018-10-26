@@ -332,11 +332,11 @@ Currently the YCM superbuild does not support building a global install target, 
 
 To use this binaries and libraries, you should update the necessary environment variables.
 
-Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you cloned the robotology-superbuild repository.
+Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory where you have installed the robotology-superbuild (`ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/build/install`)
 
-Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/bin` to your PATH.
+Append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin` to your PATH.
 
-Append `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/yarp`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/iCub`, `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/share/ICUBcontrib` and `$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
+Append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp`, `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub`, `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib` and `$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
