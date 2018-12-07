@@ -276,33 +276,17 @@ It is recommended to install the latest version of CMake.
 While this tool is not strictly required, it is convenient to install the [Rapid Environment Editor](https://www.rapidee.com/en/download) to easily modify the value of the [environment variables](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx) in Windows. 
 
 #### System Libraries
-The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine, as it would be too time intensive to build those libraries in the superbuild itself. There are two ways to install these libraries in your machine, either using the installer of YARP and iCub dependencies (the recommended way) or using [vcpkg](https://github.com/Microsoft/vcpkg) (not recommended, as it can takes several hours).
+The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine, as it would be too time intensive to build those libraries in the superbuild itself. 
 
 ##### YARP, iCub installers
 The robotology project is currently providing binary installers for YARP and iCub libraries, and one additional installer for additional dependencies.
 As the idea of the superbuild is to easily permit compilation from source of YARP, iCub and all related software, 
-
 we use these installers only to install the **dependencies** of these libraries, not to install YARP and iCub themselfs. 
 In particular you have to run the binary installer of YARP
 ( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5, the binary installer of ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, OpenCV, SDL, Qt5 and GLUT and the robotology-additional-dependencies
 installer ( https://github.com/robotology-playground/robotology-additional-dependencies ) to install LibXML2 .
 **Important: make sure that you are installing the 64-bit installers, if you want to compile the robotology-superbuild using the the 64-bit compiler!**
 These installers will set automatically all the enviroment variables necessary to make sure that these libraries are found by CMake, and they will modify the `PATH` enviroment variable to make sure that the libraries can be used when launching the programs that use them.  
-
-##### vcpkg 
-**Note: if you already installed the YARP and iCub dependencies installers, you don't need to install vcpkg at all!**
-**Note: using vcpkg is not trivial, and is not currently recommended for new users. Furthermore, some dependencies such as ipopt and sdl1 are not available in vcpkg.**
-The vcpkg ports that need to be installed for providing all the necessary dependencies to the superbuild are:
-~~~
- ./vcpkg install --triplet x64-windows ace gsl eigen3 opencv freeglut ode sdl2 qt5 libxml2
-~~~
-Use the `x86-windows` triplet only if you want to compile the superbuild using the 32-bit compiler. 
-The default way to use the libraries provided by vcpkg in CMake is to use the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects). 
-However, using a CMake toolchain is not currently supported by the superbuild, as the toolchain should be manually passed 
-when configuring each CMake-based subproject of the superbuild. 
-For this reason, to use the libraries installed by the superbuild, it is necessary to use the `CMAKE_PREFIX_PATH`,  `CMAKE_PROGRAM_PATH` and `PATH` environment variables. In particular, if your vcpkg is installed in `${VCPKG_ROOT}`, 
-you need to add `${VCPKG_ROOT}/installed/x64-windows` and `${VCPKG_ROOT}/installed/x64-windows/debug` to `CMAKE_PREFIX_PATH`,
-`${VCPKG_ROOT}/installed/x64-windows/tools` to `CMAKE_PROGRAM_PATH` and `${VCPKG_ROOT}/installed/x64-windows/bin` and `${VCPKG_ROOT}/installed/x64-windows/debug/bin` to `PATH`. 
 
 
 ### Superbuild
