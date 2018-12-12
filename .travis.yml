@@ -20,6 +20,10 @@ compiler:
 env:
   global:
     - TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
+    - YCM_BOOTSTRAP_BASE_ADDRESS=https://raw.githubusercontent.com/drdanz/ycm/HEAD
+    - YCM_REPOSITORY=drdanz/ycm
+    - YCM_TAG=ExternalProject_sync
+    - YCM_BOOTSTRAP_VERBOSE=TRUE
   matrix:
     - TRAVIS_BUILD_TYPE="Release" UBUNTU="xenial", ROBOTOLOGY_ENABLE_DYNAMICS=TRUE
     - TRAVIS_BUILD_TYPE="Debug" UBUNTU="xenial", ROBOTOLOGY_ENABLE_DYNAMICS=TRUE
