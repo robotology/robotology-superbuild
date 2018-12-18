@@ -51,53 +51,55 @@ script:
 # STAGE: osx
 # ==========
 
-stage_osx:
-  install: &osx_install
-    # Setup ccache
-    - brew update
-    - brew install ccache
-    - export PATH="/usr/local/opt/ccache/libexec:$PATH"
-    - export ROBOTOLOGY_ENABLE_DYNAMICS=FALSE
-    # Install dependencies available from Homebrew/core
-    - brew install ace asio eigen boost tinyxml swig qt5 gsl pkg-config jpeg sqlite tinyxml
-    - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
-    # Workaround for https://github.com/travis-ci/travis-ci/issues/8826
-    - brew cask uninstall oclint
-    # Install Gazebo
-    - brew tap osrf/simulation
-    - brew install gazebo9
-    # Install beautifier for Xcode output 
-    - gem install xcpretty-travis-formatter
-  script: &osx_script
-    - cd $TRAVIS_BUILD_DIR/.ci
-    - sh -c 'sh ./script.sh'
-  script: &osx_script_xcode
-    - cd $TRAVIS_BUILD_DIR/.ci
-    - sh -c 'sh ./script.sh | xcpretty -f `xcpretty-travis-formatter`'
+# macOS testing is disabled due to https://github.com/robotology/robotology-superbuild/issues/141
+# once the issue is fixed, this can be enabled again
+# stage_osx:
+#  install: &osx_install
+#    # Setup ccache
+#    - brew update
+#    - brew install ccache
+#    - export PATH="/usr/local/opt/ccache/libexec:$PATH"
+#    - export ROBOTOLOGY_ENABLE_DYNAMICS=FALSE
+#    # Install dependencies available from Homebrew/core
+#    - brew install ace asio eigen boost tinyxml swig qt5 gsl pkg-config jpeg sqlite tinyxml
+#    - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
+#    # Workaround for https://github.com/travis-ci/travis-ci/issues/8826
+#    - brew cask uninstall oclint
+#    # Install Gazebo
+#    - brew tap osrf/simulation
+#    - brew install gazebo9
+#    # Install beautifier for Xcode output 
+#    - gem install xcpretty-travis-formatter
+#  script: &osx_script
+#    - cd $TRAVIS_BUILD_DIR/.ci
+#    - sh -c 'sh ./script.sh'
+#  script: &osx_script_xcode
+#    - cd $TRAVIS_BUILD_DIR/.ci
+#    - sh -c 'sh ./script.sh | xcpretty -f `xcpretty-travis-formatter`'
 
 # ======================
 # BUILD JOBS FROM STAGES
 # ======================
 
-jobs:
-  include:
+#jobs:
+#  include:
     # ---------
     # STAGE OSX
     # ---------
-    - &osx_template
-      stage: osx
-      os: osx
-      osx_image: xcode9.4
-      before_install: skip
-      install: *osx_install
-      before_script: skip
-      script: *osx_script_xcode
-      after_failure: skip
-      after_success: skip
-      after_script: skip
-      env:
-        TRAVIS_CMAKE_GENERATOR="Xcode"
-        TRAVIS_BUILD_TYPE="Debug"
+#    - &osx_template
+#      stage: osx
+#      os: osx
+#      osx_image: xcode9.4
+#      before_install: skip
+#      install: *osx_install
+#      before_script: skip
+#      script: *osx_script_xcode
+#      after_failure: skip
+#      after_success: skip
+#      after_script: skip
+#      env:
+#        TRAVIS_CMAKE_GENERATOR="Xcode"
+#        TRAVIS_BUILD_TYPE="Debug"
 # Disabled for now
 #    - <<: *osx_template
 #      script: *osx_script
