@@ -278,13 +278,16 @@ While this tool is not strictly required, it is convenient to install the [Rapid
 #### System Libraries
 The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine, as it would be too time intensive to build those libraries in the superbuild itself. 
 
-##### YARP, iCub installers
+##### YARP, iCub  and robotology-additional-dependencies installers
 The robotology project is currently providing binary installers for YARP and iCub libraries, and one additional installer for additional dependencies.
 As the idea of the superbuild is to easily permit compilation from source of YARP, iCub and all related software, 
 we use these installers only to install the **dependencies** of these libraries, not to install YARP and iCub themselfs. 
-In particular you have to run the binary installer of YARP
-( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5, the binary installer of ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, OpenCV, SDL, Qt5 and GLUT and the robotology-additional-dependencies
-installer ( https://github.com/robotology-playground/robotology-additional-dependencies ) to install LibXML2 .
+In particular you have to run the following installers:
+* YARP ( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5 (disable YARP itself during the installation as it will be installed by the superbuild, and disable OpenCV as the version distributed with YARP  is not working, see https://github.com/robotology/robotology-superbuild/issues/145 for more info)
+* ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, SDL, Qt5 and GLUT (disable ICUB during the installation, as ICUB will be installed by the superbuild)
+* the robotology-additional-dependencies installer ( https://github.com/robotology-playground/robotology-additional-dependencies ) to install LibXML2,
+* if you need to compile software that depends on OpenCV, download the official installer for OpenCV 3.4.4 at https://sourceforge.net/projects/opencvlibrary/files/3.4.4/opencv-3.4.4-vc14_vc15.exe/download and set the `OpenCV_DIR` enviroment variable to the directory that contains the `OpenCVConfig.cmake` file, tipically `<install_prefix>/opencv/build/x64/vc15/lib/` for 64-bit installations. Note that tipically OpenCV is installed as part of the YARP dependencies installer, but at the moment the YARP dependencies installer has a bug related to OpenCV, see  https://github.com/robotology/robotology-superbuild/issues/145 for more info.
+
 **Important: make sure that you are installing the 64-bit installers, if you want to compile the robotology-superbuild using the the 64-bit compiler!**
 These installers will set automatically all the enviroment variables necessary to make sure that these libraries are found by CMake, and they will modify the `PATH` enviroment variable to make sure that the libraries can be used when launching the programs that use them.  
 
