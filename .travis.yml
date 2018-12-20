@@ -59,7 +59,7 @@ stage_osx:
     - export PATH="/usr/local/opt/ccache/libexec:$PATH"
     - export ROBOTOLOGY_ENABLE_DYNAMICS=FALSE
     # Install dependencies available from Homebrew/core
-    - brew install ace asio eigen boost tinyxml swig qt5 gsl pkg-config jpeg sqlite tinyxml
+    - brew install ace asio eigen tinyxml swig qt5 gsl pkg-config jpeg tinyxml
     - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
     # Workaround for https://github.com/travis-ci/travis-ci/issues/8826
     - brew cask uninstall oclint
@@ -87,6 +87,7 @@ jobs:
     - &osx_template
       stage: osx
       os: osx
+      services:
       osx_image: xcode9.4
       before_install: skip
       install: *osx_install
