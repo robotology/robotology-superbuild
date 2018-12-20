@@ -61,8 +61,6 @@ stage_osx:
     # Install dependencies available from Homebrew/core
     - brew install ace asio eigen tinyxml swig qt5 gsl pkg-config jpeg tinyxml
     - export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
-    # Workaround for https://github.com/travis-ci/travis-ci/issues/8826
-    - brew cask uninstall oclint
     # Install Gazebo
     - brew tap osrf/simulation
     - brew install gazebo9
