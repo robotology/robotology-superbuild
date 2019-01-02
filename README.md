@@ -334,9 +334,9 @@ Append the following variables to your [`YARP_DATA_DIRS`](http://wiki.icub.org/y
 ```
 YARP_DATA_DIRS=
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\yarp
-$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\iCub
-$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\ICUBcontrib
-$ROBOTOLOGY_SUPERBUILD_ROOT%\robotology\icub-tests\suits
+%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\iCub
+%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\ICUBcontrib
+%ROBOTOLOGY_SUPERBUILD_ROOT%\robotology\icub-tests\suits
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
