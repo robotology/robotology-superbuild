@@ -317,18 +317,35 @@ cmake --build . --config Release
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
-To use this binaries and libraries, you should update the necessary environment variables.
+To use this binaries and libraries, you should update the necessary environment variables. You can use Rapid Enviornment Edittor to update the environment variables.
 
-Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory where you have installed the robotology-superbuild (`ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/build/install`)
+Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory where you have installed the robotology-superbuild:
+```
+ROBOTOLOGY_SUPERBUILD_ROOT=<path to code workspace>\robotology-superbuild
+ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = %ROBOTOLOGY_SUPERBUILD_ROOT%\build\install
+```
 
-Append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin` to your PATH.
+Append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\bin` to your PATH:
+```
+Path=%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\bin
+```
 
-Append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp`, `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub`, `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib` and `$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits` to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable.
+Append the following variables to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable:
+```
+YARP_DATA_DIRS=
+%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\yarp
+$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\iCub
+$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\ICUBcontrib
+$ROBOTOLOGY_SUPERBUILD_ROOT%\robotology\icub-tests\suits
+```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
 * [`ROBOTOLOGY_USES_OCTAVE`](#octave)
+
+
+**Important: you can troubleshoot the applications, SDKs, and dll load dependencies using dependency walker: [link1](http://www.dependencywalker.com/) or [link2](https://github.com/lucasg/Dependencies)**
 
 Update
 ======
