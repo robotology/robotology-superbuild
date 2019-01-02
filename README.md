@@ -317,7 +317,7 @@ cmake --build . --config Release
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
-To use this binaries and libraries, you should update the necessary environment variables. You can use Rapid Enviornment Edittor to update the environment variables.
+To use this binaries and libraries, you should update the necessary environment variables. You can a program such as [Rapid Enviroment Editor](https://www.rapidee.com/) to update the environment variables.
 
 Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory where you have installed the robotology-superbuild:
 ```
