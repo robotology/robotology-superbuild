@@ -61,7 +61,7 @@ Note that any dependencies of the included packages that is not available in the
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
 | `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models) and[`icub-tests`](https://github.com/robotology/icub-tests). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
-| `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
+| `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options are enabled. | `OFF` | [Documentation on teleoperation profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_IHMC` | The robotology software packages necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild. 
@@ -427,6 +427,17 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Dynamics profile are provided in
+operating system-specific installation documentation, and no additional system dependency is required.
+
+### Configuration
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
+If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to `YARP_DATA_DIRS`.
+
+## Teleoperation
+This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option.
+
+### System Dependencies
+The steps necessary to install the system dependencies of the Teleoperation profile are provided in
 operating system-specific installation documentation, and no additional system dependency is required.
 
 ### Configuration
