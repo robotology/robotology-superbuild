@@ -436,15 +436,23 @@ operating system-specific installation documentation, and no additional system d
 If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to `YARP_DATA_DIRS`.
 
 ## Teleoperation
-This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option.
+This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option. 
 
 ### System Dependencies
-The steps necessary to install the system dependencies of the Teleoperation profile are provided in
-operating system-specific installation documentation, and no additional system dependency is required.
+To run a teleoperation scenario, with real robot or in simulation, at least we need a Windows machine and Linux/macOS machine. If you are using iCub, the linux/macOS codes can be placed on the robot head. The teleopration dependencies are also related to the teleoperation scenario you want to perform.
+
+#### Teleoperation without Cyberith treadmill 
+In this scenario, we only use [Oculus](#oculus) for teleopration, and we do not use cyberith treadmill. In this case, the user can give the command for robot walking through the Oculus joypads. The dependencies for this scenario are as follwoing:
+* Windows: [Oculus](#oculus).
+* Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
+
+#### Full Teleoperation with Cyberith treadmill
+In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberith) for teleopration. In this case, the user can give the command for robot walking through walking on cyberith treadmill. The dependencies for this scenario are as follwoing:
+* Windows: [Oculus](#oculus), [Cyberith](#cyberith). 
+* Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
 
 ### Configuration
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
-If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to `YARP_DATA_DIRS`.
+The steps necessary to install the system dependencies of the Teleoperation profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
 
 ## IHMC
 This profile is enabled by the `ROBOTOLOGY_ENABLE_IHMC` CMake option.
