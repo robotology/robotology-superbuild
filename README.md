@@ -35,8 +35,8 @@ Table of Contents
     * [MATLAB](#matlab)
     * [Octave](#octave)
     * [Python](#python)
-    * [Oculus_SDK](#oculus)
-    * [Cyberith_SDK](#cyberith)
+    * [Oculus](#oculus)
+    * [Cyberith](#cyberith)
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
@@ -580,7 +580,7 @@ Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/lib/python2.7/dist-packages` 
 ### Check the installation
 The folder mentioned in the configuration section should contain `*.py` files which correspond to the generated python bindings. Open a python interpreter and try to import modules.
 
-## Cyberith_SDK
+## Oculus
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCULUS_SDK` CMake option.
 
 **Warning: at the moment the Oculus SDK does not support macOS and Linux, so this option is only supported
@@ -593,7 +593,7 @@ on Windows.**
 
 ### Check the installation
 
-## Cyberith_SDK
+## Cyberith
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_CYBERITH_SDK` CMake option.
 
 **Warning: at the moment the Oculus SDK does not support macOS and Linux, so this option is only supported
