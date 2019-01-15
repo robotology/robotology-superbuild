@@ -595,9 +595,10 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCULUS_SDK` CMake
 on Windows.**
 
 ### System Dependencies
-
+To check and install the dependencies please follow the steps for Oculus SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
 
 ### Configuration
+To configure please follow the steps for Oculus SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 ### Check the installation
 
@@ -608,9 +609,10 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_CYBERITH_SDK` CMa
 on Windows.**
 
 ### System Dependencies
-
+To check and install the dependencies please follow the steps for Cyberith SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
 
 ### Configuration
+To configure please follow the steps for Cyberith SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 ### Check the installation
 
