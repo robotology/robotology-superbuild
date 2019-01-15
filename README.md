@@ -446,7 +446,7 @@ In this scenario, we only use [Oculus](#oculus) for teleopration, and we do not 
 * Windows: [Oculus](#oculus).
 * Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
 
-#### Full Teleoperation with Cyberith treadmill
+#### Teleoperation with Cyberith treadmill
 In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberith) for teleopration. In this case, the user can give the command for robot walking through walking on cyberith treadmill. The dependencies for this scenario are as follwoing:
 * Windows: [Oculus](#oculus), [Cyberith](#cyberith). 
 * Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
