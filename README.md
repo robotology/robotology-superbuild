@@ -11,9 +11,9 @@ A YCM Superbuild is a CMake project whose only goal is to download and build sev
 If you are familiar with ROS, it is something similar to catkin or ament workspace, but using pure CMake for portability reasons.
 You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/index.html).
 
-| System  | Status | 
+| System  | Status |
 |:------:|:------:|
-|  Linux/macOS  |  [![Build Status](https://travis-ci.org/robotology/robotology-superbuild.svg?branch=master)](https://travis-ci.org/robotology/robotology-superbuild)     | 
+|  Linux/macOS  |  [![Build Status](https://travis-ci.org/robotology/robotology-superbuild.svg?branch=master)](https://travis-ci.org/robotology/robotology-superbuild)     |
 
 Table of Contents
 =================
@@ -59,7 +59,7 @@ Note that any dependencies of the included packages that is not available in the
 | CMake Option | Description | Main packages included | Default Value | Profile-specific documentation |
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
 | `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models) and[`icub-tests`](https://github.com/robotology/icub-tests). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
-| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`WB-Toolbox`](https://github.com/robotology/WB-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
+| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-toolbox`](https://github.com/robotology/wb-toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_IHMC` | The robotology software packages necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild. 
@@ -71,8 +71,8 @@ The dependencies CMake options specify if the packages dependending on something
 
 | CMake Option | Description |Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
-| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   | [Documentation on Gazebo dependency.](#gazebo) | 
-| `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) | 
+| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   | [Documentation on Gazebo dependency.](#gazebo) |
+| `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) |
 | `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  [Documentation on Octave dependency.](#octave) |
 
 Installation
@@ -418,7 +418,21 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Dynamics profile are provided in
-operating system-specific installation documentation, and no additional system dependency is required.
+operating system-specific installation documentation, and no additional required system dependency is required.
+
+The only optional system dependency of `wb-toolbox`, project part of this profile, is [tbeu/matio](https://github.com/tbeu/matio/).
+
+#### Linux
+
+Install matio using the following command:
+
+```
+sudo apt install libmatio-dev
+```
+
+#### Windows and macOS
+
+Install matio following the [installation instructions](https://github.com/tbeu/matio/#20-building) present in the repository.
 
 ### Configuration
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
@@ -498,7 +512,7 @@ as [CMake's FindMatlab module](https://cmake.org/cmake/help/v3.5/module/FindMatl
 
 **Note: tipically we assume that a user that selects the `ROBOTOLOGY_USES_MATLAB` also has Simulink installed in his computer.
 If this is not the case, you can enable the advanced CMake option `ROBOTOLOGY_NOT_USE_SIMULINK` to compile all the subprojects that depend on MATLAB, but disable the subprojecs that depend on Simulink (i.e. the
-[WB-Toolbox](https://github.com/robotology/WB-Toolbox) ) if you have enabled the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake options.**
+[wb-toolbox](https://github.com/robotology/wb-toolbox) Simulink Library) if you have enabled the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake options.**
 
 ### Configuration
 If [MATLAB](mathworks.com/products/matlab/) is installed on your computer, the robotology-superbuild

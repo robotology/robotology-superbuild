@@ -9,15 +9,16 @@ find_or_build_package(YARP QUIET)
 find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(qpOASES QUIET)
-
+find_or_build_package(BlockFactory QUIET)
 
 ycm_ep_helper(WBToolbox TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/WB-Toolbox.git
+              REPOSITORY robotology/wb-toolbox.git
               TAG master
               COMPONENT dynamics
               FOLDER robotology
               DEPENDS YARP
                       ICUB
                       iDynTree
-                      qpOASES)
+                      qpOASES
+                      BlockFactory)
