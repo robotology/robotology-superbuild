@@ -360,8 +360,8 @@ Software installed by the following [profile](#profile-cmake-options) or [depend
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
 * [`ROBOTOLOGY_USES_OCTAVE`](#octave)
-* [`ROBOTOLOGY_USES_OCULUS_SDK`]{#oculus}
-* [`ROBOTOLOGY_USES_CYBERITH_SDK`]{#cyberith}
+* [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
+* [`ROBOTOLOGY_USES_CYBERITH_SDK`](#cyberith)
 
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
  
