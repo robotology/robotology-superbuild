@@ -48,11 +48,15 @@ else()
 endif()
 option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo" ${ROBOTOLOGY_USES_GAZEBO_DEFAULT})
 
+## Enable Oculus SDK and Cyberith treadmill options
+option(ROBOTOLOGY_USES_OCULUS_SDK "Enable compilation of software that depend on Oculus SDK" FALSE)
+option(ROBOTOLOGY_USES_CYBERITH_SDK "Enable compilation of software that depend on Cyberith SDK" FALSE)
+
 # Enable/disable different profiles
 option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." TRUE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_IHMC "Enable compilation of software necessary to use YARP with the IHMC Open Robotic Software." FALSE)
-###option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
+option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 
 # Mark as advanced all the profiles that do not have a mantainer
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
@@ -137,23 +141,13 @@ if(ROBOTOLOGY_ENABLE_DYNAMICS)
   endif()  
 endif()
 
-### Teleoperation
-###if(ROBOTOLOGY_ENABLE_TELEOPERATION)
-###  if (WIN32)
-###    ## Download and install all the dependant libraries
-###    #1- check for QT5 and Eigen3 --> should we do!?
-###    #2- oculus application
-###    #3- GLEW
-###    #4- GLFW3
-###    #5- LibOVR
-###    # if using virtualizer
-###      #6 CybSDK_app
-###      #7 CybSDK
-###  else()
-###    #find_package(Eigen3 REQUIRED) --> isntalled already by user!
-###  endif()
-###  find_or_build_package(retargeting)
-###endif()
+# Teleoperation
+if(ROBOTOLOGY_ENABLE_TELEOPERATION)
+  find_or_build_package(retargeting)
+endif()
+
+
+
 
 # Grasping
 if(ROBOTOLOGY_ENABLE_GRASPING)
