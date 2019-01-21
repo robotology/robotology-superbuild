@@ -198,6 +198,10 @@ if(NOT WIN32)
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.sh.in ${CMAKE_BINARY_DIR}/install/share/${PROJECT_NAME}/setup.sh @ONLY)
 else()
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.bat.in ${CMAKE_BINARY_DIR}/install/share/${PROJECT_NAME}/setup.bat @ONLY)
+  configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/addPathsToUserEnvVariables.ps1.in
+                              ${CMAKE_BINARY_DIR}/install/share/${PROJECT_NAME}/addPathsToUserEnvVariables.ps1 @ONLY)
+  configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/removePathsFromUserEnvVariables.ps1.in
+                              ${CMAKE_BINARY_DIR}/install/share/${PROJECT_NAME}/removePathsFromUserEnvVariables.ps1 @ONLY)
 endif()
 
 ycm_write_dot_file(${CMAKE_CURRENT_BINARY_DIR}/robotology-superbuild.dot)

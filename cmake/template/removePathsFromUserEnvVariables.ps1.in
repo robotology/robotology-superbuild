@@ -1,0 +1,63 @@
+# Automatically generated removePathsFromUserEnvVariables.ps1 file for @PROJECT_NAME@
+
+# Remove a given "User" enviromental variable
+function Remove-UserEnvVariable ($EnvVariable, $Verbose=$TRUE) {
+  if ($Verbose) {
+    Write-Host 'Removing ' $EnvVariable ' User enviroment variable.'
+  }
+  [System.Environment]::SetEnvironmentVariable($EnvVariable, $null, 'User');
+}
+
+# Remove a value from a given "User" enviromental variable
+function Remove-ValueFromUserEnvVariable ($EnvVariable, $Value, $Verbose=$TRUE) {
+  if ($Verbose) {
+    Write-Host 'Removing ' $Value ' from the ' $EnvVariable ' User enviroment variable.'
+  }
+  $currVar = [System.Environment]::GetEnvironmentVariable($EnvVariable, 'User');
+  # If the env variable is already empty, do not do anything
+  if (-Not [string]::IsNullOrEmpty($currVar)) {
+    $newVar = ($currVar.Split(';') | Where-Object { $_ -ne $Value }) -join ';';
+    # If the resulting final variable is empty, delete the enviromental variable
+    if ([string]::IsNullOrEmpty($newVar)) {
+      [System.Environment]::SetEnvironmentVariable($EnvVariable, $null, 'User');
+    } else {
+      [System.Environment]::SetEnvironmentVariable($EnvVariable, $newVar, 'User');
+    }
+  }
+}
+
+Remove-UserEnvVariable ROBOTOLOGY_SUPERBUILD_ROOT;
+$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = "@PROJECT_BINARY_DIR@/install";
+Remove-UserEnvVariable ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
+
+# Cleanup path
+Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/bin";
+
+# Cleanup YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/yarp";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/iCub";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/ICUBcontrib";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-tests/suits";
+
+# Cleanup CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
+Remove-ValueFromUserEnvVariable CMAKE_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
+
+@cmakeif ROBOTOLOGY_USES_GAZEBO
+# Cleanup ROBOTOLOGY_USES_GAZEBO-specific lines
+Remove-ValueFromUserEnvVariable GAZEBO_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib";
+Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/gazebo/models"
+Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/iCub/robots"
+Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share"
+Remove-ValueFromUserEnvVariable GAZEBO_RESOURCE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/gazebo/worlds"
+@endcmakeif ROBOTOLOGY_USES_GAZEBO
+
+@cmakeif ROBOTOLOGY_ENABLE_DYNAMICS
+# Cleanup ROBOTOLOGY_ENABLE_DYNAMICS-specific lines
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/codyco";
+@endcmakeif ROBOTOLOGY_ENABLE_DYNAMICS
+
+@cmakeif ROBOTOLOGY_USES_PYTHON
+# Cleanup the python bindings directory from the PYTHON_PATH
+Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/python2.7/dist-packages";
+@endcmakeif ROBOTOLOGY_USES_PYTHON
+
