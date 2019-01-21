@@ -5,7 +5,7 @@ function Set-ValueToUserEnvVariable ($EnvVariable, $Value, $Verbose=$TRUE) {
   if ($Verbose) {
     Write-Host 'Set ' $Value ' to the ' $EnvVariable ' User enviroment variable.'
   }
-  [System.Environment]::SetEnvironmentVariable($EnvVariable, $newVar, 'User');
+  [System.Environment]::SetEnvironmentVariable($EnvVariable, $Value, 'User');
 }
 
 # Add a value to a given "User" enviromental variable
