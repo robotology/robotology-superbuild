@@ -523,21 +523,28 @@ can install some projects that depend on MATLAB, in particular:
  * The [WB-Toolbox](https://github.com/robotology/WB-Toolbox) Simulink toolbox,
  * The [whole-body-controllers](https://github.com/robotology/whole-body-controllers) Simulink-based balancing controllers.
 
-
 To use this software, you can simply enable its compilation using the `ROBOTOLOGY_USES_MATLAB` CMake option.
 Once this software has been compiled by the superbuild, you just need to add some directories of the robotology-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install`) to [the MATLAB path](https://www.mathworks.com/help/matlab/matlab_env/what-is-the-matlab-search-path.html).
 In particular you need to add to the MATLAB path the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex` directory and all the subdirectories `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/WBToolbox`.
 
-As an example, you could add this line to your MATLAB script that uses the robotology-superbuild matlab software:
+#### Start MATLAB from the launcher or the application menu
+
+You could add this line to your MATLAB script that uses the robotology-superbuild matlab software, substituting `<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>` with the `install` folder inside the build directory of the superbuild:
+
 ~~~
-    addpath([getenv('ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX')  '/mex'])
-    addpath([getenv('ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX')  '/share/WBToolbox'])
+    addpath('<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex'])
+    addpath('<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox'])
+    addpath('<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox/images'])
 ~~~
-Anyway we strongly suggest that you add this directories to the MATLAB path in robust way,
-for example by modifying the `startup.m` or the `MATLABPATH` enviromental variable [as described in official MATLAB documentation](https://www.mathworks.com/help/matlab/matlab_env/add-folders-to-matlab-search-path-at-startup.html).
+
 Another way is to run (only once) the script `startup_robotology_superbuild.m` in the `$ROBOTOLOGY_SUPERBUILD_ROOT/build` folder. This should be enough to permanently add the required paths for all the toolbox that use MATLAB.
 
-For more info on configuring MATLAB software with the robotology-superbuild, please check the [WB-Toolbox README](https://github.com/robotology/WB-Toolbox).
+#### Start MATLAB from the terminal
+
+You can add the folders by modifying the `startup.m` or the `MATLABPATH` environmental variable [as described in official MATLAB documentation](https://www.mathworks.com/help/matlab/matlab_env/add-folders-to-matlab-search-path-at-startup.html).
+If you are using the `setup.sh` or `setup.bat` script for configuring your environment, `MATLABPATH` is automatically populated with these directories.
+
+For more info on configuring MATLAB software with the robotology-superbuild, please check the [wb-toolbox README](https://github.com/robotology/wb-toolbox).
 
 ## Octave 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
