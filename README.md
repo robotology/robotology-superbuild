@@ -619,7 +619,7 @@ on Windows.**
 To check and install the Cyberith SDK, please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
 
 ### Configuration
-To configure please follow the steps for Cyberith SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
+To configure the Cyberith SDK please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 FAQs
 ====
