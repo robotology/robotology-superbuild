@@ -448,7 +448,7 @@ If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/shar
 This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option. 
 
 ### System Dependencies
-To run a teleoperation scenario, with real robot or in simulation, at least we need a Windows machine and Linux/macOS machine. If you are using iCub, the linux/macOS codes can be placed on the robot head. The teleopration dependencies are also related to the teleoperation scenario you want to perform.
+To run a teleoperation scenario, with real robot or in simulation, at least we need a Windows machine and Linux/macOS machine. If you are using iCub, the linux/macOS source code can be placed on the robot head. The teleoperation dependencies are also related to the teleoperation scenario you want to perform.
 
 #### Teleoperation without Cyberith treadmill 
 In this scenario, we only use [Oculus](#oculus) for teleopration, and we do not use cyberith treadmill. In this case, the user can give the command for robot walking through the Oculus joypads. The dependencies for this scenario are as follwoing:
