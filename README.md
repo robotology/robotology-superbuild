@@ -616,7 +616,7 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_CYBERITH_SDK` CMa
 on Windows.**
 
 ### System Dependencies
-To check and install the dependencies please follow the steps for Cyberith SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
+To check and install the Cyberith SDK, please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
 
 ### Configuration
 To configure please follow the steps for Cyberith SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
