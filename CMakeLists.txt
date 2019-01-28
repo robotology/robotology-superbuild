@@ -146,9 +146,6 @@ if(ROBOTOLOGY_ENABLE_TELEOPERATION)
   find_or_build_package(retargeting)
 endif()
 
-
-
-
 # Grasping
 if(ROBOTOLOGY_ENABLE_GRASPING)
   find_or_build_package(icub-grasp-demo)
