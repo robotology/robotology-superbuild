@@ -607,7 +607,7 @@ on Windows.**
 To check and install the Oculus SDK please follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
 
 ### Configuration
-To configure please follow the steps for Oculus SDK mention [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
+To configure the Oculus SDK follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 ### Check the installation
 
