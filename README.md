@@ -301,7 +301,7 @@ These installers will set automatically all the enviroment variables necessary t
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
 * [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
 * [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
-
+* [`ROBOTOLOGY_USES_CYBERITH_SDK`](#cyberith)
 
 ### Superbuild
 If you didn't already configured your git, you have to set your name and email to sign your commits:
