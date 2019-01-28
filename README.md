@@ -451,7 +451,7 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option.
 To run a teleoperation scenario, with real robot or in simulation, at least we need a Windows machine and Linux/macOS machine. If you are using iCub, the linux/macOS source code can be placed on the robot head. The teleoperation dependencies are also related to the teleoperation scenario you want to perform.
 
 #### Teleoperation without Cyberith treadmill 
-In this scenario, we only use [Oculus](#oculus) for teleopration, and we do not use cyberith treadmill. In this case, the user can give the command for robot walking through the Oculus joypads. The dependencies for this scenario are as follwoing:
+In this scenario, we only use [Oculus](#oculus) for teleoperation, and we do not use Cyberith treadmill. In this case, the user can give the command for robot walking through the Oculus joypads. The dependencies for this scenario are as following:
 * Windows: [Oculus](#oculus).
 * Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
 
