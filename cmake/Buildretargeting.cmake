@@ -8,7 +8,7 @@ find_or_build_package(YARP QUIET)
 find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
 
-ycm_ep_helper(retargeting TYPE GIT
+ycm_ep_helper(walking-teleoperation TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/walking-teleoperation.git
               TAG master
