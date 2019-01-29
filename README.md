@@ -28,12 +28,15 @@ Table of Contents
   * [Profile-specific documentation](#profile-specific-documentation)
     * [Core profile](#core)
     * [Dynamics profile](#dynamics)
+    * [Teleoperation profile](#teleoperation)
     * [IHMC profile](#ihmc)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
     * [MATLAB](#matlab)
     * [Octave](#octave)
     * [Python](#python)
+    * [Oculus](#oculus)
+    * [Cyberith](#cyberith)
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
@@ -60,6 +63,7 @@ Note that any dependencies of the included packages that is not available in the
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
 | `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RTF`](https://github.com/robotology/robot-testing), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models) and[`icub-tests`](https://github.com/robotology/icub-tests). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-toolbox`](https://github.com/robotology/wb-toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
+| `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_IHMC` | The robotology software packages necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild. 
@@ -69,11 +73,13 @@ By default, the superbuild will use the package already available in the system.
 ### Dependencies CMake options
 The dependencies CMake options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`. 
 
-| CMake Option | Description |Default Value | Dependency-specific documentation |
+| CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
 | `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   | [Documentation on Gazebo dependency.](#gazebo) |
 | `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) |
 | `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  [Documentation on Octave dependency.](#octave) |
+| `ROBOTOLOGY_USES_OCULUS_SDK`  | Include software and plugins that depend on [Oculus](https://www.oculus.com/).  | `OFF` |  [Documentation on Oculus dependency.](#oculus) |
+| `ROBOTOLOGY_USES_CYBERITH_SDK`  | Include software and plugins that depend on [Cyberith](https://www.cyberith.com/).  | `OFF` |  [Documentation on Cyberith dependency.](#cyberith) |
 
 Installation
 ============
@@ -286,11 +292,16 @@ In particular you have to run the following installers:
 * YARP ( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5 (disable YARP itself during the installation as it will be installed by the superbuild, and disable OpenCV as the version distributed with YARP  is not working, see https://github.com/robotology/robotology-superbuild/issues/145 for more info)
 * ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, SDL, Qt5 and GLUT (disable ICUB during the installation, as ICUB will be installed by the superbuild)
 * the robotology-additional-dependencies installer ( https://github.com/robotology-playground/robotology-additional-dependencies ) to install LibXML2,
-* if you need to compile software that depends on OpenCV, download the official installer for OpenCV 3.4.4 at https://sourceforge.net/projects/opencvlibrary/files/3.4.4/opencv-3.4.4-vc14_vc15.exe/download and set the `OpenCV_DIR` enviroment variable to the directory that contains the `OpenCVConfig.cmake` file, tipically `<install_prefix>/opencv/build/x64/vc15/lib/` for 64-bit installations. Note that tipically OpenCV is installed as part of the YARP dependencies installer, but at the moment the YARP dependencies installer has a bug related to OpenCV, see  https://github.com/robotology/robotology-superbuild/issues/145 for more info.
+* if you need to compile software that depends on OpenCV, download the official installer for OpenCV 3.4.4 at https://sourceforge.net/projects/opencvlibrary/files/3.4.4/opencv-3.4.4-vc14_vc15.exe/download and set the `OpenCV_DIR` enviroment variable to the directory that contains the `OpenCVConfig.cmake` file, tipically `<install_prefix>/opencv/build/x64/vc15/lib/` for 64-bit installations. Note that tipically OpenCV is installed as part of the YARP dependencies installer, but at the moment the YARP dependencies installer has a bug related to OpenCV, see  https://github.com/robotology/robotology-superbuild/issues/145 for more info. Moreover, append `<install_prefix>/opencv/build/x64/vc15/bin/` to the `Path` environment variable.
 
 **Important: make sure that you are installing the 64-bit installers, if you want to compile the robotology-superbuild using the the 64-bit compiler!**
 These installers will set automatically all the enviroment variables necessary to make sure that these libraries are found by CMake, and they will modify the `PATH` enviroment variable to make sure that the libraries can be used when launching the programs that use them.  
 
+
+If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
+* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
+* [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
+* [`ROBOTOLOGY_USES_CYBERITH_SDK`](#cyberith)
 
 ### Superbuild
 If you didn't already configured your git, you have to set your name and email to sign your commits:
@@ -339,13 +350,22 @@ YARP_DATA_DIRS=
 %ROBOTOLOGY_SUPERBUILD_ROOT%\robotology\icub-tests\suits
 ```
 
+Append the following variables to your `CMAKE_PREFIX_PATH` environment variable:
+```
+CMAKE_PREFIX_PATH=
+%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%
+```
+
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
 * [`ROBOTOLOGY_USES_OCTAVE`](#octave)
-
+* [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
+* [`ROBOTOLOGY_USES_CYBERITH_SDK`](#cyberith)
 
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
+ 
+ **When you are adding or appending the environment variables, we suggest to use absolute paths(directories) as the value of a variable, and do not use other variables to define the values of a variable.**
 
 Update
 ======
@@ -437,6 +457,25 @@ Install matio following the [installation instructions](https://github.com/tbeu/
 ### Configuration
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
 If you are using Linux or macOS, the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to `YARP_DATA_DIRS`.
+
+## Teleoperation
+This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option. 
+
+### System Dependencies
+To run a teleoperation scenario, with real robot or in simulation, at least we need a Windows machine and Linux/macOS machine. If you are using iCub, the linux/macOS source code can be placed on the robot head. The teleoperation dependencies are also related to the teleoperation scenario you want to perform.
+
+#### Teleoperation without Cyberith treadmill 
+In this scenario, we only use [Oculus](#oculus) for teleoperation, and we do not use Cyberith treadmill. In this case, the user can give the command for robot walking through the Oculus joypads. The dependencies for this scenario are as following:
+* Windows: [Oculus](#oculus).
+* Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
+
+#### Teleoperation with Cyberith treadmill
+In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberith) for teleopration. In this case, the user can give the command for robot walking through walking on cyberith treadmill. The dependencies for this scenario are as follwoing:
+* Windows: [Oculus](#oculus), [Cyberith](#cyberith). 
+* Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
+
+### Configuration
+The steps necessary to install the system dependencies of the Teleoperation profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
 
 ## IHMC
 This profile is enabled by the `ROBOTOLOGY_ENABLE_IHMC` CMake option.
@@ -579,6 +618,30 @@ Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/lib/python2.7/dist-packages` 
 ### Check the installation
 The folder mentioned in the configuration section should contain `*.py` files which correspond to the generated python bindings. Open a python interpreter and try to import modules.
 
+## Oculus
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCULUS_SDK` CMake option.
+
+**Warning: at the moment the Oculus SDK does not support macOS and Linux, so this option is only supported
+on Windows.**
+
+### System Dependencies
+To check and install the Oculus SDK please follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
+
+### Configuration
+To configure the Oculus SDK follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
+
+## Cyberith
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_CYBERITH_SDK` CMake option.
+
+**Warning: at the moment the Oculus SDK does not support macOS and Linux, so this option is only supported
+on Windows.**
+
+### System Dependencies
+To check and install the Cyberith SDK, please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
+
+### Configuration
+To configure the Cyberith SDK please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
+
 FAQs
 ====
 
@@ -605,3 +668,4 @@ Mantainers
 | Core     | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Dynamics | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | IHMC | Gabriele Nava [@gabrielenava](https://github.com/gabrielenava) |
+| Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
