@@ -44,6 +44,7 @@ script:
       --env TRAVIS_BUILD_DIR \
       --env TRAVIS_BUILD_TYPE \
       --env TRAVIS_CMAKE_GENERATOR \
+      --env ROBOTOLOGY_ENABLE_DYNAMICS \
       ubuntu:$UBUNTU \
       sh .ci/install_debian_and_script.sh
 
