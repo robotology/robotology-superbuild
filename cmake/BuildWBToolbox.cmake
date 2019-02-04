@@ -17,6 +17,7 @@ ycm_ep_helper(WBToolbox TYPE GIT
               TAG master
               COMPONENT dynamics
               FOLDER robotology
+              CMAKE_ARGS -DWBT_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
               DEPENDS YARP
                       ICUB
                       iDynTree
