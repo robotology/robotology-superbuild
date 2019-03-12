@@ -88,6 +88,7 @@ We provide different instructions on how to install robotology-superbuild, depen
 * [**macOS**](#macOS): use the superbuild with Xcode or GNU make,
 * [**Windows**](#windows): use the superbuild with Microsoft Visual Studio.
 
+The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
 Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html).
 
 ## Linux
@@ -96,16 +97,6 @@ On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMak
 ```
 sudo apt-get install libeigen3-dev build-essential cmake cmake-curses-gui coinor-libipopt-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libtinyxml-dev libace-dev libgsl0-dev libopencv-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev qml-module-qtquick2 qml-module-qtquick-window2 qml-module-qtmultimedia qml-module-qtquick-dialogs qml-module-qtquick-controls qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings libsdl1.2-dev libxml2-dev
 ```
-
-In particular, the version that we require are at least 3.3-beta2 for the [Eigen matrix library](http://eigen.tuxfamily.org) and at least 3.0 for the [CMake build system](https://cmake.org/).
-The packages provided in the official distro repositories work out of the box for **Ubuntu 16.04** (`xenial`).
-For older distros such as **Ubuntu 14.04** (`trusty`) and **Debian 8** (`jessie`) the default CMake and Eigen are too old, and is necessary to find a way to install them from an alternative
-source:
-* In **Debian 8** (`jessie`) it is sufficient to [enable the `jessie-backports` repository](http://backports.debian.org/Instructions/) and install the recent versions of CMake and Eigen provided in it:
-~~~
-sudo apt-get -t jessie-backports install cmake libeigen3-dev
-~~~
-* In **Ubuntu 14.04** (`trusty`) a recent version of CMake is available in the official repositories in the [`cmake3` package](https://packages.ubuntu.com/trusty/cmake3). To install a recent version of Eigen you can use a [PPA](https://launchpad.net/~nschloe/+archive/ubuntu/eigen-backports).
 
 If you enabled any [profile](#profile-cmake-options) or [dependency](#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
 * [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
