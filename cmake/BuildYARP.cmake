@@ -16,10 +16,6 @@ else()
   set(YARP_COMPILE_BINDINGS OFF)
 endif()
 
-if(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH OR ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
-  set(ROBOTOLOGY_ENABLE_ICUB_ROBOT ON)
-endif()
-
 ycm_ep_helper(YARP TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/yarp.git
@@ -46,11 +42,11 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpcar_human:BOOL=ON
                               -DENABLE_yarpcar_rossrv:BOOL=ON
                               -DENABLE_yarpmod_fakebot:BOOL=ON
-                              -DENABLE_yarpmod_imuBosch_BNO055:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
+                              -DENABLE_yarpmod_imuBosch_BNO055:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_yarpmod_SDLJoypad:BOOL=ON
                               -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
                               -DYARP_COMPILE_RTF_ADDONS:BOOL=ON
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
-                              -DYARP_USE_I2C:BOOL=${ROBOTOLOGY_ENABLE_ICUB_ROBOT}
+                              -DYARP_USE_I2C:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DYARP_USE_SDL:BOOL=ON
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON})

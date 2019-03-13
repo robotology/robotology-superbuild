@@ -57,16 +57,16 @@ option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." T
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_IHMC "Enable compilation of software necessary to use YARP with the IHMC Open Robotic Software." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
+option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
+include(CMakeDependentOption)
+cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
+
 
 # Mark as advanced all the profiles that do not have a mantainer
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_GRASPING)
 option(ROBOTOLOGY_ENABLE_IOL "Enable compilation of software necessary for the Interactive Objects Learning demo." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_IOL)
-option(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH "Enable compilation of software necessary on the pc running on the Ethernet-based iCub robot." FALSE)
-mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH)
-option(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN "Enable compilation of software necessary on the pc running on the CAN-based iCub robot." FALSE)
-mark_as_advanced(ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_R1_ROBOT)
 
@@ -165,8 +165,7 @@ if(ROBOTOLOGY_ENABLE_IOL)
 endif()
 
 # iCub Robot
-if(ROBOTOLOGY_ENABLE_ICUB_ROBOT_ETH OR ROBOTOLOGY_ENABLE_ICUB_ROBOT_CAN)
-  # Workaround for https://github.com/robotology/robotology-superbuild/issues/127
+if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   find_or_build_package(icub-firmware-shared)
   find_or_build_package(ICUB)
   find_or_build_package(robots-configuration)
