@@ -89,7 +89,7 @@ We provide different instructions on how to install robotology-superbuild, depen
 * [**Windows**](#windows): use the superbuild with Microsoft Visual Studio.
 
 The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
-Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html).
+Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html).
 
 ## Linux
 ### System Dependencies
@@ -386,7 +386,7 @@ using Xcode on macOS.
 
 Note that the update will try to update all the software in the `robotology-superbuild`, and it will complain if the repository is not in the expected branch.
 For this reason, if you are activly developing on a repository managed by the `robotology-superbuild`, remember to switch the `YCM_EP_DEVEL_MODE_<package_name>`
-option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/master/manual/ycm-superbuild.7.html#developer-mode
+option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#developer-mode
 for more details on this options.
 
 Handling the devel branch
@@ -636,7 +636,7 @@ To configure the Cyberith SDK please follow the steps for Cyberith SDK mentioned
 FAQs
 ====
 
-See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/master/manual/ycm-faq.7.html).
+See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-faq.7.html).
 
 ### Which are the differences between the `robotology-superbuild` and the `codyco-superbuild` ?
 
