@@ -1,8 +1,5 @@
 # robotology-superbuild
 
-**If you are searching for the superbuild mantained by the Advanced Robotics department at the Italian Institute of Technology, formerly called robotology-superbuild, please check https://github.com/ADVRHumanoids/advr-superbuild.**
-
-
 This is a meta repository (so-called "superbuild") that uses [CMake](https://cmake.org/) and [YCM](https://github.com/robotology/ycm) to automatically
 download and compile software developed in the robotology GitHub organization, such as the YARP middleware or software used to run the iCub humanoid robot.
 
