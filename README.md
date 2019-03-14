@@ -648,6 +648,20 @@ directory and all external projects in the external directory.
 * Support for software that depends on Gazebo (gazebo-yarp-plugins, icub-gazebo, ...) is enabled by default in Linux and macOS .
 * In the `robotology-superbuild` the compilation for dynamics-related software (iDynTree, balancing and walking controllers) needs to be explicity enabled using the `ROBOTOLOGY_ENABLE_DYNAMICS` that is `OFF` by default. 
 
+### I successfully used the `robotology-superbuild` for my project, how do I cite it in my publication?
+
+The `robotology-superbuild` is based on [YCM](https://github.com/robotology/ycm), you can cite one of these papers:
+
+* **A Build System for Software Development in Robotic Academic Collaborative Environments**,
+  D.E. Domenichelli, S. Traversaro, L. Muratore, A. Rocchi, F. Nori, L. Natale,
+  Second IEEE International Conference on Robotic Computing (IRC), 2018
+  [![DOI](https://img.shields.io/badge/DOI-10.1109%2FIRC.2018.00014-blue.svg)](https://doi.org/10.1109/IRC.2018.00014)
+
+* **A Build System for Software Development in Robotic Academic Collaborative Environments**,
+  D.E. Domenichelli, S. Traversaro, L. Muratore, A. Rocchi, F. Nori, L. Natale,
+  **IN PRESS** International Journal of Semantic Computing (IJSC), Vol. 13, No. 02, 2019
+
+
 Mantainers
 ==========
 
