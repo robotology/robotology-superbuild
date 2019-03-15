@@ -654,8 +654,8 @@ The `robotology-superbuild` is based on [YCM](https://github.com/robotology/ycm)
 
 * **A Build System for Software Development in Robotic Academic Collaborative Environments**,
   D.E. Domenichelli, S. Traversaro, L. Muratore, A. Rocchi, F. Nori, L. Natale,
-  Second IEEE International Conference on Robotic Computing (IRC), 2018
-  [![DOI](https://img.shields.io/badge/DOI-10.1109%2FIRC.2018.00014-blue.svg)](https://doi.org/10.1109/IRC.2018.00014)
+  Second IEEE International Conference on Robotic Computing (IRC), 2018,
+  https://doi.org/10.1109/IRC.2018.00014
 
 * **A Build System for Software Development in Robotic Academic Collaborative Environments**,
   D.E. Domenichelli, S. Traversaro, L. Muratore, A. Rocchi, F. Nori, L. Natale,
