@@ -8,6 +8,14 @@ include(FindOrBuildPackage)
 find_or_build_package(YARP QUIET)
 find_or_build_package(ICUBcontrib QUIET)
 
+# This custom code is present to make sure that:
+# * On iCub Head images, the behavior is to install only those specific robot files
+# * On other systems (i.e. developers laptop) all the robots configuration files are installed
+set(robots-configuration_CMAKE_ARGS "")
+if("$ENV{YARP_ROBOT_NAME}" STREQUAL "")
+    list(APPEND robots-configuration_CMAKE_ARGS "-DINSTALL_ALL_ROBOTS:BOOL=ON")
+endif()
+
 
 ycm_ep_helper(robots-configuration TYPE GIT
                                    STYLE GITHUB
@@ -15,4 +23,5 @@ ycm_ep_helper(robots-configuration TYPE GIT
                                    DEPENDS YARP
                                            ICUBcontrib
                                    COMPONENT iCub
-                                   FOLDER robotology)
+                                   FOLDER robotology
+                                   CMAKE_ARGS ${robots-configuration_CMAKE_ARGS})
