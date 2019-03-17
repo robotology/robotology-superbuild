@@ -129,12 +129,12 @@ To use this binaries and libraries, you should update the `PATH` and `LD_LIBRARY
 
 An easy way is to add this lines to the '.bashrc` file in your home directory:
 ```bash
-export ROBOTOLOGY_SUPERBUILD_ROOT=/directory/where/you/downloaded/robotology-superbuild/
-export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/install
+export ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/directory/where/you/downloaded/robotology-superbuild/
+export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suits
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 # Extend LD_LIBRARY_PATH (see http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80)
@@ -211,12 +211,12 @@ To use this binaries you should update the `PATH` environment variables and appe
 
 An easy way is to add these lines to the `.bashrc` or `.bash_profile` file in your home directory:
 ```bash
-export ROBOTOLOGY_SUPERBUILD_ROOT=/directory/where/you/downloaded/robotology-superbuild/
-export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_ROOT/build/install
+export ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/directory/where/you/downloaded/robotology-superbuild/
+export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_ROOT/robotology/icub-tests/suits
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suits
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 # Extend DYLD_LIBRARY_PATH (see https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/UsingDynamicLibraries.html )
@@ -322,10 +322,10 @@ Currently the YCM superbuild does not support building a global install target, 
 
 To use this binaries and libraries, you should update the necessary environment variables. You can use a program such as [Rapid Enviroment Editor](https://www.rapidee.com/) to update the environment variables.
 
-Set the environment variable `ROBOTOLOGY_SUPERBUILD_ROOT` so that it points to the  directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory where you have installed the robotology-superbuild:
+Set the environment variable `ROBOTOLOGY_SUPERBUILD_SOURCE_DIR` so that it points to the  directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory where you have installed the robotology-superbuild:
 ```
-ROBOTOLOGY_SUPERBUILD_ROOT=<path to code workspace>\robotology-superbuild
-ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = %ROBOTOLOGY_SUPERBUILD_ROOT%\build\install
+ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=<path to code workspace>\robotology-superbuild
+ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = %ROBOTOLOGY_SUPERBUILD_SOURCE_DIR%\build\install
 ```
 
 Append `%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\bin` to your PATH:
@@ -339,7 +339,7 @@ YARP_DATA_DIRS=
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\yarp
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\iCub
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\ICUBcontrib
-%ROBOTOLOGY_SUPERBUILD_ROOT%\robotology\icub-tests\suits
+%ROBOTOLOGY_SUPERBUILD_SOURCE_DIR%\robotology\icub-tests\suits
 ```
 
 Append the following variables to your `CMAKE_PREFIX_PATH` environment variable:
@@ -583,7 +583,7 @@ can install some projects that depend on MATLAB, in particular:
  * The [whole-body-controllers](https://github.com/robotology/whole-body-controllers) Simulink-based balancing controllers.
 
 To use this software, you can simply enable its compilation using the `ROBOTOLOGY_USES_MATLAB` CMake option.
-Once this software has been compiled by the superbuild, you just need to add some directories of the robotology-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install`) to [the MATLAB path](https://www.mathworks.com/help/matlab/matlab_env/what-is-the-matlab-search-path.html).
+Once this software has been compiled by the superbuild, you just need to add some directories of the robotology-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install`) to [the MATLAB path](https://www.mathworks.com/help/matlab/matlab_env/what-is-the-matlab-search-path.html).
 In particular you need to add to the MATLAB path the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex` directory and all the subdirectories `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/WBToolbox`.
 
 #### Start MATLAB from the launcher or the application menu
@@ -596,7 +596,7 @@ You could add this line to your MATLAB script that uses the robotology-superbuil
     addpath('<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox/images'])
 ~~~
 
-Another way is to run (only once) the script `startup_robotology_superbuild.m` in the `$ROBOTOLOGY_SUPERBUILD_ROOT/build` folder. This should be enough to permanently add the required paths for all the toolbox that use MATLAB.
+Another way is to run (only once) the script `startup_robotology_superbuild.m` in the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build` folder. This should be enough to permanently add the required paths for all the toolbox that use MATLAB.
 
 #### Start MATLAB from the terminal
 
@@ -626,14 +626,14 @@ brew install octave
 The `ROBOTOLOGY_USES_OCTAVE` option has never been tested on Windows.
 
 ### Configuration
-Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
+Add the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
 
 ## Python
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
 
 ### Configuration
-Add the `$ROBOTOLOGY_SUPERBUILD_ROOT/build/install/lib/python2.7/dist-packages` to your `PYTHONPATH`. This is done automatically on Linux and macOS if you source the provided `setup.sh` script.
+Add the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install/lib/python2.7/dist-packages` to your `PYTHONPATH`. This is done automatically on Linux and macOS if you source the provided `setup.sh` script.
 
 ### Check the installation
 The folder mentioned in the configuration section should contain `*.py` files which correspond to the generated python bindings. Open a python interpreter and try to import modules.

@@ -26,7 +26,7 @@ function Remove-ValueFromUserEnvVariable ($EnvVariable, $Value, $Verbose=$TRUE) 
   }
 }
 
-Remove-UserEnvVariable ROBOTOLOGY_SUPERBUILD_ROOT;
+Remove-UserEnvVariable ROBOTOLOGY_SUPERBUILD_SOURCE_DIR;
 $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = "@PROJECT_BINARY_DIR@/install";
 Remove-UserEnvVariable ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
 
