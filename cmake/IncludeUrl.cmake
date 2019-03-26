@@ -75,7 +75,7 @@
 # argument.
 
 #=============================================================================
-# Copyright 2013-2015 iCub Facility, Istituto Italiano di Tecnologia
+# Copyright 2013-2015 Istituto Italiano di Tecnologia (IIT)
 # Copyright 2013-2015 Daniele E. Domenichelli <ddomenichelli@drdanz.it>
 #
 # Distributed under the OSI-approved BSD License (the "License");
@@ -176,9 +176,6 @@ macro(INCLUDE_URL _remoteFile)
     set(_localFile ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/${_filename})
     set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES "${_localFile}")
   endif()
-  # Disable because file(LOCK ...) has problems on NFS
-  # See https://github.com/robotology/ycm/issues/93
-  # set(_lockFile "${_localFile}.cmake")
 
   if(DEFINED CMAKE_SCRIPT_MODE_FILE)
     string(RANDOM LENGTH 8 _rand)
@@ -234,16 +231,6 @@ macro(INCLUDE_URL _remoteFile)
       set(_expectedHash ${_IU_EXPECTED_MD5})
     endif()
   endif()
-
-  # Lock the file, in case 2 different processes are downloading the same file
-  # at the time
-  # file(LOCK) was added in CMake 3.2, therefore calling it in older version
-  # will fail.
-  # Disable because file(LOCK ...) has problems on NFS
-  # See https://github.com/robotology/ycm/issues/93
-  # if(NOT CMAKE_VERSION VERSION_LESS 3.2)
-  #  file(LOCK "${_lockFile}")
-  # endif()
 
   set(_shouldDownload 0)
   set(_shouldFail 0)
@@ -372,13 +359,6 @@ macro(INCLUDE_URL _remoteFile)
       set(${_IU_STATUS} "0")
     endif()
   endif()
-
-  # Download is finished, we can now release the lock
-  # Disable because file(LOCK ...) has problems on NFS
-  # See https://github.com/robotology/ycm/issues/93
-  # if(NOT CMAKE_VERSION VERSION_LESS 3.2)
-  #   file(LOCK "${_lockFile}" RELEASE)
-  # endif()
 
   if(NOT EXISTS "${_localFile}" AND NOT _IU_OPTIONAL)
     message(FATAL_ERROR "Downloaded file does not exist. Please report this as a bug")
