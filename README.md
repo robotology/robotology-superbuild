@@ -457,7 +457,7 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_ICUB_HEAD` CMake option. It is
 or if you are a developer that needs to access iCub hardware devices directly without passing through the iCub head.
 
 **Warning: the migration of existing iCub setups to use the robotology-superbuild is an ongoing process, and it is possible
-that your iCub still needs to be migrated. For any doubt, please get in contact with [icub-support](https://github.com/robotology/icub-support).
+that your iCub still needs to be migrated. For any doubt, please get in contact with [icub-support](https://github.com/robotology/icub-support).**
 
 The configuration and compilation of this profile is supported only on Linux systems.
 
