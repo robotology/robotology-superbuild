@@ -139,6 +139,8 @@ export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/shar
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 # Extend LD_LIBRARY_PATH (see http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80)
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
+# Setup the path of blockfactory plugins
+export BLOCKFACTORY_PLUGIN_PATH=$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
@@ -221,6 +223,8 @@ export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/shar
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 # Extend DYLD_LIBRARY_PATH (see https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/UsingDynamicLibraries.html )
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
+# Setup the path of blockfactory plugins
+export BLOCKFACTORY_PLUGIN_PATH=$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
@@ -348,7 +352,14 @@ CMAKE_PREFIX_PATH=
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%
 ```
 
+Export the following environment variable:
+
+```
+BLOCKFACTORY_PLUGIN_PATH=%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%/lib/blockfactory
+```
+
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
+
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
 * [`ROBOTOLOGY_USES_OCTAVE`](#octave)
