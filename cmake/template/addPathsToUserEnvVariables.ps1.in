@@ -39,6 +39,9 @@ Add-ValueToUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 Add-ValueToUserEnvVariable CMAKE_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
 
+# Setup the path of blockfactory plugins
+Add-ValueToUserEnvVariable BLOCKFACTORY_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/blockfactory";
+
 @cmakeif ROBOTOLOGY_USES_GAZEBO
 # ROBOTOLOGY_USES_GAZEBO-specific lines
 Add-ValueToUserEnvVariable GAZEBO_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib";
