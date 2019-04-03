@@ -42,6 +42,9 @@ Remove-ValueFromUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/
 # Cleanup CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 Remove-ValueFromUserEnvVariable CMAKE_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
 
+# Cleanup BLOCKFACTORY_PLUGIN_PATH
+Remove-ValueFromUserEnvVariable BLOCKFACTORY_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/blockfactory";
+
 @cmakeif ROBOTOLOGY_USES_GAZEBO
 # Cleanup ROBOTOLOGY_USES_GAZEBO-specific lines
 Remove-ValueFromUserEnvVariable GAZEBO_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib";

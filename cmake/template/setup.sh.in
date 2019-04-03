@@ -10,6 +10,8 @@ export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/shar
 export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}
 # Extend path for shared libraries  (see http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html)
 export @SHLIB_ENV_VAR@=$@SHLIB_ENV_VAR@:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
+# Setup the path of blockfactory plugins
+export BLOCKFACTORY_PLUGIN_PATH=$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory
 
 @cmakeif ROBOTOLOGY_USES_GAZEBO
 # ROBOTOLOGY_USES_GAZEBO-specific lines
