@@ -15,7 +15,6 @@ stages:
 
 compiler:
   - gcc
-  - clang
 
 env:
   global:
