@@ -2,7 +2,7 @@
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 project(robotology-superbuild NONE)
 
 ## we have to enable C because it is currently used
@@ -100,7 +100,8 @@ endif()
 # Bootstrap YCM
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
-set(YCM_TAG devel)
+set(YCM_TAG v0.10.2)
+set(YCM_MINIMUM_VERSION 0.10.2)
 include(YCMBootstrap)
 
 include(FindOrBuildPackage)
