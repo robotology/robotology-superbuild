@@ -101,6 +101,7 @@ endif()
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
 set(YCM_TAG devel)
+set(YCM_BOOTSTRAP_VERBOSE ON)
 include(YCMBootstrap)
 
 include(FindOrBuildPackage)
