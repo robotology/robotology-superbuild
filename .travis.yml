@@ -35,7 +35,7 @@ before_script:
 script:
   - echo "max_size = 1.0G" > $HOME/.ccache/ccache.conf 
   - >-
-    docker run -it \
+    docker run --network=host -it \
       -v $TRAVIS_BUILD_DIR:$TRAVIS_BUILD_DIR \
       -v $HOME/.ccache:/root/.ccache \
       -w $TRAVIS_BUILD_DIR \
