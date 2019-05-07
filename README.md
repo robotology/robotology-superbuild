@@ -27,7 +27,6 @@ Table of Contents
     * [Dynamics profile](#dynamics)
     * [iCub Head profile](#icub-head)
     * [Teleoperation profile](#teleoperation)
-    * [IHMC profile](#ihmc)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
     * [MATLAB](#matlab)
@@ -63,7 +62,6 @@ Note that any dependencies of the included packages that is not available in the
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`robots-configurations`](https://github.com/robotology/robots-configuration), [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
-| `ROBOTOLOGY_ENABLE_IHMC` | The robotology software packages necessary to use [YARP](https://github.com/robotology/yarp) with the [IHMC Open Robotic Software](https://github.com/ihmcrobotics/ihmc-open-robotics-software). | [`ihmc-ors-yarp`](https://github.com/robotology-playground/ihmc-ors-yarp) | `OFF` | [Documentation on IHMC profile.](#ihmc)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild. 
 
@@ -100,7 +98,6 @@ sudo apt-get install libeigen3-dev build-essential cmake cmake-curses-gui coinor
 ```
 
 If you enabled any [profile](#profile-cmake-options) or [dependency](#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
-* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 
 
@@ -179,7 +176,6 @@ export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
 ```
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
-* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 
 ### Superbuild
@@ -295,7 +291,6 @@ These installers will set automatically all the enviroment variables necessary t
 
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
-* [`ROBOTOLOGY_ENABLE_IHMC`](#ihmc)
 * [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
 * [`ROBOTOLOGY_USES_CYBERITH_SDK`](#cyberith)
 
@@ -508,38 +503,6 @@ In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberi
 ### Configuration
 The steps necessary to install the system dependencies of the Teleoperation profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
 
-## IHMC
-This profile is enabled by the `ROBOTOLOGY_ENABLE_IHMC` CMake option.
-
-### System Dependencies
-The software installed by this profile requires the [Asio](https://think-async.com/) library.
-
-#### Linux
-Install asio and the necessary development files using the following command:
-~~~
-sudo apt-get install libasio-dev
-~~~
-
-#### macOS
-Install asio using the following command:
-~~~
-brew install asio
-~~~
-
-#### Windows
-The [Asio](https://think-async.com/) library is an [header-only C++ library](https://en.wikipedia.org/wiki/Header-only), so you can just download it from http://think-async.com/Asio/Download
-and extract it in a directory. You can set the enviromental variable `Asio_ROOT` to point to the directory that contains the asio `README` file
-so that our [FindAsio CMake module](https://github.com/robotology-playground/ihmc-ors-yarp/blob/master/cmake/FindAsio.cmake) is able to find the library.
-
-### Configuration
-See the [ihmc-ors-yarp documentation](https://github.com/robotology-playground/ihmc-ors-yarp#regenerate-the-idl-messages) if you need to regenerate the `idl messages`.
-
-####  Check the installation
-To check that the device was correctly found by YARP, if you run the command `yarpdev --list` in its output you should find a line similar to:
-~~~
-[INFO]Device "bridge_ihmc_ors", available on request (found in <install_prefix>/lib/yarp/bridge_ihmc_ors.so library).
-~~~
-
 Dependencies-specific documentation
 ===================================
 
@@ -712,5 +675,4 @@ Mantainers
 |:--------:|:-----------------------------:|
 | Core     | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Dynamics | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
-| IHMC | Gabriele Nava [@gabrielenava](https://github.com/gabrielenava) |
 | Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
