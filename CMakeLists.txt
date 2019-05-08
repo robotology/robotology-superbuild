@@ -2,7 +2,7 @@
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 project(robotology-superbuild NONE)
 
 ## we have to enable C because it is currently used
@@ -55,7 +55,6 @@ option(ROBOTOLOGY_USES_CYBERITH_SDK "Enable compilation of software that depend 
 # Enable/disable different profiles
 option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." TRUE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
-option(ROBOTOLOGY_ENABLE_IHMC "Enable compilation of software necessary to use YARP with the IHMC Open Robotic Software." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
 include(CMakeDependentOption)
@@ -100,7 +99,8 @@ endif()
 # Bootstrap YCM
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
-set(YCM_TAG devel)
+set(YCM_TAG v0.10.2)
+set(YCM_MINIMUM_VERSION 0.10.2)
 set(YCM_BOOTSTRAP_VERBOSE ON)
 include(YCMBootstrap)
 
@@ -176,12 +176,6 @@ if(ROBOTOLOGY_ENABLE_R1_ROBOT)
   find_or_build_package(navigation)
   find_or_build_package(cer)
 endif()
-
-# IHMC Open Robotic Software
-if(ROBOTOLOGY_ENABLE_IHMC)
-  find_or_build_package(ihmc-ors-yarp)
-endif()
-
 
 if(ROBOTOLOGY_USES_MATLAB)
   # The following line is to properly configure the matlab and simulink software installed by the superbuild
