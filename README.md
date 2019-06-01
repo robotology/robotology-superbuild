@@ -209,7 +209,7 @@ To use this binaries you should update the `PATH` environment variables and appe
 
 An easy way is to add these lines to the `.bashrc` or `.bash_profile` file in your home directory:
 ```bash
-export ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/directory/where/you/downloaded/robotology-superbuild/
+export ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/directory/where/you/downloaded/robotology-superbuild
 export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
