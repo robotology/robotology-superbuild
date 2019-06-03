@@ -27,7 +27,7 @@ Table of Contents
     * [Dynamics profile](#dynamics)
     * [iCub Head profile](#icub-head)
     * [Teleoperation profile](#teleoperation)
-    * [Estimation profile](#estimation)
+    * [Human Dynamics profile](#human-dynamics)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
     * [MATLAB](#matlab)
@@ -36,6 +36,7 @@ Table of Contents
     * [Oculus](#oculus)
     * [Cyberith](#cyberith)
     * [Xsens](#xsens)
+    * [FTShoes/FTSkShoes](#shoes)
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
@@ -64,7 +65,7 @@ Note that any dependencies of the included packages that is not available in the
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
-| `ROBOTOLOGY_ENABLE_ESTIMATION` | The robotology software packages related to estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology-playground/wearables). To use Xsens enable `ROBOTOLOGY_USES_XSENS_SDK` option. | `OFF` | [Documentation on estimation profile.](#estimation)  |
+| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology-playground/wearables). `ROBOTOLOGY_ENABLE_ICUB_HEAD`, `ROBOTOLOGY_USES_CFW2CAN`, and `ROBOTOLOGY_USES_ESDCAN`, [`forcetorque-yarp-devices`](https://github.com/robotology/forcetorque-yarp-devices) if using a Windows OS. | `OFF` | [Documentation on estimation profile.](#human_dynamics)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild. 
 
@@ -81,7 +82,7 @@ The dependencies CMake options specify if the packages dependending on something
 | `ROBOTOLOGY_USES_OCULUS_SDK`  | Include software and plugins that depend on [Oculus](https://www.oculus.com/).  | `OFF` |  [Documentation on Oculus dependency.](#oculus) |
 | `ROBOTOLOGY_USES_CYBERITH_SDK`  | Include software and plugins that depend on [Cyberith](https://www.cyberith.com/).  | `OFF` |  [Documentation on Cyberith dependency.](#cyberith) |
 | `ROBOTOLOGY_USES_CFW2CAN`  | Include software and plugins that depend on [CFW2 CAN custom board](http://wiki.icub.org/wiki/CFW_card).  | `OFF` | No specific documentation is available for this  option, as it is just used with the [iCub Head profile](#icub-head), in which the related documentation can be found.  |
-| `ROBOTOLOGY_USES_XSENS_SDK`  | Include software and plugins that depend on [Xsens](https://www.xsens.com/).  | `OFF` |  [Documentation on Xsens dependency.](#xsens) |
+| `ROBOTOLOGY_USES_ESDCAN`  | Include software and plugins that depend on [Esd Can bus](http://wiki.icub.org/wiki/Esd_Can_Bus).  | `OFF` | No specific documentation is available for this  option, as it is just used with the [iCub Head profile](#icub-head), in which the related documentation can be found.  |
 
 
 Installation
@@ -510,6 +511,16 @@ In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberi
 ### Configuration
 The steps necessary to install the system dependencies of the Teleoperation profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
 
+
+## Human Dynamics
+This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option. 
+
+### System Dependencies
+To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [FTShoes/FTSkShoes](#shoes) for more information about the dependencies. A Linux/macOS/Windows machine is necessary to estimate the human dynamics estimation.
+
+### Configuration
+The steps necessary to install the system dependencies of the Human Dynamics profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
+
 Dependencies-specific documentation
 ===================================
 
@@ -642,6 +653,27 @@ To check and install the Cyberith SDK, please follow the steps for Cyberith SDK 
 
 ### Configuration
 To configure the Cyberith SDK please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
+
+## Xsens
+Support for this dependency is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
+
+**Warning: at the moment the Xsens SDK does not support macOS and Linux, so this option is only supported
+on Windows.**
+
+### System Dependencies
+To check and install the Xsens SDK, please follow the steps for Xsens SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows). 
+
+### Configuration
+To configure the Xsens SDK please follow the steps for Xsens SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows). 
+
+## Shoes
+Support for this dependency is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
+
+### System Dependencies
+To get the information from FTShoes/FTSkShoes, check and install the ESD USB CAN driver, please follow the steps for USB-CAN2 driver mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2). 
+
+### Configuration
+To configure the FTShoes/FTSkShoes please follow the steps for USB-CAN2 mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2). 
 
 FAQs
 ====
