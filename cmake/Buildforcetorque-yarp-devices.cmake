@@ -14,5 +14,5 @@ ycm_ep_helper(forcetorque-yarp-devices TYPE GIT
                                    COMPONENT iCub
                                    FOLDER robotology
                                    DEPENDS YARP
-                                   CMAKE_CACHE_ARGS -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON)
+                                   CMAKE_CACHE_ARGS -DENABLE_ftshoe:BOOL=ON)
 
