@@ -710,8 +710,9 @@ The `robotology-superbuild` is based on [YCM](https://github.com/robotology/ycm)
 Mantainers
 ==========
 
-| Profile  | Mantainer                     |
+| Profile  | Maintainer                     |
 |:--------:|:-----------------------------:|
 | Core     | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Dynamics | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
+| Human Dynamics | Yeshasvi Tirupachuri [@Yeshasvitvs](https://github.com/Yeshasvitvs) |
