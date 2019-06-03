@@ -57,8 +57,10 @@ option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." T
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
+option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 include(CMakeDependentOption)
 cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
+cmake_dependent_option(ROBOTOLOGY_USES_ESDCAN "Enable compilation of software that runs on the head of the iCub and depends on ESDCAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
 
 
 # Mark as advanced all the profiles that do not have a mantainer
@@ -148,6 +150,18 @@ endif()
 # Teleoperation
 if(ROBOTOLOGY_ENABLE_TELEOPERATION)
   find_or_build_package(walking-teleoperation)
+endif()
+
+# Human Dynamics Estimation
+if(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS)
+  if (WIN32)
+        set(ROBOTOLOGY_ENABLE_ICUB_HEAD TRUE)
+        set(ROBOTOLOGY_USES_CFW2CAN TRUE)
+        set(ROBOTOLOGY_USES_ESDCAN TRUE)
+        find_or_build_package(forcetorque-yarp-devices)
+  endif()
+  find_or_build_package(wearables)
+  find_or_build_package(human-dynamics-estimation)
 endif()
 
 # Grasping
