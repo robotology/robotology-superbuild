@@ -6,6 +6,7 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 find_or_build_package(iDynTree QUIET)
+find_or_build_package(wearables QUIET)
 
 ycm_ep_helper(human-dynamics-estimation TYPE GIT
               STYLE GITHUB
@@ -14,4 +15,5 @@ ycm_ep_helper(human-dynamics-estimation TYPE GIT
               COMPONENT human_dynamics
               FOLDER robotology
               DEPENDS iDynTree
-                      YARP)
+                      YARP
+                      wearables)
