@@ -21,7 +21,7 @@ endif()
 
 ycm_ep_helper(wearables TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology-playground/wearables.git
+              REPOSITORY robotology/wearables.git
               TAG master
               COMPONENT human_dynamics
               FOLDER robotology
