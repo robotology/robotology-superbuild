@@ -5,7 +5,7 @@ macro(set_tag tag_name tag_value)
 endmacro()
 
 set_tag(ICUB_TAG devel)
-set_tag(RTF_TAG devel)
+set_tag(RobotTestingFramework_TAG devel)
 set_tag(WBToolbox_TAG devel)
 set_tag(BlockFactory_TAG devel)
 set_tag(YARP_TAG devel)
