@@ -165,9 +165,9 @@ user@host:~$ sudo ldconfig
 ## macOS
 
 ### System Dependencies
-To install Eigen and CMake, it is possible to use [Homebrew](http://brew.sh/):
+To install the system dependencies, it is possible to use [Homebrew](http://brew.sh/):
 ```
-brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml dartsim/dart/ipopt
+brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml ipopt
 ```
 
 Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `Qt5_DIR` needs to be properly set to make sure that CMake-based projects are able to find Qt5.
