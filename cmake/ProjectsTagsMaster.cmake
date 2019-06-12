@@ -3,5 +3,3 @@ macro(set_tag tag_name tag_value)
         set(${tag_name} ${tag_value})
     endif()
 endmacro()
-
-set_tag(RTF_TAG v1.6.0)

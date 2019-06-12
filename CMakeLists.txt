@@ -108,7 +108,7 @@ include(YCMEPHelper)
 
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
-  find_or_build_package(RTF)
+  find_or_build_package(RobotTestingFramework)
   find_or_build_package(YARP)
   find_or_build_package(ICUB)
   find_or_build_package(ICUBcontrib)

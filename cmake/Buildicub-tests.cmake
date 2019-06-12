@@ -5,8 +5,8 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
+find_or_build_package(RobotTestingFramework QUIET)
 find_or_build_package(YARP QUIET)
-find_or_build_package(RTF QUIET)
 find_or_build_package(ICUB QUIET)
 
 ycm_ep_helper(icub-tests TYPE GIT
@@ -15,6 +15,6 @@ ycm_ep_helper(icub-tests TYPE GIT
               TAG master
               COMPONENT iCub
               FOLDER robotology
-              DEPENDS YARP
-                      RTF
+              DEPENDS RobotTestingFramework
+                      YARP
                       ICUB)
