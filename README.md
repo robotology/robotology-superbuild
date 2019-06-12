@@ -478,6 +478,8 @@ that your iCub still needs to be migrated. For any doubt, please get in contact 
 
 The configuration and compilation of this profile is supported only on Linux systems.
 
+This section documents the iCub Head profile as any other problem, in a way agnostic of the specific machine in which it is installed. To get some information on how to use the robotology-superbuild to install software on the machine mounted in the head of physical iCub robots, please check the documentation in [`doc/use-on-icub-head.md`](doc/use-on-icub-head.md).
+
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the iCub Head profile are provided in
