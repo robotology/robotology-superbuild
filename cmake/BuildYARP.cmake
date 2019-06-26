@@ -10,7 +10,7 @@ find_package(SQLite QUIET)
 find_package(Eigen3 QUIET)
 find_or_build_package(RobotTestingFramework QUIET)
 
-if(ROBOTOLOGY_USES_PYTHON)
+if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA)
   set(YARP_COMPILE_BINDINGS ON)
 else()
   set(YARP_COMPILE_BINDINGS OFF)
@@ -50,4 +50,5 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
                               -DYARP_USE_I2C:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DYARP_USE_SDL:BOOL=ON
-                              -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON})
+                              -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                              -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA})
