@@ -99,8 +99,8 @@ endif()
 # Bootstrap YCM
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
-set(YCM_TAG v0.10.2)
-set(YCM_MINIMUM_VERSION 0.10.2)
+set(YCM_TAG v0.10.4)
+set(YCM_MINIMUM_VERSION 0.10.4)
 include(YCMBootstrap)
 
 include(FindOrBuildPackage)
