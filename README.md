@@ -579,6 +579,10 @@ If you are using the `setup.sh` or `setup.bat` script for configuring your envir
 
 For more info on configuring MATLAB software with the robotology-superbuild, please check the [wb-toolbox README](https://github.com/robotology/wb-toolbox).
 
+#### whole-body-controllers installation procedure
+
+To use [whole-body-controllers](https://github.com/robotology/whole-body-controllers), additional installation steps are required. All the documentation concerning the `whole-body-controllers` installation and usage can be found in the repository [README](https://github.com/robotology/whole-body-controllers#installation-and-usage).
+
 ## Octave 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
 
