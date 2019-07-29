@@ -162,6 +162,7 @@ if(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS)
   endif()
   find_or_build_package(wearables)
   find_or_build_package(human-dynamics-estimation)
+  find_or_build_package(human-gazebo)
 endif()
 
 # Grasping
