@@ -4,10 +4,6 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
-find_or_build_package(YARP QUIET)
-find_or_build_package(iDynTree QUIET)
-find_or_build_package(wearables QUIET)
-
 ycm_ep_helper(human-gazebo TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/human-gazebo.git
