@@ -516,7 +516,7 @@ The steps necessary to install the system dependencies of the Teleoperation prof
 This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option. 
 
 ### System Dependencies
-To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [FTShoes/FTSkShoes](#shoes) for more information about the dependencies. A Linux/macOS/Windows machine is necessary to estimate the human dynamics estimation.
+To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [FTShoes/FTSkShoes](#shoes) for more information about the dependencies. A Linux/macOS machine is necessary to estimate the human dynamics estimation.
 
 ### Configuration
 The steps necessary to install the system dependencies of the Human Dynamics profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
