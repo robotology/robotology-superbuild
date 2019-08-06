@@ -8,7 +8,7 @@ find_or_build_package(YARP QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(wearables QUIET)
 find_or_build_package(osqp QUIET)
-find_or_build_package(OsqpEigen)
+find_or_build_package(OsqpEigen QUIET)
 
 ycm_ep_helper(human-dynamics-estimation TYPE GIT
               STYLE GITHUB
