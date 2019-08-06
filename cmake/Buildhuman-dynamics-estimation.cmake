@@ -7,7 +7,7 @@ include(FindOrBuildPackage)
 find_or_build_package(YARP QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(wearables QUIET)
-find_or_build_package(osqp)
+find_or_build_package(osqp QUIET)
 find_or_build_package(OsqpEigen)
 
 ycm_ep_helper(human-dynamics-estimation TYPE GIT
