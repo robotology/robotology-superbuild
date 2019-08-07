@@ -60,7 +60,7 @@ option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on 
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 include(CMakeDependentOption)
 
-option(ROBOTOLOGY_ESDCAN_OPTION "Enable ESDCAN option" FALSE)
+set(ROBOTOLOGY_ESDCAN_OPTION FALSE)
 if(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS OR ROBOTOLOGY_ENABLE_ICUB_HEAD)
     set(ROBOTOLOGY_ESDCAN_OPTION TRUE)
 endif()
