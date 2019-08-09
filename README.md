@@ -655,7 +655,7 @@ To check and install the Cyberith SDK, please follow the steps for Cyberith SDK 
 To configure the Cyberith SDK please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 ## Xsens
-Support for this dependency is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
+Support for `ROBOTOLOGY_USES_XSENS_MVN_SDK` option is only enabled when the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option is set to ON.
 
 **Warning: at the moment the Xsens MVN SDK does not support macOS and Linux, so this option is only supported
 on Windows.**
@@ -667,7 +667,10 @@ To check and install the Xsens MVN SDK, please follow the steps for Xsens MVN SD
 To configure the Xsens MVN SDK please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows). 
 
 ## Shoes
-Support for this dependency is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
+Support for `ROBOTOLOGY_ESDCAN_OPTION` option (shoes force/torque sensors) is only enabled when the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option is set to ON.
+
+**Warning: at the moment the ESD USB CAN only supports Windows, so this option is only supported
+on Windows. For Linux OS enable the `socketCan` option in [`ICUB`](https://github.com/robotology/icub-main) (not tested). This option does not support in macOS.**
 
 ### System Dependencies
 To get the information from FTShoes/FTSkShoes, check and install the ESD USB CAN driver, please follow the steps for USB-CAN2 driver mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2). 
