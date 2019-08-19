@@ -65,7 +65,7 @@ Note that any dependencies of the included packages that is not available in the
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
-| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables). `ROBOTOLOGY_ENABLE_ICUB_HEAD`, `ROBOTOLOGY_USES_XSENS_MVN_SDK`, and `ROBOTOLOGY_USES_ESDCAN`, [`forcetorque-yarp-devices`](https://github.com/robotology/forcetorque-yarp-devices) if using a Windows OS. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
+| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`forcetorque-yarp-devices`](https://github.com/robotology/forcetorque-yarp-devices). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild. 
 
@@ -670,16 +670,17 @@ To check and install the Xsens MVN SDK, please follow the steps for Xsens MVN SD
 To configure the Xsens MVN SDK please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows). 
 
 ## Shoes
-Support for `ROBOTOLOGY_USES_ESDCAN` option (shoes force/torque sensors) is only enabled when the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option is set to ON.
+Support for FTShoes/FTSkShoes depends on operating system. 
+   - For Windows the support is provided by`ROBOTOLOGY_USES_ESDCAN` option (shoes force/torque sensors) is only enabled when the `ROBOTOLOGY_ENABLE_ICUB_HEAD` CMake option is set to ON.
+   - For Linux OS enable the `socketCan` option in [`ICUB`](https://github.com/robotology/icub-main) (not tested).
+   - This option does not support in macOS.
 
-**Warning: at the moment the ESD USB CAN only supports Windows, so this option is only supported
-on Windows. For Linux OS enable the `socketCan` option in [`ICUB`](https://github.com/robotology/icub-main) (not tested). This option does not support in macOS.**
 
 ### System Dependencies
-To get the information from FTShoes/FTSkShoes, check and install the ESD USB CAN driver, please follow the steps for USB-CAN2 driver mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2). 
+To get the information from FTShoes/FTSkShoes, check and install the ESD USB CAN driver, please follow the steps for USB-CAN2 driver mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2) (Windows OS). 
 
 ### Configuration
-To configure the FTShoes/FTSkShoes please follow the steps for USB-CAN2 mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2). 
+To configure the FTShoes/FTSkShoes please follow the steps for USB-CAN2 mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2) (Windows OS). 
 
 FAQs
 ====
