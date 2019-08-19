@@ -57,9 +57,12 @@ option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." T
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
+option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 include(CMakeDependentOption)
-cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
 
+cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
+cmake_dependent_option(ROBOTOLOGY_USES_ESDCAN "Enable compilation of software that runs on the head of the iCub and depends on ESDCAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
+cmake_dependent_option(ROBOTOLOGY_USES_XSENS_MVN_SDK "Enable compilation of software that runs on the wearable producer machine and depends on Xsens MVN SDK." FALSE "ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS" FALSE)
 
 # Mark as advanced all the profiles that do not have a mantainer
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
@@ -150,6 +153,16 @@ if(ROBOTOLOGY_ENABLE_TELEOPERATION)
   find_or_build_package(walking-teleoperation)
 endif()
 
+# Human Dynamics Estimation
+if(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS)
+  find_or_build_package(forcetorque-yarp-devices)
+  find_or_build_package(wearables)
+  if(NOT WIN32)
+    find_or_build_package(human-dynamics-estimation)
+  endif()
+  find_or_build_package(human-gazebo)
+endif()
+
 # Grasping
 if(ROBOTOLOGY_ENABLE_GRASPING)
   find_or_build_package(icub-grasp-demo)
@@ -167,7 +180,9 @@ endif()
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   find_or_build_package(icub-firmware-shared)
   find_or_build_package(ICUB)
-  find_or_build_package(xsensmt-yarp-driver)
+  if((NOT WIN32) AND (NOT APPLE))
+    find_or_build_package(xsensmt-yarp-driver)
+  endif()
 endif()
 
 # R1 Robot
