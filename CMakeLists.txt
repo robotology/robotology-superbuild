@@ -60,12 +60,8 @@ option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on 
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 include(CMakeDependentOption)
 
-set(ROBOTOLOGY_ESDCAN_OPTION FALSE)
-if(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS OR ROBOTOLOGY_ENABLE_ICUB_HEAD)
-    set(ROBOTOLOGY_ESDCAN_OPTION TRUE)
-endif()
 cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
-cmake_dependent_option(ROBOTOLOGY_USES_ESDCAN "Enable compilation of software that runs on the head of the iCub and depends on ESDCAN." FALSE "ROBOTOLOGY_ESDCAN_OPTION" FALSE)
+cmake_dependent_option(ROBOTOLOGY_USES_ESDCAN "Enable compilation of software that runs on the head of the iCub and depends on ESDCAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
 cmake_dependent_option(ROBOTOLOGY_USES_XSENS_MVN_SDK "Enable compilation of software that runs on the wearable producer machine and depends on Xsens MVN SDK." FALSE "ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS" FALSE)
 
 # Mark as advanced all the profiles that do not have a mantainer
@@ -159,7 +155,6 @@ endif()
 
 # Human Dynamics Estimation
 if(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS)
-  set(ROBOTOLOGY_ENABLE_ICUB_HEAD TRUE)
   find_or_build_package(forcetorque-yarp-devices)
   find_or_build_package(wearables)
   if(NOT WIN32)
