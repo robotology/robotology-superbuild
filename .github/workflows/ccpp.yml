@@ -13,7 +13,7 @@ jobs:
     - name: install dependencies
       run: sudo ./.ci/install_debian.sh
     - name: mkdir build
-      run: mkdir build
+      run: cd robotology-superbuild && mkdir build
     - name: cd build
       run: cd build
     - name: cmake
