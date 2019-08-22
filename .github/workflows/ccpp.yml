@@ -1,0 +1,20 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:      
+    - uses: actions/checkout@v1
+    - name: install dependencies
+      run: ./.ci/install_debian.sh
+    - name: mkdir build
+      run: mkdir build
+    - name: cd build
+      run: cd build
+    - name: cmake
+      run: cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON  -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+    - name: cmake build
+      run: cmake --build .
