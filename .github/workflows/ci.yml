@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         build_type: [Debug, Release]
-        os: [ubuntu-latest, macOS-latest]
+        os: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@master
