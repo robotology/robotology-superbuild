@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:      
     - uses: actions/checkout@v1
-    - name: install dependencies
+    - name: chmod
       run: chmod +x ./.ci/install_debian.sh
+    - name: install dependencies
       run: ./.ci/install_debian.sh
     - name: mkdir build
       run: mkdir build
