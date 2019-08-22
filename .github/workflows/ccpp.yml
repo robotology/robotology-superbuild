@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:      
     - uses: actions/checkout@v1
+    - name: ls
+      run: pwd && ls -R
     - name: chmod
       run: chmod +x ./.ci/install_debian.sh
     - name: install dependencies
       run: sudo ./.ci/install_debian.sh
     - name: mkdir build
-      run: cd robotology-superbuild && mkdir build
-    - name: cd build
-      run: cd build
-    - name: cmake
-      run: cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON  -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+      run: mkdir build
+    - name:  cmake
+      run: cd build && cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON  -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
     - name: cmake build
-      run: cmake --build .
+      run: cd build && cmake --build .
