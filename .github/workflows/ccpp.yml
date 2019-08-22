@@ -9,6 +9,7 @@ jobs:
     steps:      
     - uses: actions/checkout@v1
     - name: install dependencies
+      run: chmod +x ./.ci/install_debian.sh
       run: ./.ci/install_debian.sh
     - name: mkdir build
       run: mkdir build
