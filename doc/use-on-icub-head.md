@@ -13,7 +13,7 @@ without coordinating with the iCub support.  For any doubt, please open an issue
 The operating system contained in the `icub-head`/`pc104` is tipically installed by IIT, for more information on it, please
 check the relevant documentation at http://wiki.icub.org/wiki/The_Linux_on_the_pc104 . On this machine, 
 in `/home/icub/.bashrc_iCub` a script containing several enviroment variables definitions is provided. If you want to  migrate to use
-the robotology-superbuild, you need to remove the existing `.bashrc_iCub` file, and substitute it with the one provided in https://git.robotology.eu/STraversaro/icub-environment/raw/use-robotology-superbuild/home/bashrc_iCub .
+the robotology-superbuild, you need to remove the existing `.bashrc_iCub` file, and substitute it with the one provided in https://git.robotology.eu/MBrunettini/icub-environment/raw/master/home/bashrc_iCub_superbuild .
 After you modified the `.bashrc_iCub` script, reboot the computer and  in a new shell check che values of the `ROBOTOLOGY_SUPERBUILD_SOURCE_DIR` and `YARP_ROBOT_NAME` env variables.
 If `ROBOTOLOGY_SUPERBUILD_SOURCE_DIR` contains `/usr/local/src/robot/robotology-superbuild`, and `YARP_ROBOT_NAME` contains the string specific to your robot,
 then the modification of the `.bashrc_iCub` was succesful. 
@@ -59,4 +59,4 @@ Most of the existing documentation regarding the installation of the software on
 | http://wiki.icub.org/wiki/MacOSX:_installation  |  http://wiki.icub.org/wiki/MacOS:Installation_from_sources_using_the_robotology-superbuild |  
 | http://wiki.icub.org/wiki/ICub_server_laptop_installation_instructions | Change the last code box in section http://wiki.icub.org/wiki/ICub_server_laptop_installation_instructions#Software_repositories to `git clone https://github.com/robotology/robotology-superbuild.git` | 
 | http://wiki.icub.org/wiki/Compilation_on_the_pc104 | https://wiki.icub.org/wiki/Compilation_on_the_pc104/icub-head_with_the_robotology-superbuild  | 
-| https://git.robotology.eu/MBrunettini/icub-environment/raw/master/home/bashrc_iCub | https://git.robotology.eu/STraversaro/icub-environment/raw/use-robotology-superbuild/home/bashrc_iCub | 
+| https://git.robotology.eu/MBrunettini/icub-environment/raw/master/home/bashrc_iCub |  https://git.robotology.eu/MBrunettini/icub-environment/raw/master/home/bashrc_iCub_superbuild | 
