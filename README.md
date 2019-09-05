@@ -10,7 +10,7 @@ You can read more about the superbuild concept in [YCM documentation](http://rob
 
 | System  | Status |
 |:------:|:------:|
-|  Linux/macOS  |  [![Build Status](https://travis-ci.org/robotology/robotology-superbuild.svg?branch=master)](https://travis-ci.org/robotology/robotology-superbuild)     |
+|  Linux  |  ![GitHub Actions Status](https://github.com/robotology/robotology-superbuild/workflows/C++%20CI%20Workflow/badge.svg)     |
 
 Table of Contents
 =================
