@@ -546,7 +546,7 @@ Dependencies-specific documentation
 ## Gazebo
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option.
 
-**Warning: at the moment the Gazebo simulator does not support directly Windows. If you need to run Gazebo on Windows, it is recommended to do so via the (Windows Subsystem for Linux](#windows-subsystem-for-linux).**
+**Warning: at the moment the Gazebo simulator does not support directly Windows. If you need to run Gazebo on Windows, it is recommended to do so via the [Windows Subsystem for Linux](#windows-subsystem-for-linux).**
 
 ### System Dependencies
 Install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
