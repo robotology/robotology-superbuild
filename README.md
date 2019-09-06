@@ -21,6 +21,7 @@ Table of Contents
     * [Linux](#linux)
     * [macOS](#macos)
     * [Windows](#windows)
+    * [Windows Subsystem For Linux](#windows-subsystem-for-linux)
   * [Update](#update)
   * [Profile-specific documentation](#profile-specific-documentation)
     * [Core profile](#core)
@@ -91,7 +92,8 @@ Installation
 We provide different instructions on how to install robotology-superbuild, depending on your operating system:
 * [**Linux**](#linux): use the superbuild with make,
 * [**macOS**](#macOS): use the superbuild with Xcode or GNU make,
-* [**Windows**](#windows): use the superbuild with Microsoft Visual Studio.
+* [**Windows**](#windows): use the superbuild with Microsoft Visual Studio,
+* [**Windows Subsystem For Linux**](#windows-subsystem-for-linux): use the superbuild with make on [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl).
 
 The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
 Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html).
@@ -252,13 +254,12 @@ user@host:~$ source ~/.bash_profile
 or simply open a new terminal.
 
 ## Windows
-
 ### Disclaimer
 While the robotology software is tested to be fully compatible with Windows,
 the Gazebo simulator that is widely used for simulation with robotology software [does not support Windows](https://github.com/robotology/gazebo-yarp-plugins/issues/74).
 
-For this reason if you plan to do use the robotology software with the Gazebo simulator,
-for the time being it is easier for you to use Linux or macOS.
+For this reason if you plan to do use the robotology software with the Gazebo simulator on Windows, 
+for the time being it is easier for you to use the [Windows Subsystem for Linux](#windows-subsystem-for-linux).
 
 ### System Dependencies
 
@@ -301,7 +302,6 @@ If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dep
 * [`ROBOTOLOGY_USES_CYBERITH_SDK`](#cyberith)
 * [`ROBOTOLOGY_USES_XSENS_MVN_SDK`](#xsens)
 * [`ROBOTOLOGY_USES_ESDCAN`](#shoes)
-
 
 ### Superbuild
 If you didn't already configured your git, you have to set your name and email to sign your commits:
@@ -375,6 +375,22 @@ Software installed by the following [profile](#profile-cmake-options) or [depend
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
  
  **When you are adding or appending the environment variables, we suggest to use absolute paths(directories) as the value of a variable, and do not use other variables to define the values of a variable.**
+ 
+## Windows Subsystem for Linux
+The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified, without the overhead of a virtual machine.
+
+As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the [robotology-superbuild on Linux](#linux). As the WSL enviroment is nevertheless different, there are few things you need to care before using the robotology-superbuild on WSL, that are listed in the following.
+
+### Run graphical applications on WSL
+To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications. For information of X Server that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps . 
+
+### Sanitize enviroment variables for WSL
+By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems, 
+as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation. 
+To avoid that, you can add the following line in the WSL `.bashrc` that filters all the Windows paths from the WSL's enviromental variables:
+~~~
+for var in $(env | awk {'FS="="} /\/mnt\//{print $1}'); do export ${var}=\"$(echo ${!var} | awk -v RS=: -v ORS=: '/\/mnt\// {next} {print $1}')\" ; done
+~~~
 
 Update
 ======
@@ -530,8 +546,7 @@ Dependencies-specific documentation
 ## Gazebo
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option.
 
-**Warning: at the moment the Gazebo simulator does not support Windows, so this option is only supported 
-on Linux and macOS.**
+**Warning: at the moment the Gazebo simulator does not support directly Windows. If you need to run Gazebo on Windows, it is recommended to do so via the [Windows Subsystem for Linux](#windows-subsystem-for-linux).**
 
 ### System Dependencies
 Install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
