@@ -347,7 +347,7 @@ YARP_DATA_DIRS=
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\yarp
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\iCub
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\ICUBcontrib
-%ROBOTOLOGY_SUPERBUILD_SOURCE_DIR%\robotology\icub-tests\suits
+%ROBOTOLOGY_SUPERBUILD_SOURCE_DIR%\robotology\icub-tests\suites
 ```
 
 Append the following variables to your `CMAKE_PREFIX_PATH` environment variable:
