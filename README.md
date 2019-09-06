@@ -382,7 +382,7 @@ The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) 
 As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the [robotology-superbuild on Linux](#linux). As the WSL enviroment is nevertheless different, there are few things you need to care before using the robotology-superbuild on WSL, that are listed in the following.
 
 ### Run graphical applications on WSL
-To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications. For information of X Server that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps . 
+To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications, see https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/ for more info. For information of X Servers that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps . 
 
 ### Sanitize enviroment variables for WSL
 By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems, 
