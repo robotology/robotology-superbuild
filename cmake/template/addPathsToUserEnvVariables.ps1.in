@@ -34,7 +34,7 @@ Add-ValueToUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/bin";
 Add-ValueToUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/yarp";
 Add-ValueToUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/iCub";
 Add-ValueToUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/ICUBcontrib";
-Add-ValueToUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-tests/suits";
+Add-ValueToUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-tests/suites";
 
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 Add-ValueToUserEnvVariable CMAKE_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
