@@ -175,13 +175,19 @@ user@host:~$ sudo ldconfig
 ### System Dependencies
 To install the system dependencies, it is possible to use [Homebrew](http://brew.sh/):
 ```
-brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml ipopt
+brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite readline tinyxml ipopt opencv@3
 ```
 
 Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `Qt5_DIR` needs to be properly set to make sure that CMake-based projects are able to find Qt5.
 ```
 export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
 ```
+
+The required version of `opencv` is not the latest release. In case other versions are installed, it is required to link `opencv3`.
+```
+brew link --force opencv@3
+```
+Otherwise, it is possible to not use `opencv` by setting `YARP_USES_OPENCV` `OFF`.
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
