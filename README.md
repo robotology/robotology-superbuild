@@ -187,7 +187,7 @@ The version of `opencv` required by [YARP is not the latest release](https://git
 ```
 brew link --force opencv@3
 ```
-Otherwise, it is possible to not use `opencv` by setting `YARP_USES_OPENCV` `OFF`.
+Otherwise, it is possible to not use `opencv` by setting the `YARP_USE_OpenCV` YARP advanced CMake option to  `OFF`. To modify YARP-specific CMake options, you need to go with the terminal to `build/robotology/YARP`, and use the `ccmake` command to edit the YARP CMake options.
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
