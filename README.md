@@ -183,7 +183,7 @@ Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `
 export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
 ```
 
-The required version of `opencv` is not the latest release. In case other versions are installed, it is required to link `opencv3`.
+The version of `opencv` required by [YARP is not the latest release](https://github.com/robotology/yarp/issues/1672). In case other versions are installed, it is required to link `opencv3`.
 ```
 brew link --force opencv@3
 ```
