@@ -43,7 +43,10 @@ jobs:
     - name: Run a regression test for issue https://github.com/robotology/robotology-superbuild/issues/174
       run: |
         mkdir -p build
-        cd build   
+        cd build
+        # Configure git
+        git config --global user.name robotology-superbuild GitHub Action Bot
+        git config --global user.email robotology-superbuild-bot@example.com
         # Normal build
         cmake ..
         make
