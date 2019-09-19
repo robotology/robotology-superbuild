@@ -56,4 +56,5 @@ jobs:
         cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON ..
         make 
         # Verify that YARP is a still a subproject
+        make YARP
    
