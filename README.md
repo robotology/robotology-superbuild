@@ -543,8 +543,12 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
 ### System Dependencies
 To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [FTShoes/FTSkShoes](#shoes) for more information about the dependencies.
 
-### Configuration
+### System Dependencies
 The steps necessary to install the system dependencies of the Human Dynamics profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
+
+### Configuration
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/human-gazebo` must be appended to the `YARP_DATA_DIRS` enviromental variable.
+The scripts `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` (Linux, MacOs) or `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.bat` (Windows), will append the necessary path to `YARP_DATA_DIRS`.
 
 Dependencies-specific documentation
 ===================================
