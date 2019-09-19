@@ -487,7 +487,7 @@ Install matio following the [installation instructions](https://github.com/tbeu/
 
 ### Configuration
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
-The scripts `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` (Linux, MacOs) or `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.bat` (Windows), will append the necessary path to `YARP_DATA_DIRS`.
+The scripts `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` (Linux, macOS) or `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.bat` (Windows), will append the necessary path to `YARP_DATA_DIRS`.
 
 ## iCub Head
 
