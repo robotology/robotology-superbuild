@@ -45,7 +45,7 @@ jobs:
         mkdir -p build
         cd build
         # Configure git
-        git config --global user.name robotology-superbuild GitHub Action Bot
+        git config --global user.name robotology-superbuild Bot
         git config --global user.email robotology-superbuild-bot@example.com
         # Normal build
         cmake ..
