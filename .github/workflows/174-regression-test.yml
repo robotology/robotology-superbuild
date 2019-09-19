@@ -1,0 +1,56 @@
+name: Issue 174 Regression Test
+
+on:
+  # This is just for testing
+  pull_request:
+  schedule:
+  # * is a special character in YAML so you have to quote this string
+  # Execute a "monthly" build at 2 AM UTC of the 1st day of the month
+  - cron:  '0 2 1 * *'
+  
+  
+jobs:
+  build:
+    name: '[${{ matrix.os }}@${{ matrix.build_type }}]'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        build_type: [Release]
+        os: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@master
+        
+    # Print environment variables to simplify development and debugging
+    - name: Environment Variables
+      shell: bash
+      run: env
+        
+    # ============
+    # DEPENDENCIES
+    # ============
+    
+    - name: Dependencies [Ubuntu]
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        chmod +x ./.ci/install_debian.sh
+        sudo ./.ci/install_debian.sh
+        
+    # ===================
+    # CMAKE-BASED PROJECT
+    # ===================
+    
+    - name: Run a regression test for issue https://github.com/robotology/robotology-superbuild/issues/174
+      run: |
+        mkdir -p build
+        cd build   
+        # Normal build
+        cmake ..
+        make
+        # Verify that YARP is a subproject
+        make YARP
+        # Now enable ROBOTOLOGY_ENABLE_DYNAMICS
+        cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON ..
+        make 
+        # Verify that YARP is a still a subproject
+   
