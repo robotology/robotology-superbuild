@@ -29,7 +29,9 @@ ycm_ep_helper(ICUB TYPE GIT
                    COMPONENT iCub
                    FOLDER robotology
                    CMAKE_ARGS -DICUB_INSTALL_WITH_RPATH:BOOL=ON
-                   CMAKE_CACHE_ARGS -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
+                   # Workaround for https://github.com/robotology/icub-main/issues/606
+                   CMAKE_CACHE_ARGS -DICUB_USE_GTK2:BOOL=OFF
+                                    -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
                                     -DENABLE_icubmod_cartesiancontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_gazecontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_serial:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
