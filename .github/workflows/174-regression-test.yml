@@ -35,6 +35,12 @@ jobs:
       run: |
         chmod +x ./.ci/install_debian.sh
         sudo ./.ci/install_debian.sh
+        # Also install ROS 
+        sudo apt-get update 
+        sudo apt-get install wget lsb-release sudo -y
+        wget https://raw.githubusercontent.com/PickNikRobotics/quick-ros-install/master/ros_install.sh 
+        chmod 755 ros_install.sh 
+        ./ros_install.sh melodic
         
     # ===================
     # CMAKE-BASED PROJECT
@@ -42,6 +48,7 @@ jobs:
     
     - name: Run a regression test for issue https://github.com/robotology/robotology-superbuild/issues/174
       run: |
+        source /opt/ros/melodic/setup.bash
         mkdir -p build
         cd build
         # Configure git
