@@ -15,11 +15,14 @@ if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   list(APPEND ICUB_DEPENDS icub-firmware-shared)
 endif()
 
-# See discussion in https://github.com/robotology/icub-main/issues/551
 if (APPLE)
+  # See discussion in https://github.com/robotology/icub-main/issues/551
   set(ICUBMAIN_COMPILE_SIMULATORS OFF)
+  # See discussion in https://github.com/robotology/robotology-superbuild/issues/237
+  set(ENABLE_DRAGONFLY2 OFF)
 else()
   set(ICUBMAIN_COMPILE_SIMULATORS ON)
+  set(ENABLE_DRAGONFLY2 ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
 endif()
 
 ycm_ep_helper(ICUB TYPE GIT
@@ -37,7 +40,7 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_serial:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_serialport:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_skinWrapper:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
-                                    -DENABLE_icubmod_dragonfly2:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                                    -DENABLE_icubmod_dragonfly2:BOOL=${ENABLE_DRAGONFLY2}
                                     -DENABLE_icubmod_portaudio:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_sharedcan:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_canmotioncontrol:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
