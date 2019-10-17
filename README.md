@@ -175,7 +175,7 @@ user@host:~$ sudo ldconfig
 ### System Dependencies
 To install the system dependencies, it is possible to use [Homebrew](http://brew.sh/):
 ```
-brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite libedit tinyxml ipopt opencv@3 libdc1384
+brew install ace eigen cmake boost tinyxml swig qt5 gsl pkg-config jpeg sqlite libedit tinyxml ipopt opencv@3
 ```
 
 Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `Qt5_DIR` needs to be properly set to make sure that CMake-based projects are able to find Qt5.
