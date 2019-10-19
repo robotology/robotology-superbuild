@@ -429,22 +429,8 @@ For this reason, if you are activly developing on a repository managed by the `r
 option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#developer-mode
 for more details on this options.
 
-Handling the devel branch
-=========================
-[`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main) and several other robotology software uses a `devel` branch for testing experimental features before a full release,
-when this changes are merged in their `master` branch. For more information on this workflow, see [yarp's CONTRIBUTING.md file](https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md).
-
-For ensuring stability to the end-users, the `robotology-superbuild` is always tested against the `master` branches, as this are the recomended branches for users.
-However if you work at [IIT@Genoa](https://www.iit.it/research/lines/icub), it may be possible that you want to interface
-your robot (running the `devel` branch of `yarp` and `icub-main`) with the software  on your PC compiled with the `robotology-superbuild`.
-This is general can be done using the `master` branch of `yarp`, but sometimes there are changes in devel that can introduce incompatibilities
-between yarp `master` and `devel`, see for example https://github.com/robotology/yarp/pull/1010#issuecomment-266453586 ). This incompatibilities are documented in the YARP changelog.
-
-If you want to use a given repository in the `robotology-superbuild` in the `devel` branch, you have to:
-* set the `YCM_EP_DEVEL_MODE_<package_name>` to `TRUE`, such that the superbuild will not try to manage the updates of this repository
-* manually switch the source repository to the devel branch .
-
-To switch back, just manually switch the branches back to `master` and set  `YCM_EP_DEVEL_MODE_<package_name>` variable to `FALSE`.
+By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches, 
+or use some fixed tags. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
 
 
 Profile-specific documentation
