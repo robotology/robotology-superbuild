@@ -51,6 +51,7 @@ jobs:
     - name: Dependencies [MacOS]
       if: matrix.os == 'macOS-10.14'
       run: |
+        brew cask install xquartz
         brew install ace asio eigen tinyxml swig qt5 gsl pkg-config jpeg tinyxml
         brew install osrf/simulation/gazebo10
 
