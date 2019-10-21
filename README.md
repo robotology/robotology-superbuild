@@ -158,7 +158,7 @@ Software installed by the following [profile](#profile-cmake-options) or [depend
 As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
 all the necessary enviromental variables. To do so append the following line to the `.bashrc` file:
 ```
-source $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh
+source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh
 ```
 
 To use the updated `.bashrc` in your terminal you should run the following command:
@@ -246,7 +246,7 @@ Software installed by the following [profile](#profile-cmake-options) or [depend
 As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
 all the necessary enviromental variables:
 ```
-source $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh
+source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh
 ```
 
 To use the updated `.bashrc` in your terminal you should run the following command:
