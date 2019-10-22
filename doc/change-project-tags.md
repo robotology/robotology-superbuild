@@ -14,10 +14,10 @@ It can take one of three possible values:
                that are the "unstable" active development branches for the robotology projects. This is reccomended just for users that work at the IIT labs in Genoa,
                as it can break compilation or runtime behaviour without any notice.
 * `Custom` : by selecting this option, you need to manually specify the tags or branches that you want to use by specifying a custom project tags file in the 
-             `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` CMake option. This is useful when  you want to use a fixed version of the software built by the superbuild.
+             `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` CMake option. This is useful when  you want to use a fixed version of the software built by the superbuild. The specified file is included in the project via the [`include` CMake command](https://cmake.org/cmake/help/v3.15/command/include.html), so this file can be either kept outside the superbuild source directory by specifying an absolute path, or relative and without the `.cmake` extension if stored in the `cmake/` folder, that tipically is committed in custom branch or fork. 
 
 **Due to limitations on how the CMake's [`ExternalProject`](https://cmake.org/cmake/help/latest/module/ExternalProject.html) modules handles the TAG option, the choice
-of the is option needs to be done before the source code for the CMake packages is downloaded for the first time in the `external` and `robotology` directories. 
+of the `ROBOTOLOGY_PROJECT_TAGS` option needs to be done before the source code for the CMake packages is downloaded for the first time in the `external` and `robotology` directories. 
 If you want to change the `ROBOTOLOGY_PROJECT_TAGS` or `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` option in an existing superbuild, you need to manually delete the `external` and `robotology`
 directories, and then configure again the superbuild. Note that this also means that if  you have multiple build directories for the same superbuild, all of them 
 need to use consistent `ROBOTOLOGY_PROJECT_TAGS` values.**
