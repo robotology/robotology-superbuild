@@ -87,7 +87,7 @@ set(ROBOTOLOGY_PROJECT_TAGS "Stable" CACHE STRING "The tags to be used for the r
 mark_as_advanced(ROBOTOLOGY_PROJECT_TAGS)
 set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE CACHE FILEPATH "If ROBOTOLOGY_PROJECT_TAGS is custom, this file will be loaded to specify the tags of the projects to use.")
 mark_as_advanced(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE)
-set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Stable" "Unstable" "Custom")
+set_property(CACHE ROBOTOLOGY_PROJECT_TAGS PROPERTY STRINGS "Stable" "Unstable" "Custom")
 
 if(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Stable")
     include(ProjectsTagsStable)
