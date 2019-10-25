@@ -22,9 +22,17 @@ jobs:
         os: [ubuntu-latest, macOS-10.14]
         include:
           - os: ubuntu-latest
+            build_type: Debug
             cmake_generator: "Unix Makefiles"
+          - os: ubuntu-latest
+            build_type: Release
+            cmake_generator: "Ninja"
           - os: macOS-10.14
-            cmake_generator: "Xcode"
+            build_type: Debug
+            cmake_generator: "Ninja"
+          - os: macOS-10.14
+            build_type: Release
+            cmake_generator: "Unix Makefiles"
 
     steps:
     - uses: actions/checkout@master
@@ -52,7 +60,11 @@ jobs:
       if: matrix.os == 'macOS-10.14'
       run: |
         brew cask install xquartz
-        brew install ace asio eigen tinyxml swig qt5 gsl pkg-config jpeg tinyxml
+        # Core dependencies 
+        brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv@3 pkg-config qt5 sqlite swig tinyxml
+        # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
+        brew install matio
+        # ROBOTOLOGY_USES_GAZEBO dependencies 
         brew install osrf/simulation/gazebo10
 
     # ===================
