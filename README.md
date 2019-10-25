@@ -467,7 +467,15 @@ Install matio using the following command:
 sudo apt install libmatio-dev
 ```
 
-#### Windows and macOS
+#### macOS
+
+Install matio from `homebrew/core` using the following command:
+
+```
+brew install libmatio
+```
+
+#### Windows
 
 Install matio following the [installation instructions](https://github.com/tbeu/matio/#20-building) present in the repository.
 
