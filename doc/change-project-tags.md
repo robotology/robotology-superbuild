@@ -8,9 +8,9 @@ or use some fixed tags. These advanced use cases are supported by the `ROBOTOLOG
 
 `ROBOTOLOGY_PROJECT_TAGS` is an advanced CMake option, so it is visible from the CMake GUI only after enabling the visualization of advanced variables.
 It can take one of three possible values: 
-* `Stable` :  this is the default value, that will use the tags or branches specified in [`cmake/ProjectTagsStable.cmake`](cmake/ProjectTagsStable.cmake) 
+* `Stable` :  this is the default value, that will use the tags or branches specified in [`cmake/ProjectsTagsStable.cmake`](../cmake/ProjectsTagsStable.cmake) 
               that are the stables branches for the robotology projects.
-* `Unstable` : by selecting this option, you will use the tags or branches specified in [`cmake/ProjectTagsUnstable.cmake`](cmake/ProjectTagsUnstable.cmake), 
+* `Unstable` : by selecting this option, you will use the tags or branches specified in [`cmake/ProjectsTagsUnstable.cmake`](../cmake/ProjectsTagsUnstable.cmake), 
                that are the "unstable" active development branches for the robotology projects. This is reccomended just for users that work at the IIT labs in Genoa,
                as it can break compilation or runtime behaviour without any notice.
 * `Custom` : by selecting this option, you need to manually specify the tags or branches that you want to use by specifying a custom project tags file in the 
