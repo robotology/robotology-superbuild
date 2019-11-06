@@ -11,6 +11,7 @@ find_or_build_package(iDynTree QUIET)
 find_or_build_package(UnicyclePlanner QUIET)
 find_or_build_package(OsqpEigen QUIET)
 find_or_build_package(qpOASES QUIET)
+find_or_build_package(ICUBcontrib QUIET)
 
 set(walking-controllers_DEPENDS "")
 list(APPEND walking-controllers_DEPENDS YARP)
@@ -19,6 +20,7 @@ list(APPEND walking-controllers_DEPENDS iDynTree)
 list(APPEND walking-controllers_DEPENDS UnicyclePlanner)
 list(APPEND walking-controllers_DEPENDS OsqpEigen)
 list(APPEND walking-controllers_DEPENDS qpOASES)
+list(APPEND walking-controllers_DEPENDS ICUBcontrib)
 
 ycm_ep_helper(walking-controllers TYPE GIT
               STYLE GITHUB
