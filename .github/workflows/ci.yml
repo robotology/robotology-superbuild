@@ -67,6 +67,8 @@ jobs:
         brew install libmatio
         # ROBOTOLOGY_USES_GAZEBO dependencies 
         brew install osrf/simulation/gazebo10
+        # ROBOTOLOGY_USES_OCTAVE dependencies 
+        brew install octave
         # CI-specific dependencies 
         brew install ninja
         cmake --version
@@ -83,6 +85,13 @@ jobs:
         cd build    
         # Note: HUMAN_DYNAMICS is temporary disabled as a workaround for https://github.com/robotology/wearables/issues/56
         cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
+
+    - name: Disable macOS unsupported options 
+      if: matrix.os == 'macOS-10.14'
+      run: | 
+        cd build
+        # Disable ROBOTOLOGY_USES_PYTHON in macOS 
+        cmake -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
     - name: Build
       shell: bash
