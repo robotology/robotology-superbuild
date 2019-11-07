@@ -67,8 +67,6 @@ jobs:
         brew install libmatio
         # ROBOTOLOGY_USES_GAZEBO dependencies 
         brew install osrf/simulation/gazebo10
-        # ROBOTOLOGY_USES_OCTAVE dependencies 
-        brew install octave
         # CI-specific dependencies 
         brew install ninja
         cmake --version
@@ -91,7 +89,7 @@ jobs:
       run: | 
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS 
-        cmake -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
     - name: Build
       shell: bash
