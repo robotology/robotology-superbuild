@@ -39,7 +39,8 @@ If you need to use other *superbuild profiles*, they can be easily enabled with 
 **Important: do not run `make install` for the superbuild: the superbuild already installs all the software in 
 `/usr/local/src/robot/robotology-superbuild/build/install`, and installing the software elsewhere on the robot is not currently supported.**
 
-**Important: If you are using an old iCub that still uses the CAN internal bus, you also need to enable the `ROBOTOLOGY_USES_CFW2CAN` CMake options. 
+**Important: If you are using an old iCub that still uses the CAN internal bus, you also need to enable the `ROBOTOLOGY_USES_CFW2CAN` CMake option. Note that in this case the `.bashrc_iCub` file should also contain the definition of the 
+`CFW2CANAPI_DIR` environmental variables, in addition to all the environmental variable already defined  in that file.
 See the main robotology-superbuild README for more detailed information.**
 
 
