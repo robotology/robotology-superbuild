@@ -9,7 +9,7 @@ ycm_ep_helper(RobotTestingFramework TYPE GIT
                                     STYLE GITHUB
                                     REPOSITORY robotology/robot-testing-framework.git
                                     CMAKE_ARGS -DENABLE_LUA_PLUGIN:BOOL=${ROBOTOLOGY_USES_LUA}
-                                               -DENABLE_PYTHON_PLUGIN:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                                               -DENABLE_PYTHON_PLUGIN:BOOL=OFF
                                     COMPONENT core
                                     FOLDER robotology)
 
