@@ -82,7 +82,7 @@ jobs:
     # ===================
     
     - name: Configure [Ubuntu&macOS]
-      if: matrix.os == 'macOS-10.14' or matrix.os == 'ubuntu-latest'
+      if: matrix.os == 'macOS-10.14' || matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         mkdir -p build
