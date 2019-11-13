@@ -75,7 +75,8 @@ jobs:
       if: matrix.os == 'windows-2019'
       run: |
         git clone https://github.com/robotology-dependencies/robotology-vcpkg-binary-ports C:/robotology-vcpkg-binary-ports
-        vcpkg.exe --overlay-ports=C:/robotology-vcpkg-binary-ports install --triplet x64-windows ace libxml2 gsl eigen3 opencv3 freeglut ode sdl1 sdl2 qt5-base tinyxml ipopt-binary 
+        # TinyXML is not installed as a workaround for https://github.com/robotology/ycm/pull/296
+        vcpkg.exe --overlay-ports=C:/robotology-vcpkg-binary-ports install --triplet x64-windows ace libxml2 gsl eigen3 opencv3 freeglut ode sdl1 sdl2 qt5-base ipopt-binary 
 
     # ===================
     # CMAKE-BASED PROJECT
