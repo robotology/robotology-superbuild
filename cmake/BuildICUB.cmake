@@ -15,15 +15,21 @@ if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   list(APPEND ICUB_DEPENDS icub-firmware-shared)
 endif()
 
-if (APPLE)
   # See discussion in https://github.com/robotology/icub-main/issues/551
+if (APPLE)
   set(ICUBMAIN_COMPILE_SIMULATORS OFF)
-  # See discussion in https://github.com/robotology/robotology-superbuild/issues/237
-  set(ENABLE_DRAGONFLY2 OFF)
 else()
   set(ICUBMAIN_COMPILE_SIMULATORS ON)
+endif()
+
+# See discussion in https://github.com/robotology/robotology-superbuild/issues/237
+# and https://github.com/robotology/robotology-superbuild/issues/236
+if (APPLE OR WIN32)
+  set(ENABLE_DRAGONFLY2 OFF)
+else()
   set(ENABLE_DRAGONFLY2 ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
 endif()
+
 
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
