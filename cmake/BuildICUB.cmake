@@ -30,6 +30,12 @@ else()
   set(ENABLE_DRAGONFLY2 ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
 endif()
 
+# See https://github.com/robotology/icub-main/issues/624
+if (WIN32)
+  set(ENABLE_icubmod_xsensmtx OFF)
+else()
+  set(ENABLE_icubmod_xsensmtx ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
+endif()
 
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
@@ -66,6 +72,6 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_embObjVirtualAnalogSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_parametricCalibrator:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_parametricCalibratorEth:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
-                                    -DENABLE_icubmod_xsensmtx:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                                    -DENABLE_icubmod_xsensmtx:BOOL=${ENABLE_icubmod_xsensmtx}
                                     -DICUB_USE_icub_firmware_shared:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS})
