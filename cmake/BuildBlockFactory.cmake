@@ -10,4 +10,5 @@ ycm_ep_helper(BlockFactory TYPE GIT
               TAG master
               COMPONENT dynamics
               FOLDER robotology
-              CMAKE_ARGS -DUSES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB})
+              CMAKE_ARGS -DUSES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
+                         -DENABLE_WARNINGS:BOOL=OFF)

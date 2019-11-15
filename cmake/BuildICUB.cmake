@@ -15,14 +15,26 @@ if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   list(APPEND ICUB_DEPENDS icub-firmware-shared)
 endif()
 
-if (APPLE)
   # See discussion in https://github.com/robotology/icub-main/issues/551
+if (APPLE)
   set(ICUBMAIN_COMPILE_SIMULATORS OFF)
-  # See discussion in https://github.com/robotology/robotology-superbuild/issues/237
-  set(ENABLE_DRAGONFLY2 OFF)
 else()
   set(ICUBMAIN_COMPILE_SIMULATORS ON)
+endif()
+
+# See discussion in https://github.com/robotology/robotology-superbuild/issues/237
+# and https://github.com/robotology/robotology-superbuild/issues/236
+if (APPLE OR WIN32)
+  set(ENABLE_DRAGONFLY2 OFF)
+else()
   set(ENABLE_DRAGONFLY2 ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
+endif()
+
+# See https://github.com/robotology/icub-main/issues/624
+if (WIN32)
+  set(ENABLE_icubmod_xsensmtx OFF)
+else()
+  set(ENABLE_icubmod_xsensmtx ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
 endif()
 
 ycm_ep_helper(ICUB TYPE GIT
@@ -60,6 +72,6 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_embObjVirtualAnalogSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_parametricCalibrator:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_parametricCalibratorEth:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
-                                    -DENABLE_icubmod_xsensmtx:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                                    -DENABLE_icubmod_xsensmtx:BOOL=${ENABLE_icubmod_xsensmtx}
                                     -DICUB_USE_icub_firmware_shared:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS})
