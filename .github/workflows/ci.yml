@@ -79,7 +79,7 @@ jobs:
         # To avoid problems with non-relocatable packages, we unzip the archive exactly in the same C:/vcpkg-robotology 
         # that has been used to create the pre-compiled archive
         cd C:/
-        wget https://github.com/robotology-playground/robotology-superbuild-dependencies/releases/download/v0.0.1/vcpkg-robotology.zip
+        wget https://github.com/robotology-playground/robotology-superbuild-dependencies/releases/download/v0.0.2/vcpkg-robotology.zip
         unzip vcpkg-robotology.zip        
         
     # ===================
