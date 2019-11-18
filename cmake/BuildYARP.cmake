@@ -16,6 +16,16 @@ else()
   set(YARP_COMPILE_BINDINGS OFF)
 endif()
 
+
+if (APPLE OR WIN32)
+  set(ENABLE_USBCAMERA OFF)
+else()
+  set(ENABLE_USBCAMERA ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
+endif()
+
+
+
+
 ycm_ep_helper(YARP TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/yarp.git
@@ -51,4 +61,5 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_USE_I2C:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DYARP_USE_SDL:BOOL=ON
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
-                              -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA})
+                              -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
+                              -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA})
