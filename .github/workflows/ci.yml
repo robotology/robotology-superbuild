@@ -19,7 +19,7 @@ jobs:
       matrix:
         build_type: [Debug, Release]
         project_tags: [Stable, Unstable]
-        os: [ubuntu-latest, macOS-10.14, windows-2019]
+        os: [ubuntu-latest, macOS-latest, windows-2019]
         include:
           - os: ubuntu-latest
             build_type: Debug
@@ -27,10 +27,10 @@ jobs:
           - os: ubuntu-latest
             build_type: Release
             cmake_generator: "Unix Makefiles"
-          - os: macOS-10.14
+          - os: macOS-latest
             build_type: Debug
             cmake_generator: "Unix Makefiles"
-          - os: macOS-10.14
+          - os: macOS-latest
             build_type: Release
             cmake_generator: "Xcode"
 
@@ -57,7 +57,7 @@ jobs:
         sudo ./.ci/install_debian.sh
 
     - name: Dependencies [MacOS]
-      if: matrix.os == 'macOS-10.14'
+      if: matrix.os == 'macOS-latest'
       run: |
         cmake --version
         brew cask install xquartz
@@ -87,7 +87,7 @@ jobs:
     # ===================
     
     - name: Configure [Ubuntu&macOS]
-      if: matrix.os == 'macOS-10.14' || matrix.os == 'ubuntu-latest'
+      if: matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         mkdir -p build
@@ -96,7 +96,7 @@ jobs:
         cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
 
     - name: Disable macOS unsupported options 
-      if: matrix.os == 'macOS-10.14'
+      if: matrix.os == 'macOS-latest'
       run: | 
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS 
@@ -113,7 +113,7 @@ jobs:
         cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg-robotology/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ..
 
     - name: Build  [Ubuntu&macOS]
-      if: matrix.os == 'macOS-10.14' || matrix.os == 'ubuntu-latest'
+      if: matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         cd build
