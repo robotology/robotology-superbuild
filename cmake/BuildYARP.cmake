@@ -8,7 +8,12 @@ include(FindOrBuildPackage)
 find_package(ACE QUIET)
 find_package(SQLite QUIET)
 find_package(Eigen3 QUIET)
-find_or_build_package(RobotTestingFramework QUIET)
+
+set(YARP_OPTIONAL_DEPS "")
+if(ROBOTOLOGY_ENABLE_ROBOT_TESTING)
+  find_or_build_package(RobotTestingFramework QUIET)
+  list(APPEND YARP_OPTIONAL_DEPS RobotTestingFramework)
+endif()
 
 if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA)
   set(YARP_COMPILE_BINDINGS ON)
@@ -36,7 +41,7 @@ ycm_ep_helper(YARP TYPE GIT
                            ACE
                            SQLite
                            Eigen3
-                           RobotTestingFramework
+                           ${YARP_OPTIONAL_DEPS}
                    CMAKE_ARGS -DCREATE_IDLS:BOOL=ON
                               -DCREATE_GUIS:BOOL=ON
                               -DYARP_USE_SYSTEM_SQLITE:BOOL=ON
@@ -56,7 +61,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_SDLJoypad:BOOL=ON
                               -DENABLE_yarpmod_serialport:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
-                              -DYARP_COMPILE_RTF_ADDONS:BOOL=ON
+                              -DYARP_COMPILE_RTF_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
                               -DYARP_USE_I2C:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DYARP_USE_SDL:BOOL=ON

@@ -54,6 +54,7 @@ option(ROBOTOLOGY_USES_CYBERITH_SDK "Enable compilation of software that depend 
 
 # Enable/disable different profiles
 option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." TRUE)
+option(ROBOTOLOGY_ENABLE_ROBOT_TESTING "Enable compilation of software for robot testing." TRUE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
@@ -126,12 +127,10 @@ include(YCMEPHelper)
 
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
-  find_or_build_package(RobotTestingFramework)
   find_or_build_package(YARP)
   find_or_build_package(ICUB)
   find_or_build_package(ICUBcontrib)
   find_or_build_package(icub-models)
-  find_or_build_package(icub-tests)
   find_or_build_package(robots-configuration)
   if(ROBOTOLOGY_USES_GAZEBO)
     find_or_build_package(GazeboYARPPlugins)
@@ -140,6 +139,12 @@ if(ROBOTOLOGY_ENABLE_CORE)
   if(ROBOTOLOGY_USES_MATLAB OR ROBOTOLOGY_USES_OCTAVE)
     find_or_build_package(yarp-matlab-bindings)
   endif()
+endif()
+
+# Robot Testing 
+if(ROBOTOLOGY_ENABLE_ROBOT_TESTING)
+  find_or_build_package(RobotTestingFramework)
+  find_or_build_package(icub-tests)
 endif()
 
 # Dynamics 
