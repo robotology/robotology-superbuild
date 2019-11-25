@@ -25,6 +25,7 @@ Table of Contents
   * [Update](#update)
   * [Profile-specific documentation](#profile-specific-documentation)
     * [Core profile](#core)
+    * [Robot Testing profile](#robot-testing)
     * [Dynamics profile](#dynamics)
     * [iCub Head profile](#icub-head)
     * [Teleoperation profile](#teleoperation)
@@ -62,7 +63,8 @@ Note that any dependencies of the included packages that is not available in the
 
 | CMake Option | Description | Main packages included | Default Value | Profile-specific documentation |
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
-| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`RobotTestingFramework`](https://github.com/robotology/robot-testing-framework), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models),  [`robots-configurations`](https://github.com/robotology/robots-configuration) and[`icub-tests`](https://github.com/robotology/icub-tests). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
+| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models) and  [`robots-configurations`](https://github.com/robotology/robots-configuration). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
+| `ROBOTOLOGY_ENABLE_ROBOT_TESTING` | The robotology software packages related to robot testing. |  [`RobotTestingFramework`](https://github.com/robotology/robot-testing-framework) and [`icub-tests`](https://github.com/robotology/icub-tests)| `OFF` | [Documentation on Robot Testing profile.](#robot-testing)  |
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
@@ -139,7 +141,7 @@ export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/bu
 # Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
 export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites
+export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 # Extend LD_LIBRARY_PATH (see http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80)
@@ -149,6 +151,7 @@ export BLOCKFACTORY_PLUGIN_PATH=$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockf
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
+* [`ROBOTOLOGY_ENABLE_ROBOT_TESTING`](#robot-testing) 
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
@@ -238,6 +241,7 @@ export BLOCKFACTORY_PLUGIN_PATH=$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockf
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
+* [`ROBOTOLOGY_ENABLE_ROBOT_TESTING`](#robot-testing) 
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
@@ -353,7 +357,6 @@ YARP_DATA_DIRS=
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\yarp
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\iCub
 %ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\ICUBcontrib
-%ROBOTOLOGY_SUPERBUILD_SOURCE_DIR%\robotology\icub-tests\suites
 ```
 
 Append the following variables to your `CMAKE_PREFIX_PATH` environment variable:
@@ -369,7 +372,7 @@ BLOCKFACTORY_PLUGIN_PATH=%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%/lib/blockfactory
 ```
 
 Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
-
+* [`ROBOTOLOGY_ENABLE_ROBOT_TESTING`](#robot-testing) 
 * [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
 * [`ROBOTOLOGY_USES_MATLAB`](#matlab)
 * [`ROBOTOLOGY_USES_OCTAVE`](#octave)
@@ -449,6 +452,23 @@ operating system-specific installation documentation.
 
 ### Check the installation
 Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify if your installation was successful.
+
+## Robot Testing
+This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option.
+
+### System Dependencies
+The steps necessary to install the system dependencies of the Robot Testing profile are provided in
+operating system-specific installation documentation, and no additional required system dependency is required.
+
+### Configuration
+The scripts `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` (Linux, macOS) or `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.bat` (Windows), 
+contain all the necessary configuration enviromental variables. 
+
+In particular, the only necessary modification for this profile is to append `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites` to the `YARP_DATA_DIRS` .
+
+### Check the installation
+If the profile has been correctly enabled and compiler, you should be able to run the `robottestingframework-testrunner` executable from the command line.
+
 
 ## Dynamics
 This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.

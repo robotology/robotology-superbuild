@@ -37,7 +37,6 @@ Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/bin"
 Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/yarp";
 Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/iCub";
 Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/ICUBcontrib";
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-tests/suites";
 
 # Cleanup CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 Remove-ValueFromUserEnvVariable CMAKE_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
@@ -53,6 +52,11 @@ Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL
 Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share"
 Remove-ValueFromUserEnvVariable GAZEBO_RESOURCE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/gazebo/worlds"
 @endcmakeif ROBOTOLOGY_USES_GAZEBO
+
+@cmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
+# Cleanup ROBOTOLOGY_ENABLE_ROBOT_TESTING-specific lines
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-tests/suites";
+@endcmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
 
 @cmakeif ROBOTOLOGY_ENABLE_DYNAMICS
 # Cleanup ROBOTOLOGY_ENABLE_DYNAMICS-specific lines
