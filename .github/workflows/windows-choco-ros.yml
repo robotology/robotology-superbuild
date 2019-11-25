@@ -1,4 +1,4 @@
-name: Windows Choco ROS
+name: Windows ROS Chocolatey CI
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ on:
   
 jobs:
   build:
-    name: 'Windows Choco ROS'
+    name: 'Windows ROS Chocolatey CI'
     runs-on: windows-latest
     strategy:
       matrix:
@@ -31,6 +31,7 @@ jobs:
     # ============
         
     - name: Dependencies
+      shell: cmd
       run: |
         choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
         choco upgrade ros-melodic-desktop ros-vcpkg -y
@@ -43,6 +44,7 @@ jobs:
     # ===================
 
     - name: Configure & Build 
+      shell: cmd
       run: |
         call "C:\opt\ros\melodic\x64\env.bat"
         # Workaround for https://github.com/ms-iot/ROSOnWindows/issues/164
