@@ -35,7 +35,7 @@ jobs:
       run: |
         choco sources add -n=roswin -s https://roswin.azurewebsites.net/api/v2/ --priority 1
         choco upgrade ros-melodic-desktop ros-vcpkg -y
-        call "C:\opt\ros\melodic\x64\env.bat"
+        call "C:\opt\ros\melodic\x64\setup.bat"
         git clone https://github.com/robotology-dependencies/robotology-vcpkg-binary-ports C:/robotology-vcpkg-binary-ports
         vcpkg.exe --triplet x64-windows --overlay-ports=C:/robotology-vcpkg-binary-ports install ace gsl ode libxml2 ipopt-binary
         
@@ -46,7 +46,7 @@ jobs:
     - name: Configure & Build 
       shell: cmd
       run: |
-        call "C:\opt\ros\melodic\x64\env.bat"
+        call "C:\opt\ros\melodic\x64\setup.bat"
         # Workaround for https://github.com/ms-iot/ROSOnWindows/issues/164
         set PATH=%PATH%;c:\opt\vcpkg\installed\x64-windows\bin
         mkdir build
