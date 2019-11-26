@@ -132,34 +132,10 @@ See [Superbuild CMake options](#superbuild-cmake-options) for a list of availabl
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
-To use this binaries and libraries, you should update the `PATH` and `LD_LIBRARY_PATH` environment variables.
+To use the binaries and libraries installed by the robotology-superbuild, you should update the enviroment variables of your process such as `PATH` and `CMAKE_PREFIX_PATH`.
 
-An easy way is to add this lines to the '.bashrc` file in your home directory:
-```bash
-export ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/directory/where/you/downloaded/robotology-superbuild/
-export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install
-# Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
-export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
-# YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib
-# Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
-export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
-# Extend LD_LIBRARY_PATH (see http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html#AEN80)
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
-# Setup the path of blockfactory plugins
-export BLOCKFACTORY_PLUGIN_PATH=$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory
-```
-
-Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
-* [`ROBOTOLOGY_ENABLE_ROBOT_TESTING`](#robot-testing) 
-* [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
-* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
-* [`ROBOTOLOGY_USES_MATLAB`](#matlab)
-* [`ROBOTOLOGY_USES_OCTAVE`](#octave)
-
-
-As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
-all the necessary enviromental variables. To do so append the following line to the `.bashrc` file:
+The superbuild provides an automatically generated `setup.sh` sh script that will set
+all the necessary enviromental variables. To do so automatically for any new terminal that you open, append the following line to the `.bashrc` file:
 ```
 source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh
 ```
@@ -172,6 +148,8 @@ If may also be necessary to updates the cache of the dynamic linker:
 ```bash
 user@host:~$ sudo ldconfig
 ```
+
+If for any reason you do not want to use the provided `setup.sh` script and you want to manage your enviroment variables manually, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
 
 ## macOS
 
@@ -222,46 +200,21 @@ xcodebuild -configuration Release
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
-To use this binaries you should update the `PATH` environment variables and append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to your `DYLD_LIBRARY_PATH`.
+To use the binaries and libraries installed by the robotology-superbuild, you should update the enviroment variables of your process such as `PATH` and `CMAKE_PREFIX_PATH`.
 
-An easy way is to add these lines to the `.bashrc` or `.bash_profile` file in your home directory:
-```bash
-export ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/directory/where/you/downloaded/robotology-superbuild
-export ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install
-# Extend PATH (see https://en.wikipedia.org/wiki/PATH_(variable) )
-export PATH=$PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin
-# YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-export YARP_DATA_DIRS=$YARP_DATA_DIRS:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/yarp:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/iCub:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/ICUBcontrib:$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites
-# Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
-export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
-# Extend DYLD_LIBRARY_PATH (see https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/UsingDynamicLibraries.html )
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib
-# Setup the path of blockfactory plugins
-export BLOCKFACTORY_PLUGIN_PATH=$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory
-```
-
-Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
-* [`ROBOTOLOGY_ENABLE_ROBOT_TESTING`](#robot-testing) 
-* [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
-* [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
-* [`ROBOTOLOGY_USES_MATLAB`](#matlab)
-* [`ROBOTOLOGY_USES_OCTAVE`](#octave)
-
-As a convenient feature the superbuild provides an automatically generated `setup.sh` sh script that will set
-all the necessary enviromental variables:
+The superbuild provides an automatically generated `setup.sh` sh script that will set
+all the necessary enviromental variables. To do so automatically for any new terminal that you open, append the following line to the `.bash_profile` file:
 ```
 source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh
 ```
 
-To use the updated `.bashrc` in your terminal you should run the following command:
-```bash
-user@host:~$ source ~/.bashrc
-```
-or for the `.bash_profile` file
+To use the updated `.bash_profile` in your terminal you should run the following command:
 ```bash
 user@host:~$ source ~/.bash_profile
 ```
 or simply open a new terminal.
+
+If for any reason you do not want to use the provided `setup.sh` script and you want to manage your enviroment variables manually, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
 
 ## Windows
 ### Disclaimer
@@ -338,52 +291,18 @@ cmake --build . --config Release
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
 
-To use this binaries and libraries, you should update the necessary environment variables. You can use a program such as [Rapid Enviroment Editor](https://www.rapidee.com/) to update the environment variables.
+To use the binaries and libraries installed by the robotology-superbuild, you should update the enviroment variables of your process such as `PATH` and `CMAKE_PREFIX_PATH`.
 
-Set the environment variable `ROBOTOLOGY_SUPERBUILD_SOURCE_DIR` so that it points to the  directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory where you have installed the robotology-superbuild:
-```
-ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=<path to code workspace>\robotology-superbuild
-ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = %ROBOTOLOGY_SUPERBUILD_SOURCE_DIR%\build\install
-```
+If you are an heavy user  of the software installed by the robotology-superbuild, you may want to update your [user enviroment variables](https://docs.microsoft.com/en-us/windows/win32/shell/user-environment-variables) to permit you to use the robotology-superbuild software from any Windows process. To automatically update the user enviroment variables, the robotology-superbuild provides the `addPathsToUserEnvVariables.ps1` and `removePathsFromUserEnvVariables.ps1` available at `<directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/`.  As indicated by their name, `addPathsToUserEnvVariables.ps1` is used to setup the enviroment variables used by the robotology-superbuild, while `removePathsFromUserEnvVariables.ps1` permits to cleanly remove them. To configure the robotology-superbuild, just run the `addPathsToUserEnvVariables.ps1` script once in a Powershell terminal.
 
-Append `%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\bin` to your PATH:
-```
-Path=%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\bin
-```
+To check the values of the enviroment variables modified by the powershell scripts provided by the superbuild, you can use a program such as [Rapid Enviroment Editor](https://www.rapidee.com/).
 
-Append the following variables to your [`YARP_DATA_DIRS`](http://wiki.icub.org/yarpdoc/yarp_data_dirs.html) environment variable:
-```
-YARP_DATA_DIRS=
-%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\yarp
-%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\iCub
-%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%\share\ICUBcontrib
-```
+If you do not want to permanently modify the user enviroment variables permanently, the superbuild provides an automatically generated `setup.bat` batch script in `<directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.bat`. This script will set
+all the necessary enviromental variables to use the software installed by the robotology-superbuild. However, as in Windows there is no `.bashrc` file-equivalent, you will need to call this script every time you open a batch terminal in which you want to run the software installed by the robotology-superbuild.
 
-Append the following variables to your `CMAKE_PREFIX_PATH` environment variable:
-```
-CMAKE_PREFIX_PATH=
-%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%
-```
-
-Export the following environment variable:
-
-```
-BLOCKFACTORY_PLUGIN_PATH=%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%/lib/blockfactory
-```
-
-Software installed by the following [profile](#profile-cmake-options) or [dependencies](#dependencies-cmake-options) CMake options require specific enviromental variables to be set, as documented in options-specific documentation:
-* [`ROBOTOLOGY_ENABLE_ROBOT_TESTING`](#robot-testing) 
-* [`ROBOTOLOGY_ENABLE_DYNAMICS`](#dynamics) 
-* [`ROBOTOLOGY_USES_MATLAB`](#matlab)
-* [`ROBOTOLOGY_USES_OCTAVE`](#octave)
-* [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
-* [`ROBOTOLOGY_USES_CYBERITH_SDK`](#cyberith)
-* [`ROBOTOLOGY_USES_XSENS_MVN_SDK`](#xsens)
-* [`ROBOTOLOGY_USES_ESDCAN`](#shoes)
+If for any reason you do not want to use the provided scripts and you want to manage your enviroment variables manually, for example because you want to cleanup the enviroment variables modified by `addPathsToUserEnvVariables.ps1`  and you delete the corresponding `removePathsFromUserEnvVariables.ps1`, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
 
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
- 
- **When you are adding or appending the environment variables, we suggest to use absolute paths(directories) as the value of a variable, and do not use other variables to define the values of a variable.**
  
 ## Windows Subsystem for Linux
 The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified, without the overhead of a virtual machine.
@@ -446,10 +365,6 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 The steps necessary to install the system dependencies of the Core profile are provided in
 operating system-specific installation documentation.
 
-### Configuration
-The configuration necessary to use the software installed in the Core profile is provided in
-operating system-specific installation documentation. 
-
 ### Check the installation
 Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify if your installation was successful.
 
@@ -459,12 +374,6 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option.
 ### System Dependencies
 The steps necessary to install the system dependencies of the Robot Testing profile are provided in
 operating system-specific installation documentation, and no additional required system dependency is required.
-
-### Configuration
-The scripts `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` (Linux, macOS) or `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.bat` (Windows), 
-contain all the necessary configuration enviromental variables. 
-
-In particular, the only necessary modification for this profile is to append `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites` to the `YARP_DATA_DIRS` .
 
 ### Check the installation
 If the profile has been correctly enabled and compiler, you should be able to run the `robottestingframework-testrunner` executable from the command line.
@@ -498,10 +407,6 @@ brew install libmatio
 #### Windows
 
 Install matio following the [installation instructions](https://github.com/tbeu/matio/#20-building) present in the repository.
-
-### Configuration
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable.
-The scripts `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` (Linux, macOS) or `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.bat` (Windows), will append the necessary path to `YARP_DATA_DIRS`.
 
 ## iCub Head
 
@@ -547,19 +452,11 @@ In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberi
 * Windows: [Oculus](#oculus), [Cyberith](#cyberith). 
 * Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
 
-### Configuration
-The steps necessary to install the system dependencies of the Teleoperation profile are provided in operating system-specific installation documentation, and no additional system dependency is required.
-
-
 ## Human Dynamics
 This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option. 
 
 ### System Dependencies
 To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [FTShoes/FTSkShoes](#shoes) for more information about the dependencies.
-
-### Configuration
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/human-gazebo`, `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/HumanDynamicsEstimation`, `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/Wearables` must be appended to the `YARP_DATA_DIRS` enviromental variable.
-The scripts `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` (Linux, macOS) or `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.bat` (Windows), will append the necessary path to `YARP_DATA_DIRS`.
 
 Dependencies-specific documentation
 ===================================
@@ -573,19 +470,6 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake opt
 Install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
 Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
-
-### Configuration
-Once the superbuild with `ROBOTOLOGY_USES_GAZEBO` enabled has been compiled, it is necessary to append a few superbuild-specific path to the Gazebo enviromental variables:
-~~~
-# Gazebo related env variables (see http://gazebosim.org/tutorials?tut=components#EnvironmentVariables )
-# This is /usr/local/share/gazebo/setup.sh if Gazebo was installed in macOS using homebrew
-source /usr/share/gazebo/setup.sh
-export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
-export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/iCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share
-export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
-~~~
-
-The `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/robotology-superbuild/setup.sh` script will append the necessary path to the Gazebo enviromental variables. 
 
 ### Check the installation
 Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine. 
@@ -667,11 +551,8 @@ Add the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install/octave` directory to yo
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
 
-### Configuration
-Add the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install/lib/python2.7/dist-packages` to your `PYTHONPATH`. This is done automatically on Linux and macOS if you source the provided `setup.sh` script.
-
 ### Check the installation
-The folder mentioned in the configuration section should contain `*.py` files which correspond to the generated python bindings. Open a python interpreter and try to import modules.
+Open a python interpreter and try to import modules, for example verify that `import yarp` works.
 
 ## Oculus
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCULUS_SDK` CMake option.
