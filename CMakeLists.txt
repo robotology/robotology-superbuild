@@ -2,7 +2,7 @@
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.12)
 project(robotology-superbuild NONE)
 
 ## we have to enable C because it is currently used
@@ -99,16 +99,6 @@ elseif(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Custom")
 else()
     message(FATAL_ERROR "The ROBOTOLOGY_PROJECT_TAGS variable can be Stable, Unstable or Custom. ${ROBOTOLOGY_PROJECT_TAGS} value is not supported.")
 endif()
-
-#Set CMake policies
-if(NOT CMAKE_VERSION VERSION_LESS 3.0)
-    cmake_policy(SET CMP0045 NEW)
-    cmake_policy(SET CMP0046 NEW)
-endif()
-if(NOT CMAKE_VERSION VERSION_LESS 3.1)
-    cmake_policy(SET CMP0054 NEW)
-endif()
-
 
 # Bootstrap YCM
 set(YCM_FOLDER robotology)
