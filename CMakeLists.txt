@@ -103,13 +103,8 @@ endif()
 # Bootstrap YCM
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
-# Temporary fix for https://github.com/robotology/ycm/issues/290
-if("${CMAKE_GENERATOR}" MATCHES "Ninja" OR ("${CMAKE_GENERATOR}" MATCHES "Xcode") OR WIN32)
-    set(YCM_TAG 6f7cc07c97d9016de5bbdeba13eeb93bd4bc8b65)
-else()
-    set(YCM_TAG v0.10.4)
-endif()
-set(YCM_MINIMUM_VERSION 0.10.4)
+set(YCM_TAG ad8bb257df45ffe70f949c74815bf803d7445b24)
+set(YCM_MINIMUM_VERSION 0.11.0)
 include(YCMBootstrap)
 
 include(FindOrBuildPackage)
