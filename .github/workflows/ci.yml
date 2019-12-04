@@ -61,6 +61,9 @@ jobs:
       run: |
         cmake --version
         brew cask install xquartz
+        # Update homebrew 
+        brew update
+        brew upgrade
         # Core dependencies 
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv@3 pkg-config qt5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
