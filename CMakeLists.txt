@@ -219,7 +219,6 @@ endif()
 
 include(ConfigureFileWithCMakeIf)
 if(NOT WIN32)
-   message ("YCM_EP_INSTALL_DIR value is " ${YCM_EP_INSTALL_DIR})
    configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.sh.in ${CMAKE_BINARY_DIR}/install/share/${PROJECT_NAME}/setup.sh @ONLY)
 else()
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.bat.in ${CMAKE_BINARY_DIR}/install/share/${PROJECT_NAME}/setup.bat @ONLY)
