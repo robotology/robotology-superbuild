@@ -1,7 +1,7 @@
 rem Automatically generated setup file for @PROJECT_NAME@
 
 set "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=@PROJECT_SOURCE_DIR@"
-set "ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=@PROJECT_BINARY_DIR@/install"
+set "ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX=@YCM_EP_INSTALL_DIR@"
 rem Extend PATH
 set "PATH=%PATH%;%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%/bin"
 rem YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
