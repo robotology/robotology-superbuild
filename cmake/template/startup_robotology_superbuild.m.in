@@ -4,7 +4,7 @@
 
 fprintf('\nMATLAB Toolbox\n');
 
-installDir = '@CMAKE_BINARY_DIR@/install';
+installDir = '@YCM_EP_INSTALL_DIR@';
 mexDir     = [installDir, filesep, 'mex'];
 mexWrapDir = [mexDir, filesep, 'mexwbi-wrappers'];
 mexUtDir   = [mexDir, filesep, 'mexwbi-utilities'];
