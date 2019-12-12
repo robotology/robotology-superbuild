@@ -12,7 +12,7 @@ set_tag(icub-models_TAG v1.14.0)
 set_tag(robots-configuration_TAG v1.14.0)
 set_tag(GazeboYARPPlugins_TAG v3.3.0)
 set_tag(icub-gazebo_TAG v1.14.0)
-set_tag(yarp-matlab-bindings_TAG v3.3.0)
+set_tag(yarp-matlab-bindings_TAG v3.2.0)
 
 # Robot Testing 
 set_tag(RobotTestingFramework_TAG v2.0.0)
