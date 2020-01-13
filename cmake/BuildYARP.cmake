@@ -42,18 +42,17 @@ ycm_ep_helper(YARP TYPE GIT
                            SQLite
                            Eigen3
                            ${YARP_OPTIONAL_DEPS}
-                   CMAKE_ARGS -DCREATE_IDLS:BOOL=ON
-                              -DCREATE_GUIS:BOOL=ON
-                              -DYARP_USE_SYSTEM_SQLITE:BOOL=ON
-                              -DCREATE_LIB_MATH:BOOL=ON
-                              -DCREATE_OPTIONAL_CARRIERS:BOOL=ON
+                   CMAKE_ARGS -DYARP_COMPILE_GUIS:BOOL=ON
+                              -DYARP_USE_SYSTEM_SQLite:BOOL=ON
+                              -DYARP_COMPILE_libYARP_math:BOOL=ON
+                              -DYARP_COMPILE_CARRIER_PLUGINS:BOOL=ON
                               -DENABLE_yarpcar_bayer:BOOL=ON
                               -DENABLE_yarpcar_tcpros:BOOL=ON
                               -DENABLE_yarpcar_xmlrpc:BOOL=ON
                               -DENABLE_yarpcar_priority:BOOL=ON
                               -DENABLE_yarpcar_bayer:BOOL=ON
                               -DENABLE_yarpidl_thrift:BOOL=ON
-                              -DCREATE_DEVICE_LIBRARY_MODULES:BOOL=ON
+                              -DYARP_COMPILE_DEVICE_PLUGINS:BOOL=ON
                               -DENABLE_yarpcar_human:BOOL=ON
                               -DENABLE_yarpcar_rossrv:BOOL=ON
                               -DENABLE_yarpmod_fakebot:BOOL=ON
@@ -61,7 +60,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_SDLJoypad:BOOL=ON
                               -DENABLE_yarpmod_serialport:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
-                              -DYARP_COMPILE_RTF_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
+                              -DYARP_COMPILE_RobotTestingFramework_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
                               -DYARP_USE_I2C:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DYARP_USE_SDL:BOOL=ON
