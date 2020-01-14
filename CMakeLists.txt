@@ -2,6 +2,7 @@
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
+
 cmake_minimum_required(VERSION 3.12)
 project(robotology-superbuild NONE)
 
