@@ -6,8 +6,8 @@ include(YCMEPHelper)
 
 ycm_ep_helper(osqp TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology-dependencies/osqp.git
-              TAG fix-lf-problems
+              REPOSITORY oxfordcontrol/osqp.git
+              TAG master
               COMPONENT dynamics
               FOLDER external
               CMAKE_ARGS -DUNITTESTS:BOOL=OFF)

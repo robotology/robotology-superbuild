@@ -3,5 +3,9 @@ macro(set_tag tag_name tag_value)
         set(${tag_name} ${tag_value})
     endif()
 endmacro()
+
+# External projects
+set_tag(osqp_TAG v0.6.0)
+
+# Robotology projects
 set(YARP_TAG yarp-3.3)
-set(OsqpEigen_TAG v0.4.1)

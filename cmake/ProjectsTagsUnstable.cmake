@@ -4,6 +4,10 @@ macro(set_tag tag_name tag_value)
     endif()
 endmacro()
 
+# External projects
+set_tag(osqp_TAG v0.6.0)
+
+# Robotology projects
 set_tag(YARP_TAG master)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
@@ -20,4 +24,4 @@ set_tag(icub-models_TAG devel)
 set_tag(icub-gazebo_TAG devel)
 set_tag(icub-gazebo-wholebody_TAG devel)
 set_tag(whole-body-controllers_TAG master)
-set_tag(OsqpEigen_TAG v0.4.1) 
+set_tag(OsqpEigen_TAG devel) 
