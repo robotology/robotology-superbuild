@@ -1,0 +1,15 @@
+function Component()
+{
+}
+
+Component.prototype.createOperations = function()
+{
+    console.log("component: " + component.displayName + ", createOperations called");
+     
+    component.createOperations();	 
+	   
+    // Add mantainance of Path variables 
+	oper = [ "powershell", "-ExecutionPolicy", "ByPass", "-File", "@TargetDir@\\scripts\\addPathsToUserEnvVariables.ps1"];
+    undoOper = [ "powershell", "-ExecutionPolicy", "ByPass", "-File", "@TargetDir@\\scripts\\removePathsFromUserEnvVariables.ps1"];
+    component.addOperation("Execute", oper, "UNDOEXECUTE", undoOper);                         
+}
