@@ -135,7 +135,8 @@ jobs:
         cmake --build . --config ${{ matrix.build_type }}
       env: 
         # This is necessary only on macOS/homebrew, but on Linux it should be ignored
-        Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5   
+        Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
+        OpenCV_DIR: /usr/local/opt/opencv@3/share/OpenCV
         
     - name: Build  [Windows]
       if: matrix.os == 'windows-2019'
