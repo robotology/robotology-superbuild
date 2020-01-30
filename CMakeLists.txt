@@ -58,6 +58,7 @@ option(ROBOTOLOGY_ENABLE_ROBOT_TESTING "Enable compilation of software for robot
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
+option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necessary for iCub basic demonstrations." FALSE)
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 include(CMakeDependentOption)
 
@@ -186,6 +187,13 @@ if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   if((NOT WIN32) AND (NOT APPLE))
     find_or_build_package(xsensmt-yarp-driver)
   endif()
+endif()
+
+# iCub Basic Demos
+if(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS)
+  find_or_build_package(icub-basic-demos)
+  find_or_build_package(speech)
+  find_or_build_package(funny-things)
 endif()
 
 # R1 Robot
