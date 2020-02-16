@@ -9,3 +9,4 @@ set_tag(osqp_TAG v0.6.0)
 
 # Robotology projects
 set(YARP_TAG yarp-3.3)
+set(yarp-matlab-bindings_TAG yarp-3.3)
