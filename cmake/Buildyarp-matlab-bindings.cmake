@@ -9,7 +9,7 @@ find_or_build_package(YARP QUIET)
 
 ycm_ep_helper(yarp-matlab-bindings TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology-playground/yarp-matlab-bindings.git
+              REPOSITORY robotology/yarp-matlab-bindings.git
               TAG master
               COMPONENT core
               FOLDER robotology
