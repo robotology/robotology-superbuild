@@ -109,7 +109,7 @@ jobs:
       run: |
         mkdir -p build
         cd build    
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  -DROBOTOLOGY_PROJECT_TAGS=${{ matrix.project_tags }} ..
+        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  -DROBOTOLOGY_PROJECT_TAGS=${{ matrix.project_tags }} ..
 
     - name: Disable macOS unsupported options 
       if: matrix.os == 'macOS-latest'
@@ -125,7 +125,7 @@ jobs:
         mkdir -p build
         cd build    
         # Note: DYNAMICS is disabled as a workaround for https://github.com/robotology/blockfactory/pull/45
-        cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg-robotology/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  -DROBOTOLOGY_PROJECT_TAGS=${{ matrix.project_tags }} ..
+        cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg-robotology/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  -DROBOTOLOGY_PROJECT_TAGS=${{ matrix.project_tags }} ..
 
     - name: Build  [Ubuntu&macOS]
       if: matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest'
@@ -135,7 +135,8 @@ jobs:
         cmake --build . --config ${{ matrix.build_type }}
       env: 
         # This is necessary only on macOS/homebrew, but on Linux it should be ignored
-        Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5   
+        Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
+        OpenCV_DIR: /usr/local/opt/opencv@3/share/OpenCV
         
     - name: Build  [Windows]
       if: matrix.os == 'windows-2019'

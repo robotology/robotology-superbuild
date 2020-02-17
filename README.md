@@ -28,6 +28,7 @@ Table of Contents
     * [Robot Testing profile](#robot-testing)
     * [Dynamics profile](#dynamics)
     * [iCub Head profile](#icub-head)
+    * [iCub Basic Demos profile](#icub-basic-demos)
     * [Teleoperation profile](#teleoperation)
     * [Human Dynamics profile](#human-dynamics)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
@@ -67,6 +68,7 @@ Note that any dependencies of the included packages that is not available in the
 | `ROBOTOLOGY_ENABLE_ROBOT_TESTING` | The robotology software packages related to robot testing. |  [`RobotTestingFramework`](https://github.com/robotology/robot-testing-framework) and [`icub-tests`](https://github.com/robotology/icub-tests)| `OFF` | [Documentation on Robot Testing profile.](#robot-testing)  |
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers). [`icub-gazebo-wholebody`](https://github.com/robotology-playground/icub-gazebo-wholebody) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
+| `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`forcetorque-yarp-devices`](https://github.com/robotology/forcetorque-yarp-devices). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
 
@@ -441,6 +443,17 @@ and check if devices whose name is starting with `embObj` are present in the lis
 should be working correctly.
 
 
+## iCub Basic Demos
+
+This profile is enabled by the `ROBOTOLOGY_ENABLE_BASIC_DEMOS` CMake option.
+
+### System Dependencies
+The steps necessary to install the system dependencies of the iCub Basic Demos profile are provided in
+operating system-specific installation documentation, and no additional required system dependency is required.
+
+### Check the installation
+If the iCub Basic Demos profile have been correctly installed, you should be able to find in your PATH and execute the `demoYoga` or `demoRedBall` executables.
+
 ## Teleoperation
 This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option. 
 
@@ -645,7 +658,6 @@ Mantainers
 
 | Profile  | Maintainer                     |
 |:--------:|:-----------------------------:|
-| Core     | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
-| Dynamics | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
+| Core, Dynamics, iCub Head, iCub Basic Demos | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
 | Human Dynamics | Yeshasvi Tirupachuri [@Yeshasvitvs](https://github.com/Yeshasvitvs) |
