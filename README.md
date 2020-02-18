@@ -236,8 +236,8 @@ for the time being it is easier for you to use the [Windows Subsystem for Linux]
 As Windows does not have a widely used system [package manager](https://en.wikipedia.org/wiki/Package_manager) such as the one that are available on Linux or macOS, installing the system dependencies is slightly more compliated. However, we try to document every step necessary for the installation, but you find something that you don't understand in the documentation, please [open an issue](https://github.com/robotology/robotology-superbuild/issues/new).  
 
 #### Visual Studio
-Most of the robotology software is developed using the C/C++ language. For this reason, you should have [Visual Studio](https://www.visualstudio.com/), the official Microsoft compiler for Windows, installed on your computer to compile the software in the superbuild. Visual Studio 2015, Visual Studio 2017 and Visual Studio 2019 are all supported by the superbuild.
-Pay attention to enable the C++ support when first installing the Visual Studio compiler, as by default C++ support is not installed. 
+Most of the robotology software is developed using the C/C++ language. For this reason, you should have [Visual Studio](https://www.visualstudio.com/), the official Microsoft compiler for Windows, installed on your computer to compile the software in the superbuild. Only Visual Studio 2019 targeting the 64 bit platform is currently supported by the robotology-superbuild.
+Pay attention to enable the C++ support (https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation) when first installing the Visual Studio compiler, as by default C++ support is not installed.
 
 #### Git
 Most of the robotology software is hosted on Git repositories, so you will need Git to download them.
@@ -251,21 +251,26 @@ It is recommended to install the latest version of CMake.
 While this tool is not strictly required, it is convenient to install the [Rapid Environment Editor](https://www.rapidee.com/en/download) to easily modify the value of the [environment variables](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx) in Windows. 
 
 #### System Libraries
-The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine, as it would be too time intensive to build those libraries in the superbuild itself. 
+The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine.
 
-##### YARP, iCub  and robotology-additional-dependencies installers
-The robotology project is currently providing binary installers for YARP and iCub libraries, and one additional installer for additional dependencies.
-As the idea of the superbuild is to easily permit compilation from source of YARP, iCub and all related software, 
-we use these installers only to install the **dependencies** of these libraries, not to install YARP and iCub themselfs. 
-In particular you have to run the following installers:
-* YARP ( http://www.yarp.it/download.html#download_windows ) to install ACE, Eigen3 and Qt5 (disable YARP itself during the installation as it will be installed by the superbuild, and disable OpenCV as the version distributed with YARP  is not working, see https://github.com/robotology/robotology-superbuild/issues/145 for more info)
-* ICUB software ( http://wiki.icub.org/wiki/Windows:_installation_from_sources#Getting_iCub.27s_dependenceis ) to install Ipopt, SDL, Qt5 and GLUT (disable ICUB during the installation, as ICUB will be installed by the superbuild)
-* the robotology-additional-dependencies installer ( https://github.com/robotology-playground/robotology-additional-dependencies ) to install LibXML2,
-* if you need to compile software that depends on OpenCV, download the official installer for OpenCV 3.4.4 at https://sourceforge.net/projects/opencvlibrary/files/3.4.4/opencv-3.4.4-vc14_vc15.exe/download and set the `OpenCV_DIR` enviroment variable to the directory that contains the `OpenCVConfig.cmake` file, tipically `<install_prefix>/opencv/build/x64/vc15/lib/` for 64-bit installations. Note that tipically OpenCV is installed as part of the YARP dependencies installer, but at the moment the YARP dependencies installer has a bug related to OpenCV, see  https://github.com/robotology/robotology-superbuild/issues/145 for more info. Moreover, append `<install_prefix>/opencv/build/x64/vc15/bin/` to the `Path` environment variable.
+To install these libraries on your machine, we suggest to use [`vcpkg`](https://github.com/microsoft/vcpkg), the C++ library manager mantained by Microsoft. As `vcpkg` compiles from sources all its libraries, this can be quite time intensive for some libraries such as `qt5` or `opencv`. 
 
-**Important: make sure that you are installing the 64-bit installers, if you want to compile the robotology-superbuild using the the 64-bit compiler!**
-These installers will set automatically all the enviroment variables necessary to make sure that these libraries are found by CMake, and they will modify the `PATH` enviroment variable to make sure that the libraries can be used when launching the programs that use them.  
+For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology-playground/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip it in `C:/robotology/vcpkg` and use directly from there, for example executing the following commands from the Git Bash shell:
+~~~
+cd C:/
+mkdir robotology
+cd robotology
+mkdir vcpkg
+cd vcpkg
+wget https://github.com/robotology-playground/robotology-superbuild-dependencies-vcpkg/releases/download/v0.0.3/vcpkg-robotology.zip
+unzip vcpkg-robotology.zip
+rm vcpkg-robotology.zip
+~~~
+or creating the directories and extracting the archive through the File Explorer. If you prefer to use your own vcpkg to install the dependencies of the superbuild, please refer to the documentation available at [`doc/vcpkg-dependencies.md`](doc/vcpkg-dependencies.md).
 
+The default way to use the libraries provided by vcpkg in CMake is to use the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects), so to use the provided vcpkg workspace you need to pass the `-DCMAKE_TOOLCHAIN_FILE=C:\robotology\vcpkg\scripts\buildsystems\vcpkg.cmake` CMake option when configuring the robotology-superbuild, either from the command line or via the CMake GUI.
+
+Furthermore, as during the build process some programs that use `vcpkg`-install dlls are executed, you need to make sure that the `vcpkg` dll are in the path, by appending to the `PATH` the `C:/robotology/vcpkg/installed/x64-linux/bin` and `C:/robotology/vcpkg/installed/x64-linux/bin` directories.
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
 * [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
@@ -285,10 +290,10 @@ git clone https://github.com/robotology/robotology-superbuild
 ~~~
 or you can use your preferred Git GUI. 
 
-Once you cloned the repository, you can generate the Visual Studio solution using the CMake GUI.
-See the nicely written [CGold documentation](http://cgold.readthedocs.io/en/latest/first-step/generate-native-tool/gui-visual-studio.html) if you do not know how to generate a Visual Studio solution from a CMake project.
+Once you cloned the repository, you can generate the Visual Studio solution using the CMake GUI, by using as a generator the appropriate Visual Studio version, and the 64 bit as a platform, and specifying the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects) as discussed in the previous section. In particular, see the nicely written [CGold documentation](http://cgold.readthedocs.io/en/latest/first-step/generate-native-tool/gui-visual-studio.html) if you do not know how to generate a Visual Studio solution from a CMake project.
 
 You can then open the generated solution with Visual Studio and build the target `all`.
+
 Visual Studio will then download, build and install in a local directory all the robotology software and its dependencies.
 If you prefer to work from the command line, you can also compile the `all` target using the following command (if you are in the `robotology-superbuild/build` directory, and the directory of the `cmake.exe` exectuable is in the [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) :
 ~~~
