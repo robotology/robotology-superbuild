@@ -78,7 +78,7 @@ repositories:
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
-    version: v0.8.1
+    version: v0.2.0
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
