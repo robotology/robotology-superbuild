@@ -50,7 +50,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v1.0.1
+    version: v1.0.2
   wholeBodyInterface:
     type: git
     url: https://github.com/robotology/wholebodyinterface.git
@@ -106,7 +106,7 @@ repositories:
   human-dynamics-estimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.0.0
+    version: 269a08c2a282f87da3dad788e31b502ccc542409
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
