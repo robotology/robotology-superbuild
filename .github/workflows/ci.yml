@@ -82,7 +82,7 @@ jobs:
         brew update
         brew upgrade
         # Core dependencies 
-        brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv@3 pkg-config qt5 sqlite swig tinyxml
+        brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config qt5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
         brew install libmatio
         # ROBOTOLOGY_USES_GAZEBO dependencies 
@@ -141,7 +141,6 @@ jobs:
       env: 
         # This is necessary only on macOS/homebrew, but on Linux it should be ignored
         Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
-        OpenCV_DIR: /usr/local/opt/opencv@3/share/OpenCV
         
     - name: Build  [Windows]
       if: matrix.os == 'windows-2019'
