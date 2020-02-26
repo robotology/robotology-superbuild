@@ -1,5 +1,5 @@
 name: Webhook trigger for code repository
-# This action will send a payload to the icub-tech-iit/code repository in order to build the correct
+# This action will send a payload to the icub-tech-iit/code github repository in order to build the correct
 # tagged image for superbuild
 
 on:
