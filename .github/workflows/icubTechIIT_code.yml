@@ -3,7 +3,8 @@ name: Webhook trigger for code repository
 # tagged image for superbuild
 
 on:
-  release: [published, created, edited]
+  release: 
+      types: [published, created, edited]
 
 jobs:
     job_id: 
