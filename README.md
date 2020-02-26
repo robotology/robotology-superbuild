@@ -163,19 +163,13 @@ If for any reason you do not want to use the provided `setup.sh` script and you 
 ### System Dependencies
 To install the system dependencies, it is possible to use [Homebrew](http://brew.sh/):
 ```
-brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv@3 pkg-config qt5 sqlite swig tinyxml
+brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config qt5 sqlite swig tinyxml
 ```
 
 Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `Qt5_DIR` needs to be properly set to make sure that CMake-based projects are able to find Qt5.
 ```
 export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
 ```
-
-The version of `opencv` required by [YARP is not the latest release](https://github.com/robotology/yarp/issues/1672). In case other versions are installed, it is required to link `opencv3`.
-```
-brew link --force opencv@3
-```
-Otherwise, it is possible to not use `opencv` by setting the `YARP_USE_OpenCV` YARP advanced CMake option to  `OFF`. To modify YARP-specific CMake options, you need to go with the terminal to `build/robotology/YARP`, and use the `ccmake` command to edit the YARP CMake options.
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
 * [`ROBOTOLOGY_USES_GAZEBO`](#gazebo)
