@@ -1,0 +1,22 @@
+name: Webhook trigger for code repository
+# This action will send a payload to the icub-tech-iit/code github repository in order to build the correct
+# tagged image for superbuild
+
+on:
+  release: 
+      types: [published, created, edited]
+
+jobs:
+    job_id: 
+        runs-on: [ubuntu-latest]
+        steps:
+        - name: Get the version
+          id: get_version
+          run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+        - name: Repository Dispatch
+          uses: peter-evans/repository-dispatch@v1
+          with:
+            token: ${{ secrets.CODE_REPO_ACCESS_TOKEN }}
+            repository: icub-tech-iit/code
+            event-type: superbuild_release
+            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type": "superbuild_release"}'
