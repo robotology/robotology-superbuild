@@ -72,6 +72,7 @@ Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PR
 
 @cmakeif ROBOTOLOGY_USES_PYTHON
 # Cleanup the python bindings directory from the PYTHON_PATH
-Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/python2.7/dist-packages";
+Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/@PYTHON_VERSION_PATH@/dist-packages";
+Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/@PYTHON_VERSION_PATH@/site-packages";
 @endcmakeif ROBOTOLOGY_USES_PYTHON
 
