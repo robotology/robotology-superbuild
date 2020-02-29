@@ -63,5 +63,4 @@ export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INST
 ~~~
 
 ### Python
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/python2.7/dist-packages` must be append to the `PYTHONPATH` enviromental variable. 
-
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/python3.6/dist-packages` and `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/python3.6/site-packages` must be appended to the `PYTHONPATH` environmental variable. 
