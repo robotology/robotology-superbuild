@@ -264,7 +264,7 @@ or creating the directories and extracting the archive through the File Explorer
 
 The default way to use the libraries provided by vcpkg in CMake is to use the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects), so to use the provided vcpkg workspace you need to pass the `-DCMAKE_TOOLCHAIN_FILE=C:\robotology\vcpkg\scripts\buildsystems\vcpkg.cmake` CMake option when configuring the robotology-superbuild, either from the command line or via the CMake GUI.
 
-Furthermore, as during the build process some programs that use `vcpkg`-install dlls are executed, you need to make sure that the `vcpkg` dll are in the path, by appending to the `PATH` the `C:/robotology/vcpkg/installed/x64-linux/bin` and `C:/robotology/vcpkg/installed/x64-linux/bin` directories.
+Furthermore, as during the build process some programs that use `vcpkg`-install dlls are executed, you need to make sure that the `vcpkg` dll are in the path, by appending to the `PATH` the `C:/robotology/vcpkg/installed/x64-windows/bin`  directory.
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
 * [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
