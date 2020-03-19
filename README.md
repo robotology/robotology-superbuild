@@ -245,9 +245,7 @@ It is recommended to install the latest version of CMake.
 While this tool is not strictly required, it is convenient to install the [Rapid Environment Editor](https://www.rapidee.com/en/download) to easily modify the value of the [environment variables](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx) in Windows. 
 
 #### System Libraries
-The software in the superbuild depends on several libraries such as [Eigen](http://eigen.tuxfamily.org) and [Qt](https://www.qt.io/) that we assume are already available in your machine.
-
-To install the required dependencies on your machine, we suggest to use [`vcpkg`](https://github.com/microsoft/vcpkg), the C++ library manager mantained by Microsoft. As `vcpkg` compiles from sources all its libraries, this can be quite time intensive for some libraries such as `qt5` or `opencv`. 
+The software in the superbuild depends on several C++  libraries: to install the required dependencies on your machine, we suggest to use [`vcpkg`](https://github.com/microsoft/vcpkg), the C++ library manager mantained by Microsoft. As `vcpkg` compiles from sources all its libraries, this can be quite time intensive for some libraries such as `qt5` or `opencv`. 
 
 For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology-playground/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip it in `C:/robotology/vcpkg` and use directly from there, for example executing the following commands from the Git Bash shell:
 ~~~
