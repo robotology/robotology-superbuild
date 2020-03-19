@@ -26,4 +26,8 @@ ycm_ep_helper(codyco-modules TYPE GIT
               COMPONENT dynamics
               FOLDER robotology
               DEPENDS ${codyco-module_DEPENDS}
-              CMAKE_ARGS -DCODYCO_USES_KDL:BOOL=OFF)
+              CMAKE_ARGS -DCODYCO_USES_KDL:BOOL=OFF
+                         -DENABLE_codycomod_genericSensorClient:BOOL=OFF
+                         -DENABLE_codycomod_virtualAnalogClient:BOOL=OFF
+                         -DENABLE_codycomod_virtualAnalogRemapper:BOOL=OFF
+                         -DENABLE_codycomod_wholebodydynamics:BOOL=OFF)
