@@ -1,22 +1,17 @@
 %% startup_robotology_superbuild.m
-%  Run this script only once to permanently add the required folders for using MATLAB toolbox (e.g. WBToolbox, whole-body-controllers) to your 
-%  MATLAB path. 
+%
+%  Run this script only once to permanently add the required folders for using
+%  MATLAB toolbox (e.g. WBToolbox, whole-body-controllers) to your MATLAB path. 
 
 fprintf('\nMATLAB Toolbox\n');
 
 installDir   = '@YCM_EP_INSTALL_DIR@';
-wbcSourceDir = ['@CMAKE_SOURCE_DIR@', '/robotology/whole-body-controllers/'];
 mexDir       = [installDir, filesep, 'mex'];
-wbcDir       = [wbcSourceDir, filesep, 'library/matlab-wbc'];
 shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
 
 if exist(mexDir, 'dir')
     addpath(mexDir);
-end
-
-if exist(wbcDir, 'dir')
-    addpath(wbcDir);
 end
 
 if exist(shareDir, 'dir')
@@ -47,26 +42,12 @@ if (~savepath([fileDir, filesep, 'pathdef.m']))
         'This should be enough to permanentely add all the MATLAB-Toolbox to ', ...
         'your MATLAB installation.\n'], fileDir);
 else
-    disp('There was an error generating pathdef.m To proceed please manually add the contents of variables mexDir, wbcDir, shareDir and imgDir to your matlabpath');
+    disp('There was an error generating pathdef.m To proceed please manually add the contents of variables mexDir, shareDir and imgDir to your matlabpath');
 end
 
-% save a script named "goToWholeBodyControllers" inside the pathdef folder,
-% to facilitate the user to reach the WBC working folder
-
-% note: exist returns 2 if a .m file with the specified name is found
-if exist([fileDir, filesep, 'goToWholeBodyControllers.m'],'file') == 2
-    
-    fprintf('\n')
-    warning(['A goToWholeBodyControllers.m file exists already in your ', fileDir, ' folder,' ...
-             ' and therefore it won''t be created.'])
-else
-    % create the script and write inside the cd command
-    fid = fopen([fileDir, filesep, 'goToWholeBodyControllers.m'],'w');
-    fprintf(fid, ['cd ', wbcSourceDir, ';']);
-    fclose(fid);
-
-    fprintf('\n')
-    fprintf(['A file called goToWholeBodyControllers.m has also been created in your %s folder.\n', ...
-             'This will help to quickly reach the WBC-project folder after ', ...
-             'Matlab is launched.\n'], fileDir);
-end
+% inform the user that it is possible to generate the goToWholeBodyControllers script
+fprintf('\n');
+fprintf(['INFO: if whole-body-controllers is part of your superbuild installation, you may \n', ...
+         'generate a file called ''goToWholeBodyControllers.m'' in your %s folder.\n', ...
+         'This will help to quickly reach the WBC-project folder after Matlab is launched.\n', ...
+         'To create the file, go to the ''WBC_SOURCE_DIR/config'' and run ''createGoToWBC.m.'' \n'], fileDir);
