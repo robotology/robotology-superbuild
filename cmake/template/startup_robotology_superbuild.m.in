@@ -1,26 +1,17 @@
-%% startup_codyco_superbuild.m
-%  Run this script only once to permanently add the required folders for using MATLAB toolbox (e.g. WBToolbox, mexWholeBodyModel) to your 
-%  MATLAB path. 
+%% startup_robotology_superbuild.m
+%
+%  Run this script only once to permanently add the required folders for using
+%  MATLAB toolbox (e.g. WBToolbox, whole-body-controllers) to your MATLAB path. 
 
 fprintf('\nMATLAB Toolbox\n');
 
-installDir = '@YCM_EP_INSTALL_DIR@';
-mexDir     = [installDir, filesep, 'mex'];
-mexWrapDir = [mexDir, filesep, 'mexwbi-wrappers'];
-mexUtDir   = [mexDir, filesep, 'mexwbi-utilities'];
-shareDir   = [installDir, filesep, 'share/WBToolbox'];
-imgDir     = [shareDir, filesep, 'images'];
+installDir   = '@YCM_EP_INSTALL_DIR@';
+mexDir       = [installDir, filesep, 'mex'];
+shareDir     = [installDir, filesep, 'share/WBToolbox'];
+imgDir       = [shareDir, filesep, 'images'];
 
 if exist(mexDir, 'dir')
     addpath(mexDir);
-end
-
-if exist(mexUtDir, 'dir')
-    addpath(mexUtDir);
-end
-
-if exist(mexWrapDir, 'dir')
-    addpath(mexWrapDir);
 end
 
 if exist(shareDir, 'dir')
@@ -51,5 +42,12 @@ if (~savepath([fileDir, filesep, 'pathdef.m']))
         'This should be enough to permanentely add all the MATLAB-Toolbox to ', ...
         'your MATLAB installation.\n'], fileDir);
 else
-    disp('There was an error generating pathdef.m To proceed please manually add the contents of variables mexDir, mexUtDir, mexWrapDir, shareDir and imgDir to your matlabpath');
+    disp('There was an error generating pathdef.m To proceed please manually add the contents of variables mexDir, shareDir and imgDir to your matlabpath');
 end
+
+% inform the user that it is possible to generate the goToWholeBodyControllers script
+fprintf('\n');
+fprintf(['INFO: if whole-body-controllers is part of your superbuild installation, you may \n', ...
+         'generate a file called ''goToWholeBodyControllers.m'' in your %s folder.\n', ...
+         'This will help to quickly reach the WBC-project folder after Matlab is launched.\n', ...
+         'To create the file, go to the ''WBC_SOURCE_DIR/config'' and run ''createGoToWBC.m.'' \n'], fileDir);
