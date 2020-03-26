@@ -510,7 +510,7 @@ can install some projects that depend on MATLAB, in particular:
  * the native MATLAB bindings of YARP, contained in the [yarp-matlab-bindings](https://github.com/robotology-playground/yarp-matlab-bindings/) repository,
  * the MATLAB bindings of qpOASES, contained in the [robotology-dependencies/qpOASES](https://github.com/robotology-dependencies/qpOASES) fork,
  * The [WB-Toolbox](https://github.com/robotology/WB-Toolbox) Simulink toolbox,
- * The [whole-body-controllers](https://github.com/robotology/whole-body-controllers) Simulink-based balancing controllers.
+ * The [whole-body-controllers](https://github.com/robotology/whole-body-controllers) Simulink-based balancing controllers. Note that whole-body-controllers can be installed and compiled also without MATLAB, but its functionalities are reduced.
 
 To use this software, you can simply enable its compilation using the `ROBOTOLOGY_USES_MATLAB` CMake option.
 Once this software has been compiled by the superbuild, you just need to add some directories of the robotology-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install`) to [the MATLAB path](https://www.mathworks.com/help/matlab/matlab_env/what-is-the-matlab-search-path.html).
@@ -534,10 +534,6 @@ You can add the folders by modifying the `startup.m` or the `MATLABPATH` environ
 If you are using the `setup.sh` or `setup.bat` script for configuring your environment, `MATLABPATH` is automatically populated with these directories.
 
 For more info on configuring MATLAB software with the robotology-superbuild, please check the [wb-toolbox README](https://github.com/robotology/wb-toolbox).
-
-#### whole-body-controllers installation procedure
-
-To use [whole-body-controllers](https://github.com/robotology/whole-body-controllers), additional installation steps are required. All the documentation concerning the `whole-body-controllers` installation and usage can be found in the repository [README](https://github.com/robotology/whole-body-controllers#installation-and-usage).
 
 ## Octave 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
