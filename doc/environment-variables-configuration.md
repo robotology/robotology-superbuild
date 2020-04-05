@@ -37,8 +37,6 @@ For all profile options not listed, no additional configuration is required.
 `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites` must be appended to the `YARP_DATA_DIRS` enviromental variable
 
 ### Dynamics
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/codyco` must be appended to the `YARP_DATA_DIRS` enviromental variable. 
-
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory` must be appended to the `BLOCKFACTORY_PLUGIN_PATH` enviromental variable
 
 ### Human Dynamics
