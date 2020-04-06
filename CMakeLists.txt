@@ -145,7 +145,6 @@ endif()
 # Dynamics 
 if(ROBOTOLOGY_ENABLE_DYNAMICS)
   find_or_build_package(iDynTree)
-  find_or_build_package(codyco-modules)
   find_or_build_package(qpOASES)
   find_or_build_package(BlockFactory)
   find_or_build_package(WBToolbox)
