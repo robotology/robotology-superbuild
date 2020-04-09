@@ -6,7 +6,6 @@ include(YCMEPHelper)
 include(FindOrBuildPackage)
 
 find_package(ACE QUIET)
-find_package(SQLite QUIET)
 find_package(Eigen3 QUIET)
 
 set(YARP_OPTIONAL_DEPS "")
@@ -39,7 +38,6 @@ ycm_ep_helper(YARP TYPE GIT
                    FOLDER robotology
                    DEPENDS YCM
                            ACE
-                           SQLite
                            Eigen3
                            ${YARP_OPTIONAL_DEPS}
                    CMAKE_ARGS -DYARP_COMPILE_GUIS:BOOL=ON
@@ -66,4 +64,5 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_USE_SDL:BOOL=ON
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                               -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
-                              -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA})
+                              -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA}
+                              -DYARP_USE_SYSTEM_SQLite:BOOL=OFF)
