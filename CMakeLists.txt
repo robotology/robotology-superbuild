@@ -113,7 +113,6 @@ endif()
 # Bootstrap YCM
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
-set(YCM_TAG v0.11.1)
 set(YCM_MINIMUM_VERSION 0.11.1)
 include(YCMBootstrap)
 
