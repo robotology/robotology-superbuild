@@ -31,7 +31,6 @@ jobs:
   
     steps:
     - name: Dependencies [Docker]
-      if: matrix.os == 'ubuntu-latest'
       run: |
         chmod +x ./.ci/install_debian.sh
         sudo ./.ci/install_debian.sh
