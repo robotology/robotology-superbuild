@@ -22,7 +22,10 @@ jobs:
       matrix:
         build_type: [Debug, Release]
         project_tags: [Stable, Unstable]
-        docker_image: [ubuntu:focal, debian:stable, debian:sid]
+        docker_image: 
+          - "ubuntu:focal"
+          - "debian:stable"
+          - "debian:sid"
     container:
       image: ${{ matrix.docker_image }}
   
