@@ -20,8 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        build_type: [Debug, Release]
+        build_type: [Debug]
         project_tags: [Stable, Unstable]
+        cmake_generator: "Ninja"
         docker_image: 
           - "ubuntu:focal"
           - "debian:stable"
