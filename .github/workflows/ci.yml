@@ -30,6 +30,8 @@ jobs:
       image: ${{ matrix.docker_image }}
   
     steps:
+    - uses: actions/checkout@master
+          
     - name: Dependencies [Docker]
       run: |
         chmod +x ./.ci/install_debian.sh
