@@ -16,12 +16,11 @@ on:
 
 jobs:
   docker-build:    
-    name: '[docker:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
+    name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
     runs-on: ubuntu-latest
     strategy:
       matrix:
         build_type: [Debug]
-        project_tags: [Stable, Unstable]
         cmake_generator: 
           - "Ninja"
         docker_image: 
@@ -29,6 +28,15 @@ jobs:
           - "debian:stable"
           # Workaround for https://github.com/robotology/robotology-superbuild/issues/383
           # - "debian:sid"
+        project_tags:
+          - Default
+          - Unstable
+        include:
+          - project_tags: Default
+            project_tags_cmake_options: ""
+          - project_tags: Unstable
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
+                      
     container:
       image: ${{ matrix.docker_image }}
   
@@ -45,7 +53,7 @@ jobs:
         mkdir -p build
         cd build
         # Octave is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/384
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  -DROBOTOLOGY_PROJECT_TAGS=${{ matrix.project_tags }} ..
+        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
     - name: Build  [Docker]
       run: |
@@ -53,14 +61,14 @@ jobs:
         cmake --build . --config ${{ matrix.build_type }}
 
   normal-build:
-    name: '[${{ matrix.project_tags }}@${{ matrix.os }}@${{ matrix.build_type }}]'
+    name: '[Tags:${{ matrix.project_tags }}@${{ matrix.os }}@${{ matrix.build_type }}]'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         build_type: [Debug, Release]
-        project_tags: [Stable, Unstable]
         os: [ubuntu-latest, macOS-latest, windows-2019]
+        project_tags: [Default, Unstable, Release202005]
         include:
           - os: ubuntu-latest
             build_type: Debug
@@ -74,6 +82,12 @@ jobs:
           - os: macOS-latest
             build_type: Release
             cmake_generator: "Xcode"
+          - project_tags: Default
+            project_tags_cmake_options: ""
+          - project_tags: Unstable
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
+          - project_tags: Release202005
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2020.05.yaml"
 
     steps:
     - uses: actions/checkout@master
@@ -151,7 +165,7 @@ jobs:
       run: |
         mkdir -p build
         cd build    
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  -DROBOTOLOGY_PROJECT_TAGS=${{ matrix.project_tags }} ..
+        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
     - name: Disable macOS unsupported options 
       if: matrix.os == 'macOS-latest'
@@ -166,7 +180,7 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  -DROBOTOLOGY_PROJECT_TAGS=${{ matrix.project_tags }} ..
+        cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
 
 
     - name: Build  [Ubuntu&macOS]
