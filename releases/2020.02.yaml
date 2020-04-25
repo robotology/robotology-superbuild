@@ -33,7 +33,7 @@ repositories:
     version: v3.3.0
   icub-gazebo:
     type: git
-    url: https://github.com/robotology/gazebo-yarp-plugins.git
+    url: https://github.com/robotology/icub-gazebo.git
     version: v1.15.0
   yarp-matlab-bindings:
     type: git
