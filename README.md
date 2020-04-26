@@ -555,7 +555,7 @@ brew install octave
 ~~~
 
 #### Windows
-The `ROBOTOLOGY_USES_OCTAVE` option has never been tested on Windows.
+The `ROBOTOLOGY_USES_OCTAVE` option is not supported on Windows, see https://github.com/robotology/robotology-superbuild/issues/139 for more info.
 
 ### Configuration
 Add the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
