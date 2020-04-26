@@ -1,4 +1,4 @@
-Developers Frequently Asked Questions (FAQs)
+Developers' Frequently Asked Questions (FAQs)
 ===========================================
 
 ##  How to add a new package 
