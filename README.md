@@ -422,7 +422,13 @@ or if you are a developer that needs to access iCub hardware devices directly wi
 **Warning: the migration of existing iCub setups to use the robotology-superbuild is an ongoing process, and it is possible
 that your iCub still needs to be migrated. For any doubt, please get in contact with [icub-support](https://github.com/robotology/icub-support).**
 
-The configuration and compilation of this profile is supported only on Linux systems.
+The configuration and compilation of this profile is supported on Linux, macOS and Windows systems. 
+
+On Linux all the software necessary to communicate with boards contained in the robot, including CAN devices via [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2), is already included. 
+
+On Windows to communicate with CAN devices via [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2) you need to set to ON the Windows-only CMake option [`ROBOTOLOGY_ENABLE_ESDCAN`](#esdcan).
+
+On macOS, communication with [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2) is not supported.
 
 This section documents the iCub Head profile as any other profile, in a way agnostic of the specific machine in which it is installed. To get information on how to use the robotology-superbuild to install software on the machine mounted in the head of physical iCub robots, please check the documentation in [`doc/use-on-icub-head.md`](doc/use-on-icub-head.md).
 
