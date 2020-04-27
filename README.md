@@ -39,7 +39,7 @@ Table of Contents
     * [Oculus](#oculus)
     * [Cyberith](#cyberith)
     * [Xsens](#xsens)
-    * [FTShoes/FTSkShoes](#shoes)
+    * [ESDCAN](#esdcan)
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
@@ -87,8 +87,8 @@ The dependencies CMake options specify if the packages dependending on something
 | `ROBOTOLOGY_USES_OCULUS_SDK`  | Include software and plugins that depend on [Oculus](https://www.oculus.com/).  | `OFF` |  [Documentation on Oculus dependency.](#oculus) |
 | `ROBOTOLOGY_USES_CYBERITH_SDK`  | Include software and plugins that depend on [Cyberith](https://www.cyberith.com/).  | `OFF` |  [Documentation on Cyberith dependency.](#cyberith) |
 | `ROBOTOLOGY_USES_CFW2CAN`  | Include software and plugins that depend on [CFW2 CAN custom board](http://wiki.icub.org/wiki/CFW_card).  | `OFF` | No specific documentation is available for this  option, as it is just used with the [iCub Head profile](#icub-head), in which the related documentation can be found.  |
-| `ROBOTOLOGY_USES_ESDCAN`  | Include software and plugins that depend on [Esd Can bus](http://wiki.icub.org/wiki/Esd_Can_Bus).  | `OFF` | [Documentation on FTShoes/FTSkShoes dependency](#shoes)  |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK`  | Include software and plugins that depend on [Xsens MVN SDK](https://www.xsens.com/products/).  | `OFF` | [Documentation on Xsens MVN dependency](#xsens)  |
+| `ROBOTOLOGY_USES_ESDCAN`  | Include software and plugins that depend on [Esd Can bus](http://wiki.icub.org/wiki/Esd_Can_Bus).  | `OFF` | [Documentation on ESDCAN dependency](#esdcan)  |
 
 
 Installation
@@ -479,7 +479,7 @@ In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberi
 This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option. 
 
 ### System Dependencies
-To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [FTShoes/FTSkShoes](#shoes) for more information about the dependencies.
+To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [ESDCAN](#esdcan) for more information about the dependencies.
 
 Dependencies-specific documentation
 ===================================
@@ -609,18 +609,22 @@ To check and install the Xsens MVN SDK, please follow the steps for Xsens MVN SD
 ### Configuration
 To configure the Xsens MVN SDK please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows). 
 
-## Shoes
-Support for FTShoes/FTSkShoes depends on operating system. 
-   - For Windows the support is provided by`ROBOTOLOGY_USES_ESDCAN` option (shoes force/torque sensors) is only enabled when the `ROBOTOLOGY_ENABLE_ICUB_HEAD` CMake option is set to ON.
-   - For Linux OS enable the `socketCan` option in [`ICUB`](https://github.com/robotology/icub-main) (not tested).
-   - This option does not support in macOS.
-
+## ESDCAN
+The `ROBOTOLOGY_USES_ESDCAN` option is used to enable support for interacting with [esd CAN devices](https://esd.eu/en/products/can-usb2) on Windows. On Linux no special option is necessary, as the interconnection with esd CAN device is supported  using the default [SocketCAN](https://www.kernel.org/doc/Documentation/networking/can.txt) Linux driver. Use of [esd CAN devices](https://esd.eu/en/products/can-usb2) is not supported in macOS .
 
 ### System Dependencies
-To get the information from FTShoes/FTSkShoes, check and install the ESD USB CAN driver, please follow the steps for USB-CAN2 driver mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2) (Windows OS). 
+To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`esdcan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library. 
+This library is already contained  in the vcpkg installation installed by the `robotology-superbuild` dependencies installer.
+If you use a custom vcpkg installation, you can install the  `esdcan-binary` custom port from the [`robotology-vcpkg-binary-ports`](https://github.com/robotology/robotology-vcpkg-binary-ports) repo. 
+
+To actually run the software that uses the esd CAN devices, you also need to install the esd CAN Driver for your specific esd CAN device.
+The installers for the esd CAN Driver should have been provided by esd, so ask for them to who provided you with the esd CAN device you want to use. 
 
 ### Configuration
-To configure the FTShoes/FTSkShoes please follow the steps for USB-CAN2 mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#usb-can-2) (Windows OS). 
+No additional configuration is required to use the software installed by the  `ROBOTOLOGY_USES_ESDCAN`
+
+### Check the installation
+Open a terminal, and check that amoung the device listed by `yarpdev --list` the `esdcan` YARP device is listed. 
 
 FAQs
 ====
