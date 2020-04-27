@@ -55,6 +55,7 @@ Remove-ValueFromUserEnvVariable GAZEBO_RESOURCE_PATH $ROBOTOLOGY_SUPERBUILD_INST
 
 @cmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
 # Cleanup ROBOTOLOGY_ENABLE_ROBOT_TESTING-specific lines
+Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/rtf";
 Remove-ValueFromUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-tests/suites";
 @endcmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
 
