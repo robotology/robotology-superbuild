@@ -30,7 +30,8 @@ endmacro()
 
 set(YCM_USE_CMAKE_PROPOSED TRUE CACHE BOOL "Use files including unmerged cmake patches")
 
-# Compilation options
+# YCM options 
+option(YCM_DISABLE_SYSTEM_PACKAGES "Disable use of all the system installed packages" ON)
 
 # Dependencies options 
 ## Matlab related options
