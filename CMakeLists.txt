@@ -24,6 +24,10 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(CTest)
 include(FeatureSummary)
 
+# Disable YCM-created install/INSTALL target (see https://github.com/robotology/robotology-superbuild/issues/356)
+macro(install)
+endmacro()
+
 set(YCM_USE_CMAKE_PROPOSED TRUE CACHE BOOL "Use files including unmerged cmake patches")
 
 # Compilation options
