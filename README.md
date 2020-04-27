@@ -5,7 +5,7 @@ download and compile software developed in the robotology GitHub organization, s
 
 [CMake](https://cmake.org/) is an open-source, cross-platform family of tools designed to build, test and package software.
 A [YCM Superbuild](http://robotology.github.io/ycm/gh-pages/git-master/index.html#superbuild) is a CMake project whose only goal is to download and build several other projects.
-If you are familiar with ROS, it is something similar to [catkin](http://wiki.ros.org/catkin/workspaces) or [colcon workspace](https://colcon.readthedocs.io/en/released/user/quick-start.html), but using pure CMake for portability reasons and for customizing the build via CMake options. 
+If you are familiar with ROS, it is something similar to [catkin](http://wiki.ros.org/catkin/workspaces) or [colcon workspace](https://colcon.readthedocs.io/en/released/user/quick-start.html), but using pure CMake for portability reasons and for customizing the build via CMake options.
 You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/index.html) or in the [related IRC paper](http://lornat75.github.io/papers/2018/domenichelli-irc.pdf).
 
 | System  | Continuous Integration Status |
@@ -72,12 +72,12 @@ Note that any dependencies of the included packages that is not available in the
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`forcetorque-yarp-devices`](https://github.com/robotology/forcetorque-yarp-devices). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
 
-If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild. 
+If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild.
 
 By default, the superbuild will use the package already available in the system. If the user wants to ignore those packages and have two different versions of them, then he/she should set the CMake variable `USE_SYSTEM_<PACKAGE>` to `FALSE.` For further details, please refer to [YCM Superbuild Manual for Developers](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#ycm-superbuild-manual-for-developers).
 
 ### Dependencies CMake options
-The dependencies CMake options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`. 
+The dependencies CMake options specify if the packages dependending on something installed in the system should be installed or not. All these options are named `ROBOTOLOGY_USES_<dependency>`.
 
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
@@ -197,8 +197,9 @@ make
 To use Xcode project generators
 ```bash
 cmake ../ -G Xcode
-xcodebuild -configuration Release
+xcodebuild [-configuration Release|Debug] [-jobs <n>] [-list | -target <target_name>]
 ```
+`-list` gives the list of available targets.
 
 ### Configure your environment
 Currently the YCM superbuild does not support building a global install target, so all binaries are installed in `robotology-superbuild/build/install/bin` and all libraries in `robotology-superbuild/build/install/lib`.
@@ -224,7 +225,7 @@ If for any reason you do not want to use the provided `setup.sh` script and you 
 While the robotology software is tested to be fully compatible with Windows,
 the Gazebo simulator that is widely used for simulation with robotology software [does not support Windows](https://github.com/robotology/gazebo-yarp-plugins/issues/74).
 
-For this reason if you plan to do use the robotology software with the Gazebo simulator on Windows, 
+For this reason if you plan to do use the robotology software with the Gazebo simulator on Windows,
 for the time being it is easier for you to use the [Windows Subsystem for Linux](#windows-subsystem-for-linux).
 
 ### System Dependencies
@@ -244,10 +245,10 @@ To install CMake you can use the official installer available at http://www.cmak
 It is recommended to install the latest version of CMake.
 
 #### Rapid Enviroment Editor
-While this tool is not strictly required, it is convenient to install the [Rapid Environment Editor](https://www.rapidee.com/en/download) to easily modify the value of the [environment variables](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx) in Windows. 
+While this tool is not strictly required, it is convenient to install the [Rapid Environment Editor](https://www.rapidee.com/en/download) to easily modify the value of the [environment variables](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682653(v=vs.85).aspx) in Windows.
 
 #### System Libraries
-The software in the superbuild depends on several C++  libraries: to install the required dependencies on your machine, we suggest to use [`vcpkg`](https://github.com/microsoft/vcpkg), the C++ library manager mantained by Microsoft. As `vcpkg` compiles from sources all its libraries, this can be quite time intensive for some libraries such as `qt5` or `opencv`. 
+The software in the superbuild depends on several C++  libraries: to install the required dependencies on your machine, we suggest to use [`vcpkg`](https://github.com/microsoft/vcpkg), the C++ library manager mantained by Microsoft. As `vcpkg` compiles from sources all its libraries, this can be quite time intensive for some libraries such as `qt5` or `opencv`.
 
 For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology-playground/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip it in `C:/robotology/vcpkg` and use directly from there, for example executing the following commands from the Git Bash shell:
 ~~~
@@ -282,7 +283,7 @@ After that you can clone the superbuild repository as any other git repository, 
 ~~~
 git clone https://github.com/robotology/robotology-superbuild
 ~~~
-or you can use your preferred Git GUI. 
+or you can use your preferred Git GUI.
 
 Once you cloned the repository, you can generate the Visual Studio solution using the CMake GUI, by using as a generator the appropriate Visual Studio version, and the 64 bit as a platform, and specifying the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects) as discussed in the previous section. In particular, see the nicely written [CGold documentation](http://cgold.readthedocs.io/en/latest/first-step/generate-native-tool/gui-visual-studio.html) if you do not know how to generate a Visual Studio solution from a CMake project.
 
@@ -309,18 +310,18 @@ all the necessary enviromental variables to use the software installed by the ro
 If for any reason you do not want to use the provided scripts and you want to manage your enviroment variables manually, for example because you want to cleanup the enviroment variables modified by `addPathsToUserEnvVariables.ps1`  and you delete the corresponding `removePathsFromUserEnvVariables.ps1`, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
 
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
- 
+
 ## Windows Subsystem for Linux
 The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified, without the overhead of a virtual machine.
 
 As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the [robotology-superbuild on Linux](#linux). As the WSL enviroment is nevertheless different, there are few things you need to care before using the robotology-superbuild on WSL, that are listed in the following.
 
 ### Run graphical applications on WSL
-To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications, see https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/ for more info. For information of X Servers that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps . 
+To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications, see https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/ for more info. For information of X Servers that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps .
 
 ### Sanitize enviroment variables for WSL
-By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems, 
-as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation. 
+By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
+as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
 To avoid that, you can add the following line in the WSL `.bashrc` that filters all the Windows paths from the WSL's enviromental variables:
 ~~~
 for var in $(env | awk {'FS="="} /\/mnt\//{print $1}'); do export ${var}=\"$(echo ${!var} | awk -v RS=: -v ORS=: '/\/mnt\// {next} {print $1}')\" ; done
@@ -357,14 +358,14 @@ For this reason, if you are activly developing on a repository managed by the `r
 option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#developer-mode
 for more details on this options.
 
-By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches, 
+By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches,
 or use some fixed tags. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
 
 
 Profile-specific documentation
 ===================================
 
-## Core 
+## Core
 This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 
 ### System Dependencies
@@ -422,9 +423,9 @@ or if you are a developer that needs to access iCub hardware devices directly wi
 **Warning: the migration of existing iCub setups to use the robotology-superbuild is an ongoing process, and it is possible
 that your iCub still needs to be migrated. For any doubt, please get in contact with [icub-support](https://github.com/robotology/icub-support).**
 
-The configuration and compilation of this profile is supported on Linux, macOS and Windows systems. 
+The configuration and compilation of this profile is supported on Linux, macOS and Windows systems.
 
-On Linux all the software necessary to communicate with boards contained in the robot, including CAN devices via [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2), is already included. 
+On Linux all the software necessary to communicate with boards contained in the robot, including CAN devices via [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2), is already included.
 
 On Windows to communicate with CAN devices via [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2) you need to set to ON the Windows-only CMake option [`ROBOTOLOGY_ENABLE_ESDCAN`](#esdcan).
 
@@ -460,23 +461,23 @@ operating system-specific installation documentation, and no additional required
 If the iCub Basic Demos profile have been correctly installed, you should be able to find in your PATH and execute the `demoYoga` or `demoRedBall` executables.
 
 ## Teleoperation
-This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option. 
+This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option.
 
 ### System Dependencies
 To run a teleoperation scenario, with real robot or in simulation, at least we need a Windows machine and Linux/macOS machine. If you are using iCub, the linux/macOS source code can be placed on the robot head. The teleoperation dependencies are also related to the teleoperation scenario you want to perform.
 
-#### Teleoperation without Cyberith treadmill 
+#### Teleoperation without Cyberith treadmill
 In this scenario, we only use [Oculus](#oculus) for teleoperation, and we do not use Cyberith treadmill. In this case, the user can give the command for robot walking through the Oculus joypads. The dependencies for this scenario are as following:
 * Windows: [Oculus](#oculus).
 * Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
 
 #### Teleoperation with Cyberith treadmill
 In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberith) for teleopration. In this case, the user can give the command for robot walking through walking on cyberith treadmill. The dependencies for this scenario are as follwoing:
-* Windows: [Oculus](#oculus), [Cyberith](#cyberith). 
+* Windows: [Oculus](#oculus), [Cyberith](#cyberith).
 * Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
 
 ## Human Dynamics
-This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option. 
+This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
 
 ### System Dependencies
 To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [ESDCAN](#esdcan) for more information about the dependencies.
@@ -495,7 +496,7 @@ Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian
 
 
 ### Check the installation
-Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine. 
+Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
 
 ## MATLAB
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
@@ -543,7 +544,7 @@ If you are using the `setup.sh` or `setup.bat` script for configuring your envir
 
 For more info on configuring MATLAB software with the robotology-superbuild, please check the [wb-toolbox README](https://github.com/robotology/wb-toolbox).
 
-## Octave 
+## Octave
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
 
 ### System Dependencies
@@ -580,7 +581,7 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCULUS_SDK` CMake
 on Windows.**
 
 ### System Dependencies
-To check and install the Oculus SDK please follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
+To check and install the Oculus SDK please follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 ### Configuration
 To configure the Oculus SDK follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
@@ -592,7 +593,7 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_CYBERITH_SDK` CMa
 on Windows.**
 
 ### System Dependencies
-To check and install the Cyberith SDK, please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md). 
+To check and install the Cyberith SDK, please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 ### Configuration
 To configure the Cyberith SDK please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
@@ -604,27 +605,27 @@ Support for `ROBOTOLOGY_USES_XSENS_MVN_SDK` option is only enabled when the `ROB
 on Windows.**
 
 ### System Dependencies
-To check and install the Xsens MVN SDK, please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows). 
+To check and install the Xsens MVN SDK, please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows).
 
 ### Configuration
-To configure the Xsens MVN SDK please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows). 
+To configure the Xsens MVN SDK please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows).
 
 ## ESDCAN
 The `ROBOTOLOGY_USES_ESDCAN` option is used to enable support for interacting with [esd CAN devices](https://esd.eu/en/products/can-usb2) on Windows. On Linux no special option is necessary, as the interconnection with esd CAN device is supported  using the default [SocketCAN](https://www.kernel.org/doc/Documentation/networking/can.txt) Linux driver. Use of [esd CAN devices](https://esd.eu/en/products/can-usb2) is not supported in macOS .
 
 ### System Dependencies
-To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`esdcan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library. 
+To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`esdcan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library.
 This library is already contained  in the vcpkg installation installed by the `robotology-superbuild` dependencies installer.
-If you use a custom vcpkg installation, you can install the  `esdcan-binary` custom port from the [`robotology-vcpkg-binary-ports`](https://github.com/robotology/robotology-vcpkg-binary-ports) repo. 
+If you use a custom vcpkg installation, you can install the  `esdcan-binary` custom port from the [`robotology-vcpkg-binary-ports`](https://github.com/robotology/robotology-vcpkg-binary-ports) repo.
 
 To actually run the software that uses the esd CAN devices, you also need to install the esd CAN Driver for your specific esd CAN device.
-The installers for the esd CAN Driver should have been provided by esd, so ask for them to who provided you with the esd CAN device you want to use. 
+The installers for the esd CAN Driver should have been provided by esd, so ask for them to who provided you with the esd CAN device you want to use.
 
 ### Configuration
 No additional configuration is required to use the software installed by the  `ROBOTOLOGY_USES_ESDCAN`
 
 ### Check the installation
-Open a terminal, and check that amoung the device listed by `yarpdev --list` the `esdcan` YARP device is listed. 
+Open a terminal, and check that amoung the device listed by `yarpdev --list` the `esdcan` YARP device is listed.
 
 FAQs
 ====
@@ -642,7 +643,7 @@ Technically speaking, there are a few differences:
 and of the build directories. For the sake of simplicity, the `robotology-superbuild` just save robotology projects in the robotology
 directory and all external projects in the external directory.
 * Support for software that depends on Gazebo (gazebo-yarp-plugins, icub-gazebo, ...) is enabled by default in Linux and macOS .
-* In the `robotology-superbuild` the compilation for dynamics-related software (iDynTree, balancing and walking controllers) needs to be explicity enabled using the `ROBOTOLOGY_ENABLE_DYNAMICS` that is `OFF` by default. 
+* In the `robotology-superbuild` the compilation for dynamics-related software (iDynTree, balancing and walking controllers) needs to be explicity enabled using the `ROBOTOLOGY_ENABLE_DYNAMICS` that is `OFF` by default.
 
 ### I successfully used the `robotology-superbuild` for my project, how do I cite it in my publication?
 
