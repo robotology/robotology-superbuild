@@ -250,15 +250,11 @@ While this tool is not strictly required, it is convenient to install the [Rapid
 #### System Libraries
 The software in the superbuild depends on several C++  libraries: to install the required dependencies on your machine, we suggest to use [`vcpkg`](https://github.com/microsoft/vcpkg), the C++ library manager mantained by Microsoft. As `vcpkg` compiles from sources all its libraries, this can be quite time intensive for some libraries such as `qt5` or `opencv`.
 
-For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology-playground/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip it in `C:/robotology/vcpkg` and use directly from there, for example executing the following commands from the Git Bash shell:
+For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip in `C:/` and use directly from there, for example executing the following commands from the Git Bash shell:
 ~~~
 cd C:/
-mkdir robotology
-cd robotology
-mkdir vcpkg
-cd vcpkg
-wget https://github.com/robotology-playground/robotology-superbuild-dependencies-vcpkg/releases/download/v0.0.3/vcpkg-robotology.zip
-unzip vcpkg-robotology.zip
+wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.2.0/vcpkg-robotology.zip
+unzip vcpkg-robotology.zip -d C:/
 rm vcpkg-robotology.zip
 ~~~
 or creating the directories and extracting the archive through the File Explorer. If you prefer to use your own vcpkg to install the dependencies of the superbuild, please refer to the documentation available at [`doc/vcpkg-dependencies.md`](doc/vcpkg-dependencies.md).
