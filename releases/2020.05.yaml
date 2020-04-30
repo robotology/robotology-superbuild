@@ -18,7 +18,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: 65935d5eed2ac5812c197ddf907178ed987c9eb7
+    version: v1.15.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
