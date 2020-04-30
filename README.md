@@ -544,6 +544,17 @@ If you are using the `setup.sh` or `setup.bat` script for configuring your envir
 
 For more info on configuring MATLAB software with the robotology-superbuild, please check the [wb-toolbox README](https://github.com/robotology/wb-toolbox).
 
+### Check the installation
+To verify that the compilation of `ROBOTOLOGY_USES_MATLAB` option was successful, try to run a script that uses
+the Matlab bindings of `yarp` and see if it executes without any error, for example:
+~~~matlab
+yarpVec = yarp.Vector();
+yarpVec.fromMatlab([1;2;3]);
+yarpVec.toMatlab()
+~~~~
+This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are working correctly.
+
+
 ## Octave
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
 
@@ -566,6 +577,17 @@ The `ROBOTOLOGY_USES_OCTAVE` option is not supported on Windows, see https://git
 
 ### Configuration
 Add the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
+
+### Check the installation
+To verify that the compilation of `ROBOTOLOGY_USES_OCTAVE` option was successful, try to run a script that uses
+the Octave bindings of `yarp` and see if it executes without any error, for example:
+~~~matlab
+yarpVec = yarp.Vector();
+yarpVec.fromMatlab([1;2;3]);
+yarpVec.toMatlab()
+~~~~
+This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are working correctly.
+
 
 ## Python
 
