@@ -109,5 +109,10 @@ if(NOT ycm_POPULATED)
   # failures, we just add to CMAKE_MODULE_PATH the directory with the 
   # CMake modules used by a superbuild
   list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/find-modules)
+  # cmake-next/proposed is used by YCMEPHelper 
+  list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/cmake-next/proposed)
   list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/modules)
+  # We set YCM_FOUND to avoid that YCMEPHelper tries do download files 
+  # in the _ycm_include macro
+  set(YCM_FOUND ON)
 endif()
