@@ -11,7 +11,6 @@
 # (To distribute this file outside of YCM, substitute the full
 #  License text for the above reference.)
 
-
 # This module is intentionally kept as small as possible in order to
 # avoid the spreading of different modules.
 
