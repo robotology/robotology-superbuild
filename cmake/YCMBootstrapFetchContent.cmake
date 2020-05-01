@@ -1,6 +1,5 @@
 #=============================================================================
-# Copyright 2013-2014 Istituto Italiano di Tecnologia (IIT)
-#   Authors: Daniele E. Domenichelli <daniele.domenichelli@iit.it>
+# Copyright 2013-2020 Istituto Italiano di Tecnologia (IIT)
 #
 # Distributed under the OSI-approved BSD License (the "License");
 # see accompanying file Copyright.txt for details.
@@ -15,9 +14,6 @@
 
 # This module is intentionally kept as small as possible in order to
 # avoid the spreading of different modules.
-#
-# The real bootstrap is performed by the ycm_bootstrap macro from the
-# YCMEPHelper module that is downloaded from the YCM package.
 
 # CMake variables read as input by this module:
 # YCM_MINIMUM_VERSION : minimum version of YCM requested to use a system YCM 
@@ -25,12 +21,14 @@
 #             : TAG (either branch, commit or tag) of YCM repository 
 # USE_SYSTEM_YCM : if defined and set FALSE, skip searching for a system 
 #                  YCM and always bootstrap
+# YCM_DISABLE_SYSTEM_PACKAGES: if  defined and set TRUE, skip searching for a system 
+#                  YCM and always bootstrap
 
 
-if(DEFINED __YCMBOOTSTRAP_INCLUDED)
+if(DEFINED __YCMBOOTSTRAP_FETCHCONTENT_INCLUDED)
   return()
 endif()
-set(__YCMBOOTSTRAP_INCLUDED TRUE)
+set(__YCMBOOTSTRAP_FETCHCONTENT_INCLUDED TRUE)
 
 
 ########################################################################
@@ -76,8 +74,9 @@ _ycm_clean_path("${CMAKE_BINARY_DIR}/install" CMAKE_PREFIX_PATH)
 _ycm_clean_path("${CMAKE_BINARY_DIR}/install" PATH)
 
 
-# If the USE_SYSTEM_YCM is explicitly set to false, we just skip to bootstrap.
-if(NOT DEFINED USE_SYSTEM_YCM OR USE_SYSTEM_YCM)
+# If the USE_SYSTEM_YCM is explicitly set to false or 
+# YCM_DISABLE_SYSTEM_PACKAGES is explicitly set to true we just skip to bootstrap.
+if((NOT DEFINED USE_SYSTEM_YCM OR USE_SYSTEM_YCM) AND (NOT DEFINED YCM_DISABLE_SYSTEM_PACKAGES OR NOT YCM_DISABLE_SYSTEM_PACKAGES))
     find_package(YCM ${YCM_MINIMUM_VERSION} QUIET)
     if(COMMAND set_package_properties)
         set_package_properties(YCM PROPERTIES TYPE RECOMMENDED
@@ -92,23 +91,24 @@ endif()
 
 message(STATUS "YCM not found. Bootstrapping it.")
 
-set(YCM_BOOTSTRAP_BASE_ADDRESS "https://raw.githubusercontent.com/robotology/ycm/HEAD" CACHE STRING "Base address of YCM repository")
-# Replace old raw.github address to support existing builds
-if("${YCM_BOOTSTRAP_BASE_ADDRESS}" MATCHES "raw.github.com")
-    string(REPLACE "raw.github.com" "raw.githubusercontent.com" _tmp ${YCM_BOOTSTRAP_BASE_ADDRESS})
-    set_property(CACHE YCM_BOOTSTRAP_BASE_ADDRESS PROPERTY VALUE "${_tmp}")
-endif()
-# New github address does not accept "//" in the path, therefore we remove the last slash
-if("${YCM_BOOTSTRAP_BASE_ADDRESS}" MATCHES "/$")
-    string(REGEX REPLACE "/$" "" _tmp ${_tmp})
-    set_property(CACHE YCM_BOOTSTRAP_BASE_ADDRESS PROPERTY VALUE "${_tmp}")
-endif()
-mark_as_advanced(YCM_BOOTSTRAP_BASE_ADDRESS)
-
-if("${YCM_BOOTSTRAP_BASE_ADDRESS}" MATCHES "/HEAD$" AND YCM_TAG)
-    string(REGEX REPLACE "/HEAD$" "/${YCM_TAG}" YCM_BOOTSTRAP_BASE_ADDRESS ${YCM_BOOTSTRAP_BASE_ADDRESS})
+if(NOT DEFINED YCM_TAG)
+  set(YCM_TAG master)
 endif()
 
-include(IncludeUrl)
-include_url(${YCM_BOOTSTRAP_BASE_ADDRESS}/modules/YCMEPHelper.cmake)
-ycm_bootstrap()
+include(FetchContent)
+FetchContent_Declare(
+  YCM
+  GIT_REPOSITORY https://github.com/robotology/ycm.git
+  GIT_TAG        ${YCM_TAG}
+)
+
+FetchContent_GetProperties(YCM)
+if(NOT ycm_POPULATED)
+  FetchContent_Populate(YCM)
+  # The YCM build system downloads modules from several websites, 
+  # and this makes it quite prone to failures. To avoid this kind of 
+  # failures, we just add to CMAKE_MODULE_PATH the directory with the 
+  # CMake modules used by a superbuild
+  list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/find-modules)
+  list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/modules)
+endif()

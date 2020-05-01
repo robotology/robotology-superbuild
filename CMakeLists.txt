@@ -119,7 +119,7 @@ endif()
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.11.1)
-include(YCMBootstrap)
+include(YCMBootstrapFetchContent)
 
 include(FindOrBuildPackage)
 include(YCMEPHelper)
