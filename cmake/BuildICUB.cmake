@@ -5,9 +5,11 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
+find_or_build_package(YCM QUIET)
 find_or_build_package(YARP QUIET)
 
 set(ICUB_DEPENDS "")
+list(APPEND ICUB_DEPENDS YCM)
 list(APPEND ICUB_DEPENDS YARP)
 
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
