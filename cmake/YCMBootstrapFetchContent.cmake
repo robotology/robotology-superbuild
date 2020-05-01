@@ -111,6 +111,7 @@ if(NOT ycm_POPULATED)
   list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/find-modules)
   # cmake-next/proposed is used by YCMEPHelper 
   list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/cmake-next/proposed)
+  list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/style-modules)
   list(APPEND CMAKE_MODULE_PATH ${ycm_SOURCE_DIR}/modules)
   # We set YCM_FOUND to avoid that YCMEPHelper tries do download files 
   # in the _ycm_include macro
