@@ -216,28 +216,45 @@ if(ROBOTOLOGY_USES_MATLAB)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
 endif()
 
-# Configure a basic setup.sh for *nix system
+# Configure a setup.sh
 if(ROBOTOLOGY_USES_GAZEBO)
+  if(WIN32)
+    # On Windows we assume that the Gazebo's enviroment variables are already set,
+    # so we set as this name a file that does not exists and so will be ignored
+    set(GAZEBO_SETUP_SH_PATH "on-windows-we-assume-that-gazebo-env-variables-are-already-set")
   # TODO(traversaro): make sure that Gazebo exports this, for now hardcode
-  if(APPLE)
+  elseif(APPLE)
     set(GAZEBO_SETUP_SH_PATH "/usr/local/share/gazebo/setup.sh")
   else()
     set(GAZEBO_SETUP_SH_PATH "/usr/share/gazebo/setup.sh")
   endif()
 endif()
 
-if (NOT WIN32)
-  if(APPLE)
-      set(SHLIB_ENV_VAR "DYLD_LIBRARY_PATH")
-  else()
-      set(SHLIB_ENV_VAR "LD_LIBRARY_PATH")
-  endif()
+if(WIN32)
+    set(SHLIB_ENV_VAR "PATH")
+elseif(APPLE)
+    set(SHLIB_ENV_VAR "DYLD_LIBRARY_PATH")
+else()
+    set(SHLIB_ENV_VAR "LD_LIBRARY_PATH")
+endif()
+
+if(WIN32)
+  # On Git Bash on Windows, C: is rendered as /c
+  string(REGEX MATCH "^([A-Z])" PROJECT_SOURCE_DIR_DRIVE ${PROJECT_SOURCE_DIR})
+  string(TOLOWER ${PROJECT_SOURCE_DIR_DRIVE} PROJECT_SOURCE_DIR_DRIVE_LOWER)
+  string(REGEX REPLACE "^([A-Z]:)" "/${PROJECT_SOURCE_DIR_DRIVE_LOWER}" PROJECT_SOURCE_DIR_SETUP_SH ${PROJECT_SOURCE_DIR})
+  string(REGEX MATCH "^([A-Z])" YCM_EP_INSTALL_DIR_DRIVE ${YCM_EP_INSTALL_DIR})
+  string(TOLOWER ${YCM_EP_INSTALL_DIR_DRIVE} YCM_EP_INSTALL_DIR_DRIVE_LOWER)
+  string(REGEX REPLACE "^([A-Z]:)" "/${YCM_EP_INSTALL_DIR_DRIVE_LOWER}" YCM_EP_INSTALL_DIR_SETUP_SH ${YCM_EP_INSTALL_DIR})
+else()
+  set(PROJECT_SOURCE_DIR_SETUP_SH ${PROJECT_SOURCE_DIR})
+  set(YCM_EP_INSTALL_DIR_SETUP_SH ${YCM_EP_INSTALL_DIR})
 endif()
 
 include(ConfigureFileWithCMakeIf)
-if(NOT WIN32)
-  configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.sh.in ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/setup.sh @ONLY)
-else()
+configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.sh.in ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/setup.sh @ONLY)
+
+if(WIN32)
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.bat.in ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/setup.bat @ONLY)
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/addPathsToUserEnvVariables.ps1.in
                               ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/addPathsToUserEnvVariables.ps1 @ONLY)
