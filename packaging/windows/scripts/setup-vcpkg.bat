@@ -2,7 +2,7 @@ pushd %~dp0..
 set "installerRootPath=%cd%"
 popd
 
-set "vcpkgTriplet=windows-x64"
+set "vcpkgTriplet=x64-windows"
 set "vcpkgInstallDir=%installerRootPath%\vcpkg\installed\%vcpkgTriplet%"
 
 rem Update PATH 
