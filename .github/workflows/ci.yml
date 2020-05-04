@@ -8,6 +8,8 @@ on:
     tags:
       - v*
   pull_request:
+  release:
+    types: [published]
   schedule:
   # * is a special character in YAML so you have to quote this string
   # Execute a "nightly" build at 2 AM UTC 
@@ -179,7 +181,7 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_ESDCAN:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_ESDCAN:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
 
 
     - name: Build  [Ubuntu&macOS]
@@ -191,12 +193,53 @@ jobs:
       env: 
         # This is necessary only on macOS/homebrew, but on Linux it should be ignored
         Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
-        
-    - name: Build  [Windows]
+
+    # Just for  release jobs we also compile Windows in Debug, to ensure that Debug libraries are included in the installer
+    - name: Build (Debug) [Windows]
+      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
+      shell: bash
+      run: |
+        cd build
+        # yarp's rosmsgs generator links ACE, so it needs to find ACE dll in the path to run
+        export PATH=$PATH:/c/robotology/vcpkg/installed/x64-windows/bin:/c/robotology/vcpkg/installed/x64-windows/debug/bin
+        cmake --build . --config Debug
+
+    - name: Build (Release) [Windows]
       if: matrix.os == 'windows-2019'
       shell: bash
       run: |
         cd build
         # yarp's rosmsgs generator links ACE, so it needs to find ACE dll in the path to run 
         export PATH=$PATH:/c/robotology/vcpkg/installed/x64-windows/bin:/c/robotology/vcpkg/installed/x64-windows/debug/bin
-        cmake --build . --config ${{ matrix.build_type }}  
+        cmake --build . --config Release
+
+    # Just for release builds we gerate the installer
+    - name: Generate installer [Windows]
+      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
+      shell: bash
+      run: |
+        # Download QtIFW
+        cd /c
+        certutil.exe -urlcache -split -f https://github.com/robotology-dependencies/qtifw-binaries/releases/download/v3.1.1/QtIFW-3.1.1.zip QtIFW-3.1.1.zip
+        7z.exe x QtIFW-3.1.1.zip
+        export PATH=$PATH:/c/QtIFW-3.1.1/bin
+        # As we need a lot of space, we build the installer in the C:\ drive 
+        # that has more space of the D:\ drive in GitHub Actions
+        mkdir /c/build-installer
+        cd /c/build-installer
+        cmake -A x64 ${GITHUB_WORKSPACE}/packaging/windows
+        cmake --build . --target PACKAGE
+        # Move installer in installer directory with a fixed name
+        mv *.exe /c/robotology-full-installer-win64.exe
+
+    - name: Upload Release Asset [Windows]
+      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: C:/robotology-full-installer-win64.exe
+          asset_name: robotology-full-installer-win64.exe
+          asset_content_type: application/octet-stream
+
