@@ -253,15 +253,13 @@ The software in the superbuild depends on several C++  libraries: to install the
 For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip in `C:/` and use directly from there, for example executing the following commands from the Git Bash shell:
 ~~~
 cd C:/
-wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.2.0/vcpkg-robotology.zip
+wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.3.0/vcpkg-robotology.zip
 unzip vcpkg-robotology.zip -d C:/
 rm vcpkg-robotology.zip
 ~~~
 or creating the directories and extracting the archive through the File Explorer. If you prefer to use your own vcpkg to install the dependencies of the superbuild, please refer to the documentation available at [`doc/vcpkg-dependencies.md`](doc/vcpkg-dependencies.md).
 
-The default way to use the libraries provided by vcpkg in CMake is to use the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects), so to use the provided vcpkg workspace you need to pass the `-DCMAKE_TOOLCHAIN_FILE=C:\robotology\vcpkg\scripts\buildsystems\vcpkg.cmake` CMake option when configuring the robotology-superbuild, either from the command line or via the CMake GUI.
-
-Furthermore, as during the build process some programs that use `vcpkg`-install dlls are executed, you need to make sure that the `vcpkg` dll are in the path, by appending to the `PATH` the `C:/robotology/vcpkg/installed/x64-windows/bin` and `C:/robotology/vcpkg/installed/x64-windows/debug/bin` directories.
+If you want to enable the `ROBOTOLOGY_USES_GAZEBO` option, you will need to download and extract the `vcpkg-robotology-with-gazebo.zip` archive. For instructions on how to correctly use this archives, please refer to documentation of the [`robotology-superbuild-dependencies-vcpkg)`](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg) repo.
 
 If you want to enable a [profile](#profile-cmake-options) or a [dependency](#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
 * [`ROBOTOLOGY_USES_OCULUS_SDK`](#oculus)
@@ -489,14 +487,15 @@ Dependencies-specific documentation
 ===================================
 
 ## Gazebo
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option.
-
-**Warning: at the moment the Gazebo simulator does not support directly Windows. If you need to run Gazebo on Windows, it is recommended to do so via the [Windows Subsystem for Linux](#windows-subsystem-for-linux).**
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option. 
+This option is still set to `OFF` on Windows as it is still experimental.
 
 ### System Dependencies
-Install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
+On Linux or macOS, install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
 Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
+On Windows, make sure that you install the Windows dependencies using the `vcpkg-robotology-with-gazebo.zip` archive and you set
+the correct enviroment variables as documented in [`robotology-superbuild-dependencies-vcpkg` documentation](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg).
 
 ### Check the installation
 Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
