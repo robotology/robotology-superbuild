@@ -656,6 +656,8 @@ FAQs
 ====
 
 See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-faq.7.html).
+For questions related to how to modify the rootology-superbuild itself, such as how to add a new package, how to do a release, check
+the Developers' FAQs document at [`doc/developers-faqs.md`](doc/developers-faqs.md). 
 
 ### Which are the differences between the `robotology-superbuild` and the `codyco-superbuild` ?
 
