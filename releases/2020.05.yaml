@@ -30,7 +30,7 @@ repositories:
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v3.3.0
+    version: v3.3.2
   icub-gazebo:
     type: git
     url: https://github.com/robotology/icub-gazebo.git
@@ -42,7 +42,7 @@ repositories:
   RobotTestingFramework:
     type: git
     url: https://github.com/robotology/robot-testing-framework.git
-    version: v2.0.0
+    version: v2.0.1
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
