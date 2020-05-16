@@ -21,6 +21,7 @@ jobs:
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         build_type: [Debug]
         cmake_generator: 
