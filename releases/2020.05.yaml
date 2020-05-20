@@ -42,7 +42,7 @@ repositories:
   RobotTestingFramework:
     type: git
     url: https://github.com/robotology/robot-testing-framework.git
-    version: devel
+    version: v2.0.1
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
