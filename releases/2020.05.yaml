@@ -46,7 +46,7 @@ repositories:
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
-    version: devel
+    version: v1.16.0
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
@@ -118,7 +118,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.15.0
+    version: v1.16.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
