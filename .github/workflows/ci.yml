@@ -140,7 +140,7 @@ jobs:
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
         brew install libmatio
         # ROBOTOLOGY_USES_GAZEBO dependencies 
-        brew install osrf/simulation/gazebo10
+        brew install osrf/simulation/gazebo11
         # CI-specific dependencies 
         brew install ninja
         cmake --version
