@@ -47,6 +47,14 @@ repositories:
     type: git
     url: https://github.com/robotology/icub-tests.git
     version: v1.16.0
+  blockTest:
+    type: git
+    url: https://github.com/robotology/blocktest.git
+    version: v2.2.0
+  blocktest-yarp-plugins:
+    type: git
+    url: https://github.com/robotology/blocktest-yarp-plugins.git
+    version: v1.0.0
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
