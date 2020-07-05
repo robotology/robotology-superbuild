@@ -50,11 +50,11 @@ repositories:
   blockTest:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.2.0
+    version: d490bd018cf6c40e0a2e37650943d43de23751a0
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
-    version: v1.0.0
+    version: 78eacbf220a1c6db6d1bac68e4b51ab4a3a55142
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
