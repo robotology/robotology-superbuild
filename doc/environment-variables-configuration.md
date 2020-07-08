@@ -34,16 +34,17 @@ This section covers the configuration necessary for a specific profile.
 For all profile options not listed, no additional configuration is required.
 
 ### Robot Testing
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/rtf` must be appended to the `LD_LIBRARY_PATH` enviromental variable in macOS and Linux, or to `PATH` in Windows. 
-`$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites` must be appended to the `YARP_DATA_DIRS` enviromental variable.
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/rtf` must be appended to the `LD_LIBRARY_PATH` environmental variable in macOS and Linux, or to `PATH` in Windows.
+`$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites` must be appended to the `YARP_DATA_DIRS` environmental variable.
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin` must be appended to `BLOCKTEST_RESOURCE_PATH` environmental variable.
 
 ### Dynamics
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory` must be appended to the `BLOCKFACTORY_PLUGIN_PATH` enviromental variable
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory` must be appended to the `BLOCKFACTORY_PLUGIN_PATH` environmental variable
 
 ### Human Dynamics
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/human-gazebo`, 
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/HumanDynamicsEstimation`,
-and`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/Wearables` must be appended to the `YARP_DATA_DIRS` enviromental variable.
+and`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/Wearables` must be appended to the `YARP_DATA_DIRS` environmental variable.
 
 ## Dependency-specific configuration steps 
 
