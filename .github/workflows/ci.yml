@@ -117,7 +117,7 @@ jobs:
     - name: Debug symlink settings
       shell: bash
       run: |
-        cat /c/ProgramData/Git/config
+        git config core.symlinks
 
       
 
