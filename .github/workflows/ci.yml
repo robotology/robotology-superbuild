@@ -106,15 +106,20 @@ jobs:
       shell: bash
       run: env
 
-    # Debug BlockFactory clone 
     - name: Debug BlockFactory clone
       shell: bash
       run: |
-        cat /c/ProgramData/Git/config
         git clone https://github.com/robotology/blockfactory
         cd blockfactory
         git status
         git diff
+
+    - name: Debug symlink settings
+      shell: bash
+      run: |
+        cat /c/ProgramData/Git/config
+
+      
 
     # Remove apt repos that are known to break from time to time 
     # See https://github.com/actions/virtual-environments/issues/323  
