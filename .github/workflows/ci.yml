@@ -110,6 +110,7 @@ jobs:
     - name: Debug BlockFactory clone
       shell: bash
       run: |
+        cat /c/ProgramData/Git/config
         git clone https://github.com/robotology/blockfactory
         cd blockfactory
         git status
