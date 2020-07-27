@@ -144,7 +144,7 @@ endif()
 if(ROBOTOLOGY_ENABLE_ROBOT_TESTING)
   find_or_build_package(RobotTestingFramework)
   find_or_build_package(icub-tests)
-  find_or_build_package(blockTest)
+  find_or_build_package(blocktestcore)
   find_or_build_package(blocktest-yarp-plugins)
 endif()
 
