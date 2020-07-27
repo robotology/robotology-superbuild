@@ -4,7 +4,7 @@
 
 include(YCMEPHelper)
 
-ycm_ep_helper(blockTest TYPE GIT
+ycm_ep_helper(blocktestcore TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/blocktest.git
               TAG master
