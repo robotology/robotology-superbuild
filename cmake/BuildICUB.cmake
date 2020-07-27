@@ -11,8 +11,8 @@ set(ICUB_DEPENDS "")
 list(APPEND ICUB_DEPENDS YARP)
 
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
-  find_or_build_package(icub-firmware-shared QUIET)
-  list(APPEND ICUB_DEPENDS icub-firmware-shared)
+  find_or_build_package(icub_firmware_shared QUIET)
+  list(APPEND ICUB_DEPENDS icub_firmware_shared)
 endif()
 
   # See discussion in https://github.com/robotology/icub-main/issues/551

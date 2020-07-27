@@ -193,7 +193,7 @@ endif()
 
 # iCub Robot
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
-  find_or_build_package(icub-firmware-shared)
+  find_or_build_package(icub_firmware_shared)
   find_or_build_package(ICUB)
   if((NOT WIN32) AND (NOT APPLE))
     find_or_build_package(xsensmt-yarp-driver)
