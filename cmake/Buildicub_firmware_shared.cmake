@@ -5,7 +5,7 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
-ycm_ep_helper(icub-firmware-shared TYPE GIT
+ycm_ep_helper(icub_firmware_shared TYPE GIT
                                    STYLE GITHUB
                                    REPOSITORY robotology/icub-firmware-shared.git
                                    COMPONENT iCub
