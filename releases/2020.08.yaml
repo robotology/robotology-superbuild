@@ -47,7 +47,7 @@ repositories:
     type: git
     url: https://github.com/robotology/icub-tests.git
     version: v1.16.0
-  blockTest:
+  blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
     version: v2.3.0
@@ -111,7 +111,7 @@ repositories:
     type: git
     url: https://github.com/robotology/human-gazebo.git
     version: v1.0
-  icub-firmware-shared:
+  icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
     version: devel
