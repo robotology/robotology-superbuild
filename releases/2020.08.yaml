@@ -47,7 +47,7 @@ repositories:
     type: git
     url: https://github.com/robotology/icub-tests.git
     version: v1.16.0
-  blockTest:
+  blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
     version: v2.3.0
