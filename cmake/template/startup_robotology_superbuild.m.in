@@ -7,12 +7,11 @@ fprintf('\nMATLAB Toolbox\n');
 
 installDir   = '@YCM_EP_INSTALL_DIR@';
 mexDir       = [installDir, filesep, 'mex'];
-wbcSimLibDir = [installDir, filesep, 'mex/+wbc/simulink'];
 shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
 
 if exist(mexDir, 'dir')
-    addpath(mexDir);
+    addpath(genpath(mexDir));
 end
 
 if exist(shareDir, 'dir')
@@ -21,10 +20,6 @@ end
 
 if exist(imgDir, 'dir')
     addpath(imgDir);
-end
-
-if exist(wbcSimLibDir, 'dir')
-    addpath(wbcSimLibDir);
 end
 
 fileDir               = userpath;
