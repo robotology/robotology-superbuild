@@ -12,7 +12,7 @@ shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
 
 if exist(mexDir, 'dir')
-    addpath(genpath(mexDir));
+    addpath(mexDir);
 end
 
 if exist(shareDir, 'dir')
