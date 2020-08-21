@@ -533,7 +533,7 @@ You could add this line to your MATLAB script that uses the robotology-superbuil
 
 ~~~
     addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex'])
-    addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' 'mex/+wbc/simulink'])
+    addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex/+wbc/simulink'])
     addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox'])
     addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox/images'])
 ~~~
