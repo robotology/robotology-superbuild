@@ -29,8 +29,8 @@ jobs:
         docker_image: 
           - "ubuntu:focal"
           - "debian:buster-backports"
-          # Workaround for https://github.com/robotology/robotology-superbuild/issues/383
-          # - "debian:sid"
+          - "debian:sid"
+
         project_tags:
           - Default
           - Unstable
