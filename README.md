@@ -532,9 +532,10 @@ In particular you need to add to the MATLAB path the `$ROBOTOLOGY_SUPERBUILD_INS
 You could add this line to your MATLAB script that uses the robotology-superbuild matlab software, substituting `<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>` with the `install` folder inside the build directory of the superbuild:
 
 ~~~
-    addpath('<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex'])
-    addpath('<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox'])
-    addpath('<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox/images'])
+    addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex'])
+    addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex/+wbc/simulink'])
+    addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox'])
+    addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox/images'])
 ~~~
 
 Another way is to run (only once) the script `startup_robotology_superbuild.m` in the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build` folder. This should be enough to permanently add the required paths for all the toolbox that use MATLAB.
