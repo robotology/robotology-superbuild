@@ -8,6 +8,7 @@ endmacro()
 set_tag(osqp_TAG v0.6.0)
 
 # Robotology projects
-set(YCM_TAG ycm-0.11)
-set(YARP_TAG yarp-3.3)
-set(yarp-matlab-bindings_TAG yarp-3.3)
+set_tag(YCM_TAG ycm-0.11)
+set_tag(YARP_TAG yarp-3.4)
+set_tag(yarp-matlab-bindings_TAG yarp-3.4)
+set_tag(GazeboYARPPlugins_TAG devel)
