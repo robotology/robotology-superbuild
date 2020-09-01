@@ -95,6 +95,11 @@ jobs:
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2020.08.yaml"
     steps:
     - uses: actions/checkout@master
+
+    - name: Check free space 
+      shell: bash 
+      run: |
+        df -h
     
     # Workaround for https://github.com/actions/virtual-environments/issues/10
     - name: Avoid to use GitHub Actions-installed boost
