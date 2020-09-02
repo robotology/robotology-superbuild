@@ -253,7 +253,7 @@ The software in the superbuild depends on several C++  libraries: to install the
 For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip in `C:/` and use directly from there, for example executing the following commands from the Git Bash shell:
 ~~~
 cd C:/
-wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.3.0/vcpkg-robotology.zip
+wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/latest/download/vcpkg-robotology.zip
 unzip vcpkg-robotology.zip -d C:/
 rm vcpkg-robotology.zip
 ~~~
