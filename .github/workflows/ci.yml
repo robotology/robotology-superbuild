@@ -28,7 +28,7 @@ jobs:
           - "Ninja"
         docker_image: 
           - "ubuntu:focal"
-          - "debian:stable"
+          - "debian:stable-backports"
           # Workaround for https://github.com/robotology/robotology-superbuild/issues/383
           # - "debian:sid"
         project_tags:
