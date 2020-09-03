@@ -27,49 +27,49 @@ function Remove-ValueFromUserEnvVariable ($EnvVariable, $Value, $Verbose=$TRUE) 
 }
 
 Remove-UserEnvVariable ROBOTOLOGY_SUPERBUILD_SOURCE_DIR;
-$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = "@YCM_EP_INSTALL_DIR@";
+$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX = "@YCM_EP_INSTALL_DIR_NATIVE_PATH@";
 Remove-UserEnvVariable ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
 
 # Cleanup path
-Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/bin";
+Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\bin";
 
 # Cleanup YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/yarp";
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/iCub";
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/ICUBcontrib";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\yarp";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\iCub";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\ICUBcontrib";
 
 # Cleanup CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
 Remove-ValueFromUserEnvVariable CMAKE_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX;
 
 # Cleanup BLOCKFACTORY_PLUGIN_PATH
-Remove-ValueFromUserEnvVariable BLOCKFACTORY_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/blockfactory";
+Remove-ValueFromUserEnvVariable BLOCKFACTORY_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\lib\blockfactory";
 
 @cmakeif ROBOTOLOGY_USES_GAZEBO
 # Cleanup ROBOTOLOGY_USES_GAZEBO-specific lines
-Remove-ValueFromUserEnvVariable GAZEBO_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib";
-Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/gazebo/models"
-Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/iCub/robots"
-Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share"
-Remove-ValueFromUserEnvVariable GAZEBO_RESOURCE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/gazebo/worlds"
+Remove-ValueFromUserEnvVariable GAZEBO_PLUGIN_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\lib";
+Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\gazebo\models"
+Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\iCub\robots"
+Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share"
+Remove-ValueFromUserEnvVariable GAZEBO_RESOURCE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\gazebo\worlds"
 @endcmakeif ROBOTOLOGY_USES_GAZEBO
 
 @cmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
 # Cleanup ROBOTOLOGY_ENABLE_ROBOT_TESTING-specific lines
-Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/rtf";
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR@/robotology/icub-tests/suites";
-Remove-ValueFromUserEnvVariable BLOCKTEST_RESOURCE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/bin";
+Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\lib\rtf";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR_NATIVE_PATH@\robotology\icub-tests\suites";
+Remove-ValueFromUserEnvVariable BLOCKTEST_RESOURCE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\bin";
 @endcmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
 
 @cmakeif ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS
 # Cleanup ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS-specific lines
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/human-gazebo";
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/HumanDynamicsEstimation";
-Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/share/Wearables";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\human-gazebo";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\HumanDynamicsEstimation";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\Wearables";
 @endcmakeif ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS
 
 @cmakeif ROBOTOLOGY_USES_PYTHON
 # Cleanup the python bindings directory from the PYTHON_PATH
-Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/@PYTHON_VERSION_PATH@/dist-packages";
-Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"/lib/@PYTHON_VERSION_PATH@/site-packages";
+Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\lib\@PYTHON_VERSION_PATH@\dist-packages";
+Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\lib\@PYTHON_VERSION_PATH@\site-packages";
 @endcmakeif ROBOTOLOGY_USES_PYTHON
 
