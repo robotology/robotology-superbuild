@@ -215,6 +215,8 @@ jobs:
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
         cmake --build . --config Debug
+        # Cleanup build directories to avoid to fill the disk
+        rm -rf ./robotology
 
     - name: Build (Release) [Windows]
       if: matrix.os == 'windows-2019'
@@ -224,6 +226,8 @@ jobs:
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
         cmake --build . --config Release
+        # Cleanup build directories to avoid to fill the disk
+        rm -rf ./robotology
 
     # Just for release builds we gerate the installer
     - name: Generate installer [Windows]
