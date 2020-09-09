@@ -155,7 +155,7 @@ jobs:
         brew update
         brew upgrade
         # Core dependencies 
-        brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config qt5 sqlite swig tinyxml
+        brew install ace boost cmake eigen gsl ipopt jpeg-turbo libedit opencv pkg-config qt5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
         brew install libmatio
         # ROBOTOLOGY_USES_GAZEBO dependencies 
