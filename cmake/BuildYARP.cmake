@@ -59,6 +59,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpcar_xmlrpc:BOOL=ON
                               -DENABLE_yarpcar_priority:BOOL=ON
                               -DENABLE_yarpcar_bayer:BOOL=ON
+                              -DENABLE_yarpcar_mjpeg:BOOL=ON
                               -DENABLE_yarpidl_thrift:BOOL=ON
                               -DYARP_COMPILE_DEVICE_PLUGINS:BOOL=ON
                               -DENABLE_yarpcar_human:BOOL=ON
