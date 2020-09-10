@@ -5,7 +5,8 @@
 The Linux instance in WSL2 are running as part of a lightweight virtual machine, so effectively the IP addresso of the WSL2 instance will be different from the IP address
 of the Windows host, and the Windows host can communicate with the WSL2 instance thanks to a virtual IP network. For this reason, to run graphical applications on WSL2, 
 you  need to install an X Server for Windows. As unfortunately the IP addresses of the virtual IP network change at every reboot, it is also necessary to configure the 
-X Server that you use to accept connection for arbitrary IP addresses. This documentation page explains how to do this in hte most used Windows X Servers.
+X Server that you use to accept connection from arbitrary IP addresses. This documentation page explains how to do this in hte most used Windows X Servers.
+Note that accepting X server connections from arbitrary IP addresses may create security problems, so make sure to enable it only on private networks.
 
 ## Xming 
 **IMPORTANT: The following procedure is not going to work if you have VcXsrv installed on your system. Before following this instruction, 
