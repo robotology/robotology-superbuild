@@ -8,8 +8,7 @@ endmacro()
 set_tag(osqp_TAG v0.6.0)
 
 # Robotology projects
-# set_tag(YARP_TAG master)
-set_tag(YARP_TAG 0328577b5f102da2875517898d8a6439ac9374d2)
+set_tag(YARP_TAG master)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
 set_tag(blockTest_TAG devel)
