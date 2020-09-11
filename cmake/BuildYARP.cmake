@@ -37,8 +37,12 @@ else()
   set(ENABLE_USBCAMERA ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
 endif()
 
-
-
+# Workaround for https://github.com/robotology/yarp/issues/2353
+if(APPLE)
+  set(ENABLE_yarpcar_mjpeg OFF)
+else()
+  set(ENABLE_yarpcar_mjpeg ON)
+endif()
 
 ycm_ep_helper(YARP TYPE GIT
                    STYLE GITHUB
@@ -59,6 +63,10 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpcar_xmlrpc:BOOL=ON
                               -DENABLE_yarpcar_priority:BOOL=ON
                               -DENABLE_yarpcar_bayer:BOOL=ON
+                              -DENABLE_yarpcar_mjpeg:BOOL=${ENABLE_yarpcar_mjpeg}
+                              -DENABLE_yarpcar_portmonitor:BOOL=ON
+                              -DENABLE_yarpcar_depthimage:BOOL=ON
+                              -DENABLE_yarpcar_depthimage2:BOOL=ON
                               -DENABLE_yarpidl_thrift:BOOL=ON
                               -DYARP_COMPILE_DEVICE_PLUGINS:BOOL=ON
                               -DENABLE_yarpcar_human:BOOL=ON
