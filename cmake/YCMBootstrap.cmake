@@ -135,7 +135,12 @@ if(NOT ycm_POPULATED)
     set(_quiet_args )
   endif()
 
-  set(YCM_INSTALL_DIR "${CMAKE_BINARY_DIR}/install")
+  # FIXME Where is YCM_EP_INSTALL_DIR defined?
+  if (DEFINED YCM_EP_INSTALL_DIR)
+    set(YCM_INSTALL_DIR ${YCM_INSTALL_DIR})
+  else()
+    set(YCM_INSTALL_DIR "${CMAKE_BINARY_DIR}/install")
+  endif()
 
   execute_process(
     COMMAND ${CMAKE_COMMAND} ${build_generator} -S${ycm_SOURCE_DIR} -B${ycm_BINARY_DIR} -DCMAKE_INSTALL_PREFIX:PATH=${YCM_INSTALL_DIR}
