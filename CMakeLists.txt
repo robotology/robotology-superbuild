@@ -116,6 +116,7 @@ else()
 endif()
 
 # Bootstrap YCM
+set(YCM_BOOTSTRAP_VERBOSE ON)
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.11.1)
