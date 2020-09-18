@@ -1,5 +1,5 @@
 #=============================================================================
-# Copyright 2013-2014 Istituto Italiano di Tecnologia (IIT)
+# Copyright 2013-2020 Istituto Italiano di Tecnologia (IIT)
 #   Authors: Daniele E. Domenichelli <daniele.domenichelli@iit.it>
 #
 # Distributed under the OSI-approved BSD License (the "License");
@@ -20,10 +20,10 @@
 # YCMEPHelper module that is downloaded from the YCM package.
 
 # CMake variables read as input by this module:
-# YCM_MINIMUM_VERSION : minimum version of YCM requested to use a system YCM 
-# YCM_TAG     : if no suitable system YCM was found, bootstrap from this 
-#             : TAG (either branch, commit or tag) of YCM repository 
-# USE_SYSTEM_YCM : if defined and set FALSE, skip searching for a system 
+# YCM_MINIMUM_VERSION : minimum version of YCM requested to use a system YCM
+# YCM_TAG     : if no suitable system YCM was found, bootstrap from this
+#             : TAG (either branch, commit or tag) of YCM repository
+# USE_SYSTEM_YCM : if defined and set FALSE, skip searching for a system
 #                  YCM and always bootstrap
 
 
@@ -75,8 +75,8 @@ endfunction()
 _ycm_clean_path("${CMAKE_BINARY_DIR}/install" CMAKE_PREFIX_PATH)
 _ycm_clean_path("${CMAKE_BINARY_DIR}/install" PATH)
 
-
 # If the USE_SYSTEM_YCM is explicitly set to false, we just skip to bootstrap.
+# FIXME Where is USE_SYSTEM_YCM defined?
 if(NOT DEFINED USE_SYSTEM_YCM OR USE_SYSTEM_YCM)
     find_package(YCM ${YCM_MINIMUM_VERSION} QUIET)
     if(COMMAND set_package_properties)
@@ -92,23 +92,96 @@ endif()
 
 message(STATUS "YCM not found. Bootstrapping it.")
 
-set(YCM_BOOTSTRAP_BASE_ADDRESS "https://raw.githubusercontent.com/robotology/ycm/HEAD" CACHE STRING "Base address of YCM repository")
-# Replace old raw.github address to support existing builds
-if("${YCM_BOOTSTRAP_BASE_ADDRESS}" MATCHES "raw.github.com")
-    string(REPLACE "raw.github.com" "raw.githubusercontent.com" _tmp ${YCM_BOOTSTRAP_BASE_ADDRESS})
-    set_property(CACHE YCM_BOOTSTRAP_BASE_ADDRESS PROPERTY VALUE "${_tmp}")
-endif()
-# New github address does not accept "//" in the path, therefore we remove the last slash
-if("${YCM_BOOTSTRAP_BASE_ADDRESS}" MATCHES "/$")
-    string(REGEX REPLACE "/$" "" _tmp ${_tmp})
-    set_property(CACHE YCM_BOOTSTRAP_BASE_ADDRESS PROPERTY VALUE "${_tmp}")
-endif()
-mark_as_advanced(YCM_BOOTSTRAP_BASE_ADDRESS)
 
-if("${YCM_BOOTSTRAP_BASE_ADDRESS}" MATCHES "/HEAD$" AND YCM_TAG)
-    string(REGEX REPLACE "/HEAD$" "/${YCM_TAG}" YCM_BOOTSTRAP_BASE_ADDRESS ${YCM_BOOTSTRAP_BASE_ADDRESS})
+include(FetchContent)
+
+# FIXME We might also want to consider that using FetchContent we could avoid
+# having the YCMBootstrap.cmake file in the repository.
+# FIXME YCM_TAG must now be defined somewhere.
+FetchContent_Declare(
+  YCM
+  GIT_REPOSITORY https://github.com/robotology/ycm.git
+  GIT_TAG        ${YCM_TAG}
+)
+
+FetchContent_GetProperties(YCM)
+if(NOT ycm_POPULATED)
+  FetchContent_Populate(YCM)
+  #include(${ycm_SOURCE_DIR}/YCMBootstrap.cmake)
+
+  set(build_generator --build-generator "${CMAKE_GENERATOR}")
+  if(CMAKE_GENERATOR_PLATFORM)
+    list(APPEND build_generator --build-generator-platform "${CMAKE_GENERATOR_PLATFORM}")
+  endif()
+  if(CMAKE_GENERATOR_TOOLSET)
+    list(APPEND build_generator --build-generator-toolset "${CMAKE_GENERATOR_TOOLSET}")
+  endif()
+  if(CMAKE_CONFIGURATION_TYPES)
+    list(APPEND build_generator --build-config $<CONFIGURATION>)
+  endif()
+
+  # On multi-config generators (MSVC and Xcode) always build in
+  # "Release" configuration
+  if(CMAKE_CONFIGURATION_TYPES)
+    set(_configuration --config Release)
+  endif()
+
+  if(NOT YCM_BOOTSTRAP_VERBOSE)
+    set(_quiet_args
+      OUTPUT_QUIET
+      ERROR_QUIET
+      COMMAND_ECHO STDOUT)
+  else()
+    set(_quiet_args )
+  endif()
+
+  set(YCM_INSTALL_DIR "${CMAKE_BINARY_DIR}/install")
+
+  execute_process(
+    COMMAND ${CMAKE_COMMAND} ${build_generator} -S${ycm_SOURCE_DIR} -B${ycm_BINARY_DIR} -DCMAKE_INSTALL_PREFIX:PATH=${YCM_INSTALL_DIR}
+    WORKING_DIRECTORY ${ycm_BINARY_DIR}
+    ${_quiet_args}
+    RESULT_VARIABLE _result
+    COMMAND_ECHO STDOUT
+  )
+
+  if(EXISTS "${ycm_BINARY_DIR}/install_manifest.txt")
+    execute_process(
+      COMMAND ${CMAKE_COMMAND} --build ${ycm_BINARY_DIR} ${_configuration} --target uninstall
+      WORKING_DIRECTORY ${ycm_BINARY_DIR}
+      ${_quiet_args}
+      RESULT_VARIABLE _result
+      COMMAND_ECHO STDOUT
+    )
+  endif()
+
+  execute_process(
+    COMMAND ${CMAKE_COMMAND} --build ${ycm_BINARY_DIR} ${_configuration}
+    WORKING_DIRECTORY ${ycm_BINARY_DIR}
+    ${_quiet_args}
+    RESULT_VARIABLE _result
+    COMMAND_ECHO STDOUT
+  )
+
+  execute_process(
+    COMMAND ${CMAKE_COMMAND} --build ${ycm_BINARY_DIR} ${_configuration} --target install
+    WORKING_DIRECTORY ${ycm_BINARY_DIR}
+    ${_quiet_args}
+    RESULT_VARIABLE _result
+    COMMAND_ECHO STDOUT
+  )
+
+  # Find the package, so that can be used now.
+  if(CMAKE_DISABLE_FIND_PACKAGE_YCM)
+    # We need to disable this flag, in case the the user explicitly enabled
+    # it in order to use the bootstrapped version, otherwise the next
+    # find_package will fail.
+    set(CMAKE_DISABLE_FIND_PACKAGE_YCM FALSE)
+  endif()
+  find_package(YCM PATHS ${YCM_INSTALL_DIR} NO_DEFAULT_PATH)
+
+  # Reset YCM_DIR variable so that next find_package will fail to locate the package and this will be kept updated
+  set(YCM_DIR "YCM_DIR-NOTFOUND" CACHE PATH "The directory containing a CMake configuration file for YCM." FORCE)
 endif()
 
-include(IncludeUrl)
-include_url(${YCM_BOOTSTRAP_BASE_ADDRESS}/modules/YCMEPHelper.cmake)
-ycm_bootstrap()
+# FIXME The check on the YCMBootstrap version is no longer performed
