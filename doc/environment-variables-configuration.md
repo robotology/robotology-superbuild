@@ -34,7 +34,7 @@ This section covers the configuration necessary for a specific profile.
 For all profile options not listed, no additional configuration is required.
 
 ### Robot Testing
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/rtf` must be appended to the `LD_LIBRARY_PATH` environmental variable in macOS and Linux, or to `PATH` in Windows.
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/robottestingframework` must be appended to the `LD_LIBRARY_PATH` environmental variable in macOS and Linux, or to `PATH` in Windows.
 `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/robotology/icub-tests/suites` must be appended to the `YARP_DATA_DIRS` environmental variable.
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin` must be appended to `BLOCKTEST_RESOURCE_PATH` environmental variable.
 
