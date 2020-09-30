@@ -137,7 +137,7 @@ if(NOT ycm_POPULATED)
 
   # FIXME Where is YCM_EP_INSTALL_DIR defined?
   if (DEFINED YCM_EP_INSTALL_DIR)
-    set(YCM_INSTALL_DIR ${YCM_INSTALL_DIR})
+    set(YCM_INSTALL_DIR ${YCM_EP_INSTALL_DIR})
   else()
     set(YCM_INSTALL_DIR "${CMAKE_BINARY_DIR}/install")
   endif()
