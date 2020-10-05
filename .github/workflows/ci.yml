@@ -82,7 +82,7 @@ jobs:
       matrix:
         build_type: [Release]
         os: [ubuntu-latest, macOS-latest, windows-2019]
-        project_tags: [Default, Unstable, Release202005feat01, Release202008]
+        project_tags: [Default, Unstable, Release202005feat01, Release202008patch01]
         include:
           - os: ubuntu-latest
             build_type: Debug
