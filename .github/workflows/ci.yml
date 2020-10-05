@@ -164,7 +164,9 @@ jobs:
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config qt5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
         brew install libmatio
-        # ROBOTOLOGY_USES_GAZEBO dependencies 
+        # ROBOTOLOGY_USES_GAZEBO dependencies
+        # Workaround for https://github.com/robotology/robotology-superbuild/issues/479
+        brew tap osrf/simulation
         brew install osrf/simulation/gazebo11
         # CI-specific dependencies 
         brew install ninja
