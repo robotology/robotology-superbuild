@@ -111,13 +111,7 @@ jobs:
       shell: bash 
       run: |
         df -h
-    
-    # Workaround for https://github.com/actions/virtual-environments/issues/10
-    - name: Avoid to use GitHub Actions-installed boost
-      shell: bash
-      run: |
-        echo "::set-env name=BOOST_ROOT::"
-        
+
     # Print environment variables to simplify development and debugging
     - name: Environment Variables
       shell: bash
