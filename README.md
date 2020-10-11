@@ -693,6 +693,17 @@ See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-p
 For questions related to how to modify the rootology-superbuild itself, such as how to add a new package, how to do a release, check
 the Developers' FAQs document at [`doc/developers-faqs.md`](doc/developers-faqs.md). 
 
+### How do I pass CMake options to the projects built by the `robotology-superbuild` ? 
+
+When configuration the robotology-superbuild, you can pass the `YCM_EP_ADDITIONAL_CMAKE_ARGS` CMake option:
+~~~
+cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DENABLE_yarpmod_SDLJoypad:BOOL=ON"
+~~~
+This option can be used to specify parameters that are passed to all CMake projects of the superbuild (as it is useful for some options, for example `-DBUILD_TESTING:BOOL=ON`). 
+This option can be used also for CMake options that are related to a single project, as all the other projects will ignore the option.
+
+For more information on this option, see the [official YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/manual/ycm-superbuild.7.html#specifying-additional-cmake-arguments-for-all-subprojects).
+
 ### Which are the differences between the `robotology-superbuild` and the `codyco-superbuild` ?
 
 The CoDyCo European project that funded the development and the mantainance of the `codyco-superbuild` ended in 2017 .
