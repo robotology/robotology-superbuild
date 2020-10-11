@@ -19,12 +19,13 @@ on:
 jobs:
   conda-build:    
     name: '[conda:Tags:${{ matrix.project_tags }}@${{ matrix.os }}@${{ matrix.build_type }}]'
-    # Windows is disabled due to the missing ipopt package
-    runs-on: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         build_type: [Release]
+        # Windows is disabled due to the missing ipopt package
+        os: [ubuntu-latest, macOS-latest]
         cmake_generator: 
           - "Ninja"
         project_tags:
