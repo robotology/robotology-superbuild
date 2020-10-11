@@ -48,7 +48,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Compilation related dependencies 
-        conda install -c conda-forge cmake compilers ninja pkg-config
+        conda install -c conda-forge cmake compilers make ninja pkg-config
         # Actual dependencies
         conda install -c conda-forge ace asio boost eigen freeglut gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
 
