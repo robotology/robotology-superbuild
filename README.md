@@ -413,9 +413,9 @@ Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify 
 ## Robot Testing
 This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option. 
 
-On Windows, this profile creates some long paths during the build process, so it is recommended if you enable it to 
+On Windows, this profile creates some long paths during the build process. If you enable it, it is recommended  to 
 keep the total path length of the robotology-superbuild build directory below 50 characters, or to enable the support for
-long path in Windows, following the instructions in the [official Windows documentation](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later).
+long path in Windows following the instructions in the [official Windows documentation](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later).
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Robot Testing profile are provided in
