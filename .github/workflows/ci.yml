@@ -230,11 +230,11 @@ jobs:
       if: matrix.os == 'windows-2019'
       run: |
         # To avoid spending a huge time compiling vcpkg dependencies, we download an archive  that comes precompiled with all the ports that we need 
-        choco install -y unzip
+        choco install -y wget unzip
         # To avoid problems with non-relocatable packages, we unzip the archive exactly in the same directory
         # that has been used to create the pre-compiled archive
         cd C:/
-        curl https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.5.0/vcpkg-robotology-with-gazebo.zip -o vcpkg-robotology-with-gazebo.zip
+        wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.5.0/vcpkg-robotology-with-gazebo.zip
         unzip vcpkg-robotology-with-gazebo.zip -d C:/
         rm vcpkg-robotology-with-gazebo.zip
         
