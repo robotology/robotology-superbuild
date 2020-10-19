@@ -75,6 +75,11 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_imuBosch_BNO055:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_yarpmod_SDLJoypad:BOOL=ON
                               -DENABLE_yarpmod_serialport:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                              -DENABLE_yarpmod_AudioPlayerWrapper:BOOL=ON
+                              -DENABLE_yarpmod_AudioRecorderWrapper:BOOL=ON
+                              -DENABLE_yarpmod_portaudio:BOOL=ON
+                              -DENABLE_yarpmod_portaudioPlayer:BOOL=ON
+                              -DENABLE_yarpmod_portaudioRecorder:BOOL=ON
                               -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
                               -DYARP_COMPILE_RobotTestingFramework_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
