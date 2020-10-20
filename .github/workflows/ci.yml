@@ -160,10 +160,8 @@ jobs:
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
-          - project_tags: Release202005feat01
-            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2020.05.feat-01.yaml"
-          - project_tags: Release202008patch01
-            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2020.08.patch-01.yaml"
+          - project_tags: Release202011
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2020.11.yaml"
     steps:
     - uses: actions/checkout@master
 
