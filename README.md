@@ -378,7 +378,7 @@ make
 ~~~
 using make on Linux or macOS or
 ~~~
-cmake --build . --target UPDATE_ALL
+cmake --build . --target ALL_UPDATE
 cmake --build .
 ~~~
 using Visual Studio on Windows or
