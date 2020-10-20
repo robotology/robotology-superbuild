@@ -71,6 +71,7 @@ Note that any dependencies of the included packages that is not available in the
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`forcetorque-yarp-devices`](https://github.com/robotology/forcetorque-yarp-devices). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
+| `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` | The robotology software packages related to event-driven. | [`event-driven`](https://github.com/robotology/event-driven) | `OFF` | [Documentation on event-driven profile.](#event-driven)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild.
 
@@ -106,14 +107,14 @@ Complete documentation on how to use a YCM-based superbuild is available in the 
 ### System Dependencies
 On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMake and Eigen (and other dependencies necessary for the software include in `robotology-superbuild`) using `apt-get`:
 ```
-sudo apt-get install build-essential cmake cmake-curses-gui coinor-libipopt-dev freeglut3-dev git libace-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev libdc1394-22-dev libedit-dev libeigen3-dev libgsl0-dev libjpeg-dev liblua5.1-dev libode-dev libopencv-dev libsdl1.2-dev libtinyxml-dev libv4l-dev libxml2-dev lua5.1 qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings qml-module-qtmultimedia qml-module-qtquick-controls qml-module-qtquick-dialogs qml-module-qtquick-window2 qml-module-qtquick2 qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev swig
+sudo apt-get install libeigen3-dev build-essential cmake cmake-curses-gui coinor-libipopt-dev freeglut3-dev libboost-system-dev libboost-filesystem-dev libboost-thread-dev libtinyxml-dev libedit-dev libace-dev libgsl0-dev libopencv-dev libode-dev liblua5.1-dev lua5.1 git swig qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev qml-module-qtquick2 qml-module-qtquick-window2 qml-module-qtmultimedia qml-module-qtquick-dialogs qml-module-qtquick-controls qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings libsdl1.2-dev libxml2-dev libv4l-dev
 ```
 
-For what regards CMake, the robotology-superbuild requires CMake 3.16 . If you are using a recent Debian-based system such as Ubuntu 20.04, the default CMake is recent enough and you do not need to do further steps.
+For what regards CMake, the robotology-superbuild requires CMake 3.12 . If you are using a recent Debian-based system such as Debian 10 or Ubuntu 20.04, the default CMake is recent enough and you do not need to do further steps.
 
 If instead you use an older distro in which the default version of CMake is older, you can easily install a newer CMake version in several ways. For the following distributions, we recommend the following methods:  
 * Ubuntu 18.04 : use the latest CMake release in the [Kitware APT repository](https://apt.kitware.com/). You can find the full instructions for the installation on the website.
-* Debian 10 : use the CMake in the `buster-backports` repository, following the instructions to install from backports available in  [Debian documentation](https://backports.debian.org/Instructions/).
+* Debian 9 : use the CMake in the `stretch-backports` repository, following the instructions to install from backports available in  [Debian documentation](https://backports.debian.org/Instructions/).
 More details can be found at https://github.com/robotology/QA/issues/364 .
 
 If you enabled any [profile](#profile-cmake-options) or [dependency](#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
@@ -253,7 +254,7 @@ The software in the superbuild depends on several C++  libraries: to install the
 For this reason, we provide a ready to use `vcpkg` workspace at https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases, that you can download and unzip in `C:/` and use directly from there, for example executing the following commands from the Git Bash shell:
 ~~~
 cd C:/
-wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/latest/download/vcpkg-robotology.zip
+wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.3.0/vcpkg-robotology.zip
 unzip vcpkg-robotology.zip -d C:/
 rm vcpkg-robotology.zip
 ~~~
@@ -313,48 +314,14 @@ If for any reason you do not want to use the provided scripts and you want to ma
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
 
 ## Windows Subsystem for Linux
-The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified.
+The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified, without the overhead of a virtual machine.
 
-As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the [robotology-superbuild on Linux](#linux). As the WSL enviroment is nevertheless different, there are a few things you need to care before using the robotology-superbuild on WSL, that are listed in the following, depending on whetever you are using WSL2 or WSL1.
+As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the [robotology-superbuild on Linux](#linux). As the WSL enviroment is nevertheless different, there are few things you need to care before using the robotology-superbuild on WSL, that are listed in the following.
 
-### WSL2
-
-#### Run graphical applications on WSL2
-The Linux instance in WSL2 are running as part of a lightweight virtual machine, so effectively the IP address of the WSL2 instance will be different from the IP address
-of the Windows host, and the Windows host can communicate with the WSL2 instance thanks to a virtual IP network. For this reason, to run graphical applications on WSL2, you 
-first need to install an X Server for Windows. Furthermore, you will need to configure your application to connect to the X Server that is running on the Windows host, you can do 
-so by adding the following lines in the `~/.bashrc` file of the WSL2 instance:
-~~~
-export WINDOWS_HOST=$(grep nameserver /etc/resolv.conf | awk '{print $2}')
-export DISPLAY=${WINDOWS_HOST}:0.0
-~~~
-As unfortunately the IP addresses of the virtual IP network change at every reboot, it is also necessary to configure the X Server that you use to accept connection for arbitrary IP addresses. Check  [`doc/wsl2-xserver-configuration.md`](doc/wsl2-xserver-configuration.md) for instructions on how to do so on several X Servers.
-
-#### Sanitize PATH enviroment variable for WSL2 
-By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
-as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
-To avoid that, you can add create in your WSL2 instance the `/etc/wsl.conf`, and then populate it with the following content:
-~~~
-[interop]
-appendWindowsPath = false
-~~~
-Note that you will need to restart your machine to make sure that this setting is taked into account. 
-
-#### Connect to a YARP server on a Windows host on WSL2 
-If you want your YARP applications on WSL2 to connect to a `yarpserver` that you launched on the Windows host, you need to add the following line to your WSL's `~/.bashrc`:
-~~~
-yarp conf ${WINDOWS_HOST} 10000 > /dev/null 2>&1
-~~~
-where `WINDOWS_HOST` needs to be defined as in "Run graphical applications on WSL2" section. 
-
-
-### WSL1
-With respect to WSL2, WSL1 uses the same IP address used by the Windows machine, so the amount of configuration and tweaks required are less.
-
-#### Run graphical applications on WSL1
+### Run graphical applications on WSL
 To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications, see https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/ for more info. For information of X Servers that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps .
 
-#### Sanitize enviroment variables for WSL1 
+### Sanitize enviroment variables for WSL
 By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
 as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
 To avoid that, you can add the following line in the WSL `.bashrc` that filters all the Windows paths from the WSL's enviromental variables:
@@ -411,11 +378,7 @@ operating system-specific installation documentation.
 Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify if your installation was successful.
 
 ## Robot Testing
-This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option. 
-
-On Windows, this profile creates some long paths during the build process. If you enable it, it is recommended  to 
-keep the total path length of the robotology-superbuild build directory below 50 characters, or to enable the support for
-long path in Windows following the instructions in the [official Windows documentation](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later).
+This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Robot Testing profile are provided in
@@ -520,6 +483,15 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
 
 ### System Dependencies
 To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [ESDCAN](#esdcan) for more information about the dependencies.
+
+## Event-driven
+This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option.
+
+### System Dependencies
+The steps necessary to install the system dependencies of the Core profile are provided in
+operating system-specific installation documentation.
+
+
 
 Dependencies-specific documentation
 ===================================
@@ -679,7 +651,7 @@ The `ROBOTOLOGY_USES_ESDCAN` option is used to enable support for interacting wi
 ### System Dependencies
 To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`esdcan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library.
 This library is already contained  in the vcpkg installation installed by the `robotology-superbuild` dependencies installer.
-If you use a custom vcpkg installation, you can install the  `esdcan-binary` custom port from the [`robotology-vcpkg-ports`](https://github.com/robotology/robotology-vcpkg-ports) repo.
+If you use a custom vcpkg installation, you can install the  `esdcan-binary` custom port from the [`robotology-vcpkg-binary-ports`](https://github.com/robotology/robotology-vcpkg-binary-ports) repo.
 
 To actually run the software that uses the esd CAN devices, you also need to install the esd CAN Driver for your specific esd CAN device.
 The installers for the esd CAN Driver should have been provided by esd, so ask for them to who provided you with the esd CAN device you want to use.
@@ -696,17 +668,6 @@ FAQs
 See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-faq.7.html).
 For questions related to how to modify the rootology-superbuild itself, such as how to add a new package, how to do a release, check
 the Developers' FAQs document at [`doc/developers-faqs.md`](doc/developers-faqs.md). 
-
-### How do I pass CMake options to the projects built by the `robotology-superbuild` ? 
-
-When configuration the robotology-superbuild, you can pass the `YCM_EP_ADDITIONAL_CMAKE_ARGS` CMake option:
-~~~
-cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DENABLE_yarpmod_SDLJoypad:BOOL=ON"
-~~~
-This option can be used to specify parameters that are passed to all CMake projects of the superbuild (as it is useful for some options, for example `-DBUILD_TESTING:BOOL=ON`). 
-This option can be used also for CMake options that are related to a single project, as all the other projects will ignore the option.
-
-For more information on this option, see the [official YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/manual/ycm-superbuild.7.html#specifying-additional-cmake-arguments-for-all-subprojects).
 
 ### Which are the differences between the `robotology-superbuild` and the `codyco-superbuild` ?
 
@@ -743,3 +704,4 @@ Mantainers
 | Core, Dynamics, iCub Head, iCub Basic Demos | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
 | Human Dynamics | Yeshasvi Tirupachuri [@Yeshasvitvs](https://github.com/Yeshasvitvs) |
+| Event-driven | Arren Glover [@arrenglover](https://github.com/arrenglover) |
