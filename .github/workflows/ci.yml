@@ -25,8 +25,7 @@ jobs:
       matrix:
         build_type: [Release]
         # Windows is disabled due to the missing ipopt package
-        # macOS is disabled due to the missing freeglut package
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest]
         cmake_generator: 
           - "Ninja"
         project_tags:
@@ -53,15 +52,16 @@ jobs:
         # Compilation related dependencies 
         mamba install -c conda-forge cmake compilers make ninja pkg-config
         # Actual dependencies
-        mamba install -c conda-forge ace asio boost eigen freeglut gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
+        mamba install -c conda-forge ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
+      if: contains(matrix.os, 'ubuntu')
       shell: bash -l {0}
       run: |
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
-        mamba install -c conda-forge expat-cos6-x86_64 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
+        mamba install -c conda-forge freeglut expat-cos6-x86_64 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
 
     - name: Configure [Conda]
       # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
