@@ -526,7 +526,7 @@ To run a human dynamics estimation scenario, we need a Windows machine to instal
 This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option.
 
 ### System Dependencies
-The steps necessary to install the system dependencies of the Core profile are provided in
+The steps necessary to install the system dependencies of the Event-driven profile are provided in
 operating system-specific installation documentation.
 
 Dependencies-specific documentation

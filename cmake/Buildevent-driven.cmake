@@ -10,7 +10,7 @@ find_or_build_package(YCM QUIET)
 ycm_ep_helper(event-driven TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/event-driven.git
-              DEPENDS	YARP
-              	      	YCM
+              DEPENDS YARP
+                      YCM
               COMPONENT event-driven
               FOLDER robotology)
