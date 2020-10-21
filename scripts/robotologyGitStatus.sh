@@ -35,11 +35,11 @@ if [ -d "${superbuild_root}" ] ; then
 fi
 
 for subdir in ${subdirs}; do \
-#    if [ -d "${subdir}" ] ; then
+    if [ -d "${subdir}" ] ; then
         for i in ${subdir}/*/; do \
             printGitStatus $i
         done
-#    fi
+    fi
 done
 echo "--------------------------------------------"
 
