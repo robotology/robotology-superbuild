@@ -523,7 +523,7 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
 To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [ESDCAN](#esdcan) for more information about the dependencies.
 
 ## Event-driven
-This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option.
+This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. For the moment, Windows is not a supported platform.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Event-driven profile are provided in
