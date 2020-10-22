@@ -302,9 +302,9 @@ To check the values of the enviroment variables modified by the powershell scrip
 If you do not want to modify the user enviroment variables permanently, the superbuild provides an automatically generated `setup.bat` batch script in `<directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.bat`. This script will set
 all the necessary enviromental variables to use the software installed by the robotology-superbuild. However, as in Windows there is no `.bashrc` file-equivalent, you will need to call this script every time you open a batch terminal in which you want to run the software installed by the robotology-superbuild.
 
-Another option if you do not want to to modify the user enviroment variables permanently and you use the Git Bash as your main terminal, 
+Another option if you do not want to to modify the user enviroment variables permanently and you use the Git Bash as your main terminal,
 is to use the automatically generated `setup.sh` script,  available in `<directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh`.
-You can source automatically this script for any new Git Bash instance by creating a `.bash_profile` file  in your `C:/Users/<UserName>`  directory, and by adding in it the file: 
+You can source automatically this script for any new Git Bash instance by creating a `.bash_profile` file  in your `C:/Users/<UserName>`  directory, and by adding in it the file:
 ~~~
 source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh
 ~~~
@@ -322,8 +322,8 @@ As all the software running on Linux distributions can run unmodified on Windows
 
 #### Run graphical applications on WSL2
 The Linux instance in WSL2 are running as part of a lightweight virtual machine, so effectively the IP address of the WSL2 instance will be different from the IP address
-of the Windows host, and the Windows host can communicate with the WSL2 instance thanks to a virtual IP network. For this reason, to run graphical applications on WSL2, you 
-first need to install an X Server for Windows. Furthermore, you will need to configure your application to connect to the X Server that is running on the Windows host, you can do 
+of the Windows host, and the Windows host can communicate with the WSL2 instance thanks to a virtual IP network. For this reason, to run graphical applications on WSL2, you
+first need to install an X Server for Windows. Furthermore, you will need to configure your application to connect to the X Server that is running on the Windows host, you can do
 so by adding the following lines in the `~/.bashrc` file of the WSL2 instance:
 ~~~
 export WINDOWS_HOST=$(grep nameserver /etc/resolv.conf | awk '{print $2}')
@@ -331,7 +331,7 @@ export DISPLAY=${WINDOWS_HOST}:0.0
 ~~~
 As unfortunately the IP addresses of the virtual IP network change at every reboot, it is also necessary to configure the X Server that you use to accept connection for arbitrary IP addresses. Check  [`doc/wsl2-xserver-configuration.md`](doc/wsl2-xserver-configuration.md) for instructions on how to do so on several X Servers.
 
-#### Sanitize PATH enviroment variable for WSL2 
+#### Sanitize PATH enviroment variable for WSL2
 By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
 as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
 To avoid that, you can add create in your WSL2 instance the `/etc/wsl.conf`, and then populate it with the following content:
@@ -339,14 +339,14 @@ To avoid that, you can add create in your WSL2 instance the `/etc/wsl.conf`, and
 [interop]
 appendWindowsPath = false
 ~~~
-Note that you will need to restart your machine to make sure that this setting is taked into account. 
+Note that you will need to restart your machine to make sure that this setting is taked into account.
 
-#### Connect to a YARP server on a Windows host on WSL2 
+#### Connect to a YARP server on a Windows host on WSL2
 If you want your YARP applications on WSL2 to connect to a `yarpserver` that you launched on the Windows host, you need to add the following line to your WSL's `~/.bashrc`:
 ~~~
 yarp conf ${WINDOWS_HOST} 10000 > /dev/null 2>&1
 ~~~
-where `WINDOWS_HOST` needs to be defined as in "Run graphical applications on WSL2" section. 
+where `WINDOWS_HOST` needs to be defined as in "Run graphical applications on WSL2" section.
 
 
 ### WSL1
@@ -355,7 +355,7 @@ With respect to WSL2, WSL1 uses the same IP address used by the Windows machine,
 #### Run graphical applications on WSL1
 To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications, see https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/ for more info. For information of X Servers that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps .
 
-#### Sanitize enviroment variables for WSL1 
+#### Sanitize enviroment variables for WSL1
 By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
 as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
 To avoid that, you can add the following line in the WSL `.bashrc` that filters all the Windows paths from the WSL's enviromental variables:
@@ -379,7 +379,7 @@ make
 ~~~
 using make on Linux or macOS or
 ~~~
-cmake --build . --target UPDATE_ALL
+cmake --build . --target ALL_UPDATE
 cmake --build .
 ~~~
 using Visual Studio on Windows or
@@ -412,9 +412,9 @@ operating system-specific installation documentation.
 Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify if your installation was successful.
 
 ## Robot Testing
-This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option. 
+This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option.
 
-On Windows, this profile creates some long paths during the build process. If you enable it, it is recommended  to 
+On Windows, this profile creates some long paths during the build process. If you enable it, it is recommended  to
 keep the total path length of the robotology-superbuild build directory below 50 characters, or to enable the support for
 long path in Windows following the instructions in the [official Windows documentation](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later).
 
@@ -533,7 +533,7 @@ Dependencies-specific documentation
 ===================================
 
 ## Gazebo
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option. 
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option.
 This option is still set to `OFF` on Windows as it is still experimental.
 
 ### System Dependencies
@@ -703,15 +703,15 @@ FAQs
 
 See also YCM documentation for [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-faq.7.html).
 For questions related to how to modify the rootology-superbuild itself, such as how to add a new package, how to do a release, check
-the Developers' FAQs document at [`doc/developers-faqs.md`](doc/developers-faqs.md). 
+the Developers' FAQs document at [`doc/developers-faqs.md`](doc/developers-faqs.md).
 
-### How do I pass CMake options to the projects built by the `robotology-superbuild` ? 
+### How do I pass CMake options to the projects built by the `robotology-superbuild` ?
 
 When configuration the robotology-superbuild, you can pass the `YCM_EP_ADDITIONAL_CMAKE_ARGS` CMake option:
 ~~~
 cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DENABLE_yarpmod_SDLJoypad:BOOL=ON"
 ~~~
-This option can be used to specify parameters that are passed to all CMake projects of the superbuild (as it is useful for some options, for example `-DBUILD_TESTING:BOOL=ON`). 
+This option can be used to specify parameters that are passed to all CMake projects of the superbuild (as it is useful for some options, for example `-DBUILD_TESTING:BOOL=ON`).
 This option can be used also for CMake options that are related to a single project, as all the other projects will ignore the option.
 
 For more information on this option, see the [official YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/manual/ycm-superbuild.7.html#specifying-additional-cmake-arguments-for-all-subprojects).
@@ -728,6 +728,11 @@ and of the build directories. For the sake of simplicity, the `robotology-superb
 directory and all external projects in the external directory.
 * Support for software that depends on Gazebo (gazebo-yarp-plugins, icub-gazebo, ...) is enabled by default in Linux and macOS .
 * In the `robotology-superbuild` the compilation for dynamics-related software (iDynTree, balancing and walking controllers) needs to be explicity enabled using the `ROBOTOLOGY_ENABLE_DYNAMICS` that is `OFF` by default.
+
+### How can I check the status of each subproject?
+
+It is possible to run the bash script named ``robotologyGitStatus.sh`` in the ``scripts`` folder. For example, on linux, from the ``robotology-superbuild`` root run ``bash scripts/robotologyGitStatus.sh`` to print the status of each subproject.
+This script can run from any directory, provided that the path to the ``robotologyGitStatus.sh`` script is given to ``bash``.
 
 ### I successfully used the `robotology-superbuild` for my project, how do I cite it in my publication?
 
