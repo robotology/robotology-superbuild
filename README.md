@@ -31,6 +31,7 @@ Table of Contents
     * [iCub Basic Demos profile](#icub-basic-demos)
     * [Teleoperation profile](#teleoperation)
     * [Human Dynamics profile](#human-dynamics)
+    * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
     * [MATLAB](#matlab)
