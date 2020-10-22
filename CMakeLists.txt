@@ -65,6 +65,7 @@ option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." T
 option(ROBOTOLOGY_ENABLE_ROBOT_TESTING "Enable compilation of software for robot testing." FALSE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
+option(ROBOTOLOGY_ENABLE_EVENT_DRIVEN "Enable compilation of software for event-driven." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necessary for iCub basic demonstrations." FALSE)
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
@@ -183,6 +184,11 @@ if(ROBOTOLOGY_ENABLE_GRASPING)
   find_or_build_package(icub-grasp-demo)
 endif()
 
+# Event-driven
+if(ROBOTOLOGY_ENABLE_EVENT_DRIVEN)
+  find_or_build_package(event-driven)
+endif()
+
 # IOL 
 if(ROBOTOLOGY_ENABLE_IOL)
   if(NOT ROBOTOLOGY_USES_LUA)
@@ -277,3 +283,4 @@ set_package_properties(PkgConfig PROPERTIES TYPE RUNTIME)
 set_package_properties(Doxygen PROPERTIES TYPE RUNTIME)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+

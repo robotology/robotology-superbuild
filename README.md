@@ -31,6 +31,7 @@ Table of Contents
     * [iCub Basic Demos profile](#icub-basic-demos)
     * [Teleoperation profile](#teleoperation)
     * [Human Dynamics profile](#human-dynamics)
+    * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
     * [MATLAB](#matlab)
@@ -71,6 +72,7 @@ Note that any dependencies of the included packages that is not available in the
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`forcetorque-yarp-devices`](https://github.com/robotology/forcetorque-yarp-devices). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
+| `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` | The robotology software packages related to event-driven. | [`event-driven`](https://github.com/robotology/event-driven) | `OFF` | [Documentation on event-driven profile.](#event-driven)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild.
 
@@ -521,6 +523,13 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
 ### System Dependencies
 To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [ESDCAN](#esdcan) for more information about the dependencies.
 
+## Event-driven
+This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. For the moment, Windows is not a supported platform.
+
+### System Dependencies
+The steps necessary to install the system dependencies of the Event-driven profile are provided in
+operating system-specific installation documentation.
+
 Dependencies-specific documentation
 ===================================
 
@@ -748,3 +757,5 @@ Mantainers
 | Core, Dynamics, iCub Head, iCub Basic Demos | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
 | Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
 | Human Dynamics | Yeshasvi Tirupachuri [@Yeshasvitvs](https://github.com/Yeshasvitvs) |
+| Event-driven | Arren Glover [@arrenglover](https://github.com/arrenglover) |
+
