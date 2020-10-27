@@ -10,11 +10,11 @@ repositories:
   ycm:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: e68db4421d1282db5b90428c517f8bd63b38cb56
+    version: c3242e8a2d6b50d7ba9642783820a426d2bffa84
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.4.1
+    version: b26668b161832ddfebe3089f6b494549b6462fb1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
