@@ -9,4 +9,5 @@ ycm_ep_helper(blocktestcore TYPE GIT
               REPOSITORY robotology/blocktest.git
               TAG master
               COMPONENT core
-              FOLDER robotology)
+              FOLDER robotology
+              CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)
