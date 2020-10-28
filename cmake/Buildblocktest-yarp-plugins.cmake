@@ -15,4 +15,5 @@ ycm_ep_helper(blocktest-yarp-plugins TYPE GIT
               COMPONENT core
               FOLDER robotology
               DEPENDS YARP
-                      blocktestcore)
+                      blocktestcore
+              CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)
