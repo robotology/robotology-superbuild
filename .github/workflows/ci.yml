@@ -211,6 +211,8 @@ jobs:
         cmake --version
         brew cask install xquartz
         # Update homebrew 
+        # Workaround for https://github.com/actions/virtual-environments/issues/1811#issuecomment-718475660
+        brew unlink python@3.8
         brew update
         brew upgrade
         # Core dependencies 
