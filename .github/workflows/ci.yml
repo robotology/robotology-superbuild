@@ -209,12 +209,10 @@ jobs:
       if: matrix.os == 'macOS-latest'
       run: |
         cmake --version
-        brew uninstall openssl@1.0.2t
-        brew uninstall python@2.7.17
-        brew untap local/openssl
-        brew untap local/python2
         brew cask install xquartz
         # Update homebrew 
+        # Workaround for https://github.com/actions/virtual-environments/issues/1811#issuecomment-718475660
+        brew unlink python@3.8
         brew update
         brew upgrade
         # Core dependencies 
