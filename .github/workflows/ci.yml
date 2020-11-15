@@ -69,7 +69,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Additional dependencies only useful on Windows
-        mamba install -c conda-forge  vs2017_win-64
+        mamba install -c conda-forge clang vs2017_win-64
 
     - name: Configure [Conda]
       # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
