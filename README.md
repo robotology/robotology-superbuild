@@ -661,8 +661,7 @@ To configure the Oculus SDK follow the steps for Oculus SDK mentioned [here](htt
 ## Cyberith
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_CYBERITH_SDK` CMake option.
 
-**Warning: at the moment the Oculus SDK does not support macOS and Linux, so this option is only supported
-on Windows.**
+**Warning: at the moment the Cyberith SDK does not support macOS and Linux, so this option is only supported on Windows.**
 
 ### System Dependencies
 To check and install the Cyberith SDK, please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
