@@ -205,7 +205,7 @@ if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
     find_or_build_package(diagnosticdaemon)
   endif()
   if((NOT WIN32) AND (NOT APPLE))
-    find_or_build_package(xsensmt-yarp-driver)
+    find_or_build_package(yarp-device-xsensmt)
   endif()
 endif()
 
