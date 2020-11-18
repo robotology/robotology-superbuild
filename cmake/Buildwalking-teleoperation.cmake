@@ -14,8 +14,6 @@ ycm_ep_helper(walking-teleoperation TYPE GIT
               TAG master
               COMPONENT teleoperation
               FOLDER robotology
-#              CMAKE_ARGS -DWALKING_TELEOPERATION_USES_CYBSDK:BOOL=${ROBOTOLOGY_USES_CYBERITH_SDK}
-#                         -DWALKING_TELEOPERATION_USES_OCULUSSDK:BOOL=${ROBOTOLOGY_USES_OCULUS_SDK}
               DEPENDS iDynTree
                       ICUB
                       YARP)

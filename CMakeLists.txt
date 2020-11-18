@@ -222,6 +222,10 @@ if(ROBOTOLOGY_ENABLE_R1_ROBOT)
   find_or_build_package(cer)
 endif()
 
+if(ROBOTOLOGY_USES_OCULUS_SDK)
+  find_or_build_package(yarp-device-ovrheadset)
+endif()
+
 if(ROBOTOLOGY_USES_MATLAB)
   # The following line is to properly configure the matlab and simulink software installed by the superbuild
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
