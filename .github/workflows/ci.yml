@@ -214,6 +214,12 @@ jobs:
     - name: Dependencies [macOS]
       if: contains(matrix.os, 'macos')
       run: |
+        git clone https://github.com/robotology/ycm
+        cd ycm
+        mkdir build
+        cd build
+        cmake ..
+        cmake --build .
         cmake --version
         brew cask install xquartz
         # Update homebrew 
