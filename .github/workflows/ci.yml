@@ -142,7 +142,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-latest, macOS-latest, windows-2019]
+        os: [ubuntu-latest, macos-latest, macos-11.0, windows-2019]
         project_tags: [Default, Unstable, Release202011]
         include:
           - os: ubuntu-latest
@@ -151,10 +151,16 @@ jobs:
           - os: ubuntu-latest
             build_type: Release
             cmake_generator: "Unix Makefiles"
-          - os: macOS-latest
+          - os: macos-latest
             build_type: Debug
             cmake_generator: "Unix Makefiles"
-          - os: macOS-latest
+          - os: macos-latest
+            build_type: Release
+            cmake_generator: "Xcode"
+          - os: macos-11.0
+            build_type: Debug
+            cmake_generator: "Unix Makefiles"
+          - os: macos-11.0
             build_type: Release
             cmake_generator: "Xcode"
           - project_tags: Default
@@ -205,8 +211,8 @@ jobs:
         chmod +x ./.ci/install_debian.sh
         sudo ./.ci/install_debian.sh
 
-    - name: Dependencies [MacOS]
-      if: matrix.os == 'macOS-latest'
+    - name: Dependencies [macOS]
+      if: contains(matrix.os, 'macos')
       run: |
         cmake --version
         brew cask install xquartz
@@ -242,7 +248,7 @@ jobs:
     # ===================
     
     - name: Configure [Ubuntu&macOS]
-      if: matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest'
+      if: contains(matrix.os, 'macos') || matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         mkdir -p build
@@ -250,7 +256,7 @@ jobs:
         cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
     - name: Disable macOS unsupported options 
-      if: matrix.os == 'macOS-latest'
+      if: contains(matrix.os, 'macos')
       run: | 
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS 
@@ -269,7 +275,7 @@ jobs:
 
 
     - name: Build  [Ubuntu&macOS]
-      if: matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest'
+      if: contains(matrix.os, 'macos') || matrix.os == 'ubuntu-latest'
       shell: bash
       run: |
         cd build
