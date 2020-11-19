@@ -309,7 +309,7 @@ jobs:
         source /c/robotology/scripts/setup-deps.sh
         source ${GITHUB_WORKSPACE}/build/install/share/robotology-superbuild/setup.sh
         # List yarp devices
-        yarp dev --list
+        yarpdev --list
 
     - name: Check if YARP devices are correctly listed [Ubuntu/macOS]
       if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macOS')
@@ -318,7 +318,7 @@ jobs:
         # Source environment scripts
         source ${GITHUB_WORKSPACE}/build/install/share/robotology-superbuild/setup.sh
         # List yarp devices
-        yarp dev --list
+        yarpdev --list
 
     # Just for release builds we gerate the installer
     - name: Generate installer [Windows]
