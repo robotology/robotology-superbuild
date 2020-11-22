@@ -107,6 +107,14 @@ repositories:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
     version: v1.16.0
+  icub-firmware:
+    type: git
+    url: https://github.com/robotology/icub-firmware.git
+    version: v1.16.0
+  icub-firmware-build:
+    type: git
+    url: https://github.com/robotology/icub-firmware-build.git
+    version: v1.16.0
   xsensmt-yarp-driver:
     type: git
     url: https://github.com/robotology/xsensmt-yarp-driver.git
