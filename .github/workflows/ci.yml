@@ -116,12 +116,6 @@ jobs:
       run: |
         apt-get -y -t buster-backports install cmake
         
-    - name: Install additional packages for Debian Sid [Debian Sid]
-      if: matrix.docker_image == 'debian:sid'
-      run: |
-        # Workaround for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=967008
-        apt-get -y install libdart-external-odelcpsolver-dev
-        
     - name: Configure [Docker]
       run: |
         mkdir -p build
