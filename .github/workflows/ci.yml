@@ -69,7 +69,7 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
     - name: Build  [Conda]
       shell: bash -l {0}
@@ -99,36 +99,36 @@ jobs:
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
-                      
+
     container:
       image: ${{ matrix.docker_image }}
-  
+
     steps:
     - uses: actions/checkout@master
-          
+
     - name: Dependencies [Docker]
       run: |
         chmod +x ./.ci/install_debian.sh
         ./.ci/install_debian.sh
 
-    - name: Install CMake 3.16 [Docker/Debian Buster] 
+    - name: Install CMake 3.16 [Docker/Debian Buster]
       if: matrix.docker_image == 'debian:buster-backports'
       run: |
         apt-get -y -t buster-backports install cmake
-        
+
     - name: Install additional packages for Debian Sid [Debian Sid]
       if: matrix.docker_image == 'debian:sid'
       run: |
         # Workaround for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=967008
         apt-get -y install libdart-external-odelcpsolver-dev
-        
+
     - name: Configure [Docker]
       run: |
         mkdir -p build
         cd build
         # Octave is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/384
         # Python is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/494
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
     - name: Build  [Docker]
       run: |
@@ -228,6 +228,8 @@ jobs:
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
         brew install libmatio
+        # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
+        brew install cppad qhull
         # ROBOTOLOGY_USES_GAZEBO dependencies
         brew install osrf/simulation/gazebo11
         # CI-specific dependencies 
@@ -255,8 +257,8 @@ jobs:
       shell: bash
       run: |
         mkdir -p build
-        cd build    
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON  -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+        cd build
+        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
     - name: Disable macOS unsupported options 
       if: contains(matrix.os, 'macos')
