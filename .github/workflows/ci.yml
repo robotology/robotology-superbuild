@@ -79,7 +79,7 @@ jobs:
 
   docker-build:    
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
@@ -142,19 +142,22 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-latest, macos-latest, macos-11.0, windows-2019]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11.0, windows-2019]
         project_tags: [Default, Unstable, Release202011]
         include:
-          - os: ubuntu-latest
-            build_type: Debug
-            cmake_generator: "Ninja"
-          - os: ubuntu-latest
+          - os: ubuntu-18.04
             build_type: Release
             cmake_generator: "Unix Makefiles"
-          - os: macos-latest
+          - os: ubuntu-20.04
+            build_type: Debug
+            cmake_generator: "Ninja"
+          - os: ubuntu-20.04
+            build_type: Release
+            cmake_generator: "Unix Makefiles"
+          - os: macos-10.15
             build_type: Debug
             cmake_generator: "Unix Makefiles"
-          - os: macos-latest
+          - os: macos-10.15
             build_type: Release
             cmake_generator: "Xcode"
           - os: macos-11.0
@@ -185,7 +188,7 @@ jobs:
     # Remove apt repos that are known to break from time to time 
     # See https://github.com/actions/virtual-environments/issues/323  
     - name: Remove broken apt repos [Ubuntu]
-      if: matrix.os == 'ubuntu-latest'
+      if: contains(matrix.os, 'ubuntu')
       run: |
         for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
         
@@ -206,7 +209,7 @@ jobs:
     # packages with os-specific steps.
     
     - name: Dependencies [Ubuntu]
-      if: matrix.os == 'ubuntu-latest'
+      if: contains(matrix.os, 'ubuntu')
       run: |
         chmod +x ./.ci/install_debian.sh
         sudo ./.ci/install_debian.sh
@@ -232,7 +235,7 @@ jobs:
         cmake --version
         
     - name: Dependencies [Windows]
-      if: matrix.os == 'windows-2019'
+      if: contains(matrix.os, 'windows')
       run: |
         # To avoid spending a huge time compiling vcpkg dependencies, we download an archive  that comes precompiled with all the ports that we need 
         choco install -y wget unzip
@@ -248,7 +251,7 @@ jobs:
     # ===================
     
     - name: Configure [Ubuntu&macOS]
-      if: contains(matrix.os, 'macos') || matrix.os == 'ubuntu-latest'
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
         mkdir -p build
@@ -263,7 +266,7 @@ jobs:
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
     - name: Configure [Windows]
-      if: matrix.os == 'windows-2019'
+      if: contains(matrix.os, 'windows')
       shell: bash
       run: |
         # Make sure that Gazebo packages can be found by CMake
@@ -275,7 +278,7 @@ jobs:
 
 
     - name: Build  [Ubuntu&macOS]
-      if: contains(matrix.os, 'macos') || matrix.os == 'ubuntu-latest'
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
         cd build
@@ -286,7 +289,7 @@ jobs:
 
     # Just for  release jobs we also compile Windows in Debug, to ensure that Debug libraries are included in the installer
     - name: Build (Debug) [Windows]
-      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
+      if: github.event_name == 'release' && matrix.project_tags == 'Default' && contains(matrix.os, 'windows')
       shell: bash
       run: |
         cd build
@@ -297,7 +300,7 @@ jobs:
         rm -rf ./robotology
 
     - name: Build (Release) [Windows]
-      if: matrix.os == 'windows-2019'
+      if: contains(matrix.os, 'windows')
       shell: bash
       run: |
         cd build
