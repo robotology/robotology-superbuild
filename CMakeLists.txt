@@ -64,6 +64,7 @@ option(ROBOTOLOGY_USES_CYBERITH_SDK "Enable compilation of software that depend 
 option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." TRUE)
 option(ROBOTOLOGY_ENABLE_ROBOT_TESTING "Enable compilation of software for robot testing." FALSE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
+option(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS "Enable compilation of all the dependencies of bipedal-locomotion-framework." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 option(ROBOTOLOGY_ENABLE_EVENT_DRIVEN "Enable compilation of software for event-driven." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
@@ -163,7 +164,14 @@ if(ROBOTOLOGY_ENABLE_DYNAMICS)
   find_or_build_package(whole-body-controllers)
   if(ROBOTOLOGY_USES_GAZEBO)
     find_or_build_package(icub-gazebo-wholebody)
-  endif()    
+  endif()
+endif()
+
+if(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
+  find_or_build_package(manif)
+  find_or_build_package(qhull)
+  find_or_build_package(CppAD)
+  find_or_build_package(casadi)
 endif()
 
 # Teleoperation
