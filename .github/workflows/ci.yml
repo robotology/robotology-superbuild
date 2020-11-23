@@ -25,9 +25,7 @@ jobs:
       matrix:
         build_type: [Release]
         # Windows is disabled due to the missing ipopt package
-        os: [ubuntu-latest, macos-latest]
-        cmake_generator: 
-          - "Ninja"
+        os: [ubuntu-latest, macos-latest, windows-2019]
         project_tags:
           - Default
           - Unstable
@@ -63,13 +61,29 @@ jobs:
         # See https://github.com/robotology/robotology-superbuild/issues/477
         mamba install expat-cos6-x86_64 freeglut libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
 
-    - name: Configure [Conda]
+    - name: Configure [Conda/Linux&macOS]
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
       shell: bash -l {0}
       run: |
         mkdir -p build
         cd build
-        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}"  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -GNinja -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+
+    - name: Configure [Conda/Windows]
+      if: contains(matrix.os, 'windows')
+      # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
+      shell: bash -l {0}
+      run: |
+        # Workaround for https://github.com/conda-forge/freeglut-feedstock/issues/26
+        mamba install freeglut==3.0.0
+        # Workaround for https://github.com/conda-forge/gsl-feedstock/pull/55
+        curl https://raw.githubusercontent.com/conda-forge/gsl-feedstock/af134d827b7e19992b9e034bf86ad7d4b4b67142/recipe/windows_shared.gsl_types.h -o gsl_types.h
+        cp gsl_types.h $CONDA_PREFIX/Library/include/gsl
+        rm gsl_types.h
+        mkdir -p build
+        cd build
+        cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
