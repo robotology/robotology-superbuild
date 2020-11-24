@@ -8,4 +8,5 @@ ycm_ep_helper(qhull TYPE GIT
               STYLE GITHUB
               REPOSITORY qhull/qhull.git
               TAG master
-              COMPONENT external)
+              COMPONENT external
+              CMAKE_ARGS -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON)
