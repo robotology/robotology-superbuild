@@ -74,7 +74,7 @@ repositories:
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
-    version: v0.5.2
+    version: v0.6.2
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
