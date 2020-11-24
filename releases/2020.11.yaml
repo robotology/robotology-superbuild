@@ -62,7 +62,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v1.1.0
+    version: v2.0.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -70,11 +70,11 @@ repositories:
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
-    version: v5.1
+    version: v5.3
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
-    version: v0.5.2
+    version: v0.6.2
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
@@ -82,7 +82,7 @@ repositories:
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.2.1
+    version: v0.3.3
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
