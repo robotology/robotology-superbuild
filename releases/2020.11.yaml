@@ -106,7 +106,7 @@ repositories:
   wearables:
     type: git
     url: https://github.com/robotology/wearables.git
-    version: v1.0.0
+    version: v1.1.0
   human-dynamics-estimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
