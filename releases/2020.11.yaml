@@ -70,7 +70,7 @@ repositories:
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
-    version: v5.1
+    version: v5.3
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
