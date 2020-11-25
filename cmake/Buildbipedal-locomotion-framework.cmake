@@ -30,4 +30,8 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               COMPONENT dynamics
               FOLDER robotology
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
+                         -DFRAMEWORK_USE_manif:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         -DFRAMEWORK_USE_Qhull:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         -DFRAMEWORK_USE_cppad:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
