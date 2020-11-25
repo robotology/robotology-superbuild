@@ -159,13 +159,13 @@ jobs:
             cmake_generator: "Unix Makefiles"
           - os: macos-10.15
             build_type: Release
-            cmake_generator: "Xcode"
+            cmake_generator: "Ninja"
           - os: macos-11.0
             build_type: Debug
             cmake_generator: "Unix Makefiles"
           - os: macos-11.0
             build_type: Release
-            cmake_generator: "Xcode"
+            cmake_generator: "Ninja"
           - project_tags: Default
             project_tags_cmake_options: ""
           - project_tags: Unstable
@@ -225,7 +225,7 @@ jobs:
         brew update
         brew upgrade
         # Core dependencies 
-        brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt5 sqlite swig tinyxml
+        brew install ace boost cmake eigen gsl ipopt jpeg libedit ninja opencv pkg-config portaudio qt5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
         brew install libmatio
         # ROBOTOLOGY_USES_GAZEBO dependencies
