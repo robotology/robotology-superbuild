@@ -102,7 +102,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/dic-iit/bipedal-locomotion-framework.git
-    version: 64708a76218eaf163c175ed9e571466c79f1e8e8
+    version: 7dbc6d4ad0dbab9765d3905f2e9e8452262e81de
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
