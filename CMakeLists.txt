@@ -28,6 +28,13 @@ include(FeatureSummary)
 macro(install)
 endmacro()
 
+# Workaround for Xcode 12 support
+if(POLICY CMP0114)
+  if(CMAKE_XCODE_BUILD_SYSTEM VERSION_GREATER_EQUAL 12)
+    cmake_policy(SET CMP0114 NEW)
+  endif()
+endif()
+
 set(YCM_USE_CMAKE_PROPOSED TRUE CACHE BOOL "Use files including unmerged cmake patches")
 
 # YCM options 
