@@ -3,13 +3,18 @@
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
 include(YCMEPHelper)
+include(FindOrBuildPackage)
+
+find_or_build_package(YARP QUIET)
+find_or_build_package(iDynTree QUIET)
+find_or_build_package(matio-cpp QUIET)
 
 set(bipedal-locomotion-framework_DEPENDS "")
 list(APPEND bipedal-locomotion-framework_DEPENDS YARP)
 list(APPEND bipedal-locomotion-framework_DEPENDS iDynTree)
+list(APPEND bipedal-locomotion-framework_DEPENDS matio-cpp)
 
 if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
-  include(FindOrBuildPackage)
 
   find_or_build_package(manif QUIET)
   find_or_build_package(qhull QUIET)
