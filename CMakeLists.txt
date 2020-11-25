@@ -120,7 +120,6 @@ endif()
 set(YCM_FOLDER robotology)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.11.1)
-message(STATUS "YCM_TAG used for YCMBootstrap: ${YCM_TAG}")
 include(YCMBootstrap)
 
 include(FindOrBuildPackage)
