@@ -91,6 +91,10 @@ repositories:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
     version: v0.6.2
+  matio-cpp:
+    type: git
+    url: https://github.com/dic-iit/matio-cpp.git
+    version: 6db196335cd35489f2627cfdce67808c16389be9
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
