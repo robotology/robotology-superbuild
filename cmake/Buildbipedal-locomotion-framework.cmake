@@ -23,7 +23,7 @@ if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
 
 endif()
 
-ycm_ep_helper(BipedalLocomotionFramework TYPE GIT
+ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/bipedal-locomotion-framework.git
               TAG master
