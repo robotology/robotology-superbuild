@@ -135,7 +135,7 @@ To use GNU Makefile generators:
 cmake ../
 make
 ```
-To use Xcode project generators 
+To use Xcode project generators
 ```bash
 cmake ../ -G Xcode
 xcodebuild [-configuration Release|Debug] [-jobs <n>] [-list | -target <target_name>]
