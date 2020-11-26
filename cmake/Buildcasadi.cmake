@@ -16,8 +16,8 @@ ycm_ep_helper(casadi TYPE GIT
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
                          -DWITH_OSQP:BOOL=ON
                          -DUSE_SYSTEM_WISE_OSQP:BOOL=ON
-                         -DINCLUDE_PREFIX:PATH="include"
-                         -DCMAKE_PREFIX:PATH="lib/cmake/casadi"
-                         -DLIB_PREFIX:PATH="lib"
-                         -DBIN_PREFIX:PATH="bin"
+                         -DINCLUDE_PREFIX:PATH=include
+                         -DCMAKE_PREFIX:PATH=lib/cmake/casadi
+                         -DLIB_PREFIX:PATH=lib
+                         -DBIN_PREFIX:PATH=bin
               DEPENDS osqp)
