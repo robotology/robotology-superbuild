@@ -135,12 +135,15 @@ To use GNU Makefile generators:
 cmake ../
 make
 ```
-To use Xcode project generators
+To use Xcode project generators 
 ```bash
 cmake ../ -G Xcode
 xcodebuild [-configuration Release|Debug] [-jobs <n>] [-list | -target <target_name>]
 ```
 `-list` gives the list of available targets.
+
+**Note: as of late 2020, the Xcode 12 generator is not supported, for more info see https://github.com/robotology/ycm/issues/368. 
+  All previous versions instead should work fine. If you have Xcode 12 installed in your macOS system, please use the GNU Makefiles generator.**
 
 ### Configure your environment
 The superbuild provides an automatically generated `setup.sh` sh script that will set all the necessary enviromental variables to use the software installed in the robotology-superbuild. To do so automatically for any new terminal that you open, append the following line to the `.bash_profile` file:
