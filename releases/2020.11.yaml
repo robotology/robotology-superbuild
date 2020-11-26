@@ -23,10 +23,10 @@ repositories:
     type: git
     url: https://github.com/GiulioRomualdi/casadi.git
     version: a26cd8ffba99052b74553eec1daeff640eea7e79
-  ycm:
+  YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: c3242e8a2d6b50d7ba9642783820a426d2bffa84
+    version: 5388c0cf7170e6461edd25d76051da8c7b34e281
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
@@ -91,10 +91,6 @@ repositories:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
     version: v0.6.2
-  matio-cpp:
-    type: git
-    url: https://github.com/dic-iit/matio-cpp.git
-    version: 6db196335cd35489f2627cfdce67808c16389be9
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
@@ -103,10 +99,6 @@ repositories:
     type: git
     url: https://github.com/robotology/walking-controllers.git
     version: v0.3.3
-  bipedal-locomotion-framework:
-    type: git
-    url: https://github.com/dic-iit/bipedal-locomotion-framework.git
-    version: 7dbc6d4ad0dbab9765d3905f2e9e8452262e81de
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git

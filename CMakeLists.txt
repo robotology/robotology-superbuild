@@ -109,7 +109,7 @@ elseif(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Custom")
     if(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE MATCHES ".yaml$" OR
        ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE MATCHES ".repos$")
        include(YCMLoadVcsYamlInfo)
-       ycm_load_vcs_yaml_info(YAML_FILE ${ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE})
+       ycm_load_vcs_yaml_info(YAML_FILE ${ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE} VERBOSE)
     else()
         include(${ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE})
     endif()
