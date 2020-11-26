@@ -172,8 +172,13 @@ endif()
 if(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   find_or_build_package(manif)
   find_or_build_package(qhull)
-  find_or_build_package(CppAD)
   find_or_build_package(casadi)
+
+  # cppad is currently disabled on windows
+  # https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/pull/37
+  if(NOT WIN32)
+    find_or_build_package(CppAD)
+  endif()
 endif()
 
 # Teleoperation
