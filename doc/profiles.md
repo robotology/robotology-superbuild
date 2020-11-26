@@ -102,7 +102,7 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 The steps necessary to install the system dependencies of the Dynamics profile are provided in
 operating system-specific installation documentation, and no additional required system dependency is required.
 
-The only optional system dependency of `wb-toolbox`, project part of this profile, is [tbeu/matio](https://github.com/tbeu/matio/).
+The only optional system dependency of `wb-toolbox` and `matio-cpp`, projects part of this profile, is [tbeu/matio](https://github.com/tbeu/matio/).
 
 #### Linux
 
