@@ -412,4 +412,4 @@ Mantainers
 | Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
 | Human Dynamics | Yeshasvi Tirupachuri [@Yeshasvitvs](https://github.com/Yeshasvitvs) |
 | Event-driven | Arren Glover [@arrenglover](https://github.com/arrenglover) |
-
+| Dynamics full deps | Giulio Romualdi [@GiulioRomualdi](https://github.com/GiulioRomualdi) |
