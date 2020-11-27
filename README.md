@@ -15,7 +15,9 @@ You can read more about the superbuild concept in [YCM documentation](http://rob
 Table of Contents
 =================
   * [Superbuild structure](#superbuild-structure)
-  * [Installation](#installation)
+  * [Binary Installation](#binary-installation)
+    * [Windows](#windows)
+  * [Source Installation](#source-installation)
     * [Linux](#linux)
     * [macOS](#macos)
     * [Windows](#windows)
@@ -36,10 +38,15 @@ If there is any non-robotology dependency handled by the superbuild as it is not
 
 As a huge number of software projects are developed in the **robotology organization**, and a tipical user is only interested in some of them, there are several **CMake options** to instruct the superbuild on which packages should be built and which one should not be built. In particular, the robotology-superbuild is divided in different **profiles**, that specify the specific subset of robotology packages to build. You can read more on the available **profiles** and how to enabled them in the [`doc/profiles.md` documentation](doc/profiles.md). 
 
+Binary Installation
+===================
 
-Installation
-============
-We provide different instructions on how to install robotology-superbuild, depending on your operating system:
+The only platform on which we currently provide binary installation of the software contained in the robotology-superbuild is Windows. 
+For all other platforms, please refer to the instructions on how to install the [robotology-superbuild from source code](#source-installation).
+
+Source Installation
+===================
+We provide different instructions on how to install robotology-superbuild from the source code of the subprojects, depending on your operating system:
 * [**Linux**](#linux): use the superbuild with make,
 * [**macOS**](#macOS): use the superbuild with Xcode or GNU make,
 * [**Windows**](#windows): use the superbuild with Microsoft Visual Studio,
