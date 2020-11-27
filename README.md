@@ -44,6 +44,8 @@ Binary Installation
 The only platform on which we currently provide binary installation of the software contained in the robotology-superbuild is Windows. 
 For all other platforms, please refer to the instructions on how to install the [robotology-superbuild from source code](#source-installation).
 
+## Windows
+
 Source Installation
 ===================
 We provide different instructions on how to install robotology-superbuild from the source code of the subprojects, depending on your operating system:
