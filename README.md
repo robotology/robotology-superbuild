@@ -5,7 +5,7 @@ download and compile software developed in the robotology GitHub organization, s
 
 [CMake](https://cmake.org/) is an open-source, cross-platform family of tools designed to build, test and package software.
 A [YCM Superbuild](http://robotology.github.io/ycm/gh-pages/git-master/index.html#superbuild) is a CMake project whose only goal is to download and build several other projects.
-If you are familiar with ROS, it is something similar to [catkin](http://wiki.ros.org/catkin/workspaces) or [colcon workspace](https://colcon.readthedocs.io/en/released/user/quick-start.html), but using pure CMake for portability reasons and for customizing the build via CMake options.
+If you are familiar with ROS, it is something similar to [catkin](http://wiki.ros.org/catkin/workspaces) or [colcon workspace](https://colcon.readthedocs.io/en/released/user/quick-start.html), but using pure CMake for portability reasons and for customizing the build via CMake options. Furthermore, the `robotology-superbuild` also contains some infrastructure to build **binaries** of the contained projects for some platforms. 
 You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/index.html) or in the [related IRC paper](http://lornat75.github.io/papers/2018/domenichelli-irc.pdf).
 
 | System  | Continuous Integration Status |
@@ -14,41 +14,105 @@ You can read more about the superbuild concept in [YCM documentation](http://rob
 
 Table of Contents
 =================
-  * [Superbuild structure](#superbuild-structure)
-  * [Installation](#installation)
-    * [Linux](#linux)
-    * [macOS](#macos)
-    * [Windows](#windows)
-    * [Windows Subsystem For Linux](#windows-subsystem-for-linux)
-  * [Update](#update)
+  * [Superbuild](#superbuild)
+  * [Binary Installation](#binary-installation)
+    * [Windows](#windows-from-binaries)
+  * [Source Installation](#source-installation)
+    * [Clone the repo](#clone-the-repo)
+    * [Linux](#linux-from-source)
+    * [macOS](#macos-from-source)
+    * [Windows](#windows-from-source)
+    * [Windows Subsystem For Linux](#windows-subsystem-for-linux-from-source)
+    * [Update](#update)
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
-Superbuild structure 
-====================
+Superbuild 
+==========
 
-`robotology-superbuild` will download and build a number of software.
+The `robotology-superbuild` is an infrastructure to simplify development and use of **open source research software** developed at the **[Italian Institute of Technology](https://iit.it/)**, in particular as part of the **[iCub project](https://icub.iit.it/)**. 
+
+### Profiles and Optional Dependencies
+As a huge number of software projects are contained in the `robotology-superbuild`, and a tipical user is only interested in some of them, there are several **options** to instruct the superbuild on which packages should be built and which one should not be built. In particular, the robotology-superbuild is divided in different **profiles**, that specify the specific subset of robotology packages to build. You can read more on the available **profiles** and how to enabled them in the [`doc/profiles.md` documentation](doc/profiles.md). 
+
+Furthermore, some **dependencies** of software contained in the `robotology-superbuild` are either tricky to install or proprietary, and for this reason software that depends on those  optional dependencies can be **enabled** or **disabled** with specific options,as documented in [`doc/profiles.md#dependencies-specific-documentation`](doc/profiles.md#dependencies-specific-documentation).
+
+### Versioning
+For what regards versioning, software in the robotology-superbuild can be consumed in two forms: 
+
+#### [Rolling update](https://en.wikipedia.org/wiki/Rolling_release)
+In this form, the superbuild will get the latest changes for a branch of each subproject, and will build it. This has the advantage that you get all the latest changes from the software contained in the `robotology-superbuild`, while the downside that the specific software that you use may change at each update. The **rolling update** can be used only when building robotology-superbuild software **from source**. By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
+
+
+#### [Releases](https://en.wikipedia.org/wiki/Software_release_life_cycle)
+Once every three months, a set of releases of the software in the robotology-superbuild is freezed and used as a "Distro Release", following the policies of iCub software described in https://icub-tech-iit.github.io/documentation/sw_versioning_table/ . **Releases** can be used both when **building the software from source**, and when obtaining it **from binaries**.
+
+The available releases can be seen on [GitHub's release page](https://github.com/robotology/robotology-superbuild/releases).
+
+Binary Installation
+===================
+
+The only platform on which we currently provide binary installation of the software contained in the robotology-superbuild is [Windows](#windows-from-binaries). 
+For all other platforms, please refer to the instructions on how to install the [robotology-superbuild from source code](#source-installation).
+
+## Windows from binaries
+
+Any release of robotology-superbuild comes with Windows binaries, that can be downloaded from the [GitHub's release page](https://github.com/robotology/robotology-superbuild/releases) of that release.
+
+Each release contains two installers:
+* `robotology-dependencies-installer-win64.exe` that installs a custom vcpkg installation in `C:/robotology/vcpkg` for compile from source the robotology software
+* `robotology-full-installer-win64.exe` that also installs the software built by the robotology-superbuild in `C:/robotology/robotology`.
+
+In both cases, the installer offer an options to create and append all the necessary user environment variables to use the C++ libraries and the binaries without any further configuration. Note that you may want to opt out from this if in your system you also use other kind of C++ libraries system to avoid conflicts, and instead manually invoke the following scripts to setup the environments as  necessary: 
+* `C:/robotology/scripts/setup.bat` : Batch script to set the environment variables in a Command Prompt terminal.
+* `C:/robotology/scripts/setup.sh` : Bash script to set the environment variables in a Git for Windows bash terminal, 
+   that can be included in the [`.bash_profile`](https://stackoverflow.com/questions/6883760/git-for-windows-bashrc-or-equivalent-configuration-files-for-git-bash-shell).
+* `C:/robotology/scripts/addPathsToUserEnvVariables.ps1` : Powershell scripts to **permanently** add or remove the environment  variables in the [User Environment Variables](https://docs.microsoft.com/en-us/windows/win32/shell/user-environment-variables). This is the script that is executed by the installer when the option "Update Environment Variables"  is selected. The environment can be cleaned by any environment variable added by `addPathsToUserEnvVariables.ps1` by executing the script `removePathsToUserEnvVariables.ps1`.
+
+Furthermore, if you do not have Visual  Studio 2019 installed on your machine, the installer requires the **Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019** to be installed on your machine, that can be downloaded at https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads, in particular you need to install the file https://aka.ms/vs/16/release/vc_redist.x64.exe .
+
+Source Installation
+===================
+
+## Clone the repo
+The first step to install `robotology-superbuild` from source is to download the `robotology-superbuild` code itself, and this is done through [Git](https://git-scm.com/).
+
+Once you install Git, you need to set your name and email to sign your commits, as this is required by the superbuild:
+```
+git config --global user.name FirstName LastName
+git config --global user.email user@email.domain
+```
+
+Once git is configured, you can open a command line terminal. If you want to use the `robotology-superbuild` in **rolling update** mode, just clone the superbuild:
+~~~
+git clone https://github.com/robotology/robotology-superbuild
+~~~
+this will clone the superbuild in its default branch.
+
+If instead you want to use a **specific release** of the robotology superbuild, after you clone switch to use to a specific release tag: 
+~~~
+git checkout v<YYYY.MM>
+~~~
+
+For the list of actually available tags, see the [GitHub's releases page](https://github.com/robotology/robotology-superbuild/releases).
+
+Once you cloned the repo, to go forward you can follow the different instructions on how to install robotology-superbuild from the source code, depending on your operating system:
+* [**Linux**](#linux-from-source): use the superbuild with make,
+* [**macOS**](#macos-from-source): use the superbuild with Xcode or GNU make,
+* [**Windows**](#windows-from-source): use the superbuild with Microsoft Visual Studio,
+* [**Windows Subsystem For Linux**](#windows-subsystem-for-linux-from-source): use the superbuild with make on [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl).
+
+The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
+Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html).
+
+When compiled from source, `robotology-superbuild` will download and build a number of software.
 For each project, the repository will be downloaded in the `robotology/<package_name>` subdirectory of the superbuild root. 
 The build directory for a given project will be instead the `robotology/<package_name>` subdirectory of the superbuild build directory. 
 All the software packages are installed using the `install` directory of the build as installation prefix.
 
 If there is any non-robotology dependency handled by the superbuild as it is not easily in the system, it will located in the `external` directory instead of the `robotology` one.
 
-As a huge number of software projects are developed in the **robotology organization**, and a tipical user is only interested in some of them, there are several **CMake options** to instruct the superbuild on which packages should be built and which one should not be built. In particular, the robotology-superbuild is divided in different **profiles**, that specify the specific subset of robotology packages to build. You can read more on the available **profiles** and how to enabled them in the [`doc/profiles.md` documentation](doc/profiles.md). 
-
-
-Installation
-============
-We provide different instructions on how to install robotology-superbuild, depending on your operating system:
-* [**Linux**](#linux): use the superbuild with make,
-* [**macOS**](#macOS): use the superbuild with Xcode or GNU make,
-* [**Windows**](#windows): use the superbuild with Microsoft Visual Studio,
-* [**Windows Subsystem For Linux**](#windows-subsystem-for-linux): use the superbuild with make on [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl).
-
-The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
-Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html).
-
-## Linux
+## Linux from source
 ### System Dependencies
 On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMake and Eigen (and other dependencies necessary for the software include in `robotology-superbuild`) using `apt-get`:
 ```
@@ -65,16 +129,10 @@ More details can be found at https://github.com/robotology/QA/issues/364 .
 If you enabled any [profile](doc/profiles.md#profile-cmake-options) or [dependency](doc/profiles.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
 * [`ROBOTOLOGY_USES_GAZEBO`](doc/profiles.md#gazebo)
 
-
 ### Superbuild
-If you didn't already configured your git, you have to set your name and email to sign your commits:
-```
-git config --global user.name FirstName LastName
-git config --global user.email user@email.domain
-```
+
 Finally it is possible to install robotology software using the YCM superbuild:
 ```bash
-git clone https://github.com/robotology/robotology-superbuild.git
 cd robotology-superbuild
 mkdir build
 cd build
@@ -101,7 +159,7 @@ user@host:~$ sudo ldconfig
 
 If for any reason you do not want to use the provided `setup.sh` script and you want to manage your enviroment variables manually, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
 
-## macOS
+## macOS from source
 
 ### System Dependencies
 To install the system dependencies, it is possible to use [Homebrew](http://brew.sh/):
@@ -118,18 +176,12 @@ If you want to enable a [profile](doc/profiles.md#profile-cmake-options) or a [d
 * [`ROBOTOLOGY_USES_GAZEBO`](doc/profiles.md#gazebo)
 
 ### Superbuild
-If you didn't already configured your git, you have to set your name and email to sign your commits:
 ```
-git config --global user.name FirstName LastName
-git config --global user.email user@email.domain
-```
-Finally it is possible to install robotology software using the superbuild:
-```bash
-git clone https://github.com/robotology/robotology-superbuild.git
 cd robotology-superbuild
 mkdir build
 cd build
 ```
+
 To use GNU Makefile generators:
 ```bash
 cmake ../
@@ -159,7 +211,7 @@ or simply open a new terminal.
 
 If for any reason you do not want to use the provided `setup.sh` script and you want to manage your enviroment variables manually, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
 
-## Windows
+## Windows from source
 
 ### System Dependencies
 
@@ -201,18 +253,7 @@ If you want to enable a [profile](doc/profiles.md#profile-cmake-options) or a [d
 * [`ROBOTOLOGY_USES_ESDCAN`](doc/profiles.md#shoes)
 
 ### Superbuild
-If you didn't already configured your git, you have to set your name and email to sign your commits:
-```
-git config --global user.name FirstName LastName
-git config --global user.email user@email.domain
-```
-After that you can clone the superbuild repository as any other git repository, i.e. if you use terminal you can write:
-~~~
-git clone https://github.com/robotology/robotology-superbuild
-~~~
-or you can use your preferred Git GUI.
-
-Once you cloned the repository, you can generate the Visual Studio solution using the CMake GUI, by using as a generator the appropriate Visual Studio version, and the 64 bit as a platform, and specifying the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects) as discussed in the previous section. In particular, see the nicely written [CGold documentation](http://cgold.readthedocs.io/en/latest/first-step/generate-native-tool/gui-visual-studio.html) if you do not know how to generate a Visual Studio solution from a CMake project.
+Once you cloned the repository, you can generate the Visual Studio solution using the CMake GUI, by using as a generator the appropriate Visual Studio version, and the 64 bit as platform, and specifying the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects) as discussed in the previous section. In particular, see the nicely written [CGold documentation](http://cgold.readthedocs.io/en/latest/first-step/generate-native-tool/gui-visual-studio.html) if you do not know how to generate a Visual Studio solution from a CMake project.
 
 You can then open the generated solution with Visual Studio and build the target `all`.
 
@@ -241,7 +282,7 @@ If for any reason you do not want to use the provided scripts and you want to ma
 
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
 
-## Windows Subsystem for Linux
+## Windows Subsystem for Linux from source
 The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified.
 
 As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the [robotology-superbuild on Linux](#linux). As the WSL enviroment is nevertheless different, there are a few things you need to care before using the robotology-superbuild on WSL, that are listed in the following, depending on whetever you are using WSL2 or WSL1.
@@ -291,15 +332,16 @@ To avoid that, you can add the following line in the WSL `.bashrc` that filters 
 for var in $(env | awk {'FS="="} /\/mnt\//{print $1}'); do export ${var}=\"$(echo ${!var} | awk -v RS=: -v ORS=: '/\/mnt\// {next} {print $1}')\" ; done
 ~~~
 
-Update
-======
-For updating the `robotology-superbuild` repository it is possible to just fetch the last changes using the usual
-git command:
+## Update
+If you are using the `robotology-superbuild` in its default branch and not from a release tag (i.e. in **rolling update** mode), to update the superbuild you need to first update the 
+`robotology-superbuild` repository itself with the git command:
 ~~~
 git pull
 ~~~
-However, for running the equivalent of `git pull` on all the repositories managed by
+
+After that, you will need to also run the equivalent of `git pull` on all the repositories managed by
 the robotology-superbuild, you have to run in your build system the appropriate target.
+
 To do this, make sure to be in the `build` directory of the `robotology-superbuild` and run:
 ~~~
 make update-all
@@ -322,8 +364,7 @@ For this reason, if you are activly developing on a repository managed by the `r
 option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#developer-mode
 for more details on this options.
 
-By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches,
-or use some fixed tags. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
+By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches, or use some fixed tags. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
 
 FAQs
 ====
