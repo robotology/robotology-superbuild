@@ -26,11 +26,11 @@ repositories:
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: 5388c0cf7170e6461edd25d76051da8c7b34e281
+    version: 0f12169a9818dde431b051ac79c3a6e13092f29f
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: b26668b161832ddfebe3089f6b494549b6462fb1
+    version: 513cf7a32c83c9c96abb51a9535cf8714e027e6b
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -50,7 +50,7 @@ repositories:
   icub-gazebo:
     type: git
     url: https://github.com/robotology/icub-gazebo.git
-    version: v1.17.0
+    version: v1.18.0
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v2.0.0
+    version: v2.0.1
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
