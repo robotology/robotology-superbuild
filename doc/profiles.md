@@ -102,28 +102,6 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 The steps necessary to install the system dependencies of the Dynamics profile are provided in
 operating system-specific installation documentation, and no additional required system dependency is required.
 
-The only optional system dependency of `wb-toolbox` and `matio-cpp`, projects part of this profile, is [tbeu/matio](https://github.com/tbeu/matio/).
-
-#### Linux
-
-Install matio using the following command:
-
-```
-sudo apt install libmatio-dev
-```
-
-#### macOS
-
-Install matio from `homebrew/core` using the following command:
-
-```
-brew install libmatio
-```
-
-#### Windows
-
-Install matio following the [installation instructions](https://github.com/tbeu/matio/#20-building) present in the repository.
-
 ## iCub Head
 
 This profile is enabled by the `ROBOTOLOGY_ENABLE_ICUB_HEAD` CMake option. It is used in the system installed on iCub head,
