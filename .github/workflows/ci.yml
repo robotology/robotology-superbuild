@@ -51,7 +51,7 @@ jobs:
         # Install mamba (https://github.com/mamba-org/mamba) as first step 
         conda install -c conda-forge mamba
         # All dependencies 
-        mamba install -c conda-forge cmake compilers make ninja pkg-config ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
+        mamba install -vvv -c conda-forge cmake compilers make ninja pkg-config ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
