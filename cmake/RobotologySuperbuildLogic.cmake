@@ -39,9 +39,6 @@ if(ROBOTOLOGY_ENABLE_DYNAMICS)
   find_or_build_package(whole-body-controllers)
   find_or_build_package(matio-cpp)
   find_or_build_package(bipedal-locomotion-framework)
-  if(ROBOTOLOGY_USES_GAZEBO)
-    find_or_build_package(icub-gazebo-wholebody)
-  endif()
 endif()
 
 # Teleoperation
