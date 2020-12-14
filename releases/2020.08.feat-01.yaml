@@ -7,7 +7,7 @@ epositories:
     type: git
     url: https://github.com/oxfordcontrol/osqp.git
     version: v0.6.0
-  ycm:
+  YCM:
     type: git
     url: https://github.com/robotology/ycm.git
     version: v0.11.4
