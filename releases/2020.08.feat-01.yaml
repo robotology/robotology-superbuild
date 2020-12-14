@@ -1,4 +1,4 @@
-epositories:
+repositories:
   qpOASES:
     type: git
     url: https://github.com/robotology-dependencies/qpOASES.git
