@@ -27,7 +27,7 @@ printGitStatus () {
     (cd $1 && echo -n "${1}: " \
     && git rev-parse --abbrev-ref HEAD \
     && git log -1 --format="%cr|%s" \
-    && git status --short); \
+    && git status -sb --short); \
 }
 
 if [ -d "${superbuild_root}" ] ; then
