@@ -149,7 +149,7 @@ jobs:
       matrix:
         build_type: [Release]
         os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11.0, windows-2019]
-        project_tags: [Default, Unstable, Release202008feat01, Release202011]
+        project_tags: [Default, Unstable, Release202011]
         include:
           - os: ubuntu-18.04
             build_type: Release
@@ -176,8 +176,6 @@ jobs:
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
-          - project_tags: Release202008feat01
-            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2020.08.feat-01.yaml"  
           - project_tags: Release202011
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2020.11.yaml"
     steps:
