@@ -43,6 +43,7 @@ if(ROBOTOLOGY_ENABLE_<profile>)
 endif()
 ~~~
 * Add the profile documentation in [`doc/profile.md#profile-specific-documentation`](profiles.md#profile-specific-documentation). Take inspiration from the documentation of existing profiles. If the profile need a specific enviroment variable to be set of a value to be appended (such as `YARP_DATA_DIRS`), document it in the documentation and add it in the templates in https://github.com/robotology/robotology-superbuild/blob/master/cmake/template and in [`doc/environment-variables-configuration.md`](environment-variables-configuration.md).
+* Add the profile option in the `.ci/initial-cache.ci.cmake`, so it will be tested in the Continuous Integration and binaries will be generated for it.
 
 ## How to do a new release
 * Sometime before the release, add a `yyyy.mm.yaml` file in https://github.com/robotology/robotology-superbuild/tree/master/releases, containing the version of package contained in the new release.
