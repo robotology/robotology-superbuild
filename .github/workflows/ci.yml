@@ -69,24 +69,26 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
-
+        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}"  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        # Disable options not tested on Conda for now
+        # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
     - name: Build  [Conda]
       shell: bash -l {0}
       run: |
         cd build
         cmake --build . --config ${{ matrix.build_type }}
 
-  docker-build:    
+  docker-build:
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
         build_type: [Debug]
-        cmake_generator: 
+        cmake_generator:
           - "Ninja"
-        docker_image: 
+        docker_image:
           - "ubuntu:focal"
           - "debian:buster-backports"
           - "debian:sid"
@@ -99,36 +101,37 @@ jobs:
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
-                      
+
     container:
       image: ${{ matrix.docker_image }}
-  
+
     steps:
     - uses: actions/checkout@master
-          
+
     - name: Dependencies [Docker]
       run: |
         chmod +x ./.ci/install_debian.sh
         ./.ci/install_debian.sh
 
-    - name: Install CMake 3.16 [Docker/Debian Buster] 
+    - name: Install CMake 3.16 [Docker/Debian Buster]
       if: matrix.docker_image == 'debian:buster-backports'
       run: |
         apt-get -y -t buster-backports install cmake
-        
+
     - name: Install additional packages for Debian Sid [Debian Sid]
       if: matrix.docker_image == 'debian:sid'
       run: |
         # Workaround for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=967008
         apt-get -y install libdart-external-odelcpsolver-dev
-        
+
     - name: Configure [Docker]
       run: |
         mkdir -p build
         cd build
+        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Octave is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/384
         # Python is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/494
-        cmake -G"${{ matrix.cmake_generator }}" -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
     - name: Disable profiles that are not supported in docker for now [Docker debian-sid and debian-buster]
       if: (matrix.docker_image == 'debian:sid' || matrix.docker_image == 'debian:buster-backports')
@@ -181,8 +184,8 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Check free space 
-      shell: bash 
+    - name: Check free space
+      shell: bash
       run: |
         df -h
 
@@ -191,29 +194,29 @@ jobs:
       shell: bash
       run: env
 
-    # Remove apt repos that are known to break from time to time 
-    # See https://github.com/actions/virtual-environments/issues/323  
+    # Remove apt repos that are known to break from time to time
+    # See https://github.com/actions/virtual-environments/issues/323
     - name: Remove broken apt repos [Ubuntu]
       if: contains(matrix.os, 'ubuntu')
       run: |
         for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
-        
-    # symlinks disabled are the default setting on Windows, but unfortunatly GitHub Actions enabled them 
-    # See: 
+
+    # symlinks disabled are the default setting on Windows, but unfortunatly GitHub Actions enabled them
+    # See:
     # * https://github.com/robotology/robotology-superbuild/issues/429
-    # * https://github.com/actions/virtual-environments/pull/1186  
-    - name: Disable Git symlinks on Windows 
+    # * https://github.com/actions/virtual-environments/pull/1186
+    - name: Disable Git symlinks on Windows
       if: contains(matrix.os, 'windows')
       run: git config --global core.symlinks false
- 
+
     # ============
     # DEPENDENCIES
     # ============
-    
+
     # Waiting a github action that installs dependencies in a
     # multiplatform setup (likely using TS or JS), we install
     # packages with os-specific steps.
-    
+
     - name: Dependencies [Ubuntu]
       if: contains(matrix.os, 'ubuntu')
       run: |
@@ -225,23 +228,23 @@ jobs:
       run: |
         cmake --version
         brew cask install xquartz
-        # Update homebrew 
+        # Update homebrew
         # Workaround for https://github.com/actions/virtual-environments/issues/2248
         brew uninstall openssl@1.0.2t
         brew update
         brew upgrade
-        # Core dependencies 
+        # Core dependencies
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt5 sqlite swig tinyxml
-        # ROBOTOLOGY_ENABLE_DYNAMICS dependencies 
+        # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
         brew install libmatio
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
         brew install cppad qhull
         # ROBOTOLOGY_USES_GAZEBO dependencies
         brew install osrf/simulation/gazebo11
-        # CI-specific dependencies 
+        # CI-specific dependencies
         brew install ninja
         cmake --version
-        
+
     - name: Dependencies [Windows]
       if: contains(matrix.os, 'windows')
       run: |
@@ -253,24 +256,24 @@ jobs:
         wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.5.0/vcpkg-robotology-with-gazebo.zip
         unzip vcpkg-robotology-with-gazebo.zip -d C:/
         rm vcpkg-robotology-with-gazebo.zip
-        
+
     # ===================
     # CMAKE-BASED PROJECT
     # ===================
-    
+
     - name: Configure [Ubuntu&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
         mkdir -p build
         cd build
-        cmake -G"${{ matrix.cmake_generator }}" -DYCM_BOOTSTRAP_VERBOSE=ON -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=ON -DROBOTOLOGY_USES_PYTHON:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
-    - name: Disable macOS unsupported options 
+    - name: Disable macOS unsupported options
       if: contains(matrix.os, 'macos')
-      run: | 
+      run: |
         cd build
-        # Disable ROBOTOLOGY_USES_PYTHON in macOS 
+        # Disable ROBOTOLOGY_USES_PYTHON in macOS
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
     - name: Configure [Windows]
@@ -282,7 +285,7 @@ jobs:
         mkdir -p build
         cd build
         # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as a workaround for https://github.com/robotology/robotology-superbuild/issues/472
-        cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_ESDCAN:BOOL=ON -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
 
 
     - name: Build  [Ubuntu&macOS]
@@ -291,7 +294,7 @@ jobs:
       run: |
         cd build
         cmake --build . --config ${{ matrix.build_type }}
-      env: 
+      env:
         # This is necessary only on macOS/homebrew, but on Linux it should be ignored
         Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
 
@@ -328,7 +331,7 @@ jobs:
         certutil.exe -urlcache -split -f https://github.com/robotology-dependencies/qtifw-binaries/releases/download/v3.1.1/QtIFW-3.1.1.zip QtIFW-3.1.1.zip
         7z.exe x QtIFW-3.1.1.zip
         export PATH=$PATH:/c/QtIFW-3.1.1/bin
-        # As we need a lot of space, we build the installer in the C:\ drive 
+        # As we need a lot of space, we build the installer in the C:\ drive
         # that has more space of the D:\ drive in GitHub Actions
         mkdir /c/build-installer-full
         cd /c/build-installer-full
@@ -336,7 +339,7 @@ jobs:
         cmake --build . --config Release --target PACKAGE
         # Move installer in installer directory with a fixed name
         mv *.exe /c/robotology-full-installer-win64.exe
-        # Cleanup and build dependencies installer 
+        # Cleanup and build dependencies installer
         cd /c
         rm -rf /c/build-installer-full
         mkdir /c/build-installer-dependencies
