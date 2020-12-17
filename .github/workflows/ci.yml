@@ -228,9 +228,7 @@ jobs:
       run: |
         cmake --version
         brew cask install xquartz
-        # Update homebrew
-        # Workaround for https://github.com/actions/virtual-environments/issues/2248
-        brew uninstall openssl@1.0.2t
+        # Update homebrew 
         brew update
         brew upgrade
         # Core dependencies
