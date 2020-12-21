@@ -63,12 +63,13 @@ jobs:
 
     - name: Configure [Conda/Linux&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
-      # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
       shell: bash -l {0}
       run: |
         mkdir -p build
         cd build
-        cmake -GNinja -DROBOTOLOGY_USES_GAZEBO:BOOL=ON -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS:BOOL=ON -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF .
 
     - name: Configure [Conda/Windows]
       if: contains(matrix.os, 'windows')
