@@ -230,9 +230,9 @@ jobs:
         brew cask install xquartz
         # Update homebrew 
         brew update
-        brew upgrade
         # Workaround for https://github.com/robotology/robotology-superbuild/issues/565
         brew install python@3.9 || link --overwrite python@3.9
+        brew upgrade
         # Core dependencies
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
