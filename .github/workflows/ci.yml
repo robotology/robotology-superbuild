@@ -293,6 +293,9 @@ jobs:
       shell: bash
       run: |
         cd build
+        # Workaround for https://github.com/osrf/homebrew-simulation/issues/1235
+        # taken from https://github.com/ignition-tooling/release-tools/pull/366
+        export LIBRARY_PATH=${LIBRARY_PATH}:/usr/local/opt/icu4c/lib 
         cmake --build . --config ${{ matrix.build_type }}
       env:
         # This is necessary only on macOS/homebrew, but on Linux it should be ignored
