@@ -298,6 +298,20 @@ This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are 
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake option.
 
+### System Dependencies
+
+#### Linux
+Install Python and the necessary development files using the following command:
+~~~
+sudo apt-get install python3-dev python3-numpy
+~~~
+
+#### macOS
+The `ROBOTOLOGY_USES_PYTHON` option is not actively tested on macOS.
+
+#### Windows
+The `ROBOTOLOGY_USES_PYTHON` option is not actively tested on Windows.
+
 ### Check the installation
 Open a python interpreter and try to import modules, for example verify that `import yarp` works.
 
