@@ -12,4 +12,4 @@ ycm_ep_helper(ICUBcontrib TYPE GIT
                           REPOSITORY robotology/icub-contrib-common.git
                           DEPENDS YARP
                           COMPONENT iCub
-                          FOLDER robotology)
+                          FOLDER src)

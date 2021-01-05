@@ -27,4 +27,4 @@ ycm_ep_helper(iol  TYPE GIT
                            stereo-vision
                            speech
                    COMPONENT IOL
-                   FOLDER robotology)
+                   FOLDER src)

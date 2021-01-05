@@ -15,6 +15,6 @@ ycm_ep_helper(BlockFactory TYPE GIT
               REPOSITORY robotology/blockfactory.git
               TAG master
               COMPONENT dynamics
-              FOLDER robotology
+              FOLDER src
               CMAKE_ARGS -DUSES_MATLAB:BOOL=${BLOCKFACTORY_USES_SIMULINK}
                          -DENABLE_WARNINGS:BOOL=OFF)

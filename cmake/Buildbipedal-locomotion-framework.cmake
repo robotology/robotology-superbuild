@@ -33,7 +33,7 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               REPOSITORY dic-iit/bipedal-locomotion-framework.git
               TAG master
               COMPONENT dynamics
-              FOLDER robotology
+              FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
                          -DFRAMEWORK_USE_manif:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_Qhull:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}

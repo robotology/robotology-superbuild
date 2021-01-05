@@ -15,4 +15,5 @@ ycm_ep_helper(segmentation TYPE GIT
                            DEPENDS YARP
                                    ICUB
                                    ICUBcontrib
-                           COMPONENT robotology)
+                           COMPONENT robotology
+                           FOLDER src)

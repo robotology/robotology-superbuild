@@ -9,4 +9,4 @@ ycm_ep_helper(human-gazebo TYPE GIT
               REPOSITORY robotology/human-gazebo.git
               TAG master
               COMPONENT human_dynamics
-              FOLDER robotology)
+              FOLDER src)

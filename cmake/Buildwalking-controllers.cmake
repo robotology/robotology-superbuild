@@ -27,5 +27,5 @@ ycm_ep_helper(walking-controllers TYPE GIT
               REPOSITORY robotology/walking-controllers
               TAG master
               COMPONENT dynamics
-              FOLDER robotology
+              FOLDER src
               DEPENDS ${walking-controllers_DEPENDS})

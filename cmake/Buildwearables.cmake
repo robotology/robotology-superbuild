@@ -17,7 +17,7 @@ ycm_ep_helper(wearables TYPE GIT
               REPOSITORY robotology/wearables.git
               TAG master
               COMPONENT human_dynamics
-              FOLDER robotology
+              FOLDER src
               DEPENDS YARP
                       iDynTree
               CMAKE_ARGS ${WEARABLES_CMAKE_ARGS})

@@ -12,7 +12,7 @@ ycm_ep_helper(funny-things TYPE GIT
                            REPOSITORY robotology/funny-things.git
                            TAG master
                            COMPONENT ICUB_BASIC_DEMOS
-                           FOLDER robotology
+                           FOLDER src
                            DEPENDS YARP
                                    ICUB
                                    ICUBcontrib)

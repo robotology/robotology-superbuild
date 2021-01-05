@@ -10,4 +10,4 @@ ycm_ep_helper(icub-gazebo
               REPOSITORY robotology/icub-gazebo.git
               TAG master
               COMPONENT iCub
-              FOLDER robotology)
+              FOLDER src)

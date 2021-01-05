@@ -13,6 +13,6 @@ ycm_ep_helper(whole-body-controllers TYPE GIT
               REPOSITORY robotology/whole-body-controllers.git
               TAG master
               COMPONENT dynamics
-              FOLDER robotology
+              FOLDER src
               DEPENDS WBToolbox
                       qpOASES)

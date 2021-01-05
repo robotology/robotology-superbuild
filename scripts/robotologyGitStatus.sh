@@ -20,7 +20,7 @@ getParentDir $script_dir
 
 superbuild_root="$DIR"
 
-subdirs="$superbuild_root/robotology $superbuild_root/external"
+subdirs="$superbuild_root/src"
 
 printGitStatus () {
     echo "--------------------------------------------"

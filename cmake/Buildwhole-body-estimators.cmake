@@ -20,5 +20,5 @@ ycm_ep_helper(whole-body-estimators TYPE GIT
               REPOSITORY robotology/whole-body-estimators.git
               TAG master
               COMPONENT dynamics
-              FOLDER robotology
+              FOLDER src
               DEPENDS ${whole-body-estimators_DEPENDS})

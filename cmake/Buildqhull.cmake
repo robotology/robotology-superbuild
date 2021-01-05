@@ -9,4 +9,5 @@ ycm_ep_helper(qhull TYPE GIT
               REPOSITORY qhull/qhull.git
               TAG master
               COMPONENT external
+              FOLDER src
               CMAKE_ARGS -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON)

@@ -26,4 +26,5 @@ ycm_ep_helper(qpOASES TYPE GIT
               REPOSITORY robotology-dependencies/qpOASES.git
               TAG master
               COMPONENT external
+              FOLDER src
               CMAKE_ARGS -DQPOASES_BUILD_BINDINGS_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB})

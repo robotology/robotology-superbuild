@@ -9,4 +9,4 @@ ycm_ep_helper(CppAD TYPE GIT
               REPOSITORY coin-or/CppAD.git
               TAG master
               COMPONENT external
-              FOLDER external)
+              FOLDER src)

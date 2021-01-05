@@ -17,4 +17,4 @@ ycm_ep_helper(speech TYPE GIT
                              ICUBcontrib
                      COMPONENT ICUB_BASIC_DEMOS
                      CMAKE_CACHE_ARGS -DBUILD_SVOX_SPEECH:BOOL=ON
-                     FOLDER robotology)
+                     FOLDER src)

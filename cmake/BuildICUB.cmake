@@ -42,7 +42,7 @@ ycm_ep_helper(ICUB TYPE GIT
                    REPOSITORY robotology/icub-main.git
                    DEPENDS ${ICUB_DEPENDS}
                    COMPONENT iCub
-                   FOLDER robotology
+                   FOLDER src
                    CMAKE_ARGS -DICUB_INSTALL_WITH_RPATH:BOOL=ON
                    CMAKE_CACHE_ARGS -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
                                     -DENABLE_icubmod_cartesiancontrollerclient:BOOL=ON

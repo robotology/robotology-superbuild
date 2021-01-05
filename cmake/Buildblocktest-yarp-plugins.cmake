@@ -13,7 +13,7 @@ ycm_ep_helper(blocktest-yarp-plugins TYPE GIT
               REPOSITORY robotology/blocktest-yarp-plugins.git
               TAG master
               COMPONENT core
-              FOLDER robotology
+              FOLDER src
               DEPENDS YARP
                       blocktestcore
               CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)

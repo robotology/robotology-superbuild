@@ -12,5 +12,5 @@ ycm_ep_helper(yarp-device-ovrheadset TYPE GIT
               REPOSITORY robotology/yarp-device-ovrheadset.git
               TAG master
               COMPONENT iCub
-              FOLDER robotology
+              FOLDER src
               DEPENDS YARP)

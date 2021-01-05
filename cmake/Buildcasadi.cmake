@@ -12,7 +12,7 @@ ycm_ep_helper(casadi TYPE GIT
               REPOSITORY GiulioRomualdi/casadi.git
               TAG feature/support_osqp_0.6.0
               COMPONENT external
-              FOLDER external
+              FOLDER src
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
                          -DWITH_OSQP:BOOL=ON
                          -DUSE_SYSTEM_WISE_OSQP:BOOL=ON

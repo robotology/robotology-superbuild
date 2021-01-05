@@ -13,6 +13,6 @@ ycm_ep_helper(diagnosticdaemon TYPE GIT
               TAG master
               CMAKE_ARGS -DCOMPILE_WITHYARP_DEF:BOOL=ON
               COMPONENT core
-              FOLDER robotology
+              FOLDER src
               DEPENDS YARP
                       icub_firmware_shared)
