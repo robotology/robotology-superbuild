@@ -15,4 +15,5 @@ ycm_ep_helper(stereo-vision TYPE GIT
                             DEPENDS YARP
                                     ICUB
                                     ICUBcontrib
-                            COMPONENT robotology)
+                            COMPONENT robotology
+                            FOLDER src)

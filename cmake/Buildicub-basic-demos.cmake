@@ -12,7 +12,7 @@ ycm_ep_helper(icub-basic-demos TYPE GIT
                                REPOSITORY robotology/icub-basic-demos.git
                                TAG master
                                COMPONENT ICUB_BASIC_DEMOS
-                               FOLDER robotology
+                               FOLDER src
                                DEPENDS YARP
                                        ICUB
                                        ICUBcontrib)

@@ -9,4 +9,4 @@ ycm_ep_helper(rfsmTools TYPE GIT
                         STYLE GITHUB
                         REPOSITORY robotology/rfsmTools.git
                         COMPONENT core
-                        FOLDER robotology)
+                        FOLDER src)

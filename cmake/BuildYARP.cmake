@@ -49,7 +49,7 @@ ycm_ep_helper(YARP TYPE GIT
                    REPOSITORY robotology/yarp.git
                    TAG master
                    COMPONENT core
-                   FOLDER robotology
+                   FOLDER src
                    DEPENDS YCM
                            ACE
                            Eigen3

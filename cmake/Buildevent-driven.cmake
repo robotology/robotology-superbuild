@@ -13,4 +13,4 @@ ycm_ep_helper(event-driven TYPE GIT
               DEPENDS YARP
                       YCM
               COMPONENT event-driven
-              FOLDER robotology)
+              FOLDER src)

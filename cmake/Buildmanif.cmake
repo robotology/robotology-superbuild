@@ -9,5 +9,5 @@ ycm_ep_helper(manif TYPE GIT
               REPOSITORY artivis/manif.git
               TAG master
               COMPONENT external
-              FOLDER external
+              FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF)

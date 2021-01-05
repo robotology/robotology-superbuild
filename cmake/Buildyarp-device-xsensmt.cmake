@@ -11,5 +11,5 @@ ycm_ep_helper(yarp-device-xsensmt TYPE GIT
               REPOSITORY robotology/yarp-device-xsensmt.git
               TAG master
               COMPONENT iCub
-              FOLDER robotology
+              FOLDER src
               DEPENDS YARP)

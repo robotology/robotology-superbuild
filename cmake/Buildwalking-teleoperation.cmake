@@ -13,7 +13,7 @@ ycm_ep_helper(walking-teleoperation TYPE GIT
               REPOSITORY robotology/walking-teleoperation.git
               TAG master
               COMPONENT teleoperation
-              FOLDER robotology
+              FOLDER src
               DEPENDS iDynTree
                       ICUB
                       YARP)

@@ -14,7 +14,7 @@ ycm_ep_helper(icub-tests TYPE GIT
               REPOSITORY robotology/icub-tests.git
               TAG master
               COMPONENT iCub
-              FOLDER robotology
+              FOLDER src
               DEPENDS RobotTestingFramework
                       YARP
                       ICUB)

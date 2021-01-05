@@ -22,5 +22,5 @@ ycm_ep_helper(robots-configuration TYPE GIT
                                    DEPENDS YARP
                                            ICUBcontrib
                                    COMPONENT iCub
-                                   FOLDER robotology
+                                   FOLDER src
                                    CMAKE_ARGS ${robots-configuration_CMAKE_ARGS})

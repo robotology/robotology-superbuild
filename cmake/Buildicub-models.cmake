@@ -9,4 +9,4 @@ ycm_ep_helper(icub-models
               REPOSITORY robotology/icub-models.git
               TAG master
               COMPONENT iCub
-              FOLDER robotology)
+              FOLDER src)

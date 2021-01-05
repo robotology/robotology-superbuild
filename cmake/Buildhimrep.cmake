@@ -15,4 +15,5 @@ ycm_ep_helper(himrep TYPE GIT
                      DEPENDS YARP
                              ICUB
                              ICUBcontrib
-                     COMPONENT robotology)
+                     COMPONENT robotology
+                     FOLDER src)

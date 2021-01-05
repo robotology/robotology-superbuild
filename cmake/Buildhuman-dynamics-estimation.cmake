@@ -15,7 +15,7 @@ ycm_ep_helper(human-dynamics-estimation TYPE GIT
               REPOSITORY robotology/human-dynamics-estimation.git
               TAG master
               COMPONENT human_dynamics
-              FOLDER robotology
+              FOLDER src
               DEPENDS iDynTree
                       YARP
                       wearables

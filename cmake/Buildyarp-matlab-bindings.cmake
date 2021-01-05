@@ -12,7 +12,7 @@ ycm_ep_helper(yarp-matlab-bindings TYPE GIT
               REPOSITORY robotology/yarp-matlab-bindings.git
               TAG master
               COMPONENT core
-              FOLDER robotology
+              FOLDER src
               CMAKE_ARGS -DYARP_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
                          -DYARP_USES_OCTAVE:BOOL=${ROBOTOLOGY_USES_OCTAVE}
               DEPENDS YARP)

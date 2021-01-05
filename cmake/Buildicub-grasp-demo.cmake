@@ -25,4 +25,4 @@ ycm_ep_helper(icub-grasp-demo  TYPE GIT
                                        himrep
                                        stereo-vision
                                COMPONENT grasping
-                               FOLDER robotology)
+                               FOLDER src)

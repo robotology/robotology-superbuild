@@ -33,7 +33,7 @@ Superbuild
 The `robotology-superbuild` is an infrastructure to simplify development and use of **open source research software** developed at the **[Italian Institute of Technology](https://iit.it/)**, in particular as part of the **[iCub project](https://icub.iit.it/)**. 
 
 ### Profiles and Optional Dependencies
-As a huge number of software projects are contained in the `robotology-superbuild`, and a tipical user is only interested in some of them, there are several **options** to instruct the superbuild on which packages should be built and which one should not be built. In particular, the robotology-superbuild is divided in different **profiles**, that specify the specific subset of robotology packages to build. You can read more on the available **profiles** and how to enabled them in the [`doc/profiles.md` documentation](doc/profiles.md). 
+As a huge number of software projects are contained in the `robotology-superbuild`, and a tipical user is only interested in some of them, there are several **options** to instruct the superbuild on which packages should be built and which one should not be built. In particular, the robotology-superbuild is divided in different **profiles**, that specify the specific subset of robotology packages to build. You can read more on the available **profiles** and how to enabled them in the [`doc/profiles.md` documentation](doc/profiles.md).
 
 Furthermore, some **dependencies** of software contained in the `robotology-superbuild` are either tricky to install or proprietary, and for this reason software that depends on those  optional dependencies can be **enabled** or **disabled** with specific options,as documented in [`doc/profiles.md#dependencies-specific-documentation`](doc/profiles.md#dependencies-specific-documentation).
 
@@ -106,11 +106,10 @@ The exact versions of the operating systems supported by the robotology-superbui
 Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html).
 
 When compiled from source, `robotology-superbuild` will download and build a number of software.
-For each project, the repository will be downloaded in the `robotology/<package_name>` subdirectory of the superbuild root. 
-The build directory for a given project will be instead the `robotology/<package_name>` subdirectory of the superbuild build directory. 
-All the software packages are installed using the `install` directory of the build as installation prefix.
+For each project, the repository will be downloaded in the `src/<package_name>` subdirectory of the superbuild root. 
+The build directory for a given project will be instead the `src/<package_name>` subdirectory of the superbuild build directory. 
+All the software packages are installed using the `install` directory of the build as installation prefix.s
 
-If there is any non-robotology dependency handled by the superbuild as it is not easily in the system, it will located in the `external` directory instead of the `robotology` one.
 
 ## Linux from source
 ### System Dependencies

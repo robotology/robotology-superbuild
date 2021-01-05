@@ -11,7 +11,7 @@ ycm_ep_helper(forcetorque-yarp-devices TYPE GIT
                                    REPOSITORY robotology/forcetorque-yarp-devices.git
                                    TAG master
                                    COMPONENT iCub
-                                   FOLDER robotology
+                                   FOLDER src
                                    DEPENDS YARP
                                    CMAKE_CACHE_ARGS -DENABLE_ftshoe:BOOL=ON)
 

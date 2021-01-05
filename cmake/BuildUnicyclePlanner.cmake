@@ -12,5 +12,5 @@ ycm_ep_helper(UnicyclePlanner TYPE GIT
               REPOSITORY robotology/unicycle-footstep-planner.git
               TAG master
               COMPONENT dynamics
-              FOLDER robotology
+              FOLDER src
               DEPENDS iDynTree)
