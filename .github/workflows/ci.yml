@@ -250,7 +250,7 @@ jobs:
         brew upgrade  python@3.9 || brew link --overwrite python@3.9
         brew upgrade
         # Core dependencies
-        brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt5 sqlite swig tinyxml
+        brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt@5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
         brew install libmatio
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
