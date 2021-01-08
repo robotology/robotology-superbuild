@@ -21,11 +21,13 @@ if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   find_or_build_package(qhull QUIET)
   find_or_build_package(casadi QUIET)
   find_or_build_package(CppAD QUIET)
+  find_or_build_package(LieGroupControllers QUIET)
 
   list(APPEND bipedal-locomotion-framework_DEPENDS manif)
   list(APPEND bipedal-locomotion-framework_DEPENDS qhull)
   list(APPEND bipedal-locomotion-framework_DEPENDS casadi)
   list(APPEND bipedal-locomotion-framework_DEPENDS CppAD)
+  list(APPEND bipedal-locomotion-framework_DEPENDS LieGroupControllers)
 endif()
 
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
@@ -39,4 +41,5 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_Qhull:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_cppad:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
