@@ -89,6 +89,9 @@ git clone https://github.com/robotology/robotology-superbuild
 ~~~
 this will clone the superbuild in its default branch.
 
+You can download and use the `robotology-superbuild` anywhere on your system, but if you are installing it 
+on an [**iCub robot laptop** following the official iCub instructions](https://icub-tech-iit.github.io/documentation/icub_operating_systems/other-machines/generic-machine/), you should clone it in the `/usr/local/src/robot` directory.
+
 If instead you want to use a **specific release** of the robotology superbuild, after you clone switch to use to a specific release tag: 
 ~~~
 git checkout v<YYYY.MM>
