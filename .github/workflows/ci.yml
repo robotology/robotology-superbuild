@@ -243,7 +243,6 @@ jobs:
       if: contains(matrix.os, 'macos')
       run: |
         cmake --version
-        brew cask install xquartz
         # Update homebrew 
         brew update
         # Workaround for https://github.com/robotology/robotology-superbuild/issues/571
