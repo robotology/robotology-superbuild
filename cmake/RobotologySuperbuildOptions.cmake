@@ -19,7 +19,7 @@ option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Pyt
 
 ## Find the active version of Python
 find_package(Python COMPONENTS Interpreter)
-set(PYTHON_VERSION_PATH "python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
+set(PYTHON_VERSION_PATH "python${Python_VERSION_MAJOR}")
 
 ## Enable packages that depend on the Gazebo simulator
 if(WIN32)
