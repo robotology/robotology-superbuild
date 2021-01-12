@@ -15,3 +15,5 @@ set_tag(casadi a26cd8ffba99052b74553eec1daeff640eea7e79)
 set_tag(YCM_TAG ycm-0.12)
 set_tag(YARP_TAG yarp-3.4)
 set_tag(yarp-matlab-bindings_TAG yarp-3.4)
+# Workaround as bfl depends on some features of iDynTree 3
+set_tag(bipedal-locomotion-framework_TAG 46d8f68c51fad71ae06db8686fa88218f7404923)
