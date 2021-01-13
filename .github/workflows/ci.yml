@@ -250,6 +250,7 @@ jobs:
         # Workaround for https://github.com/robotology/robotology-superbuild/issues/565
         brew upgrade  python@3.9 || brew link --overwrite python@3.9
         brew upgrade
+        brew install --cask xquartz
         # Core dependencies
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt@5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
