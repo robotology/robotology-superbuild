@@ -3,8 +3,8 @@ set(ROBOTOLOGY_USES_GAZEBO ON CACHE BOOL "")
 
 # Dependencies not supported on Windows
 if(NOT WIN32)
-  set(ROBOTOLOGY_USES_OCTAVE OFF CACHE BOOL "")
-  set(ROBOTOLOGY_USES_PYTHON OFF CACHE BOOL "")
+  set(ROBOTOLOGY_USES_OCTAVE ON CACHE BOOL "")
+  set(ROBOTOLOGY_USES_PYTHON ON CACHE BOOL "")
 endif()
 
 # Profiles options
