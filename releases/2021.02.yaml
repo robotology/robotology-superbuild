@@ -163,3 +163,7 @@ repositories:
     type: git
     url: https://github.com/dic-iit/bipedal-locomotion-framework.git
     version: 46d8f68c51fad71ae06db8686fa88218f7404923
+  osqp-matlab:
+    type: git
+    url: https://github.com/dic-iit/osqp-matlab-cmake-buildsystem.git
+    version: v0.6.2.0
