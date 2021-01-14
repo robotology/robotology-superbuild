@@ -28,6 +28,9 @@ For what regards the [`CMAKE_PREFIX_PATH` environment variable](https://cmake.or
 Just on Linux, you need to append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to  [`LD_LIBRARY_PATH`](http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html),
 while on macOS you need to append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to [`DYLD_LIBRARY_PATH`](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/UsingDynamicLibraries.html).
 
+For what regards correctly loading resources in URDF files, you need to append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\share` to the 
+[`ROS_PACKAGE_PATH`](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH) environment variable for [ROS1](https://www.ros.org/), and to [`AMENT_PREFIX_PATH`](http://design.ros2.org/articles/ament.html) for [ROS2](https://index.ros.org/doc/ros2/) 
+
 ## Profile-specific configuration steps 
 
 This section covers the configuration necessary for a specific profile. 
