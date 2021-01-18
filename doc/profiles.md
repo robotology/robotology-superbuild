@@ -127,7 +127,7 @@ On Windows to communicate with CAN devices via [esd's CAN USB bridges](https://e
 
 On macOS, communication with [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2) is not supported and `diagnosticdaemon` is not available because of https://github.com/robotology/robotology-superbuild/issues/439.
 
-This section documents the iCub Head profile as any other profile, in a way agnostic of the specific machine in which it is installed. To get information on how to use the robotology-superbuild to install software on the machine mounted in the head of physical iCub robots, please check the documentation in [`doc/use-on-icub-head.md`](doc/use-on-icub-head.md).
+This section documents the iCub Head profile as any other profile, in a way agnostic of the specific machine in which it is installed. To get information on how to use the robotology-superbuild to install software on the machine mounted in the head of physical iCub robots, please check the documentation in [the official iCub documentation](https://icub-tech-iit.github.io/documentation/sw_installation/icub_head_superbuild/).
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the iCub Head profile are provided in
