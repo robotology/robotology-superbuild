@@ -26,7 +26,7 @@ repositories:
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: 0f12169a9818dde431b051ac79c3a6e13092f29f
+    version: v0.12.1
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
