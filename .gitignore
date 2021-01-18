@@ -10,6 +10,5 @@ CTestTestfile.cmake
 *~
 /build*/
 *kdev*
-/external/
-/robotology/
+/src/
 *.user
