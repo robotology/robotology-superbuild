@@ -130,11 +130,13 @@ jobs:
       run: |
         apt-get -y -t buster-backports install cmake
 
-    - name: Install additional packages for Debian Sid [Debian Sid]
+    - name: Upgrade apt packages Debian Sid [Debian Sid]
       if: matrix.docker_image == 'debian:sid'
       run: |
-        # Workaround for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=967008
-        apt-get -y install libdart-external-odelcpsolver-dev
+        # The Debian sid docker image is generated only
+        # once a month, so to actually test with the latest
+        # packages we need to manually upgrade the packages
+        apt-get upgrade
 
     - name: Configure [Docker]
       run: |
