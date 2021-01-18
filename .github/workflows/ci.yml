@@ -136,7 +136,7 @@ jobs:
         # The Debian sid docker image is generated only
         # once a month, so to actually test with the latest
         # packages we need to manually upgrade the packages
-        apt-get upgrade
+        apt-get -y upgrade
 
     - name: Configure [Docker]
       run: |
