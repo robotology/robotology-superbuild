@@ -16,7 +16,8 @@
 # ICUBcontrib is here as it has several coincident tags, and the script currently is not able
 # to get the last one
 # External repos are in the list as we updated them manually
-projects_to_skip=("ICUBcontrib" "qhull" "CppAD" "casadi" "manif" "osqp")
+# event-driven does not have a recent release
+projects_to_skip=("ICUBcontrib" "qhull" "CppAD" "casadi" "manif" "osqp" "event-driven")
 
 getParentDir () {
     SOURCE="${1}"
