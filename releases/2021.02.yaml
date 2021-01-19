@@ -163,3 +163,4 @@ repositories:
     type: git
     url: https://github.com/dic-iit/bipedal-locomotion-framework.git
     version: 46d8f68c51fad71ae06db8686fa88218f7404923
+
