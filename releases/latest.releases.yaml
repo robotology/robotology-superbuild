@@ -170,4 +170,4 @@ repositories:
   event-driven:
     type: git
     url: https://github.com/robotology/event-driven.git
-    version: v1.4
+    version: 62523c05032f7b56c174a882e594cefd036f7590
