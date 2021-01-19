@@ -130,11 +130,13 @@ jobs:
       run: |
         apt-get -y -t buster-backports install cmake
 
-    - name: Install additional packages for Debian Sid [Debian Sid]
+    - name: Upgrade apt packages Debian Sid [Debian Sid]
       if: matrix.docker_image == 'debian:sid'
       run: |
-        # Workaround for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=967008
-        apt-get -y install libdart-external-odelcpsolver-dev
+        # The Debian sid docker image is generated only
+        # once a month, so to actually test with the latest
+        # packages we need to manually upgrade the packages
+        apt-get -y upgrade
 
     - name: Configure [Docker]
       run: |
@@ -143,7 +145,8 @@ jobs:
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Octave is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/384
         # Python is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/494
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+        # Gazebo is disabled due to the errors reported in https://github.com/robotology/robotology-superbuild/pull/593
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Disable profiles that are not supported in docker for now [Docker debian-sid and debian-buster]
       if: (matrix.docker_image == 'debian:sid' || matrix.docker_image == 'debian:buster-backports')
