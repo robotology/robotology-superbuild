@@ -216,7 +216,6 @@ If for any reason you do not want to use the provided `setup.sh` script and you 
 ## Windows from source
 
 ### System Dependencies
-
 As Windows does not have a widely used system [package manager](https://en.wikipedia.org/wiki/Package_manager) such as the one that are available on Linux or macOS, installing the system dependencies is slightly more compliated. However, we try to document every step necessary for the installation, but you find something that you don't understand in the documentation, please [open an issue](https://github.com/robotology/robotology-superbuild/issues/new).  
 
 #### Visual Studio
