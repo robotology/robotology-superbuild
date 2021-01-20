@@ -45,8 +45,14 @@ endif()
 * Add the profile documentation in [`doc/profile.md#profile-specific-documentation`](profiles.md#profile-specific-documentation). Take inspiration from the documentation of existing profiles. If the profile need a specific enviroment variable to be set of a value to be appended (such as `YARP_DATA_DIRS`), document it in the documentation and add it in the templates in https://github.com/robotology/robotology-superbuild/blob/master/cmake/template and in [`doc/environment-variables-configuration.md`](environment-variables-configuration.md).
 * Add the profile option in the `.ci/initial-cache.ci.cmake`, so it will be tested in the Continuous Integration and binaries will be generated for it.
 
+## How to bump the version of a subproject
+* The superbuild contains a `releases/latest.releases.yaml` file that is meant to contain the latest release of each subproject of the superbuild.
+* This file is automatically updated by the `update-latest-releases.yml` GitHub action, that periodically checks the default branches of the repo (the one used if `ROBOTOLOGY_PROJECT_TAGS` is set to `Stable`) and extract the latest tag done on that branch. The action can also be run manually using the [`workflow_dispatch` event](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/).
+* If you have any project for which you want to manually manage the release used in the `releases/latest.releases.yaml` file,
+you can disable the automatical update of the tags by adding its CMake name in the `projects_to_skip` array in the `scripts/robotologyUpdateLatestReleases.sh` script.
+
 ## How to do a new release
-* Sometime before the release, add a `yyyy.mm.yaml` file in https://github.com/robotology/robotology-superbuild/tree/master/releases, containing the version of package contained in the new release.
+* Sometime before the release, copy the `releases/latest.releases.yaml` file in `releases/yyyy.mm.yaml` file, containing the version of package contained in the new release.
 * Modify the CI scripts to start testing the `yyyy.mm.yaml`
 * Once the release is ready to be made, create a `releases/yyyy.mm` branch from `master`
 * On the branch `releases/yyyy.mm` modify the default value of the `ROBOTOLOGY_PROJECT_TAGS` CMake option to be `Custom` and of the `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` to the point to the `yyyy.mm.yaml` file.
