@@ -72,6 +72,12 @@ else()
 endif()
 
 if(WIN32)
+  set(BLOCKFACTORY_PLUGIN_PATH_DIRECTORY "bin")
+else()
+  set(BLOCKFACTORY_PLUGIN_PATH_DIRECTORY "lib")
+endif()
+
+if(WIN32)
   # On Git Bash on Windows, C: is rendered as /c
   string(REGEX MATCH "^([A-Z])" PROJECT_SOURCE_DIR_DRIVE ${PROJECT_SOURCE_DIR})
   string(TOLOWER ${PROJECT_SOURCE_DIR_DRIVE} PROJECT_SOURCE_DIR_DRIVE_LOWER)

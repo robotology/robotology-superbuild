@@ -39,7 +39,9 @@ For all profile options not listed, no additional configuration is required.
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin` must be appended to `BLOCKTEST_RESOURCE_PATH` environmental variable.
 
 ### Dynamics
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory` must be appended to the `BLOCKFACTORY_PLUGIN_PATH` environmental variable
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/blockfactory` must be appended to the `BLOCKFACTORY_PLUGIN_PATH` environmental variable on Linux and macOS, while 
+`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/bin/blockfactory` must be appended to the `BLOCKFACTORY_PLUGIN_PATH` on Windows.
+
 
 ### Human Dynamics
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/human-gazebo`, 
