@@ -65,6 +65,8 @@ jobs:
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       shell: bash -l {0}
       run: |
+        # Windows-only dependencies
+        mamba install freeglut
         mkdir -p build
         cd build
         cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
