@@ -142,7 +142,7 @@ ccmake ../
 make
 ```
 You can configure the ccmake environment if you know you will use some particular set of software (put them in "ON").
-See [Superbuild CMake options](#superbuild-cmake-options) for a list of available options.
+See [Superbuild CMake options](doc/profiles.md#superbuild-cmake-options) for a list of available options.
 
 ### Configure your environment
 The superbuild provides an automatically generated `setup.sh` sh script that will set all the necessary enviromental variables to use the software installed in the robotology-superbuild. To do so automatically for any new terminal that you open, append the following line to the `.bashrc` file:
