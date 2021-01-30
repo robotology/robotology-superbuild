@@ -4,10 +4,13 @@
 
 include(YCMEPHelper)
 
+find_or_build_package(YCM QUIET)
+
 ycm_ep_helper(blocktestcore TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/blocktest.git
               TAG master
               COMPONENT core
               FOLDER src
-              CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)
+              CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF
+              DEPENDS YCM)
