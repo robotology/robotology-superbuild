@@ -6,11 +6,11 @@ repositories:
   osqp:
     type: git
     url: https://github.com/oxfordcontrol/osqp.git
-    version: v0.6.0
+    version: v0.6.2
   manif:
     type: git
     url: https://github.com/artivis/manif.git
-    version: 44bdfebff0fbc56cb189f680212257dc7f20ea58
+    version: v0.0.3
   qhull:
     type: git
     url: https://github.com/qhull/qhull.git
@@ -18,7 +18,7 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 72fde5fc783c9d85a6d2453631f0b8c3f4159fe1
+    version: 4aac52664de911af02cfade06131a9a6f6b48d7e
   casadi:
     type: git
     url: https://github.com/GiulioRomualdi/casadi.git
@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v2.0.2
+    version: v3.0.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -98,7 +98,7 @@ repositories:
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.4.0
+    version: v0.4.1
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
@@ -114,7 +114,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v0.2.0
+    version: 99e8c5e6e5d91bbe7ef6e02ceb7a0c599b3e19fd
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
@@ -126,7 +126,7 @@ repositories:
   human-dynamics-estimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.1.0
+    version: v2.2.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -170,5 +170,8 @@ repositories:
   event-driven:
     type: git
     url: https://github.com/robotology/event-driven.git
-    version: 62523c05032f7b56c174a882e594cefd036f7590
-
+    version: v1.5
+  matio-cpp:
+    type: git
+    url: https://github.com/dic-iit/matio-cpp.git
+    version: v0.1.0
