@@ -50,7 +50,7 @@ jobs:
         # Compilation related dependencies 
         mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
+        mamba install ace asio boost eigen gazebo glew glfw gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
@@ -249,7 +249,7 @@ jobs:
         # Core dependencies
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt@5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
-        brew install libmatio
+        brew install libmatio irrlicht
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
         brew install cppad qhull
         # ROBOTOLOGY_USES_GAZEBO dependencies

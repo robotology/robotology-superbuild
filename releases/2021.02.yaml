@@ -6,11 +6,11 @@ repositories:
   osqp:
     type: git
     url: https://github.com/oxfordcontrol/osqp.git
-    version: v0.6.0
+    version: v0.6.2
   manif:
     type: git
     url: https://github.com/artivis/manif.git
-    version: 44bdfebff0fbc56cb189f680212257dc7f20ea58
+    version: 0.0.3
   qhull:
     type: git
     url: https://github.com/qhull/qhull.git
@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v2.0.1
+    version: v3.0.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -98,7 +98,7 @@ repositories:
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.3.3
+    version: v0.4.1
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
@@ -110,11 +110,11 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: v0.3.0
+    version: cc8ffb83375a2d410b225f4fa67aee4a29074b42
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v0.2.0
+    version: 99e8c5e6e5d91bbe7ef6e02ceb7a0c599b3e19fd
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
@@ -122,11 +122,11 @@ repositories:
   wearables:
     type: git
     url: https://github.com/robotology/wearables.git
-    version: v1.1.1
+    version: v1.2.0
   human-dynamics-estimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.1.0
+    version: v2.2.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -163,3 +163,15 @@ repositories:
     type: git
     url: https://github.com/dic-iit/bipedal-locomotion-framework.git
     version: 46d8f68c51fad71ae06db8686fa88218f7404923
+  LieGroupControllers:
+    type: git
+    url: https://github.com/dic-iit/lie-group-controllers.git
+    version: v0.0.1
+  event-driven:
+    type: git
+    url: https://github.com/robotology/event-driven.git
+    version: v1.5
+  matio-cpp:
+    type: git
+    url: https://github.com/dic-iit/matio-cpp.git
+    version: v0.1.0
