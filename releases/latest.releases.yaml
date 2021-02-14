@@ -70,7 +70,7 @@ repositories:
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.3.0
+    version: v2.3.1
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
@@ -110,11 +110,11 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: cc8ffb83375a2d410b225f4fa67aee4a29074b42
+    version: 0.4.0
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: 99e8c5e6e5d91bbe7ef6e02ceb7a0c599b3e19fd
+    version: v0.2.0
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
