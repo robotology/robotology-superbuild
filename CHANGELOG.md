@@ -12,3 +12,4 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Removed
 - The `icub-gazebo-wholebody` project was removed from the superbuild (https://github.com/robotology/robotology-superbuild/issues/543, https://github.com/robotology/robotology-superbuild/pull/555).
+- Support for compiling the `MATLAB` bindings of qpOASES have been removed (https://github.com/robotology/robotology-superbuild/pull/613).
