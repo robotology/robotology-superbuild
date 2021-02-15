@@ -74,7 +74,7 @@ repositories:
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
-    version: v1.1.0
+    version: v1.1.1
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
