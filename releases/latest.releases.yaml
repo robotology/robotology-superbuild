@@ -18,7 +18,7 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 4aac52664de911af02cfade06131a9a6f6b48d7e
+    version: 20210000.4
   casadi:
     type: git
     url: https://github.com/GiulioRomualdi/casadi.git
@@ -110,11 +110,11 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: 0.4.0
+    version: v0.4.0
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: 99e8c5e6e5d91bbe7ef6e02ceb7a0c599b3e19fd
+    version: v1.0.0
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
