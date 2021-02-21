@@ -59,6 +59,8 @@ updateLatestRelease () {
     is_contained=$?
     if [ $is_contained == 1 ]
     then
+       # Printing package name to simplify debugging for errors
+        echo "Checking if a new release of ${package_name} is available"
         # Extract latest tag
         latest_tag=`git describe --abbrev=0 --tags`
         # Update latest tag in latest-release.yaml file,
