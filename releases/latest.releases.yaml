@@ -30,7 +30,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.4.2
+    version: v3.4.3
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -147,6 +147,10 @@ repositories:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
     version: v0.1.0
+  yarp-device-ovrheadset:
+    type: git
+    url: https://github.com/robotology/yarp-device-ovrheadset.git
+    version: v1.0.0
   speech:
     type: git
     url: https://github.com/robotology/speech.git
@@ -162,7 +166,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/dic-iit/bipedal-locomotion-framework.git
-    version: 46d8f68c51fad71ae06db8686fa88218f7404923
+    version: v0.1.0
   LieGroupControllers:
     type: git
     url: https://github.com/dic-iit/lie-group-controllers.git
