@@ -147,6 +147,10 @@ repositories:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
     version: v0.1.0
+  yarp-device-ovrheadset:
+    type: git
+    url: https://github.com/robotology/yarp-device-ovrheadset.git
+    version: v1.0.0
   speech:
     type: git
     url: https://github.com/robotology/speech.git
@@ -175,5 +179,3 @@ repositories:
     type: git
     url: https://github.com/dic-iit/matio-cpp.git
     version: v0.1.0
-  yarp-device-ovrheadset:
-    version: v1.0.0
