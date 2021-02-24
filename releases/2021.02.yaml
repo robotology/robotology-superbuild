@@ -18,11 +18,11 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 4aac52664de911af02cfade06131a9a6f6b48d7e
+    version: 20210000.4
   casadi:
     type: git
     url: https://github.com/GiulioRomualdi/casadi.git
-    version: a26cd8ffba99052b74553eec1daeff640eea7e79
+    version: 3.5.5.1
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
@@ -30,7 +30,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.4.2
+    version: v3.4.3
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -70,11 +70,11 @@ repositories:
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.3.0
+    version: v2.3.1
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
-    version: v1.1.0
+    version: v1.1.1
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
@@ -110,11 +110,11 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: cc8ffb83375a2d410b225f4fa67aee4a29074b42
+    version: v0.4.0
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: 99e8c5e6e5d91bbe7ef6e02ceb7a0c599b3e19fd
+    version: v1.0.0
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
