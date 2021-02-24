@@ -183,3 +183,4 @@ repositories:
     type: git
     url: https://github.com/robotology/diagnostic-daemon.git
     version: v1.0.0
+    
