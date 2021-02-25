@@ -261,6 +261,7 @@ jobs:
     - name: Dependencies [Windows]
       if: contains(matrix.os, 'windows')
       run: |
+        df -h
         # To avoid spending a huge time compiling vcpkg dependencies, we download an archive  that comes precompiled with all the ports that we need 
         choco install -y wget unzip
         # To avoid problems with non-relocatable packages, we unzip the archive exactly in the same directory
@@ -293,6 +294,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
+        df -h
         # Make sure that Gazebo packages can be found by CMake
         source /c/robotology/scripts/setup-deps.sh
         mkdir -p build
@@ -319,6 +321,7 @@ jobs:
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && contains(matrix.os, 'windows')
       shell: bash
       run: |
+        df -h
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
@@ -330,6 +333,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
+        df -h
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
@@ -337,7 +341,7 @@ jobs:
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
 
-    # Just for release builds we gerate the installer
+    # Just for release builds we generate the installer
     - name: Generate installer [Windows]
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
       shell: bash
