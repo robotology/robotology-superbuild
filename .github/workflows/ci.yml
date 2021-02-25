@@ -200,13 +200,13 @@ jobs:
       shell: bash
       run: |
         ls /d/
-        cp -r ${GITHUB_WORKSPACE} /d/
+        cp -r ${GITHUB_WORKSPACE} /c/
         
     - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
-        echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/d/robotology-superbuild" >> $GITHUB_ENV
+        echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/c/robotology-superbuild" >> $GITHUB_ENV
 
     - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
