@@ -199,7 +199,8 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
-        mv ${GITHUB_WORKSPACE} /d/
+        ls /d/
+        cp -r ${GITHUB_WORKSPACE} /d/
         
     - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
       if: contains(matrix.os, 'windows')
