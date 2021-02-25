@@ -359,6 +359,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR} 
         df -h
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
