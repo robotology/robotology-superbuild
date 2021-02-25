@@ -304,7 +304,7 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         mkdir -p build
         cd build
-        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
     - name: Disable macOS unsupported options
       if: contains(matrix.os, 'macos')
@@ -325,7 +325,7 @@ jobs:
         mkdir -p build
         cd build
         # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as a workaround for https://github.com/robotology/robotology-superbuild/issues/472
-        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
 
 
     - name: Build  [Ubuntu&macOS]
