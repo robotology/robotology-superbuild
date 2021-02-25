@@ -194,6 +194,24 @@ jobs:
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2021.02.yaml"
     steps:
     - uses: actions/checkout@master
+    
+    - name: Move robotology-superbuild in C under Windows
+      if: contains(matrix.os, 'windows')
+      shell: bash
+      run: |
+        mv ${GITHUB_WORKSPACE} /d/
+        
+    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
+      if: contains(matrix.os, 'windows')
+      shell: bash
+      run: |
+        echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/d/robotology-superbuild" >> $GITHUB_ENV
+
+    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+      shell: bash
+      run: |
+        echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
 
     - name: Check free space
       shell: bash
@@ -231,12 +249,14 @@ jobs:
     - name: Dependencies [Ubuntu]
       if: contains(matrix.os, 'ubuntu')
       run: |
+        cd $ROBOTOLOGY_SUPERBUILD_SOURCE_DIR
         chmod +x ./.ci/install_debian.sh
         sudo ./.ci/install_debian.sh
 
     - name: Dependencies [macOS]
       if: contains(matrix.os, 'macos')
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cmake --version
         # Update homebrew 
         brew update
@@ -261,6 +281,7 @@ jobs:
     - name: Dependencies [Windows]
       if: contains(matrix.os, 'windows')
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         df -h
         # To avoid spending a huge time compiling vcpkg dependencies, we download an archive  that comes precompiled with all the ports that we need 
         choco install -y wget unzip
@@ -279,6 +300,7 @@ jobs:
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         mkdir -p build
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
@@ -286,6 +308,7 @@ jobs:
     - name: Disable macOS unsupported options
       if: contains(matrix.os, 'macos')
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
@@ -294,6 +317,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         df -h
         # Make sure that Gazebo packages can be found by CMake
         source /c/robotology/scripts/setup-deps.sh
@@ -321,6 +345,7 @@ jobs:
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && contains(matrix.os, 'windows')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         df -h
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
@@ -355,7 +380,7 @@ jobs:
         # that has more space of the D:\ drive in GitHub Actions
         mkdir /c/build-installer-full
         cd /c/build-installer-full
-        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=ON ${GITHUB_WORKSPACE}/packaging/windows
+        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=ON ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/packaging/windows
         cmake --build . --config Release --target PACKAGE
         # Move installer in installer directory with a fixed name
         mv *.exe /c/robotology-full-installer-win64.exe
@@ -364,7 +389,7 @@ jobs:
         rm -rf /c/build-installer-full
         mkdir /c/build-installer-dependencies
         cd /c/build-installer-dependencies
-        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=OFF ${GITHUB_WORKSPACE}/packaging/windows
+        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=OFF ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/packaging/windows
         cmake --build . --config Release --target PACKAGE
         # Move installer in installer directory with a fixed name
         mv *.exe /c/robotology-dependencies-installer-win64.exe
