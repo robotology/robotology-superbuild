@@ -44,6 +44,33 @@ jobs:
         channels: conda-forge,defaults
         channel-priority: true
 
+    - name: Install files to enable compilation of mex files [Conda/Linux]
+      if: contains(matrix.os, 'ubuntu') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2019b_mexa64.zip
+        unzip msdk_R2019b_mexa64.zip
+        rm msdk_R2019b_mexa64.zip
+        echo "::set-env name=GHA_Matlab_ROOT_DIR::${GITHUB_WORKSPACE}/msdk_R2019b_mexa64"
+        echo "::set-env name=GHA_Matlab_MEX_EXTENSION::mexa64"
+                
+    - name: Install files to enable compilation of mex files [Conda/macOS]
+      if: contains(matrix.os, 'macos') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2019b_mexmaci64.zip
+        unzip msdk_R2019b_mexmaci64.zip
+        rm msdk_R2019b_mexmaci64.zip
+        echo "::set-env name=GHA_Matlab_ROOT_DIR::${GITHUB_WORKSPACE}/msdk_R2019b_mexmaci64"
+        echo "::set-env name=GHA_Matlab_MEX_EXTENSION::mexmaci64"
+        
+    - name: Install files to enable compilation of mex files [Conda/Windows]
+      shell: bash
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
+        unzip msdk_R2020a_mexw64.zip
+        rm msdk_R2020a_mexw64.zip
+        echo "::set-env name=GHA_Matlab_ROOT_DIR::${GITHUB_WORKSPACE}/msdk_R2019b_mexw64"
+        echo "::set-env name=GHA_Matlab_MEX_EXTENSION::mexw64"
+
     - name: Dependencies [Conda]
       shell: bash -l {0}
       run: |
@@ -67,7 +94,7 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
@@ -81,7 +108,7 @@ jobs:
         mamba install freeglut
         mkdir -p build
         cd build
-        cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
@@ -195,6 +222,33 @@ jobs:
     steps:
     - uses: actions/checkout@master
     
+    - name: Install files to enable compilation of mex files [Ubuntu]
+      if: contains(matrix.os, 'ubuntu') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2019b_mexa64.zip
+        unzip msdk_R2019b_mexa64.zip
+        rm msdk_R2019b_mexa64.zip
+        echo "::set-env name=GHA_Matlab_ROOT_DIR::${GITHUB_WORKSPACE}/msdk_R2019b_mexa64"
+        echo "::set-env name=GHA_Matlab_MEX_EXTENSION::mexa64"
+                
+    - name: Install files to enable compilation of mex files [macOS]
+      if: contains(matrix.os, 'macos') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2019b_mexmaci64.zip
+        unzip msdk_R2019b_mexmaci64.zip
+        rm msdk_R2019b_mexmaci64.zip
+        echo "::set-env name=GHA_Matlab_ROOT_DIR::${GITHUB_WORKSPACE}/msdk_R2019b_mexmaci64"
+        echo "::set-env name=GHA_Matlab_MEX_EXTENSION::mexmaci64"
+        
+    - name: Install files to enable compilation of mex files [Windows]
+      shell: bash
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
+        unzip msdk_R2020a_mexw64.zip
+        rm msdk_R2020a_mexw64.zip
+        echo "::set-env name=GHA_Matlab_ROOT_DIR::${GITHUB_WORKSPACE}/msdk_R2019b_mexw64"
+        echo "::set-env name=GHA_Matlab_MEX_EXTENSION::mexw64"
+    
     - name: Move robotology-superbuild in C under Windows
       if: contains(matrix.os, 'windows')
       shell: bash
@@ -303,7 +357,7 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         mkdir -p build
         cd build
-        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
     - name: Disable macOS unsupported options
       if: contains(matrix.os, 'macos')
@@ -323,7 +377,7 @@ jobs:
         mkdir -p build
         cd build
         # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as a workaround for https://github.com/robotology/robotology-superbuild/issues/472
-        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake  -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
 
 
     - name: Build  [Ubuntu&macOS]
