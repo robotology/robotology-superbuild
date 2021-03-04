@@ -201,14 +201,8 @@ jobs:
             build_type: Release
             cmake_generator: "Unix Makefiles"
           - os: ubuntu-20.04
-            build_type: Debug
-            cmake_generator: "Ninja"
-          - os: ubuntu-20.04
             build_type: Release
-            cmake_generator: "Unix Makefiles"
-          - os: macos-10.15
-            build_type: Debug
-            cmake_generator: "Unix Makefiles"
+            cmake_generator: "Ninja"
           - os: macos-10.15
             build_type: Release
             cmake_generator: "Ninja"
