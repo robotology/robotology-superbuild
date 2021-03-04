@@ -63,6 +63,7 @@ jobs:
         echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
         
     - name: Install files to enable compilation of mex files [Conda/Windows]
+      if: contains(matrix.os, 'windows') 
       shell: bash
       run: |
         curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
@@ -242,6 +243,7 @@ jobs:
         
     - name: Install files to enable compilation of mex files [Windows]
       shell: bash
+      if: contains(matrix.os, 'windows') 
       run: |
         curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
         unzip msdk_R2020a_mexw64.zip
