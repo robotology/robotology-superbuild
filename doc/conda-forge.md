@@ -61,7 +61,7 @@ of the robotology-superbuild.**
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 ~~~
 conda install cmake compilers make ninja pkg-config
-conda install ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
+conda install ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
 ~~~
 
 If you are on **Linux**, you also need to install also the following packages:
