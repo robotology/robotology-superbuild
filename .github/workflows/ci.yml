@@ -113,6 +113,15 @@ jobs:
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+      
+    # For some reason, the Strawberry perl's pkg-config is found
+    # instead of the conda's one
+    - name: Debug pkg-config problem 
+      shell: bash -l {0}
+      run: |
+        echo $PATH
+        which pkg-config
+        
     - name: Build  [Conda]
       shell: bash -l {0}
       run: |
