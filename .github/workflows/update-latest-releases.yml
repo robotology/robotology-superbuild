@@ -43,6 +43,8 @@ jobs:
             body: |
               This is the **periodic automatic update** of the latest releases versions.
               
+              Due to limitations of Github Actions, you will need to close/reopen the PR to get the actions running.
+              
               Before merging, wait for the continuous integration outcome as it is possible that the automatic update of a given project created problems in the compilation of the overall superbuild.
               
               For more info, check the [developer FAQs documentation of the robotology-superbuild](https://github.com/robotology/robotology-superbuild/blob/master/doc/developers-faqs.md). 
