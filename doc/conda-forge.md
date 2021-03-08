@@ -26,7 +26,7 @@ This section describes how to compile and install the robotology-superbuild with
 
 ### Install a conda distribution
 If you do not have a conda distribution on your system, we suggest to use the minimal 
-[`miniforge3`](https://github.com/conda-forge/miniforge#miniforge3) distribution, that uses `conda-forge` packages by default. 
+[`miniforge3`](https://github.com/conda-forge/miniforge#miniforge3) distribution, that uses `conda-forge` packages by default, following the instructions in our [`install-miniforge`](install-miniforge.md) documentation. 
 
 After you installed it, make sure that you can execute the `conda info` package from your terminal, and its output is similar to:
 ~~~
