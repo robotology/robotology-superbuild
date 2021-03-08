@@ -3,6 +3,12 @@
 This page provide detailed instructions on how to install the [miniforge conda distribution](https://github.com/conda-forge/miniforge). 
 For more information on conda and its use with the robotology-superbuild, please check the [related documentation](conda-forge.md).
 
+## Table of Contents
+
+* [Linux](#linux)
+* [macOS](#macos)
+* [Windows](#windows)
+
 ## Linux
 
 ### Install
