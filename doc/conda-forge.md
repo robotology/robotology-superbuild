@@ -66,7 +66,7 @@ conda install ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libm
 
 If you are on **Linux**, you also need to install also the following packages:
 ~~~
-conda install expat-cos6-x86_64 freeglut libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
+conda install expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
 ~~~
 
 If you are on **Windows**, you also need to install also the following packages:
