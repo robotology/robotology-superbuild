@@ -1,6 +1,13 @@
 # Copyright (C) Fondazione Istituto Italiano di Tecnologia
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
+# Detect if robotology-superbuild is being configured under a conda environment
+if(DEFINED ENV{CONDA_PREFIX})
+  set(ROBOTOLOGY_CONFIGURING_UNDER_CONDA ON)
+else()
+  set(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OFF)
+endif()
+
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(YARP)
@@ -76,7 +83,7 @@ endif()
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   find_or_build_package(icub_firmware_shared)
   find_or_build_package(ICUB)
-  if((NOT APPLE))
+  if(NOT APPLE AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
     find_or_build_package(diagnosticdaemon)
   endif()
   if((NOT WIN32) AND (NOT APPLE))
