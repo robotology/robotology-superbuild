@@ -14,3 +14,5 @@ ycm_ep_helper(UnicyclePlanner TYPE GIT
               COMPONENT dynamics
               FOLDER src
               DEPENDS iDynTree)
+              
+set(UnicyclePlanner_CONDA_DEPENDENCIES eigen)

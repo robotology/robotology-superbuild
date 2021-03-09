@@ -1,12 +1,6 @@
 name: C++ CI Workflow
 
 on:
-  push:
-    branches:
-      - master
-      - 'releases/**'
-    tags:
-      - v*
   pull_request:
   release:
     types: [published]

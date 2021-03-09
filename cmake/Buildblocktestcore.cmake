@@ -14,3 +14,6 @@ ycm_ep_helper(blocktestcore TYPE GIT
               FOLDER src
               CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF
               DEPENDS YCM)
+
+set(blocktestcore_CONDA_DEPENDENCIES qt boost-cpp)
+set(blocktestcore_CONDA_VERSION "2.3.0.1")

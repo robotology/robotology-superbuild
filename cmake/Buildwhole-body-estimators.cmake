@@ -22,3 +22,5 @@ ycm_ep_helper(whole-body-estimators TYPE GIT
               COMPONENT dynamics
               FOLDER src
               DEPENDS ${whole-body-estimators_DEPENDS})
+              
+set(whole-body-estimators_CONDA_DEPENDENCIES "eigen")

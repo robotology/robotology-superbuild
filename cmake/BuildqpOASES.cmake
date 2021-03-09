@@ -28,3 +28,5 @@ ycm_ep_helper(qpOASES TYPE GIT
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DQPOASES_BUILD_BINDINGS_MATLAB:BOOL=OFF)
+
+set(qpOASES_CONDA_PKG_NAME "qpoases")

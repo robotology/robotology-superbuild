@@ -29,3 +29,5 @@ ycm_ep_helper(iDynTree TYPE GIT
                          -DIDYNTREE_USES_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DIDYNTREE_USES_OCTAVE:BOOL=${ROBOTOLOGY_USES_OCTAVE}
               DEPENDS ${iDynTree_DEPENDS})
+
+set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen qt irrlicht)

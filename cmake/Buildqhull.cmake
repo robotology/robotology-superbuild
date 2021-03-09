@@ -11,3 +11,6 @@ ycm_ep_helper(qhull TYPE GIT
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON)
+
+set(qhull_CONDA_PKG_NAME qhull)
+set(qhull_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

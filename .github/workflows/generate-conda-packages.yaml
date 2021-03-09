@@ -1,0 +1,112 @@
+name: Generate conda packages
+# This action automatically generate conda packages for the packages in the robotology-superbuild
+# Check doc/conda-recipe-generation.md for more info
+
+on:
+  workflow_dispatch:
+  schedule:
+  # Run the job once a week
+  - cron: '0 0 * * 2'
+
+jobs:
+    generate-conda-packages:
+        name: "Generate conda packages @${{ matrix.os }}"
+        runs-on:  ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+              include:
+                - os: ubuntu-latest
+                  conda_platform: linux-64
+                - os: macos-latest
+                  conda_platform: osx-64
+                - os: windows-2019
+                  conda_platform: win-64
+
+        steps:
+        - uses: actions/checkout@v2
+
+        - uses: conda-incubator/setup-miniconda@v2
+          with:
+            mamba-version: "*"
+            channels: conda-forge
+            channel-priority: true
+            python-version: "3.8"
+
+        - name: Install files to enable compilation of mex files [Conda/Linux]
+          if: contains(matrix.os, 'ubuntu')
+          run: |
+            curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020b_mexa64.zip
+            unzip msdk_R2020b_mexa64.zip
+            rm msdk_R2020b_mexa64.zip
+            echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020b_mexa64" >> $GITHUB_ENV
+            echo "GHA_Matlab_MEX_EXTENSION=mexa64" >> $GITHUB_ENV
+
+        - name: Install files to enable compilation of mex files [Conda/macOS]
+          if: contains(matrix.os, 'macos')
+          run: |
+            curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexmaci64.zip
+            unzip msdk_R2020a_mexmaci64.zip
+            rm msdk_R2020a_mexmaci64.zip
+            echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexmaci64" >> $GITHUB_ENV
+            echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
+
+        - name: Install files to enable compilation of mex files [Conda/Windows]
+          if: contains(matrix.os, 'windows')
+          shell: bash
+          run: |
+            curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
+            unzip msdk_R2020a_mexw64.zip
+            rm msdk_R2020a_mexw64.zip
+            echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
+            echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
+
+        # Python 3.8 is required by https://github.com/Anaconda-Platform/anaconda-client/pull/551
+        - name: Dependencies for conda recipes generation and upload
+          shell: bash -l {0}
+          run: |
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client
+            python -m pip install git+https://github.com/wolfv/multisheller.git@0cc03c68d0c68d2f9cf7b07ddb68afa531419a6d
+
+        - name: Generate recipes [Linux&macOS]
+          if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+          shell: bash -l {0}
+          run: |
+            mkdir build
+            cd build
+            cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
+
+        - name: Generate recipes [Windows]
+          if: contains(matrix.os, 'windows')
+          shell: bash -l {0}
+          run: |
+            mkdir build
+            cd build
+            cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
+
+        # Disable options not tested on Conda for now
+        # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
+        - name: Disable options not supported in conda
+          shell: bash -l {0}
+          run: |
+            # Cleanup recipes
+            rm -rf build/conda/generated_recipes
+            # Re-generate
+            cd build
+            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+
+        - name: Build conda packages
+          shell: bash -l {0}
+          run: |
+            cd build/conda/generated_recipes
+            conda build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
+        - name: Upload conda packages
+          shell: bash -l {0}
+          env:
+            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+          run: |
+            cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
+            ls *.tar.bz2
+            anaconda upload --skip-existing *.tar.bz2
+
+

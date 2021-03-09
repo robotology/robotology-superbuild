@@ -35,6 +35,15 @@ include(RobotologySuperbuildOptions)
 set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.11.1)
+
+# Include logic for generating Conda recipes (by default it is disabled) and exit
+if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
+  message(STATUS "ROBOTOLOGY_GENERATE_CONDA_RECIPES CMake option enabled, generating conda recipes.")
+  list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/conda/cmake")
+  include(RobotologySuperbuildGenerateCondaRecipes)
+  return()
+endif()
+
 include(YCMBootstrap)
 
 include(FindOrBuildPackage)
@@ -43,6 +52,7 @@ include(YCMEPHelper)
 # Include the logic of which packages should be built
 # depending on which profiles are enabled
 include(RobotologySuperbuildLogic)
+
 
 if(ROBOTOLOGY_USES_MATLAB)
   # The following line is to properly configure the matlab and simulink software installed by the superbuild

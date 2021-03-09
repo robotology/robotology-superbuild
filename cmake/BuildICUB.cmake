@@ -8,6 +8,7 @@ include(FindOrBuildPackage)
 find_or_build_package(YARP QUIET)
 
 set(ICUB_DEPENDS "")
+list(APPEND ICUB_DEPENDS YCM)
 list(APPEND ICUB_DEPENDS YARP)
 
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
@@ -81,3 +82,16 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_socketcan:BOOL=${ENABLE_icubmod_socketcan}
                                     -DICUB_USE_icub_firmware_shared:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS})
+
+# Options related to generation of conda binary packages
+set(ICUB_CONDA_DEPENDENCIES ace opencv gsl ipopt libode qt sdl)
+if(NOT (APPLE OR WIN32))
+  list(APPEND ICUB_CONDA_DEPENDENCIES libdc1394)
+endif()
+
+if(NOT APPLE)
+  list(APPEND ICUB_CONDA_DEPENDENCIES freeglut)
+endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  list(APPEND ICUB_CONDA_DEPENDENCIES libglu)
+endif()

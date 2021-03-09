@@ -13,3 +13,5 @@ ycm_ep_helper(LieGroupControllers TYPE GIT
               COMPONENT dynamics
               FOLDER src
               DEPENDS manif)
+              
+set(LieGroupControllers_CONDA_DEPENDENCIES eigen)

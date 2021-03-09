@@ -5,10 +5,6 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
-find_package(ACE QUIET)
-find_package(SQLite QUIET)
-find_package(Eigen3 QUIET)
-
 set(YARP_OPTIONAL_DEPS "")
 if(ROBOTOLOGY_ENABLE_ROBOT_TESTING)
   find_or_build_package(RobotTestingFramework QUIET)
@@ -17,8 +13,6 @@ endif()
 
 # Workaround for https://github.com/robotology/robotology-superbuild/issues/377
 if(NOT APPLE)
-  find_package(SQLite QUIET)
-  list(APPEND YARP_OPTIONAL_DEPS SQLite)
   set(YARP_OPTIONAL_CMAKE_ARGS "")
 else()
   set(YARP_OPTIONAL_CMAKE_ARGS "-DYARP_USE_SYSTEM_SQLite:BOOL=OFF")
@@ -51,8 +45,6 @@ ycm_ep_helper(YARP TYPE GIT
                    COMPONENT core
                    FOLDER src
                    DEPENDS YCM
-                           ACE
-                           Eigen3
                            ${YARP_OPTIONAL_DEPS}
                    CMAKE_ARGS -DYARP_COMPILE_GUIS:BOOL=ON
                               -DYARP_USE_SYSTEM_SQLite:BOOL=ON
@@ -89,3 +81,5 @@ ycm_ep_helper(YARP TYPE GIT
                               -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
                               -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA}
                               ${YARP_OPTIONAL_CMAKE_ARGS})
+
+set(YARP_CONDA_DEPENDENCIES ace opencv tinyxml qt eigen sdl sdl2 sqlite libjpeg-turbo)
