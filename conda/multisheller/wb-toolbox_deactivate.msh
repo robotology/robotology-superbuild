@@ -1,0 +1,7 @@
+if_(is_set("COMSPEC")).then_([
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox")),
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox\\images"))
+]).else_([
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox")),
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox/images"))
+])
