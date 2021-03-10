@@ -9,7 +9,7 @@ find_or_build_package(osqp QUIET)
 
 ycm_ep_helper(casadi TYPE GIT
               STYLE GITHUB
-              REPOSITORY GiulioRomualdi/casadi.git
+              REPOSITORY dic-iit/casadi.git
               TAG feature/support_osqp_0.6.0
               COMPONENT external
               FOLDER src
