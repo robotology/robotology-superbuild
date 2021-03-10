@@ -1,3 +1,3 @@
 # bipedal-locomotion-framework requires 10.13 for std::bad_cast_any
-MACOSX_DEPLOYMENT_TARGET:      # [osx]
-  - 10.13                      # [osx]
+MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]
+  - 10.13                      # [osx and x86_64]
