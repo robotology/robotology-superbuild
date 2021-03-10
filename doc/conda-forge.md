@@ -69,7 +69,7 @@ conda install -c robotology gazebo-yarp-plugins icub-models
 
 If you want to develop some C++ code on the top of this libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
 ~~~
-conda installl compilers cmake pkg-config make ninja
+conda install compilers cmake pkg-config make ninja
 ~~~
 
 ## Source installation
