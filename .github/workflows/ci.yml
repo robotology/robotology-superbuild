@@ -373,6 +373,13 @@ jobs:
         # Disable ROBOTOLOGY_USES_PYTHON in macOS
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
+    - name: Disable options unsupported on Ubuntu 18.04
+      if: contains(matrix.os, '18.04') &&  contains(matrix.project_tags, 'Unstable') 
+      run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
+        cd build
+        cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF
+
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
       shell: bash
