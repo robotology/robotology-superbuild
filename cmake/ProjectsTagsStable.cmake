@@ -15,3 +15,6 @@ set_tag(casadi 3.5.5.2)
 set_tag(YCM_TAG ycm-0.12)
 set_tag(YARP_TAG yarp-3.4)
 set_tag(yarp-matlab-bindings_TAG yarp-3.4)
+
+# Temporary workaround for Ubuntu 18.04 spdlog problems
+set_tag(bipedal-locomotion-framework_TAG 5b76dc40b0f9e825e29f8de5e100240b9f7d640c)
