@@ -10,7 +10,7 @@ find_or_build_package(osqp QUIET)
 ycm_ep_helper(casadi TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/casadi.git
-              TAG feature/support_osqp_0.6.0
+              TAG support_osqp_0.6.2
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
