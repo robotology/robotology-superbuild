@@ -378,7 +378,7 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
-        cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF
+        cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF .
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
