@@ -43,7 +43,9 @@ requirements:
 {% endfor %}
 {# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl #}
 {% if require_opengl_linux %}    - xorg-libxfixes {% endif %}
-
+{# Handle the constraint of macos >= 10.13 #}
+  run:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 about:
   home: https://github.com/{{ github_repo }}
