@@ -4,7 +4,8 @@ Conda Recipe Generation
 ## Rationale
 
 See the [documentation on conda-forge and the robotology-superbuild](conda-forge.md) for a general discussion on how the robotology-superbuild and conda can work together. 
-This document describes how to 
+
+This document describes how to the internal machinery used to generate the conda recipes and then build conda binaries. If you just want to compile the robotology-superbuild from source using conda-forge dependendencies of you just want to install conda binary packages from the `robotology` conda channel, you do not need to read this document, as the information in the [documentation on conda-forge and the robotology-superbuild](conda-forge.md) should be enough.
 
 ## How to generate recipes
 
