@@ -28,8 +28,11 @@ The **disadvantages**  of conda and conda-forge are:
 ## Binary installation
 
 This section describes how to compile and install the binary packages built from the robotology-superbuild on conda on Windows, macOS and Linux. 
+The binary packages are hosted in the [`robotology` conda channel](https://anaconda.org/robotology) . Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on profiles](profiles.md)) are available as conda binary packages in the `robotology` channel. 
 
-The binary packages are hosted in the [`robotology` conda channel](https://anaconda.org/robotology) . Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on profiles](profiles.md)). 
+### Install a conda distribution
+If you do not have a conda distribution on your system, we suggest to use the minimal 
+[`miniforge3`](https://github.com/conda-forge/miniforge#miniforge3) distribution, that uses `conda-forge` packages by default, following the instructions in our [`install-miniforge`](install-miniforge.md) documentation. 
 
 ### Create an environment 
 Differently from `apt` and `homebrew`, the `conda` package manager is an `environment`-oriented package manager, meaning that packages are not 

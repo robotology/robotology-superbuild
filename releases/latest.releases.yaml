@@ -21,8 +21,8 @@ repositories:
     version: 20210000.4
   casadi:
     type: git
-    url: https://github.com/GiulioRomualdi/casadi.git
-    version: 3.5.5.1
+    url: https://github.com/dic-iit/casadi.git
+    version: 3.5.5.2
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
