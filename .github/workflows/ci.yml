@@ -44,13 +44,41 @@ jobs:
         channels: conda-forge,defaults
         channel-priority: true
 
+    - name: Install files to enable compilation of mex files [Conda/Linux]
+      if: contains(matrix.os, 'ubuntu') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020b_mexa64.zip
+        unzip msdk_R2020b_mexa64.zip
+        rm msdk_R2020b_mexa64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020b_mexa64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexa64" >> $GITHUB_ENV
+                
+    - name: Install files to enable compilation of mex files [Conda/macOS]
+      if: contains(matrix.os, 'macos') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexmaci64.zip
+        unzip msdk_R2020a_mexmaci64.zip
+        rm msdk_R2020a_mexmaci64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexmaci64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
+        
+    - name: Install files to enable compilation of mex files [Conda/Windows]
+      if: contains(matrix.os, 'windows') 
+      shell: bash
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
+        unzip msdk_R2020a_mexw64.zip
+        rm msdk_R2020a_mexw64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
+
     - name: Dependencies [Conda]
       shell: bash -l {0}
       run: |
         # Compilation related dependencies 
         mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
+        mamba install ace asio boost eigen gazebo glew glfw gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
@@ -59,7 +87,7 @@ jobs:
       run: |
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
-        mamba install expat-cos6-x86_64 freeglut libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
+        mamba install expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
 
     - name: Configure [Conda/Linux&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
@@ -67,28 +95,33 @@ jobs:
       run: |
         mkdir -p build
         cd build
-        cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
     - name: Configure [Conda/Windows]
       if: contains(matrix.os, 'windows')
       # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
       shell: bash -l {0}
       run: |
-        # Workaround for https://github.com/conda-forge/freeglut-feedstock/issues/26
-        mamba install freeglut==3.0.0
-        # Workaround for https://github.com/conda-forge/gsl-feedstock/pull/55
-        curl https://raw.githubusercontent.com/conda-forge/gsl-feedstock/af134d827b7e19992b9e034bf86ad7d4b4b67142/recipe/windows_shared.gsl_types.h -o gsl_types.h
-        cp gsl_types.h $CONDA_PREFIX/Library/include/gsl
-        rm gsl_types.h
+        # Windows-only dependencies
+        mamba install freeglut
         mkdir -p build
         cd build
-        cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+      
+    # For some reason, the Strawberry perl's pkg-config is found
+    # instead of the conda's one, so let's delete the /c/Strawberry directory
+    - name: Debug pkg-config problem
+      if: contains(matrix.os, 'windows')
+      shell: bash -l {0}
+      run: |
+        rm -rf /c/Strawberry
+        
     - name: Build  [Conda]
       shell: bash -l {0}
       run: |
@@ -134,11 +167,13 @@ jobs:
       run: |
         apt-get -y -t buster-backports install cmake
 
-    - name: Install additional packages for Debian Sid [Debian Sid]
+    - name: Upgrade apt packages Debian Sid [Debian Sid]
       if: matrix.docker_image == 'debian:sid'
       run: |
-        # Workaround for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=967008
-        apt-get -y install libdart-external-odelcpsolver-dev
+        # The Debian sid docker image is generated only
+        # once a month, so to actually test with the latest
+        # packages we need to manually upgrade the packages
+        apt-get -y upgrade
 
     - name: Configure [Docker]
       run: |
@@ -147,7 +182,8 @@ jobs:
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Octave is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/384
         # Python is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/494
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+        # Gazebo is disabled due to the errors reported in https://github.com/robotology/robotology-superbuild/pull/593
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Disable profiles that are not supported in docker for now [Docker debian-sid and debian-buster]
       if: (matrix.docker_image == 'debian:sid' || matrix.docker_image == 'debian:buster-backports')
@@ -167,38 +203,76 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, macos-11.0, windows-2019]
-        project_tags: [Default, Unstable, Release202102]
+        os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, windows-2019]
+        project_tags: [Default, Unstable, LatestReleases, Release202102]
         include:
           - os: ubuntu-18.04
             build_type: Release
             cmake_generator: "Unix Makefiles"
           - os: ubuntu-20.04
-            build_type: Debug
-            cmake_generator: "Ninja"
-          - os: ubuntu-20.04
-            build_type: Release
-            cmake_generator: "Unix Makefiles"
-          - os: macos-10.15
-            build_type: Debug
-            cmake_generator: "Unix Makefiles"
-          - os: macos-10.15
             build_type: Release
             cmake_generator: "Ninja"
-          - os: macos-11.0
-            build_type: Debug
-            cmake_generator: "Unix Makefiles"
-          - os: macos-11.0
+          - os: macos-10.15
             build_type: Release
             cmake_generator: "Ninja"
           - project_tags: Default
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
+          - project_tags: LatestReleases
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/latest.releases.yaml"
           - project_tags: Release202102
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/2021.02.yaml"
     steps:
     - uses: actions/checkout@master
+    
+    - name: Install files to enable compilation of mex files [Linux]
+      if: contains(matrix.os, 'ubuntu') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020b_mexa64.zip
+        unzip msdk_R2020b_mexa64.zip
+        rm msdk_R2020b_mexa64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020b_mexa64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexa64" >> $GITHUB_ENV
+                
+    - name: Install files to enable compilation of mex files [macOS]
+      if: contains(matrix.os, 'macos') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexmaci64.zip
+        unzip msdk_R2020a_mexmaci64.zip
+        rm msdk_R2020a_mexmaci64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexmaci64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
+        
+    - name: Install files to enable compilation of mex files [Windows]
+      shell: bash
+      if: contains(matrix.os, 'windows') 
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
+        unzip msdk_R2020a_mexw64.zip
+        rm msdk_R2020a_mexw64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
+
+    
+    - name: Move robotology-superbuild in C under Windows
+      if: contains(matrix.os, 'windows')
+      shell: bash
+      run: |
+        ls /d/
+        cp -r ${GITHUB_WORKSPACE} /c/
+        
+    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
+      if: contains(matrix.os, 'windows')
+      shell: bash
+      run: |
+        echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/c/robotology-superbuild" >> $GITHUB_ENV
+
+    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+      shell: bash
+      run: |
+        echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
 
     - name: Check free space
       shell: bash
@@ -236,14 +310,15 @@ jobs:
     - name: Dependencies [Ubuntu]
       if: contains(matrix.os, 'ubuntu')
       run: |
+        cd $ROBOTOLOGY_SUPERBUILD_SOURCE_DIR
         chmod +x ./.ci/install_debian.sh
         sudo ./.ci/install_debian.sh
 
     - name: Dependencies [macOS]
       if: contains(matrix.os, 'macos')
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cmake --version
-        brew cask install xquartz
         # Update homebrew 
         brew update
         # Workaround for https://github.com/robotology/robotology-superbuild/issues/571
@@ -251,10 +326,11 @@ jobs:
         # Workaround for https://github.com/robotology/robotology-superbuild/issues/565
         brew upgrade  python@3.9 || brew link --overwrite python@3.9
         brew upgrade
+        brew install --cask xquartz
         # Core dependencies
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt@5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
-        brew install libmatio
+        brew install libmatio irrlicht spdlog
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
         brew install cppad qhull
         # ROBOTOLOGY_USES_GAZEBO dependencies
@@ -266,12 +342,13 @@ jobs:
     - name: Dependencies [Windows]
       if: contains(matrix.os, 'windows')
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         # To avoid spending a huge time compiling vcpkg dependencies, we download an archive  that comes precompiled with all the ports that we need 
         choco install -y wget unzip
         # To avoid problems with non-relocatable packages, we unzip the archive exactly in the same directory
         # that has been used to create the pre-compiled archive
         cd C:/
-        wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.5.0/vcpkg-robotology-with-gazebo.zip
+        wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.6.2/vcpkg-robotology-with-gazebo.zip
         unzip vcpkg-robotology-with-gazebo.zip -d C:/
         rm vcpkg-robotology-with-gazebo.zip
 
@@ -283,27 +360,37 @@ jobs:
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         mkdir -p build
         cd build
-        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
     - name: Disable macOS unsupported options
       if: contains(matrix.os, 'macos')
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+
+    - name: Disable options unsupported on Ubuntu 18.04
+      if: contains(matrix.os, '18.04') &&  contains(matrix.project_tags, 'Unstable') 
+      run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
+        cd build
+        cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF .
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         # Make sure that Gazebo packages can be found by CMake
         source /c/robotology/scripts/setup-deps.sh
         mkdir -p build
         cd build
         # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as a workaround for https://github.com/robotology/robotology-superbuild/issues/472
-        cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake  -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
 
 
     - name: Build  [Ubuntu&macOS]
@@ -324,6 +411,7 @@ jobs:
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && contains(matrix.os, 'windows')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
@@ -335,6 +423,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR} 
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
@@ -342,7 +431,7 @@ jobs:
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
 
-    # Just for release builds we gerate the installer
+    # Just for release builds we generate the installer
     - name: Generate installer [Windows]
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
       shell: bash
@@ -356,7 +445,7 @@ jobs:
         # that has more space of the D:\ drive in GitHub Actions
         mkdir /c/build-installer-full
         cd /c/build-installer-full
-        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=ON ${GITHUB_WORKSPACE}/packaging/windows
+        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=ON ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/packaging/windows
         cmake --build . --config Release --target PACKAGE
         # Move installer in installer directory with a fixed name
         mv *.exe /c/robotology-full-installer-win64.exe
@@ -365,7 +454,7 @@ jobs:
         rm -rf /c/build-installer-full
         mkdir /c/build-installer-dependencies
         cd /c/build-installer-dependencies
-        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=OFF ${GITHUB_WORKSPACE}/packaging/windows
+        cmake -A x64 -DRI_BUILD_FULL_INSTALLER:BOOL=OFF ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/packaging/windows
         cmake --build . --config Release --target PACKAGE
         # Move installer in installer directory with a fixed name
         mv *.exe /c/robotology-dependencies-installer-win64.exe

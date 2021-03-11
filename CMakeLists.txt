@@ -32,7 +32,7 @@ endmacro()
 include(RobotologySuperbuildOptions)
 
 # Bootstrap YCM
-set(YCM_FOLDER robotology)
+set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.11.1)
 include(YCMBootstrap)
@@ -69,6 +69,12 @@ elseif(APPLE)
     set(SHLIB_ENV_VAR "DYLD_LIBRARY_PATH")
 else()
     set(SHLIB_ENV_VAR "LD_LIBRARY_PATH")
+endif()
+
+if(WIN32)
+  set(BLOCKFACTORY_PLUGIN_PATH_DIRECTORY "bin")
+else()
+  set(BLOCKFACTORY_PLUGIN_PATH_DIRECTORY "lib")
 endif()
 
 if(WIN32)

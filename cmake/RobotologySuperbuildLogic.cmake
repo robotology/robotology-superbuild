@@ -1,6 +1,13 @@
 # Copyright (C) Fondazione Istituto Italiano di Tecnologia
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
+# Detect if robotology-superbuild is being configured under a conda environment
+if(DEFINED ENV{CONDA_PREFIX})
+  set(ROBOTOLOGY_CONFIGURING_UNDER_CONDA ON)
+else()
+  set(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OFF)
+endif()
+
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(YARP)
@@ -10,7 +17,6 @@ if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(robots-configuration)
   if(ROBOTOLOGY_USES_GAZEBO)
     find_or_build_package(GazeboYARPPlugins)
-    find_or_build_package(icub-gazebo)
   endif()
   if(ROBOTOLOGY_USES_MATLAB OR ROBOTOLOGY_USES_OCTAVE)
     find_or_build_package(yarp-matlab-bindings)
@@ -79,7 +85,7 @@ endif()
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   find_or_build_package(icub_firmware_shared)
   find_or_build_package(ICUB)
-  if((ROBOTOLOGY_PROJECT_TAGS STREQUAL "Unstable") AND (NOT APPLE))
+  if(NOT APPLE AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
     find_or_build_package(diagnosticdaemon)
   endif()
   if((NOT WIN32) AND (NOT APPLE))

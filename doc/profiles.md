@@ -5,6 +5,7 @@ Table of Contents
   * [Superbuild CMake options](#superbuild-cmake-options)
     * [Profile CMake options](#profile-cmake-options)
     * [Dependencies CMake options](#dependencies-cmake-options)
+    * [Platform Support table](#platform-support-table)
   * [Profile-specific documentation](#profile-specific-documentation)
     * [Core profile](#core)
     * [Robot Testing profile](#robot-testing)
@@ -62,12 +63,37 @@ The dependencies CMake options specify if the packages dependending on something
 | `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/).  | `ON` on Linux and macOS, `OFF` on Windows   | [Documentation on Gazebo dependency.](#gazebo) |
 | `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) |
 | `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  [Documentation on Octave dependency.](#octave) |
+| `ROBOTOLOGY_USES_PYTHON`  | Include software that depends on [Python](https://www.python.org/).  | `OFF` |  [Documentation on Python dependency.](#python) |
 | `ROBOTOLOGY_USES_OCULUS_SDK`  | Include software and plugins that depend on [Oculus](https://www.oculus.com/).  | `OFF` |  [Documentation on Oculus dependency.](#oculus) |
 | `ROBOTOLOGY_USES_CYBERITH_SDK`  | Include software and plugins that depend on [Cyberith](https://www.cyberith.com/).  | `OFF` |  [Documentation on Cyberith dependency.](#cyberith) |
 | `ROBOTOLOGY_USES_CFW2CAN`  | Include software and plugins that depend on [CFW2 CAN custom board](http://wiki.icub.org/wiki/CFW_card).  | `OFF` | No specific documentation is available for this  option, as it is just used with the [iCub Head profile](#icub-head), in which the related documentation can be found.  |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK`  | Include software and plugins that depend on [Xsens MVN SDK](https://www.xsens.com/products/).  | `OFF` | [Documentation on Xsens MVN dependency](#xsens)  |
 | `ROBOTOLOGY_USES_ESDCAN`  | Include software and plugins that depend on [Esd Can bus](http://wiki.icub.org/wiki/Esd_Can_Bus).  | `OFF` | [Documentation on ESDCAN dependency](#esdcan)  |
 
+## Platform Support Table
+
+Not all options are supported on all platforms. The following table provides a recap of which options are supported on each platform.
+
+| Option | Ubuntu/Debian, dependencies: apt |  macOS, dependencies: Homebrew | Windows, dependencies: vcpkg | conda on Linux, dependencies: conda-forge |  conda on macOS, dependencies: conda-forge | conda on Windows, dependencies: conda-forge |
+|:------:|:---------------------------------:|:----------------------------:|:-----------------------------:|:--------------------------------:|:-----------------------------:|:--------------------------------:|
+| `ROBOTOLOGY_ENABLE_CORE` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_ROBOT_TESTING`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_ICUB_HEAD`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_TELEOPERATION`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
+| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
+| `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_USES_MATLAB` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_USES_OCTAVE` |  ✔️           |        ✔️                     |              ❌                |                  ❌              |               ❌                |                  ❌              |
+| `ROBOTOLOGY_USES_PYTHON` |  ✔️           |         ❌                     |              ❌                |                  ❌              |               ❌               |                  ❌              | 
+| `ROBOTOLOGY_USES_OCULUS_SDK` |   ❌          |         ❌                     |             ✔️                |                  ❌              |               ❌                |                  ❌            |
+| `ROBOTOLOGY_USES_CYBERITH_SDK` |   ❌           |         ❌                     |            ✔️                  |                  ❌              |               ❌                |                 ✔️              |
+| `ROBOTOLOGY_USES_CFW2CAN` |  ✔️           |        ❌                      |             ❌                 |                 ✔️              |              ❌                 |                 ❌               |
+| `ROBOTOLOGY_USES_XSENS_MVN_SDK` |  ❌            |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ❌               |
+| `ROBOTOLOGY_USES_ESDCAN` |  ❌           |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ❌               |
 
 Profile-specific documentation
 ===================================
@@ -127,7 +153,7 @@ On Windows to communicate with CAN devices via [esd's CAN USB bridges](https://e
 
 On macOS, communication with [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2) is not supported and `diagnosticdaemon` is not available because of https://github.com/robotology/robotology-superbuild/issues/439.
 
-This section documents the iCub Head profile as any other profile, in a way agnostic of the specific machine in which it is installed. To get information on how to use the robotology-superbuild to install software on the machine mounted in the head of physical iCub robots, please check the documentation in [`doc/use-on-icub-head.md`](doc/use-on-icub-head.md).
+This section documents the iCub Head profile as any other profile, in a way agnostic of the specific machine in which it is installed. To get information on how to use the robotology-superbuild to install software on the machine mounted in the head of physical iCub robots, please check the documentation in [the official iCub documentation](https://icub-tech-iit.github.io/documentation/sw_installation/icub_head_superbuild/).
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the iCub Head profile are provided in

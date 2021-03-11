@@ -21,8 +21,8 @@ repositories:
     version: 20210000.4
   casadi:
     type: git
-    url: https://github.com/GiulioRomualdi/casadi.git
-    version: 3.5.5.1
+    url: https://github.com/dic-iit/casadi.git
+    version: 3.5.5.2
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.19.0
+    version: v1.19.1
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -47,10 +47,6 @@ repositories:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
     version: v3.6.0
-  icub-gazebo:
-    type: git
-    url: https://github.com/robotology/icub-gazebo.git
-    version: v1.19.0
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
@@ -114,7 +110,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.0.0
+    version: v1.1.0
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
@@ -183,4 +179,3 @@ repositories:
     type: git
     url: https://github.com/robotology/diagnostic-daemon.git
     version: v1.0.0
-

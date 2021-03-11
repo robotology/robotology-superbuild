@@ -37,6 +37,13 @@ else()
   set(ENABLE_icubmod_xsensmtx ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
 endif()
 
+# Socketcan is only enabled on Linux, and if ROBOTOLOGY_ENABLE_ICUB_HEAD is enabled
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  set(ENABLE_icubmod_socketcan ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
+else()
+  set(ENABLE_icubmod_socketcan OFF)
+endif()
+
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/icub-main.git
@@ -71,5 +78,6 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_parametricCalibrator:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_parametricCalibratorEth:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_xsensmtx:BOOL=${ENABLE_icubmod_xsensmtx}
+                                    -DENABLE_icubmod_socketcan:BOOL=${ENABLE_icubmod_socketcan}
                                     -DICUB_USE_icub_firmware_shared:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS})

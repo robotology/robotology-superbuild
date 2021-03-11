@@ -1,0 +1,55 @@
+name: Update latest releases
+# This action checks if the releases/latest.releases.yaml file needs to be updated
+# Check doc/developer-faqs.md for more info
+
+on:
+  workflow_dispatch:
+  schedule:
+  # Run the job once a week
+  - cron: '0 0 * * 0'
+
+jobs:
+    update-latest-releases:
+        name: "Update latest releases"
+        runs-on: [ubuntu-20.04]
+        steps:
+        - uses: actions/checkout@v2
+
+        - name: Install dependencies
+          run: |
+            sudo wget https://github.com/mikefarah/yq/releases/download/v4.4.1/yq_linux_amd64 -O /usr/bin/yq
+            sudo chmod +x /usr/bin/yq
+
+        - name: Download repositories
+          run: |
+            mkdir -p build
+            cd build
+            cmake -C ${GITHUB_WORKSPACE}/.ci/all-options-enabled-cache.cmake -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+            make update-all
+
+        - name: Run script
+          run: |
+            bash ./scripts/robotologyUpdateLatestReleases.sh
+
+        - name: Create Pull Request
+          id: cpr
+          uses: peter-evans/create-pull-request@v3
+          with:
+            commit-message: Automatic update of latest releases versions
+            committer: GitHub <noreply@github.com>
+            branch: automatic-update-latest-releases-versions
+            delete-branch: true
+            title: 'Automatic update of latest releases versions'
+            body: |
+              This is the **periodic automatic update** of the latest releases versions.
+              
+              Due to limitations of Github Actions, you will need to close/reopen the PR to get the actions running.
+              
+              Before merging, wait for the continuous integration outcome as it is possible that the automatic update of a given project created problems in the compilation of the overall superbuild.
+              
+              For more info, check the [developer FAQs documentation of the robotology-superbuild](https://github.com/robotology/robotology-superbuild/blob/master/doc/developers-faqs.md). 
+
+        - name: Check outputs
+          run: |
+            echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+            echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
