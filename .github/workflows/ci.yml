@@ -98,7 +98,6 @@ jobs:
         which pkg-config
         echo $PATH
         env
-        which pkg-config.bat
 
     - name: Configure [Conda/Linux&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
