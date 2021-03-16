@@ -94,6 +94,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Compile Patched cmake and then uninstall it
+        cd /d
         git clone https://gitlab.kitware.com/brad.king/cmake
         cd cmake
         git checkout FindPkgConfig-NAMES_PER_DIR
@@ -135,7 +136,7 @@ jobs:
       shell: bash -l {0}
       run: |
         cd build
-        cmake --build . --config ${{ matrix.build_type }}
+        /d/install/bin/cmake --build . --config ${{ matrix.build_type }}
 
   docker-build:
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
