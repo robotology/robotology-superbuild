@@ -99,7 +99,7 @@ jobs:
         cd cmake
         git checkout FindPkgConfig-NAMES_PER_DIR
         mkdir build
-        cmake -G"Visual Studio 16 2019" -DCMAKE_BUILD_TYPE -DCURL_WINDOWS_SSPI:BOOL=ON -DCMAKE_INSTALL_PREFIX="D:\install" ..
+        cmake -G"Visual Studio 16 2019" -DCMAKE_BUILD_TYPE:STRING=Release -DCURL_WINDOWS_SSPI:BOOL=ON -DCMAKE_INSTALL_PREFIX="D:\install" ..
         cmake  --build . --config Release
         cmake  --install . --config Release
 
