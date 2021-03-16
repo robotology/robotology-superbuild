@@ -93,12 +93,14 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash -l {0}
       run: |
-        rm -rf  ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
-        curl -L https://gitlab.kitware.com/cmake/cmake/-/raw/c6d04e689b6f3eb40ce5a001495e2c2137ad4bb9/Modules/FindPkgConfig.cmake -o ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
-        cat ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
-        which pkg-config
-        echo $PATH
-        env
+        # Compile Patched cmake and then uninstall it
+        git clone https://gitlab.kitware.com/brad.king/cmake
+        cd cmake
+        git checkout FindPkgConfig-NAMES_PER_DIR
+        mkdir build
+        cmake -G"Visual Studio 16 2019" -DCMAKE_BUILD_TYPE -DCURL_WINDOWS_SSPI:BOOL=ON -DCMAKE_INSTALL_PREFIX="D:\install" ..
+        cmake  --build . --config Release
+        cmake  --install . --config Release
 
     - name: Configure [Conda/Linux&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
@@ -120,12 +122,10 @@ jobs:
       run: |
         # Windows-only dependencies
         mamba install freeglut
+        mamba remove cmake
         mkdir -p build
         cd build
-        rm -rf  ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
-        curl -L https://gitlab.kitware.com/cmake/cmake/-/raw/c6d04e689b6f3eb40ce5a001495e2c2137ad4bb9/Modules/FindPkgConfig.cmake -o ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
-        which cmake
-        cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        /d/install/bin/cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON  -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
@@ -135,7 +135,6 @@ jobs:
       shell: bash -l {0}
       run: |
         cd build
-        curl -L https://gitlab.kitware.com/cmake/cmake/-/raw/c6d04e689b6f3eb40ce5a001495e2c2137ad4bb9/Modules/FindPkgConfig.cmake -o ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
         cmake --build . --config ${{ matrix.build_type }}
 
   docker-build:
