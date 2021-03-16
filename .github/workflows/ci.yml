@@ -94,6 +94,9 @@ jobs:
       shell: bash -l {0}
       run: |
         curl -L https://gitlab.kitware.com/cmake/cmake/-/raw/c6d04e689b6f3eb40ce5a001495e2c2137ad4bb9/Modules/FindPkgConfig.cmake -o ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
+        which pkg-config
+        echo $PATH
+        env
 
     - name: Configure [Conda/Linux&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
