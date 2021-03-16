@@ -89,6 +89,12 @@ jobs:
         # See https://github.com/robotology/robotology-superbuild/issues/477
         mamba install expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
 
+    - name: Apply 5914 CMake fix [Conda/Windows]
+      if: contains(matrix.os, 'windows')
+      shell: bash -l {0}
+      run: |
+        curl -L https://gitlab.kitware.com/cmake/cmake/-/raw/c6d04e689b6f3eb40ce5a001495e2c2137ad4bb9/Modules/FindPkgConfig.cmake -o ${CONDA_PREFIX}\Library\share\cmake-3.19\Modules\FindPkgConfig.cmake
+
     - name: Configure [Conda/Linux&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       shell: bash -l {0}
@@ -99,6 +105,8 @@ jobs:
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+
+
 
     - name: Configure [Conda/Windows]
       if: contains(matrix.os, 'windows')
@@ -114,7 +122,7 @@ jobs:
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
       
-        
+
     - name: Build  [Conda]
       shell: bash -l {0}
       run: |
