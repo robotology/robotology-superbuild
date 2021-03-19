@@ -8,7 +8,7 @@ find_or_build_package(osqp QUIET)
 ycm_ep_helper(osqp-matlab TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/osqp-matlab-cmake-buildsystem.git
-              TAG master
+              TAG main
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DOSQP_MATLAB_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
