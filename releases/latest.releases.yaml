@@ -179,3 +179,8 @@ repositories:
     type: git
     url: https://github.com/robotology/diagnostic-daemon.git
     version: v1.0.0
+  osqp-matlab:
+    type: git
+    url: https://github.com/dic-iit/osqp-matlab-cmake-buildsystem.git
+    version: v0.6.2.0
+
