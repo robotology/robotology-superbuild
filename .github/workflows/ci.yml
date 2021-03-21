@@ -101,7 +101,7 @@ jobs:
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
-        cat ./install/share/robotology-superbuild.sh
+        cat ./install/share/robotology-superbuild/setup.sh
 
     - name: Configure [Conda/Windows]
       if: contains(matrix.os, 'windows')
@@ -116,8 +116,8 @@ jobs:
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
-        cat ./install/share/robotology-superbuild.sh
-        cat ./install/share/robotology-superbuild.bat
+        cat ./install/share/robotology-superbuild/setup.sh
+        cat ./install/share/robotology-superbuild/setup.bat
 
     # For some reason, the Strawberry perl's pkg-config is found
     # instead of the conda's one, so let's delete the /c/Strawberry directory
