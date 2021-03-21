@@ -17,10 +17,6 @@ option(ROBOTOLOGY_USES_LUA "Enable compilation of software that depend on Lua" F
 mark_as_advanced(ROBOTOLOGY_USES_LUA)
 option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Python" FALSE)
 
-## Find the active version of Python
-find_package(Python COMPONENTS Interpreter)
-set(PYTHON_VERSION_PATH "python${Python_VERSION_MAJOR}")
-
 ## Enable packages that depend on the Gazebo simulator
 if(WIN32)
   set(ROBOTOLOGY_USES_GAZEBO_DEFAULT FALSE)
