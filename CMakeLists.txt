@@ -49,6 +49,13 @@ if(ROBOTOLOGY_USES_MATLAB)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
 endif()
 
+if(ROBOTOLOGY_USES_PYTHON)
+  find_package(Python3 COMPONENTS Interpreter REQUIRED)
+  execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
+     OUTPUT_VARIABLE _PYTHON_INSTDIR)
+  string(STRIP ${_PYTHON_INSTDIR} ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR)
+endif()
+
 # Configure a setup.sh
 if(ROBOTOLOGY_USES_GAZEBO)
   if(WIN32)
