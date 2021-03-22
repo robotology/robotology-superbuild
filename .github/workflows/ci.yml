@@ -80,7 +80,7 @@ jobs:
         # Actual dependencies
         mamba install ace asio boost eigen gazebo glew glfw gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
         # Python 
-        mamba install numpy
+        mamba install numpy swig
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
