@@ -65,12 +65,12 @@ For example, if you want to install yarp and icub-main, you simple need to insta
 conda install -c robotology yarp icub-main
 ~~~
 
-While if you want to simulate the iCub in Gazebo, you can install `icub-models` and `gazebo-yarp-plugins`:
+In addition, if you want to simulate the iCub in Gazebo, you should also install `icub-models` and `gazebo-yarp-plugins`:
 ~~~
 conda install -c robotology gazebo-yarp-plugins icub-models
 ~~~
 
-If you want to develop some C++ code on the top of this libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
+If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
 ~~~
 conda install compilers cmake pkg-config make ninja
 ~~~

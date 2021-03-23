@@ -60,7 +60,7 @@ you can disable the automatical update of the tags by adding its CMake name in t
 
 
 ## How to ensure that binary packages are correctly generated for a new package
-* If the package is already available in [`conda-forge`](https://conda-forge.org), then no binary should be create and the `conda-forge` version should be used. This is done by setting in the `Build<pkg>.cmake` file the `<pkg>_CONDA_PKG_NAME` variable to the name of the package in `conda-forge`, and setting to `ON` the `<pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE` variable. For an example of such package, see [Buildosqp.cmake](../cmake/Buildosqp.cmake).
+* If the package is already available in [`conda-forge`](https://conda-forge.org), then no binary should be created and the `conda-forge` version should be used. This is done by setting in the `Build<pkg>.cmake` file the `<pkg>_CONDA_PKG_NAME` variable to the name of the package in `conda-forge`, and setting to `ON` the `<pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE` variable. For an example of such package, see [Buildosqp.cmake](../cmake/Buildosqp.cmake).
 * If instead the package is not part of conda-forge, then it is appropriate to generate a binary package as part of the `robotology` channel, providing the following CMake options in the `Build<pkg>.cmake` file:
 
 | Variable | Meaning | Default Value |
@@ -69,7 +69,7 @@ you can disable the automatical update of the tags by adding its CMake name in t
 | `<pkg>_CONDA_DEPENDENCIES` | The list of conda-forge dependencies required by this package. Note that dependencies managed by the robotology-superbuild should not be listed, as those are handled automatically. | The default value is empty. |
 
 For any doubt, double check the existing `Build<pkg>.cmake` files for inspiration.
-* If your package needs to set or modify some environment variables to work correctly, it should provide a pair [multisheller](https://github.com/wolfv/multisheller) scripts name `<condaPkgName>_activate.msh` and `<condaPkgName>_activate.msh` in the `conda/multisheller` directory to describe how the environment should be modified, see the existing scripts for more details.
+* If your package needs to set or modify some environment variables to work correctly, it should provide a pair of [multisheller](https://github.com/wolfv/multisheller) scripts named `<condaPkgName>_activate.msh` and `<condaPkgName>_deactivate.msh` in the `conda/multisheller` directory to describe how the environment should be modified. Refer to the existing scripts for more details.
 
 
 ## How often are conda binary packages generated?
