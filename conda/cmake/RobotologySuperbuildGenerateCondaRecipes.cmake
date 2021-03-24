@@ -142,7 +142,7 @@ macro(generate_metametadata_file)
 endmacro()
 
 macro(generate_conda_recipes)
-  set(python_generation_script "${CMAKE_CURRENT_SOURCE_DIR}/conda/python/generate_conda_recipes_from_metadatadata.py")
+  set(python_generation_script "${CMAKE_CURRENT_SOURCE_DIR}/conda/python/generate_conda_recipes_from_metametadata.py")
   set(generated_conda_recipes_dir "${CMAKE_CURRENT_BINARY_DIR}/conda/generated_recipes")
   file(MAKE_DIRECTORY ${generated_conda_recipes_dir})
   execute_process(COMMAND python ${python_generation_script} -i ${metametadata_file} -o ${generated_conda_recipes_dir} RESULT_VARIABLE CONDA_GENERATION_SCRIPT_RETURN_VALUE)
