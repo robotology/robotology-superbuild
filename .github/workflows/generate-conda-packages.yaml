@@ -4,6 +4,11 @@ name: Generate conda packages
 
 on:
   workflow_dispatch:
+    inputs:
+      upload_conda_binaries:
+        description: 'If true, upload conda binaries, for any other value only generate them without uploading.'     
+        required: true
+        default: 'true'
   schedule:
   # Run the job once a week
   - cron: '0 0 * * 2'
@@ -100,8 +105,11 @@ jobs:
           run: |
             cd build/conda/generated_recipes
             conda build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
+
         - name: Upload conda packages
           shell: bash -l {0}
+          # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           run: |
