@@ -67,7 +67,7 @@ First of all, download the installer and install it in its default location:
 # Download
 curl -fsSLo Miniforge3.sh https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh
 # Install with default options
-bash ./Miniforge3-MacOSX-$(uname -m).sh
+bash ./Miniforge3.sh
 ~~~
 This will install miniforge in `~/miniforge3` .
 
