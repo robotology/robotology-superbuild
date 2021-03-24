@@ -11,3 +11,6 @@ ycm_ep_helper(osqp TYPE GIT
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DUNITTESTS:BOOL=OFF)
+
+set(osqp_CONDA_PKG_NAME libosqp)
+set(osqp_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

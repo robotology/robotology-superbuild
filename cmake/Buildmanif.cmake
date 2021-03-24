@@ -11,3 +11,6 @@ ycm_ep_helper(manif TYPE GIT
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF)
+
+set(manif_CONDA_PKG_NAME manif)
+set(manif_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

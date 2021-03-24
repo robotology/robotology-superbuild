@@ -21,3 +21,5 @@ ycm_ep_helper(human-dynamics-estimation TYPE GIT
                       wearables
                       osqp
                       OsqpEigen)
+
+set(human-dynamics-estimation_CONDA_DEPENDENCIES eigen)

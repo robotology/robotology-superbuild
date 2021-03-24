@@ -40,3 +40,5 @@ ycm_ep_helper(GazeboYARPPlugins TYPE GIT
                                 DEPENDS YARP
                                         gazebo
                                 CMAKE_ARGS -DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=ON)
+
+set(GazeboYARPPlugins_CONDA_DEPENDENCIES opencv gazebo)

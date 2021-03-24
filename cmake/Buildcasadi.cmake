@@ -22,3 +22,6 @@ ycm_ep_helper(casadi TYPE GIT
                          -DLIB_PREFIX:PATH=lib
                          -DBIN_PREFIX:PATH=bin
               DEPENDS osqp)
+
+set(casadi_CONDA_PKG_NAME casadi)
+set(casadi_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

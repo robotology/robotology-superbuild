@@ -17,3 +17,6 @@ ycm_ep_helper(walking-teleoperation TYPE GIT
               DEPENDS iDynTree
                       ICUB
                       YARP)
+
+set(walking-teleoperation_CONDA_DEPENDENCIES "eigen")
+set(walking-teleoperation_CONDA_VERSION "0.0.1")

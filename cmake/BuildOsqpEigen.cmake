@@ -14,3 +14,5 @@ ycm_ep_helper(OsqpEigen TYPE GIT
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
               DEPENDS osqp)
+
+set(OsqpEigen_CONDA_DEPENDENCIES "eigen")

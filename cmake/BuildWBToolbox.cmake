@@ -23,3 +23,5 @@ ycm_ep_helper(WBToolbox TYPE GIT
                       iDynTree
                       qpOASES
                       BlockFactory)
+
+set(WBToolbox_CONDA_DEPENDENCIES eigen) 

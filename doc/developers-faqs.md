@@ -57,3 +57,20 @@ you can disable the automatical update of the tags by adding its CMake name in t
 * Once the release is ready to be made, create a `releases/yyyy.mm` branch from `master`
 * On the branch `releases/yyyy.mm` modify the default value of the `ROBOTOLOGY_PROJECT_TAGS` CMake option to be `Custom` and of the `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` to the point to the `yyyy.mm.yaml` file.
 * Create a new tag and release `vyyyy.mm` on the  `releases/yyyy.mm` branch
+
+
+## How to ensure that binary packages are correctly generated for a new package
+* If the package is already available in [`conda-forge`](https://conda-forge.org), then no binary should be created and the `conda-forge` version should be used. This is done by setting in the `Build<pkg>.cmake` file the `<pkg>_CONDA_PKG_NAME` variable to the name of the package in `conda-forge`, and setting to `ON` the `<pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE` variable. For an example of such package, see [Buildosqp.cmake](../cmake/Buildosqp.cmake).
+* If instead the package is not part of conda-forge, then it is appropriate to generate a binary package as part of the `robotology` channel, providing the following CMake options in the `Build<pkg>.cmake` file:
+
+| Variable | Meaning | Default Value |
+|:--------:|:-------:|:--------------:|
+| `<pkg>_CONDA_PKG_NAME`  | The name that will be used for the conda package name. The convention is to use lowercase names separated by dashes. | The name of the github repo of the package. | 
+| `<pkg>_CONDA_DEPENDENCIES` | The list of conda-forge dependencies required by this package. Note that dependencies managed by the robotology-superbuild should not be listed, as those are handled automatically. | The default value is empty. |
+
+For any doubt, double check the existing `Build<pkg>.cmake` files for inspiration.
+* If your package needs to set or modify some environment variables to work correctly, it should provide a pair of [multisheller](https://github.com/wolfv/multisheller) scripts named `<condaPkgName>_activate.msh` and `<condaPkgName>_deactivate.msh` in the `conda/multisheller` directory to describe how the environment should be modified. Refer to the existing scripts for more details.
+
+
+## How often are conda binary packages generated?
+* The conda binaries hosted in the [robotology conda channel](https://anaconda.org/robotology) are re-generated weekly by [`generate-conda-packages`](../.github/workflows/generate-conda-packages.yaml) GitHub Action CI job. At each new re-build, remember to bump the `CONDA_BUILD_NUMBER` in the [`conda/cmake/CondaGenerationOptions.cmake`](../conda/cmake/CondaGenerationOptions.cmake) file. The latest released version of the packages, as specified in the [`releases/latest.releases.yaml`](../releases/latest.releases.yaml) file is used to generate the binaries, that is in turn updated weekly automatically by the [`update-latest-releases`](../.github/workflows/update-latest-releases.yml) GitHub Action CI job. If you need to quickly generate a new binary for a new release, feel free to [open an issue to request that](https://github.com/robotology/robotology-superbuild/issues/new).

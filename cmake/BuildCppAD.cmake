@@ -10,3 +10,6 @@ ycm_ep_helper(CppAD TYPE GIT
               TAG master
               COMPONENT external
               FOLDER src)
+              
+set(CppAD_CONDA_PKG_NAME cppad)
+set(CppAD_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

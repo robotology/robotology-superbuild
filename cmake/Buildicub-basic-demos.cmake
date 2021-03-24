@@ -16,3 +16,5 @@ ycm_ep_helper(icub-basic-demos TYPE GIT
                                DEPENDS YARP
                                        ICUB
                                        ICUBcontrib)
+
+set(icub-basic-demos_CONDA_DEPENDENCIES opencv qt)

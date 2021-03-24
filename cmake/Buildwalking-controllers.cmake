@@ -24,8 +24,10 @@ list(APPEND walking-controllers_DEPENDS ICUBcontrib)
 
 ycm_ep_helper(walking-controllers TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/walking-controllers
+              REPOSITORY robotology/walking-controllers.git
               TAG master
               COMPONENT dynamics
               FOLDER src
               DEPENDS ${walking-controllers_DEPENDS})
+
+set(walking-controllers_CONDA_DEPENDENCIES "eigen")

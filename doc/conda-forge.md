@@ -4,6 +4,11 @@
 
 [`conda-forge`](https://conda-forge.org/)  is a community-mantained channel for the `conda` package manager that provides many dependencies useful for scientific software, in particular all the one that are required by the robotology-superbuild .
 
+## Table of Contents
+* [conda-forge overview](#conda-forge-overview)
+* [Binary installation](#binary-installation)
+* [Source installation](#source-installation)
+
 ## conda-forge overview
 
 The **advantages** of the use of conda and conda-forge are: 
@@ -18,7 +23,57 @@ The **advantages** of the use of conda and conda-forge are:
 The **disadvantages**  of conda and conda-forge are:
 * **Not compatible with dependencies installed by other package managers:** As conda-forge provides all the software it installs without using almost anything from the system, you cannot mix libraries installed by other package managers (such as `apt` or `homebrew`). If you have a dependency
   that is only provided by `apt` and is not available in `conda-forge`, then you should install all the dependencies that you want to use from `apt`. 
-* **No Debug version of C++ libraries on Windows:** as other package managers such as `apt` or `homebrew`, a part from some small exceptions conda-forge only ships the version of the libraries compiled as shared library and in `Release` compilation mode. This is not a big problem on Linux or macOS, where executables compiled in `Debug` can link libraries compiled in `Release`, but is more problematic on Windows, where this is not possible. When you are using conda-forge libraries on Windows, you can't compile your executable in `Debug` mode, but only in `Release` or `RelWithDebInfo` mode. If you stricly need to also have the `Debug` version of the libraries, the [`vcpkg`](https://github.com/microsoft/vcpkg) package manager may be more useful for oyu. 
+* **No Debug version of C++ libraries on Windows:** as other package managers such as `apt` or `homebrew`, a part from some small exceptions conda-forge only ships the version of the libraries compiled as shared library and in `Release` compilation mode. This is not a big problem on Linux or macOS, where executables compiled in `Debug` can link libraries compiled in `Release`, but is more problematic on Windows, where this is not possible. When you are using conda-forge libraries on Windows, you can't compile your executable in `Debug` mode, but only in `Release` or `RelWithDebInfo` mode. If you stricly need to also have the `Debug` version of the libraries, the [`vcpkg`](https://github.com/microsoft/vcpkg) package manager may be more useful for you.
+
+## Binary installation
+
+This section describes how to compile and install the binary packages built from the robotology-superbuild on conda on Windows, macOS and Linux. 
+The binary packages are hosted in the [`robotology` conda channel](https://anaconda.org/robotology) . Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on profiles](profiles.md)) are available as conda binary packages in the `robotology` channel. 
+
+### Install a conda distribution
+If you do not have a conda distribution on your system, we suggest to use the minimal 
+[`miniforge3`](https://github.com/conda-forge/miniforge#miniforge3) distribution, that uses `conda-forge` packages by default, following the instructions in our [`install-miniforge`](install-miniforge.md) documentation. 
+
+### Create an environment 
+Differently from `apt` and `homebrew`, the `conda` package manager is an `environment`-oriented package manager, meaning that packages are not 
+installed in some global location, but rather you install packages in an `environment` (that is just a directory in your filesystem), so that you
+can easily have multiple different environments with different packages installed on your system. To read more about this, check https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html .
+
+For this reason, to use the robotology conda packages it is suggested to first create a conda environment, and then install in it all the packages you want to use. To create a new environment called `robotologyenv`, execute the following command:
+~~~
+conda create -n robotologyenv
+~~~
+
+Once you created the `robotologyenv` environment, you can "activate" it for the current terminal (i.e. make sure that the installed packages can be found) by the command:
+~~~
+conda activate robotologyenv
+~~~
+
+**IMPORTANT: if you open a new terminal, you need to manually activate the environment also there.**
+
+### Install robotology packages
+
+Once you are in an activated environment, you can install robotology packages by just running the command:
+~~~
+conda install -c robotology <packagename>
+~~~
+
+The list of available packages is available at https://anaconda.org/robotology/repo . 
+
+For example, if you want to install yarp and icub-main, you simple need to install:
+~~~
+conda install -c robotology yarp icub-main
+~~~
+
+In addition, if you want to simulate the iCub in Gazebo, you should also install `icub-models` and `gazebo-yarp-plugins`:
+~~~
+conda install -c robotology gazebo-yarp-plugins icub-models
+~~~
+
+If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
+~~~
+conda install compilers cmake pkg-config make ninja
+~~~
 
 ## Source installation
 
@@ -27,14 +82,6 @@ This section describes how to compile and install the robotology-superbuild with
 ### Install a conda distribution
 If you do not have a conda distribution on your system, we suggest to use the minimal 
 [`miniforge3`](https://github.com/conda-forge/miniforge#miniforge3) distribution, that uses `conda-forge` packages by default, following the instructions in our [`install-miniforge`](install-miniforge.md) documentation. 
-
-After you installed it, make sure that you can execute the `conda info` package from your terminal, and its output is similar to:
-~~~
-$ conda info
-
-     active environment : None
-[...]
-~~~
 
 Also other conda distributions should be supported, you just will need to manually specify to use the `conda-forge` packages by adding `-c conda-forge` 
 to all `conda install` commands.
