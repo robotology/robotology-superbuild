@@ -138,6 +138,7 @@ jobs:
         cmake_generator:
           - "Ninja"
         docker_image:
+          - "ubuntu:bionic"
           - "ubuntu:focal"
           - "debian:buster-backports"
           - "debian:sid"
