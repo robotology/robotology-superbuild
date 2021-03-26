@@ -69,7 +69,7 @@ endif()
 
 set(ROBOTOLOGY_PROJECT_TAGS "Custom" CACHE STRING "The tags to be used for the robotology projects: Stable, Unstable or Custom. This can be changed only before the first configuration.")
 mark_as_advanced(ROBOTOLOGY_PROJECT_TAGS)
-set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "${CMAKE_CURRENT_SOURCE_DIR}/releases/2021.02.yaml" CACHE FILEPATH "If ROBOTOLOGY_PROJECT_TAGS is custom, this file will be loaded to specify the tags of the projects to use.")
+set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "${CMAKE_CURRENT_SOURCE_DIR}/releases/2021.02.feat-01.yaml" CACHE FILEPATH "If ROBOTOLOGY_PROJECT_TAGS is custom, this file will be loaded to specify the tags of the projects to use.")
 mark_as_advanced(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE)
 set_property(CACHE ROBOTOLOGY_PROJECT_TAGS PROPERTY STRINGS "Stable" "Unstable" "Custom")
 
