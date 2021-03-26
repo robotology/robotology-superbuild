@@ -304,7 +304,7 @@ As unfortunately the IP addresses of the virtual IP network change at every rebo
 #### Sanitize PATH enviroment variable for WSL2
 By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
 as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
-To avoid that, you can add create in your WSL2 instance the `/etc/wsl.conf`, and then populate it with the following content:
+To avoid that, you can create in your WSL2 instance the `/etc/wsl.conf` file, and then populate it with the following content:
 ~~~
 [interop]
 appendWindowsPath = false
