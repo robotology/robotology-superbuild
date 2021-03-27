@@ -201,6 +201,12 @@ jobs:
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
 
+    - name: Disable profiles that are not supported in Ubuntu Bionic in Unstable [Docker ubuntu:bionic]
+      if: (matrix.docker_image == 'ubuntu:bionic' && contains(matrix.project_tags, 'Unstable'))
+      run: |
+       cd build
+       cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF .
+
     - name: Build  [Docker]
       run: |
         cd build
