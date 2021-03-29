@@ -138,6 +138,7 @@ jobs:
         cmake_generator:
           - "Ninja"
         docker_image:
+          - "ubuntu:bionic"
           - "ubuntu:focal"
           - "debian:buster-backports"
           - "debian:sid"
@@ -175,6 +176,15 @@ jobs:
         # packages we need to manually upgrade the packages
         apt-get -y upgrade
 
+    - name: Install CMake from Kitware APT Repository [Docker/Ubuntu Bionic]
+      if: matrix.docker_image == 'ubuntu:bionic'
+      run: |
+        apt-get -y install apt-transport-https ca-certificates gnupg software-properties-common wget
+        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+        apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+        apt-get -y update
+        apt-get -y upgrade
+
     - name: Configure [Docker]
       run: |
         mkdir -p build
@@ -186,10 +196,16 @@ jobs:
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Disable profiles that are not supported in docker for now [Docker debian-sid and debian-buster]
-      if: (matrix.docker_image == 'debian:sid' || matrix.docker_image == 'debian:buster-backports')
+      if: (matrix.docker_image == 'debian:sid' || matrix.docker_image == 'debian:buster-backports' || matrix.docker_image == 'ubuntu:bionic')
       run: |
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
+
+    - name: Disable profiles that are not supported in Ubuntu Bionic in Unstable [Docker ubuntu:bionic]
+      if: (matrix.docker_image == 'ubuntu:bionic' && contains(matrix.project_tags, 'Unstable'))
+      run: |
+       cd build
+       cmake -DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |
