@@ -3,7 +3,7 @@
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 include(YCMEPHelper)
 
-ycm_ep_helper(matio-cpp TYPE GIT
+ycm_ep_helper(matioCpp TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/matio-cpp.git
               TAG master
@@ -11,4 +11,4 @@ ycm_ep_helper(matio-cpp TYPE GIT
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF)
 
-set(matio-cpp_CONDA_DEPENDENCIES "libmatio")
+set(matioCpp_CONDA_DEPENDENCIES "libmatio")
