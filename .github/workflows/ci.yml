@@ -93,6 +93,7 @@ jobs:
       shell: bash -l {0}
       run: |
         mamba list
+        env
 
     - name: Configure [Conda/Linux&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
