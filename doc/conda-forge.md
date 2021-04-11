@@ -55,24 +55,24 @@ conda activate robotologyenv
 
 Once you are in an activated environment, you can install robotology packages by just running the command:
 ~~~
-conda install -c robotology <packagename>
+conda install -c conda-forge -c robotology <packagename>
 ~~~
 
 The list of available packages is available at https://anaconda.org/robotology/repo . 
 
 For example, if you want to install yarp and icub-main, you simple need to install:
 ~~~
-conda install -c robotology yarp icub-main
+conda install -c conda-forge -c robotology yarp icub-main
 ~~~
 
 In addition, if you want to simulate the iCub in Gazebo, you should also install `icub-models` and `gazebo-yarp-plugins`:
 ~~~
-conda install -c robotology gazebo-yarp-plugins icub-models
+conda install -c conda-forge -c robotology gazebo-yarp-plugins icub-models
 ~~~
 
 If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
 ~~~
-conda install compilers cmake pkg-config make ninja
+conda install -c conda-forge compilers cmake pkg-config make ninja
 ~~~
 
 ## Source installation
@@ -107,18 +107,18 @@ of the robotology-superbuild.**
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 ~~~
-conda install cmake compilers make ninja pkg-config
-conda install ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
+conda install -c conda-forge cmake compilers make ninja pkg-config
+conda install -c conda-forge ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
 ~~~
 
 If you are on **Linux**, you also need to install also the following packages:
 ~~~
-conda install expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
+conda install -c conda-forge expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
 ~~~
 
 If you are on **Windows**, you also need to install also the following packages:
 ~~~
-conda install freeglut
+conda install -c conda-forge freeglut
 ~~~
 
 ### Clone the repo
