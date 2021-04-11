@@ -76,7 +76,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Compilation related dependencies 
-        mamba install cmake=3.19.7 compilers make ninja pkg-config
+        mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
         mamba install ace asio boost eigen gazebo glew glfw gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
 
