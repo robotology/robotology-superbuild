@@ -175,7 +175,7 @@ repositories:
     type: git
     url: https://github.com/robotology/event-driven.git
     version: v1.5
-  matio-cpp:
+  matioCpp:
     type: git
     url: https://github.com/dic-iit/matio-cpp.git
     version: v0.1.1
@@ -187,3 +187,7 @@ repositories:
     type: git
     url: https://github.com/dic-iit/osqp-matlab-cmake-buildsystem.git
     version: v0.6.2.0
+  YARP_telemetry:
+    type: git
+    url: https://github.com/robotology/yarp-telemetry.git
+    version: v0.1.0

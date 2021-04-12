@@ -7,6 +7,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Added
 - Add spdlog dependency to the superbuild (https://github.com/robotology/robotology-superbuild/pull/645)
+- Add `YARP_telemetry` component to the Dynamics profile (https://github.com/robotology/robotology-superbuild/pull/677).
 
 ### Removed
 - The `icub-gazebo` project was removed from the superbuild (https://github.com/robotology/robotology-superbuild/pull/646).
