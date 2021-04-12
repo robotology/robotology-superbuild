@@ -31,6 +31,14 @@ endmacro()
 # Load options
 include(RobotologySuperbuildOptions)
 
+# Python-related logic 
+if(ROBOTOLOGY_USES_PYTHON)
+  find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+  execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
+     OUTPUT_VARIABLE _PYTHON_INSTDIR)
+  string(STRIP ${_PYTHON_INSTDIR} ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR)
+endif()
+
 # Bootstrap YCM
 set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
@@ -47,13 +55,6 @@ include(RobotologySuperbuildLogic)
 if(ROBOTOLOGY_USES_MATLAB)
   # The following line is to properly configure the matlab and simulink software installed by the superbuild
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
-endif()
-
-if(ROBOTOLOGY_USES_PYTHON)
-  find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-  execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
-     OUTPUT_VARIABLE _PYTHON_INSTDIR)
-  string(STRIP ${_PYTHON_INSTDIR} ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR)
 endif()
 
 # Configure a setup.sh
