@@ -88,7 +88,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_MATLAB` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_OCTAVE` |  ✔️           |        ✔️                     |              ❌                |                  ❌              |               ❌                |                  ❌              |
-| `ROBOTOLOGY_USES_PYTHON` |  ✔️           |         ❌                     |              ❌                |                  ❌              |               ❌               |                  ❌              | 
+| `ROBOTOLOGY_USES_PYTHON` |  ✔️           |         ❌                     |              ❌                |                  ✔️              |               ✔️               |                  ✔️              | 
 | `ROBOTOLOGY_USES_OCULUS_SDK` |   ❌          |         ❌                     |             ✔️                |                  ❌              |               ❌                |                  ❌            |
 | `ROBOTOLOGY_USES_CYBERITH_SDK` |   ❌           |         ❌                     |            ✔️                  |                  ❌              |               ❌                |                 ✔️              |
 | `ROBOTOLOGY_USES_CFW2CAN` |  ✔️           |        ❌                      |             ❌                 |                 ✔️              |              ❌                 |                 ❌               |
@@ -326,17 +326,17 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake opt
 
 ### System Dependencies
 
-#### Linux
+#### Ubuntu using apt
 Install Python and the necessary development files using the following command:
 ~~~
 sudo apt-get install python3-dev python3-numpy
 ~~~
 
-#### macOS
-The `ROBOTOLOGY_USES_PYTHON` option is not actively tested on macOS.
-
-#### Windows
-The `ROBOTOLOGY_USES_PYTHON` option is not actively tested on Windows.
+#### Conda
+To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
+~~~
+conda install -c conda-forge python numpy swig
+~~~
 
 ### Check the installation
 Open a python interpreter and try to import modules, for example verify that `import yarp` works.
@@ -392,3 +392,4 @@ No additional configuration is required to use the software installed by the  `R
 
 ### Check the installation
 Open a terminal, and check that amoung the device listed by `yarpdev --list` the `esdcan` YARP device is listed.
+
