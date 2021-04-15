@@ -1,13 +1,13 @@
 %% startup_robotology_superbuild.m
 %
 %  Run this script only once to permanently add the required folders for using
-%  MATLAB toolbox (e.g. WBToolbox, whole-body-controllers) to your MATLAB path. 
+%  MATLAB toolbox (e.g. WBToolbox, whole-body-controllers, matlab-whole-body-simulator) to your MATLAB path.
 
 fprintf('\nMATLAB Toolbox\n');
 
 installDir   = '@YCM_EP_INSTALL_DIR@';
 mexDir       = [installDir, filesep, 'mex'];
-simLibDir    = [installDir, filesep, 'mex/+wbc/simulink'];
+simLibDir    = [installDir, filesep, 'mex/+wbc/simulink', ':../src/matlab-whole-body-simulator/lib/RobotDynamicsWithContacts'];
 shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
 
