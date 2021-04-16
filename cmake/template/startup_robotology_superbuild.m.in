@@ -7,24 +7,15 @@ fprintf('\nMATLAB Toolbox\n');
 
 installDir   = '@YCM_EP_INSTALL_DIR@';
 mexDir       = [installDir, filesep, 'mex'];
-simLibDir    = [installDir, filesep, 'mex/+wbc/simulink', ':../src/matlab-whole-body-simulator/lib/RobotDynamicsWithContacts'];
+simLibDir1   = [installDir, filesep, 'mex/+wbc/simulink'];
+simLibDir2   = [installDir, filesep, 'mex/+mwbs/RobotDynamicsWithContacts'];
 shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
 
-if exist(mexDir, 'dir')
-    addpath(mexDir);
-end
-
-if exist(shareDir, 'dir')
-    addpath(shareDir);
-end
-
-if exist(imgDir, 'dir')
-    addpath(imgDir);
-end
-
-if exist(simLibDir, 'dir')
-    addpath(simLibDir);
+for dirPath = {mexDir,simLibDir1,simLibDir2,shareDir,imgDir}
+    if exist(dirPath{1}, 'dir')
+        addpath(dirPath{1});
+    end
 end
 
 fileDir               = userpath;
