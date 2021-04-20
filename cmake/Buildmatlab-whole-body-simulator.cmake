@@ -6,13 +6,11 @@ include(FindOrBuildPackage)
 find_or_build_package(yarp-matlab-bindings QUIET)
 find_or_build_package(WBToolbox QUIET)
 find_or_build_package(icub-models QUIET)
-find_or_build_package(whole-body-controllers QUIET)
 
 set(matlab-whole-body-simulator_DEPENDS "")
 list(APPEND matlab-whole-body-simulator_DEPENDS yarp-matlab-bindings)
 list(APPEND matlab-whole-body-simulator_DEPENDS WBToolbox)
 list(APPEND matlab-whole-body-simulator_DEPENDS icub-models)
-list(APPEND matlab-whole-body-simulator_DEPENDS whole-body-controllers)
 
 ycm_ep_helper(matlab-whole-body-simulator TYPE GIT
               STYLE GITHUB
