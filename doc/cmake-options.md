@@ -1,4 +1,4 @@
-# robotology-superbuild: Profiles
+# robotology-superbuild: CMake Options
 
 Table of Contents
 =================
