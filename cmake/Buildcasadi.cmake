@@ -21,6 +21,8 @@ ycm_ep_helper(casadi TYPE GIT
                          -DCMAKE_PREFIX:PATH=lib/cmake/casadi
                          -DLIB_PREFIX:PATH=lib
                          -DBIN_PREFIX:PATH=bin
+                         -DWITH_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                         -DPYTHON_PREFIX:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}
               DEPENDS osqp)
 
 set(casadi_CONDA_PKG_NAME casadi)
