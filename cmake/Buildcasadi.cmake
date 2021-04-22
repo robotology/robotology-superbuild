@@ -1,5 +1,5 @@
 # Copyright (C) 2020  iCub Facility, Istituto Italiano di Tecnologia
-# Authors: Giulio Romualdi <gulio.romualdi@iit.it>
+# Authors: Giulio Romualdi <giulio.romualdi@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
 include(YCMEPHelper)
@@ -21,6 +21,8 @@ ycm_ep_helper(casadi TYPE GIT
                          -DCMAKE_PREFIX:PATH=lib/cmake/casadi
                          -DLIB_PREFIX:PATH=lib
                          -DBIN_PREFIX:PATH=bin
+                         -DWITH_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                         -DPYTHON_PREFIX:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}
               DEPENDS osqp)
 
 set(casadi_CONDA_PKG_NAME casadi)
