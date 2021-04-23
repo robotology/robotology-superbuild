@@ -81,8 +81,6 @@ Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PR
 Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\RRbot\robots";
 Remove-ValueFromUserEnvVariable MATLABPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\mex";
 Remove-ValueFromUserEnvVariable MATLABPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\mex\+wbc\simulink";
-Remove-ValueFromUserEnvVariable MATLABPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\mex\+mwbs\RobotDynamicsWithContacts";
 Remove-ValueFromUserEnvVariable MATLABPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\WBToolbox";
 Remove-ValueFromUserEnvVariable MATLABPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\WBToolbox\images";
 @endcmakeif ROBOTOLOGY_USES_MATLAB
-
