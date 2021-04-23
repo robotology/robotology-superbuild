@@ -57,6 +57,9 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpcar_bayer:BOOL=ON
                               -DENABLE_yarpcar_mjpeg:BOOL=${ENABLE_yarpcar_mjpeg}
                               -DENABLE_yarpcar_portmonitor:BOOL=ON
+                              -DENABLE_yarppm_depthimage_to_mono:BOOL=ON
+                              -DENABLE_yarppm_depthimage_to_rgb:BOOL=ON
+                              # Deprecated, remove when YARP 3.5 is in Stable branches and latest releases
                               -DENABLE_yarpcar_depthimage:BOOL=ON
                               -DENABLE_yarpcar_depthimage2:BOOL=ON
                               -DENABLE_yarpidl_thrift:BOOL=ON
