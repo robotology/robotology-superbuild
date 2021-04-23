@@ -28,7 +28,7 @@ The **disadvantages**  of conda and conda-forge are:
 ## Binary installation
 
 This section describes how to compile and install the binary packages built from the robotology-superbuild on conda on Windows, macOS and Linux. 
-The binary packages are hosted in the [`robotology` conda channel](https://anaconda.org/robotology) . Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on profiles](profiles.md)) are available as conda binary packages in the `robotology` channel. 
+The binary packages are hosted in the [`robotology` conda channel](https://anaconda.org/robotology) . Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on CMake options](cmake-options.md)) are available as conda binary packages in the `robotology` channel. 
 
 ### Install a conda distribution
 If you do not have a conda distribution on your system, we suggest to use the minimal 
