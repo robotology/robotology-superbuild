@@ -284,7 +284,7 @@ Once this software has been compiled by the superbuild, you just need to add som
 In particular you need to add to the MATLAB path:
  * the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex` directory,
  * the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/WBToolbox` directory and all its subdirectories (except the packages which are folder names starting with "+"),
- * the libraries `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex/+wbc/simulink` and `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex/+mwbs/RobotDynamicsWithContacts`.
+ * the library `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex/+wbc/simulink`.
 
 #### Start MATLAB from the launcher or the application menu
 
@@ -293,7 +293,6 @@ You could add this line to your MATLAB script that uses the robotology-superbuil
 ~~~
     addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex'])
     addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex/+wbc/simulink'])
-    addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/mex/+mwbs/RobotDynamicsWithContacts'])
     addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox'])
     addpath(['<ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX>' '/share/WBToolbox/images'])
 ~~~
