@@ -22,6 +22,7 @@ ycm_ep_helper(casadi TYPE GIT
                          -DLIB_PREFIX:PATH=lib
                          -DBIN_PREFIX:PATH=bin
                          -DWITH_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                         -DWITH_PYTHON3:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DPYTHON_PREFIX:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}
               DEPENDS osqp)
 
