@@ -7,6 +7,12 @@ include(YCMEPHelper)
 include(FindOrBuildPackage)
 find_or_build_package(osqp QUIET)
 
+if(MSVC AND ROBOTOLOGY_USES_PYTHON)
+  set(WITH_COPYSIGN_UNDEF ON)
+else()
+  set(WITH_COPYSIGN_UNDEF OFF)
+endif()
+
 ycm_ep_helper(casadi TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/casadi.git
@@ -22,6 +28,8 @@ ycm_ep_helper(casadi TYPE GIT
                          -DLIB_PREFIX:PATH=lib
                          -DBIN_PREFIX:PATH=bin
                          -DWITH_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                         -DWITH_PYTHON3:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                         -DWITH_COPYSIGN_UNDEF:BOOL=${WITH_COPYSIGN_UNDEF}
                          -DPYTHON_PREFIX:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}
               DEPENDS osqp)
 
