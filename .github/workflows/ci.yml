@@ -355,10 +355,6 @@ jobs:
         cmake --version
         # Update homebrew 
         brew update
-        # Workaround for https://github.com/robotology/robotology-superbuild/issues/571
-        brew unlink gcc@8 gcc@9 
-        # Workaround for https://github.com/robotology/robotology-superbuild/issues/565
-        brew upgrade  python@3.9 || brew link --overwrite python@3.9
         brew upgrade
         brew install --cask xquartz
         # Core dependencies
