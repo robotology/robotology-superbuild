@@ -44,7 +44,7 @@ All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
 | `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models) and  [`robots-configurations`](https://github.com/robotology/robots-configuration). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) and [`icub-gazebo`](https://github.com/robotology/icub-gazebo) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. [`gym-ignition`](https://github.com/robotology/gym-ignition) if the `ROBOTOLOGY_USES_IGNITION` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
 | `ROBOTOLOGY_ENABLE_ROBOT_TESTING` | The robotology software packages related to robot testing. |  [`RobotTestingFramework`](https://github.com/robotology/robot-testing-framework), [`icub-tests`](https://github.com/robotology/icub-tests), [`blocktest`](https://github.com/robotology/blocktest) and [`blocktest-yarp-plugins`](https://github.com/robotology/blocktest-yarp-plugins) | `OFF` | [Documentation on Robot Testing profile.](#robot-testing)  |
-| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers), [`matioCpp`](https://github.com/dic-iit/matio-cpp), [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework), [`YARP_telemetry`](https://github.com/robotology/yarp-telemetry). | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
+| `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers), [`matioCpp`](https://github.com/dic-iit/matio-cpp), [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework), [`YARP_telemetry`](https://github.com/robotology/yarp-telemetry). Furthermore, [`osqp-matlab`](https://github.com/dic-iit/osqp-matlab-cmake-buildsystem) and [`matlab-whole-body-simulator`](https://github.com/dic-iit/matlab-whole-body-simulator) if `ROBOTOLOGY_USES_MATLAB` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | Optional dependencies for [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework). | [`manif`](https://github.com/artivis/manif), [`qhull`](https://github.com/qhull/qhull), [`casadi`](https://github.com/casadi/casadi). [`CppAD`](https://github.com/coin-or/CppAD). | `OFF` | [Documentation on Dynamics full deps profile.](#dynamics-full-deps)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared), [`diagnostic-daemon`](https://github.com/robotology/diagnostic-daemon). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
@@ -237,8 +237,8 @@ This option is set to `OFF` on all platforms as it is still experimental.
 
 ### System Dependencies
 
-Different Ignition distributions can be installed alongside. 
-The projects included in the superbuild might require different distributions. 
+Different Ignition distributions can be installed alongside.
+The projects included in the superbuild might require different distributions.
 From the superbuild point of view, we currently do not allow enabling projects that only support a specific Ignition distribution, therefore all required distributions have to be found in the system.
 
 #### Using conda
@@ -277,10 +277,14 @@ can install some projects that depend on MATLAB, in particular:
  * the MATLAB bindings of qpOASES, contained in the [robotology-dependencies/qpOASES](https://github.com/robotology-dependencies/qpOASES) fork,
  * The [WB-Toolbox](https://github.com/robotology/WB-Toolbox) Simulink toolbox,
  * The [whole-body-controllers](https://github.com/robotology/whole-body-controllers) Simulink-based balancing controllers. Note that whole-body-controllers can be installed and compiled also without MATLAB, but its functionalities are reduced.
+ * The [matlab-whole-body-simulator](https://github.com/dic-iit/matlab-whole-body-simulator) Simulink-based whole-body dynamics simulator with contacts handling.
 
 To use this software, you can simply enable its compilation using the `ROBOTOLOGY_USES_MATLAB` CMake option.
 Once this software has been compiled by the superbuild, you just need to add some directories of the robotology-superbuild install (typically `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install`) to [the MATLAB path](https://www.mathworks.com/help/matlab/matlab_env/what-is-the-matlab-search-path.html).
-In particular you need to add to the MATLAB path the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex` directory and all the subdirectories `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/WBToolbox`.
+In particular you need to add to the MATLAB path:
+ * the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex` directory,
+ * the `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/WBToolbox` directory and all its subdirectories (except the packages which are folder names starting with "+"),
+ * the library `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex/+wbc/simulink`.
 
 #### Start MATLAB from the launcher or the application menu
 
@@ -419,4 +423,3 @@ No additional configuration is required to use the software installed by the  `R
 
 ### Check the installation
 Open a terminal, and check that amoung the device listed by `yarpdev --list` the `esdcan` YARP device is listed.
-

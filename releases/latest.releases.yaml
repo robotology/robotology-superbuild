@@ -195,3 +195,7 @@ repositories:
     type: git
     url: https://github.com/robotology/gym-ignition.git
     version: v1.2.1
+  matlab-whole-body-simulator:
+    type: git
+    url: https://github.com/dic-iit/matlab-whole-body-simulator.git
+    version: v2.0.0.rc1

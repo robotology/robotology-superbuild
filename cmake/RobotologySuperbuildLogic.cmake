@@ -51,6 +51,7 @@ if(ROBOTOLOGY_ENABLE_DYNAMICS)
   find_or_build_package(YARP_telemetry)
   if(ROBOTOLOGY_USES_MATLAB)
     find_or_build_package(osqp-matlab)
+    find_or_build_package(matlab-whole-body-simulator)
   endif()
 endif()
 
