@@ -1,3 +1,7 @@
 # bipedal-locomotion-framework requires 10.13 for std::bad_cast_any
 MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]
   - 10.13                      # [osx and x86_64]
+
+# Pin opencv to as a workaround for https://github.com/robotology/robotology-superbuild/issues/711
+opencv:
+  - 4.5.1
