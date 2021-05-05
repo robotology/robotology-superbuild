@@ -2,6 +2,6 @@
 MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]
   - 10.13                      # [osx and x86_64]
 
-# Pin opencv to as a workaround for https://github.com/robotology/robotology-superbuild/issues/711
+# Pin opencv 4.5.1 to as a workaround for https://github.com/robotology/robotology-superbuild/issues/711
 opencv:
   - 4.5.1
