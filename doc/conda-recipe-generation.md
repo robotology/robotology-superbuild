@@ -13,7 +13,7 @@ To generate the conda recipes for a given configuration of the `robotology-super
 
 After that, install the additional dependencies required for the recipe generation:
 ~~~
-conda install pyyaml jinja2 conda-build ninja anaconda-client
+conda install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning
 python -m pip install git+https://github.com/wolfv/multisheller.git@0cc03c68d0c68d2f9cf7b07ddb68afa531419a6d
 ~~~
 
@@ -25,7 +25,15 @@ for building projects of the `robotology-superbuild`, and instead will generate 
 -- Generating done
 -- Build files have been written to: C:/src/robotology-superbuild/build-conda
 ~~~
-you can then build the generated recipes by moving in the `<build_dir>/conda/generated_recipes` directory and running either [`conda build .`](https://github.com/conda/conda-build) or [`boa .`](https://github.com/mamba-org/boa).
+you can then build the generated recipes. To build the generate recipes, you can move in the `<build_dir>/conda/generated_recipes` directory and run the appropriate build command using [`conda build`](https://github.com/conda/conda-build) :
+~~~
+cd <build_dir>/conda/generated_recipes
+conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m <src_dir>/conda/conda_build_config.yml .
+~~~
+The `-m` option specifies the additional [build configuration files that are used for conda-build](https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files). In particular, we use two `conda_build_config` files. 
+The first one is the standard one of conda-forge, installed via the [`conda-forge-pinning`](https://github.com/conda-forge/conda-forge-pinning-feedstock) package,
+and that is used to ensure compatibility with conda-forge binaries. The second is a local file, that is used to specify setting specific to the `robotology` channel.
+
 
 Note that the generated recipes will depend on the specific configuration of the robotology-superbuild used, so enabling additional profiles will generate recipes
 for the packages contained in those profiles. For this reason, the generated recipes in general are not cross-platform. For example the recipes generated on `Linux` could contain Linux-specific CMake options passed to the projects, so may not be usable on Windows.
