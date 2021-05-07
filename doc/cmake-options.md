@@ -271,10 +271,9 @@ If this is not the case, you can enable the advanced CMake option `ROBOTOLOGY_NO
 
 ### Configuration
 If [MATLAB](mathworks.com/products/matlab/) is installed on your computer, the robotology-superbuild
-can install some projects that depend on MATLAB, in particular:
+can install some projects that depend on MATLAB, among the others:
  * the MATLAB bindings of the [iDynTree](https://github.com/robotology/idyntree) library,
  * the native MATLAB bindings of YARP, contained in the [yarp-matlab-bindings](https://github.com/robotology-playground/yarp-matlab-bindings/) repository,
- * the MATLAB bindings of qpOASES, contained in the [robotology-dependencies/qpOASES](https://github.com/robotology-dependencies/qpOASES) fork,
  * The [WB-Toolbox](https://github.com/robotology/WB-Toolbox) Simulink toolbox,
  * The [whole-body-controllers](https://github.com/robotology/whole-body-controllers) Simulink-based balancing controllers. Note that whole-body-controllers can be installed and compiled also without MATLAB, but its functionalities are reduced.
  * The [matlab-whole-body-simulator](https://github.com/dic-iit/matlab-whole-body-simulator) Simulink-based whole-body dynamics simulator with contacts handling.
