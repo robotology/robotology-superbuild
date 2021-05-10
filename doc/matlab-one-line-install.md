@@ -2,7 +2,7 @@
 
 This guide provides a simple documentation to install use Robotology MATLAB/Simulink packages in a pure MATLAB workflow (so without launching **anything else** via terminal, so for example no Gazebo simulation).
 
-## Installation on Local MATLAB Installation
+## Installation
 ~~~matlab
 websave('install_robotology_packages.m', 'https://gist.githubusercontent.com/traversaro/cb955c93c71728be65e881d9766e74fb/raw/003d4efb4dd0d1f22754aac551126e6447f53285/install_robotology_packages.m')
 install_robotology_packages
@@ -11,8 +11,18 @@ robotology_setup
 This will install everything in a `robotology-gazebo` local directory, without perturbing anything else in your system. 
 Once installed, you just need to re-run the `robotology_setup` script (or add it in your [`setup.m`](https://www.mathworks.com/help/matlab/ref/startup.html) file) to make the library available again. The overall installation process should take 2/3 minutes.
 
+If the installation and launching the `robotology_setup`, you should be able to run the following MATLAB code without any error:
+~~~
+vec = iDynTree.Vector3();
+vec.fromMatlab([1,2,3])
+vec.toString();
+~~~
 
-## Installation on MATLAB Online
+
+
+### Installation on MATLAB Online
+**This section is required only if you want to use this on [MATLAB Online](https://www.mathworks.com/products/matlab-online.html). If you are using a MATLAB installation on your system, please skip it.**
+
 Due to specific problems on MATLAB Online, you can't install the libraries in the local directory, and if you need to run this on MATLAB Online the command is slightly nmore difficult: 
 ~~~matlab
 websave('install_robotology_packages.m', 'https://gist.githubusercontent.com/traversaro/cb955c93c71728be65e881d9766e74fb/raw/003d4efb4dd0d1f22754aac551126e6447f53285/install_robotology_packages.m')
