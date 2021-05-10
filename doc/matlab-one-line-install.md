@@ -1,0 +1,29 @@
+# One-line Installation of Robotology MATLAB/Simulink Packages
+
+This guide provides a simple documentation to install use Robotology MATLAB/Simulink packages in a pure MATLAB workflow (so without launching **anything else** via terminal, so for example no Gazebo simulation).
+
+## Installation on Local MATLAB Installation
+~~~matlab
+websave('install_robotology_packages.m', 'https://gist.githubusercontent.com/traversaro/cb955c93c71728be65e881d9766e74fb/raw/003d4efb4dd0d1f22754aac551126e6447f53285/install_robotology_packages.m')
+install_robotology_packages
+robotology_setup
+~~~
+This will install everything in a `robotology-gazebo` local directory, without perturbing anything else in your system. 
+Once installed, you just need to re-run the `robotology_setup` script (or add it in your [`setup.m`](https://www.mathworks.com/help/matlab/ref/startup.html) file) to make the library available again. The overall installation process should take 2/3 minutes.
+
+
+## Installation on MATLAB Online
+Due to specific problems on MATLAB Online, you can't install the libraries in the local directory, and if you need to run this on MATLAB Online the command is slightly nmore difficult: 
+~~~matlab
+websave('install_robotology_packages.m', 'https://gist.githubusercontent.com/traversaro/cb955c93c71728be65e881d9766e74fb/raw/003d4efb4dd0d1f22754aac551126e6447f53285/install_robotology_packages.m')
+install_robotology_packages(installPrefix=fullfile(getenv('HOME'),'robotology-matlab'))
+robotology_setup
+~~~
+
+## Uninstall 
+
+To remove the packages installed by this guide, just remove the `robotology-gazebo` and the `install_robotology_packages.m` and `robotology_setup.m` scripts created by the installation.
+
+## Technical Details
+
+Under the hood, the `install_robotology_packages.m` scripts just automatically installs a conda environment in the `robotology-gazebo`, automatically following the command described in [documentation on how to install robotology binary packages via conda](doc/conda.md).
