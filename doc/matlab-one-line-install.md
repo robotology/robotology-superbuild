@@ -36,4 +36,4 @@ To remove the packages installed by this guide, just remove the `robotology-gaze
 
 ## Technical Details
 
-Under the hood, the `install_robotology_packages.m` scripts just automatically installs a conda environment in the `robotology-gazebo`, automatically following the command described in [documentation on how to install robotology binary packages via conda](doc/conda.md).
+Under the hood, the `install_robotology_packages.m` scripts just automatically installs a conda environment in the `robotology-gazebo`, automatically following the command described in [documentation on how to install robotology binary packages via conda](./conda.md).
