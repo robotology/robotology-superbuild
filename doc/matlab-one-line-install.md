@@ -4,7 +4,7 @@ This guide provides a simple documentation to install use Robotology MATLAB/Simu
 
 ## Installation
 ~~~matlab
-websave('install_robotology_packages.m', 'https://gist.githubusercontent.com/traversaro/cb955c93c71728be65e881d9766e74fb/raw/003d4efb4dd0d1f22754aac551126e6447f53285/install_robotology_packages.m')
+websave('install_robotology_packages.m', 'https://raw.githubusercontent.com/robotology/robotology-superbuild/master/scripts/install_robotology_packages.m')
 install_robotology_packages
 robotology_setup
 ~~~
@@ -25,7 +25,7 @@ vec.toString();
 
 Due to specific problems on MATLAB Online, you can't install the libraries in the local directory, and if you need to run this on MATLAB Online the command is slightly nmore difficult: 
 ~~~matlab
-websave('install_robotology_packages.m', 'https://gist.githubusercontent.com/traversaro/cb955c93c71728be65e881d9766e74fb/raw/003d4efb4dd0d1f22754aac551126e6447f53285/install_robotology_packages.m')
+websave('install_robotology_packages.m', 'https://raw.githubusercontent.com/robotology/robotology-superbuild/master/scripts/install_robotology_packages.m')
 install_robotology_packages(installPrefix=fullfile(getenv('HOME'),'robotology-matlab'))
 robotology_setup
 ~~~
