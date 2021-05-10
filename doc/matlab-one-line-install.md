@@ -1,6 +1,6 @@
 # One-line Installation of Robotology MATLAB/Simulink Packages
 
-This guide provides a simple documentation to install use Robotology MATLAB/Simulink packages in a pure MATLAB workflow (so without launching **anything else** via terminal, so for example no Gazebo simulation).
+This guide provides a simple documentation to install Robotology MATLAB/Simulink packages in a pure MATLAB workflow (so without launching **anything else** via terminal, so for example no Gazebo simulation).
 
 ## Installation
 ~~~matlab
@@ -8,7 +8,7 @@ websave('install_robotology_packages.m', 'https://raw.githubusercontent.com/robo
 install_robotology_packages
 robotology_setup
 ~~~
-This will install everything in a `robotology-gazebo` local directory, without perturbing anything else in your system. 
+This will install everything in a `robotology-matlab` local directory, without perturbing anything else in your system. 
 Once installed, you just need to re-run the `robotology_setup` script (or add it in your [`setup.m`](https://www.mathworks.com/help/matlab/ref/startup.html) file) to make the library available again. The overall installation process should take 2/3 minutes.
 
 If the installation and launching the `robotology_setup`, you should be able to run the following MATLAB code without any error:
