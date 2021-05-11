@@ -1,5 +1,7 @@
 if_(is_set("COMSPEC")).then_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink"))
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink")),
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\examples"))
 ]).else_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink"))
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink")),
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/examples"))
 ])

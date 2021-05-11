@@ -72,6 +72,7 @@ export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INST
 For adding the multiple libraries to the MATLAB path, the environment variable `MATLABPATH` has to be appended with the following robotology-superbuild related directories:
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex`
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex/+wbc/simulink`
+* `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex/+wbc/examples`
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/WBToolbox`
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/WBToolbox/images`
 

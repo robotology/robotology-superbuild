@@ -4,12 +4,12 @@ function install_robotology_packages(varargin)
     default_install_prefix = fullfile(pwd,'robotology-matlab');
     addOptional(p,'installPrefix', default_install_prefix);
     parse(p,varargin{:});
-      
+
     % Build package installation directory
     install_prefix = p.Results.installPrefix;
 
     setup_script = fullfile(pwd, 'robotology_setup.m');
-      
+
     if exist(install_prefix)
         fprintf('Directory %s already present. Please use it or delete to proceed with the install', install_prefix);
         return;
@@ -17,7 +17,7 @@ function install_robotology_packages(varargin)
 
     fprintf('Installing robotology MATLAB/Simulink binaries in %s\n', install_prefix);
 
-    % The install url is created following 
+    % The install url is created following
     mambaforge_url_prefix = 'https://github.com/conda-forge/miniforge/releases/latest/download/';
     if ispc
         mambaforge_installer_name = 'Mambaforge-Windows-x86_64.exe';
@@ -35,7 +35,7 @@ function install_robotology_packages(varargin)
         uname_m = strip(uname_m);
         mambaforge_installer_name = sprintf('Mambaforge-%s-%s.sh', uname, uname_m);
     end
-    
+
     fprintf('Downloading mambaforge installer \n');
     mambaforge_installer_url = strcat(mambaforge_url_prefix, mambaforge_installer_name);
     websave(mambaforge_installer_name, mambaforge_installer_url);
@@ -55,21 +55,21 @@ function install_robotology_packages(varargin)
         robotology_install_prefix = install_prefix;
     end
     fprintf('Installation of mambaforge completed\n');
-    
-    
+
+
 
     if ~exist(install_prefix, 'dir')
         fprintf('Installation in %s failed for unknown reason, please open an issue at https://github.com/robotology/robotology-superbuild/issues/new\n', install_prefix);
         return;
     end
-    
+
     % Install all the robotology packages related to MATLAB or Simulink
     fprintf('Installing robotology packages\n');
-    system(sprintf('%s install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree wb-toolbox osqp-matlab whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));    
+    system(sprintf('%s install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree wb-toolbox osqp-matlab whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));
     fprintf('Installation of robotology packages completed\n');
 
     fprintf('Creating setup script in %s', setup_script);
-    % Generate robotology_setup.m 
+    % Generate robotology_setup.m
     setupID = fopen(setup_script,'w');
     fprintf(setupID, '%% Specify OS-specific locations\n');
     fprintf(setupID, 'if ispc\n');
@@ -86,6 +86,7 @@ function install_robotology_packages(varargin)
     fprintf(setupID, '%% Add directory to MATLAB path\n');
     fprintf(setupID, 'addpath(fullfile(robotology_install_prefix,"mex"));\n');
     fprintf(setupID, 'addpath(fullfile(robotology_install_prefix,"mex/+wbc/simulink"));\n');
+    fprintf(setupID, 'addpath(fullfile(robotology_install_prefix,"mex/+wbc/examples"));\n');
     fprintf(setupID, 'addpath(fullfile(robotology_install_prefix,"share/WBToolbox"));\n');
     fprintf(setupID, 'addpath(fullfile(robotology_install_prefix,"share/WBToolbox/images"));\n');
     fprintf(setupID, '\n');
