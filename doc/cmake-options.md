@@ -310,6 +310,7 @@ To verify that the compilation of `ROBOTOLOGY_USES_MATLAB` option was successful
 the Matlab bindings of `yarp` and see if it executes without any error, for example:
 ~~~matlab
 yarpVec = yarp.Vector();
+yarpVec.resize(3);
 yarpVec.fromMatlab([1;2;3]);
 yarpVec.toMatlab()
 ~~~~
@@ -344,6 +345,7 @@ To verify that the compilation of `ROBOTOLOGY_USES_OCTAVE` option was successful
 the Octave bindings of `yarp` and see if it executes without any error, for example:
 ~~~matlab
 yarpVec = yarp.Vector();
+yarpVec.resize(3);
 yarpVec.fromMatlab([1;2;3]);
 yarpVec.toMatlab()
 ~~~~
