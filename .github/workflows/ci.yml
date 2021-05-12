@@ -24,16 +24,18 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        # Windows is disabled due to the missing ipopt package
         os: [ubuntu-latest, macos-latest, windows-2019]
         project_tags:
           - Default
           - Unstable
+          - LatestRelease
         include:
           - project_tags: Default
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
+          - project_tags: LatestReleases
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=LatestReleases"
 
     steps:
     - uses: actions/checkout@v2
