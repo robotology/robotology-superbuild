@@ -8,10 +8,11 @@ fprintf('\nMATLAB Toolbox\n');
 installDir   = '@YCM_EP_INSTALL_DIR@';
 mexDir       = [installDir, filesep, 'mex'];
 simLibDir   = [installDir, filesep, 'mex/+wbc/simulink'];
+simModDir   = [installDir, filesep, 'mex/+wbc/examples'];
 shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
 
-for dirPath = {mexDir,simLibDir,shareDir,imgDir}
+for dirPath = {mexDir,simLibDir,simModDir,shareDir,imgDir}
     if exist(dirPath{1}, 'dir')
         addpath(dirPath{1});
     end
@@ -37,7 +38,7 @@ if (~savepath([fileDir, filesep, 'pathdef.m']))
         'This should be enough to permanentely add all the MATLAB-Toolbox to ', ...
         'your MATLAB installation.\n'], fileDir);
 else
-    disp('There was an error generating pathdef.m To proceed please manually add the contents of variables mexDir, shareDir and imgDir to your matlabpath');
+    disp('There was an error generating pathdef.m To proceed please manually add the contents of variables mexDir, simLibDir, simModDir, shareDir and imgDir to your matlabpath');
 end
 
 % inform the user that it is possible to generate the goToWholeBodyControllers script
