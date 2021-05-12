@@ -28,7 +28,7 @@ jobs:
         project_tags:
           - Default
           - Unstable
-          - LatestRelease
+          - LatestReleases
         include:
           - project_tags: Default
             project_tags_cmake_options: ""
