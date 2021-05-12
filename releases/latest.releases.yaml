@@ -102,7 +102,7 @@ repositories:
   whole-body-controllers:
     type: git
     url: https://github.com/robotology/whole-body-controllers.git
-    version: v2.5.1
+    version: v2.5.2
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
@@ -198,4 +198,4 @@ repositories:
   matlab-whole-body-simulator:
     type: git
     url: https://github.com/dic-iit/matlab-whole-body-simulator.git
-    version: v2.0.0.rc1
+    version: v2.0.0
