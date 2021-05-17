@@ -16,6 +16,3 @@ set_tag(YCM_TAG ycm-0.12)
 set_tag(YARP_TAG yarp-3.4)
 set_tag(yarp-matlab-bindings_TAG yarp-3.4)
 
-# Temporary workaround for Ubuntu 18.04
-set_tag(bipedal-locomotion-framework_TAG 5b76dc40b0f9e825e29f8de5e100240b9f7d640c)
-set_tag(YARP_telemetry_TAG 26a466e08d858f2a45d12b5916243b65a6f3dfc8)
