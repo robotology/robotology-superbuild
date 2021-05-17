@@ -16,6 +16,7 @@ ycm_ep_helper(human-dynamics-estimation TYPE GIT
               TAG master
               COMPONENT human_dynamics
               FOLDER src
+              CMAKE_ARGS -DHUMANSTATEPROVIDER_ENABLE_VISUALIZER:BOOL=ON
               DEPENDS iDynTree
                       YARP
                       wearables
