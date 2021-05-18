@@ -81,7 +81,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_CORE` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ROBOT_TESTING`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`¹  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`<sup id="a1">[1!](#f1)</sup>  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
@@ -98,7 +98,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK` |  ❌            |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ❌               |
 | `ROBOTOLOGY_USES_ESDCAN` |  ❌           |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ❌               |
 
-¹Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` does not support building with apt dependencies on Ubuntu 18.04 .
+<b id="f1">1!</b>:Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` does not support building with apt dependencies on Ubuntu 18.04 .
 
 Profile-specific documentation
 ===================================
