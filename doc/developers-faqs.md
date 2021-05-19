@@ -52,11 +52,14 @@ endif()
 you can disable the automatical update of the tags by adding its CMake name in the `projects_to_skip` array in the `scripts/robotologyUpdateLatestReleases.sh` script.
 
 ## How to do a new release
-* Sometime before the release, copy the `releases/latest.releases.yaml` file in `releases/yyyy.mm.yaml` file, containing the version of package contained in the new release.
-* Modify the CI scripts to start testing the `yyyy.mm.yaml`
-* Once the release is ready to be made, create a `releases/yyyy.mm` branch from `master`
-* On the branch `releases/yyyy.mm` modify the default value of the `ROBOTOLOGY_PROJECT_TAGS` CMake option to be `Custom` and of the `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` to the point to the `yyyy.mm.yaml` file.
-* Create a new tag and release `vyyyy.mm` on the  `releases/yyyy.mm` branch
+To do a new release, just run via [`workflow_dispatch`](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/) the [`release` GitHub Actions workflow](https://github.com/robotology/robotology-superbuild/actions/workflows/release.yml) on the `master` branch.
+
+This action will automatically perform the following steps:
+* It copies the `releases/latest.releases.yaml` file in `releases/yyyy.mm.yaml` file, containing the version of package contained in the new release.
+* It creates a `releases/yyyy.mm` branch from `master`
+* On the branch `releases/yyyy.mm`, it modifies the default value of the `ROBOTOLOGY_PROJECT_TAGS` CMake option to be `Custom` and of the `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` to the point to the `yyyy.mm.yaml` file.
+* It creates a new tag and release `vyyyy.mm` on the  `releases/yyyy.mm` branch
+
 
 
 ## How to ensure that binary packages are correctly generated for a new package
