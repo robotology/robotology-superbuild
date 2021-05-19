@@ -58,6 +58,8 @@ you can disable the automatical update of the tags by adding its CMake name in t
 * On the branch `releases/yyyy.mm` modify the default value of the `ROBOTOLOGY_PROJECT_TAGS` CMake option to be `Custom` and of the `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` to the point to the `yyyy.mm.yaml` file.
 * Create a new tag and release `vyyyy.mm` on the  `releases/yyyy.mm` branch
 
+Now all those steps have been automated by a [Github Action](https://github.com/robotology/robotology-superbuild/actions/workflows/release.yml), just manually trigger the workflow specifying the version of the new release.
+
 
 ## How to ensure that binary packages are correctly generated for a new package
 * If the package is already available in [`conda-forge`](https://conda-forge.org), then no binary should be created and the `conda-forge` version should be used. This is done by setting in the `Build<pkg>.cmake` file the `<pkg>_CONDA_PKG_NAME` variable to the name of the package in `conda-forge`, and setting to `ON` the `<pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE` variable. For an example of such package, see [Buildosqp.cmake](../cmake/Buildosqp.cmake).
