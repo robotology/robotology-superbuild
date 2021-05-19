@@ -52,7 +52,7 @@ endif()
 you can disable the automatical update of the tags by adding its CMake name in the `projects_to_skip` array in the `scripts/robotologyUpdateLatestReleases.sh` script.
 
 ## How to do a new release
-To do a new release, just run via [`workflow_dispatch`](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/) the [`release` GitHub Action](https://github.com/robotology/robotology-superbuild/actions/workflows/release.yml) on the `master` branch.
+To do a new release, just run via [`workflow_dispatch`](https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/) the [`release` GitHub Actions workflow](https://github.com/robotology/robotology-superbuild/actions/workflows/release.yml) on the `master` branch.
 
 This action will automatically perform the following steps:
 * It copies the `releases/latest.releases.yaml` file in `releases/yyyy.mm.yaml` file, containing the version of package contained in the new release.
