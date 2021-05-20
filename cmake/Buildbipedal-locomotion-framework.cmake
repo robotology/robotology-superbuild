@@ -54,12 +54,15 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_cppad:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
 
 set(bipedal-locomotion-framework_CONDA_DEPENDENCIES eigen)
 
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11)
+  # https://conda-forge.org/docs/maintainer/knowledge_base.html#pybind11-abi-constraints
+  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11-abi)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES python)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES numpy)
 endif()
