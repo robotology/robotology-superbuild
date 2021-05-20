@@ -98,7 +98,7 @@ jobs:
             rm -rf build/conda/generated_recipes
             # Re-generate
             cd build
-            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
 
         - name: Build conda packages
           shell: bash -l {0}
