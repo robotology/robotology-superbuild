@@ -146,6 +146,12 @@ macro(generate_metametadata_file)
 
     # If some dependency requires numpy, add the appropriate runtime dependency
     # See https://conda-forge.org/docs/maintainer/knowledge_base.html#building-against-numpy
+    if("python" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+      string(APPEND metametadata_file_contents "    add_python_runtime_dep: true\n")
+    endif()
+
+    # If some dependency requires numpy, add the appropriate runtime dependency
+    # See https://conda-forge.org/docs/maintainer/knowledge_base.html#building-against-numpy
     if("numpy" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
       string(APPEND metametadata_file_contents "    add_numpy_runtime_dep: true\n")
     endif()
