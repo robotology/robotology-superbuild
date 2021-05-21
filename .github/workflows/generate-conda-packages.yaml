@@ -70,7 +70,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning boa
             python -m pip install git+https://github.com/wolfv/multisheller.git@0cc03c68d0c68d2f9cf7b07ddb68afa531419a6d
 
         - name: Generate recipes [Linux&macOS]
