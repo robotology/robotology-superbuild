@@ -103,10 +103,10 @@ jobs:
         - name: Build conda packages
           shell: bash -l {0}
           run: |
+            conda config --remove channels defaults
             cd build/conda/generated_recipes
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
-            # Workarounds for "conda.exceptions.ResolvePackageNotFound" problems 
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml osqp-eigen
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-testing-framework
