@@ -14,7 +14,7 @@ cmake .. \
 {% for cmake_arg in cmake_args %}    {{ cmake_arg }} \
 {% endfor %}
 
-cmake --build . --config Release --parallel %CPU_COUNT%
+cmake --build . --config Release --parallel $CPU_COUNT
 cmake --build . --config Release --target install
 
 {% if copy_activation_scripts is sameas true %}
