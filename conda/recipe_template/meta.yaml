@@ -45,7 +45,7 @@ requirements:
 {% if require_opengl_linux %}    - xorg-libxfixes {% endif %}
 {# Handle the constraint of macos >= 10.13 #}
   run:
-{% if add_numpy_runtime_dep %}{% raw %}    - {{ pin_compatible('numpy') }}{% endraw %}{% endif %}
+{% if add_numpy_runtime_dep %}{% raw %}    - {{ pin_compatible('numpy') }}{% endraw %}{% endif %}  # [not osx]
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 about:
