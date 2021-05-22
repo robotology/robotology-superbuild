@@ -107,23 +107,23 @@ jobs:
             cd build/conda/generated_recipes
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml osqp-eigen
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-testing-framework
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-main
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml lie-group-controllers
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml matio-cpp
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml qpoases
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml bipedal-locomotion-framework
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
-            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml --skip-existing . 
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml osqp-eigen
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-testing-framework
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml --variants "{python: [3.6, 3.7, 3.8, 3.9]}" yarp
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml matio-cpp
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-main
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml lie-group-controllers
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml qpoases
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml bipedal-locomotion-framework
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml --skip-existing . 
 
         - name: Upload conda packages
           shell: bash -l {0}
