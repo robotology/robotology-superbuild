@@ -1,9 +1,12 @@
 # Dependencies options
 set(ROBOTOLOGY_USES_GAZEBO ON CACHE BOOL "")
 
-# Dependencies not supported on Windows
-if(NOT WIN32)
+# Octave is not supported on Windows or on Conda
+if(NOT WIN32 AND NOT DEFINED ENV{CONDA_PREFIX})
   set(ROBOTOLOGY_USES_OCTAVE ON CACHE BOOL "")
+endif()
+
+if(NOT WIN32 OR DEFINED ENV{CONDA_PREFIX})
   set(ROBOTOLOGY_USES_PYTHON ON CACHE BOOL "")
 endif()
 
