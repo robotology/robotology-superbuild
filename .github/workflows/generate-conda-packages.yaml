@@ -111,6 +111,7 @@ jobs:
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-testing-framework
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp
+            conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
             conda mambabuild --override-channels --channel conda-forge -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
