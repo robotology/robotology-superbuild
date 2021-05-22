@@ -110,7 +110,7 @@ jobs:
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml osqp-eigen
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-testing-framework
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml --variants "{python: [3.6, 3.7, 3.8, 3.9]}" yarp
+            conda mambabuild --debug --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml matio-cpp
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
@@ -121,6 +121,8 @@ jobs:
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml lie-group-controllers
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml qpoases
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
+            conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wb-toolbox
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml bipedal-locomotion-framework
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
             conda mambabuild --variants "{python: [3.6, 3.7, 3.8, 3.9]}" -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml --skip-existing . 
