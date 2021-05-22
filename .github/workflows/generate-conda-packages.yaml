@@ -97,6 +97,8 @@ jobs:
             cat */meta.yaml
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
+            # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
+            # see https://github.com/mamba-org/boa/issues/117
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml osqp-eigen
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-testing-framework
