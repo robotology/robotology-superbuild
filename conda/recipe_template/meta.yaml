@@ -46,9 +46,8 @@ requirements:
 {# Handle the constraint of macos >= 10.13 #}
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
-{% if add_python_runtime_dep %}    - python {%- endif %}
-{% if add_numpy_runtime_dep %}{% raw %}    - {{ pin_compatible('numpy') }}  {% endraw %}{{ '# [not osx]' }}{% endif %}
-{% if add_numpy_runtime_dep %}    - numpy  {{ '# [osx]' }}{%- endif %}
+{% if add_python_runtime_dep %}    - python {% endif %}
+{% if add_numpy_runtime_dep %}{% raw %}    - {{ pin_compatible('numpy') }}  {% endraw %}{% endif %}
 
 about:
   home: https://github.com/{{ github_repo }}
