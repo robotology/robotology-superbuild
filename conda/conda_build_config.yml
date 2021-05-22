@@ -6,6 +6,8 @@ MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]
 opencv:
   - 4.5.1
 
+
+
 # For some reason, the variant of Python in conda-forge-pinning is not considered by conda build/mambabuild on Windows
 numpy:
   # part of a zip_keys: python, python_impl, numpy
@@ -26,3 +28,8 @@ python_impl:
   - cpython   # [not (osx and arm64)]
   - cpython
   - cpython
+
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
