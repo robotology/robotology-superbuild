@@ -1,6 +1,7 @@
 # bipedal-locomotion-framework requires 10.13 for std::bad_cast_any
+# yarp-telemetry requeries 10.15 for std::filesystem
 MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]
-  - 10.13                      # [osx and x86_64]
+  - 10.15                      # [osx and x86_64]
 
 # Pin opencv 4.5.1 to as a workaround for https://github.com/robotology/robotology-superbuild/issues/711
 opencv:
