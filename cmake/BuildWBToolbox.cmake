@@ -10,6 +10,7 @@ find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(qpOASES QUIET)
 find_or_build_package(BlockFactory QUIET)
+find_or_build_package(OsqpEigen QUIET)
 
 ycm_ep_helper(WBToolbox TYPE GIT
               STYLE GITHUB
@@ -18,10 +19,14 @@ ycm_ep_helper(WBToolbox TYPE GIT
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DWBT_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
+                         -DWBT_USES_ICUB:BOOL=ON
+                         -DWBT_USES_QPOASES:BOOL=ON
+                         -DWBT_USES_OSQPEIGEN:BOOL=ON
               DEPENDS YARP
                       ICUB
                       iDynTree
                       qpOASES
-                      BlockFactory)
+                      BlockFactory
+                      OsqpEigen)
 
 set(WBToolbox_CONDA_DEPENDENCIES eigen) 
