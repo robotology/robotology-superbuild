@@ -70,8 +70,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning
-            python -m pip install git+https://github.com/wolfv/multisheller.git@0cc03c68d0c68d2f9cf7b07ddb68afa531419a6d
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning boa multisheller
 
         - name: Generate recipes [Linux&macOS]
           if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
@@ -89,24 +88,39 @@ jobs:
             cd build
             cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
 
-        # Disable options not tested on Conda for now
-        # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
-        - name: Disable options not supported in conda
-          shell: bash -l {0}
-          run: |
-            # Cleanup recipes
-            rm -rf build/conda/generated_recipes
-            # Re-generate
-            cd build
-            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
-
         - name: Build conda packages
           shell: bash -l {0}
           run: |
+            conda config --remove channels defaults
             cd build/conda/generated_recipes
+             # Debug generated recipes
+            cat */meta.yaml
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
-            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
+            # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
+            # see https://github.com/mamba-org/boa/issues/117
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml osqp-eigen
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-testing-framework
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml matio-cpp
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-main
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml lie-group-controllers
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml qpoases
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wb-toolbox
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml unicycle-footstep-planner
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml bipedal-locomotion-framework
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-models
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml --skip-existing . 
 
         - name: Upload conda packages
           shell: bash -l {0}

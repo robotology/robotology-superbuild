@@ -115,6 +115,15 @@ macro(generate_metametadata_file)
       foreach(_cmake_arg IN LISTS ${_cmake_pkg}_CONDA_CMAKE_ARGS)
         string(APPEND metametadata_file_contents "      - \"${_cmake_arg}\"\n")
       endforeach()
+      # If some project requires python, add the appropriate CMake option so the 
+      # See https://github.com/robotology/robotology-superbuild/pull/749#issuecomment-845936017
+      if("python" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+        if(WIN32)
+          string(APPEND metametadata_file_contents "      - \"-DPython3_EXECUTABLE:PATH=%PYTHON%\"\n")
+        else()
+          string(APPEND metametadata_file_contents "      - \"-DPython3_EXECUTABLE:PATH=$PYTHON\"\n")
+        endif()
+      endif()
     endif()
 
     if(NOT "${${_cmake_pkg}_CONDA_DEPENDENCIES}" STREQUAL "")
@@ -134,6 +143,19 @@ macro(generate_metametadata_file)
         string(APPEND metametadata_file_contents "    require_opengl_linux: true\n")
       endif()
     endif()
+
+    # If some dependency requires numpy, add the appropriate runtime dependency
+    # See https://conda-forge.org/docs/maintainer/knowledge_base.html#building-against-numpy
+    if("python" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+      string(APPEND metametadata_file_contents "    add_python_runtime_dep: true\n")
+    endif()
+
+    # If some dependency requires numpy, add the appropriate runtime dependency
+    # See https://conda-forge.org/docs/maintainer/knowledge_base.html#building-against-numpy
+    if("numpy" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+      string(APPEND metametadata_file_contents "    add_numpy_runtime_dep: true\n")
+    endif()
+
 
     string(APPEND metametadata_file_contents "\n")
   endforeach()

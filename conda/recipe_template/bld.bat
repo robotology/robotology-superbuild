@@ -15,7 +15,7 @@ cmake ^
 if errorlevel 1 exit 1
 
 :: Build.
-cmake --build . --config Release
+cmake --build . --config Release --parallel %CPU_COUNT%
 if errorlevel 1 exit 1
 
 :: Install.

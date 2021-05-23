@@ -30,6 +30,16 @@ if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   list(APPEND bipedal-locomotion-framework_DEPENDS LieGroupControllers)
 endif()
 
+# For what regards Python installation, the options changes depending
+# on whater we are installing YARP from source, or we are generating a
+# conda package on Windows as in that case the installation location
+# will need to be outside of CMAKE_INSTALL_PREFIX
+# See https://github.com/robotology/robotology-superbuild/issues/641
+set(bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "")
+if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES AND WIN32)
+  list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
+endif()
+
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/bipedal-locomotion-framework.git
@@ -44,6 +54,15 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_cppad:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
 
 set(bipedal-locomotion-framework_CONDA_DEPENDENCIES eigen)
+
+if(ROBOTOLOGY_USES_PYTHON)
+  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11)
+  # https://conda-forge.org/docs/maintainer/knowledge_base.html#pybind11-abi-constraints
+  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11-abi)
+  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES python)
+  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES numpy)
+endif()

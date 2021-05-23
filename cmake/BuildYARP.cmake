@@ -12,10 +12,9 @@ if(ROBOTOLOGY_ENABLE_ROBOT_TESTING)
 endif()
 
 # Workaround for https://github.com/robotology/robotology-superbuild/issues/377
-if(NOT APPLE)
-  set(YARP_OPTIONAL_CMAKE_ARGS "")
-else()
-  set(YARP_OPTIONAL_CMAKE_ARGS "-DYARP_USE_SYSTEM_SQLite:BOOL=OFF")
+set(YARP_OPTIONAL_CMAKE_ARGS "")
+if(APPLE)
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DYARP_USE_SYSTEM_SQLite:BOOL=OFF")
 endif()
 
 if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA)
@@ -36,6 +35,15 @@ if(APPLE)
   set(ENABLE_yarpcar_mjpeg OFF)
 else()
   set(ENABLE_yarpcar_mjpeg ON)
+endif()
+
+# For what regards Python installation, the options changes depending
+# on whether we are installing YARP from source, or generating a
+# conda package on Windows as in that case the installation location
+# will need to be outside of CMAKE_INSTALL_PREFIX
+# See https://github.com/robotology/robotology-superbuild/issues/641
+if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES AND WIN32)
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DCMAKE_INSTALL_PYTHON3DIR:PATH=%SP_DIR%")
 endif()
 
 ycm_ep_helper(YARP TYPE GIT
@@ -86,3 +94,8 @@ ycm_ep_helper(YARP TYPE GIT
                               ${YARP_OPTIONAL_CMAKE_ARGS})
 
 set(YARP_CONDA_DEPENDENCIES ace opencv tinyxml qt eigen sdl sdl2 sqlite libjpeg-turbo)
+
+if(ROBOTOLOGY_USES_PYTHON)
+  list(APPEND YARP_CONDA_DEPENDENCIES swig)
+  list(APPEND YARP_CONDA_DEPENDENCIES python)
+endif()

@@ -14,6 +14,17 @@ list(APPEND iDynTree_DEPENDS YARP)
 list(APPEND iDynTree_DEPENDS ICUB)
 list(APPEND iDynTree_DEPENDS OsqpEigen)
 
+# For what regards Python installation, the options changes depending
+# on whether we are installing YARP from source, or generating a
+# conda package on Windows as in that case the installation location
+# will need to be outside of CMAKE_INSTALL_PREFIX
+# See https://github.com/robotology/robotology-superbuild/issues/641
+set(iDynTree_OPTIONAL_CMAKE_ARGS "")
+if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES AND WIN32)
+  list(APPEND iDynTree_OPTIONAL_CMAKE_ARGS "-DIDYNTREE_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
+endif()
+
+
 ycm_ep_helper(iDynTree TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/idyntree.git
@@ -28,6 +39,13 @@ ycm_ep_helper(iDynTree TYPE GIT
                          -DIDYNTREE_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
                          -DIDYNTREE_USES_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DIDYNTREE_USES_OCTAVE:BOOL=${ROBOTOLOGY_USES_OCTAVE}
+                         ${iDynTree_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${iDynTree_DEPENDS})
 
 set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen qt irrlicht)
+
+if(ROBOTOLOGY_USES_PYTHON)
+  list(APPEND iDynTree_CONDA_DEPENDENCIES swig)
+  list(APPEND iDynTree_CONDA_DEPENDENCIES python)
+  list(APPEND iDynTree_CONDA_DEPENDENCIES numpy)
+endif()
