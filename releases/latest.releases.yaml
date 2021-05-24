@@ -202,4 +202,4 @@ repositories:
   casadi-matlab-bindings:
     type: git
     url: https://github.com/dic-iit/casadi-matlab-bindings.git
-    version: v3.5.5.0
+    version: v3.5.5.1
