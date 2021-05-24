@@ -31,12 +31,12 @@ if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
 endif()
 
 # For what regards Python installation, the options changes depending
-# on whater we are installing YARP from source, or we are generating a
+# on whater we are installing blf in the superbuild, or we are generating a
 # conda package on Windows as in that case the installation location
 # will need to be outside of CMAKE_INSTALL_PREFIX
 # See https://github.com/robotology/robotology-superbuild/issues/641
 set(bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "")
-if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES AND WIN32)
+if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
 endif()
 
