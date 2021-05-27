@@ -30,11 +30,11 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.4.4
+    version: v3.4.5
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.19.2
+    version: v1.20.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -62,7 +62,7 @@ repositories:
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
-    version: v1.19.0
+    version: v1.20.0
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
@@ -82,7 +82,7 @@ repositories:
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
-    version: v5.3
+    version: v5.4.0
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
@@ -130,7 +130,7 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.19.0
+    version: v1.20.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
@@ -158,7 +158,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.19.0
+    version: v1.20.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
