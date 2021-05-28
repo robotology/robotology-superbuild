@@ -18,5 +18,5 @@ jobs:
           with:
             token: ${{ secrets.ICUB_TECH_TEAM_CODE_ACCESS_TOKEN }}
             repository: icub-tech-iit/code
-            event-type: superbuild_release
-            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type": "superbuild_release"}'
+            event-type: repository_trigger
+            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type": "repository_trigger", "img_list": "superbuild superbuild-tensorflow-cpu superbuild-tensorflow-gpu superbuild-pytorch superbuild-icubhead superbuild-nvidia superbuild-gazebo"}'
