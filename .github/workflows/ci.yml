@@ -400,6 +400,15 @@ jobs:
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+       
+    # Workaround for https://github.com/robotology/robotology-superbuild/issues/753
+    # taken from https://github.com/osrf/homebrew-simulation/issues/1486#issuecomment-850218440
+    - name: Add Gazebo-specific Homebrew workaround
+      if: contains(matrix.os, 'macos')
+      run: |
+           echo "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/usr/local/opt/tbb@2020_u3" >> $GITHUB_ENV
+           echo "CPATH=${CPATH}:/usr/local/opt/tbb@2020_u3/include" >> $GITHUB_ENV
+           echo "LIBRARY_PATH=${CMAKE_PREFIX_PATH}:${LIBRARY_PATH}:/usr/local/opt/tbb@2020_u3/lib" >> $GITHUB_ENV
 
     - name: Disable options unsupported on Ubuntu 18.04
       if: contains(matrix.os, '18.04')
