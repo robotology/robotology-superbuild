@@ -232,6 +232,18 @@ Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian
 On Windows, make sure that you install the Windows dependencies using the `vcpkg-robotology-with-gazebo.zip` archive and you set
 the correct enviroment variables as documented in [`robotology-superbuild-dependencies-vcpkg` documentation](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg).
 
+#### macOS with Homebrew workaround
+
+On macOS with Homebrew dependencies, due to an incompatibility of Gazebo with the latest version of tbb (https://github.com/osrf/gazebo/issues/2867), to correctly compiled `robotology-superbuild` with the `ROBOTOLOGY_USES_GAZEBO` option enabled,
+it is necessary to define the following environment variables:
+~~~
+export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/usr/local/opt/tbb@2020_u3
+export CPATH=${CPATH}:/usr/local/opt/tbb@2020_u3/include
+export LIBRARY_PATH=${LIBRARY_PATH}:/usr/local/opt/tbb@2020_u3/lib
+~~~
+See https://github.com/osrf/homebrew-simulation/issues/1486 for more info.
+
+
 ### Check the installation
 Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
 
