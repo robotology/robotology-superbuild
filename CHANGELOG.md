@@ -5,6 +5,8 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2021.05] - 2021-05-31
+
 ### Added
 - Add support for installing robotology superbuild packages as Conda binary packages (https://github.com/robotology/robotology-superbuild/blob/master/doc/conda-forge.md, https://github.com/robotology/robotology-superbuild/pull/652).
 - Add spdlog dependency to the superbuild (https://github.com/robotology/robotology-superbuild/pull/645)
