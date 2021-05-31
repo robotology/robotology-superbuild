@@ -50,7 +50,7 @@ repositories:
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v1.19.0
+    version: v1.20.0
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
