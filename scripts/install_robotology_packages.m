@@ -61,7 +61,7 @@ function install_robotology_packages(varargin)
 
     if ~exist(install_prefix, 'dir')
         fprintf('Installation in %s failed for unknown reason.\n', install_prefix);
-        fprintf('Please open an issue at https://github.com/robotology/robotology-superbuild/issues/new .\n);
+        fprintf('Please open an issue at https://github.com/robotology/robotology-superbuild/issues/new .\n');
         return;
     end
 
