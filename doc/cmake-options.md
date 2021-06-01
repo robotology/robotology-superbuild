@@ -89,7 +89,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
 | `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_IGNITION` |  ❌           |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ❌              |
-| `ROBOTOLOGY_USES_MATLAB` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_USES_MATLAB` |  ✔️           |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_OCTAVE` |  ✔️           |        ✔️                     |              ❌                |                  ❌              |               ❌                |                  ❌              |
 | `ROBOTOLOGY_USES_PYTHON` |  ✔️           |         ❌                     |              ❌                |                  ✔️              |               ✔️               |                  ✔️              |
 | `ROBOTOLOGY_USES_OCULUS_SDK` |   ❌          |         ❌                     |             ✔️                |                  ❌              |               ❌                |                  ❌            |

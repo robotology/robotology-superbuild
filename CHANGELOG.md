@@ -19,6 +19,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Removed
 - The `icub-gazebo` project was removed from the superbuild (https://github.com/robotology/robotology-superbuild/pull/646).
+- The `ROBOTOLOGY_USES_MATLAB` is not enable in Windows/vcpkg installer. Windows binaries for MATLAB/Simulink projects are avalable in Windows/conda, including in the form of One-line installation script (https://github.com/robotology/robotology-superbuild/blob/master/doc/matlab-one-line-install.md, https://github.com/robotology/robotology-superbuild/pull/775).
 
 ## [2021.02] - 2021-02-25
 
