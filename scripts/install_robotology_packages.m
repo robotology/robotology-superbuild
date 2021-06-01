@@ -11,7 +11,8 @@ function install_robotology_packages(varargin)
     setup_script = fullfile(pwd, 'robotology_setup.m');
 
     if exist(install_prefix)
-        fprintf('Directory %s already present. Please use it or delete to proceed with the install', install_prefix);
+        fprintf('Directory %s already present.\n', install_prefix);
+        fprintf('Please use it or delete to proceed with the install.\n');
         return;
     end
 
@@ -59,7 +60,8 @@ function install_robotology_packages(varargin)
 
 
     if ~exist(install_prefix, 'dir')
-        fprintf('Installation in %s failed for unknown reason, please open an issue at https://github.com/robotology/robotology-superbuild/issues/new\n', install_prefix);
+        fprintf('Installation in %s failed for unknown reason.\n', install_prefix);
+        fprintf('Please open an issue at https://github.com/robotology/robotology-superbuild/issues/new .\n);
         return;
     end
 
@@ -106,5 +108,5 @@ function install_robotology_packages(varargin)
     fprintf('robotology MATLAB and Simulink packages are successfully installed!\n');
     fprintf('Please run %s before using the packages,\n',setup_script)
     fprintf('or just add that script to your startup.m file, to run it whenever you open MATLAB.\n');
-    fprintf('To uninstall these packages, just delete the folder %s.\n', install_prefix);
+    fprintf('To uninstall these packages, just delete the folder %s .\n', install_prefix);
 end
