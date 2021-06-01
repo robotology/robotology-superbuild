@@ -166,7 +166,7 @@ If for any reason you do not want to use the provided `setup.sh` script and you 
 ### System Dependencies
 To install the system dependencies, it is possible to use [Homebrew](http://brew.sh/):
 ```
-brew install ace bash-completion boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt@5 sqlite swig tinyxml libmatio irrlicht spdlog
+brew install ace bash-completion boost cmake eigen gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml libmatio irrlicht spdlog
 ```
 
 Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `Qt5_DIR` needs to be properly set to make sure that CMake-based projects are able to find Qt5.
