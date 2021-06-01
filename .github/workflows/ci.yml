@@ -203,6 +203,8 @@ jobs:
         apt-get -y update
         apt-get -y upgrade
 
+
+
     - name: Configure [Docker]
       run: |
         mkdir -p build
@@ -219,11 +221,16 @@ jobs:
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
 
-    - name: Disable profiles that are not supported in Ubuntu Bionic in Unstable [Docker ubuntu:bionic]
-      if: (matrix.docker_image == 'ubuntu:bionic' && contains(matrix.project_tags, 'Unstable'))
+    - name: Disable profiles that are not supported in Ubuntu Bionic [Docker ubuntu:bionic]
+      if: (matrix.docker_image == 'ubuntu:bionic')
       run: |
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
+
+    - name: Install additional dependencies not available on Ubuntu Bionic [Docker except ubuntu:bionic]
+      if: (matrix.docker_image != 'ubuntu:bionic')
+      run: |
+        apt-get -y install nlohmann-json3-dev
 
     - name: Build  [Docker]
       run: |
@@ -405,6 +412,11 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
+
+    - name: Install dependencies unsupported in Ubuntu 18.04
+      if: contains(matrix.os, '20.04')
+      run: |
+        sudo apt-get -y install nlohmann-json3-dev
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
