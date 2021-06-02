@@ -7,6 +7,18 @@ function install_robotology_packages(varargin)
 
     % Build package installation directory
     install_prefix = p.Results.installPrefix;
+    
+    % If not on Windows, check if the install path contains a space as this
+    % creates an installation error later (see
+    % https://github.com/robotology/robotology-superbuild/issues/780)
+    if ~ispc
+        if contains(strip(install_prefix), ' ')
+            fprintf('Install directory path %s contains a space.\n', install_prefix)
+            fprintf('Please use install_robotology_packages function in a directory path that does not have spaces.\n');
+            fprintf('If this is not possible for you, please open an issue at https://github.com/robotology/robotology-superbuild/issues/new .\n');
+            return;
+        end
+    end
 
     setup_script = fullfile(pwd, 'robotology_setup.m');
 
@@ -50,7 +62,7 @@ function install_robotology_packages(varargin)
         % subdirectory of the prefix
         robotology_install_prefix = fullfile(install_prefix, 'Library');
     elseif isunix
-        system(sprintf('sh %s -b -p %s', mambaforge_installer_name, install_prefix));
+        system(sprintf('sh %s -b -p "%s"', mambaforge_installer_name, install_prefix));
         conda_full_path = fullfile(install_prefix, 'bin', 'conda');
         robotology_install_prefix = install_prefix;
     end
@@ -65,7 +77,7 @@ function install_robotology_packages(varargin)
 
     % Install all the robotology packages related to MATLAB or Simulink
     fprintf('Installing robotology packages\n');
-    system(sprintf('%s install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree wb-toolbox osqp-matlab whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));
+    system(sprintf('"%s" install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree wb-toolbox osqp-matlab whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));
     fprintf('Installation of robotology packages completed\n');
 
     fprintf('Creating setup script in %s', setup_script);
