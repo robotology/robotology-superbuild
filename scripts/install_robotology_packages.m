@@ -70,7 +70,7 @@ function install_robotology_packages(varargin)
     system(sprintf('%s install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree wb-toolbox osqp-matlab whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));
     fprintf('Installation of robotology packages completed\n');
 
-    fprintf('Creating setup script in %s', setup_script);
+    fprintf('Creating setup script in %s\n', setup_script);
     % Generate robotology_setup.m
     setupID = fopen(setup_script,'w');
     fprintf(setupID, '%% Specify OS-specific locations\n');
@@ -102,7 +102,7 @@ function install_robotology_packages(varargin)
     fprintf(setupID, 'setenv("BLOCKFACTORY_PLUGIN_PATH",fullfile(robotology_install_prefix,rob_shlib_install_dir,"blockfactory"));\n');
     fclose(setupID);
 
-    fprintf('Deleting mambaforge installer');
+    fprintf('Deleting mambaforge installer\n');
     delete(mambaforge_installer_name);
 
     fprintf('robotology MATLAB and Simulink packages are successfully installed!\n');
