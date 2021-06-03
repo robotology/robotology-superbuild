@@ -1,12 +1,11 @@
-# Copyright (C) 2017  iCub Facility, Istituto Italiano di Tecnologia
-# Authors: Silvio Traversaro <silvio.traversaro@iit.it>
+# Copyright (C) 2021 Fondazione Istituto Italiano di Tecnologia
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
 find_or_build_package(WBToolbox QUIET)
-find_or_build_package(qpOASES QUIET)
+find_or_build_package(casadi-matlab-bindings QUIET)
 
 ycm_ep_helper(whole-body-controllers TYPE GIT
               STYLE GITHUB
@@ -15,4 +14,4 @@ ycm_ep_helper(whole-body-controllers TYPE GIT
               COMPONENT dynamics
               FOLDER src
               DEPENDS WBToolbox
-                      qpOASES)
+                      casadi-matlab-bindings)
