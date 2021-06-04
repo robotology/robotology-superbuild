@@ -11,7 +11,8 @@ function install_robotology_packages(varargin)
     setup_script = fullfile(pwd, 'robotology_setup.m');
 
     if exist(install_prefix)
-        fprintf('Directory %s already present. Please use it or delete to proceed with the install', install_prefix);
+        fprintf('Directory %s already present.\n', install_prefix);
+        fprintf('Please use it or delete to proceed with the install.\n');
         return;
     end
 
@@ -59,7 +60,8 @@ function install_robotology_packages(varargin)
 
 
     if ~exist(install_prefix, 'dir')
-        fprintf('Installation in %s failed for unknown reason, please open an issue at https://github.com/robotology/robotology-superbuild/issues/new\n', install_prefix);
+        fprintf('Installation in %s failed for unknown reason.\n', install_prefix);
+        fprintf('Please open an issue at https://github.com/robotology/robotology-superbuild/issues/new .\n');
         return;
     end
 
@@ -68,7 +70,7 @@ function install_robotology_packages(varargin)
     system(sprintf('%s install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree wb-toolbox osqp-matlab whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));
     fprintf('Installation of robotology packages completed\n');
 
-    fprintf('Creating setup script in %s', setup_script);
+    fprintf('Creating setup script in %s\n', setup_script);
     % Generate robotology_setup.m
     setupID = fopen(setup_script,'w');
     fprintf(setupID, '%% Specify OS-specific locations\n');
@@ -100,11 +102,11 @@ function install_robotology_packages(varargin)
     fprintf(setupID, 'setenv("BLOCKFACTORY_PLUGIN_PATH",fullfile(robotology_install_prefix,rob_shlib_install_dir,"blockfactory"));\n');
     fclose(setupID);
 
-    fprintf('Deleting mambaforge installer');
+    fprintf('Deleting mambaforge installer\n');
     delete(mambaforge_installer_name);
 
     fprintf('robotology MATLAB and Simulink packages are successfully installed!\n');
     fprintf('Please run %s before using the packages,\n',setup_script)
     fprintf('or just add that script to your startup.m file, to run it whenever you open MATLAB.\n');
-    fprintf('To uninstall these packages, just delete the folder %s.\n', install_prefix);
+    fprintf('To uninstall these packages, just delete the folder %s .\n', install_prefix);
 end
