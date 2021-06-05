@@ -372,7 +372,7 @@ jobs:
         # To avoid problems with non-relocatable packages, we unzip the archive exactly in the same directory
         # that has been used to create the pre-compiled archive
         cd C:/
-        wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/download/v0.6.4/vcpkg-robotology-with-gazebo.zip
+        wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/latest/download/vcpkg-robotology-with-gazebo.zip
         unzip vcpkg-robotology-with-gazebo.zip -d C:/
         rm vcpkg-robotology-with-gazebo.zip
 
