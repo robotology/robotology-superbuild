@@ -5,11 +5,14 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+### Added
+- Add `nlohmann-json` dependency to the superbuild (https://github.com/robotology/robotology-superbuild/pull/776)
+
 ## [2021.05] - 2021-05-31
 
 ### Added
 - Add support for installing robotology superbuild packages as Conda binary packages (https://github.com/robotology/robotology-superbuild/blob/master/doc/conda-forge.md, https://github.com/robotology/robotology-superbuild/pull/652).
-- Add spdlog dependency to the superbuild (https://github.com/robotology/robotology-superbuild/pull/645)
+- Add `spdlog` dependency to the superbuild (https://github.com/robotology/robotology-superbuild/pull/645)
 - Add `YARP_telemetry` component to the Dynamics profile (https://github.com/robotology/robotology-superbuild/pull/677).
 - Append `<superbuild_install_prefix>/share` to `XDG_DATA_DIRS` to enable YARP auto completion on Bash terminal (https://github.com/robotology/robotology-superbuild/pull/759).
 - Add `casadi-matlab-bindings` package containing the MATLAB bindings for CasADi. The package is enabled if ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS is ON and ROBOTOLOGY_USES_MATLAB is ON (https://github.com/robotology/robotology-superbuild/pull/747).
