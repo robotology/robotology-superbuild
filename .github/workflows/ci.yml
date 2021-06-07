@@ -76,6 +76,8 @@ jobs:
     - name: Dependencies [Conda]
       shell: bash -l {0}
       run: |
+        # Workaround for https://github.com/robotology/robotology-superbuild/issues/785
+        conda install --name base libsolv=0.7.18
         # Compilation related dependencies 
         mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
