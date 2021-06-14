@@ -7,6 +7,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Added
 - Add `nlohmann-json` dependency to the superbuild (https://github.com/robotology/robotology-superbuild/pull/776)
+- In `YARP`, all the `fake***` YARP devices are now enabled (https://github.com/robotology/robotology-superbuild/pull/797).
 
 ## [2021.05] - 2021-05-31
 
