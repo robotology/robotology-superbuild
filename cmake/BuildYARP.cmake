@@ -83,6 +83,18 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_portaudio:BOOL=ON
                               -DENABLE_yarpmod_portaudioPlayer:BOOL=ON
                               -DENABLE_yarpmod_portaudioRecorder:BOOL=ON
+                              # Enable all "fake" devices in YARP, as they are quite useful for tutorials
+                              -DENABLE_yarpmod_fakeAnalogSensor:BOOL=ON
+                              -DENABLE_yarpmod_fakeBattery:BOOL=ON
+                              -DENABLE_yarpmod_fakeDepthCamera:BOOL=ON
+                              -DENABLE_yarpmod_fakeFrameGrabber:BOOL=ON
+                              -DENABLE_yarpmod_fakeIMU:BOOL=ON
+                              -DENABLE_yarpmod_fakeLaser:BOOL=ON
+                              -DENABLE_yarpmod_fakeLocalizer:BOOL=ON
+                              -DENABLE_yarpmod_fakeMicrophone:BOOL=ON
+                              -DENABLE_yarpmod_fakeMotionControl:BOOL=ON
+                              -DENABLE_yarpmod_fakeNavigation:BOOL=ON
+                              -DENABLE_yarpmod_fakeSpeaker:BOOL=ON
                               -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
                               -DYARP_COMPILE_RobotTestingFramework_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
