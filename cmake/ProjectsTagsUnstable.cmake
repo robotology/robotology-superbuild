@@ -6,7 +6,7 @@ endmacro()
 
 # External projects
 set_tag(osqp_TAG v0.6.2)
-set_tag(manif_REPOSITORY robotology-dependencies/manif.git
+set_tag(manif_REPOSITORY robotology-dependencies/manif.git)
 set_tag(manif_TAG 0.0.4.1)
 set_tag(qhull_TAG v8.0.2)
 set_tag(CppAD_TAG 20210000.4)
