@@ -379,13 +379,13 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_PYTHON` CMake opt
 #### Ubuntu using apt
 Install Python and the necessary development files using the following command:
 ~~~
-sudo apt-get install python3-dev python3-numpy
+sudo apt-get install python3-dev python3-numpy python3-pybind11 pybind11-dev
 ~~~
 
 #### Conda
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-conda install -c conda-forge python numpy swig
+conda install -c conda-forge python numpy swig pybind11
 ~~~
 
 ### Check the installation
