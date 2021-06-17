@@ -66,4 +66,8 @@ if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11-abi)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES python)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES numpy)
+  # manifpy is not available on Windows on conda-forge, see https://github.com/conda-forge/manif-feedstock/issues/7
+  if(NOT WIN32)
+    list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES manifpy)
+  endif()
 endif()
