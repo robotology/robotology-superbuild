@@ -16,7 +16,7 @@ apt-get install -y bash-completion build-essential cmake cmake-curses-gui coinor
 apt-get install -y libmatio-dev libirrlicht-dev
 
 # Python
-apt-get install -y python3-dev python3-numpy
+apt-get install -y python3-dev python3-numpy python3-pybind11 pybind11-dev
 
 # Octave
 apt-get install -y liboctave-dev
