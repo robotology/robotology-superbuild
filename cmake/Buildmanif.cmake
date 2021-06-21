@@ -4,13 +4,20 @@
 
 include(YCMEPHelper)
 
+# Workaround for https://github.com/robotology/robotology-superbuild/issues/802
+if(ROBOTOLOGY_USES_PYTHON AND NOT WIN32)
+  set(BUILD_PYTHON_BINDINGS ON)
+else()
+  set(BUILD_PYTHON_BINDINGS OFF)
+endif()
+
 ycm_ep_helper(manif TYPE GIT
               STYLE GITHUB
               REPOSITORY artivis/manif.git
               TAG master
               COMPONENT external
               FOLDER src
-              CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON})
+              CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_PYTHON_BINDINGS:BOOL=${BUILD_PYTHON_BINDINGS})
 
 set(manif_CONDA_PKG_NAME manif)
 set(manif_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
