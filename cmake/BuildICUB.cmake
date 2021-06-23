@@ -84,7 +84,7 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS})
 
 # Options related to generation of conda binary packages
-set(ICUB_CONDA_DEPENDENCIES ace opencv gsl ipopt libode qt sdl)
+set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt libode qt sdl)
 if(NOT (APPLE OR WIN32))
   list(APPEND ICUB_CONDA_DEPENDENCIES libdc1394)
 endif()
