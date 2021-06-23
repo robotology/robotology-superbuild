@@ -17,4 +17,4 @@ ycm_ep_helper(icub-basic-demos TYPE GIT
                                        ICUB
                                        ICUBcontrib)
 
-set(icub-basic-demos_CONDA_DEPENDENCIES opencv qt)
+set(icub-basic-demos_CONDA_DEPENDENCIES libopencv qt)
