@@ -67,6 +67,7 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
 
 set(bipedal-locomotion-framework_CONDA_DEPENDENCIES eigen)
 list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES nlohmann_json)
+list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES spdlog)
 
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11)
