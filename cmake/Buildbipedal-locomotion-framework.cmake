@@ -40,6 +40,13 @@ if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
 endif()
 
+# Workaround for https://github.com/robotology/robotology-superbuild/issues/802
+if(ROBOTOLOGY_USES_PYTHON AND NOT WIN32)
+  set(BUILD_PYTHON_BINDINGS ON)
+else()
+  set(BUILD_PYTHON_BINDINGS OFF)
+endif()
+
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/bipedal-locomotion-framework.git
@@ -54,11 +61,13 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_cppad:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         -DFRAMEWORK_COMPILE_PYTHON_BINDINGS:BOOL=${BUILD_PYTHON_BINDINGS}
                          ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
 
 set(bipedal-locomotion-framework_CONDA_DEPENDENCIES eigen)
 list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES nlohmann_json)
+list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES spdlog)
 
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11)
@@ -66,4 +75,8 @@ if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11-abi)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES python)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES numpy)
+  # manifpy is not available on Windows on conda-forge, see https://github.com/conda-forge/manif-feedstock/issues/7
+  if(NOT WIN32)
+    list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES manifpy)
+  endif()
 endif()
