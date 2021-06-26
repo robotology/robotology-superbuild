@@ -13,3 +13,5 @@ ycm_ep_helper(RobotTestingFramework TYPE GIT
                                     COMPONENT core
                                     FOLDER src)
 
+set(RobotTestingFramework_CONDA_PKG_NAME robot-testing-framework)
+set(RobotTestingFramework_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
