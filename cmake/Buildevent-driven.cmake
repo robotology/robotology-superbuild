@@ -14,3 +14,5 @@ ycm_ep_helper(event-driven TYPE GIT
                       YCM
               COMPONENT event-driven
               FOLDER src)
+
+set(event-driven_CONDA_DEPENDENCIES libopencv qt)

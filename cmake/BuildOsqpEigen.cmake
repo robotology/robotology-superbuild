@@ -15,4 +15,5 @@ ycm_ep_helper(OsqpEigen TYPE GIT
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
               DEPENDS osqp)
 
-set(OsqpEigen_CONDA_DEPENDENCIES "eigen")
+set(OsqpEigen_CONDA_PKG_NAME osqp-eigen)
+set(OsqpEigen_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

@@ -132,6 +132,24 @@ macro(generate_metametadata_file)
         string(APPEND metametadata_file_contents "      - ${_dep}\n")
       endforeach()
     endif()
+    
+    # By default we rely on properly set run_exports configurations in conda recipes
+    # to avoid to manually set run dependencies. However, in some cases (cmake-only 
+    # libraries, header-only libraries) run_exports is not used, so it is necessary 
+    # to manually specify them as run dependencies
+    if("ycm-cmake-modules" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+      list(APPEND ${_cmake_pkg}_CONDA_RUN_DEPENDENCIES_EXPLICIT "ycm-cmake-modules")
+    endif()
+    if("eigen" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+      list(APPEND ${_cmake_pkg}_CONDA_RUN_DEPENDENCIES_EXPLICIT "eigen")
+    endif()
+    if(NOT "${${_cmake_pkg}_CONDA_RUN_DEPENDENCIES_EXPLICIT}" STREQUAL "")
+      string(APPEND metametadata_file_contents "    run_dependencies_explicit:\n")
+      foreach(_dep IN LISTS ${_cmake_pkg}_CONDA_RUN_DEPENDENCIES_EXPLICIT)
+        string(APPEND metametadata_file_contents "      - ${_dep}\n")
+      endforeach()
+    endif()
+
 
     # If some dependency require opengl to build and we are on Linux, add the required packages
     # See https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl
@@ -186,6 +204,7 @@ set_property(GLOBAL PROPERTY YCM_PROJECTS ${_projects})
 set(_YH_YCM_REPOSITORY robotology/ycm.git)
 # Use ycm-cmake-modules as name as in debian
 set(YCM_CONDA_PKG_NAME ycm-cmake-modules)
+set(YCM_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
 
 include(RobotologySuperbuildLogic)
 include(CondaGenerationOptions)
