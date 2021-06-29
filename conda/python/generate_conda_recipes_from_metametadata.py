@@ -58,12 +58,15 @@ def write_bash_zsh_disambiguation_script(generation_directory, name_without_exte
 
     print(f"Writing file to {fname}")
     with open(fname, 'w') as f:
-        f.write('if [ ! -z "$ZSH_VERSION" ]; then\n')
-        f.write("  SCRIPT_DIR=${0:a:h}")
-        f.write("  source ${SCRIPT_DIR}/yarp_activate.zsh")
-        f.write("else")
-        f.write('  SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"')
-        f.write('  source ${SCRIPT_DIR}/yarp_activate.bash')
+        f.write(r'if [ ! -z "$ZSH_VERSION" ]; then')
+        f.write('\n')
+        f.write(r'  SCRIPT_DIR=${0:a:h}')
+        f.write('\n')
+        f.write('  source ${SCRIPT_DIR}/' + f'{name_without_extension}.zsh\n')
+        f.write("else\n")
+        f.write(r'  SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"')
+        f.write('\n')
+        f.write('  source ${SCRIPT_DIR}/' + f'{name_without_extension}.bash\n')
         f.write('fi\n')
 
     f.close()
