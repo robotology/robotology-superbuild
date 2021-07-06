@@ -25,7 +25,7 @@ def dir_path(string):
 
 suffixes = {
     'cmdexe': '.bat',
-    'bash': '.sh',
+    'bash': '.bash',
     'zsh': '.zsh',
     'xonsh': '.xsh',
     'powershell': '.ps1',
@@ -47,6 +47,37 @@ def write_script(generation_directory, name_without_extension, commands, interpr
     with open(fname, 'w') as f:
         s = translators[interpreter].to_script(s)
         f.write(s)
+
+    f.close()
+    print(f"File wrote to {fname}")
+
+    return
+
+def write_bash_zsh_disambiguation_script(generation_directory, name_without_extension):
+    fname = generation_directory + "/" + name_without_extension + ".sh"
+
+    print(f"Writing file to {fname}")
+    with open(fname, 'w') as f:
+        f.write(r'if [ ! -z "$ZSH_VERSION" ]; then')
+        f.write('\n')
+        f.write(r'  SCRIPT_DIR=${0:a:h}')
+        f.write('\n')
+        f.write(r'  SCRIPT_NAME=$(basename "${(%):-%x}")')
+        f.write('\n')
+        f.write(r'  SCRIPT_NAME_WITHOUT_EXT=${SCRIPT_NAME%.*}')
+        f.write('\n')
+        f.write(r'  source ${SCRIPT_DIR}/${SCRIPT_NAME_WITHOUT_EXT}.zsh')
+        f.write('\n')
+        f.write("else\n")
+        f.write(r'  SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"')
+        f.write('\n')
+        f.write(r'  SCRIPT_NAME=$(basename "${BASH_SOURCE[0]}")')
+        f.write('\n')
+        f.write(r'  SCRIPT_NAME_WITHOUT_EXT=${SCRIPT_NAME%.*}')
+        f.write('\n')
+        f.write(r'  source ${SCRIPT_DIR}/${SCRIPT_NAME_WITHOUT_EXT}.bash')
+        f.write('\n')
+        f.write('fi\n')
 
     f.close()
     print(f"File wrote to {fname}")
@@ -80,6 +111,11 @@ def generate_scripts_from_multisheller_file(multisheller_file, generation_direct
     write_script(generation_directory, name_without_extension, cmds, "zsh")
     write_script(generation_directory, name_without_extension, cmds, "xonsh")
     write_script(generation_directory, name_without_extension, cmds, "powershell")
+
+    # Conda do not explicitly support different activation scripts for zsh and bash,
+    # so we generate them as .bash and .zsh (ignored by conda) and then generate a
+    # small .sh script to source the correct one depending on the used shell
+    write_bash_zsh_disambiguation_script(generation_directory, name_without_extension)
 
 def main():
 

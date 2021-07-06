@@ -34,6 +34,9 @@ for %%F in (activate deactivate) DO (
     copy %RECIPE_DIR%\%%F.sh %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.sh
     if %errorlevel% neq 0 exit /b %errorlevel%
 
+    copy %RECIPE_DIR%\%%F.bash %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.bash
+    if %errorlevel% neq 0 exit /b %errorlevel%
+
     copy %RECIPE_DIR%\%%F.ps1 %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.ps1
     if %errorlevel% neq 0 exit /b %errorlevel%
 
