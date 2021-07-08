@@ -5,6 +5,7 @@ include(YCMEPHelper)
 include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
+find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(wearables QUIET)
 find_or_build_package(osqp QUIET)
@@ -21,6 +22,7 @@ ycm_ep_helper(human-dynamics-estimation TYPE GIT
                       YARP
                       wearables
                       osqp
-                      OsqpEigen)
+                      OsqpEigen
+                      ICUB)
 
 set(human-dynamics-estimation_CONDA_DEPENDENCIES eigen)
