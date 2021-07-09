@@ -206,4 +206,4 @@ repositories:
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
-    version: v0.0.1
+    version: v0.0.2
