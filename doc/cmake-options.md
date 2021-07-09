@@ -180,7 +180,7 @@ should be working correctly. Furthermore, if the profile has been correctly enab
 
 ## iCub Basic Demos
 
-This profile is enabled by the `ROBOTOLOGY_ENABLE_BASIC_DEMOS` CMake option.
+This profile is enabled by the `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` CMake option.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the iCub Basic Demos profile are provided in
