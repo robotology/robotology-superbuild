@@ -5,13 +5,9 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
-find_or_build_package(YARP QUIET)
-find_or_build_package(ICUB QUIET)
 find_or_build_package(OsqpEigen QUIET)
 
 set(iDynTree_DEPENDS "")
-list(APPEND iDynTree_DEPENDS YARP)
-list(APPEND iDynTree_DEPENDS ICUB)
 list(APPEND iDynTree_DEPENDS OsqpEigen)
 
 # For what regards Python installation, the options changes depending
@@ -32,17 +28,16 @@ ycm_ep_helper(iDynTree TYPE GIT
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DIDYNTREE_USES_IPOPT:BOOL=ON
-                         -DIDYNTREE_USES_YARP:BOOL=ON
-                         -DIDYNTREE_USES_ICUB_MAIN:BOOL=ON
                          -DIDYNTREE_USES_OSQPEIGEN:BOOL=ON
                          -DIDYNTREE_USES_IRRLICHT:BOOL=ON
                          -DIDYNTREE_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
                          -DIDYNTREE_USES_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DIDYNTREE_USES_OCTAVE:BOOL=${ROBOTOLOGY_USES_OCTAVE}
+                         -DIDYNTREE_COMPILES_YARP_TOOLS:BOOL=OFF
                          ${iDynTree_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${iDynTree_DEPENDS})
 
-set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen qt irrlicht)
+set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen irrlicht)
 
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND iDynTree_CONDA_DEPENDENCIES swig)
