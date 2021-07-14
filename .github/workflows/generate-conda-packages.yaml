@@ -70,7 +70,9 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning boa
+            # Workaround for https://github.com/robotology/robotology-superbuild/issues/822
+            # and https://github.com/mamba-org/boa/issues/165 .
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba=0.14.1 boa=0.5.0
             # Use multisheller version that include the fix https://github.com/mamba-org/multisheller/pull/13
             python -m pip install git+https://github.com/mamba-org/multisheller.git@31883c2fe325464a8d3510380afdc83e8f64c349
 
