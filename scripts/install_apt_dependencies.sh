@@ -6,7 +6,7 @@
 set -euo pipefail
 
 # Get location of the script
-scriptDirectory=$(dirname $(readlink --canonicalize --no-newline $BASH_SOURCE))
+scriptDirectory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" 
 
 xargs -a ${scriptDirectory}/../apt.txt apt-get install
 
