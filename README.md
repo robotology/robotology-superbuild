@@ -119,7 +119,7 @@ All the software packages are installed using the `install` directory of the bui
 On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMake and Eigen (and other dependencies necessary for the software include in `robotology-superbuild`) using `apt-get`. This can be done by installing the packages listed in the `apt.txt` file using the following script:
 ~~~
 cd robotology-superbuild
-sudo ./scripts/install_apt_dependencies.sh
+sudo bash ./scripts/install_apt_dependencies.sh
 ~~~
 
 If you are **not** using Ubuntu 18.04, you also need to install:
