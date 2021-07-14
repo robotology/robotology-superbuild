@@ -11,7 +11,7 @@ apt-get install -y clang valgrind ccache ninja-build
 
 # Dependencies
 # Get location of the script
-scriptDirectory=$(dirname $(readlink --canonicalize --no-newline $BASH_SOURCE))
+scriptDirectory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source ${scriptDirectory}/../scripts/install_apt_dependencies.sh
 
 # Python
