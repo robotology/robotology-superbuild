@@ -11,8 +11,9 @@ apt-get install -y clang valgrind ccache ninja-build
 
 # Dependencies
 # Get location of the script
-scriptDirectory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-source ${scriptDirectory}/../scripts/install_apt_dependencies.sh
+SCRIPT_DIR=$(cd "$(dirname "$BASH_SOURCE")"; cd -P "$(dirname "$(readlink "$BASH_SOURCE" || echo .)")"; pwd)
+
+source ${SCRIPT_DIR}/../scripts/install_apt_dependencies.sh
 
 # Python
 apt-get install -y python3-dev python3-numpy python3-pybind11 pybind11-dev
