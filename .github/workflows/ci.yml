@@ -350,6 +350,8 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cmake --version
+        # Workaround for https://github.com/actions/virtual-environments/issues/3733
+        brew uninstall mongodb-community
         # Update homebrew 
         brew update
         brew upgrade
