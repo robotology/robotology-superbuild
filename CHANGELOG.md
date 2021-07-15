@@ -10,6 +10,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 - In `YARP`, all the `fake***` YARP devices are now enabled (https://github.com/robotology/robotology-superbuild/pull/797).
 - `pybind11` has been added as dependency for the `ROBOTOLOGY_USES_PYTHON` option (https://github.com/robotology/robotology-superbuild/pull/800), to enable compilation of Python bindings of `manif` and `bipedal-locomotion-framework`.
 - The `idyntree-yarp-tools` was added to the Dynamics component of the superbuild (https://github.com/robotology/robotology-superbuild/pull/818).
+- An `apt.txt` file and a `scripts/install_apt_dependencies.sh` script have been added to the superbuild to report the required apt packages in a machine readable form. People that mantain either Docker recipes or documentation on how to instal the robotology-superbuild are suggest to switch to use these files instead of hardcoding the dependencies manually (https://github.com/robotology/robotology-superbuild/pull/825). 
 
 ## [2021.05] - 2021-05-31
 
