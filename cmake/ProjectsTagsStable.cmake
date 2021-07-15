@@ -13,6 +13,6 @@ set_tag(CppAD_TAG 20210000.4)
 set_tag(casadi 3.5.5.3)
 
 # Robotology projects
-set_tag(YCM_TAG ycm-0.12)
+set_tag(YCM_TAG ycm-0.13)
 set_tag(YARP_TAG yarp-3.4)
 set_tag(yarp-matlab-bindings_TAG yarp-3.4)
