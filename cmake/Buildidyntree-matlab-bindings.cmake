@@ -17,3 +17,5 @@ ycm_ep_helper(idyntree-matlab-bindings TYPE GIT
               CMAKE_ARGS -DIDYNTREE_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
               DEPENDS iDynTree
               SOURCE_SUBDIR bindings)
+
+set(idyntree-matlab-bindings_CONDA_PKG_NAME idyntree-matlab-bindings)
