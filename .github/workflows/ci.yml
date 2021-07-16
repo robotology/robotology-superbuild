@@ -182,7 +182,7 @@ jobs:
     - name: Dependencies [Docker]
       run: |
         chmod +x ./.ci/install_debian.sh
-        ./.ci/install_debian.sh
+        bash ./.ci/install_debian.sh
 
     - name: Install CMake 3.16 [Docker/Debian Buster]
       if: matrix.docker_image == 'debian:buster-backports'
@@ -343,13 +343,15 @@ jobs:
       run: |
         cd $ROBOTOLOGY_SUPERBUILD_SOURCE_DIR
         chmod +x ./.ci/install_debian.sh
-        sudo ./.ci/install_debian.sh
+        sudo bash ./.ci/install_debian.sh
 
     - name: Dependencies [macOS]
       if: contains(matrix.os, 'macos')
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cmake --version
+        # Workaround for https://github.com/actions/virtual-environments/issues/3733
+        brew uninstall mongodb-community
         # Update homebrew 
         brew update
         brew upgrade

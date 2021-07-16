@@ -9,11 +9,11 @@ export DEBIAN_FRONTEND=noninteractive
 # CI specific packages
 apt-get install -y clang valgrind ccache ninja-build
 
-# Core dependencies
-apt-get install -y bash-completion build-essential cmake cmake-curses-gui coinor-libipopt-dev freeglut3-dev git libace-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev libdc1394-22-dev libedit-dev libeigen3-dev libgsl0-dev libjpeg-dev liblua5.1-dev libode-dev libopencv-dev libsdl1.2-dev libtinyxml-dev libv4l-dev libxml2-dev lua5.1 portaudio19-dev qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings qml-module-qtmultimedia qml-module-qtquick-controls qml-module-qtquick-dialogs qml-module-qtquick-window2 qml-module-qtquick2 qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev swig libspdlog-dev libblas-dev liblapack-dev
+# Dependencies
+# Get location of the script
+SCRIPT_DIR=$(cd "$(dirname "$BASH_SOURCE")"; cd -P "$(dirname "$(readlink "$BASH_SOURCE" || echo .)")"; pwd)
 
-# Dynamics dependencies
-apt-get install -y libmatio-dev libirrlicht-dev
+source ${SCRIPT_DIR}/../scripts/install_apt_dependencies.sh
 
 # Python
 apt-get install -y python3-dev python3-numpy python3-pybind11 pybind11-dev
