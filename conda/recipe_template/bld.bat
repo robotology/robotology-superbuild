@@ -1,3 +1,5 @@
+cd {{ source_subdir }}
+
 mkdir build
 cd build
 
