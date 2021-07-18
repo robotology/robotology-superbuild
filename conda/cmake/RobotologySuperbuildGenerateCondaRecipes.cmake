@@ -110,6 +110,10 @@ macro(generate_metametadata_file)
     string(APPEND metametadata_file_contents "    github_tag: ${${_cmake_pkg}_CONDA_TAG}\n")
     string(APPEND metametadata_file_contents "    conda_build_number: ${CONDA_BUILD_NUMBER}\n")
 
+    if(_YH_${_cmake_pkg}_SOURCE_SUBDIR)
+      string(APPEND metametadata_file_contents "    source_subdir: ${_YH_${_cmake_pkg}_SOURCE_SUBDIR}\n")
+    endif()
+
     if(NOT "${${_cmake_pkg}_CONDA_CMAKE_ARGS}" STREQUAL "")
       string(APPEND metametadata_file_contents "    cmake_args:\n")
       foreach(_cmake_arg IN LISTS ${_cmake_pkg}_CONDA_CMAKE_ARGS)

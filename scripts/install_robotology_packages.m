@@ -79,7 +79,7 @@ function install_robotology_packages(varargin)
 
     % Install all the robotology packages related to MATLAB or Simulink
     fprintf('Installing robotology packages\n');
-    system(sprintf('"%s" install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree wb-toolbox osqp-matlab casadi-matlab-bindings whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));
+    system(sprintf('"%s" install -y -c conda-forge -c robotology yarp-matlab-bindings idyntree-matlab-bindings wb-toolbox osqp-matlab casadi-matlab-bindings whole-body-controllers matlab-whole-body-simulator icub-models', conda_full_path));
     fprintf('Installation of robotology packages completed\n');
 
     fprintf('Creating setup script in %s\n', setup_script);

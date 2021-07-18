@@ -37,10 +37,5 @@ ycm_ep_helper(iDynTree TYPE GIT
                          ${iDynTree_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${iDynTree_DEPENDS})
 
-set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen irrlicht)
-
-if(ROBOTOLOGY_USES_PYTHON)
-  list(APPEND iDynTree_CONDA_DEPENDENCIES swig)
-  list(APPEND iDynTree_CONDA_DEPENDENCIES python)
-  list(APPEND iDynTree_CONDA_DEPENDENCIES numpy)
-endif()
+set(iDynTree_CONDA_PKG_NAME idyntree)
+set(iDynTree_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

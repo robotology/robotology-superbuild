@@ -1,5 +1,9 @@
 #!/bin/sh
 
+{% if source_subdir is defined and source_subdir|length %}
+cd {{ source_subdir }}
+{% endif %}
+
 mkdir build
 cd build
 
