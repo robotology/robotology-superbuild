@@ -15,7 +15,7 @@ cmake ^
     -DCMAKE_VERBOSE_MAKEFILE=OFF ^
     -DCMAKE_INSTALL_LIBDIR=lib ^
 {% for cmake_arg in cmake_args %}    {{ cmake_arg }} ^
-{% endfor %}    %SRC_DIR%
+{% endfor %}    ..
 if errorlevel 1 exit 1
 
 :: Build.
