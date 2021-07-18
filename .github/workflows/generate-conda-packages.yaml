@@ -105,6 +105,8 @@ jobs:
             cd build/conda/generated_recipes
              # Debug generated recipes
             cat */meta.yaml
+            cat */bld.bat
+            cat */build.sh
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
             # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
