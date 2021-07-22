@@ -170,7 +170,7 @@ repositories:
   LieGroupControllers:
     type: git
     url: https://github.com/dic-iit/lie-group-controllers.git
-    version: v0.0.1
+    version: v0.1.1
   event-driven:
     type: git
     url: https://github.com/robotology/event-driven.git
