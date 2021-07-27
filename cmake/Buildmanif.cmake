@@ -4,7 +4,7 @@
 
 include(YCMEPHelper)
 
-# Workaround for https://github.com/robotology/robotology-superbuild/issues/802
+# Workaround for https://github.com/robotology/robotology-superbuild/pull/838#issuecomment-887367047
 if(ROBOTOLOGY_USES_PYTHON AND NOT WIN32)
   set(BUILD_PYTHON_BINDINGS ON)
 else()
