@@ -25,4 +25,4 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
                       OsqpEigen
                       ICUB)
 
-set(human-dynamics-estimation_CONDA_DEPENDENCIES eigen)
+set(HumanDynamicsEstimation_CONDA_DEPENDENCIES eigen)
