@@ -17,7 +17,7 @@ First of all, download the installer and install it in its default location:
 # Download
 curl -LO https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 # Install with default options
-bash ./Miniforge3-Linux-x86_64.sh -b
+sh ./Miniforge3-Linux-x86_64.sh -b
 ~~~
 This will install miniforge in `~/miniforge3` .
 
@@ -25,6 +25,11 @@ To use the `conda` command, you need to add the `~/miniforge3/condabin` director
 You can do this persistently by modifying the `.bashrc` via the command: 
 ~~~
 ~/miniforge3/condabin/conda init
+~~~
+
+If you are using a non-bash shell such as `zsh`, you also need to run:
+~~~
+~/miniforge3/condabin/conda init zsh
 ~~~
 
 By default, this command also automatically initialize the [`base` conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) whenever you start a terminal.
@@ -51,6 +56,12 @@ To remove `miniforge`, first cleanup your `.bashrc` either manually or by runnin
 ~~~
 ~/miniforge3/condabin/conda init --reverse
 ~~~
+
+If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by running the command:
+~~~
+~/miniforge3/condabin/conda init zsh --reverse
+~~~
+
 Then, just remove the `~/miniforge3` directory and the setting files:
 ~~~
 rm -rf ~/miniforge3
@@ -67,7 +78,7 @@ First of all, download the installer and install it in its default location:
 # Download
 curl -fsSLo Miniforge3.sh https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh
 # Install with default options
-bash ./Miniforge3.sh
+sh ./Miniforge3.sh -b
 ~~~
 This will install miniforge in `~/miniforge3` .
 
@@ -75,6 +86,11 @@ To use the `conda` command, you need to add the `~/miniforge3/condabin` director
 You can do this persistently by modifying the appropriate file via the command: 
 ~~~
 ~/miniforge3/condabin/conda init
+~~~
+
+If you are using a non-bash shell such as `zsh`, you also need to run:
+~~~
+~/miniforge3/condabin/conda init zsh
 ~~~
 
 By default, this command also automatically initialize the [`base` conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) whenever you start a terminal.
@@ -101,6 +117,13 @@ To remove `miniforge`, first cleanup your `PATH` environment variable by running
 ~~~
 ~/miniforge3/condabin/conda init --reverse
 ~~~
+
+If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by running the command:
+~~~
+~/miniforge3/condabin/conda init zsh --reverse
+~~~
+
+
 Then, just remove the `~/miniforge3` directory and the setting files:
 ~~~
 rm -rf ~/miniforge3
