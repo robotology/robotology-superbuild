@@ -51,6 +51,8 @@ conda activate robotologyenv
 
 **IMPORTANT: if you open a new terminal, you need to manually activate the environment also there.**
 
+**IMPORTANT: On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.** 
+
 ### Install robotology packages
 
 Once you are in an activated environment, you can install robotology packages by just running the command:
@@ -104,6 +106,8 @@ conda activate robsub
 
 **IMPORTANT: if you open a new terminal, you need to manually activate the environment also there. If you compiled a robotology-superbuild in a given conda environment, remember to activate it before trying to compile or run any package 
 of the robotology-superbuild.** 
+
+**IMPORTANT: On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.** 
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 ~~~
