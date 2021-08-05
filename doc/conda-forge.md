@@ -31,8 +31,14 @@ This section describes how to compile and install the binary packages built from
 The binary packages are hosted in the [`robotology` conda channel](https://anaconda.org/robotology) . Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on CMake options](cmake-options.md)) are available as conda binary packages in the `robotology` channel. 
 
 ### Install a conda distribution
+
 If you do not have a conda distribution on your system, we suggest to use the minimal 
-[`miniforge3`](https://github.com/conda-forge/miniforge#miniforge3) distribution, that uses `conda-forge` packages by default, following the instructions in our [`install-miniforge`](install-miniforge.md) documentation. 
+[`mambaforge`](https://github.com/conda-forge/miniforge#mambaforge) distribution, that uses `conda-forge` packages by default and installs the [`mamba`](https://github.com/mamba-org/mamba) command by default.
+
+To install `mambaforge`, please follow the instructions in our [`install-mambaforge`](install-mambaforge.md) documentation. 
+
+Even if you are not using `mambaforge` and you are using instead a different `conda` distribution, to follow the instructions on this document you need to install the `mamba` package in your `base` environment. [`mamba`](https://github.com/mamba-org/mamba) is a re-implementation of some functionalities of the `conda` package manager, that is much faster.
+
 
 ### Create an environment 
 Differently from `apt` and `homebrew`, the `conda` package manager is an `environment`-oriented package manager, meaning that packages are not 
@@ -41,12 +47,12 @@ can easily have multiple different environments with different packages installe
 
 For this reason, to use the robotology conda packages it is suggested to first create a conda environment, and then install in it all the packages you want to use. To create a new environment called `robotologyenv`, execute the following command:
 ~~~
-conda create -n robotologyenv
+mamba create -n robotologyenv
 ~~~
 
 Once you created the `robotologyenv` environment, you can "activate" it for the current terminal (i.e. make sure that the installed packages can be found) by the command:
 ~~~
-conda activate robotologyenv
+mamba activate robotologyenv
 ~~~
 
 **IMPORTANT: if you open a new terminal, you need to manually activate the environment also there.**
@@ -55,24 +61,24 @@ conda activate robotologyenv
 
 Once you are in an activated environment, you can install robotology packages by just running the command:
 ~~~
-conda install -c conda-forge -c robotology <packagename>
+mamba install -c conda-forge -c robotology <packagename>
 ~~~
 
 The list of available packages is available at https://anaconda.org/robotology/repo . 
 
 For example, if you want to install yarp and icub-main, you simple need to install:
 ~~~
-conda install -c conda-forge -c robotology yarp icub-main
+mamba install -c conda-forge -c robotology yarp icub-main
 ~~~
 
 In addition, if you want to simulate the iCub in Gazebo, you should also install `icub-models` and `gazebo-yarp-plugins`:
 ~~~
-conda install -c conda-forge -c robotology gazebo-yarp-plugins icub-models
+mamba install -c conda-forge -c robotology gazebo-yarp-plugins icub-models
 ~~~
 
 If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
 ~~~
-conda install -c conda-forge compilers cmake pkg-config make ninja
+mamba install -c conda-forge compilers cmake pkg-config make ninja
 ~~~
 
 ## Source installation
@@ -80,11 +86,16 @@ conda install -c conda-forge compilers cmake pkg-config make ninja
 This section describes how to compile and install the robotology-superbuild with conda-forge provided dependencies on Windows, macOS and Linux. 
 
 ### Install a conda distribution
-If you do not have a conda distribution on your system, we suggest to use the minimal 
-[`miniforge3`](https://github.com/conda-forge/miniforge#miniforge3) distribution, that uses `conda-forge` packages by default, following the instructions in our [`install-miniforge`](install-miniforge.md) documentation. 
 
-Also other conda distributions should be supported, you just will need to manually specify to use the `conda-forge` packages by adding `-c conda-forge` 
-to all `conda install` commands.
+If you do not have a conda distribution on your system, we suggest to use the minimal 
+[`mambaforge`](https://github.com/conda-forge/miniforge#mambaforge) distribution, that uses `conda-forge` packages by default and installs the [`mamba`](https://github.com/mamba-org/mamba) command by default.
+
+To install `mambaforge`, please follow the instructions in our [`install-mambaforge`](install-mambaforge.md) documentation. 
+
+Even if you are not using `mambaforge` and you are using instead a different `conda` distribution, to follow the next documentation you need to install the `mamba` package in your `base` environment, and you just  need to manually specify to use the `conda-forge` packages by adding `-c conda-forge` 
+to all `mamba install` commands.
+
+[`mamba`](https://github.com/mamba-org/mamba) is a re-implementation of some functionalities of the `conda` package manager, that is much faster.
 
 ### Create an environment and install dependencies
 Differently from `apt` and `homebrew`, the `conda` package manager is an `environment`-oriented package manager, meaning that packages are not 
@@ -94,12 +105,12 @@ can easily have multiple different environments with different packages installe
 For this reason, to compile the superbuild it is suggested to first create a conda environment, and then install in it all the dependencies
 required by the robotology-superbuild. To create a new environment called `robsub`, execute the following command:
 ~~~
-conda create -n robsub
+mamba create -n robsub
 ~~~
 
 Once you created the `robsub` environment, you can "activate" it for the current terminal (i.e. make sure that the installed packages can be found) by the command:
 ~~~
-conda activate robsub
+mamba activate robsub
 ~~~
 
 **IMPORTANT: if you open a new terminal, you need to manually activate the environment also there. If you compiled a robotology-superbuild in a given conda environment, remember to activate it before trying to compile or run any package 
@@ -107,18 +118,18 @@ of the robotology-superbuild.**
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 ~~~
-conda install -c conda-forge cmake compilers make ninja pkg-config
-conda install -c conda-forge ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
+mamba install -c conda-forge cmake compilers make ninja pkg-config
+mamba install -c conda-forge ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog
 ~~~
 
 If you are on **Linux**, you also need to install also the following packages:
 ~~~
-conda install -c conda-forge bash-completion expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
+mamba install -c conda-forge bash-completion expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
 ~~~
 
 If you are on **Windows**, you also need to install also the following packages:
 ~~~
-conda install -c conda-forge freeglut
+mamba install -c conda-forge freeglut
 ~~~
 
 ### Clone the repo
@@ -150,12 +161,12 @@ cmake --build . --config Release
 
 On **Linux**, **macOS** or **Windows with Git Bash**, you can at this point run the software compiled by source with the robotology-superbuild in any new terminal as:
 ~~~
-conda activate robsub
+mamba activate robsub
 source ./robotology-superbuild/build/install/share/robotology-superbuild/setup.sh
 ~~~
 
 On **Windows with cmd prompt**: 
 ~~~
-conda activate robsub
+mamba activate robsub
 call ./robotology-superbuild/build/install/share/robotology-superbuild/setup.bat
 ~~~
