@@ -13,6 +13,9 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 - The `idyntree-yarp-tools` was added to the Dynamics component of the superbuild (https://github.com/robotology/robotology-superbuild/pull/818).
 - An `apt.txt` file and a `scripts/install_apt_dependencies.sh` script have been added to the superbuild to report the required apt packages in a machine readable form. People that mantain either Docker recipes or documentation on how to instal the robotology-superbuild are suggest to switch to use these files instead of hardcoding the dependencies manually (https://github.com/robotology/robotology-superbuild/pull/825). 
 
+### Fixed
+- The `human-dynamics-estimation` project as been renamed to `HumanDynamicsEstimation` for consistency with the CMake name of the project (https://github.com/robotology/robotology-superbuild/pull/844).
+- Added the missing dependency of `walking-teleoperation` on `HumanDynamicsEstimation` (https://github.com/robotology/robotology-superbuild/pull/844).
 
 ## [2021.05] - 2021-05-31
 

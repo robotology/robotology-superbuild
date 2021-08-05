@@ -16,3 +16,6 @@ set_tag(casadi 3.5.5.3)
 set_tag(YCM_TAG ycm-0.13)
 set_tag(YARP_TAG yarp-3.4)
 set_tag(yarp-matlab-bindings_TAG yarp-3.4)
+
+# Workaround for https://github.com/robotology/robotology-superbuild/pull/844#issuecomment-893293323
+set_tag(walking-teleoperation_TAG devel)

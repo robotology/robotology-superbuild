@@ -11,7 +11,7 @@ find_or_build_package(wearables QUIET)
 find_or_build_package(osqp QUIET)
 find_or_build_package(OsqpEigen QUIET)
 
-ycm_ep_helper(human-dynamics-estimation TYPE GIT
+ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/human-dynamics-estimation.git
               TAG master
@@ -25,4 +25,4 @@ ycm_ep_helper(human-dynamics-estimation TYPE GIT
                       OsqpEigen
                       ICUB)
 
-set(human-dynamics-estimation_CONDA_DEPENDENCIES eigen)
+set(HumanDynamicsEstimation_CONDA_DEPENDENCIES eigen)
