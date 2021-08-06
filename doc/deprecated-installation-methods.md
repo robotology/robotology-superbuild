@@ -4,7 +4,7 @@ Deprecated Installation Methods
 This documentation page contains some deprecated installation methods, that while working fine at the moment, may be discontinued in the future.
 
 Table of Contents
-=================   
+=================
 
 * [Binary Installation](#binary-installation)
   * [Windows installed generated with vcpkg dependencies](#windows-from-binary-installer-generated-with-vcpkg-dependencies)
@@ -83,8 +83,8 @@ Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `
 export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
 ```
 
-If you want to enable a [profile](doc/cmake-options.md#profile-cmake-options) or a [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
-* [`ROBOTOLOGY_USES_GAZEBO`](doc/cmake-options.md#gazebo)
+If you want to enable a [profile](cmake-options.md#profile-cmake-options) or a [dependency](cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+* [`ROBOTOLOGY_USES_GAZEBO`](cmake-options.md#gazebo)
 
 ### Superbuild
 ```
@@ -120,7 +120,7 @@ user@host:~$ source ~/.bash_profile
 ```
 or simply open a new terminal.
 
-If for any reason you do not want to use the provided `setup.sh` script and you want to manage your enviroment variables manually, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
+If for any reason you do not want to use the provided `setup.sh` script and you want to manage your enviroment variables manually, please refer to the documentation available at [`doc/environment-variables-configuration.md `](environment-variables-configuration.md).
 
 ## Windows from source using vcpkg dependencies
 
@@ -152,15 +152,15 @@ wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/rele
 unzip vcpkg-robotology.zip -d C:/
 rm vcpkg-robotology.zip
 ~~~
-or creating the directories and extracting the archive through the File Explorer. If you prefer to use your own vcpkg to install the dependencies of the superbuild, please refer to the documentation available at [`doc/vcpkg-dependencies.md`](doc/vcpkg-dependencies.md).
+or creating the directories and extracting the archive through the File Explorer. If you prefer to use your own vcpkg to install the dependencies of the superbuild, please refer to the documentation available at [`doc/vcpkg-dependencies.md`](vcpkg-dependencies.md).
 
 If you want to enable the `ROBOTOLOGY_USES_GAZEBO` option, you will need to download and extract the `vcpkg-robotology-with-gazebo.zip` archive. For instructions on how to correctly use this archives, please refer to documentation of the [`robotology-superbuild-dependencies-vcpkg`](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg) repo.
 
-If you want to enable a [profile](doc/cmake-options.md#profile-cmake-options) or a [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
-* [`ROBOTOLOGY_USES_OCULUS_SDK`](doc/cmake-options.md#oculus)
-* [`ROBOTOLOGY_USES_CYBERITH_SDK`](doc/cmake-options.md#cyberith)
-* [`ROBOTOLOGY_USES_XSENS_MVN_SDK`](doc/cmake-options.md#xsens)
-* [`ROBOTOLOGY_USES_ESDCAN`](doc/cmake-options.md#shoes)
+If you want to enable a [profile](cmake-options.md#profile-cmake-options) or a [dependency](cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
+* [`ROBOTOLOGY_USES_OCULUS_SDK`](cmake-options.md#oculus)
+* [`ROBOTOLOGY_USES_CYBERITH_SDK`](cmake-options.md#cyberith)
+* [`ROBOTOLOGY_USES_XSENS_MVN_SDK`](cmake-options.md#xsens)
+* [`ROBOTOLOGY_USES_ESDCAN`](cmake-options.md#shoes)
 
 ### Superbuild
 Once you cloned the repository, you can generate the Visual Studio solution using the CMake GUI, by using as a generator the appropriate Visual Studio version, and the 64 bit as platform, and specifying the [vcpkg CMake toolchain](https://github.com/Microsoft/vcpkg/blob/master/docs/users/integration.md#cmake-toolchain-file-recommended-for-open-source-cmake-projects) as discussed in the previous section. In particular, see the nicely written [CGold documentation](http://cgold.readthedocs.io/en/latest/first-step/generate-native-tool/gui-visual-studio.html) if you do not know how to generate a Visual Studio solution from a CMake project.
@@ -188,7 +188,7 @@ You can source automatically this script for any new Git Bash instance by creati
 source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh
 ~~~
 
-If for any reason you do not want to use the provided scripts and you want to manage your enviroment variables manually, for example because you want to cleanup the enviroment variables modified by `addPathsToUserEnvVariables.ps1`  and you delete the corresponding `removePathsFromUserEnvVariables.ps1`, please refer to the documentation available at [`doc/environment-variables-configuration.md `](doc/environment-variables-configuration.md).
+If for any reason you do not want to use the provided scripts and you want to manage your enviroment variables manually, for example because you want to cleanup the enviroment variables modified by `addPathsToUserEnvVariables.ps1`  and you delete the corresponding `removePathsFromUserEnvVariables.ps1`, please refer to the documentation available at [`doc/environment-variables-configuration.md `](environment-variables-configuration.md).
 
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
 
