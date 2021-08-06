@@ -99,8 +99,9 @@ Complete documentation on how to use a YCM-based superbuild is available in the 
 When compiled from source, `robotology-superbuild` will download and build a number of software.
 For each project, the repository will be downloaded in the `src/<package_name>` subdirectory of the superbuild root. 
 The build directory for a given project will be instead the `src/<package_name>` subdirectory of the superbuild build directory. 
-All the software packages are installed using the `install` directory of the build as installation prefix.s
+All the software packages are installed using the `install` directory of the build as installation prefix.
 
+We also support two additional deprecated ways of compiling the superbuild, on Windows using dependencies provided by [vcpkg](https://vcpkg.io/) or on macOS using dependencies provided by Homebrew](https://brew.sh/). Documentation for them can be found in [`doc/deprecated-installation-methods.md`](doc/deprecated-installation-methods.md). 
 
 ## Linux from source with dependencies provided by apt
 ### System Dependencies
@@ -162,7 +163,7 @@ Please refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instruct
 ## Windows Subsystem for Linux from source
 The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified.
 
-As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the [robotology-superbuild on Linux](#linux). As the WSL enviroment is nevertheless different, there are a few things you need to care before using the robotology-superbuild on WSL, that are listed in the following, depending on whetever you are using WSL2 or WSL1.
+As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the robotology-superbuild on Linux, with dependencies provided either by apt or by conda. As the WSL enviroment is nevertheless different, there are a few things you need to care before using the robotology-superbuild on WSL, that are listed in the following, depending on whetever you are using WSL2 or WSL1.
 
 ### WSL2
 
