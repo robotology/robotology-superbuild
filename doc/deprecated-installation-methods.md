@@ -7,16 +7,16 @@ Table of Contents
 =================   
 
 * [Binary Installation](#binary-installation)
-  * [Windows installed generated with vcpkg dependencies](#windows-from-binaries-vcpkg)
+  * [Windows installed generated with vcpkg dependencies](#windows-from-binary-installer-generated-with-vcpkg-dependencies)
 * [Source Installation](#source-installation)
-  * [macOS using Homebrew dependencies](#macos-from-source-homebrew)
-  * [Windows using pre-compiled vcpkg dependencies](#windows-from-source-vcpkg)
+  * [macOS using Homebrew dependencies](#macos-from-source-using-homebrew-dependencies)
+  * [Windows using pre-compiled vcpkg dependencies](#windows-from-source-using-vcpkg-dependencies)
 
 
 Binary Installation
 ===================
 
-## Windows from binaries
+## Windows from binary installer generated with vcpkg dependencies
 
 Any release of robotology-superbuild comes with Windows binaries, that can be downloaded from the [GitHub's release page](https://github.com/robotology/robotology-superbuild/releases) of that release.
 
