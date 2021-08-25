@@ -111,10 +111,7 @@ cd robotology-superbuild
 sudo bash ./scripts/install_apt_dependencies.sh
 ~~~
 
-If you are **not** using Ubuntu 18.04, you also need to install:
-~~~
-sudo apt-get install nlohmann-json3-dev
-~~~
+Besides the packages listed in `apt.txt` file, the script `install_apt_dependencies.sh` also installs some other packages depending on the distribution used, please inspect the script for more information.
 
 For what regards CMake, the robotology-superbuild requires CMake 3.16 . If you are using a recent Debian-based system such as Ubuntu 20.04, the default CMake is recent enough and you do not need to do further steps.
 

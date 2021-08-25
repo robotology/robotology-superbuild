@@ -9,7 +9,6 @@ libace-dev
 libboost-filesystem-dev
 libboost-system-dev
 libboost-thread-dev
-libdc1394-22-dev
 libedit-dev
 libeigen3-dev
 libgsl0-dev
@@ -21,6 +20,7 @@ libsdl1.2-dev
 libtinyxml-dev
 libv4l-dev
 libxml2-dev
+lsb-release
 portaudio19-dev
 qml-module-qt-labs-folderlistmodel
 qml-module-qt-labs-settings
