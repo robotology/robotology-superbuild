@@ -9,7 +9,6 @@ libace-dev
 libboost-filesystem-dev
 libboost-system-dev
 libboost-thread-dev
-libdc1394-22-dev
 libedit-dev
 libeigen3-dev
 libgsl0-dev
