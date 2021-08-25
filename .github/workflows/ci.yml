@@ -176,6 +176,14 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
+    - name: Upgrade apt packages Debian Sid [Debian Sid]
+      if: matrix.docker_image == 'debian:sid'
+      run: |
+        # The Debian sid docker image is generated only
+        # once a month, so to actually test with the latest
+        # packages we need to manually upgrade the packages
+        apt-get -y upgrade
+
     - name: Dependencies [Docker]
       run: |
         chmod +x ./.ci/install_debian.sh
@@ -185,14 +193,6 @@ jobs:
       if: matrix.docker_image == 'debian:buster-backports'
       run: |
         apt-get -y -t buster-backports install cmake
-
-    - name: Upgrade apt packages Debian Sid [Debian Sid]
-      if: matrix.docker_image == 'debian:sid'
-      run: |
-        # The Debian sid docker image is generated only
-        # once a month, so to actually test with the latest
-        # packages we need to manually upgrade the packages
-        apt-get -y upgrade
 
     - name: Install CMake from Kitware APT Repository [Docker/Ubuntu Bionic]
       if: matrix.docker_image == 'ubuntu:bionic'
