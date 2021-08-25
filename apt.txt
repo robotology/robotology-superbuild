@@ -20,6 +20,7 @@ libsdl1.2-dev
 libtinyxml-dev
 libv4l-dev
 libxml2-dev
+lsb-release
 portaudio19-dev
 qml-module-qt-labs-folderlistmodel
 qml-module-qt-labs-settings
