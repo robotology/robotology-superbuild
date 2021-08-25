@@ -3,6 +3,8 @@
 # Install dependencies of robotology-superbuild 
 # using apt on Ubuntu or Debian 
 
+lsb_release -a
+
 # Get location of the script
 SCRIPT_DIR=$(cd "$(dirname "$BASH_SOURCE")"; cd -P "$(dirname "$(readlink "$BASH_SOURCE" || echo .)")"; pwd)
 
