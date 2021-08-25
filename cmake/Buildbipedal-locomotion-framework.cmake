@@ -54,7 +54,7 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_cppad:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
-                         -DFRAMEWORK_COMPILE_PYTHON_BINDINGS:BOOL=ON
+                         -DFRAMEWORK_COMPILE_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
 
