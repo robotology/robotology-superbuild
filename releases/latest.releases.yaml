@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.20.0
+    version: v1.21.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -42,15 +42,15 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v1.20.1
+    version: v1.21.0
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v3.6.1
+    version: v3.6.2
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v1.20.0
+    version: v1.21.0
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
@@ -62,7 +62,7 @@ repositories:
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
-    version: v1.20.0
+    version: v1.20.1
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
@@ -130,7 +130,7 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.20.0
+    version: v1.21.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
@@ -158,7 +158,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.20.0
+    version: v1.20.1
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
