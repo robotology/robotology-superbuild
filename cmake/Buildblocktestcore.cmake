@@ -4,8 +4,6 @@
 
 include(YCMEPHelper)
 
-find_or_build_package(YCM QUIET)
-
 ycm_ep_helper(blocktestcore TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/blocktest.git
