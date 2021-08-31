@@ -13,10 +13,21 @@ jobs:
         - name: Get the version
           id: get_version
           run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+          
+        - name: Get Token
+          id: get_workflow_token
+          uses: tibdex/github-app-token@v1
+          with:
+            private_key: ${{ secrets.ICUB_TECH_CODE_KEY }}
+            app_id: ${{ secrets.ICUB_TECH_CODE_ID }}
+            repository: icub-tech-iit/code
+            
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
+          env:
+            GITHUB_APPS_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
           with:
-            token: ${{ secrets.ICUB_TECH_TEAM_CODE_ACCESS_TOKEN }}
+            token: ${{ env.GITHUB_APPS_TOKEN }}
             repository: icub-tech-iit/code
             event-type: repository_trigger
             client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type": "repository_trigger", "img_list": "superbuild superbuild-tensorflow-cpu superbuild-tensorflow-gpu superbuild-pytorch superbuild-icubhead superbuild-nvidia superbuild-gazebo"}'
