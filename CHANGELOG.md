@@ -5,6 +5,8 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2021.08] - 2021-08-31
+
 ### Added
 - Add `nlohmann-json` dependency to the superbuild (https://github.com/robotology/robotology-superbuild/pull/776).
 - In `YARP`, all the `fake***` YARP devices are now enabled (https://github.com/robotology/robotology-superbuild/pull/797).
@@ -12,6 +14,10 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 - `ycm-cmake-modules`, `osqp-eigen`, `robot-testing-framework` and `idyntree` conda packages are now part of the `conda-forge` channel. The new `idyntree-matlab-bindings` package is now contained in the `robotology` channel (https://github.com/robotology/robotology-superbuild/pull/807, https://github.com/robotology/robotology-superbuild/pull/817).
 - The `idyntree-yarp-tools` was added to the Dynamics component of the superbuild (https://github.com/robotology/robotology-superbuild/pull/818).
 - An `apt.txt` file and a `scripts/install_apt_dependencies.sh` script have been added to the superbuild to report the required apt packages in a machine readable form. People that mantain either Docker recipes or documentation on how to instal the robotology-superbuild are suggest to switch to use these files instead of hardcoding the dependencies manually (https://github.com/robotology/robotology-superbuild/pull/825). 
+
+### Deprecated
+- This release is the last one with Gazebo 9/10 support. From the next release, Gazebo 11 will be required (https://github.com/robotology/community/discussions/534).
+- The Homebrew-based installation procedure is deprecated, and the release 2021.11 will be the last one with support for it (https://github.com/robotology/robotology-superbuild/issues/842).
 
 ### Fixed
 - The `human-dynamics-estimation` project as been renamed to `HumanDynamicsEstimation` for consistency with the CMake name of the project (https://github.com/robotology/robotology-superbuild/pull/844).
