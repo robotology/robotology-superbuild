@@ -6,7 +6,7 @@ if_(is_set("COMSPEC")).then_([
 ]).else_([
   sys.list_append("YARP_DATA_DIRS", path.join(env("CONDA_PREFIX"), "share/RRbot")),
   sys.list_append("ROS_PACKAGE_PATH", path.join(env("CONDA_PREFIX"), "share")),
-  sys.list_append("AMENT_PREFIX_PATH", env("CONDA_PREFIX"))),
+  sys.list_append("AMENT_PREFIX_PATH", env("CONDA_PREFIX")),
   sys.list_append("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "share/RRbot/robots"))
 ])
 
