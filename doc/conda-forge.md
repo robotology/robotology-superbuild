@@ -150,6 +150,7 @@ On **Linux** or **macOS**, run:
 ~~~
 cd robotology-superbuild
 mkdir build
+cd build
 cmake ..
 cmake --build . --config Release 
 ~~~
@@ -159,6 +160,7 @@ On **Windows**, run:
 ~~~
 cd robotology-superbuild
 mkdir build
+cd build
 cmake -G"Visual Studio 16 2019" ..
 cmake --build . --config Release 
 ~~~
