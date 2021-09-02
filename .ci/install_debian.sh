@@ -22,7 +22,7 @@ apt-get install -y python3-dev python3-numpy python3-pybind11 pybind11-dev
 apt-get install -y liboctave-dev
 
 # Gazebo
-lsb_dist="$(lsb_release -si)"
+lsb_dist="$(. /etc/os-release && echo "$ID")"
 dist_version="$(. /etc/os-release && echo "$VERSION_ID")"
 mkdir -p /etc/apt/sources.list.d
 echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
