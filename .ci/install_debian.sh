@@ -21,5 +21,11 @@ apt-get install -y python3-dev python3-numpy python3-pybind11 pybind11-dev
 # Octave
 apt-get install -y liboctave-dev
 
-# Gazebo (use distro packages to support both Ubuntu and Debian)
-apt-get install -y libgazebo*-dev
+# Gazebo
+lsb_dist="$(lsb_release -si)"
+dist_version="$(. /etc/os-release && echo "$VERSION_ID")"
+mkdir -p /etc/apt/sources.list.d
+echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+apt-get update
+apt-get install -y libgazebo11-dev
