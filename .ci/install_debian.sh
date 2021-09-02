@@ -30,7 +30,9 @@ if [[ ("sid" != "$dist_version" &&  "bullseye" != "$dist_version") ]]; then
     mkdir -p /etc/apt/sources.list.d
     echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+    apt-get update
+    apt-get install -y libgazebo11-dev
+else
+    apt-get install -y libgazebo-dev
 fi
 
-apt-get update
-apt-get install -y libgazebo11-dev
