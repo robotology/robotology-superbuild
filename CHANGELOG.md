@@ -5,6 +5,9 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+### Fixed
+- Fixed the values assigned to the `AMENT_PREFIX_PATH` environment variable for ROS2 compatibility (https://github.com/robotology/robotology-superbuild/pull/868).
+
 ## [2021.08] - 2021-08-31
 
 ### Added

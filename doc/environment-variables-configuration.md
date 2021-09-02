@@ -29,7 +29,7 @@ Just on Linux, you need to append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to
 while on macOS you need to append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib` to [`DYLD_LIBRARY_PATH`](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/UsingDynamicLibraries.html).
 
 For what regards correctly loading resources in URDF files, you need to append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\share` to the
-[`ROS_PACKAGE_PATH`](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH) environment variable for [ROS1](https://www.ros.org/), and to [`AMENT_PREFIX_PATH`](http://design.ros2.org/articles/ament.html) for [ROS2](https://index.ros.org/doc/ros2/)
+[`ROS_PACKAGE_PATH`](http://wiki.ros.org/ROS/EnvironmentVariables#ROS_PACKAGE_PATH) environment variable for [ROS1](https://www.ros.org/), and `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX` to [`AMENT_PREFIX_PATH`](http://design.ros2.org/articles/ament.html) for [ROS2](https://index.ros.org/doc/ros2/)
 
 To enable bash autocompletion, you need to add `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\share` to `XDG_DATA_DIRS` environment variable.
 
