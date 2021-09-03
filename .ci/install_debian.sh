@@ -24,6 +24,8 @@ apt-get install -y liboctave-dev
 # Gazebo
 lsb_dist="$(. /etc/os-release && echo "$ID")"
 dist_version="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+echo "lsb_dist: ${lsb_dist}"
+echo "dist_version: ${dist_version}"
 # bullseye is not supported by OpenRobotics' repo, but it has already 
 # the right version of Gazebo in its repo, so we just skip everything
 if [[ ("sid" != "$dist_version" &&  "bullseye" != "$dist_version") ]]; then
