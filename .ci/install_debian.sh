@@ -23,7 +23,7 @@ apt-get install -y liboctave-dev
 
 # Gazebo
 lsb_dist="$(. /etc/os-release && echo "$ID")"
-dist_version="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
 echo "lsb_dist: ${lsb_dist}"
 echo "dist_version: ${dist_version}"
 # bullseye is not supported by OpenRobotics' repo, but it has already 
