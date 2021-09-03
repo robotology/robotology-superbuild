@@ -19,7 +19,7 @@ Table of Contents
   * [Source Installation](#source-installation)
     * [Clone the repo](#clone-the-repo)
     * [Debian/Ubuntu Linux with dependencies provided by apt](#linux-from-source-with-dependencies-provided-by-apt)
-    * [Linux, macOS or Windows with dependencies provided by conda-forge](#linux-macos-or-windows-with-dependencies-provided-by-conda-forge)
+    * [Linux, macOS or Windows with dependencies provided by conda-forge](#linux-macos-or-windows-from-source-with-dependencies-provided-by-conda-forge)
     * [Update](#update)
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
