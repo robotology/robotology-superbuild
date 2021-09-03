@@ -4,7 +4,6 @@
 
 include(YCMEPHelper)
 
-find_or_build_package(YCM QUIET)
 find_or_build_package(YARP QUIET)
 find_or_build_package(matioCpp QUIET)
 

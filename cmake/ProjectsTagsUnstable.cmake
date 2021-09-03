@@ -34,4 +34,3 @@ set_tag(YARP_telemetry_TAG master)
 set_tag(gym-ignition_TAG master)
 # Workaround for https://github.com/robotology/robotology-superbuild/pull/844#issuecomment-893293323
 set_tag(walking-teleoperation_TAG devel)
-

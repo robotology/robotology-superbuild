@@ -5,8 +5,6 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
-find_or_build_package(YCM QUIET)
-
 ycm_ep_helper(icub_firmware_shared TYPE GIT
                                    STYLE GITHUB
                                    REPOSITORY robotology/icub-firmware-shared.git
