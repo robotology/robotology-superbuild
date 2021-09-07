@@ -130,6 +130,13 @@ if(WIN32)
                               ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/removePathsFromUserEnvVariables.ps1 @ONLY)
 endif()
 
+# Install qt.conf on Windows on conda as a workaround for the non-relocatable qt version used 
+# See https://github.com/robotology/robotology-superbuild/issues/871 and
+# https://github.com/robotology/robotology-superbuild/issues/882
+if(WIN32 AND ROBOTOLOGY_CONFIGURING_UNDER_CONDA AND EXISTS $ENV{CONDA_PREFIX}/qt.conf)
+  configure_file($ENV{CONDA_PREFIX}/qt.conf ${YCM_EP_INSTALL_DIR}/bin/qt.conf COPYONLY)
+endif()
+
 ycm_write_dot_file(${CMAKE_CURRENT_BINARY_DIR}/robotology-superbuild.dot)
 
 set_package_properties(Git PROPERTIES TYPE RUNTIME)
