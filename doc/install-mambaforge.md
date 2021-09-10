@@ -165,6 +165,15 @@ To activate in any terminal the `base` environment, just run:
 mamba activate base
 ~~~
 
+
+#### PowerShell 
+If you use PowerShell, note that the `conda init` commands works by creating a [PowerShell profile script](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles). On new Windows machines, the default [Execution Policies](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) for PowerShell is quite restrictive, and so [it does not permit to profiles to run](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.1#profiles-and-execution-policy). If that it is the case for you, after you run `conda init` you may get a "<ProfileFilePath> cannot be loaded because running scripts is disabled on this system." error whenever you launch PowerShell. To fix this problem, you can just open an Windows Powershell with "Run as administrator", and set the execution policy of your system to allow running profile scripts:
+~~~
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+~~~
+
+As an additional note, while PowerShell is fully supported by robotology conda packages, some external conda packages (such as [Gazebo](https://github.com/conda-forge/gazebo-feedstock/issues/42) or [ROS](https://github.com/RoboStack/ros-noetic/issues/21)) do not support well PowerShell, so if you are using them you may want to consider using Command Prompt.
+
 ### Uninstall
 First of all, open a command prompt and run:
 ~~~
