@@ -2,7 +2,7 @@
 
 For most of the `conda` related documentation in the `robotology-superbuild`, it is assume that the command-line interpreter to use on Windows is the [Command Prompt](https://en.wikipedia.org/wiki/Cmd.exe). 
 
-While Powershell may work in some situations, powershell users may encounter the problems listed in the following.
+While Powershell may work in some situations, powershell users may encounter the problems listed in the following. See https://github.com/robotology/robotology-superbuild/issues/890 for the reference issue on supporting Powershell in conda docs.
 
 ## PowerShell and mamba init
 
