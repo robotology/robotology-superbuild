@@ -17,7 +17,3 @@ set_tag(YCM_TAG ycm-0.13)
 set_tag(YARP_TAG yarp-3.5)
 set_tag(yarp-matlab-bindings_TAG yarp-3.5)
 set_tag(gym-ignition_TAG v1.2.2)
-
-# Workaround for https://github.com/robotology/robotology-superbuild/issues/900
-# and https://github.com/robotology/wearables/issues/132
-set_tag(wearables_TAG 0ba0bfc5c3e84afd1ebaa14811aad5d55e8a70a9)
