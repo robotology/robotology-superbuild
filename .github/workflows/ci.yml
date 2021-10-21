@@ -159,7 +159,7 @@ jobs:
           - "ubuntu:bionic"
           - "ubuntu:focal"
           - "debian:buster-backports"
-          - "debian:sid"
+          - "debian:testing"
 
         project_tags:
           - Default
@@ -176,10 +176,10 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Upgrade apt packages Debian Sid [Debian Sid]
-      if: matrix.docker_image == 'debian:sid'
+    - name: Upgrade apt packages Debian Testing [Debian Testing]
+      if: matrix.docker_image == 'debian:testing'
       run: |
-        # The Debian sid docker image is generated only
+        # The Debian testing docker image is generated only
         # once a month, so to actually test with the latest
         # packages we need to manually upgrade the packages
         apt-get -y upgrade
@@ -215,8 +215,8 @@ jobs:
         # Gazebo is disabled due to the errors reported in https://github.com/robotology/robotology-superbuild/pull/593
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
-    - name: Disable profiles that are not supported in docker for now [Docker debian-sid and debian-buster]
-      if: (matrix.docker_image == 'debian:sid' || matrix.docker_image == 'debian:buster-backports' || matrix.docker_image == 'ubuntu:bionic')
+    - name: Disable profiles that are not supported in docker for now [Docker debian-testing and debian-buster]
+      if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports' || matrix.docker_image == 'ubuntu:bionic')
       run: |
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
