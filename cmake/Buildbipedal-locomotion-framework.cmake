@@ -8,11 +8,13 @@ include(FindOrBuildPackage)
 find_or_build_package(YARP QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(matioCpp QUIET)
+find_or_build_package(UnicyclePlanner QUIET)
 
 set(bipedal-locomotion-framework_DEPENDS "")
 list(APPEND bipedal-locomotion-framework_DEPENDS YARP)
 list(APPEND bipedal-locomotion-framework_DEPENDS iDynTree)
 list(APPEND bipedal-locomotion-framework_DEPENDS matioCpp)
+list(APPEND bipedal-locomotion-framework_DEPENDS UnicyclePlanner)
 
 set(bipedal-locomotion-framework_USES_CppAD OFF)
 
