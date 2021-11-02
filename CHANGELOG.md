@@ -5,6 +5,9 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+### Changed
+- Enable the compilation of the `bcbBattery` device on `icub-main` when using the `ICUB_HEAD` profile (https://github.com/robotology/robotology-superbuild/pull/912).
+
 ### Fixed
 - Fixed the values assigned to the `AMENT_PREFIX_PATH` environment variable for ROS2 compatibility (https://github.com/robotology/robotology-superbuild/pull/868).
 - Fixed the missing dependency of `bipedal-locomotion-framework` on `UnicyclePlanner` (https://github.com/robotology/robotology-superbuild/pull/909).
