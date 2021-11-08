@@ -6,6 +6,7 @@ coinor-libipopt-dev
 freeglut3-dev
 git
 libace-dev
+libassimp-dev
 libboost-filesystem-dev
 libboost-system-dev
 libboost-thread-dev
