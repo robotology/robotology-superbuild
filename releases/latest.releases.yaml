@@ -30,7 +30,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.5.0
+    version: v3.5.1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -42,7 +42,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v1.21.1
+    version: v1.21.2
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -50,7 +50,7 @@ repositories:
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v1.21.1
+    version: v1.22.0
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
@@ -122,7 +122,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.2.0
+    version: v2.3.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
