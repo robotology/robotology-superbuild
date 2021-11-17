@@ -17,7 +17,7 @@ It can take one of three possible values:
              `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` CMake option. It is necessary to specify the absolute location of the file.  This is useful when  you want to use a fixed version of the software built by the superbuild. The specified file is included in the project via the [`include` CMake command](https://cmake.org/cmake/help/v3.15/command/include.html), or if it ends with `.yaml` or `.repos` it is assumed to be a YAML file that is loaded by the [`ycm_load_vcs_yaml_info`](cmake/YCMLoadVcsYamlInfo.cmake) CMake function.
 
 **Due to limitations on how the CMake's [`ExternalProject`](https://cmake.org/cmake/help/latest/module/ExternalProject.html) modules handles the TAG option, the choice
-of the `ROBOTOLOGY_PROJECT_TAGS` option needs to be done before the source code for the CMake packages is downloaded for the first time in the `external` and `robotology` directories. 
+of the `ROBOTOLOGY_PROJECT_TAGS` option needs to be done before the source code for the CMake packages is downloaded for the first time in the `src` directory. 
 If you want to change the `ROBOTOLOGY_PROJECT_TAGS` or `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` option in an existing superbuild, you need to manually delete the `external` and `robotology`
 directories, and then configure again the superbuild. Note that this also means that if  you have multiple build directories for the same superbuild, all of them 
 need to use consistent `ROBOTOLOGY_PROJECT_TAGS` values.**
