@@ -89,7 +89,7 @@ jobs:
       run: |
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
-        mamba install bash-completion expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesa-libgl-cos6-x86_64 mesa-libgl-devel-cos6-x86_64
+        mamba install bash-completion expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesa-libgl-cos6-x86_64 mesa-libgl-devel-cos6-x86_64 libxshmfence-cos6-x86_64 libxshmfence-devel-cos6-x86_64 
         # Ignition Gazebo
         mamba install libignition-gazebo4
 
