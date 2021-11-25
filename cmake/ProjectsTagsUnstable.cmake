@@ -13,9 +13,7 @@ set_tag(CppAD_TAG 20210000.8)
 set_tag(casadi 3.5.5.3)
 
 # Robotology projects
-# Workaround for https://github.com/robotology/robotology-superbuild/issues/900, 
-# use the commit before https://github.com/robotology/yarp/pull/2709
-set_tag(YARP_TAG 87359fee44d34bb523974ebb90bd876a6e1889eb)
+set_tag(YARP_TAG master)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
 set_tag(blockTest_TAG devel)

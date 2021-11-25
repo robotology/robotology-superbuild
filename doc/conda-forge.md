@@ -132,7 +132,7 @@ mamba install -c conda-forge ace asio assimp boost eigen gazebo glew glfw gsl ip
 
 If you are on **Linux**, you also need to install also the following packages:
 ~~~
-mamba install -c conda-forge bash-completion expat-cos6-x86_64 freeglut libdc1394 libselinux-cos6-x86_64 libxau-cos6-x86_64 libxcb-cos6-x86_64 libxdamage-cos6-x86_64 libxext-cos6-x86_64 libxfixes-cos6-x86_64 libxxf86vm-cos6-x86_64 mesalib mesa-libgl-cos6-x86_64
+mamba install -c conda-forge bash-completion expat-cos6-x86_64 freeglut libdc1394 libselinux-cos7-x86_64 libxau-cos7-x86_64 libxcb-cos7-x86_64 libxdamage-cos7-x86_64 libxext-cos7-x86_64 libxfixes-cos7-x86_64 libxxf86vm-cos7-x86_64 mesa-libgl-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
 ~~~
 
 If you are on **Windows**, you also need to install also the following packages:
