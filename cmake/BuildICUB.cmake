@@ -96,3 +96,8 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   list(APPEND ICUB_CONDA_DEPENDENCIES libglu)
 endif()
+
+if(ROBOTOLOGY_USES_ESDCAN)
+  list(APPEND ICUB_CONDA_DEPENDENCIES esdcan)
+endif()
+
