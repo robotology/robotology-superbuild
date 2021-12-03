@@ -21,7 +21,7 @@ repositories:
     version: 20210000.8
   casadi:
     type: git
-    url: https://github.com/dic-iit/casadi.git
+    url: https://github.com/ami-iit/casadi.git
     version: 3.5.5.3
   YCM:
     type: git
@@ -165,11 +165,11 @@ repositories:
     version: v1.0.0
   bipedal-locomotion-framework:
     type: git
-    url: https://github.com/dic-iit/bipedal-locomotion-framework.git
+    url: https://github.com/ami-iit/bipedal-locomotion-framework.git
     version: v0.4.0
   LieGroupControllers:
     type: git
-    url: https://github.com/dic-iit/lie-group-controllers.git
+    url: https://github.com/ami-iit/lie-group-controllers.git
     version: v0.1.1
   event-driven:
     type: git
@@ -177,7 +177,7 @@ repositories:
     version: v1.6
   matioCpp:
     type: git
-    url: https://github.com/dic-iit/matio-cpp.git
+    url: https://github.com/ami-iit/matio-cpp.git
     version: v0.1.1
   diagnosticdaemon:
     type: git
@@ -185,7 +185,7 @@ repositories:
     version: v1.0.0
   osqp-matlab:
     type: git
-    url: https://github.com/dic-iit/osqp-matlab-cmake-buildsystem.git
+    url: https://github.com/ami-iit/osqp-matlab-cmake-buildsystem.git
     version: v0.6.2.0
   YARP_telemetry:
     type: git
@@ -197,11 +197,11 @@ repositories:
     version: v1.2.1
   matlab-whole-body-simulator:
     type: git
-    url: https://github.com/dic-iit/matlab-whole-body-simulator.git
+    url: https://github.com/ami-iit/matlab-whole-body-simulator.git
     version: v2.0.0
   casadi-matlab-bindings:
     type: git
-    url: https://github.com/dic-iit/casadi-matlab-bindings.git
+    url: https://github.com/ami-iit/casadi-matlab-bindings.git
     version: v3.5.5.1
   idyntree-yarp-tools:
     type: git
