@@ -18,6 +18,12 @@ cmake .. \
 {% for cmake_arg in cmake_args %}    {{ cmake_arg }} \
 {% endfor %}
 
+# Workaround for https://github.com/robotology/robotology-superbuild/issues/927#issuecomment-985522905
+if [[ "$PKG_NAME" == gazebo-yarp-plugins ]]; then
+    echo "Setting CPU_COUNT=1 for gazebo-yarp-plugins"
+    export CPU_COUNT=1
+fi
+
 cmake --build . --config Release --parallel $CPU_COUNT
 cmake --build . --config Release --target install
 
