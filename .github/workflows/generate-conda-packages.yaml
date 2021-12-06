@@ -70,7 +70,9 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa
+            # Pin mamba and boa versions
+            # to avoid https://github.com/robotology/robotology-superbuild/issues/927#issuecomment-979765045
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba=0.17 boa=0.7
             # Use multisheller version that include the fix https://github.com/mamba-org/multisheller/pull/13
             python -m pip install git+https://github.com/mamba-org/multisheller.git@31883c2fe325464a8d3510380afdc83e8f64c349
 
@@ -109,15 +111,17 @@ jobs:
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
             # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
             # see https://github.com/mamba-org/boa/issues/117
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml gazebo-yarp-plugins
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree-matlab-bindings
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml matio-cpp
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-main
+            # icub-main needs robotology channel as it also depends on esdcan, and local to avoid that robotology packages are used instead of local built one
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml lie-group-controllers
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml qpoases
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
