@@ -5,6 +5,8 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2021.11.0] - 2021-12-06
+
 ### Changed
 - Enable the compilation of the `bcbBattery` device on `icub-main` when using the `ICUB_HEAD` profile (https://github.com/robotology/robotology-superbuild/pull/912).
 - Added `assimp` dependency and enabled `IDYNTREE_USES_ASSIMP` option in iDynTree (https://github.com/robotology/robotology-superbuild/pull/918).
