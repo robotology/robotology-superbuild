@@ -8,6 +8,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 ### Changed
 - Enable the compilation of the `bcbBattery` device on `icub-main` when using the `ICUB_HEAD` profile (https://github.com/robotology/robotology-superbuild/pull/912).
 - Added `assimp` dependency and enabled `IDYNTREE_USES_ASSIMP` option in iDynTree (https://github.com/robotology/robotology-superbuild/pull/918).
+- On Windows the option `ROBOTOLOGY_USES_ESDCAN` is now enabled when generating conda packages (https://github.com/robotology/robotology-superbuild/pull/935).
 
 ### Fixed
 - Fixed the values assigned to the `AMENT_PREFIX_PATH` environment variable for ROS2 compatibility (https://github.com/robotology/robotology-superbuild/pull/868).

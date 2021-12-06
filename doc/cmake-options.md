@@ -96,7 +96,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_USES_CYBERITH_SDK` |   ❌           |         ❌                     |            ✔️                  |                  ❌              |               ❌                |                 ✔️              |
 | `ROBOTOLOGY_USES_CFW2CAN` |  ✔️           |        ❌                      |             ❌                 |                 ✔️              |              ❌                 |                 ❌               |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK` |  ❌            |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ❌               |
-| `ROBOTOLOGY_USES_ESDCAN` |  ❌           |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ❌               |
+| `ROBOTOLOGY_USES_ESDCAN` |  ❌           |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ✔️               |
 
 <b id="f1">1!</b>:Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` does not support building with apt dependencies on Ubuntu 18.04 .
 
@@ -434,9 +434,8 @@ To configure the Xsens MVN SDK please follow the steps for Xsens MVN SDK mention
 The `ROBOTOLOGY_USES_ESDCAN` option is used to enable support for interacting with [esd CAN devices](https://esd.eu/en/products/can-usb2) on Windows. On Linux no special option is necessary, as the interconnection with esd CAN device is supported  using the default [SocketCAN](https://www.kernel.org/doc/Documentation/networking/can.txt) Linux driver. Use of [esd CAN devices](https://esd.eu/en/products/can-usb2) is not supported in macOS .
 
 ### System Dependencies
-To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`esdcan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library.
-This library is already contained  in the vcpkg installation installed by the `robotology-superbuild` dependencies installer.
-If you use a custom vcpkg installation, you can install the  `esdcan-binary` custom port from the [`robotology-vcpkg-ports`](https://github.com/robotology/robotology-vcpkg-ports) repo.
+To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`ecan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library.
+To install this library in conda, just run `mamba install -c conda-forge -c robotology esdcan` inside your conda environment. If you installed `icub-main` from conda binary packages, the `ecan` YARP driver enabled by the `ROBOTOLOGY_USES_ESDCAN` option is already included.
 
 To actually run the software that uses the esd CAN devices, you also need to install the esd CAN Driver for your specific esd CAN device.
 The installers for the esd CAN Driver should have been provided by esd, so ask for them to who provided you with the esd CAN device you want to use.
@@ -445,4 +444,4 @@ The installers for the esd CAN Driver should have been provided by esd, so ask f
 No additional configuration is required to use the software installed by the  `ROBOTOLOGY_USES_ESDCAN`
 
 ### Check the installation
-Open a terminal, and check that amoung the device listed by `yarpdev --list` the `esdcan` YARP device is listed.
+Open a terminal, and check that amoung the device listed by `yarpdev --list` the `ecan` YARP device is listed.

@@ -93,6 +93,14 @@ jobs:
         # Ignition Gazebo
         mamba install libignition-gazebo4
 
+    # Additional dependencies useful only on Windows
+    - name: Dependencies [Conda/Windows]
+      if: contains(matrix.os, 'windows') 
+      shell: bash -l {0}
+      run: |
+        # Additional dependencies only useful on Linux
+        mamba install -c conda-forge -c robotology esdcan
+
     - name: Print used environment [Conda]
       shell: bash -l {0}
       run: |
