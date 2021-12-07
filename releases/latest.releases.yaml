@@ -110,7 +110,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.1.0
+    version: v1.2.0
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
@@ -122,7 +122,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.2.0
+    version: v2.3.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
