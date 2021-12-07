@@ -102,6 +102,7 @@ jobs:
           shell: bash -l {0}
           run: |
             conda config --remove channels defaults
+            conda config --env --set channel_priority strict
             cd build/conda/generated_recipes
              # Debug generated recipes
             cat */meta.yaml
