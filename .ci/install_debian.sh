@@ -34,7 +34,8 @@ if [[ ("sid" != "$dist_version" && "bullseye" != "$dist_version" && "bookworm" !
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
     apt-get update
     apt-get install -y libgazebo11-dev
-else
+# See https://github.com/robotology/robotology-superbuild/issues/944
+elif [[ ("bookworm" != "$dist_version") ]]; then
     apt-get install -y libgazebo-dev
 fi
 
