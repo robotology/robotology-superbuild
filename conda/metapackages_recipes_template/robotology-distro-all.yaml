@@ -1,0 +1,16 @@
+package:
+  name: robotology-distro-all
+  version: {{ robotology_superbuild_version }}
+
+build:
+  number: {{ conda_build_number }}
+
+requirements:
+  # We use run as installing robotology-distro-all should install all robotology packages
+  run: {# List all packages and the version dependency. #}
+{% for pkg in robotology_all_packages %}    - {{ pkg.name }}={{ pkg.version.replace("v","") }}
+{% endfor %}
+
+about:
+  home: https://github.com/robotology/robotology-superbuild
+

@@ -40,6 +40,9 @@ jobs:
         sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION ${{ github.event.inputs.superbuild_year_month_prefix }}.0)/g' ./packaging/windows/CMakeLists.txt
         git add .
         git commit -m "Updating packaging/windows/CMakeLists.txt"
+        sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION ${{ github.event.inputs.superbuild_year_month_prefix }}.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
+        git add .
+        git commit -m "Updating conda/cmake/CondaGenerationOptions.cmake"
         git push --set-upstream origin releases/${{ github.event.inputs.superbuild_year_month_prefix }}
 
     - name: Create and push the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 tag

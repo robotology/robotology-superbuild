@@ -1,0 +1,18 @@
+package:
+  name: robotology-distro
+  version: {{ robotology_superbuild_version }}
+
+build:
+  number: {{ conda_build_number }}
+
+requirements:
+  # We used run_constrained to ensure that a specific version of 
+  # the specified package is used if the package is installed, but
+  # we do not depend explicitly on the packages
+  run_constrained: {# List all packages and the version dependency. #}
+{% for pkg in robotology_all_packages %}    - {{ pkg.name }}={{ pkg.version.replace("v","") }}
+{% endfor %}
+
+about:
+  home: https://github.com/robotology/robotology-superbuild
+

@@ -123,6 +123,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--metametadata", type=str, help="metametadata .yaml file")
     parser.add_argument("-o", "--recipes_dir", type=dir_path, help="directory of generated recipes directory")
+    parser.add_argument('--generate_distro_metapackages', action='store_true', help="if passed also generates the recipes for the robotology-distro and robotology-distro-all metapackages ")
     args = parser.parse_args()
 
     # Get recipe templates
@@ -170,6 +171,34 @@ def main():
             template_output = template.render(pkg_info)
             with open(os.path.join(recipe_dir, template_file), 'w') as f:
                 f.write(template_output)
+    
+    # If requested also generate recipes for distro metapackages
+    if args.generate_distro_metapackages:
+        recipe_metapackages_template_dir = os.path.realpath(os.path.dirname(os.path.abspath(__file__)) + "/../metapackages_recipes_template");
+        recipe_metapackages_template_files = [f for f in os.listdir(recipe_metapackages_template_dir) if os.path.isfile(os.path.join(recipe_metapackages_template_dir, f))]
 
+        # Prepare Jinja templates
+        file_loader_metapackages = jinja2.FileSystemLoader(recipe_metapackages_template_dir)
+        jinja_env_meta = jinja2.Environment(loader=file_loader_metapackages)
+
+        for template_file_metapackage in recipe_metapackages_template_files:
+            # Extract metapackage name from the template file
+            metapackage_name = os.path.splitext(template_file_metapackage)[0]
+
+            # Prepare directory for metapackage recipe
+            recipe_metapackages_dir = os.path.realpath(args.recipes_dir + "/../generated_recipes_metapackages")
+            if not  os.path.isdir(recipe_metapackages_dir):
+                os.mkdir(recipe_metapackages_dir)
+            recipe_dir = os.path.join(recipe_metapackages_dir, metapackage_name)
+            shutil.rmtree(recipe_dir, ignore_errors=True)
+            os.mkdir(recipe_dir)
+
+    	    # Generate meta.yaml file in the created recipe directory
+            template_metapackage = jinja_env_meta.get_template(template_file_metapackage)
+            print(metametadata['conda-metapackages-metametadata'])
+            template_output = template_metapackage.render(metametadata['conda-metapackages-metametadata'])
+            with open(os.path.join(recipe_dir, "meta.yaml"), 'w') as f:
+                f.write(template_output)
+                
 if __name__ == '__main__':
     main()
