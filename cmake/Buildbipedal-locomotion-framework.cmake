@@ -6,15 +6,18 @@ include(YCMEPHelper)
 include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
+find_or_build_package(OsqpEigen QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(matioCpp QUIET)
 find_or_build_package(UnicyclePlanner QUIET)
 
 set(bipedal-locomotion-framework_DEPENDS "")
 list(APPEND bipedal-locomotion-framework_DEPENDS YARP)
+list(APPEND bipedal-locomotion-framework_DEPENDS OsqpEigen)
 list(APPEND bipedal-locomotion-framework_DEPENDS iDynTree)
 list(APPEND bipedal-locomotion-framework_DEPENDS matioCpp)
 list(APPEND bipedal-locomotion-framework_DEPENDS UnicyclePlanner)
+
 
 set(bipedal-locomotion-framework_USES_CppAD OFF)
 
@@ -49,7 +52,8 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
-                         -DFRAMEWORK_USE_YARP:BOOL=ON
+                         -DFRAMEWORK_USE_YARP:BOOL=O
+                         -DFRAMEWORK_USE_OsqpEigen:BOOL=ON
                          -DFRAMEWORK_USE_matioCpp:BOOL=ON
                          -DFRAMEWORK_USE_manif:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_Qhull:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
