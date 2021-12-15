@@ -3,19 +3,19 @@ name: Create a new release
 on:
   workflow_dispatch:
     inputs:
-      superbuild_tag:
-        description: 'The new robotology-superbuild tag(without the "v")'
+      superbuild_year_month_prefix:
+        description: 'The new robotology-superbuild YYYY.MM release prefix (without the "v" and the patch number, like 2021.11)'
         required: true
 jobs:
   PrepareRelease:
-    name: Create the ${{ github.event.inputs.superbuild_tag }} release
+    name: Create the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 release
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
     - name: Modify the yaml file
       run: |
         cd releases
-        cp ./latest.releases.yaml ./${{ github.event.inputs.superbuild_tag }}.yaml
+        cp ./latest.releases.yaml ./${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml
 
     - name: Configure Git
       run: |
@@ -24,28 +24,28 @@ jobs:
         git config --global user.email "actions@github.com"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-    - name: Commit and push the ${{ github.event.inputs.superbuild_tag }} yaml
+    - name: Commit and push the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 yaml
       run: |
         git add .
-        git commit -m "Copying latest.releases.yaml to ${{ github.event.inputs.superbuild_tag }}.yaml"
+        git commit -m "Copying latest.releases.yaml to ${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml"
         git push
 
-    - name: Prepare and push ${{ github.event.inputs.superbuild_tag }} branch
+    - name: Prepare and push releases/${{ github.event.inputs.superbuild_year_month_prefix }} branch
       run: |
-        git checkout -b releases/${{ github.event.inputs.superbuild_tag }}
-        sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "\${CMAKE_CURRENT_SOURCE_DIR}\/releases\/${{ github.event.inputs.superbuild_tag }}.yaml"/g' ./cmake/RobotologySuperbuildOptions.cmake
+        git checkout -b releases/${{ github.event.inputs.superbuild_year_month_prefix }}
+        sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "\${CMAKE_CURRENT_SOURCE_DIR}\/releases\/${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml"/g' ./cmake/RobotologySuperbuildOptions.cmake
         sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS "Stable"/set(ROBOTOLOGY_PROJECT_TAGS "Custom"/g' ./cmake/RobotologySuperbuildOptions.cmake
         git add .
         git commit -m "Updating RobotologySuperbuildOptions.cmake"
-        sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION ${{ github.event.inputs.superbuild_tag }})/g' ./packaging/windows/CMakeLists.txt
+        sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION ${{ github.event.inputs.superbuild_year_month_prefix }}.0)/g' ./packaging/windows/CMakeLists.txt
         git add .
         git commit -m "Updating packaging/windows/CMakeLists.txt"
-        git push --set-upstream origin releases/${{ github.event.inputs.superbuild_tag }}
+        git push --set-upstream origin releases/${{ github.event.inputs.superbuild_year_month_prefix }}
 
-    - name: Create and push the ${{ github.event.inputs.superbuild_tag }} tag
+    - name: Create and push the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 tag
       run: |
-        git checkout releases/${{ github.event.inputs.superbuild_tag }}
-        git reset --hard origin/releases/${{ github.event.inputs.superbuild_tag }}
-        git tag v${{ github.event.inputs.superbuild_tag }}
+        git checkout releases/${{ github.event.inputs.superbuild_year_month_prefix }}
+        git reset --hard origin/releases/${{ github.event.inputs.superbuild_year_month_prefix }}
+        git tag v${{ github.event.inputs.superbuild_year_month_prefix }}.0
         git push --tags
 
