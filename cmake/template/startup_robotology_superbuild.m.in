@@ -8,11 +8,12 @@ fprintf('\nMATLAB Toolbox\n');
 installDir   = '@YCM_EP_INSTALL_DIR@';
 mexDir       = [installDir, filesep, 'mex'];
 simLibDir   = [installDir, filesep, 'mex/+wbc/simulink'];
+simLibMomVelDir   = [installDir, filesep, 'mex/+wbc/simulink/MomentumVelocityControl'];
 simModDir   = [installDir, filesep, 'mex/+wbc/examples'];
 shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
 
-for dirPath = {mexDir,simLibDir,simModDir,shareDir,imgDir}
+for dirPath = {mexDir,simLibDir,simLibMomVelDir,simModDir,shareDir,imgDir}
     if exist(dirPath{1}, 'dir')
         addpath(dirPath{1});
     end
