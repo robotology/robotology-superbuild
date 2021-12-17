@@ -3,15 +3,15 @@
 # As a workaround, we move each append in its own if
 
 if_(is_set("COMSPEC")).then_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink")),
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink"))
 ]).else_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink")),
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink"))
 ])
 
 if_(is_set("COMSPEC")).then_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink\\MomentumVelocityControl")),
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink\\MomentumVelocityControl"))
 ]]).else_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink/MomentumVelocityControl")),
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink/MomentumVelocityControl"))
 ])
 
 if_(is_set("COMSPEC")).then_([
