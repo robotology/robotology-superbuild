@@ -1,9 +1,21 @@
+# For some reason appending two times the same variable inside the same if does not work in command prompt
+# See https://github.com/mamba-org/multisheller/issues/9
+# As a workaround, we move each append in its own if
+
 if_(is_set("COMSPEC")).then_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink")),
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink\\MomentumVelocityControl")),
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\examples"))
 ]).else_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink")),
+])
+
+if_(is_set("COMSPEC")).then_([
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink\\MomentumVelocityControl")),
+]]).else_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink/MomentumVelocityControl")),
+])
+
+if_(is_set("COMSPEC")).then_([
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\examples"))
+]).else_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/examples"))
 ])
