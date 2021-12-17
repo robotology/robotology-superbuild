@@ -1,7 +1,9 @@
+For some reason appending two times the same variable inside the same if does not work in command prompt
+# See https://github.com/mamba-org/multisheller/issues/9
+# As a workaround, we move each append in its own if
+
 if_(is_set("COMSPEC")).then_([
-	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox")),
-	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox\\images"))
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox"))
 ]).else_([
-	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox")),
-	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox/images"))
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox"))
 ])
