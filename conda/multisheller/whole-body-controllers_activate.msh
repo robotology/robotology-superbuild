@@ -7,15 +7,3 @@ if_(is_set("COMSPEC")).then_([
 ]).else_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink"))
 ])
-
-if_(is_set("COMSPEC")).then_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink\\MomentumVelocityControl"))
-]]).else_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink/MomentumVelocityControl"))
-])
-
-if_(is_set("COMSPEC")).then_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\examples"))
-]).else_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/examples"))
-])
