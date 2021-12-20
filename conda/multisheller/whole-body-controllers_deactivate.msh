@@ -1,6 +1,6 @@
 # For some reason, appending two times the same variable inside the same if statement does not work in command prompt.
 # See https://github.com/mamba-org/multisheller/issues/9
-# As a workaround, we move each append in its own if statement.
+# As a workaround, we move each append in its own "if" statement.
 
 if_(is_set("COMSPEC")).then_([
 	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink"))
