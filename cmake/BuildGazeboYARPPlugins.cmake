@@ -41,4 +41,6 @@ ycm_ep_helper(GazeboYARPPlugins TYPE GIT
                                         gazebo
                                 CMAKE_ARGS -DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=ON)
 
-set(GazeboYARPPlugins_CONDA_DEPENDENCIES libopencv gazebo)
+# Workaround for https://github.com/conda-forge/gazebo-feedstock/issues/107
+# and https://github.com/robotology/yarp.js/issues/28#issuecomment-997459819
+set(GazeboYARPPlugins_CONDA_DEPENDENCIES libopencv gazebo=11.8 dartsim)
