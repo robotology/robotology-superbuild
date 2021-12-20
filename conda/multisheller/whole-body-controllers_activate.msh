@@ -10,7 +10,7 @@ if_(is_set("COMSPEC")).then_([
 
 if_(is_set("COMSPEC")).then_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink\\MomentumVelocityControl"))
-]]).else_([
+]).else_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink/MomentumVelocityControl"))
 ])
 
