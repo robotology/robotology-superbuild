@@ -42,7 +42,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v1.22.0
+    version: v1.22.1
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -166,7 +166,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.4.0
+    version: v0.5.0
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
