@@ -185,7 +185,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Upgrade apt packages Debian Testing and Sid [Debian Testing and Sid]
-      if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:sid'
+      if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:sid')
       run: |
         # The Debian Testing and Sid docker image are generated only
         # once a month, so to actually test with the latest
