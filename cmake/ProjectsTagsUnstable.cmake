@@ -33,3 +33,5 @@ set_tag(OsqpEigen_TAG master)
 set_tag(YARP_telemetry_TAG master)
 set_tag(gym-ignition_TAG v1.2.2)
 set_tag(walking-teleoperation_TAG devel)
+set_tag(whole-body-estimators_TAG fix_yarp36)
+
