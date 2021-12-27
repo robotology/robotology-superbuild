@@ -162,7 +162,7 @@ repositories:
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
-    version: v1.1.0
+    version: v2.0.0
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
