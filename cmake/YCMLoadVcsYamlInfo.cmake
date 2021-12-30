@@ -22,7 +22,10 @@
 # 
 #  If the VERBOSE option is passed, ycm_load_vcs_yaml_info will print all the variable
 #  that it sets.
-#  
+#
+# For each package, the <package>_REPOSITORY and <package>_TAG CMake variable are set
+# If this option are already set (for example via command line option) the version in the 
+# YAML is ignored and the version already set is used
 
 if(DEFINED __YCM_LOAD_VCS_YAML_INFO)
   return()
@@ -81,20 +84,34 @@ function(ycm_load_vcs_yaml_info)
             message(FATAL_ERROR "ycm_load_vcs_yaml_info: type \"${_ylvyi_VALUE_CURRENTLY_PARSED}\" in line \"${line}\" not supported, only type \"git\" is currently supported.")
           endif()
         elseif(_ylvyi_KEY_CURRENTLY_PARSED STREQUAL "url")
-          # For now we only support GitHub Style repositories, but adding other repository is just a matter of adding a new if here
-          if(${_ylvyi_VALUE_CURRENTLY_PARSED} MATCHES "https://github.com/([a-zA-Z0-9/_.-]+.git)")
-            set(${_ylvyi_PACKAGE_CURRENTLY_PARSED}_REPOSITORY ${CMAKE_MATCH_1} PARENT_SCOPE)
-            if(_ylvyi_VERBOSE)
-              message(STATUS "ycm_load_vcs_yaml_info: setting ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_REPOSITORY to ${CMAKE_MATCH_1}")
+          # If the <package>_REPOSITORY CMake variable is already set, we ignore the url key from the YAML
+          if(NOT ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_REPOSITORY)
+            # For now we only support GitHub Style repositories, but adding other repository is just a matter of adding a new if here
+            if(${_ylvyi_VALUE_CURRENTLY_PARSED} MATCHES "https://github.com/([a-zA-Z0-9/_.-]+.git)")
+              set(${_ylvyi_PACKAGE_CURRENTLY_PARSED}_REPOSITORY ${CMAKE_MATCH_1} PARENT_SCOPE)
+              if(_ylvyi_VERBOSE)
+                message(STATUS "ycm_load_vcs_yaml_info: setting ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_REPOSITORY to ${CMAKE_MATCH_1}")
+              endif()
+            else()
+              message(FATAL_ERROR "ycm_load_vcs_yaml_info: not supported repo \"${_ylvyi_VALUE_CURRENTLY_PARSED}\" in line \"${line}\".")
             endif()
           else()
-            message(FATAL_ERROR "ycm_load_vcs_yaml_info: not supported repo \"${_ylvyi_VALUE_CURRENTLY_PARSED}\" in line \"${line}\".")
+            if(_ylvyi_VERBOSE)
+              message(STATUS "ycm_load_vcs_yaml_info: ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_REPOSITORY manually set to ${${_ylvyi_PACKAGE_CURRENTLY_PARSED}_REPOSITORY}, ignoring .yaml value")
+            endif()
           endif()
         elseif(_ylvyi_KEY_CURRENTLY_PARSED STREQUAL "version")
-          # version is either a branch, a tag or a commit
-          set(${_ylvyi_PACKAGE_CURRENTLY_PARSED}_TAG ${_ylvyi_VALUE_CURRENTLY_PARSED} PARENT_SCOPE)
-          if(_ylvyi_VERBOSE)
-            message(STATUS "ycm_load_vcs_yaml_info: setting ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_TAG to ${_ylvyi_VALUE_CURRENTLY_PARSED}")
+          # If the <package>_TAG CMake variable is already set, we ignore the version key from the YAML
+          if(NOT ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_TAG)
+            # version is either a branch, a tag or a commit
+            set(${_ylvyi_PACKAGE_CURRENTLY_PARSED}_TAG ${_ylvyi_VALUE_CURRENTLY_PARSED} PARENT_SCOPE)
+            if(_ylvyi_VERBOSE)
+              message(STATUS "ycm_load_vcs_yaml_info: setting ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_TAG to ${_ylvyi_VALUE_CURRENTLY_PARSED}")
+            endif()
+          else()
+            if(_ylvyi_VERBOSE)
+              message(STATUS "ycm_load_vcs_yaml_info: ${_ylvyi_PACKAGE_CURRENTLY_PARSED}_TAG manually set to ${${_ylvyi_PACKAGE_CURRENTLY_PARSED}_TAG}, ignoring .yaml value")
+            endif()
           endif()
         else()
           message(FATAL_ERROR "ycm_load_vcs_yaml_info: unexpected key \"${_ylvyi_KEY_CURRENTLY_PARSED}\" in line \"${line}\".")
