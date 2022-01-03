@@ -102,7 +102,7 @@ repositories:
   whole-body-controllers:
     type: git
     url: https://github.com/robotology/whole-body-controllers.git
-    version: v2.5.3
+    version: v2.5.6
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git

@@ -137,19 +137,19 @@ First of all, download the installer from https://github.com/conda-forge/minifor
 
 If you already have a Python that you use in your system, make sure that you deselect the "Register Miniforge3 Python as my default Python" during the installation.
 
-After the installation has been completed, Miniforge should have been installed in `%HOME%\AppData\Local\miniforge3`. 
+After the installation has been completed, Miniforge should have been installed in `%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3`. 
 
-If you explicitly selected the for All Users install, Miniforge will be installed in `%ProgramData%\miniforge3`, in that case substitute `%HOME%\AppData\Local\miniforge3` with `%ProgramData%\miniforge3` in the rest of the documentation.
+If you explicitly selected the for All Users install, Miniforge will be installed in `%ProgramData%\miniforge3`, in that case substitute `%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3` with `%ProgramData%\miniforge3` in the rest of the documentation.
 
 To ensure that the `conda` binary can be used in your terminal, open a Command Prompt and run:
 ~~~
-%HOME%\AppData\Local\miniforge3\condabin\conda init
+%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3\condabin\conda init
 ~~~
 
 By default, this command also automatically initialize the [`base` conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) whenever you start a terminal.
 As this could interfere with other uses of your system (for example compilation against libraries installed not installed via `conda`), it is recommended to disable this by setting:
 ~~~
-%HOME%\AppData\Local\miniforge3\condabin\conda config --set auto_activate_base false
+%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3\condabin\conda config --set auto_activate_base false
 ~~~
 
 After this configuration, whenever you open a new terminal, you should be able to access the `conda` command, but no environment should be enabled by default, i.e. if you execute `conda info` you should see:
@@ -168,9 +168,9 @@ conda activate base
 ### Uninstall
 First of all, open a command prompt and run:
 ~~~
-%HOME%\AppData\Local\miniforge3\condabin\conda init --reverse
+%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3\condabin\conda init --reverse
 ~~~
 
 Then go to "Add or remove programs", search for Miniforge3 and uninstall it.
 
-After that, delete the `%HOME%/.conda` directory and the `%HOME%/.condarc` file.
+After that, delete the `%HOMEDRIVE%%HOMEPATH%/.conda` directory and the `%HOMEDRIVE%%HOMEPATH%/.condarc` file.
