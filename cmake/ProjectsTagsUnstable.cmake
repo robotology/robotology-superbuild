@@ -13,7 +13,7 @@ set_tag(CppAD_TAG 20210000.8)
 set_tag(casadi 3.5.5.3)
 
 # Robotology projects
-set_tag(YARP_TAG 72edb969f741fea29d78701dad71905f6fa8d35c)
+set_tag(YARP_TAG master)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
 set_tag(blockTest_TAG devel)
