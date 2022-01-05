@@ -8,6 +8,11 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 ### Changed
 - On Windows the option `ROBOTOLOGY_USES_ESDCAN` is now enabled when generating conda packages (https://github.com/robotology/robotology-superbuild/pull/935).
 
+## [2021.11.1] - 2022-01-05
+
+### Fixed
+- Backport several bugfixes (https://github.com/robotology/robotology-superbuild/pull/982).
+
 ## [2021.11.0] - 2021-12-06
 
 ### Changed
