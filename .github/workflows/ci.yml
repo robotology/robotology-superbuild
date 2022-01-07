@@ -78,7 +78,7 @@ jobs:
         # Compilation related dependencies 
         mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio assimp boost eigen gazebo glew glfw gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog lua
+        mamba install ace asio assimp boost eigen gazebo glew glfw graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog lua
         # Python 
         mamba install numpy swig pybind11
 
@@ -362,7 +362,7 @@ jobs:
         brew upgrade
         brew install --cask xquartz
         # Core dependencies
-        brew install ace assimp bash-completion boost cmake eigen gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml
+        brew install ace assimp bash-completion boost cmake eigen graphviz gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
         brew install libmatio irrlicht spdlog
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)

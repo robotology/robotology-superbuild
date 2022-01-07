@@ -40,3 +40,4 @@ libirrlicht-dev
 libspdlog-dev
 libblas-dev
 liblapack-dev
+libgraphviz-dev
