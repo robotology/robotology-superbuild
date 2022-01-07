@@ -27,7 +27,7 @@ endif()
 if (APPLE OR WIN32)
   set(ENABLE_USBCAMERA OFF)
 else()
-  set(ENABLE_USBCAMERA ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
+  set(ENABLE_USBCAMERA ON)
 endif()
 
 # Workaround for https://github.com/robotology/yarp/issues/2353
