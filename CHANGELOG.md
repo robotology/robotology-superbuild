@@ -7,6 +7,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Changed
 - On Windows the option `ROBOTOLOGY_USES_ESDCAN` is now enabled when generating conda packages (https://github.com/robotology/robotology-superbuild/pull/935).
+- For the YARP package, the compilation of the `usbCamera` device on Linux is enabled regardless of the value of `ROBOTOLOGY_ENABLE_ICUB_HEAD` (https://github.com/robotology/robotology-superbuild/pull/989).
 
 ## [2021.11.1] - 2022-01-05
 
