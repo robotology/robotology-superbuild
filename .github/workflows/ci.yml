@@ -107,7 +107,7 @@ jobs:
         env
 
     - name: Set CMake generator [Conda/Linux&macOs]
-      if: not(contains(matrix.os, 'windows'))
+      if: !contains(matrix.os, 'windows')
       shell: bash -l {0}
       run: |
         echo "GHA_CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
