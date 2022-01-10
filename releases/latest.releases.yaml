@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.22.0
+    version: v1.23.1
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -134,11 +134,11 @@ repositories:
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.22.0
+    version: v1.23.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.22.0
+    version: v1.23.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
