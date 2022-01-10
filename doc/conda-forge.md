@@ -150,6 +150,9 @@ cmake -G"Visual Studio 16 2019" ..
 cmake --build . --config Release 
 ~~~
 
+**IMPORTANT: If you use Visual Studio 2022, the fourth command needs to be changed in `cmake -G"Visual Studio 17 2022" ..`. Visual Studio 2017 or earlier are not supported.**
+
+
 **IMPORTANT: conda-forge does not provide Debug version of its libraries, so in Windows you can't compile in Debug mode if you are using conda-forge.**
 
 ### Run software installed
