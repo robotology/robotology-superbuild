@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-latest, macos-10.15, windows-2022]
+        os: [ubuntu-latest, macos-10.15, windows-2019, windows-2022]
         project_tags:
           - Default
           - Unstable
@@ -112,14 +112,14 @@ jobs:
       run: |
         echo "GHA_CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
 
-    - name: Set CMake generator [Conda/Windows Stable]
-      if: contains(matrix.os, 'windows') && contains(matrix.project_tags, 'Default')
+    - name: Set CMake generator [Conda/Windows 2022]
+      if: contains(matrix.os, 'windows-2022')
       shell: bash -l {0}
       run: |
         echo "GHA_CMAKE_GENERATOR=Visual Studio 17 2022" >> $GITHUB_ENV
 
-    - name: Set CMake generator [Conda/Windows Unstable]
-      if: contains(matrix.os, 'windows') && contains(matrix.project_tags, 'Unstable')
+    - name: Set CMake generator [Conda/Windows 2019]
+      if: contains(matrix.os, 'windows-2019')
       shell: bash -l {0}
       run: |
         echo "GHA_CMAKE_GENERATOR=Visual Studio 16 2019" >> $GITHUB_ENV
