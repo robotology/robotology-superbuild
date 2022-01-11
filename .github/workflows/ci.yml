@@ -106,7 +106,7 @@ jobs:
         mamba list
         env
 
-    - name: Set CMake generator [Conda/Linux&macOs]
+    - name: Set CMake generator [Conda/Linux and macOs]
       if: !contains(matrix.os, 'windows')
       shell: bash -l {0}
       run: |
