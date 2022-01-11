@@ -113,13 +113,13 @@ jobs:
         echo "GHA_CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
 
     - name: Set CMake generator [Conda/Windows Stable]
-      if: contains(matrix.os, 'windows') and contains(matrix.project_tags, 'Default')
+      if: contains(matrix.os, 'windows') && contains(matrix.project_tags, 'Default')
       shell: bash -l {0}
       run: |
         echo "GHA_CMAKE_GENERATOR=Visual Studio 17 2022" >> $GITHUB_ENV
 
     - name: Set CMake generator [Conda/Windows Unstable]
-      if: contains(matrix.os, 'windows') and contains(matrix.project_tags, 'Unstable')
+      if: contains(matrix.os, 'windows') && contains(matrix.project_tags, 'Unstable')
       shell: bash -l {0}
       run: |
         echo "GHA_CMAKE_GENERATOR=Visual Studio 16 2019" >> $GITHUB_ENV
