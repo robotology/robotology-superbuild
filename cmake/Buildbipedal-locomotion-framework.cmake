@@ -6,6 +6,7 @@ include(YCMEPHelper)
 include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
+find_or_build_package(YARP_telemetry QUIET)
 find_or_build_package(OsqpEigen QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(matioCpp QUIET)
@@ -17,7 +18,7 @@ list(APPEND bipedal-locomotion-framework_DEPENDS OsqpEigen)
 list(APPEND bipedal-locomotion-framework_DEPENDS iDynTree)
 list(APPEND bipedal-locomotion-framework_DEPENDS matioCpp)
 list(APPEND bipedal-locomotion-framework_DEPENDS UnicyclePlanner)
-
+list(APPEND bipedal-locomotion-framework_DEPENDS YARP_telemetry)
 
 set(bipedal-locomotion-framework_USES_CppAD OFF)
 
