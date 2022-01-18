@@ -28,7 +28,7 @@ echo "lsb_dist: ${lsb_dist}"
 echo "dist_version: ${dist_version}"
 # bullseye is not supported by OpenRobotics' repo, but it has already 
 # the right version of Gazebo in its repo, so we just skip everything
-if [[ ("sid" != "$dist_version" && "bullseye" != "$dist_version" && "bookworm" != "$dist_version" && "trixie" != "$dist_version") ]]; then
+if [[ ("sid" != "$dist_version" && "bullseye" != "$dist_version" && "bookworm" != "$dist_version" && "trixie" != "$dist_version" && "jammy" != "$dist_version") ]]; then
     mkdir -p /etc/apt/sources.list.d
     echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
