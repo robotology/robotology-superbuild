@@ -39,3 +39,7 @@ elif [[ ("bookworm" != "$dist_version") ]]; then
     apt-get install -y libgazebo-dev
 fi
 
+# Workaround for https://github.com/robotology/robotology-superbuild/pull/998#issuecomment-1015415833
+if [[ ("jammy" == "$dist_version") ]]; then
+    apt-get install -y libsdformat9-dev
+fi
