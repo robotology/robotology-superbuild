@@ -165,6 +165,7 @@ jobs:
         docker_image:
           - "ubuntu:bionic"
           - "ubuntu:focal"
+          - "ubuntu:jammy"
           - "debian:buster-backports"
           - "debian:testing"
 
