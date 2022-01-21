@@ -37,6 +37,13 @@ else()
   set(ENABLE_yarpcar_mjpeg ON)
 endif()
 
+# I2C is only enabled on Linux
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux" AND ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
+  set(YARP_USE_I2C ON)
+else()
+  set(YARP_USE_I2C OFF)
+endif()
+
 # For what regards Python installation, the options changes depending
 # on whether we are installing YARP from source, or generating a
 # conda package on Windows as in that case the installation location
@@ -98,7 +105,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
                               -DYARP_COMPILE_RobotTestingFramework_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
-                              -DYARP_USE_I2C:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                              -DYARP_USE_I2C:BOOL=${YARP_USE_I2C}
                               -DYARP_USE_SDL:BOOL=ON
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                               -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
@@ -115,4 +122,8 @@ endif()
 
 if(NOT WIN32)
   list(APPEND YARP_CONDA_DEPENDENCIES bash-completion)
+endif()
+
+if(YARP_USE_I2C)
+  list(APPEND YARP_CONDA_DEPENDENCIES libi2c)
 endif()

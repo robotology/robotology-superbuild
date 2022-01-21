@@ -13,6 +13,7 @@ libboost-thread-dev
 libedit-dev
 libeigen3-dev
 libgsl0-dev
+libi2c-dev
 libjpeg-dev
 liblua5.2-dev
 lua5.2
