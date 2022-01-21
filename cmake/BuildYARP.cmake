@@ -116,3 +116,7 @@ endif()
 if(NOT WIN32)
   list(APPEND YARP_CONDA_DEPENDENCIES bash-completion)
 endif()
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+  list(APPEND YARP_CONDA_DEPENDENCIES libi2c)
+endif()
