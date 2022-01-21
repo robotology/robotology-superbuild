@@ -235,13 +235,6 @@ jobs:
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
 
-    # See https://github.com/robotology/robotology-superbuild/issues/944
-    - name: Disable profiles that are not supported in Debian Testing [Docker ubuntu:testing]
-      if: (matrix.docker_image == 'debian:testing')
-      run: |
-       cd build
-       cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
-
     - name: Build  [Docker]
       run: |
         cd build
@@ -422,14 +415,6 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
-
-    - name: Disable options unsupported on Debian Testing
-      if: contains(matrix.os, '18.04')
-      run: |
-        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
-        cd build
-        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
-
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
