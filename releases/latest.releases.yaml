@@ -66,7 +66,7 @@ repositories:
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.3.3
+    version: v2.3.4
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
@@ -90,7 +90,7 @@ repositories:
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
-    version: v0.3.0
+    version: v0.4.1
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
