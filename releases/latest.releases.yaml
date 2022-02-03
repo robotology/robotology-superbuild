@@ -14,11 +14,11 @@ repositories:
   qhull:
     type: git
     url: https://github.com/qhull/qhull.git
-    version: v8.0.2
+    version: 2020.2
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 20210000.8
+    version: 20220000.1
   casadi:
     type: git
     url: https://github.com/ami-iit/casadi.git
