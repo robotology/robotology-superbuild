@@ -11,6 +11,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 ### Changed
 - On Windows the option `ROBOTOLOGY_USES_ESDCAN` is now enabled when generating conda packages (https://github.com/robotology/robotology-superbuild/pull/935).
 - For the YARP package, the compilation of the `usbCamera` device on Linux is enabled even if `ROBOTOLOGY_ENABLE_ICUB_HEAD` is `OFF` (https://github.com/robotology/robotology-superbuild/pull/989).
+- `walking-controllers` now depends on `bipedal-locomotion-framework`, so it is now compiled if `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` option is enabled (https://github.com/robotology/robotology-superbuild/pull/1013).
 
 ## [2021.11.1] - 2022-01-05
 
