@@ -82,7 +82,7 @@ repositories:
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
-    version: v5.4.1
+    version: v5.5.0
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
@@ -94,7 +94,7 @@ repositories:
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.4.1
+    version: v0.5.0
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
