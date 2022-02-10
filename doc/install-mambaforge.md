@@ -22,14 +22,17 @@ sh ./Mambaforge-$(uname)-$(uname -m).sh -b
 This will install mambaforge in `~/mambaforge` .
 
 To use the `conda` and `mamba` commands, you need to add the `~/mambaforge/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
-You can do this persistently by modifying the `.bashrc` via the command: 
+You can do this persistently by modifying the `.bashrc` via the commands: 
 ~~~
 ~/mambaforge/condabin/conda init
+~/mambaforge/condabin/mamba init
+
 ~~~
 
 If you are using a non-bash shell such as `zsh`, you also need to run:
 ~~~
 ~/mambaforge/condabin/conda init zsh
+~/mambaforge/condabin/mamba init zsh
 ~~~
 
 By default, this command also automatically initialize the [`base` conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) whenever you start a terminal.
@@ -52,14 +55,16 @@ mamba activate base
 ~~~
 
 ### Uninstall
-To remove `mambaforge`, first cleanup your `.bashrc` either manually or by running the command:
+To remove `mambaforge`, first cleanup your `.bashrc` either manually or by running the commands:
 ~~~
 ~/mambaforge/condabin/conda init --reverse
+~/mambaforge/condabin/mamba init --reverse
 ~~~
 
-If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by running the command:
+If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by running the commands:
 ~~~
 ~/mambaforge/condabin/conda init zsh --reverse
+~/mambaforge/condabin/mamba init zsh --reverse
 ~~~
 
 Then, just remove the `~/mambaforge` directory and the setting files:
@@ -83,14 +88,16 @@ sh ./Mambaforge.sh -b
 This will install mambaforge in `~/mambaforge` .
 
 To use the `conda` command, you need to add the `~/mambaforge/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
-You can do this persistently by modifying the appropriate file via the command: 
+You can do this persistently by modifying the appropriate file via the commands: 
 ~~~
 ~/mambaforge/condabin/conda init
+~/mambaforge/condabin/mamba init
 ~~~
 
 If you are using a non-bash shell such as `zsh`, you also need to run:
 ~~~
 ~/mambaforge/condabin/conda init zsh
+~/mambaforge/condabin/mamba init zsh
 ~~~
 
 By default, this command also automatically initialize the [`base` conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) whenever you start a terminal.
@@ -113,14 +120,16 @@ mamba activate base
 ~~~
 
 ### Uninstall
-To remove `mambaforge`, first cleanup your `PATH` environment variable by running the command:
+To remove `mambaforge`, first cleanup your `PATH` environment variable by running the commands:
 ~~~
 ~/mambaforge/condabin/conda init --reverse
+~/mambaforge/condabin/mamba init --reverse
 ~~~
 
-If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by running the command:
+If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by running the commands:
 ~~~
 ~/mambaforge/condabin/conda init zsh --reverse
+~/mambaforge/condabin/mamba init zsh --reverse
 ~~~
 
 
@@ -146,6 +155,7 @@ If you explicitly selected the for All Users install, Mambaforge will be install
 To ensure that the `conda` binary can be used in your terminal, open a Command Prompt and run:
 ~~~
 %HOMEDRIVE%%HOMEPATH%\AppData\Local\mambaforge\condabin\conda init
+%HOMEDRIVE%%HOMEPATH%\AppData\Local\mambaforge\condabin\mamba init
 ~~~
 
 By default, this command also automatically initialize the [`base` conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) whenever you start a terminal.
@@ -171,6 +181,7 @@ mamba activate base
 First of all, open a command prompt and run:
 ~~~
 %HOMEDRIVE%%HOMEPATH%\AppData\Local\mambaforge\condabin\conda init --reverse
+%HOMEDRIVE%%HOMEPATH%\AppData\Local\mambaforge\condabin\mamba init --reverse
 ~~~
 
 Then go to "Add or remove programs", search for Mambaforge and uninstall it.
