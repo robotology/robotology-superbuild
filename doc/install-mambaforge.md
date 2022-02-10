@@ -22,7 +22,7 @@ sh ./Mambaforge-$(uname)-$(uname -m).sh -b
 This will install mambaforge in `~/mambaforge` .
 
 To use the `conda` and `mamba` commands, you need to add the `~/mambaforge/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
-You can do this persistently by modifying the `.bashrc` via the commands: 
+You can do this persistently by modifying the `.bashrc` by writing the following commands on the terminal: 
 ~~~
 ~/mambaforge/condabin/conda init
 ~/mambaforge/condabin/mamba init
@@ -55,7 +55,7 @@ mamba activate base
 ~~~
 
 ### Uninstall
-To remove `mambaforge`, first cleanup your `.bashrc` either manually or by running the commands:
+To remove `mambaforge`, first cleanup your `.bashrc` either manually or by running writing following commands on the terminal:
 ~~~
 ~/mambaforge/condabin/conda init --reverse
 ~/mambaforge/condabin/mamba init --reverse
@@ -88,7 +88,7 @@ sh ./Mambaforge.sh -b
 This will install mambaforge in `~/mambaforge` .
 
 To use the `conda` command, you need to add the `~/mambaforge/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
-You can do this persistently by modifying the appropriate file via the commands: 
+You can do this persistently by writing the following commands on the terminal: 
 ~~~
 ~/mambaforge/condabin/conda init
 ~/mambaforge/condabin/mamba init
@@ -120,13 +120,13 @@ mamba activate base
 ~~~
 
 ### Uninstall
-To remove `mambaforge`, first cleanup your `PATH` environment variable by running the commands:
+To remove `mambaforge`, first cleanup your `PATH` environment variable by writing the following commands on the terminal: 
 ~~~
 ~/mambaforge/condabin/conda init --reverse
 ~/mambaforge/condabin/mamba init --reverse
 ~~~
 
-If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by running the commands:
+If you are using a non-bash shell such as `zsh` you need to modify the appropriate file, either manually or by writing the following commands on the terminal: 
 ~~~
 ~/mambaforge/condabin/conda init zsh --reverse
 ~/mambaforge/condabin/mamba init zsh --reverse
