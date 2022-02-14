@@ -87,7 +87,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_TELEOPERATION`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
-| `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_IGNITION` |  ❌           |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ❌              |
 | `ROBOTOLOGY_USES_MATLAB` |  ✔️           |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_OCTAVE` |  ✔️           |        ✔️                     |              ❌                |                  ❌              |               ❌                |                  ❌              |
@@ -230,23 +230,15 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake opt
 This option is still set to `OFF` on Windows as it is still experimental.
 
 ### System Dependencies
-On Linux or macOS, install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
+On Linux with apt dependencies install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
 Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
-On Windows, make sure that you install the Windows dependencies using the `vcpkg-robotology-with-gazebo.zip` archive and you set
+If you install your dependencies with `conda`, just make sure to install the `gazebo` package.
+
+On Windows with vcpkg dependencies, make sure that you install the Windows dependencies using the `vcpkg-robotology-with-gazebo.zip` archive and you set
 the correct enviroment variables as documented in [`robotology-superbuild-dependencies-vcpkg` documentation](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg).
 
-#### macOS with Homebrew workaround
-
-On macOS with Homebrew dependencies, due to an incompatibility of Gazebo with the latest version of tbb (https://github.com/osrf/gazebo/issues/2867), to correctly compiled `robotology-superbuild` with the `ROBOTOLOGY_USES_GAZEBO` option enabled,
-it is necessary to define the following environment variables:
-~~~
-export CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/usr/local/opt/tbb@2020_u3
-export CPATH=${CPATH}:/usr/local/opt/tbb@2020_u3/include
-export LIBRARY_PATH=${LIBRARY_PATH}:/usr/local/opt/tbb@2020_u3/lib
-~~~
-See https://github.com/osrf/homebrew-simulation/issues/1486 for more info.
-
+This option is not supported when using Homebrew to install your dependencies.
 
 ### Check the installation
 Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
