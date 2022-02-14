@@ -41,7 +41,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         miniforge-variant: Mambaforge
-        miniforge-version: latest
+        miniforge-version: 4.11.0-0 
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu') 
