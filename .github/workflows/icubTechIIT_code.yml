@@ -3,17 +3,17 @@ name: Webhook trigger for code repository
 # tagged image for superbuild
 
 on:
-  release: 
-      types: [published, created, edited]
+  release:
+      types: [published, edited]
 
 jobs:
-    job_id: 
+    job_id:
         runs-on: [ubuntu-latest]
         steps:
         - name: Get the version
           id: get_version
           run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-          
+
         - name: Get Token
           id: get_workflow_token
           uses: tibdex/github-app-token@v1
@@ -21,7 +21,7 @@ jobs:
             private_key: ${{ secrets.ICUB_TECH_CODE_KEY }}
             app_id: ${{ secrets.ICUB_TECH_CODE_ID }}
             repository: icub-tech-iit/code
-            
+
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
           env:
@@ -29,5 +29,5 @@ jobs:
           with:
             token: ${{ env.GITHUB_APPS_TOKEN }}
             repository: icub-tech-iit/code
-            event-type: repository_trigger
-            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}", "type": "repository_trigger", "img_list": "superbuild superbuild-tensorflow-cpu superbuild-tensorflow-gpu superbuild-pytorch superbuild-icubhead superbuild-nvidia superbuild-gazebo"}'
+            event-type: release_trigger
+            client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}"}'
