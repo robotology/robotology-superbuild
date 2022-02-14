@@ -10,5 +10,5 @@ pin_run_as_build:
     max_pin: x.x
 
 # Workaround for https://github.com/conda-forge/gazebo-feedstock/issues/119
-icu:
-  - '68'
+qt:
+  - "5.12.9=*_4"
