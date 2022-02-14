@@ -242,6 +242,13 @@ jobs:
        cd build
        cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
+    # See https://github.com/robotology/robotology-superbuild/issues/1029
+    - name: Disable profiles that are not supported in Ubuntu Jammy [Docker ubuntu:jammy]
+      if: (matrix.docker_image == 'ubuntu:jammy')
+      run: |
+       cd build
+       cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
+
     - name: Build  [Docker]
       run: |
         cd build
