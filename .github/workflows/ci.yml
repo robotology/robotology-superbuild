@@ -211,8 +211,6 @@ jobs:
         apt-get -y update
         apt-get -y upgrade
 
-
-
     - name: Configure [Docker]
       run: |
         mkdir -p build
@@ -221,7 +219,7 @@ jobs:
         # Octave is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/384
         # Python is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/494
         # Gazebo is disabled due to the errors reported in https://github.com/robotology/robotology-superbuild/pull/593
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DCMAKE_DISABLE_FIND_PACKAGE_gazebo:BOOL=ON .
 
     - name: Disable profiles that are not supported in docker for now [Docker debian-testing and debian-buster]
       if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports' || matrix.docker_image == 'ubuntu:bionic')
@@ -238,13 +236,6 @@ jobs:
     # See https://github.com/robotology/robotology-superbuild/issues/944
     - name: Disable profiles that are not supported in Debian Testing [Docker ubuntu:testing]
       if: (matrix.docker_image == 'debian:testing')
-      run: |
-       cd build
-       cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
-
-    # See https://github.com/robotology/robotology-superbuild/issues/1029
-    - name: Disable profiles that are not supported in Ubuntu Jammy [Docker ubuntu:jammy]
-      if: (matrix.docker_image == 'ubuntu:jammy')
       run: |
        cd build
        cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
