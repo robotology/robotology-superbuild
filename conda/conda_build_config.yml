@@ -12,3 +12,6 @@ pin_run_as_build:
 # Workaround for https://github.com/conda-forge/gazebo-feedstock/issues/119
 icu:
   - '68'
+
+cmake:
+  - '3.21'
