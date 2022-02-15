@@ -4,7 +4,7 @@ name: Webhook trigger for code repository
 
 on:
   release:
-      types: [published, edited]
+      types: [published]
 
 jobs:
     job_id:
