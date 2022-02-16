@@ -33,3 +33,5 @@ set_tag(OsqpEigen_TAG master)
 set_tag(YARP_telemetry_TAG master)
 set_tag(gym-ignition_TAG v1.2.2)
 set_tag(walking-teleoperation_TAG devel)
+# Workaround for https://github.com/robotology/robotology-superbuild/issues/1033
+set_tag(event-driven_TAG v1.6)
