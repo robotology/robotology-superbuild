@@ -12,3 +12,7 @@ pin_run_as_build:
 # Workaround for https://github.com/conda-forge/gazebo-feedstock/issues/119
 qt:
   - "5.12.9=*_4"
+
+cmake:
+  - '3.21'
+
