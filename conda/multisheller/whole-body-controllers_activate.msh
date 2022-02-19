@@ -3,6 +3,12 @@
 # As a workaround, we move each append in its own "if" statement.
 
 if_(is_set("COMSPEC")).then_([
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex"))
+]).else_([
+	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex"))
+])
+
+if_(is_set("COMSPEC")).then_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\+wbc\\simulink"))
 ]).else_([
 	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/+wbc/simulink"))
