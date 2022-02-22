@@ -41,7 +41,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         miniforge-variant: Mambaforge
-        miniforge-version: 4.11.0-0 
+        miniforge-version: latest
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu') 
@@ -75,9 +75,9 @@ jobs:
       shell: bash -l {0}
       run: |
         # Compilation related dependencies 
-        mamba install cmake compilers make ninja pkg-config
+        mamba install cmake=3.21 compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio assimp boost eigen gazebo glew glfw graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml spdlog lua
+        mamba install ace asio assimp boost eigen gazebo glew glfw graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt=5.12.9=*_4 sdl sdl2 sqlite tinyxml spdlog lua
         # Python 
         mamba install numpy swig pybind11
 
@@ -165,7 +165,8 @@ jobs:
         docker_image:
           - "ubuntu:bionic"
           - "ubuntu:focal"
-          - "ubuntu:jammy"
+          # Disabled as workaround for https://github.com/robotology/robotology-superbuild/issues/1029
+          # - "ubuntu:jammy"
           - "debian:buster-backports"
           - "debian:testing"
 
@@ -367,8 +368,6 @@ jobs:
         brew install libmatio irrlicht spdlog
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
         brew install cppad qhull
-        # ROBOTOLOGY_USES_GAZEBO dependencies
-        brew install osrf/simulation/gazebo11
         # CI-specific dependencies
         brew install ninja
         cmake --version
@@ -405,16 +404,7 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
-       
-    # Workaround for https://github.com/robotology/robotology-superbuild/issues/753
-    # taken from https://github.com/osrf/homebrew-simulation/issues/1486#issuecomment-850218440
-    - name: Add Gazebo-specific Homebrew workaround
-      if: contains(matrix.os, 'macos')
-      run: |
-           echo "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/usr/local/opt/tbb@2020_u3" >> $GITHUB_ENV
-           echo "CPATH=${CPATH}:/usr/local/opt/tbb@2020_u3/include" >> $GITHUB_ENV
-           echo "LIBRARY_PATH=${CMAKE_PREFIX_PATH}:${LIBRARY_PATH}:/usr/local/opt/tbb@2020_u3/lib" >> $GITHUB_ENV
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Disable options unsupported on Ubuntu 18.04
       if: contains(matrix.os, '18.04')
@@ -429,7 +419,6 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
-
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')

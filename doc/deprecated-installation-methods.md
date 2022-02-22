@@ -83,7 +83,7 @@ Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `
 export Qt5_DIR=/usr/local/opt/qt5/lib/cmake/Qt5
 ```
 
-If you want to enable a [profile](cmake-options.md#profile-cmake-options) or a [dependency](cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
+If you want to enable a [profile](cmake-options.md#profile-cmake-options) or a [dependency](cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should disable it as it is not supported on macOS with Homebrew dependencies):
 * [`ROBOTOLOGY_USES_GAZEBO`](cmake-options.md#gazebo)
 
 ### Superbuild
