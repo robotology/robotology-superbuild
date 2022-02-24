@@ -60,15 +60,10 @@ macro(generate_metametadata_file)
 
   get_property(_superbuild_pkgs GLOBAL PROPERTY YCM_PROJECTS)
   foreach(_cmake_pkg IN LISTS _superbuild_pkgs)
-    # If a package is already available in conda-forge, we use
-    # that one by defining appropriately the <_cmake_pkg>_CONDA_PACKAGE_NAME
-    # and <_cmake_pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE variables
-    if(DEFINED ${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE AND
-       "${${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE}")
-      continue()
-    endif()
-
     # Compute conda version
+    # We do it for all packages as this is also necessary
+    # for packages for which <_cmake_pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE
+    # is defined when generating the metapackages
     if(DEFINED ${_cmake_pkg}_TAG)
      set(${_cmake_pkg}_CONDA_TAG ${${_cmake_pkg}_TAG})
     else()
@@ -77,6 +72,15 @@ macro(generate_metametadata_file)
 
     if(NOT DEFINED ${_cmake_pkg}_CONDA_VERSION)
       set(${_cmake_pkg}_CONDA_VERSION ${${_cmake_pkg}_CONDA_TAG})
+    endif()
+
+
+    # If a package is already available in conda-forge, we use
+    # that one by defining appropriately the <_cmake_pkg>_CONDA_PACKAGE_NAME
+    # and <_cmake_pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE variables
+    if(DEFINED ${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE AND
+       "${${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE}")
+      continue()
     endif()
 
     # Compute conda CMake options
@@ -178,9 +182,25 @@ macro(generate_metametadata_file)
       string(APPEND metametadata_file_contents "    add_numpy_runtime_dep: true\n")
     endif()
 
-
+    string(APPEND metametadata_file_contents "\n")
+    
     string(APPEND metametadata_file_contents "\n")
   endforeach()
+
+  # If we generate robotology-distro and robotology-distro-all metapackages, we need also to add the
+  # conda-metapackages-metametadata: section that will be used to generate the metapackages recipes
+  # To the people from the future: I am really sorry about the amount of "meta" in these names
+  if(CONDA_GENERATE_ROBOTOLOGY_METAPACKAGES)
+    string(APPEND metametadata_file_contents "conda-metapackages-metametadata:\n")
+    string(APPEND metametadata_file_contents "  robotology_superbuild_version: ${CONDA_ROBOTOLOGY_SUPERBUILD_VERSION}\n")
+    string(APPEND metametadata_file_contents "  conda_build_number: ${CONDA_BUILD_NUMBER}\n")
+    string(APPEND metametadata_file_contents "  robotology_all_packages: \n")
+    foreach(_cmake_pkg IN LISTS _superbuild_pkgs)
+      string(APPEND metametadata_file_contents "    - name: ${${_cmake_pkg}_CONDA_PKG_NAME}\n")
+      string(APPEND metametadata_file_contents "      version: \"${${_cmake_pkg}_CONDA_VERSION}\"\n")
+    endforeach()
+
+  endif()
 
   file(WRITE ${metametadata_file} ${metametadata_file_contents})
   message(STATUS "Saved metametadata in ${metametadata_file}")
@@ -190,7 +210,12 @@ macro(generate_conda_recipes)
   set(python_generation_script "${CMAKE_CURRENT_SOURCE_DIR}/conda/python/generate_conda_recipes_from_metametadata.py")
   set(generated_conda_recipes_dir "${CMAKE_CURRENT_BINARY_DIR}/conda/generated_recipes")
   file(MAKE_DIRECTORY ${generated_conda_recipes_dir})
-  execute_process(COMMAND python ${python_generation_script} -i ${metametadata_file} -o ${generated_conda_recipes_dir} RESULT_VARIABLE CONDA_GENERATION_SCRIPT_RETURN_VALUE)
+  if(CONDA_GENERATE_ROBOTOLOGY_METAPACKAGES)
+    set(python_generation_script_additional_options "--generate_distro_metapackages")
+  else()
+    set(python_generation_script_additional_options "")
+  endif()
+  execute_process(COMMAND python ${python_generation_script} -i ${metametadata_file} -o ${generated_conda_recipes_dir} ${python_generation_script_additional_options} RESULT_VARIABLE CONDA_GENERATION_SCRIPT_RETURN_VALUE)
   message(STATUS "CONDA_GENERATION_SCRIPT_RETURN_VALUE: ${CONDA_GENERATION_SCRIPT_RETURN_VALUE}")
   if(CONDA_GENERATION_SCRIPT_RETURN_VALUE STREQUAL "0")
     message(STATUS "conda recipes correctly generated in ${generated_conda_recipes_dir}.")

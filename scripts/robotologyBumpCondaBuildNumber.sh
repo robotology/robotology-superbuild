@@ -11,4 +11,4 @@
 
 # Inspired from https://superuser.com/questions/198143/increment-one-value-in-a-text-line-using-script
 cp ./conda/cmake/CondaGenerationOptions.cmake /tmp/CondaGenerationOptions.cmake
-awk '{if ($1 == "set(CONDA_BUILD_NUMBER") printf("%s %d)\n", $1, $2 + 1); else print $0;}' /tmp/CondaGenerationOptions.cmake > ./conda/cmake/CondaGenerationOptions.cmake
+awk '{if ($1 == "set(CONDA_BUILD_NUMBER") printf("  %s %d)\n", $1, $2 + 1); else print $0;}' /tmp/CondaGenerationOptions.cmake > ./conda/cmake/CondaGenerationOptions.cmake

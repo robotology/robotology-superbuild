@@ -7,6 +7,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Added
 - Added dependency on `graphviz` to compile `yarpviz` YARP tool (https://github.com/robotology/robotology-superbuild/pull/988).
+- Added generation of `robotology-distro` and `robotology-distro-all` conda metapackages on releases (https://github.com/robotology/robotology-superbuild/pull/1030). 
  
 ### Changed
 - On Windows the option `ROBOTOLOGY_USES_ESDCAN` is now enabled when generating conda packages (https://github.com/robotology/robotology-superbuild/pull/935).
