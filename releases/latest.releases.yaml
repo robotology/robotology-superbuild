@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.23.1
+    version: v1.24.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -42,7 +42,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v1.22.2
+    version: v1.23.0
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -62,7 +62,7 @@ repositories:
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
-    version: v1.21.0
+    version: v1.22.0
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
@@ -74,7 +74,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v5.0.0
+    version: v5.0.1
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -130,15 +130,15 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.23.0
+    version: v1.24.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.23.0
+    version: v1.24.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.23.0
+    version: v1.24.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
@@ -190,7 +190,7 @@ repositories:
   YARP_telemetry:
     type: git
     url: https://github.com/robotology/yarp-telemetry.git
-    version: v0.3.0
+    version: v0.4.0
   gym-ignition:
     type: git
     url: https://github.com/robotology/gym-ignition.git
