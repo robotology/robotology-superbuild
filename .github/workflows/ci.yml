@@ -77,7 +77,7 @@ jobs:
         # Compilation related dependencies 
         mamba install cmake=3.21 compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio assimp boost eigen gazebo glew glfw graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt=5.12.9=*_4 sdl sdl2 sqlite tinyxml spdlog lua
+        mamba install ace asio assimp boost eigen gazebo>=11.10.1 glew glfw graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt=5.12.9=*_4 sdl sdl2 sqlite tinyxml spdlog lua
         # Python 
         mamba install numpy swig pybind11
 
