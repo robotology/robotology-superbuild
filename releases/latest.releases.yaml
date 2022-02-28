@@ -18,7 +18,7 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 20220000.2
+    version: "20220000.1"
   casadi:
     type: git
     url: https://github.com/ami-iit/casadi.git
@@ -46,11 +46,11 @@ repositories:
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v4.1.2
+    version: v4.2.0
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v1.22.1
+    version: v1.23.0
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
@@ -122,7 +122,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.4.0
+    version: v2.4.1
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
