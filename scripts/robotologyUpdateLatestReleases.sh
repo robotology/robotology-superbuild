@@ -17,7 +17,7 @@
 # to get the last one
 # External repos are in the list as we updated them manually
 # event-driven does not have a recent release
-projects_to_skip=("ICUBcontrib" "qhull" "CppAD" "casadi" "manif" "osqp" "event-driven")
+projects_to_skip=("ICUBcontrib" "qhull" "casadi" "manif" "osqp")
 
 getParentDir () {
     SOURCE="${1}"
