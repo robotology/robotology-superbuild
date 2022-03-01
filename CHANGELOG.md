@@ -5,6 +5,8 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2022.02.0] - 2022-03-01
+
 ### Added
 - Added dependency on `graphviz` to compile `yarpviz` YARP tool (https://github.com/robotology/robotology-superbuild/pull/988).
 - Added generation of `robotology-distro` and `robotology-distro-all` conda metapackages on releases (https://github.com/robotology/robotology-superbuild/pull/1030). 
