@@ -192,8 +192,8 @@ jobs:
             rm -rf human-dynamics-estimation
             conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml . 
 
-        - name: Build conda metapackages (if necessary
-          if: github.event_name == 'release'
+        - name: Build conda metapackages (if necessary)
+          if: github.event_name == 'release' && !contains(matrix.os, 'macos')
           shell: bash -l {0}
           run: |
             cd build/conda/generated_recipes_metapackages

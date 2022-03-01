@@ -13,6 +13,12 @@ pin_run_as_build:
 qt:
   - "5.12.9=*_4"
 
+gazebo:  # [osx]
+  - '11.9' # [osx] 
+
+libopencv:  # [osx]
+  - '4.5.3'  # [osx] 
+
 cmake:
   - '3.21'
 
