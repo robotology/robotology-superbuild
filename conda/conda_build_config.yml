@@ -10,9 +10,14 @@ pin_run_as_build:
     max_pin: x.x
 
 # Workaround for https://github.com/conda-forge/gazebo-feedstock/issues/119
-# On macOS do not apply this constraint to avoid https://github.com/robotology/robotology-superbuild/issues/1041
-qt:  # [not osx]
-  - "5.12.9=*_4"  # [not osx]
+qt:
+  - "5.12.9=*_4"
+
+gazebo:  # [osx]
+  - '11.9' # [osx] 
+
+libopencv:  # [osx]
+  - '4.5.3'  # [osx] 
 
 cmake:
   - '3.21'
