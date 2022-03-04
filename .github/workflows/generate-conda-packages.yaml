@@ -184,8 +184,6 @@ jobs:
             rm -rf bipedal-locomotion-framework
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
             rm -rf wearables
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-models
-            rm -rf icub-models
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
             rm -rf blocktest
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml human-dynamics-estimation
