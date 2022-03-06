@@ -18,7 +18,7 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 20220000.2
+    version: "20220000.1"
   casadi:
     type: git
     url: https://github.com/ami-iit/casadi.git
@@ -186,7 +186,7 @@ repositories:
   osqp-matlab:
     type: git
     url: https://github.com/ami-iit/osqp-matlab-cmake-buildsystem.git
-    version: v0.6.2.1
+    version: v0.6.2.3
   YARP_telemetry:
     type: git
     url: https://github.com/robotology/yarp-telemetry.git
