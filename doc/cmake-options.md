@@ -112,7 +112,7 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Core profile are provided in
-operating system-specific installation documentation.
+[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt).
 
 ### Check the installation
 Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify if your installation was successful.
@@ -126,7 +126,7 @@ long path in Windows following the instructions in the [official Windows documen
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Robot Testing profile are provided in
-operating system-specific installation documentation, and no additional required system dependency is required.
+[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
 
 ### Check the installation
 If the profile has been correctly enabled and compiled, you should be able to run the `robottestingframework-testrunner` and `blocktestrunner` executable from the command line.
@@ -137,14 +137,14 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Dynamics profile are provided in
-operating system-specific installation documentation, and no additional required system dependency is required.
+[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
 
 ## Dynamics full deps
 This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` CMake option.
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Dynamics full deps profile are provided in
-operating system-specific installation documentation, and no additional required system dependency is required.
+[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
 
 **Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` is not supported with apt dependencies on Ubuntu 18.04.**
 
@@ -168,7 +168,7 @@ This section documents the iCub Head profile as any other profile, in a way agno
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the iCub Head profile are provided in
-operating system-specific installation documentation, and no additional required system dependency is required.
+[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
 
 On old iCub systems equipped with the [CFW2 CAN board](http://wiki.icub.org/wiki/CFW_card), it may be necessary to have the cfw2can driver
 installed on the iCub head (it is tipically already pre-installed in the OS image installed in the system in the iCub head). In that
@@ -188,7 +188,7 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` CMake option
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the iCub Basic Demos profile are provided in
-operating system-specific installation documentation, and no additional required system dependency is required.
+[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
 
 ### Check the installation
 If the iCub Basic Demos profile have been correctly installed, you should be able to find in your PATH and execute the `demoYoga` or `demoRedBall` executables.
@@ -220,7 +220,7 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. Fo
 
 ### System Dependencies
 The steps necessary to install the system dependencies of the Event-driven profile are provided in
-operating system-specific installation documentation.
+[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt).
 
 Dependencies-specific documentation
 ===================================
