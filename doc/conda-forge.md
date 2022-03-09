@@ -155,6 +155,8 @@ cmake --build . --config Release
 
 **IMPORTANT: conda-forge does not provide Debug version of its libraries, so in Windows you can't compile in Debug mode if you are using conda-forge.**
 
+**IMPORTANT [WINDOWS]: if you would like to use a cmake compiler external to conda-forge environment in order to compile the superbuild, for example to use the cmake-gui (not supported at the moment by the conda internal cmake installation), select CMake 3.21 or 3.22.3, and not 3.22.0, 3.22.1 or 3.22.2. Selecting the wrong cmake version may lead to compilation errors.**
+
 ### Run software installed
 
 On **Linux**, **macOS** or **Windows with Git Bash**, you can at this point run the software compiled by source with the robotology-superbuild in any new terminal as:
