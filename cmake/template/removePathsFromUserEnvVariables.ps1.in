@@ -77,6 +77,8 @@ Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PR
 @cmakeif ROBOTOLOGY_USES_PYTHON
 # Cleanup the python bindings directory from the PYTHON_PATH
 Remove-ValueFromUserEnvVariable PYTHONPATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\@ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR@";
+# Remove from the PATH where pure python packages (such as robot-log-visualizer) install the scripts
+Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"@ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR@\bin";
 @endcmakeif ROBOTOLOGY_USES_PYTHON
 
 @cmakeif ROBOTOLOGY_USES_MATLAB
