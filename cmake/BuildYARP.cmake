@@ -31,7 +31,7 @@ else()
 endif()
 
 # Workaround for https://github.com/robotology/yarp/issues/2353
-if(APPLE)
+if(APPLE AND NOT ${ROBOTOLOGY_CONFIGURING_UNDER_CONDA})
   set(ENABLE_yarpcar_mjpeg OFF)
 else()
   set(ENABLE_yarpcar_mjpeg ON)
