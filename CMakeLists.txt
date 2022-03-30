@@ -44,6 +44,8 @@ endif()
 set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.11.1)
+# Workaround for https://github.com/robotology/robotology-superbuild/issues/1074
+set(YCM_TAG fixcmake323)
 
 # Include logic for generating Conda recipes (by default it is disabled) and exit
 if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
