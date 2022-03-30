@@ -5,6 +5,8 @@
 include(YCMEPHelper)
 include(FindOrBuildPackage)
 
+find_or_build_package(YCM QUIET)
+
 set(YARP_OPTIONAL_DEPS "")
 if(ROBOTOLOGY_ENABLE_ROBOT_TESTING)
   find_or_build_package(RobotTestingFramework QUIET)

@@ -31,7 +31,7 @@ endmacro()
 # Load options
 include(RobotologySuperbuildOptions)
 
-# Python-related logic 
+# Python-related logic
 if(ROBOTOLOGY_USES_PYTHON)
   find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
   execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
