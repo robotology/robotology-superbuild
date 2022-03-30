@@ -45,6 +45,12 @@ else()
   set(ENABLE_icubmod_socketcan OFF)
 endif()
 
+if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA)
+  set(ICUB_COMPILE_BINDINGS ON)
+else()
+  set(ICUB_COMPILE_BINDINGS OFF)
+endif()
+
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/icub-main.git
@@ -82,7 +88,10 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_xsensmtx:BOOL=${ENABLE_icubmod_xsensmtx}
                                     -DENABLE_icubmod_socketcan:BOOL=${ENABLE_icubmod_socketcan}
                                     -DICUB_USE_icub_firmware_shared:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
-                                    -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS})
+                                    -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS}
+                                    -DICUB_COMPILE_BINDINGS:BOOL=${ICUB_COMPILE_BINDINGS}
+                                    -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                                    -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA})
 
 # Options related to generation of conda binary packages
 set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt libode qt sdl)
@@ -99,5 +108,17 @@ endif()
 
 if(ROBOTOLOGY_USES_ESDCAN)
   list(APPEND ICUB_CONDA_DEPENDENCIES esdcan)
+endif()
+
+if(ICUB_COMPILE_BINDINGS)
+  list(APPEND ICUB_CONDA_DEPENDENCIES swig)
+endif()
+
+if(ROBOTOLOGY_USES_PYTHON)
+  list(APPEND ICUB_CONDA_DEPENDENCIES python)
+endif()
+
+if(ROBOTOLOGY_USES_LUA)
+  list(APPEND ICUB_CONDA_DEPENDENCIES lua)
 endif()
 
