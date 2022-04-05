@@ -10,5 +10,5 @@ rob_sup_pure_python_ycm_ep_helper(meshcat-python
                                   FOLDER src)
 
 
-set(CppAD_CONDA_PKG_NAME meshcat-python)
-set(CppAD_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
+set(meshcat-python_CONDA_PKG_NAME meshcat-python)
+set(meshcat-python_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
