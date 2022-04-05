@@ -382,7 +382,7 @@ sudo bash ./scripts/install_apt_python_dependencies.sh
 #### Conda
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-conda install -c conda-forge python numpy swig pybind11
+mamba install -c conda-forge python numpy swig pybind11 ptqt5 matplotlib h5py tornado u-msgpack-python pyzmq ipython
 ~~~
 
 ### Check the installation
