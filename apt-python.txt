@@ -6,7 +6,6 @@ python3-pyqt5
 python3-pyqt5.qtmultimedia
 python3-matplotlib
 python3-pyqt5.qtwebengine
-python3-pyqtconsole
 python3-qtpy
 python3-h5py
 python3-u-msgpack
