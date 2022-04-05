@@ -8,3 +8,6 @@ rob_sup_pure_python_ycm_ep_helper(pyqtconsole
                                   TAG master
                                   COMPONENT dynamics
                                   FOLDER src)
+
+set(pyqtconsole_CONDA_PKG_NAME pyqtconsole)
+set(pyqtconsole_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
