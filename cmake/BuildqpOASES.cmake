@@ -35,4 +35,4 @@ set(qpOASES_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
 # (something like 3.2.0.1) and the version available in conda-forge when generating conda metapackages
 # such as robotology-distro and robotology-distro-all, we override the conda package version of qpOASES
 # here. This needs to be removed as soon as we stop use our fork in the superbuild 
-set(casadi_CONDA_VERSION 3.2.1)
+set(qpOASES_CONDA_VERSION 3.2.1)
