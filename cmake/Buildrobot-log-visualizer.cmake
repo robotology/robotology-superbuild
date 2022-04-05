@@ -17,3 +17,5 @@ rob_sup_pure_python_ycm_ep_helper(robot-log-visualizer
                                   TAG main
                                   COMPONENT dynamics
                                   FOLDER src)
+
+set(robot-log-visualizer_CONDA_DEPENDENCIES numpy pyqt matplotlib h5py)
