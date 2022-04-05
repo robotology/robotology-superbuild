@@ -5,6 +5,9 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+### Added
+- Added the [`robot-log-visualizer` package](https://github.com/ami-iit/robot-log-visualizer) and its dependencies to the robotology-superbuild, if the option `ROBOTOLOGY_USES_PYTHON` and `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` are enabled. As `robot-log-visualizer` is a pure Python package, the PR also adds a `rob_sup_pure_python_ycm_ep_helper` CMake helper function to simply the process or writing `Build<package>.cmake` scripts for pure Python packages (https://github.com/robotology/robotology-superbuild/pull/1069).
+
 ## [2022.02.1] - 2022-04-01
 
 ### Fixed
