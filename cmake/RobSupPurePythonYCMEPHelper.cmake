@@ -49,5 +49,5 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                          FOLDER ${_PYH_${_name}_FOLDER}
                          CONFIGURE_COMMAND ""
                          BUILD_COMMAND ""
-                         INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBSUB_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
+                         INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBSUB_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
 endfunction()
