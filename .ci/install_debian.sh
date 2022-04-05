@@ -16,7 +16,7 @@ SCRIPT_DIR=$(cd "$(dirname "$BASH_SOURCE")"; cd -P "$(dirname "$(readlink "$BASH
 source ${SCRIPT_DIR}/../scripts/install_apt_dependencies.sh
 
 # Python
-apt-get install -y python3-dev python3-numpy python3-pybind11 pybind11-dev
+source ${SCRIPT_DIR}/../scripts/install_apt_python_dependencies.sh
 
 # Octave
 apt-get install -y liboctave-dev
