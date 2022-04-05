@@ -8,3 +8,7 @@ rob_sup_pure_python_ycm_ep_helper(meshcat-python
                                   TAG master
                                   COMPONENT dynamics
                                   FOLDER src)
+
+
+set(CppAD_CONDA_PKG_NAME meshcat-python)
+set(CppAD_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
