@@ -38,7 +38,6 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                     TAG)
   set(_multiValueArgs DEPENDS)
 
-  message(STATUS "ARGN: ${ARGN}")
   cmake_parse_arguments(_PYH_${_name} "${_options}" "${_oneValueArgs}" "${_multiValueArgs}" "${ARGN}")
 
   ycm_ep_helper(${_name} TYPE GIT
