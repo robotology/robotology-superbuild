@@ -79,7 +79,7 @@ jobs:
         # Actual dependencies
         mamba install ace asio assimp boost eigen gazebo glew glfw graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt=5.12.9=*_4 sdl sdl2 sqlite tinyxml spdlog lua soxr
         # Python 
-        mamba install python numpy swig pybind11 ptqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
+        mamba install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
