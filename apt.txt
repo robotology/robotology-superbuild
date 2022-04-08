@@ -42,3 +42,4 @@ libspdlog-dev
 libblas-dev
 liblapack-dev
 libgraphviz-dev
+libsoxr-dev
