@@ -23,7 +23,7 @@ include(YCMEPHelper)
 
 function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
   # Dependencies
-  find_package(Python3 COMPONENTS Interpreter NumPy REQUIRED)
+  find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
   execute_process(COMMAND ${Python3_EXECUTABLE}
                   -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
