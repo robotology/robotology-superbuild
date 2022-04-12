@@ -50,4 +50,8 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                          CONFIGURE_COMMAND ""
                          BUILD_COMMAND ""
                          INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBSUB_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
+
+  # Set this variable so that RobotologySuperbuildGenerateCondaRecipes.cmake pass this information to the
+  # Python scripts that generates the conda recipes
+  set(${_name}_CONDA_BUILD_TYPE "pure_python")
 endfunction()

@@ -1,0 +1,35 @@
+{{ '{% set name =' }} "{{ name }}" {{ '%}' }}
+
+package:
+{% raw %}  name: {{ name }} {% endraw %}
+  version: "{{ version.replace("v","") }}"
+
+source:
+  git_url: https://github.com/{{ github_repo }}.git
+  git_rev: {{ github_tag }}
+
+build:
+  number: {{ conda_build_number }}
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+
+requirements:
+  build:
+
+  host:
+    - python
+    - pip
+{% for dep in dependencies %}    - {{ dep }}
+{% endfor %}
+  run:
+    - python
+{% for dep in dependencies %}    - {{ dep }}
+{% endfor %}
+
+test:
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/{{ github_repo }}

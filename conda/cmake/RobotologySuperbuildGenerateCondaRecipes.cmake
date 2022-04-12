@@ -74,6 +74,11 @@ macro(generate_metametadata_file)
       set(${_cmake_pkg}_CONDA_VERSION ${${_cmake_pkg}_CONDA_TAG})
     endif()
 
+    # If the build_type is not defined, it is assumed to be cmake
+    if(NOT DEFINED ${_cmake_pkg}_CONDA_BUILD_TYPE)
+      set(${_cmake_pkg}_CONDA_BUILD_TYPE "cmake")
+    endif()
+
 
     # If a package is already available in conda-forge, we use
     # that one by defining appropriately the <_cmake_pkg>_CONDA_PACKAGE_NAME
@@ -113,10 +118,12 @@ macro(generate_metametadata_file)
     string(APPEND metametadata_file_contents "    github_repo: ${${_cmake_pkg}_CONDA_GIHUB_REPO}\n")
     string(APPEND metametadata_file_contents "    github_tag: ${${_cmake_pkg}_CONDA_TAG}\n")
     string(APPEND metametadata_file_contents "    conda_build_number: ${CONDA_BUILD_NUMBER}\n")
+    string(APPEND metametadata_file_contents "    build_type: ${${_cmake_pkg}_CONDA_BUILD_TYPE}\n")
 
     if(_YH_${_cmake_pkg}_SOURCE_SUBDIR)
       string(APPEND metametadata_file_contents "    source_subdir: ${_YH_${_cmake_pkg}_SOURCE_SUBDIR}\n")
     endif()
+
 
     if(NOT "${${_cmake_pkg}_CONDA_CMAKE_ARGS}" STREQUAL "")
       string(APPEND metametadata_file_contents "    cmake_args:\n")
