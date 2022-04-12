@@ -3,7 +3,7 @@ Developers' Frequently Asked Questions (FAQs)
 
 ##  How to add a new package
 * Decide in which "profile" of the superbuild the project should be installed
-* If the software package is available on GitHub and can be built with CMake (the most common case), just add a `Build<package>.cmake` in  the `cmake` directory of the superbuild. You can take inspiration from the `Build***.cmake` files already available, but if you want to add a package that is called <package>, that dependens on CMake packages `<pkgA>`, `<pkgB>` and `<pkgC>` and is available at `https://github.com/robotology/<package-repo-name>` and that is part of profile <profile>, you can add it based on this template:
+* If the software package is available on GitHub and can be built with CMake (the most common case), just add a `Build<package>.cmake` in  the `cmake` directory of the superbuild. You can take inspiration from the `Build***.cmake` files already available, but if you want to add a package that is called <package>, that dependens on CMake packages `<pkgA>`, `<pkgB>` and `<pkgC>` and is available at `https://github.com/robotology/<package-repo-name>` and that is part of profile <profile>, you can add it based on this template if it is a C++/CMake package:
 ~~~cmake
 # Copyright (C) Fondazione Istituto Italiano di Tecnologia
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
@@ -20,11 +20,32 @@ ycm_ep_helper(<package> TYPE GIT
               REPOSITORY robotology/<package-repo-name>.git
               TAG master
               COMPONENT <profile>
-              FOLDER robotology
+              FOLDER src
               DEPENDS <pkgA>
                       <pkgB>
                       <pkgC>)
 ~~~
+or this one if it is a Pure Python package:
+~~~
+# Copyright (C) Fondazione Istituto Italiano di Tecnologia
+# CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
+
+include(RobSupPurePythonYCMEPHelper)
+
+find_or_build_package(<pkgA> QUIET)
+find_or_build_package(<pkgB> QUIET)
+find_or_build_package(<pkgC> QUIET)
+
+ycm_ep_helper(<package>
+              REPOSITORY robotology/<package-repo-name>.git
+              TAG master
+              COMPONENT <profile>
+              FOLDER src
+              DEPENDS <pkgA>
+                      <pkgB>
+                      <pkgC>)
+~~~
+                        
 * Add `find_or_build_package(<package>)` in the `cmake/RobotologySuperbuildLogic.cmake` file, under the `if(ROBOTOLOGY_ENABLE_<profile>)` of the selected profile.
 * If the package is important "enough" (it was not added just because it is a dependency) added it to the table in [`doc/cmake-options.md#profile-cmake-options`](cmake-options.md#profile-cmake-options) .
 * If the dependencies of the packages are available in `apt`, `homebrew` or Windows installers, document how to install them in the profile docs in the README. If any dependency is not available through this means, add it as a new package of the superbuid.
