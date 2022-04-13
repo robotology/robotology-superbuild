@@ -66,6 +66,8 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_USE_SYSTEM_SQLite:BOOL=ON
                               -DYARP_COMPILE_libYARP_math:BOOL=ON
                               -DYARP_COMPILE_CARRIER_PLUGINS:BOOL=ON
+                              # Workaround for https://github.com/robotology/robotology-superbuild/issues/1091
+                              -DYARP_DISABLE_MACOS_BUNDLES:BOOL=ON
                               -DENABLE_yarpcar_bayer:BOOL=ON
                               -DENABLE_yarpcar_tcpros:BOOL=ON
                               -DENABLE_yarpcar_xmlrpc:BOOL=ON
