@@ -31,7 +31,8 @@ else()
 endif()
 
 # Workaround for https://github.com/robotology/yarp/issues/2353
-if(APPLE)
+# To be removed once a new minor release of YARP (3.7?) is released
+if(APPLE AND NOT ("${ROBOTOLOGY_PROJECT_TAGS}" STREQUAL "Unstable"))
   set(ENABLE_yarpcar_mjpeg OFF)
 else()
   set(ENABLE_yarpcar_mjpeg ON)
