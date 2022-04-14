@@ -10,7 +10,7 @@ source:
 
 build:
   number: {{ conda_build_number }}
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+{% raw %}  script: {{ PYTHON }} -m pip install . --no-deps -vv {% endraw %}
 
 requirements:
   build:

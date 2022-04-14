@@ -1,9 +1,12 @@
 # Copyright (C) Fondazione Istituto Italiano di Tecnologia
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-# Redefine find_or_build_package and ycm_ep_helper
-# functions to extract metadata necessary for conda recipe
-# generation from the RobotologySuperbuildLogic file
+# Redefine find_or_build_package, ycm_ep_helper and rob_sup_pure_python_ycm_ep_helper
+# as macros to extract metadata necessary for conda recipe
+# generation from the RobotologySuperbuildLogic file.
+# Note that these were originally functions, but they are re-defined as macros so that
+# all the variables that they create are placed in the global scope, and in this script
+# we can access variables such as ${_YH_${_cmake_pkg}_CMAKE_ARGS}
 macro(ycm_ep_helper _name)
   # Check arguments
   set(_options )
@@ -42,6 +45,30 @@ macro(ycm_ep_helper _name)
   list(APPEND _projects ${_name})
   list(REMOVE_DUPLICATES _projects)
   set_property(GLOBAL PROPERTY YCM_PROJECTS ${_projects})
+endmacro()
+
+macro(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
+  # Check arguments
+  set(_options)
+  set(_oneValueArgs COMPONENT
+                    FOLDER
+                    REPOSITORY
+                    TAG)
+  set(_multiValueArgs DEPENDS)
+
+  cmake_parse_arguments(_PYH_${_name} "${_options}" "${_oneValueArgs}" "${_multiValueArgs}" "${ARGN}")
+
+  ycm_ep_helper(${_name} TYPE GIT
+                         STYLE GITHUB
+                         REPOSITORY ${_PYH_${_name}_REPOSITORY}
+                         DEPENDS ${_PYH_${_name}_DEPENDS}
+                         TAG ${_PYH_${_name}_TAG}
+                         COMPONENT ${_PYH_${_name}_COMPONENT}
+                         FOLDER ${_PYH_${_name}_FOLDER})
+
+  # Set this variable so that RobotologySuperbuildGenerateCondaRecipes.cmake pass this information to the
+  # Python scripts that generates the conda recipes
+  set(${_name}_CONDA_BUILD_TYPE "pure_python")
 endmacro()
 
 macro(find_or_build_package _pkg)
@@ -223,7 +250,6 @@ macro(generate_conda_recipes)
     set(python_generation_script_additional_options "")
   endif()
   execute_process(COMMAND python ${python_generation_script} -i ${metametadata_file} -o ${generated_conda_recipes_dir} ${python_generation_script_additional_options} RESULT_VARIABLE CONDA_GENERATION_SCRIPT_RETURN_VALUE)
-  message(STATUS "CONDA_GENERATION_SCRIPT_RETURN_VALUE: ${CONDA_GENERATION_SCRIPT_RETURN_VALUE}")
   if(CONDA_GENERATION_SCRIPT_RETURN_VALUE STREQUAL "0")
     message(STATUS "conda recipes correctly generated in ${generated_conda_recipes_dir}.")
     message(STATUS "To build the generated conda recipes, navigate to the directory and run conda build . in it.")
