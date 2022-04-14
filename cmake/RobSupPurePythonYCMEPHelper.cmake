@@ -47,7 +47,8 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                          TAG ${_PYH_${_name}_TAG}
                          COMPONENT ${_PYH_${_name}_COMPONENT}
                          FOLDER ${_PYH_${_name}_FOLDER}
-                         CONFIGURE_COMMAND ""
-                         BUILD_COMMAND ""
+                         # Workaround for https://github.com/robotology/robotology-superbuild/pull/1069#issuecomment-1099446237
+                         CONFIGURE_COMMAND ${CMAKE_COMMAND} --version
+                         BUILD_COMMAND ${CMAKE_COMMAND} --version
                          INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBSUB_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
 endfunction()
