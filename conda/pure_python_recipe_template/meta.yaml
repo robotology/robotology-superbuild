@@ -9,6 +9,8 @@ source:
   git_rev: {{ github_tag }}
 
 build:
+  # Due to robot-log-visualizer, drop when conda-forge does not uses Python 3.7 anymore
+  skip: True  # [py<38]
   number: {{ conda_build_number }}
 {% raw %}  script: {{ PYTHON }} -m pip install . --no-deps -vv {% endraw %}
 
