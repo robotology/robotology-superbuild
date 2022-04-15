@@ -165,10 +165,8 @@ jobs:
         docker_image:
           - "ubuntu:bionic"
           - "ubuntu:focal"
-          # Disabled as workaround for https://github.com/robotology/robotology-superbuild/issues/1029
-          # - "ubuntu:jammy"
+          - "ubuntu:jammy"
           - "debian:buster-backports"
-          - "debian:testing"
 
         project_tags:
           - Default
