@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.24.0
+    version: v1.24.1
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -198,7 +198,7 @@ repositories:
   matlab-whole-body-simulator:
     type: git
     url: https://github.com/ami-iit/matlab-whole-body-simulator.git
-    version: v2.0.0
+    version: v3.0.0
   casadi-matlab-bindings:
     type: git
     url: https://github.com/ami-iit/casadi-matlab-bindings.git
