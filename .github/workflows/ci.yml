@@ -165,10 +165,9 @@ jobs:
         docker_image:
           - "ubuntu:bionic"
           - "ubuntu:focal"
-          # Disabled as workaround for https://github.com/robotology/robotology-superbuild/issues/1029
-          # - "ubuntu:jammy"
+          - "ubuntu:jammy"
           - "debian:buster-backports"
-          - "debian:testing"
+          - "debian:bullseye"
 
         project_tags:
           - Default
@@ -219,10 +218,6 @@ jobs:
         mkdir -p build
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
-        # Octave is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/384
-        # Python is disabled as a workaround for https://github.com/robotology/robotology-superbuild/issues/494
-        # Gazebo is disabled due to the errors reported in https://github.com/robotology/robotology-superbuild/pull/593
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Disable profiles that are not supported in docker for now [Docker debian-testing and debian-buster]
       if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports' || matrix.docker_image == 'ubuntu:bionic')
@@ -235,13 +230,6 @@ jobs:
       run: |
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
-
-    # See https://github.com/robotology/robotology-superbuild/issues/944
-    - name: Disable profiles that are not supported in Debian Testing [Docker ubuntu:testing]
-      if: (matrix.docker_image == 'debian:testing')
-      run: |
-       cd build
-       cmake -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |

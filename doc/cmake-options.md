@@ -226,22 +226,35 @@ Dependencies-specific documentation
 ===================================
 
 ## Gazebo
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option.
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option, that enables the software that depends on "Classic Gazebo". 
 This option is still set to `OFF` on Windows as it is still experimental.
 
 ### System Dependencies
-On Linux with apt dependencies install Gazebo following the instructions available at http://gazebosim.org/tutorials?cat=install .
-Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
+#### Linux with apt
+On Linux with apt dependencies install Gazebo, if you are on:
+* Ubuntu 20.04
+* Buster 10
+
+follow the instructions available at https://gazebosim.org/tutorials?tut=install_ubuntu . Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
+
+Otherwise, if you are on other supported Debian/Ubuntu systems, just install the system provided gazebo package with:
+~~~~
+sudo apt install libgazebo-dev
+~~~~
+
+#### Linux/macOS/Windows with conda
 If you install your dependencies with `conda`, just make sure to install the `gazebo` package.
 
+#### Windows with vcpkg
 On Windows with vcpkg dependencies, make sure that you install the Windows dependencies using the `vcpkg-robotology-with-gazebo.zip` archive and you set
 the correct enviroment variables as documented in [`robotology-superbuild-dependencies-vcpkg` documentation](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg).
 
+#### macOS with Homebrew
 This option is not supported when using Homebrew to install your dependencies.
 
 ### Check the installation
-Follow the steps in https://github.com/robotology/icub-gazebo#usage and/or https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
+Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
 
 ## Ignition
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_IGNITION` CMake option.
