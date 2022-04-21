@@ -43,7 +43,7 @@ endif()
 # Bootstrap YCM
 set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
-set(YCM_MINIMUM_VERSION 0.11.1)
+set(YCM_MINIMUM_VERSION 0.14.0)
 
 # Include logic for generating Conda recipes (by default it is disabled) and exit
 if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
@@ -53,7 +53,7 @@ if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   return()
 endif()
 
-include(YCMBootstrap)
+include(YCMBootstrapFetch)
 
 include(FindOrBuildPackage)
 include(YCMEPHelper)
