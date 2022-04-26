@@ -31,7 +31,7 @@ endmacro()
 # Load options
 include(RobotologySuperbuildOptions)
 
-# Python-related logic 
+# Python-related logic
 if(ROBOTOLOGY_USES_PYTHON)
   find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
   execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
@@ -43,7 +43,7 @@ endif()
 # Bootstrap YCM
 set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
-set(YCM_MINIMUM_VERSION 0.11.1)
+set(YCM_MINIMUM_VERSION 0.14.0)
 
 # Include logic for generating Conda recipes (by default it is disabled) and exit
 if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
@@ -53,7 +53,7 @@ if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   return()
 endif()
 
-include(YCMBootstrap)
+include(YCMBootstrapFetch)
 
 include(FindOrBuildPackage)
 include(YCMEPHelper)
