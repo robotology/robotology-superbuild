@@ -1,9 +1,12 @@
 # Copyright (C) Fondazione Istituto Italiano di Tecnologia
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-# Redefine find_or_build_package and ycm_ep_helper
-# functions to extract metadata necessary for conda recipe
-# generation from the RobotologySuperbuildLogic file
+# Redefine find_or_build_package, ycm_ep_helper and rob_sup_pure_python_ycm_ep_helper
+# as macros to extract metadata necessary for conda recipe
+# generation from the RobotologySuperbuildLogic file.
+# Note that these were originally functions, but they are re-defined as macros so that
+# all the variables that they create are placed in the global scope, and in this script
+# we can access variables such as ${_YH_${_cmake_pkg}_CMAKE_ARGS}
 macro(ycm_ep_helper _name)
   # Check arguments
   set(_options )
@@ -44,6 +47,30 @@ macro(ycm_ep_helper _name)
   set_property(GLOBAL PROPERTY YCM_PROJECTS ${_projects})
 endmacro()
 
+macro(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
+  # Check arguments
+  set(_options)
+  set(_oneValueArgs COMPONENT
+                    FOLDER
+                    REPOSITORY
+                    TAG)
+  set(_multiValueArgs DEPENDS)
+
+  cmake_parse_arguments(_PYH_${_name} "${_options}" "${_oneValueArgs}" "${_multiValueArgs}" "${ARGN}")
+
+  ycm_ep_helper(${_name} TYPE GIT
+                         STYLE GITHUB
+                         REPOSITORY ${_PYH_${_name}_REPOSITORY}
+                         DEPENDS ${_PYH_${_name}_DEPENDS}
+                         TAG ${_PYH_${_name}_TAG}
+                         COMPONENT ${_PYH_${_name}_COMPONENT}
+                         FOLDER ${_PYH_${_name}_FOLDER})
+
+  # Set this variable so that RobotologySuperbuildGenerateCondaRecipes.cmake pass this information to the
+  # Python scripts that generates the conda recipes
+  set(${_name}_CONDA_BUILD_TYPE "pure_python")
+endmacro()
+
 macro(find_or_build_package _pkg)
   get_property(_superbuild_pkgs GLOBAL PROPERTY YCM_PROJECTS)
   if(NOT ${_pkg} IN_LIST _superbuild_pkgs)
@@ -72,6 +99,11 @@ macro(generate_metametadata_file)
 
     if(NOT DEFINED ${_cmake_pkg}_CONDA_VERSION)
       set(${_cmake_pkg}_CONDA_VERSION ${${_cmake_pkg}_CONDA_TAG})
+    endif()
+
+    # If the build_type is not defined, it is assumed to be cmake
+    if(NOT DEFINED ${_cmake_pkg}_CONDA_BUILD_TYPE)
+      set(${_cmake_pkg}_CONDA_BUILD_TYPE "cmake")
     endif()
 
 
@@ -113,10 +145,12 @@ macro(generate_metametadata_file)
     string(APPEND metametadata_file_contents "    github_repo: ${${_cmake_pkg}_CONDA_GIHUB_REPO}\n")
     string(APPEND metametadata_file_contents "    github_tag: ${${_cmake_pkg}_CONDA_TAG}\n")
     string(APPEND metametadata_file_contents "    conda_build_number: ${CONDA_BUILD_NUMBER}\n")
+    string(APPEND metametadata_file_contents "    build_type: ${${_cmake_pkg}_CONDA_BUILD_TYPE}\n")
 
     if(_YH_${_cmake_pkg}_SOURCE_SUBDIR)
       string(APPEND metametadata_file_contents "    source_subdir: ${_YH_${_cmake_pkg}_SOURCE_SUBDIR}\n")
     endif()
+
 
     if(NOT "${${_cmake_pkg}_CONDA_CMAKE_ARGS}" STREQUAL "")
       string(APPEND metametadata_file_contents "    cmake_args:\n")
@@ -216,7 +250,6 @@ macro(generate_conda_recipes)
     set(python_generation_script_additional_options "")
   endif()
   execute_process(COMMAND python ${python_generation_script} -i ${metametadata_file} -o ${generated_conda_recipes_dir} ${python_generation_script_additional_options} RESULT_VARIABLE CONDA_GENERATION_SCRIPT_RETURN_VALUE)
-  message(STATUS "CONDA_GENERATION_SCRIPT_RETURN_VALUE: ${CONDA_GENERATION_SCRIPT_RETURN_VALUE}")
   if(CONDA_GENERATION_SCRIPT_RETURN_VALUE STREQUAL "0")
     message(STATUS "conda recipes correctly generated in ${generated_conda_recipes_dir}.")
     message(STATUS "To build the generated conda recipes, navigate to the directory and run conda build . in it.")

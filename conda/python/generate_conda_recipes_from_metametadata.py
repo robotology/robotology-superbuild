@@ -126,17 +126,26 @@ def main():
     parser.add_argument('--generate_distro_metapackages', action='store_true', help="if passed also generates the recipes for the robotology-distro and robotology-distro-all metapackages ")
     args = parser.parse_args()
 
-    # Get recipe templates
-    recipe_template_dir = os.path.realpath(os.path.dirname(os.path.abspath(__file__)) + "/../recipe_template");
-    recipe_template_files = [f for f in os.listdir(recipe_template_dir) if os.path.isfile(os.path.join(recipe_template_dir, f))]
+    # Get cmake recipe template fles
+    cmake_recipe_template_dir = os.path.realpath(os.path.dirname(os.path.abspath(__file__)) + "/../cmake_recipe_template");
+    cmake_recipe_template_files = [f for f in os.listdir(cmake_recipe_template_dir) if os.path.isfile(os.path.join(cmake_recipe_template_dir, f))]
+    cmake_recipe_template_file_loader = jinja2.FileSystemLoader(cmake_recipe_template_dir)
+    cmake_recipe_template_env = jinja2.Environment(loader=cmake_recipe_template_file_loader)
+
+    # Get pure_python recipe template fles
+    pure_python_recipe_template_dir = os.path.realpath(os.path.dirname(os.path.abspath(__file__)) + "/../pure_python_recipe_template");
+    pure_python_recipe_template_files = [f for f in os.listdir(pure_python_recipe_template_dir) if os.path.isfile(os.path.join(pure_python_recipe_template_dir, f))]
+    pure_python_recipe_template_file_loader = jinja2.FileSystemLoader(pure_python_recipe_template_dir)
+    pure_python_recipe_template_env = jinja2.Environment(loader=pure_python_recipe_template_file_loader)
 
     # Get multisheller scripts
     multisheller_scripts_dir = os.path.realpath(os.path.dirname(os.path.abspath(__file__)) + "/../multisheller");
     multisheller_scripts = [f for f in os.listdir(multisheller_scripts_dir) if os.path.isfile(os.path.join(multisheller_scripts_dir, f))]
 
-    # Prepare Jinja templates
-    file_loader = jinja2.FileSystemLoader(recipe_template_dir)
-    env = jinja2.Environment(loader=file_loader)
+
+
+
+
     # Load metametadata
     metametadata = yaml.load(open(args.metametadata), Loader=yaml.FullLoader)
 
@@ -165,13 +174,22 @@ def main():
         else:
             pkg_info['copy_activation_scripts'] = False
 
-        # Generate recipe
-        for template_file in recipe_template_files:
-            template = env.get_template(template_file)
-            template_output = template.render(pkg_info)
-            with open(os.path.join(recipe_dir, template_file), 'w') as f:
-                f.write(template_output)
-    
+        # Generate recipe if the package is installed via cmake
+        if pkg_info['build_type'] == "cmake":
+            for template_file in cmake_recipe_template_files:
+                template = cmake_recipe_template_env.get_template(template_file)
+                template_output = template.render(pkg_info)
+                with open(os.path.join(recipe_dir, template_file), 'w') as f:
+                    f.write(template_output)
+
+        # Generate recipe if the package is installed via cmake
+        if pkg_info['build_type'] == "pure_python":
+            for template_file in pure_python_recipe_template_files:
+                template = pure_python_recipe_template_env.get_template(template_file)
+                template_output = template.render(pkg_info)
+                with open(os.path.join(recipe_dir, template_file), 'w') as f:
+                    f.write(template_output)
+
     # If requested also generate recipes for distro metapackages
     if args.generate_distro_metapackages:
         recipe_metapackages_template_dir = os.path.realpath(os.path.dirname(os.path.abspath(__file__)) + "/../metapackages_recipes_template");

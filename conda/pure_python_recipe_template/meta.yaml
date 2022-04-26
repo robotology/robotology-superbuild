@@ -1,0 +1,37 @@
+{{ '{% set name =' }} "{{ name }}" {{ '%}' }}
+
+package:
+{% raw %}  name: {{ name }} {% endraw %}
+  version: "{{ version.replace("v","") }}"
+
+source:
+  git_url: https://github.com/{{ github_repo }}.git
+  git_rev: {{ github_tag }}
+
+build:
+  # Due to robot-log-visualizer, drop when conda-forge does not uses Python 3.7 anymore
+  skip: True  # [py<38]
+  number: {{ conda_build_number }}
+{% raw %}  script: {{ PYTHON }} -m pip install . --no-deps -vv {% endraw %}
+
+requirements:
+  build:
+
+  host:
+    - python
+    - pip
+{% for dep in dependencies %}    - {{ dep }}
+{% endfor %}
+  run:
+    - python
+{% for dep in dependencies %}    - {{ dep }}
+{% endfor %}
+
+test:
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/{{ github_repo }}
