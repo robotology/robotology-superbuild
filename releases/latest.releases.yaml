@@ -178,7 +178,7 @@ repositories:
   matioCpp:
     type: git
     url: https://github.com/ami-iit/matio-cpp.git
-    version: v0.1.1
+    version: v0.2.0
   diagnosticdaemon:
     type: git
     url: https://github.com/robotology/diagnostic-daemon.git
@@ -218,4 +218,4 @@ repositories:
   robot-log-visualizer:
     type: git
     url: https://github.com/ami-iit/robot-log-visualizer.git
-    version: v0.1.2
+    version: v0.1.3
