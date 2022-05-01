@@ -14,7 +14,7 @@ set_tag(casadi 3.5.5.3)
 
 # Robotology projects
 set_tag(YARP_REPOSITORY randaz81/yarp.git)
-set_tag(YARP_TAG removed_deprecated_interfaces)
+set_tag(YARP_TAG deprecation_cleanup)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
 set_tag(blockTest_TAG devel)
