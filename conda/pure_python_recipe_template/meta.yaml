@@ -13,6 +13,9 @@ build:
   skip: True  # [py<38]
   number: {{ conda_build_number }}
 {% raw %}  script: {{ PYTHON }} -m pip install . --no-deps -vv {% endraw %}
+  entry_points:
+{% for entry_point in entry_points %}    - {{ entry_point }}
+{% endfor %}
 
 requirements:
   build:

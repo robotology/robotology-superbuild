@@ -92,6 +92,7 @@ This action will automatically perform the following steps:
 | `<pkg>_CONDA_PKG_NAME`  | The name that will be used for the conda package name. The convention is to use lowercase names separated by dashes. | The name of the github repo of the package. | 
 | `<pkg>_CONDA_DEPENDENCIES` | The list of conda-forge dependencies required by this package. Note that dependencies managed by the robotology-superbuild should not be listed, as those are handled automatically. | The default value is empty. |
 | `<pkg>_CONDA_VERSION` | The version that will be used for the conda package, by default it is not set as the value from the tag will be extracted. | The default value is to use the value of the tag, removing any occurence of the `v` letter. |
+| `<pkg>_CONDA_ENTRY_POINTS` | This option permits to specify explicitly the entry_points used by a pure_python package (see https://github.com/robotology/robotology-superbuild/issues/1105). | Empty. |
 
 For any doubt, double check the existing `Build<pkg>.cmake` files for inspiration.
 * If your package needs to set or modify some environment variables to work correctly, it should provide a pair of [multisheller](https://github.com/wolfv/multisheller) scripts named `<condaPkgName>_activate.msh` and `<condaPkgName>_deactivate.msh` in the `conda/multisheller` directory to describe how the environment should be modified. Refer to the existing scripts for more details.
