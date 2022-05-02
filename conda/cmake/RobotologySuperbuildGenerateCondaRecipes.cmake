@@ -175,6 +175,13 @@ macro(generate_metametadata_file)
       endforeach()
     endif()
     
+    if(NOT "${${_cmake_pkg}_CONDA_ENTRY_POINTS}" STREQUAL "")
+      string(APPEND metametadata_file_contents "    entry_points:\n")
+      foreach(_entry_point IN LISTS ${_cmake_pkg}_CONDA_ENTRY_POINTS)
+        string(APPEND metametadata_file_contents "      - ${_entry_point}\n")
+      endforeach()
+    endif()
+    
     # By default we rely on properly set run_exports configurations in conda recipes
     # to avoid to manually set run dependencies. However, in some cases (cmake-only 
     # libraries, header-only libraries) run_exports is not used, so it is necessary 
