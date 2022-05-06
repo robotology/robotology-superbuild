@@ -6,7 +6,7 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 find_or_build_package(iDynTree QUIET)
-find_or_build_package(YARP_telemetry QUIET)
+find_or_build_package(robometry QUIET)
 
 set(WEARABLES_CMAKE_ARGS "")
 if(WIN32)
@@ -21,5 +21,5 @@ ycm_ep_helper(wearables TYPE GIT
               FOLDER src
               DEPENDS YARP
                       iDynTree
-                      YARP_telemetry
+                      robometry
               CMAKE_ARGS ${WEARABLES_CMAKE_ARGS})
