@@ -7,7 +7,7 @@ include(FindOrBuildPackage)
 ycm_ep_helper(OpenXR TYPE GIT
               STYLE GITHUB
               REPOSITORY KhronosGroup/OpenXR-SDK.git
-              TAG master
+              TAG main
               COMPONENT external
               FOLDER src)
 
