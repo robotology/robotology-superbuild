@@ -6,7 +6,7 @@ include(YCMEPHelper)
 ycm_ep_helper(OpenVR TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/openvr.git
-              TAG master
+              TAG fix_upstream
               COMPONENT external
               FOLDER src)
 
