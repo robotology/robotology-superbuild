@@ -74,6 +74,8 @@ endif()
 # Teleoperation
 if(ROBOTOLOGY_ENABLE_TELEOPERATION)
   find_or_build_package(walking-teleoperation)
+  find_or_build_package(yarp-device-openxrheadset)
+  find_or_build_package(yarp-openvr-trackers)
 endif()
 
 # Human Dynamics Estimation
