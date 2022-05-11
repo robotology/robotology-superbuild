@@ -56,3 +56,4 @@ libxxf86vm-dev
 mesa-common-dev
 libglew-dev
 libglm-dev
+libfreetype-dev
