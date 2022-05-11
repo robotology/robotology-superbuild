@@ -84,7 +84,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`<sup id="a1">[1!](#f1)</sup>  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_TELEOPERATION`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
+| `ROBOTOLOGY_ENABLE_TELEOPERATION`<sup id="a4">[4!](#f4)</sup>  | ✔️   |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
 | `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
@@ -103,6 +103,9 @@ Not all options are supported on all platforms. The following table provides a r
 <b id="f2">2!</b>:Since 2021.11, `ROBOTOLOGY_ENABLE_ROBOT_TESTING` does not support building with apt dependencies on Ubuntu 18.04 .
 
 <b id="f3">3!</b>:Since 2021.11, `ROBOTOLOGY_USES_PYTHON` does not support building with apt dependencies on Ubuntu 18.04 .
+
+<b id="f4">4!</b>:Since 2022.05, `ROBOTOLOGY_USES_TELEOPERATION` does not support building with apt dependencies on Ubuntu 18.04 and Debian Buster .
+
 
 Profile-specific documentation
 ===================================
