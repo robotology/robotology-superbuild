@@ -106,6 +106,7 @@ Not all options are supported on all platforms. The following table provides a r
 
 <b id="f4">4!</b>:Since 2022.05, `ROBOTOLOGY_USES_TELEOPERATION` does not support building with apt dependencies on Ubuntu 18.04 and Debian Buster .
 
+
 Profile-specific documentation
 ===================================
 
