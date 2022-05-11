@@ -54,6 +54,7 @@ libxcb-randr0-dev
 libxrandr-dev
 libxxf86vm-dev
 mesa-common-dev
+libglfw3-dev
 libglew-dev
 libglm-dev
 libfreetype6-dev
