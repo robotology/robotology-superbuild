@@ -232,7 +232,7 @@ jobs:
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_TELEOPERATION:BOOL=OFF .
 
     - name: Disable profiles that are not supported in Debian Buster [Docker debian:buster-backports]
-      if: (matrix.docker_image == 'debian:buster-backports'
+      if: (matrix.docker_image == 'debian:buster-backports')
       run: |
        cd build
        cmake -DROBOTOLOGY_USES_TELEOPERATION:BOOL=OFF .
