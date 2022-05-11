@@ -15,3 +15,5 @@ ycm_ep_helper(yarp-device-openxrheadset TYPE GIT
               FOLDER src
               DEPENDS YARP
                       OpenXR)
+
+set(yarp-device-openxrheadset_CONDA_DEPENDENCIES glew)
