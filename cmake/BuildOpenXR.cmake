@@ -9,7 +9,9 @@ ycm_ep_helper(OpenXR TYPE GIT
               REPOSITORY KhronosGroup/OpenXR-SDK.git
               TAG main
               COMPONENT external
-              FOLDER src)
+              FOLDER src
+              CMAKE_ARGS -DBUILD_SHARED_LIBS:BOOL=ON
+                         -DHAVE_FILESYSTEM_WITHOUT_LIB=OFF)
 
 set(OpenXR_CONDA_PKG_NAME openxr-sdk)
 set(OpenXR_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
