@@ -8,6 +8,7 @@ ycm_ep_helper(OpenVR TYPE GIT
               REPOSITORY ami-iit/openvr.git
               TAG fix_upstream
               COMPONENT external
-              FOLDER src)
+              FOLDER src
+              CMAKE_ARGS -DBUILD_SHARED:BOOL=ON)
 
 set(OpenVR_CONDA_PKG_NAME openvr)
