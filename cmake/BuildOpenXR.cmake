@@ -11,7 +11,8 @@ ycm_ep_helper(OpenXR TYPE GIT
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DBUILD_SHARED_LIBS:BOOL=ON
-                         -DHAVE_FILESYSTEM_WITHOUT_LIB=OFF)
+                         -DHAVE_FILESYSTEM_WITHOUT_LIB:BOOL=OFF
+                         -DDYNAMIC_LOADER:BOOL=ON)
 
 set(OpenXR_CONDA_PKG_NAME openxr-sdk)
 set(OpenXR_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
