@@ -407,12 +407,6 @@ jobs:
         cd build
         cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
-    - name: Disable options unsupported on Windows/vcpkg
-      if: contains(matrix.os, 'windows')
-      run: |
-        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
-        cd build
-        cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
@@ -423,8 +417,9 @@ jobs:
         source /c/robotology/scripts/setup-deps.sh
         mkdir -p build
         cd build
-        # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as a workaround for https://github.com/robotology/robotology-superbuild/issues/472
+        # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as it is unsupported on vcpkg
         cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
     - name: Build  [Ubuntu&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
