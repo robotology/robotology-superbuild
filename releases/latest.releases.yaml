@@ -18,7 +18,7 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 20220000.2
+    version: 20220000.3
   casadi:
     type: git
     url: https://github.com/ami-iit/casadi.git
