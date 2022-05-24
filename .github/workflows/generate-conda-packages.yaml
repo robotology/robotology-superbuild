@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       upload_conda_binaries:
-        description: 'If true, upload conda binaries, for any other value only generate them without uploading.'     
+        description: 'If true, upload conda binaries, for any other value only generate them without uploading.'
         required: true
         default: 'true'
   schedule:
@@ -16,9 +16,9 @@ on:
     types: [published]
 
 jobs:
-    # Regardless of the branch on which this action is trigged, 
-    # the CONDA_BUILD_NUMBER CMake option needs to be read from the 
-    # master branch, to avoid that a conda package generation from the 
+    # Regardless of the branch on which this action is trigged,
+    # the CONDA_BUILD_NUMBER CMake option needs to be read from the
+    # master branch, to avoid that a conda package generation from the
     # master branch and one from a releases/YYYY.MM branch use the same
     # CONDA_BUILD_NUMBER
     get-conda-build-number:
@@ -32,13 +32,13 @@ jobs:
         - uses: actions/checkout@v2
           with:
             ref: 'master'
-        
+
         - id: step1
           name: Get CONDA_BUILD_NUMBER and set it as output
           shell: bash
           run: |
-            # Get CONDA_BUILD_NUMBER via grep and set it to an environment variable 
-            export CONDA_BUILD_NUMBER=`grep "CONDA_BUILD_NUMBER" ./conda/cmake/CondaGenerationOptions.cmake | grep -oe '\([0-9.]*\)'` 
+            # Get CONDA_BUILD_NUMBER via grep and set it to an environment variable
+            export CONDA_BUILD_NUMBER=`grep "CONDA_BUILD_NUMBER" ./conda/cmake/CondaGenerationOptions.cmake | grep -oe '\([0-9.]*\)'`
             echo "::set-output name=conda_build_number::${CONDA_BUILD_NUMBER}"
 
     generate-conda-packages:
@@ -147,7 +147,7 @@ jobs:
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
             # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
             # see https://github.com/mamba-org/boa/issues/117
-            # We also manually delete the recipe directory to avoid that it is built again, 
+            # We also manually delete the recipe directory to avoid that it is built again,
             # specifically because we can't use --skip-existing as these packages are part of the robotology channel
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-log-visualizer
             rm -rf robot-log-visualizer
@@ -163,6 +163,8 @@ jobs:
             rm -rf matio-cpp
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
             rm -rf yarp-telemetry
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robometry
+            rm -rf robometry
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
             rm -rf icub-contrib-common
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
@@ -188,7 +190,7 @@ jobs:
             rm -rf blocktest
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml human-dynamics-estimation
             rm -rf human-dynamics-estimation
-            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml . 
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
         - name: Build conda metapackages (if necessary)
           if: github.event_name == 'release' && !contains(matrix.os, 'macos')
@@ -214,7 +216,7 @@ jobs:
     # If the  generate-conda-packages completed correctly and binaries are uploaded,
     # bump automatically the CONDA_BUILD_NUMBER in conda/cmake/CondaGenerationOptions.cmake
     # of master branch for future builds
-    # the master branch is always used in case the action is triggered by a release on 
+    # the master branch is always used in case the action is triggered by a release on
     # a release/vYYYY.MM branch
     bump-conda-build-number:
         name: "Bump Conda Build number for future builds"
@@ -226,12 +228,12 @@ jobs:
         - uses: actions/checkout@v2
           with:
             ref: 'master'
-        
+
         - name: Bump Conda Build number for future builds
           shell: bash
           run: |
-            sh ./scripts/robotologyBumpCondaBuildNumber.sh 
-      
+            sh ./scripts/robotologyBumpCondaBuildNumber.sh
+
         - uses: EndBug/add-and-commit@v8.0.1
           with:
             default_author: github_actions

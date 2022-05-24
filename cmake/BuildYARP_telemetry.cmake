@@ -9,8 +9,8 @@ find_or_build_package(matioCpp QUIET)
 
 ycm_ep_helper(YARP_telemetry TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/yarp-telemetry.git
-              TAG master
+              REPOSITORY robotology/robometry.git
+              TAG v0.5.1
               COMPONENT dynamics
               FOLDER src
               DEPENDS YCM

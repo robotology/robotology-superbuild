@@ -1,5 +1,5 @@
 # bipedal-locomotion-framework requires 10.13 for std::bad_cast_any
-# yarp-telemetry requeries 10.15 for std::filesystem
+# robometry requeries 10.15 for std::filesystem
 MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]
   - 10.15                      # [osx and x86_64]
 
@@ -14,9 +14,9 @@ qt:
   - "5.12.9=*_4"
 
 gazebo:  # [osx]
-  - '11.9' # [osx] 
+  - '11.9' # [osx]
 
 libopencv:  # [osx]
-  - '4.5.3'  # [osx] 
+  - '4.5.3'  # [osx]
 
 
