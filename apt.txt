@@ -3,6 +3,7 @@ build-essential
 cmake
 cmake-curses-gui
 coinor-libipopt-dev
+gfortran
 freeglut3-dev
 git
 libace-dev
