@@ -3,6 +3,7 @@ build-essential
 cmake
 cmake-curses-gui
 coinor-libipopt-dev
+gfortran
 freeglut3-dev
 git
 libace-dev
@@ -35,6 +36,7 @@ qml-module-qtquick2
 qtbase5-dev
 qtdeclarative5-dev
 qtmultimedia5-dev
+libqt5opengl5-dev
 swig
 libmatio-dev
 libirrlicht-dev
