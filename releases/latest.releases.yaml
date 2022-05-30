@@ -94,7 +94,7 @@ repositories:
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.5.0
+    version: v0.5.1
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
@@ -106,23 +106,23 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: v0.6.1
+    version: v0.7.0
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.2.0
+    version: v1.3.0
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
-    version: v0.2.0
+    version: v0.3.0
   wearables:
     type: git
     url: https://github.com/robotology/wearables.git
-    version: v1.3.0
+    version: v1.4.0
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.4.1
+    version: v2.5.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -146,7 +146,7 @@ repositories:
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
-    version: v0.1.1
+    version: v0.2.0
   yarp-device-ovrheadset:
     type: git
     url: https://github.com/robotology/yarp-device-ovrheadset.git
@@ -210,7 +210,7 @@ repositories:
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
-    version: v0.0.4
+    version: v0.0.5
   pyqtconsole:
     type: git
     url: https://github.com/pyqtconsole/pyqtconsole.git
@@ -226,7 +226,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.0.22
+    version: release-1.0.23
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
