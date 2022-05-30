@@ -23,6 +23,7 @@ requirements:
   host:
     - python
     - pip
+    - setuptools-scm
 {% for dep in dependencies %}    - {{ dep }}
 {% endfor %}
   run:
