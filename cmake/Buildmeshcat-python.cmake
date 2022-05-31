@@ -7,7 +7,8 @@ rob_sup_pure_python_ycm_ep_helper(meshcat-python
                                   REPOSITORY rdeits/meshcat-python.git
                                   TAG master
                                   COMPONENT dynamics
-                                  FOLDER src)
+                                  FOLDER src
+                                  PYTHON_PACKAGE_NAME meshcat)
 
 
 set(meshcat-python_CONDA_PKG_NAME meshcat-python)
