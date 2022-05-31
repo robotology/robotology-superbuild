@@ -21,7 +21,7 @@ set(ROBOTOLOGY_ENABLE_TELEOPERATION ON CACHE BOOL "")
 
 # Profiles not supported on Windows
 if(NOT WIN32)
-  set(ROBOTOLOGY_ENABLE_EVENT_DRIVEN ON CACHE BOOL "")
+  set(ROBOTOLOGY_ENABLE_EVENT_DRIVEN OFF CACHE BOOL "")
 endif()
 
 # ROBOTOLOGY_USES_ESDCAN is enabled in CI and conda packages on Windows
