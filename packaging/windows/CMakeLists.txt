@@ -6,7 +6,7 @@
 
 cmake_minimum_required(VERSION 3.12)
 
-set(INSTALLER_VERSION "")
+set(INSTALLER_VERSION 2022.05.0)
 option(RI_INCLUDE_GAZEBO "If ON include the Gazebo simulator binaries." ON)
 option(RI_BUILD_FULL_INSTALLER "If ON build the full installer, otherwise the dependencies one." ON)
 
