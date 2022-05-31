@@ -182,13 +182,15 @@ jobs:
             rm -rf wb-toolbox
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml unicycle-footstep-planner
             rm -rf unicycle-footstep-planner
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml bipedal-locomotion-framework
+            # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge bipedal-locomotion-framework
             rm -rf bipedal-locomotion-framework
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
             rm -rf wearables
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
             rm -rf blocktest
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml human-dynamics-estimation
+            # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge human-dynamics-estimation
             rm -rf human-dynamics-estimation
             conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
