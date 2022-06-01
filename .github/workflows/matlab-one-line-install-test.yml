@@ -1,0 +1,53 @@
+name: MATLAB tests
+
+on:
+  push:
+    branches:
+            - main
+            - CI
+  pull_request:
+    branches:
+            - main
+
+
+jobs:
+
+  run-matlab-test:
+
+    name: Install dependencies and run MATLAB tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        matlab_version: [R2020b, R2021a, R2021b, latest]
+    runs-on: ${{ matrix.os }}
+    
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          release: ${{ matrix.matlab_version }}
+
+
+      - name: Install robotology packages
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+            cd scripts
+            install_robotology_packages()
+            
+     
+      - name: Run MATLAB commands
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+            pos = iDynTree.Position()
+            vec = yarp.Vector()
