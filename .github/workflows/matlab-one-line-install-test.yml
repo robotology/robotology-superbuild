@@ -27,10 +27,6 @@ jobs:
         matlab_version: [R2020b, R2021a, R2021b, latest]
     runs-on: ${{ matrix.os }}
     
-    defaults:
-      run:
-        shell: bash -l {0}
-
     steps:
 
       - name: Check out repository
