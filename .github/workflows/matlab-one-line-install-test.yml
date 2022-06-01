@@ -54,5 +54,6 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
+            robotology_setup
             pos = iDynTree.Position()
             vec = yarp.Vector()
