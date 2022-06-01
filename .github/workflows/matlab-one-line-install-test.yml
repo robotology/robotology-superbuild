@@ -49,6 +49,12 @@ jobs:
             cd scripts
             install_robotology_packages()
             
+      # workaround for https://github.com/robotology/robotology-superbuild/issues/64
+      # and https://github.com/robotology/idyntree/issues/995
+      - name: Do not use MATLAB's stdc++ to avoid incompatibilities with other libraries
+        if: contains(matrix.os, 'ubuntu')
+        run:
+          echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6" >> $GITHUB_ENV
      
       - name: Run MATLAB commands
         uses: matlab-actions/run-command@v1
