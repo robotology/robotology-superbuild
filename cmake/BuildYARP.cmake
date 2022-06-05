@@ -119,7 +119,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
                               ${YARP_OPTIONAL_CMAKE_ARGS})
 
-set(YARP_CONDA_DEPENDENCIES ace libopencv tinyxml qt eigen sdl sdl2 sqlite libjpeg-turbo)
+set(YARP_CONDA_DEPENDENCIES ace libopencv tinyxml qt-main eigen sdl sdl2 sqlite libjpeg-turbo)
 
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND YARP_CONDA_DEPENDENCIES swig)

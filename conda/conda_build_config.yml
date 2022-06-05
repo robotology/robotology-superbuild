@@ -9,9 +9,11 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 
-# Workaround for https://github.com/conda-forge/gazebo-feedstock/issues/119
 qt:
-  - "5.12.9=*_4"
+  - 5.15
+
+qt_main:
+  - 5.15
 
 gazebo:  # [osx]
   - '11.9' # [osx]
