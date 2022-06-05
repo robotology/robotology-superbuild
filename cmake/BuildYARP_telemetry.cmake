@@ -17,4 +17,5 @@ ycm_ep_helper(YARP_telemetry TYPE GIT
                       YARP
                       matioCpp)
 
+set(YARP_telemetry_CONDA_PKG_NAME yarp-telemetry)
 set(YARP_telemetry_CONDA_DEPENDENCIES boost-cpp libmatio)
