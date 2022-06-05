@@ -13,4 +13,4 @@ ycm_ep_helper(blocktestcore TYPE GIT
               CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF
               DEPENDS YCM)
 
-set(blocktestcore_CONDA_DEPENDENCIES qt boost-cpp)
+set(blocktestcore_CONDA_DEPENDENCIES qt-main boost-cpp)

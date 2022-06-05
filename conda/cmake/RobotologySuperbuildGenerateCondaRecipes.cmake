@@ -204,6 +204,7 @@ macro(generate_metametadata_file)
     # See https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl
     if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
       if("qt" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
+         "qt-main" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "freeglut" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "irrlicht" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "idyntree" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
