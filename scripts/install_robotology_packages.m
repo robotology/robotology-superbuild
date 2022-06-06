@@ -64,6 +64,7 @@ function install_robotology_packages(varargin)
         robotology_install_prefix = fullfile(install_prefix, 'Library');
     elseif isunix
         system(sprintf('sh %s -b -p "%s"', mambaforge_installer_name, install_prefix));
+        assert(length(['#!',install_prefix,'/bin python'])<=127,'install_prefix path is too long! Shebangs cannot be longer than 127 characters (see https://github.com/robotology/robotology-superbuild/pull/1145)')        
         conda_full_path = fullfile(install_prefix, 'bin', 'conda');
         robotology_install_prefix = install_prefix;
     end
