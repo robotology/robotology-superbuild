@@ -35,6 +35,12 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v2
+        
+      - name: Clone Robotology in long path
+        run: |
+          git clone https://github.com/robotology/robotology-superbuild.git robotology-superbuild-with-a-long-name-really-really-really-long-not-short-long
+          cd robotology-superbuild-with-a-long-name-really-really-really-long-not-short-long
+          git checkout onelineinstallswitchtomamba
 
       - name: Install MATLAB
         uses: matlab-actions/setup-matlab@v1
@@ -46,6 +52,7 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
+            cd robotology-superbuild-with-a-long-name-really-really-really-long-not-short-long
             cd scripts
             install_robotology_packages()
             
@@ -60,6 +67,7 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
+            cd robotology-superbuild-with-a-long-name-really-really-really-long-not-short-long
             cd scripts
             robotology_setup
             pos = iDynTree.Position()
