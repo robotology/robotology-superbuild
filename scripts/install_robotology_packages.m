@@ -58,13 +58,13 @@ function install_robotology_packages(varargin)
     fprintf('Installing mambaforge\n');
     if ispc
         system(sprintf('start /wait "" %s /InstallationType=JustMe /RegisterPython=0 /S /D=%s', mambaforge_installer_name, install_prefix));
-        conda_full_path = fullfile(install_prefix, 'condabin', 'mamba.bat');
+        conda_full_path = fullfile(install_prefix, 'condabin', 'conda.bat');
         % On Windows, the files in conda are installed in the Library
         % subdirectory of the prefix
         robotology_install_prefix = fullfile(install_prefix, 'Library');
     elseif isunix
         system(sprintf('sh %s -b -p "%s"', mambaforge_installer_name, install_prefix));
-        conda_full_path = fullfile(install_prefix, 'condabin', 'mamba');
+        conda_full_path = fullfile(install_prefix, 'condabin', 'conda');
         robotology_install_prefix = install_prefix;
     end
     fprintf('Installation of mambaforge completed\n');
