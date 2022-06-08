@@ -10,7 +10,7 @@ requirements:
   # the specified package is used if the package is installed, but
   # we do not depend explicitly on the packages
   run_constrained: {# List all packages and the version dependency. #}
-{% for pkg in robotology_all_packages %}    - {{ pkg.name }}={{ pkg.version.replace("v","") }}
+{% for pkg in robotology_all_packages %}    - {{ pkg.name }}={{ pkg.version.replace("v","").replace("release-","") }}
 {% endfor %}
 
 about:
