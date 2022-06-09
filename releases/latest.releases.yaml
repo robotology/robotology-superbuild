@@ -194,7 +194,7 @@ repositories:
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
-    version: v1.0.0
+    version: v1.1.0
   gym-ignition:
     type: git
     url: https://github.com/robotology/gym-ignition.git
