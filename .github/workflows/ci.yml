@@ -77,7 +77,7 @@ jobs:
         # Compilation related dependencies 
         mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt=5.12.9=*_4 sdl sdl2 sqlite tinyxml spdlog lua soxr
+        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json opencv pkg-config portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr
         # Python 
         mamba install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
 
@@ -90,7 +90,7 @@ jobs:
         # See https://github.com/robotology/robotology-superbuild/issues/477
         mamba install bash-completion expat-cos7-x86_64 freeglut libdc1394 libi2c libselinux-cos7-x86_64 libxau-cos7-x86_64 libxcb-cos7-x86_64 libxdamage-cos7-x86_64 libxext-cos7-x86_64 libxfixes-cos7-x86_64 libxxf86vm-cos7-x86_64 mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
         # Ignition Gazebo
-        mamba install libignition-gazebo4
+        mamba install libignition-gazebo6
 
     # Additional dependencies useful only on Windows
     - name: Dependencies [Conda/Windows]

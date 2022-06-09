@@ -274,7 +274,7 @@ From the superbuild point of view, we currently do not allow enabling projects t
 Follow [the source installation with conda-forge provided dependencies](https://github.com/robotology/robotology-superbuild/blob/master/doc/conda-forge.md#source-installation) and, after creating and environment and installing the default dependencies, execute:
 
 ```bash
-conda install -c conda-forge libignition-gazebo4
+conda install -c conda-forge libignition-gazebo6
 ```
 
 #### Using official instructions
