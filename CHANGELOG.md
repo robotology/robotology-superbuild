@@ -9,6 +9,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Fixed
 - Fixed generation of conda packages on Linux and macOS (https://github.com/robotology/robotology-superbuild/pull/1146).
+- Bumped icub-models to v1.24.1 and robometry to v1.1.0 to fix related bugs (https://github.com/robotology/icub-models/issues/156 and https://github.com/robotology/robometry/pull/177).
 
 ## [2022.05.0] - 2022-05-31
 
