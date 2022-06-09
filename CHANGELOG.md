@@ -5,6 +5,11 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2022.05.1] - 2022-06-09
+
+### Fixed
+- Fixed generation of conda packages on Linux and macOS (https://github.com/robotology/robotology-superbuild/pull/1146).
+
 ## [2022.05.0] - 2022-05-31
 
 ### Added
