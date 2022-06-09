@@ -1,0 +1,66 @@
+name: Test One-line Installation of Robotology MATLAB/Simulink Packages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - 'releases/**'
+    tags:
+      - v*
+  pull_request:
+  schedule:
+  # * is a special character in YAML so you have to quote this string
+  # Execute a "nightly" build at 2 AM UTC 
+  - cron:  '0 2 * * *'
+
+
+jobs:
+
+  run-matlab-test:
+
+    name: Install dependencies and run MATLAB tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        matlab_version: [R2020b, R2021a, R2021b, latest]
+        exclude:
+          # R2020* is not supported on Windows on GitHub Actions
+          - os: windows-latest
+            matlab_version: R2020b
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          release: ${{ matrix.matlab_version }}
+
+
+      - name: Install robotology packages
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+            cd scripts
+            install_robotology_packages()
+            
+      # workaround for https://github.com/robotology/robotology-superbuild/issues/64
+      # and https://github.com/robotology/idyntree/issues/995
+      - name: Do not use MATLAB's stdc++ to avoid incompatibilities with other libraries
+        if: contains(matrix.os, 'ubuntu')
+        run:
+          echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6" >> $GITHUB_ENV
+     
+      - name: Run MATLAB commands
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+            cd scripts
+            robotology_setup
+            pos = iDynTree.Position()
+            vec = yarp.Vector()
