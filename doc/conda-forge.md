@@ -122,7 +122,7 @@ mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat-cos
 
 If you are on **Windows**, you also need to install also the following packages:
 ~~~
-mamba install -c conda-forge freeglut
+mamba install -c conda-forge freeglut graphviz=2.50
 ~~~
 
 ### Clone the repo
