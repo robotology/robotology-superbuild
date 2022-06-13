@@ -151,8 +151,6 @@ jobs:
             # specifically because we can't use --skip-existing as these packages are part of the robotology channel
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-log-visualizer
             rm -rf robot-log-visualizer
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp
-            rm -rf yarp
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml gazebo-yarp-plugins
             rm -rf gazebo-yarp-plugins
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree-matlab-bindings
