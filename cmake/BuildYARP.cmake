@@ -119,17 +119,5 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
                               ${YARP_OPTIONAL_CMAKE_ARGS})
 
-set(YARP_CONDA_DEPENDENCIES ace libopencv tinyxml qt-main eigen sdl sdl2 sqlite libjpeg-turbo)
-
-if(ROBOTOLOGY_USES_PYTHON)
-  list(APPEND YARP_CONDA_DEPENDENCIES swig)
-  list(APPEND YARP_CONDA_DEPENDENCIES python)
-endif()
-
-if(NOT WIN32)
-  list(APPEND YARP_CONDA_DEPENDENCIES bash-completion)
-endif()
-
-if(YARP_USE_I2C)
-  list(APPEND YARP_CONDA_DEPENDENCIES libi2c)
-endif()
+set(YARP_CONDA_PKG_NAME yarp-cxx)
+set(YARP_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
