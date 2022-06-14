@@ -1,0 +1,17 @@
+name: robotology-distro
+version: @CONDA_ROBOTOLOGY_SUPERBUILD_VERSION@
+
+channels_remap:
+  -
+      src: @CONDA_BUILD_CHANNEL@
+      dest: robotology
+
+channels:
+  - @CONDA_BUILD_CHANNEL@
+  - conda-forge
+  - robotology
+
+specs:
+  - conda
+  - mamba
+  - robotology-distro-all @CONDA_ROBOTOLOGY_SUPERBUILD_VERSION@
