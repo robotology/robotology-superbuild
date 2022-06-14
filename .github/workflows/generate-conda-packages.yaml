@@ -9,6 +9,10 @@ on:
         description: 'If true, upload conda binaries, for any other value only generate them without uploading.'
         required: true
         default: 'true'
+      test_metapackages_generation:
+        description: 'If true, also test metapackages generation. Not compatible with upload_conda_binaries set to true.'
+        required: true
+        default: 'false'
   schedule:
   # Run the job once a week
   - cron: '0 0 * * 2'
@@ -131,7 +135,23 @@ jobs:
           shell: bash -l {0}
           run: |
             cd build
-            cmake -DCONDA_GENERATE_ROBOTOLOGY_METAPACKAGES:BOOL=ON .
+            cmake -DROBOTOLOGY_PROJECT_TAGS=Custom -DCONDA_GENERATE_ROBOTOLOGY_METAPACKAGES:BOOL=ON .
+
+        - name: Fail if both upload_conda_binaries and test_metapackages_generation are passed
+          if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true'
+          uses: actions/github-script@v3
+          with:
+            script: |
+              core.setFailed('Build failed. It is not possible to set to true both upload_conda_binaries and test_metapackages_generation.')
+
+        - name: If test_metapackages_generation is enabled set an arbitrary version number
+          if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true'
+          shell: bash -l {0}
+          run: |
+            sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "\${CMAKE_CURRENT_SOURCE_DIR}\/releases\/${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml"/g' ./cmake/RobotologySuperbuildOptions.cmake
+            sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS "Stable"/set(ROBOTOLOGY_PROJECT_TAGS "Custom"/g' ./cmake/RobotologySuperbuildOptions.cmake
+            sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION 1234.0)/g' ./packaging/windows/CMakeLists.txt
+            sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION 1234.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
 
         - name: Build conda packages
           shell: bash -l {0}
@@ -193,7 +213,7 @@ jobs:
             conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
         - name: Build conda metapackages (if necessary)
-          if: github.event_name == 'release' && !contains(matrix.os, 'macos')
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
           shell: bash -l {0}
           run: |
             cd build/conda/generated_recipes_metapackages
