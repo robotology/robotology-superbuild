@@ -99,7 +99,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller constructor
 
         - name: Print used environment
           shell: bash -l {0}
@@ -107,13 +107,28 @@ jobs:
             mamba list
             env
 
+        - name: Fail if both upload_conda_binaries and test_metapackages_generation are passed
+          if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true'
+          uses: actions/github-script@v3
+          with:
+            script: |
+              core.setFailed('Build failed. It is not possible to set to true both upload_conda_binaries and test_metapackages_generation.')
+
+        - name: If test_metapackages_generation is enabled set an arbitrary version number
+          if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true'
+          shell: bash -l {0}
+          run: |
+            sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION 1234.0)/g' ./packaging/windows/CMakeLists.txt
+            sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION 1234.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
+
         - name: Generate recipes [Linux&macOS]
           if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
           shell: bash -l {0}
           run: |
             mkdir build
             cd build
-            cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}} ..
+            # Removed -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake for faster tests
+            cmake -GNinja -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}} ..
 
         - name: Generate recipes [Windows]
           if: contains(matrix.os, 'windows')
@@ -121,7 +136,8 @@ jobs:
           run: |
             mkdir build
             cd build
-            cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}}  ..
+            # Removed -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake for faster tests
+            cmake -G"Visual Studio 16 2019"  -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}}  ..
 
         - name: Specify additional option if we are in a release and we need to generate robotology-distro metapackages
           if: github.event_name == 'release'
@@ -215,6 +231,13 @@ jobs:
             cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
+       
+        - name: Generated installer with all packages
+          shell: bash -l {0}
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
+          run: |
+            cd build/conda/generated_constructor_recipe
+            constructor .
 
     # If the  generate-conda-packages completed correctly and binaries are uploaded,
     # bump automatically the CONDA_BUILD_NUMBER in conda/cmake/CondaGenerationOptions.cmake

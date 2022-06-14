@@ -249,7 +249,12 @@ macro(generate_metametadata_file)
       string(APPEND metametadata_file_contents "    - name: ${${_cmake_pkg}_CONDA_PKG_NAME}\n")
       string(APPEND metametadata_file_contents "      version: \"${${_cmake_pkg}_CONDA_VERSION}\"\n")
     endforeach()
-
+   
+    # If metapackages are enabled, we also generated the constructor file in ${CMAKE_CURRENT_BINARY_DIR}/conda/generated_constructor_recipe
+    set(generated_constructor_recipe_dir ${CMAKE_CURRENT_BINARY_DIR}/conda/generated_constructor_recipe)
+    file(MAKE_DIRECTORY ${generated_constructor_recipe_dir})
+    set(CONDA_BUILD_CHANNEL "file://$ENV{CONDA_PREFIX}/conda-bld")
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conda/constructor_template/construct.yaml.in ${generated_constructor_recipe_dir}/construct.yaml)
   endif()
 
   file(WRITE ${metametadata_file} ${metametadata_file_contents})
