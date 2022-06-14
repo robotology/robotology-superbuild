@@ -148,8 +148,6 @@ jobs:
           if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true'
           shell: bash -l {0}
           run: |
-            sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "\${CMAKE_CURRENT_SOURCE_DIR}\/releases\/${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml"/g' ./cmake/RobotologySuperbuildOptions.cmake
-            sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS "Stable"/set(ROBOTOLOGY_PROJECT_TAGS "Custom"/g' ./cmake/RobotologySuperbuildOptions.cmake
             sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION 1234.0)/g' ./packaging/windows/CMakeLists.txt
             sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION 1234.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
 
