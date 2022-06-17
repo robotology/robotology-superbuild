@@ -60,3 +60,4 @@ libglfw3-dev
 libglew-dev
 libglm-dev
 libfreetype6-dev
+libsqlite3-dev
