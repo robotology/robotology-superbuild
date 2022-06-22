@@ -5,10 +5,10 @@ include(YCMEPHelper)
 
 ycm_ep_helper(matioCpp TYPE GIT
               STYLE GITHUB
-              REPOSITORY dic-iit/matio-cpp.git
+              REPOSITORY ami-iit/matio-cpp.git
               TAG master
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF)
 
-set(matioCpp_CONDA_DEPENDENCIES "libmatio")
+set(matioCpp_CONDA_DEPENDENCIES libmatio eigen)
