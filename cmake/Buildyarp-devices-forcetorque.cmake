@@ -6,9 +6,9 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
-ycm_ep_helper(forcetorque-yarp-devices TYPE GIT
+ycm_ep_helper(yarp-devices-forcetorque TYPE GIT
                                    STYLE GITHUB
-                                   REPOSITORY robotology/forcetorque-yarp-devices.git
+                                   REPOSITORY robotology/yarp-devices-forcetorque.git
                                    TAG master
                                    COMPONENT iCub
                                    FOLDER src
