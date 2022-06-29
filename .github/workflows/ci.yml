@@ -28,12 +28,9 @@ jobs:
         os: [ubuntu-latest, macos-10.15, windows-2019, windows-2022]
         project_tags:
           - Default
-          - Unstable
         include:
           - project_tags: Default
             project_tags_cmake_options: ""
-          - project_tags: Unstable
-            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
 
     steps:
     - uses: actions/checkout@v2
@@ -171,12 +168,9 @@ jobs:
 
         project_tags:
           - Default
-          - Unstable
         include:
           - project_tags: Default
             project_tags_cmake_options: ""
-          - project_tags: Unstable
-            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
 
     container:
       image: ${{ matrix.docker_image }}
@@ -250,7 +244,7 @@ jobs:
       matrix:
         build_type: [Release]
         os: [ubuntu-18.04, ubuntu-20.04, macos-10.15, windows-2019]
-        project_tags: [Default, Unstable, LatestReleases]
+        project_tags: [Default]
         include:
           - os: ubuntu-18.04
             build_type: Release
@@ -263,10 +257,6 @@ jobs:
             cmake_generator: "Ninja"
           - project_tags: Default
             project_tags_cmake_options: ""
-          - project_tags: Unstable
-            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
-          - project_tags: LatestReleases
-            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/latest.releases.yaml"
     steps:
     - uses: actions/checkout@master
     
