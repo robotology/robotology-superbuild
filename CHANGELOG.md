@@ -5,6 +5,9 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+### Changed
+- Enable by default ROBOTOLOGY_USES_GAZEBO also on Windows (https://github.com/robotology/robotology-superbuild/pull/1202).
+
 ## [2022.05.1] - 2022-06-09
 
 ### Fixed
