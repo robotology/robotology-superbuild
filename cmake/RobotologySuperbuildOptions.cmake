@@ -18,12 +18,7 @@ mark_as_advanced(ROBOTOLOGY_USES_LUA)
 option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Python" FALSE)
 
 ## Enable packages that depend on the Gazebo Classic simulator
-if(WIN32)
-  set(ROBOTOLOGY_USES_GAZEBO_DEFAULT FALSE)
-else()
-  set(ROBOTOLOGY_USES_GAZEBO_DEFAULT TRUE)
-endif()
-option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ${ROBOTOLOGY_USES_GAZEBO_DEFAULT})
+option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ON)
 
 ## Enable packages that depend on the Ignition Gazebo simulator
 set(ROBOTOLOGY_USES_IGNITION_DEFAULT FALSE)

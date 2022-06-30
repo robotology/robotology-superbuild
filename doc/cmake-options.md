@@ -229,8 +229,8 @@ Dependencies-specific documentation
 ===================================
 
 ## Gazebo
+
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option, that enables the software that depends on "Classic Gazebo".
-This option is still set to `OFF` on Windows as it is still experimental.
 
 ### System Dependencies
 
