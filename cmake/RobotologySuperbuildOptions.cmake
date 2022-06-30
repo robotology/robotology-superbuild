@@ -34,7 +34,12 @@ option(ROBOTOLOGY_ENABLE_ROBOT_TESTING "Enable compilation of software for robot
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS "Enable compilation of all the dependencies of bipedal-locomotion-framework." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
-option(ROBOTOLOGY_ENABLE_EVENT_DRIVEN "Enable compilation of software for event-driven." FALSE)
+# ROBOTOLOGY_ENABLE_EVENT_DRIVEN is not supported on Windows, do not show the option there
+if(WIN32)
+  set(ROBOTOLOGY_ENABLE_EVENT_DRIVEN FALSE)
+else()
+  option(ROBOTOLOGY_ENABLE_EVENT_DRIVEN "Enable compilation of software for event-driven." FALSE)
+endif()
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necessary for iCub basic demonstrations." FALSE)
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
