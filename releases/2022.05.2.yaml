@@ -30,7 +30,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.7.1
+    version: v3.7.2
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
