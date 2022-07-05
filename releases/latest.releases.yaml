@@ -54,7 +54,7 @@ repositories:
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
-    version: v3.7.2
+    version: v3.7.3
   RobotTestingFramework:
     type: git
     url: https://github.com/robotology/robot-testing-framework.git
@@ -110,7 +110,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.3.0
+    version: v1.3.1
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
