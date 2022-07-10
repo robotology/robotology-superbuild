@@ -178,7 +178,7 @@ repositories:
   matioCpp:
     type: git
     url: https://github.com/ami-iit/matio-cpp.git
-    version: v0.2.0
+    version: v0.2.1
   diagnosticdaemon:
     type: git
     url: https://github.com/robotology/diagnostic-daemon.git
