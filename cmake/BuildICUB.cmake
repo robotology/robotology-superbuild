@@ -72,6 +72,7 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_canBusAnalogSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_canBusInertialMTB:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_canBusSkin:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                                    -DENABLE_icubmod_canBusFtSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_canBusVirtualAnalogSensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_cfw2can:BOOL=${ROBOTOLOGY_USES_CFW2CAN}
                                     -DENABLE_icubmod_ecan:BOOL=${ROBOTOLOGY_USES_ESDCAN}
