@@ -98,7 +98,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Additional dependencies only useful on Windows
-        mamba install -c conda-forge -c robotology esdcan freeglut graphviz=2.50
+        mamba install -c conda-forge -c robotology esdcan freeglut
 
     - name: Print used environment [Conda]
       shell: bash -l {0}
