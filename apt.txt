@@ -17,6 +17,7 @@ libgsl0-dev
 libi2c-dev
 libjpeg-dev
 liblua5.2-dev
+libpcl-dev
 lua5.2
 libode-dev
 libopencv-dev
