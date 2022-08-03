@@ -12,7 +12,7 @@ It can take one of four possible values:
 * `Unstable` : by selecting this option, you will use the tags or branches specified in [`cmake/ProjectsTagsUnstable.cmake`](../cmake/ProjectsTagsUnstable.cmake), 
                that are the "unstable" active development branches for the robotology projects. This is reccomended just for users that work at the IIT labs in Genoa,
                as it can break compilation or runtime behaviour without any notice.
-* `LatestReleases` : by selecting this option, you will use the tags specified in [`releases/latest.releases.yaml`](../releases/latest.releases.yaml), 
+* `LatestRelease` : by selecting this option, you will use the tags specified in [`releases/latest.releases.yaml`](../releases/latest.releases.yaml), 
                that are the latest releases for the robotology projects. 
 * `Custom` : by selecting this option, you need to manually specify the tags or branches that you want to use by specifying a custom project tags file in the 
              `ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE` CMake option. It is necessary to specify the absolute location of the file.  This is useful when  you want to use a fixed version of the software built by the superbuild. The specified file is included in the project via the [`include` CMake command](https://cmake.org/cmake/help/v3.15/command/include.html), or if it ends with `.yaml` or `.repos` it is assumed to be a YAML file that is loaded by the [`ycm_load_vcs_yaml_info`](../cmake/YCMLoadVcsYamlInfo.cmake) CMake function.
