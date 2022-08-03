@@ -17,5 +17,5 @@ set_tag(YCM_TAG ycm-0.14)
 set_tag(YARP_TAG yarp-3.7)
 set_tag(yarp-matlab-bindings_TAG yarp-3.7)
 set_tag(gym-ignition_TAG v1.3.1)
-set_tag(YARP_telemetry_TAG v0.5.1)
+set_tag(robometry_TAG v1.1.0)
 
