@@ -126,7 +126,7 @@ repositories:
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
-    version: v1.0.1
+    version: v1.1.0
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
