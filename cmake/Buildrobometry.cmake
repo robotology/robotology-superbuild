@@ -17,4 +17,5 @@ ycm_ep_helper(robometry TYPE GIT
                       YARP
                       matioCpp)
 
-set(robometry_CONDA_DEPENDENCIES boost-cpp libmatio)
+set(robometry_CONDA_PKG_NAME librobometry)
+set(robometry_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
