@@ -235,3 +235,7 @@ repositories:
     type: git
     url: https://github.com/ami-iit/yarp-openvr-trackers.git
     version: v0.0.1
+  find-superquadric:
+    type: git
+    url: https://github.com/robotology/find-superquadric.git
+    version: v1.0.1

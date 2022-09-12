@@ -90,7 +90,7 @@ endif()
 
 # Grasping
 if(ROBOTOLOGY_ENABLE_GRASPING)
-  find_or_build_package(icub-grasp-demo)
+  find_or_build_package(find-superquadric)
 endif()
 
 # Event-driven
