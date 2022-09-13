@@ -14,7 +14,7 @@ export @SHLIB_ENV_VAR@=${@SHLIB_ENV_VAR@:+${@SHLIB_ENV_VAR@}:}${ROBOTOLOGY_SUPER
 # Setup the path of blockfactory plugins
 export BLOCKFACTORY_PLUGIN_PATH=${BLOCKFACTORY_PLUGIN_PATH:+${BLOCKFACTORY_PLUGIN_PATH}:}$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/@BLOCKFACTORY_PLUGIN_PATH_DIRECTORY@/blockfactory
 # Extend path for bash completion (see https://github.com/robotology/robotology-superbuild/issues/622#issuecomment-847586406)
-export XDG_DATA_DIRS=${XDG_DATA_DIRS:+${XDG_DATA_DIRS}:}$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share
+export XDG_DATA_DIRS=${XDG_DATA_DIRS:-"/usr/local/share:/usr/share"}:$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share
 
 @cmakeif ROBOTOLOGY_USES_GAZEBO
 # ROBOTOLOGY_USES_GAZEBO-specific lines

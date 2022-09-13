@@ -5,6 +5,9 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+### Fixed
+- Fixed problem that occured when robotology-superbuild's `setup.sh` was sourced on Linux system in which `XDG_DATA_DIRS` was not defined (https://github.com/robotology/robotology-superbuild/pull/1257).
+
 ## [2022.08.0] - 2022-09-02
 
 ### Changed
