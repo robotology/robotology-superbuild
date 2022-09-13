@@ -99,6 +99,15 @@ else()
   set(BLOCKFACTORY_PLUGIN_PATH_DIRECTORY "lib")
 endif()
 
+# Make sure that setting XDG_DATA_DIRS on Linux (not conda)
+# does not result in /usr/local/share and /usr/local being ignored
+# See https://github.com/robotology/robotology-superbuild/issues/1187
+if(UNIX AND NOT APPLE AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+  set(XDG_DATA_DIRS_DEFAULT_VALUE "/usr/local/share:/usr/share:")
+else()
+  set(XDG_DATA_DIRS_DEFAULT_VALUE "")
+endif()
+
 if(WIN32)
   # On Git Bash on Windows, C: is rendered as /c
   string(REGEX MATCH "^([A-Z])" PROJECT_SOURCE_DIR_DRIVE ${PROJECT_SOURCE_DIR})
