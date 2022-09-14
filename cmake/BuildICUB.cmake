@@ -78,6 +78,7 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DENABLE_icubmod_ecan:BOOL=${ROBOTOLOGY_USES_ESDCAN}
                                     -DENABLE_icubmod_embObjBattery:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_embObjFTsensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                                    -DENABLE_icubmod_embObjMultipleFTsensors:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_embObjIMU:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_embObjInertials:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_embObjMais:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
