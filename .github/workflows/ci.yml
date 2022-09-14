@@ -405,13 +405,13 @@ jobs:
         cd build
         cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
-    - name: Disable macOS unsupported options
+    - name: Disable homebrew unsupported options
       if: contains(matrix.os, 'macos')
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         # Disable ROBOTOLOGY_USES_PYTHON in macOS
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_PCL_AND_VTK:BOOL=OFF .
 
     - name: Disable options unsupported on Ubuntu 18.04
       if: contains(matrix.os, '18.04')
