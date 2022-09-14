@@ -39,6 +39,6 @@ else
 fi
 
 # PCL and VTK
-apt-get install libpcl-dev
+apt-get install -y libpcl-dev
 
 
