@@ -38,3 +38,7 @@ else
     apt-get install -y libgazebo-dev
 fi
 
+# PCL and VTK
+apt-get install libpcl-dev
+
+
