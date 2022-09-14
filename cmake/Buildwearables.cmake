@@ -30,5 +30,5 @@ if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND wearables_CONDA_DEPENDENCIES python)
   list(APPEND wearables_CONDA_DEPENDENCIES pybind11)
   # https://conda-forge.org/docs/maintainer/knowledge_base.html#pybind11-abi-constraints
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11-abi)
+  list(APPEND wearables_CONDA_DEPENDENCIES pybind11-abi)
 endif()
