@@ -46,6 +46,10 @@ if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
 endif()
 
+if(ROBOTOLOGY_USES_PCL_AND_VTK)
+  list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_USE_PCL:BOOL=ON")
+endif()
+
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
               REPOSITORY dic-iit/bipedal-locomotion-framework.git
@@ -68,7 +72,10 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
 set(bipedal-locomotion-framework_CONDA_DEPENDENCIES eigen)
 list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES nlohmann_json)
 list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES spdlog)
-list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pcl)
+
+if(ROBOTOLOGY_USES_PCL_AND_VTK)
+  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pcl)
+endif()
 
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11)
