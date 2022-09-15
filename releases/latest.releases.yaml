@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.27.0
+    version: v1.28.1
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -94,7 +94,7 @@ repositories:
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.6.0
+    version: v0.6.1
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
@@ -118,7 +118,7 @@ repositories:
   wearables:
     type: git
     url: https://github.com/robotology/wearables.git
-    version: v1.4.0
+    version: v1.5.0
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
@@ -130,7 +130,7 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.26.0
+    version: v1.27.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
@@ -206,7 +206,7 @@ repositories:
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
-    version: v0.0.5
+    version: v0.0.6
   pyqtconsole:
     type: git
     url: https://github.com/pyqtconsole/pyqtconsole.git
