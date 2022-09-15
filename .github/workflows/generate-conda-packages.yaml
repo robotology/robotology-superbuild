@@ -55,7 +55,7 @@ jobs:
               include:
                 - os: ubuntu-20.04
                   conda_platform: linux-64
-                - os: macos-10.15
+                - os: macos-11.0
                   conda_platform: osx-64
                 - os: windows-2019
                   conda_platform: win-64
@@ -180,8 +180,6 @@ jobs:
             rm -rf blockfactory
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml matio-cpp
             rm -rf matio-cpp
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-telemetry
-            rm -rf yarp-telemetry
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robometry
             rm -rf robometry
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
