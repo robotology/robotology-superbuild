@@ -77,7 +77,7 @@ jobs:
         # Compilation related dependencies 
         mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json vtk opencv pkg-config portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr
+        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv pkg-config portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr
         # Python 
         mamba install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
 
@@ -130,13 +130,9 @@ jobs:
         set
         mkdir -p build
         cd build
-        cmake -G"${GHA_CMAKE_GENERATOR}" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_DISABLE_FIND_PACKAGE_VTK:BOOL=ON -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
+        cmake -G"${GHA_CMAKE_GENERATOR}" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
-
-    - name: Setup ssh session
-      if: ${{ failure() }}
-      uses: mxschmitt/action-tmate@v3
 
     - name: Configure Extra [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
