@@ -23,14 +23,6 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
-# gazebo-config.cmake requires C
-if(NOT CMAKE_C_COMPILER_LOADED)
-    enable_language(C)
-endif()
-
-find_package(gazebo QUIET)
-
-
 ycm_ep_helper(GazeboYARPPlugins TYPE GIT
                                 STYLE GITHUB
                                 REPOSITORY robotology/gazebo-yarp-plugins.git
@@ -38,7 +30,6 @@ ycm_ep_helper(GazeboYARPPlugins TYPE GIT
                                 COMPONENT core
                                 FOLDER src
                                 DEPENDS YARP
-                                        gazebo
                                 CMAKE_ARGS -DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=ON)
 
 # Workaround for https://github.com/conda-forge/gazebo-feedstock/issues/107
