@@ -136,7 +136,7 @@ jobs:
 
     - name: Setup ssh session
       if: ${{ failure() }}
-      uses: lhotari/action-upterm@v1
+      uses: mxschmitt/action-tmate@v3
 
     - name: Configure Extra [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
