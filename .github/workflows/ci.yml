@@ -134,12 +134,9 @@ jobs:
         # Disable options not tested on Conda for now
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
 
-    - name: Print CMakeCachet.txt
+    - name: Setup tmate session
       if: ${{ failure() }}
-      shell: bash -l {0}
-      run: |
-        cd build
-        cat CMakeCache.txt
+      uses: mxschmitt/action-tmate@v3
 
     - name: Configure Extra [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
