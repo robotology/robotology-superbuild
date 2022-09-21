@@ -15,3 +15,5 @@ ycm_ep_helper(find-superquadric TYPE GIT
                                         ICUB
                                 COMPONENT grasping
                                 FOLDER src)
+
+set(find-superquadric_CONDA_DEPENDENCIES ipopt vtk)
