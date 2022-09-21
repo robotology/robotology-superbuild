@@ -281,10 +281,4 @@ The `robotology-superbuild` is based on [YCM](https://github.com/robotology/ycm)
 Mantainers
 ==========
 
-| Profile  | Maintainer                     |
-|:--------:|:-----------------------------:|
-| Core, Dynamics, iCub Head, iCub Basic Demos | Silvio Traversaro [@traversaro](https://github.com/traversaro) |
-| Teleoperation | Kourosh Darvish [@kouroshD](https://github.com/kouroshD) |
-| Human Dynamics | Yeshasvi Tirupachuri [@Yeshasvitvs](https://github.com/Yeshasvitvs) |
-| Event-driven | Arren Glover [@arrenglover](https://github.com/arrenglover) |
-| Dynamics full deps | Giulio Romualdi [@GiulioRomualdi](https://github.com/GiulioRomualdi) |
+* Silvio Traversaro [@traversaro](https://github.com/traversaro)

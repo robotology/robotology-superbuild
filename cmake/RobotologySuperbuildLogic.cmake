@@ -90,7 +90,11 @@ endif()
 
 # Grasping
 if(ROBOTOLOGY_ENABLE_GRASPING)
-  find_or_build_package(find-superquadric)
+  if(ROBOTOLOGY_USES_PCL_AND_VTK)
+    find_or_build_package(find-superquadric)
+  else()
+    message(FATAL_ERROR "If ROBOTOLOGY_ENABLE_GRASPING is enabled you must also enable ROBOTOLOGY_USES_PCL_AND_VTK.")
+  endif()
 endif()
 
 # Event-driven
