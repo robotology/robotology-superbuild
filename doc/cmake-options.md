@@ -51,6 +51,7 @@ All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation), [`https://github.com/ami-iit/yarp-openvr-trackers`](https://github.com/ami-iit/yarp-openvr-trackers) and [`https://github.com/ami-iit/yarp-device-openxrheadset`](https://github.com/ami-iit/yarp-device-openxrheadset). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`yarp-devices-forcetorque`](https://github.com/robotology/yarp-devices-forcetorque). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` | The robotology software packages related to event-driven. | [`event-driven`](https://github.com/robotology/event-driven) | `OFF` | [Documentation on event-driven profile.](#event-driven)  |
+| `ROBOTOLOGY_ENABLE_GRASPING` | The robotology software packages related to grasping. | [`find-superquadric`](https://github.com/robotology/find-superquadric) if the `ROBOTOLOGY_USES_PCL_AND_VTK` option is enabled. | `OFF` | [Documentation on grasping profile.](#grasping)  |
 
 If any of the packages required by the selected profiles is already available in the system (i.e. it can be found by the [`find_package` CMake command](https://cmake.org/cmake/help/v3.5/command/find_package.html) ), it will be neither downloaded, nor compiled, nor installed. In `robotology-superbuild`, this check is done by the [`find_or_build_package` YCM command](http://robotology.github.io/ycm/gh-pages/git-master/module/FindOrBuildPackage.html) in the main [`CMakeLists.txt`](https://github.com/robotology/robotology-superbuild/blob/db0f68300439ccced8497db4c321cd63416cf1c0/CMakeLists.txt#L108) of the superbuild.
 
@@ -88,6 +89,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_TELEOPERATION`<sup id="a4">[4!](#f4)</sup>  | ✔️   |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`  | ✔️   |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ❌              |
+| `ROBOTOLOGY_ENABLE_GRASPING`<sup id="a5">[5!](#f5)</sup>  | ✔️   |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_PCL_AND_VTK` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_IGNITION` |  ❌           |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ❌              |
@@ -107,6 +109,8 @@ Not all options are supported on all platforms. The following table provides a r
 <b id="f3">3!</b>:Since 2021.11, `ROBOTOLOGY_USES_PYTHON` does not support building with apt dependencies on Ubuntu 18.04 .
 
 <b id="f4">4!</b>:Since 2022.05, `ROBOTOLOGY_USES_TELEOPERATION` does not support building with apt dependencies on Ubuntu 18.04 and Debian Buster .
+
+<b id="f5">5!</b>:`ROBOTOLOGY_ENABLE_GRASPING` does not support building with apt dependencies on Ubuntu 18.04 .
 
 
 Profile-specific documentation

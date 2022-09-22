@@ -44,15 +44,15 @@ endif()
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necessary for iCub basic demonstrations." FALSE)
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
+option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
+
 include(CMakeDependentOption)
 
 cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
 cmake_dependent_option(ROBOTOLOGY_USES_ESDCAN "Enable compilation of software that runs on the head of the iCub and depends on ESDCAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
 cmake_dependent_option(ROBOTOLOGY_USES_XSENS_MVN_SDK "Enable compilation of software that runs on the wearable producer machine and depends on Xsens MVN SDK." FALSE "ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS" FALSE)
 
-# Mark as advanced all the profiles that do not have a mantainer
-option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
-mark_as_advanced(ROBOTOLOGY_ENABLE_GRASPING)
+
 option(ROBOTOLOGY_ENABLE_IOL "Enable compilation of software necessary for the Interactive Objects Learning demo." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_IOL)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
