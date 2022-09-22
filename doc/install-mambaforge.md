@@ -187,3 +187,8 @@ First of all, open a command prompt and run:
 Then go to "Add or remove programs", search for Mambaforge and uninstall it.
 
 After that, delete the `%HOMEDRIVE%%HOMEPATH%/.conda` directory and the `%HOMEDRIVE%%HOMEPATH%/.condarc` file.
+
+⚠️ On Windows, in case you forgot to follow the previous steps and now your Command Prompt is broken, you can try the following script in PowerShell as described in https://github.com/conda-forge/miniforge/issues/164#issuecomment-1092812732:  
+```
+C:\Windows\System32\reg.exe DELETE "HKCU\Software\Microsoft\Command Processor" /v AutoRun /f`
+```
