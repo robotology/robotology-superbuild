@@ -157,6 +157,7 @@ jobs:
       shell: bash -l {0}
       run: |
         cd build
+        cmake --build . --config ${{ matrix.build_type }} --target bipedal-locomotion-framework
         cmake --build . --config ${{ matrix.build_type }}
 
   docker-build:
@@ -476,6 +477,7 @@ jobs:
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
+        cmake --build . --config Release --target bipedal-locomotion-framework
         cmake --build . --config Release
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
