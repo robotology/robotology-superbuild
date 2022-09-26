@@ -24,16 +24,19 @@ set(bipedal-locomotion-framework_USES_CppAD OFF)
 
 if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   find_or_build_package(manif QUIET)
-  find_or_build_package(qhull QUIET)
   find_or_build_package(casadi QUIET)
   find_or_build_package(CppAD QUIET)
   find_or_build_package(LieGroupControllers QUIET)
 
   list(APPEND bipedal-locomotion-framework_DEPENDS manif)
-  list(APPEND bipedal-locomotion-framework_DEPENDS qhull)
   list(APPEND bipedal-locomotion-framework_DEPENDS casadi)
   list(APPEND bipedal-locomotion-framework_DEPENDS CppAD)
   list(APPEND bipedal-locomotion-framework_DEPENDS LieGroupControllers)
+
+  if (ROBOTOLOGY_BUILD_QHULL)
+    find_or_build_package(qhull QUIET)
+    list(APPEND bipedal-locomotion-framework_DEPENDS qhull)
+  endif()
 endif()
 
 # For what regards Python installation, the options changes depending
@@ -75,6 +78,10 @@ list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES spdlog)
 
 if(ROBOTOLOGY_USES_PCL_AND_VTK)
   list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pcl)
+endif()
+
+if(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS AND NOT ROBOTOLOGY_BUILD_QHULL)
+  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES qhull)
 endif()
 
 if(ROBOTOLOGY_USES_PYTHON)
