@@ -430,7 +430,7 @@ jobs:
         mkdir -p build
         cd build
         # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as it is unsupported on vcpkg
-        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug  ${{ matrix.project_tags_cmake_options }} ..
         cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
     # Workaround for https://github.com/robotology/robotology-superbuild/issues/1139
@@ -455,8 +455,8 @@ jobs:
         # This is necessary only on macOS/homebrew, but on Linux it should be ignored
         Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
 
-    # Just for  release jobs we also compile Windows in Debug, to ensure that Debug libraries are included in the installer
-    - name: Build (Debug) [Windows]
+    # Just for  release jobs we also compile Windows in Release, to ensure that Release libraries are included in the installer
+    - name: Build (Release) [Windows]
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && contains(matrix.os, 'windows')
       shell: bash
       run: |
@@ -464,11 +464,11 @@ jobs:
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
-        cmake --build . --config Debug
+        cmake --build . --config Release
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
 
-    - name: Build (Release) [Windows]
+    - name: Build (Debug) [Windows]
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
@@ -476,7 +476,7 @@ jobs:
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
-        cmake --build . --config Release
+        cmake --build . --config Debug
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
 
