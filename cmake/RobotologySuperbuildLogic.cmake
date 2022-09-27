@@ -8,6 +8,14 @@ else()
   set(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OFF)
 endif()
 
+# We only build qhull on Linux, not on conda, Windows or macOS
+# See https://github.com/robotology/robotology-superbuild/issues/1269#issuecomment-1257811559
+if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OR APPLE OR WIN32)
+  set(ROBOTOLOGY_BUILD_QHULL OFF)
+else()
+  set(ROBOTOLOGY_BUILD_QHULL ON)
+endif()
+
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(YARP)
