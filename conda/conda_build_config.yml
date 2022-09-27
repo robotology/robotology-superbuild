@@ -11,3 +11,11 @@ qt_main:
   
 ipopt:
   - 3.14.8
+
+# Some packages (vtk) to build require a specific version of boost but without
+# any run or run_dependency
+# Workaround for https://github.com/robotology/robotology-superbuild/pull/1277
+boost:
+  - 1.78.0
+boost_cpp:
+  - 1.78.0
