@@ -5,6 +5,8 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2022.09.0] - 2022-09-28
+
 ### Added
 - Added `ROBOTOLOGY_USES_PCL_AND_VTK` and `ROBOTOLOGY_ENABLE_GRASPING` options (https://github.com/robotology/robotology-superbuild/pull/1217, https://github.com/robotology/robotology-superbuild/pull/1255).
 
