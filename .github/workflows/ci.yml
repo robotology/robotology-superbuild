@@ -424,6 +424,8 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
+        # Workaround for https://gitlab.kitware.com/cmake/cmake/-/merge_requests/7721
+        mv C:/robotology/vcpkg/installed/x64-windows/tools/pkgconf/pkgconf.exe C:/robotology/vcpkg/installed/x64-windows/tools/pkgconf/pkgconfback.exe
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         # Make sure that Gazebo packages can be found by CMake
         source /c/robotology/scripts/setup-deps.sh
@@ -461,9 +463,7 @@ jobs:
       shell: bash
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
-        cd build
-        # Workaround for https://gitlab.kitware.com/cmake/cmake/-/merge_requests/7721
-        cmake -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Release .
+        cd build    
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
         cmake --build . --config Release
@@ -476,8 +476,6 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR} 
         cd build
-        # Workaround for https://gitlab.kitware.com/cmake/cmake/-/merge_requests/7721
-        cmake -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_BUILD_TYPE=Debug .
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
         cmake --build . --config Debug
