@@ -133,6 +133,12 @@ macro(generate_metametadata_file)
     foreach(_cmake_dep IN LISTS _YH_${_cmake_pkg}_DEPENDS)
       list(APPEND ${_cmake_pkg}_CONDA_DEPENDENCIES ${${_cmake_dep}_CONDA_PKG_NAME})
     endforeach()
+    
+    # If vtk is in the dependencies, we also need boost-cpp
+    # See https://github.com/robotology/robotology-superbuild/issues/1276
+    if("vtk" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+      list(APPEND ${_cmake_pkg}_CONDA_DEPENDENCIES "boost-cpp")
+    endif()
 
     # Compute conda github repository
     # We remove the trailing .git (if present)
@@ -208,7 +214,8 @@ macro(generate_metametadata_file)
          "freeglut" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "glew" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "irrlicht" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
-         "idyntree" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+         "idyntree" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
+         "vtk" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
         string(APPEND metametadata_file_contents "    require_opengl_linux: true\n")
       endif()
     endif()
