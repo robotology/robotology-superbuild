@@ -19,7 +19,7 @@ option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Pyt
 
 ## Enable packages that depend on the Gazebo Classic simulator
 option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ON)
-option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" ON)
+option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" OFF)
 
 ## Enable packages that depend on the Ignition Gazebo simulator
 set(ROBOTOLOGY_USES_IGNITION_DEFAULT FALSE)
