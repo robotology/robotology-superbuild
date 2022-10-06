@@ -75,7 +75,7 @@ All the software packages are installed using the `install` directory of the bui
 ### System Dependencies
 To install the system dependencies, it is possible to use [Homebrew](http://brew.sh/):
 ```
-brew install ace assimp bash-completion boost cmake eigen graphviz gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml libmatio irrlicht spdlog qhull
+brew install ace assimp bash-completion boost cmake eigen graphviz gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml libmatio irrlicht spdlog qhull ffmpeg
 ```
 
 Since Qt5 is not symlinked in `/usr/local` by default in the homebrew formula, `Qt5_DIR` needs to be properly set to make sure that CMake-based projects are able to find Qt5.
