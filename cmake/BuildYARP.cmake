@@ -117,6 +117,10 @@ ycm_ep_helper(YARP TYPE GIT
                               -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
                               -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA}
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
+                              # ffmpeg
+                              -DENABLE_yarppm_image_compression_ffmpeg:BOOL=ON
+                              -DENABLE_yarpmod_ffmpeg_grabber:BOOL=ON
+                              -DENABLE_yarpmod_ffmpeg_writer:BOOL=ON
                               ${YARP_OPTIONAL_CMAKE_ARGS})
 
 set(YARP_CONDA_PKG_NAME yarp-cxx)
