@@ -5,6 +5,12 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2022.02.2] - 2022-10-10
+
+### Fixed
+
+- Fix compatibility with external YCM greater then 0.14.0 by bumping icub-main version to 1.24.1 (https://github.com/robotology/robotology-superbuild/pull/1283) .
+
 ## [2022.02.1] - 2022-04-01
 
 ### Fixed
