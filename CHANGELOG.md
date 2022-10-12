@@ -5,6 +5,10 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+## [2022.09.1] - 2022-10-12
+
+- Bumped `robots-configuration` to v1.27.1 .
+
 ## [2022.09.0] - 2022-09-28
 
 ### Added
