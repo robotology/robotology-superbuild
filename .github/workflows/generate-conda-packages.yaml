@@ -43,7 +43,7 @@ jobs:
           run: |
             # Get CONDA_BUILD_NUMBER via grep and set it to an environment variable
             export CONDA_BUILD_NUMBER=`grep "CONDA_BUILD_NUMBER" ./conda/cmake/CondaGenerationOptions.cmake | grep -oe '\([0-9.]*\)'`
-            echo "::set-output name=conda_build_number::${CONDA_BUILD_NUMBER}"
+            echo "conda_build_number=${CONDA_BUILD_NUMBER}" >> $GITHUB_OUTPUT
 
     generate-conda-packages:
         name: "Generate conda packages @${{ matrix.os }}"
