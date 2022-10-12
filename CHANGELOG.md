@@ -5,7 +5,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
-## [2022.02.2] - 2022-10-10
+## [2022.02.2] - 2022-10-12
 
 ### Fixed
 
