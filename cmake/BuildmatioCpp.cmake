@@ -11,4 +11,5 @@ ycm_ep_helper(matioCpp TYPE GIT
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF)
 
-set(matioCpp_CONDA_DEPENDENCIES libmatio eigen)
+set(matioCpp_CONDA_PKG_NAME libmatio-cpp)
+set(matioCpp_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

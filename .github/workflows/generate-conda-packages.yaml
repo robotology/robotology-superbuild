@@ -178,10 +178,6 @@ jobs:
             rm -rf idyntree-matlab-bindings
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
             rm -rf blockfactory
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml matio-cpp
-            rm -rf matio-cpp
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robometry
-            rm -rf robometry
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
             rm -rf icub-contrib-common
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
@@ -191,17 +187,10 @@ jobs:
             # icub-main needs robotology channel as it also depends on esdcan, and local to avoid that robotology packages are used instead of local built one
             conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
             rm -rf icub-main
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml lie-group-controllers
-            rm -rf lie-group-controllers
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
             rm -rf yarp-matlab-bindings
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wb-toolbox
             rm -rf wb-toolbox
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml unicycle-footstep-planner
-            rm -rf unicycle-footstep-planner
-            # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge bipedal-locomotion-framework
-            rm -rf bipedal-locomotion-framework
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
             rm -rf wearables
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
