@@ -55,7 +55,7 @@ endif()
 
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
-              REPOSITORY dic-iit/bipedal-locomotion-framework.git
+              REPOSITORY ami-iit/bipedal-locomotion-framework.git
               TAG master
               COMPONENT dynamics
               FOLDER src
@@ -72,24 +72,5 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
 
-set(bipedal-locomotion-framework_CONDA_DEPENDENCIES eigen)
-list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES nlohmann_json)
-list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES spdlog)
-
-if(ROBOTOLOGY_USES_PCL_AND_VTK)
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pcl)
-endif()
-
-if(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS AND NOT ROBOTOLOGY_BUILD_QHULL)
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES qhull)
-endif()
-
-if(ROBOTOLOGY_USES_PYTHON)
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11)
-  # https://conda-forge.org/docs/maintainer/knowledge_base.html#pybind11-abi-constraints
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES pybind11-abi)
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES python)
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES numpy)
-  list(APPEND bipedal-locomotion-framework_CONDA_DEPENDENCIES manifpy)
-  list(APPEND bipedal-locomotion-framework_CONDA_RUN_DEPENDENCIES_EXPLICIT manifpy)
-endif()
+set(bipedal-locomotion-framework_CONDA_PKG_NAME bipedal-locomotion-framework)
+set(bipedal-locomotion-framework_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

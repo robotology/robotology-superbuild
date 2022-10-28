@@ -14,5 +14,6 @@ ycm_ep_helper(UnicyclePlanner TYPE GIT
               COMPONENT dynamics
               FOLDER src
               DEPENDS iDynTree)
-              
-set(UnicyclePlanner_CONDA_DEPENDENCIES eigen)
+
+set(UnicyclePlanner_CONDA_PKG_NAME libunicycle-footstep-planner)
+set(UnicyclePlanner_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

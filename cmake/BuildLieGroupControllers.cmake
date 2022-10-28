@@ -8,10 +8,11 @@ find_or_build_package(manif QUIET)
 
 ycm_ep_helper(LieGroupControllers TYPE GIT
               STYLE GITHUB
-              REPOSITORY dic-iit/lie-group-controllers.git
+              REPOSITORY ami-iit/lie-group-controllers.git
               TAG master
               COMPONENT dynamics
               FOLDER src
               DEPENDS manif)
-              
-set(LieGroupControllers_CONDA_DEPENDENCIES eigen)
+
+set(LieGroupControllers_CONDA_PKG_NAME lie-group-controllers)
+set(LieGroupControllers_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
