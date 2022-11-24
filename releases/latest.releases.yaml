@@ -10,7 +10,7 @@ repositories:
   manif:
     type: git
     url: https://github.com/robotology-dependencies/manif.git
-    version: 0.0.4.100
+    version: 0.0.4.101
   qhull:
     type: git
     url: https://github.com/qhull/qhull.git
