@@ -53,6 +53,11 @@ if(ROBOTOLOGY_USES_PCL_AND_VTK)
   list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_USE_PCL:BOOL=ON")
 endif()
 
+# Workaround for part of https://github.com/robotology/robotology-superbuild/issues/1307
+if(APPLE OR WIN32)
+  list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DENABLE_YarpRobotLoggerDevice:BOOL=OFF")
+endif()
+
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/bipedal-locomotion-framework.git
