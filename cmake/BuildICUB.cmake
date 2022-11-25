@@ -16,8 +16,9 @@ if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   list(APPEND ICUB_DEPENDS icub_firmware_shared)
 endif()
 
-  # See discussion in https://github.com/robotology/icub-main/issues/551
-if (APPLE)
+# See discussion in https://github.com/robotology/icub-main/issues/551
+# Workaround for https://github.com/robotology/icub-main/issues/842
+if (APPLE OR (ROBOTOLOGY_PROJECT_TAGS STREQUAL "Unstable"))
   set(ICUBMAIN_COMPILE_SIMULATORS OFF)
 else()
   set(ICUBMAIN_COMPILE_SIMULATORS ON)
