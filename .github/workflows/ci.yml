@@ -138,11 +138,10 @@ jobs:
       run: cmake -S . -B build/ -DROBOTOLOGY_USES_IGNITION:BOOL=ON
 
     # Workaround for https://github.com/robotology/robotology-superbuild/issues/1139
-    # Workaround for https://github.com/robotology/robotology-superbuild/issues/1303
     - name: Configure Unstable [Conda]
       if: contains(matrix.project_tags, 'Unstable')
       shell: bash -l {0}
-      run: cmake -S . -B build/ -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=OFF
+      run: cmake -S . -B build/ -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF
 
     # For some reason, the Strawberry perl's pkg-config is found
     # instead of the conda's one, so let's delete the /c/Strawberry directory
@@ -243,12 +242,11 @@ jobs:
        cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
     # Workaround for https://github.com/robotology/robotology-superbuild/issues/1139
-    # Workaround for https://github.com/robotology/robotology-superbuild/issues/1303
     - name: Configure Unstable [Docker]
       if: contains(matrix.project_tags, 'Unstable')
       run: |
         cd build
-        cmake -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=OFF .
+        cmake -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |
@@ -436,14 +434,13 @@ jobs:
         cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
     # Workaround for https://github.com/robotology/robotology-superbuild/issues/1139
-    # Workaround for https://github.com/robotology/robotology-superbuild/issues/1303
     - name: Configure Unstable
       if: contains(matrix.project_tags, 'Unstable')
       shell: bash
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
-        cmake -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF -DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=OFF .
+        cmake -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF .
 
     - name: Build  [Ubuntu&macOS]
       if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
