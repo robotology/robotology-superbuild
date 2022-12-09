@@ -102,6 +102,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
+            mamba update -n base mamba
             mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
 
         - name: Print used environment
