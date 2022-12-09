@@ -65,10 +65,8 @@ jobs:
 
         - uses: conda-incubator/setup-miniconda@v2
           with:
-            mamba-version: "*"
-            channels: conda-forge
-            channel-priority: true
-            python-version: "3.8"
+            miniforge-variant: Mambaforge
+            miniforge-version: latest
 
         - name: Install files to enable compilation of mex files [Conda/Linux]
           if: contains(matrix.os, 'ubuntu')
@@ -98,11 +96,9 @@ jobs:
             echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
             echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
 
-        # Python 3.8 is required by https://github.com/Anaconda-Platform/anaconda-client/pull/551
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba update -n base mamba
             mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
 
         - name: Print used environment
