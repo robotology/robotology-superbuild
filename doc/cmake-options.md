@@ -62,7 +62,7 @@ The dependencies CMake options specify if the packages dependending on something
 
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
-| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](http://gazebosim.org/).  | `ON` on Linux and macOS  | [Documentation on Gazebo Classic dependency.](#gazebo) |
+| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](http://gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo) |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`  | Include software and plugins that depend on the [PCL](https://pointclouds.org/) or [VTK](https://vtk.org/). | `OFF`   | [Documentation on PCL and VTK dependency.](#pcl_and_vtk) |
 | `ROBOTOLOGY_USES_IGNITION` | Include software that depends on [Ignition](ignitionrobotics.org/). | `OFF` | [Documentation on Ignition Gazebo dependency.](#ignition) |
 | `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) |
