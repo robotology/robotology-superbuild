@@ -363,7 +363,14 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cmake --version
-        # Update homebrew 
+        # Workaround for https://github.com/robotology/robotology-superbuild/issues/1321
+        # See https://github.com/actions/setup-python/issues/577#issuecomment-1365231810
+        rm /usr/local/bin/2to3 || true
+        rm /usr/local/bin/idle3 || true
+        rm /usr/local/bin/pydoc3 || true
+        rm /usr/local/bin/python3 || true
+        rm /usr/local/bin/python3-config || true
+        # Update homebrew
         brew update
         brew upgrade
         brew install --cask xquartz
