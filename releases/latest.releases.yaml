@@ -166,7 +166,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.11.0
+    version: v0.11.1
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
