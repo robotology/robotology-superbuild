@@ -374,6 +374,7 @@ jobs:
         rm /usr/local/bin/python3 || true
         rm /usr/local/bin/python3.11 || true
         rm /usr/local/bin/python3-config || true
+        rm /usr/local/bin/python3.11-config || true
         # Update homebrew
         brew update
         brew upgrade
