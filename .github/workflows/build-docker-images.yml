@@ -1,5 +1,5 @@
 name: Webhook trigger for code repository
-# This action will send a payload to the icub-tech-iit/code github repository in order to build the correct
+# This action will send a payload to the icub-tech-iit/docker-deployment-images github repository in order to build the correct
 # tagged image for superbuild
 
 on:
@@ -18,8 +18,8 @@ jobs:
           id: get_workflow_token
           uses: tibdex/github-app-token@v1
           with:
-            private_key: ${{ secrets.ICUB_TECH_CODE_KEY }}
-            app_id: ${{ secrets.ICUB_TECH_CODE_ID }}
+            private_key: ${{ secrets.ICUB_TECH_IIT_APP_KEY }}
+            app_id: ${{ secrets.ICUB_TECH_IIT_APP_ID }}
             repository: icub-tech-iit/code
 
         - name: Repository Dispatch
@@ -28,6 +28,6 @@ jobs:
             GITHUB_APPS_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
           with:
             token: ${{ env.GITHUB_APPS_TOKEN }}
-            repository: icub-tech-iit/code
+            repository: icub-tech-iit/docker-deployment-images
             event-type: release_trigger
             client-payload: '{"version": "${{ steps.get_version.outputs.VERSION }}"}'
