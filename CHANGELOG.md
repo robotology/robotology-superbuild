@@ -5,6 +5,8 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ## [Unreleased]
 
+- Added `ergocub-software` to the core profile.
+
 ## [2022.09.1] - 2022-10-12
 
 - Bumped `robots-configuration` to v1.27.1 .
@@ -49,8 +51,8 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 
 ### Added
 - Added dependency on `graphviz` to compile `yarpviz` YARP tool (https://github.com/robotology/robotology-superbuild/pull/988).
-- Added generation of `robotology-distro` and `robotology-distro-all` conda metapackages on releases (https://github.com/robotology/robotology-superbuild/pull/1030). 
- 
+- Added generation of `robotology-distro` and `robotology-distro-all` conda metapackages on releases (https://github.com/robotology/robotology-superbuild/pull/1030).
+
 ### Changed
 - On Windows the option `ROBOTOLOGY_USES_ESDCAN` is now enabled when generating conda packages (https://github.com/robotology/robotology-superbuild/pull/935).
 - For the YARP package, the compilation of the `usbCamera` device on Linux is enabled even if `ROBOTOLOGY_ENABLE_ICUB_HEAD` is `OFF` (https://github.com/robotology/robotology-superbuild/pull/989).
@@ -80,7 +82,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 - `pybind11` has been added as dependency for the `ROBOTOLOGY_USES_PYTHON` option (https://github.com/robotology/robotology-superbuild/pull/800), to enable compilation of Python bindings of `manif` and `bipedal-locomotion-framework`.
 - `ycm-cmake-modules`, `osqp-eigen`, `robot-testing-framework` and `idyntree` conda packages are now part of the `conda-forge` channel. The new `idyntree-matlab-bindings` package is now contained in the `robotology` channel (https://github.com/robotology/robotology-superbuild/pull/807, https://github.com/robotology/robotology-superbuild/pull/817).
 - The `idyntree-yarp-tools` was added to the Dynamics component of the superbuild (https://github.com/robotology/robotology-superbuild/pull/818).
-- An `apt.txt` file and a `scripts/install_apt_dependencies.sh` script have been added to the superbuild to report the required apt packages in a machine readable form. People that mantain either Docker recipes or documentation on how to instal the robotology-superbuild are suggest to switch to use these files instead of hardcoding the dependencies manually (https://github.com/robotology/robotology-superbuild/pull/825). 
+- An `apt.txt` file and a `scripts/install_apt_dependencies.sh` script have been added to the superbuild to report the required apt packages in a machine readable form. People that mantain either Docker recipes or documentation on how to instal the robotology-superbuild are suggest to switch to use these files instead of hardcoding the dependencies manually (https://github.com/robotology/robotology-superbuild/pull/825).
 
 ### Deprecated
 - This release is the last one with Gazebo 9/10 support. From the next release, Gazebo 11 will be required (https://github.com/robotology/community/discussions/534).
@@ -100,7 +102,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 - Add `casadi-matlab-bindings` package containing the MATLAB bindings for CasADi. The package is enabled if ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS is ON and ROBOTOLOGY_USES_MATLAB is ON (https://github.com/robotology/robotology-superbuild/pull/747).
 - Add `matlab-whole-body-simulator` package (https://github.com/robotology/robotology-superbuild/pull/689).
 - Add `osqp-matlab` package (https://github.com/robotology/robotology-superbuild/pull/585).
-- Add `gym-ignition` package and the relative `ROBOTOLOGY_USES_IGNITION` option (https://github.com/robotology/robotology-superbuild/pull/685). 
+- Add `gym-ignition` package and the relative `ROBOTOLOGY_USES_IGNITION` option (https://github.com/robotology/robotology-superbuild/pull/685).
 
 ### Removed
 - The `icub-gazebo` project was removed from the superbuild (https://github.com/robotology/robotology-superbuild/pull/646).
@@ -113,7 +115,7 @@ The format of this document is based on [Keep a Changelog](https://keepachangelo
 - iDynTree is now compiled with the `IDYNTREE_USES_IRRLICHT` option. As a consequence, [`irrlicht`](http://irrlicht.sourceforge.net/) has been added as a dependency on all supported platforms (https://github.com/robotology/robotology-superbuild/pull/618).
 - The `GAZEBO_YARP_PLUGINS_HAS_OPENCV` CMake option of `gazebo-yarp-plugins` is now set to `ON` (https://github.com/robotology/robotology-superbuild/pull/619).
 
-### Deprecated 
+### Deprecated
 - The `icub-gazebo` repository has been deprecated and will be removed in 2021.05 release.
 
 ### Removed

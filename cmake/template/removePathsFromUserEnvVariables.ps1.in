@@ -36,6 +36,7 @@ Remove-ValueFromUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\bin"
 # Cleanup YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
 Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\yarp";
 Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\iCub";
+Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\ergoCub";
 Remove-ValueFromUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\ICUBcontrib";
 
 # Cleanup CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
@@ -49,6 +50,7 @@ Remove-ValueFromUserEnvVariable ROS_PACKAGE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_
 Remove-ValueFromUserEnvVariable AMENT_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\gazebo\models"
 Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\iCub\robots"
+Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\ergoCub\robots"
 Remove-ValueFromUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share"
 
 # Cleanup XDG_DATA_DIRS

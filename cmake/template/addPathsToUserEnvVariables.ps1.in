@@ -33,6 +33,7 @@ Add-ValueToUserEnvVariable PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\bin";
 # YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
 Add-ValueToUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\yarp";
 Add-ValueToUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\iCub";
+Add-ValueToUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\ergoCub";
 Add-ValueToUserEnvVariable YARP_DATA_DIRS $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\ICUBcontrib";
 
 # Extend CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
@@ -46,6 +47,7 @@ Add-ValueToUserEnvVariable ROS_PACKAGE_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFI
 Add-ValueToUserEnvVariable AMENT_PREFIX_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
 Add-ValueToUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\gazebo\models"
 Add-ValueToUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\iCub\robots"
+Add-ValueToUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share\ergoCub\robots"
 Add-ValueToUserEnvVariable GAZEBO_MODEL_PATH $ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"\share"
 
 # Bash completion
