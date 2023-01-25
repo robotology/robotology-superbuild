@@ -10,7 +10,7 @@ that are needed by the software installed by the robotology-superbuild are docum
 
 ## Generic configuration
 
-In the rest of the document, we assume that the environment variable `ROBOTOLOGY_SUPERBUILD_SOURCE_DIR` points to the  
+In the rest of the document, we assume that the environment variable `ROBOTOLOGY_SUPERBUILD_SOURCE_DIR` points to the
 directory where you cloned the robotology-superbuild repository, and `ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX`to the directory
 where you have installed the robotology-superbuild.
 
@@ -21,6 +21,7 @@ For what regards the [`YARP_DATA_DIRS`](http://www.yarp.it/yarp_data_dirs.html) 
 
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\share\yarp`
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\share\iCub`
+* `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\share\ergoCub`
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX\share\ICUBcontrib`
 
 For what regards the [`CMAKE_PREFIX_PATH` environment variable](https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html), you need to append `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX` to it.
@@ -65,7 +66,7 @@ The following enviroment variables need to be appended with robotology-superbuil
 # This is /usr/local/share/gazebo/setup.sh if Gazebo was installed in macOS using homebrew
 source /usr/share/gazebo/setup.sh
 export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
-export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/iCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share
+export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/iCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/ergoCub/robots
 export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
 ~~~
 
