@@ -98,7 +98,7 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA})
 
 # Options related to generation of conda binary packages
-set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt libode qt-main sdl)
+set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt=3.14.10 libode qt-main sdl)
 if(NOT (APPLE OR WIN32))
   list(APPEND ICUB_CONDA_DEPENDENCIES libdc1394)
 endif()
