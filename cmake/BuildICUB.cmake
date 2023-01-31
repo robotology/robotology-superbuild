@@ -98,7 +98,12 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA})
 
 # Options related to generation of conda binary packages
+# ipopt pinning to 3.14.10 and explicit run dependency are workarounds,
+# see https://github.com/robotology/robotology-superbuild/pull/1333
+# for more info
 set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt=3.14.10 libode qt-main sdl)
+set(ICUB_CONDA_RUN_DEPENDENCIES_EXPLICIT ipopt=3.14.10)
+
 if(NOT (APPLE OR WIN32))
   list(APPEND ICUB_CONDA_DEPENDENCIES libdc1394)
 endif()
