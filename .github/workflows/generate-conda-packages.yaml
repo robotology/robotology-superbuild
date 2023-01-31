@@ -161,9 +161,6 @@ jobs:
             cat */meta.yaml
             cat */bld.bat
             cat */build.sh
-            # Workaround for https://github.com/robotology/robotology-superbuild/pull/1333
-            rm -rf icub-basic-demos
-            rm -rf find-superquadric
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
             # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
