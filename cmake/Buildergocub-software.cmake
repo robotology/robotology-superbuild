@@ -13,6 +13,3 @@ ycm_ep_helper(ergocub-software
               COMPONENT core
               FOLDER src
               CMAKE_ARGS ${ergocub-software_OPTIONAL_CMAKE_ARGS})
-
-set(ergocub-software_CONDA_PKG_NAME ergocub-software)
-set(ergocub-software_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

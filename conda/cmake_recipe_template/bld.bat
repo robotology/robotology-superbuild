@@ -6,7 +6,6 @@ mkdir build
 cd build
 
 :: Hardcoding Visual Studio 2019 as GitHub Actions does not have VS2019
-:: -DBUILD_SHARED_LIBS=ON for now disabled as a workaround for https://github.com/robotology/icub-main/issues/717 
 cmake ^
     -G"Visual Studio 16 2019" ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^

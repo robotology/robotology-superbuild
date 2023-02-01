@@ -65,10 +65,8 @@ jobs:
 
         - uses: conda-incubator/setup-miniconda@v2
           with:
-            mamba-version: "*"
-            channels: conda-forge
-            channel-priority: true
-            python-version: "3.8"
+            miniforge-variant: Mambaforge
+            miniforge-version: latest
 
         - name: Install files to enable compilation of mex files [Conda/Linux]
           if: contains(matrix.os, 'ubuntu')
@@ -98,11 +96,10 @@ jobs:
             echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
             echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
 
-        # Python 3.8 is required by https://github.com/Anaconda-Platform/anaconda-client/pull/551
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller liblief=0.11.5
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
 
         - name: Print used environment
           shell: bash -l {0}
@@ -170,6 +167,20 @@ jobs:
             # see https://github.com/mamba-org/boa/issues/117
             # We also manually delete the recipe directory to avoid that it is built again,
             # specifically because we can't use --skip-existing as these packages are part of the robotology channel
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
+            rm -rf icub-contrib-common
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
+            rm -rf icub-firmware-shared
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
+            rm -rf robots-configuration
+            # icub-main needs robotology channel as it also depends on esdcan, and local to avoid that robotology packages are used instead of local built one
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
+            rm -rf icub-main
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
+            rm -rf wearables
+            # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge human-dynamics-estimation
+            rm -rf human-dynamics-estimation
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-log-visualizer
             rm -rf robot-log-visualizer
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml gazebo-yarp-plugins
@@ -178,26 +189,12 @@ jobs:
             rm -rf idyntree-matlab-bindings
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
             rm -rf blockfactory
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
-            rm -rf icub-contrib-common
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
-            rm -rf icub-firmware-shared
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
-            rm -rf robots-configuration
-            # icub-main needs robotology channel as it also depends on esdcan, and local to avoid that robotology packages are used instead of local built one
-            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
-            rm -rf icub-main
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
             rm -rf yarp-matlab-bindings
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wb-toolbox
             rm -rf wb-toolbox
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
-            rm -rf wearables
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
             rm -rf blocktest
-            # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge human-dynamics-estimation
-            rm -rf human-dynamics-estimation
             conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
         - name: Build conda metapackages (if necessary)
