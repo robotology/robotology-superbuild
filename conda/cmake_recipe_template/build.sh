@@ -4,12 +4,6 @@
 cd {{ source_subdir }}
 {% endif %}
 
-{# Workaround for https://github.com/robotology/robotology-superbuild/issues/966 #}
-{% if name == "gazebo-yarp-plugins" %}
-export CC=$BUILD_PREFIX/bin/clang
-export CXX=$BUILD_PREFIX/bin/clang++
-{% endif %}
-
 mkdir build
 cd build
 
