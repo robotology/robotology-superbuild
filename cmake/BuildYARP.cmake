@@ -97,6 +97,10 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_portaudioRecorder:BOOL=ON
                               -DENABLE_yarpmod_opencv_grabber:BOOL=ON
                               # Enable all "fake" devices in YARP, as they are quite useful for tutorials
+                              -DYARP_COMPILE_ALL_FAKE_DEVICES:BOOL=ON
+                              # Before YARP 3.8 all the individual options have been removed and substituted with
+                              # the single YARP_COMPILE_ALL_FAKE_DEVICES option, remove them once YARP 3.8 is on 
+                              # stable branches
                               -DENABLE_yarpmod_fakeAnalogSensor:BOOL=ON
                               -DENABLE_yarpmod_fakeBattery:BOOL=ON
                               -DENABLE_yarpmod_fakeDepthCamera:BOOL=ON
