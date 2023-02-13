@@ -110,7 +110,7 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: v0.9.0
+    version: v0.9.1
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
