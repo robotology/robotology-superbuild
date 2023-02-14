@@ -158,24 +158,15 @@ If for any reason you do not want to use the provided `setup.sh` script and you 
 Please refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instruction on how to compile the superbuild from source using the conda-forge provided dependencies, in particular the [`Source Installation`](doc/conda-forge.md#source-installation) section.
 
 ## Windows Subsystem for Linux from source
+
 The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl) (wsl)  lets developers run a GNU/Linux environment -- including most command-line tools, utilities, and applications -- directly on Windows, unmodified.
 
-As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the robotology-superbuild on Linux, with dependencies provided either by apt or by conda. As the WSL enviroment is nevertheless different, there are a few things you need to care before using the robotology-superbuild on WSL, that are listed in the following, depending on whetever you are using WSL2 or WSL1.
+As all the software running on Linux distributions can run unmodified on Windows via WSL, to install the robotology-superbuild in WSL you can just install a Debian-based distribution for WSL, and then follow the instructions on how to install the robotology-superbuild on Linux, with dependencies provided either by apt or by conda. As the WSL enviroment is nevertheless different, there are a few things you need to care before using the robotology-superbuild on WSL.
 
-### WSL2
+Note that in the following we assume that you have configure your WSL to run graphical applications, as documented in https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps .
 
-#### Run graphical applications on WSL2
-The Linux instance in WSL2 are running as part of a lightweight virtual machine, so effectively the IP address of the WSL2 instance will be different from the IP address
-of the Windows host, and the Windows host can communicate with the WSL2 instance thanks to a virtual IP network. For this reason, to run graphical applications on WSL2, you
-first need to install an X Server for Windows. Furthermore, you will need to configure your application to connect to the X Server that is running on the Windows host, you can do
-so by adding the following lines in the `~/.bashrc` file of the WSL2 instance:
-~~~
-export WINDOWS_HOST=$(grep nameserver /etc/resolv.conf | awk '{print $2}')
-export DISPLAY=${WINDOWS_HOST}:0.0
-~~~
-As unfortunately the IP addresses of the virtual IP network change at every reboot, it is also necessary to configure the X Server that you use to accept connection for arbitrary IP addresses. Check  [`doc/wsl2-xserver-configuration.md`](doc/wsl2-xserver-configuration.md) for instructions on how to do so on several X Servers.
+### Sanitize PATH enviroment variable for WSL
 
-#### Sanitize PATH enviroment variable for WSL2
 By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
 as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
 To avoid that, you can create in your WSL2 instance the `/etc/wsl.conf` file, and then populate it with the following content:
@@ -185,27 +176,14 @@ appendWindowsPath = false
 ~~~
 Note that you will need to restart your machine to make sure that this setting is taked into account.
 
-#### Connect to a YARP server on a Windows host on WSL2
-If you want your YARP applications on WSL2 to connect to a `yarpserver` that you launched on the Windows host, you need to add the following line to your WSL's `~/.bashrc`:
+### Connect to a YARP server on a Windows host on WSL
+
+If you want your YARP applications on WSL to connect to a `yarpserver` that you launched on the Windows host, you need to add the following line to your WSL's `~/.bashrc`:
 ~~~
+export WINDOWS_HOST=$(grep nameserver /etc/resolv.conf | awk '{print $2}')
 yarp conf ${WINDOWS_HOST} 10000 > /dev/null 2>&1
 ~~~
-where `WINDOWS_HOST` needs to be defined as in "Run graphical applications on WSL2" section.
 
-
-### WSL1
-With respect to WSL2, WSL1 uses the same IP address used by the Windows machine, so the amount of configuration and tweaks required are less.
-
-#### Run graphical applications on WSL1
-To run graphical applications on WSL, you need to install a X Server for Windows, that will be able to visualize the windows WSL-based applications, see https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/ for more info. For information of X Servers that can be installed on Windows, follow the docs in https://github.com/sirredbeard/Awesome-WSL#10-gui-apps .
-
-#### Sanitize enviroment variables for WSL1
-By default, the `PATH` enviroment variable in WSL will contain the path of the host Windows system, see https://github.com/microsoft/WSL/issues/1640 and https://github.com/microsoft/WSL/issues/1493. This can create problems,
-as the CMake in WSL may find (incompatible) Windows CMake packages and try to use them, creating errors due to the compilation.
-To avoid that, you can add the following line in the WSL `.bashrc` that filters all the Windows paths from the WSL's enviromental variables:
-~~~
-for var in $(env | awk {'FS="="} /\/mnt\//{print $1}'); do export ${var}=\"$(echo ${!var} | awk -v RS=: -v ORS=: '/\/mnt\// {next} {print $1}')\" ; done
-~~~
 
 ## Update
 If you are using the `robotology-superbuild` in its default branch and not from a release tag (i.e. in **rolling update** mode), to update the superbuild you need to first update the 
