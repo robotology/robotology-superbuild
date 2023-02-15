@@ -19,7 +19,7 @@ if(APPLE)
   list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DYARP_USE_SYSTEM_SQLite:BOOL=OFF")
 endif()
 
-if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA)
+if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA OR ROBOTOLOGY_USES_CSHARP)
   set(YARP_COMPILE_BINDINGS ON)
 else()
   set(YARP_COMPILE_BINDINGS OFF)
@@ -119,6 +119,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_USE_SDL:BOOL=ON
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                               -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
+                              -DCREATE_CSHARP:BOOL=${ROBOTOLOGY_USES_CSHARP}
                               -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA}
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
                               ${YARP_OPTIONAL_CMAKE_ARGS})

@@ -16,6 +16,8 @@ option(ROBOTOLOGY_USES_OCTAVE "Enable compilation of software that depend on Oct
 option(ROBOTOLOGY_USES_LUA "Enable compilation of software that depend on Lua" FALSE)
 mark_as_advanced(ROBOTOLOGY_USES_LUA)
 option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Python" FALSE)
+option(ROBOTOLOGY_USES_CSHARP "Enable compilation of software that depends on CSharp" FALSE)
+mark_as_advanced(ROBOTOLOGY_USES_CSHARP)
 
 ## Enable packages that depend on the Gazebo Classic simulator
 option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ON)
