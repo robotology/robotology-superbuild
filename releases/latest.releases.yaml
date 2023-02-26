@@ -94,7 +94,7 @@ repositories:
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
-    version: v0.5.0
+    version: v0.5.3
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
@@ -114,7 +114,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.3.2
+    version: v1.3.3
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
@@ -182,7 +182,7 @@ repositories:
   matioCpp:
     type: git
     url: https://github.com/ami-iit/matio-cpp.git
-    version: v0.2.1
+    version: v0.2.2
   diagnosticdaemon:
     type: git
     url: https://github.com/robotology/diagnostic-daemon.git
@@ -210,7 +210,7 @@ repositories:
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
-    version: v0.0.6
+    version: v0.0.7
   pyqtconsole:
     type: git
     url: https://github.com/pyqtconsole/pyqtconsole.git
@@ -234,7 +234,7 @@ repositories:
   yarp-device-openxrheadset:
     type: git
     url: https://github.com/ami-iit/yarp-device-openxrheadset.git
-    version: v0.0.1
+    version: v0.0.2
   yarp-openvr-trackers:
     type: git
     url: https://github.com/ami-iit/yarp-openvr-trackers.git
