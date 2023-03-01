@@ -377,7 +377,7 @@ jobs:
         rm /usr/local/bin/python3.11-config || true
         # Workaround for https://github.com/robotology/robotology-superbuild/issues/1353
         rm /usr/local/lib/libtcl8.6.dylib || true
-        rm /use/local/lib/libtk8.6.dylib ||  true
+        rm /usr/local/lib/libtk8.6.dylib ||  true
         # Update homebrew
         brew update
         brew upgrade
