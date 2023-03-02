@@ -8,12 +8,25 @@ else()
   set(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OFF)
 endif()
 
-# We only build qhull on Linux, not on conda, Windows or macOS
+
+# We only build qhull on Ubuntu 20.04, not on any other platform
 # See https://github.com/robotology/robotology-superbuild/issues/1269#issuecomment-1257811559
+# See https://stackoverflow.com/questions/26919334/detect-underlying-platform-flavour-in-cmake
 if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OR APPLE OR WIN32)
   set(ROBOTOLOGY_BUILD_QHULL OFF)
 else()
-  set(ROBOTOLOGY_BUILD_QHULL ON)
+  find_program(ROBSUB_LSB_RELEASE lsb_release)
+  if(ROBSUB_LSB_RELEASE)
+    execute_process(COMMAND lsb_release -cs
+      OUTPUT_VARIABLE LSB_RELEASE_CODENAME
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+  endif()
+  if(LSB_RELEASE_CODENAME STREQUAL "focal")
+    set(ROBOTOLOGY_BUILD_QHULL ON)
+  else()
+    set(ROBOTOLOGY_BUILD_QHULL OFF)
+  endif()
 endif()
 
 # Core
