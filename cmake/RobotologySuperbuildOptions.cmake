@@ -38,7 +38,7 @@ option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing 
 option(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS "Enable compilation of all the dependencies of bipedal-locomotion-framework." FALSE)
 option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 # ROBOTOLOGY_ENABLE_EVENT_DRIVEN is not supported on Windows, do not show the option there
-if(WIN32)
+if(WIN32 OR APPLE)
   set(ROBOTOLOGY_ENABLE_EVENT_DRIVEN FALSE)
 else()
   option(ROBOTOLOGY_ENABLE_EVENT_DRIVEN "Enable compilation of software for event-driven." FALSE)
