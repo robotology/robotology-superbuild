@@ -32,14 +32,6 @@ else()
   set(ENABLE_USBCAMERA ON)
 endif()
 
-# Workaround for https://github.com/robotology/yarp/issues/2353
-# To be removed once a new minor release of YARP (3.7?) is released
-if(APPLE AND NOT ("${ROBOTOLOGY_PROJECT_TAGS}" STREQUAL "Unstable"))
-  set(ENABLE_yarpcar_mjpeg OFF)
-else()
-  set(ENABLE_yarpcar_mjpeg ON)
-endif()
-
 # I2C is only enabled on Linux
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux" AND ${ROBOTOLOGY_ENABLE_ICUB_HEAD})
   set(YARP_USE_I2C ON)
@@ -75,13 +67,10 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpcar_xmlrpc:BOOL=ON
                               -DENABLE_yarpcar_priority:BOOL=ON
                               -DENABLE_yarpcar_bayer:BOOL=ON
-                              -DENABLE_yarpcar_mjpeg:BOOL=${ENABLE_yarpcar_mjpeg}
+                              -DENABLE_yarpcar_mjpeg:BOOL=ON
                               -DENABLE_yarpcar_portmonitor:BOOL=ON
                               -DENABLE_yarppm_depthimage_to_mono:BOOL=ON
                               -DENABLE_yarppm_depthimage_to_rgb:BOOL=ON
-                              # Deprecated, remove when YARP 3.5 is in Stable branches and latest releases
-                              -DENABLE_yarpcar_depthimage:BOOL=ON
-                              -DENABLE_yarpcar_depthimage2:BOOL=ON
                               -DENABLE_yarpidl_thrift:BOOL=ON
                               -DYARP_COMPILE_DEVICE_PLUGINS:BOOL=ON
                               -DENABLE_yarpcar_human:BOOL=ON
@@ -98,21 +87,6 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_opencv_grabber:BOOL=ON
                               # Enable all "fake" devices in YARP, as they are quite useful for tutorials
                               -DYARP_COMPILE_ALL_FAKE_DEVICES:BOOL=ON
-                              # Before YARP 3.8 all the individual options have been removed and substituted with
-                              # the single YARP_COMPILE_ALL_FAKE_DEVICES option, remove them once YARP 3.8 is on 
-                              # stable branches
-                              -DENABLE_yarpmod_fakeAnalogSensor:BOOL=ON
-                              -DENABLE_yarpmod_fakeBattery:BOOL=ON
-                              -DENABLE_yarpmod_fakeDepthCamera:BOOL=ON
-                              -DENABLE_yarpmod_fakeFrameGrabber:BOOL=ON
-                              -DENABLE_yarpmod_fakeIMU:BOOL=ON
-                              -DENABLE_yarpmod_fakeLaser:BOOL=ON
-                              -DENABLE_yarpmod_fakeLocalizer:BOOL=ON
-                              -DENABLE_yarpmod_fakeMicrophone:BOOL=ON
-                              -DENABLE_yarpmod_fakeMotionControl:BOOL=ON
-                              -DENABLE_yarpmod_fakeNavigation:BOOL=ON
-                              -DENABLE_yarpmod_fakeSpeaker:BOOL=ON
-                              -DYARP_COMPILE_EXPERIMENTAL_WRAPPERS:BOOL=ON
                               -DYARP_COMPILE_RobotTestingFramework_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
                               -DYARP_USE_I2C:BOOL=${YARP_USE_I2C}
