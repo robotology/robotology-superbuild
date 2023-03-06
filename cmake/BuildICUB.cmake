@@ -18,11 +18,7 @@ endif()
 
 # See discussion in https://github.com/robotology/icub-main/issues/551
 # Workaround for https://github.com/robotology/icub-main/issues/842
-if (APPLE OR (ROBOTOLOGY_PROJECT_TAGS STREQUAL "Unstable"))
-  set(ICUBMAIN_COMPILE_SIMULATORS OFF)
-else()
-  set(ICUBMAIN_COMPILE_SIMULATORS ON)
-endif()
+set(ICUBMAIN_COMPILE_SIMULATORS OFF)
 
 # See discussion in https://github.com/robotology/robotology-superbuild/issues/237
 # and https://github.com/robotology/robotology-superbuild/issues/236
