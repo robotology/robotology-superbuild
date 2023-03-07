@@ -14,7 +14,7 @@ set_tag(casadi 3.5.5.4)
 
 # Robotology projects
 set_tag(YCM_TAG master)
-set_tag(YARP_TAG yarp-3.7)
-set_tag(yarp-matlab-bindings_TAG yarp-3.7)
+set_tag(YARP_TAG yarp-3.8)
+set_tag(yarp-matlab-bindings_TAG yarp-3.8)
 set_tag(gym-ignition_TAG v1.3.1)
 set_tag(ergocub-software_TAG v0.1.0)
