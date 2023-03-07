@@ -178,7 +178,7 @@ repositories:
   event-driven:
     type: git
     url: https://github.com/robotology/event-driven.git
-    version: v1.7
+    version: f2b41b692be642b14a47bd867b3b5c4c9ba52efe
   matioCpp:
     type: git
     url: https://github.com/ami-iit/matio-cpp.git
