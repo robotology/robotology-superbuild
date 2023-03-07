@@ -242,4 +242,4 @@ repositories:
   find-superquadric:
     type: git
     url: https://github.com/robotology/find-superquadric.git
-    version: v1.0.1
+    version: v1.1.0
