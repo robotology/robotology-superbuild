@@ -12,6 +12,7 @@ find_or_build_package(UnicyclePlanner QUIET)
 find_or_build_package(OsqpEigen QUIET)
 find_or_build_package(qpOASES QUIET)
 find_or_build_package(ICUBcontrib QUIET)
+find_or_build_package(LieGroupControllers QUIET)
 find_or_build_package(bipedal-locomotion-framework QUIET)
 
 set(walking-controllers_DEPENDS "")
@@ -22,6 +23,7 @@ list(APPEND walking-controllers_DEPENDS UnicyclePlanner)
 list(APPEND walking-controllers_DEPENDS OsqpEigen)
 list(APPEND walking-controllers_DEPENDS qpOASES)
 list(APPEND walking-controllers_DEPENDS ICUBcontrib)
+list(APPEND walking-controllers_DEPENDS LieGroupControllers)
 list(APPEND walking-controllers_DEPENDS bipedal-locomotion-framework)
 
 ycm_ep_helper(walking-controllers TYPE GIT
@@ -32,4 +34,4 @@ ycm_ep_helper(walking-controllers TYPE GIT
               FOLDER src
               DEPENDS ${walking-controllers_DEPENDS})
 
-set(walking-controllers_CONDA_DEPENDENCIES "eigen")
+set(walking-controllers_CONDA_DEPENDENCIES eigen tomlplusplus)
