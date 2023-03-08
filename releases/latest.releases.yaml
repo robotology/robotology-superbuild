@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v2.0.2
+    version: v2.1.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -42,7 +42,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v2.1.0
+    version: v2.2.0
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -70,7 +70,7 @@ repositories:
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.3.5
+    version: v2.3.6
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
@@ -94,11 +94,11 @@ repositories:
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
-    version: v0.5.3
+    version: v0.6.0
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.6.1
+    version: v0.7.0
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
@@ -134,19 +134,19 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.29.0
+    version: v1.33.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.29.0
+    version: v1.33.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.29.0
+    version: v1.33.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
-    version: v1.27.0
+    version: v1.33.0
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
@@ -162,7 +162,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.21.0
+    version: v1.22.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
@@ -170,7 +170,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.11.1
+    version: v0.12.0
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
