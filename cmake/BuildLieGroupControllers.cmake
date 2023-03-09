@@ -14,5 +14,5 @@ ycm_ep_helper(LieGroupControllers TYPE GIT
               FOLDER src
               DEPENDS manif)
 
-set(LieGroupControllers_CONDA_PKG_NAME lie-group-controllers)
+set(LieGroupControllers_CONDA_PKG_NAME liblie-group-controllers)
 set(LieGroupControllers_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
