@@ -75,7 +75,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl vtk "opencv==4.6" portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus
+        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl vtk "opencv==4.6" portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr "cmake==3.25" compilers make ninja pkg-config tomlplusplus
         # Python 
         mamba install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
 
