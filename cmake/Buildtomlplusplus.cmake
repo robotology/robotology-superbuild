@@ -10,3 +10,6 @@ ycm_ep_helper(tomlplusplus
               TAG master
               COMPONENT core
               FOLDER src)
+
+set(tomlplusplus_CONDA_PKG_NAME tomlplusplus)
+set(tomlplusplu_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
