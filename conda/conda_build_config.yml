@@ -8,3 +8,6 @@ qt:
 
 qt_main:
   - 5.15
+
+cmake:
+  - 3.25
