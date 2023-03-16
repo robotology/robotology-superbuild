@@ -29,6 +29,13 @@ else()
   endif()
 endif()
 
+# On conda-forge we get tomlplusplus from conda-forge, otherwise we build it
+if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+  set(ROBOTOLOGY_BUILD_tomlplusplus OFF)
+else()
+  set(ROBOTOLOGY_BUILD_tomlplusplus ON)
+endif()
+
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(YARP)
