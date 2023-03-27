@@ -36,11 +36,6 @@ requirements:
     - {{ cdt('libxfixes') }}
     - {{ cdt('libxau') }}
     - {{ cdt('expat') }}  {% endraw %}{% endif %}
-{# Workaround for https://github.com/robotology/robotology-superbuild/issues/966 #}
-{% if name == "gazebo-yarp-plugins" %}
-    - clang
-    - clangxx
-{% endif %}
 
 
   host:
