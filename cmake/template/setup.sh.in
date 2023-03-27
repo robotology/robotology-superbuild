@@ -54,4 +54,6 @@ export YARP_DATA_DIRS=$YARP_DATA_DIRS:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/sh
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/RRbot/robots
 # Configure the Matlab path
 export MATLABPATH=${MATLABPATH:+${MATLABPATH}:}${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/mex:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/mex/+wbc/simulink/MomentumVelocityControl:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/mex/+wbc/simulink:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/mex/+wbc/examples:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/WBToolbox:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/WBToolbox/images
+# Avoid problems with buggy Linux drivers, see https://github.com/robotology/robotology-superbuild/issues/953
+export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS} -Djogl.disable.openglarbcontext=1"
 @endcmakeif ROBOTOLOGY_USES_MATLAB
