@@ -111,7 +111,7 @@ of the robotology-superbuild.**
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 ~~~
-mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl "opencv<=4.6" portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
+mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
 ~~~
 
 If you are on **Linux**, you also need to install also the following packages:
