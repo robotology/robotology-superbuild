@@ -15,8 +15,8 @@ endif()
 
 ycm_ep_helper(casadi TYPE GIT
               STYLE GITHUB
-              REPOSITORY dic-iit/casadi.git
-              TAG support_osqp_0.6.2
+              REPOSITORY ami-iit/casadi.git
+              TAG 3.6_ami_integraton
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
@@ -39,5 +39,5 @@ set(casadi_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
 # (something like 3.5.5.x) and the version available in conda-forge when generating conda metapackages
 # such as robotology-distro and robotology-distro-all, we override the conda package version of casadi
 # here. This needs to be removed as soon as we stop use our fork in the superbuild 
-set(casadi_CONDA_VERSION 3.5.5)
+set(casadi_CONDA_VERSION 3.6.0)
 
