@@ -6,6 +6,7 @@ include(YCMEPHelper)
 
 include(FindOrBuildPackage)
 find_or_build_package(osqp QUIET)
+find_or_build_package(proxsuite QUIET)
 
 if(MSVC AND ROBOTOLOGY_USES_PYTHON)
   set(WITH_COPYSIGN_UNDEF ON)
@@ -21,6 +22,9 @@ ycm_ep_helper(casadi TYPE GIT
               FOLDER src
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
                          -DWITH_OSQP:BOOL=ON
+                         -DWITH_BUILD_OSQP:BOOL=OFF
+                         -DWITH_PROXQP:BOOL=ON
+                         -DWITH_BUILD_PROXQP:BOOL=OFF
                          -DWITH_EXAMPLES:BOOL=OFF
                          -DUSE_SYSTEM_WISE_OSQP:BOOL=ON
                          -DINCLUDE_PREFIX:PATH=include
@@ -31,12 +35,12 @@ ycm_ep_helper(casadi TYPE GIT
                          -DWITH_PYTHON3:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DWITH_COPYSIGN_UNDEF:BOOL=${WITH_COPYSIGN_UNDEF}
                          -DPYTHON_PREFIX:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}
-              DEPENDS osqp)
+              DEPENDS osqp proxsuite)
 
 set(casadi_CONDA_PKG_NAME casadi)
 set(casadi_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
 # This is a small hack. To avoid incompatibilities between the version tagged in the ami-iit fork
-# (something like 3.5.5.x) and the version available in conda-forge when generating conda metapackages
+# (something like 3.6.0.x) and the version available in conda-forge when generating conda metapackages
 # such as robotology-distro and robotology-distro-all, we override the conda package version of casadi
 # here. This needs to be removed as soon as we stop use our fork in the superbuild 
 set(casadi_CONDA_VERSION 3.6.0)

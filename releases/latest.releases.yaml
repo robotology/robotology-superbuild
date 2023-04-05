@@ -22,7 +22,7 @@ repositories:
   casadi:
     type: git
     url: https://github.com/ami-iit/casadi.git
-    version: 3.5.5.4
+    version: 3.6.0.1
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
@@ -206,7 +206,7 @@ repositories:
   casadi-matlab-bindings:
     type: git
     url: https://github.com/ami-iit/casadi-matlab-bindings.git
-    version: v3.5.5.2
+    version: v3.6.0.0
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
@@ -247,3 +247,7 @@ repositories:
     type: git
     url: https://github.com/marzer/tomlplusplus.git
     version: v3.3.0
+  proxsuite:
+    type: git
+    url: https://github.com/Simple-Robotics/proxsuite.git
+    version: v0.3.6

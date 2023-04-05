@@ -7,7 +7,7 @@ find_or_build_package(casadi QUIET)
 
 ycm_ep_helper(casadi-matlab-bindings TYPE GIT
               STYLE GITHUB
-              REPOSITORY dic-iit/casadi-matlab-bindings.git
+              REPOSITORY ami-iit/casadi-matlab-bindings.git
               TAG main
               COMPONENT dynamics
               FOLDER src
