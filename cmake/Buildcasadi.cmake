@@ -5,8 +5,17 @@
 include(YCMEPHelper)
 
 include(FindOrBuildPackage)
+
+set(casadi_DEPENDS "")
+
 find_or_build_package(osqp QUIET)
-find_or_build_package(proxsuite QUIET)
+list(APPEND casadi_DEPENDS osqp)
+
+# proxqp only supports MSVC Toolset v143, i.e. Visual Studio 2022
+if(NOT MSVC OR MSVC_VERSION VERSION_GREATER_EQUAL 1930)
+  find_or_build_package(proxsuite QUIET)
+  list(APPEND casadi_DEPENDS proxsuite)
+endif()
 
 if(MSVC AND ROBOTOLOGY_USES_PYTHON)
   set(WITH_COPYSIGN_UNDEF ON)
@@ -35,7 +44,7 @@ ycm_ep_helper(casadi TYPE GIT
                          -DWITH_PYTHON3:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DWITH_COPYSIGN_UNDEF:BOOL=${WITH_COPYSIGN_UNDEF}
                          -DPYTHON_PREFIX:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}
-              DEPENDS osqp proxsuite)
+              DEPENDS ${casadi_DEPENDS})
 
 set(casadi_CONDA_PKG_NAME casadi)
 set(casadi_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
