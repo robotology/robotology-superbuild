@@ -260,12 +260,9 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-18.04, ubuntu-20.04, macos-latest, windows-2019]
+        os: [ubuntu-20.04, macos-latest, windows-2019]
         project_tags: [Default, Unstable, LatestReleases]
         include:
-          - os: ubuntu-18.04
-            build_type: Release
-            cmake_generator: "Unix Makefiles"
           - os: ubuntu-20.04
             build_type: Release
             cmake_generator: "Ninja"
