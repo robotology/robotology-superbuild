@@ -26,14 +26,17 @@ endif()
 ycm_ep_helper(casadi TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/casadi.git
-              TAG 3.6_ami_integraton
+              TAG 3.6_ami_integration
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
+                         -DWITH_BUILD_IPOPT:BOOL=OFF
                          -DWITH_OSQP:BOOL=ON
                          -DWITH_BUILD_OSQP:BOOL=OFF
                          -DWITH_PROXQP:BOOL=ON
                          -DWITH_BUILD_PROXQP:BOOL=OFF
+                         -DWITH_TINYXML=ON
+                         -DWITH_BUILD_TINYXML=OFF
                          -DWITH_EXAMPLES:BOOL=OFF
                          -DUSE_SYSTEM_WISE_OSQP:BOOL=ON
                          -DINCLUDE_PREFIX:PATH=include
