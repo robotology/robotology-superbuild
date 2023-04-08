@@ -1,7 +1,7 @@
 name: C++ CI Workflow
 
 on:
-  workflow_dispatch:https://github.com/robotology/robotology-superbuild/tree/removeubuntu1804/.github
+  workflow_dispatch:
   push:
     branches:
       - master
