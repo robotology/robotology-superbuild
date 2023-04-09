@@ -15,6 +15,9 @@ list(APPEND casadi_DEPENDS osqp)
 if(NOT MSVC OR MSVC_VERSION VERSION_GREATER_EQUAL 1930)
   find_or_build_package(proxsuite QUIET)
   list(APPEND casadi_DEPENDS proxsuite)
+  set(casadi_WITH_PROXQP ON)
+else()
+  set(casadi_WITH_PROXQP OFF)
 endif()
 
 if(MSVC AND ROBOTOLOGY_USES_PYTHON)
@@ -33,7 +36,7 @@ ycm_ep_helper(casadi TYPE GIT
                          -DWITH_BUILD_IPOPT:BOOL=OFF
                          -DWITH_OSQP:BOOL=ON
                          -DWITH_BUILD_OSQP:BOOL=OFF
-                         -DWITH_PROXQP:BOOL=ON
+                         -DWITH_PROXQP:BOOL=${casadi_WITH_PROXQP}
                          -DWITH_BUILD_PROXQP:BOOL=OFF
                          -DWITH_TINYXML=ON
                          -DWITH_BUILD_TINYXML=OFF
