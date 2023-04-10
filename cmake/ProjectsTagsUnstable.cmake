@@ -11,7 +11,7 @@ set_tag(manif_TAG 0.0.4.102)
 set_tag(qhull_TAG 2020.2)
 set_tag(CppAD_TAG 20230000.0)
 set_tag(proxsuite_TAG v0.3.6)
-set_tag(casadi_TAG 3.6.0.1)
+set_tag(casadi_TAG 3.6.0.2)
 set_tag(casadi-matlab-bindings_TAG v3.6.0.0)
 
 # Robotology projects
