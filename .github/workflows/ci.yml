@@ -278,6 +278,16 @@ jobs:
     steps:
     - uses: actions/checkout@master
     
+    # Workaround for https://github.com/ami-iit/bipedal-locomotion-framework/issues/636
+    # Remove once blf > 0.12.0 is released
+    - name: Cmake 3.25.3 [Ubuntu]
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        curl -sL https://github.com/Kitware/CMake/releases/download/v3.25.3/cmake-3.25.3-linux-x86_64.sh -o cmakeinstall.sh \
+        && chmod +x cmakeinstall.sh \
+        && sudo ./cmakeinstall.sh --prefix=/usr/local --exclude-subdir \
+        && rm cmakeinstall.sh
+    
     - name: Install files to enable compilation of mex files [Linux]
       if: contains(matrix.os, 'ubuntu') 
       run: |
