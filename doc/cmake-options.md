@@ -83,7 +83,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_CORE` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ROBOT_TESTING`<sup id="a2">[2!](#f2)</sup>  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`<sup id="a1">[1!](#f1)</sup>  | ✔️   |        ✔️                      |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`<sup id="a1">[1!](#f1)</sup>  | ✔️   |        ✔️                      |           ❌                  |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION`<sup id="a4">[4!](#f4)</sup>  | ✔️   |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ✔️              |
@@ -156,6 +156,9 @@ The steps necessary to install the system dependencies of the Dynamics full deps
 [operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
 
 **Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` is not supported with apt dependencies on Ubuntu 18.04.**
+
+**Since 2023.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` is not supported with vcpkg dependencies on Windows.**
+
 
 ## iCub Head
 

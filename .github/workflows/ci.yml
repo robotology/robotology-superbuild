@@ -393,7 +393,7 @@ jobs:
         brew upgrade
         brew install --cask xquartz
         # Core dependencies
-        brew install ace assimp bash-completion boost cmake eigen graphviz gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml
+        brew install ace assimp bash-completion boost cmake eigen graphviz gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml tinyxml2
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
         brew install libmatio irrlicht spdlog
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)

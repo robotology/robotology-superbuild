@@ -22,6 +22,7 @@ libode-dev
 libopencv-dev
 libsdl1.2-dev
 libtinyxml-dev
+libtinyxml2-dev
 libv4l-dev
 libxml2-dev
 lsb-release
