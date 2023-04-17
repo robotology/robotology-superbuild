@@ -48,6 +48,7 @@ ycm_ep_helper(casadi TYPE GIT
                          -DBIN_PREFIX:PATH=bin
                          -DWITH_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DWITH_PYTHON3:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                         -DCASADI_PYTHON_PIP_METADATA_INSTALL:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DWITH_COPYSIGN_UNDEF:BOOL=${WITH_COPYSIGN_UNDEF}
                          -DPYTHON_PREFIX:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}
               DEPENDS ${casadi_DEPENDS})
