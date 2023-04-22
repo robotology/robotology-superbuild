@@ -130,7 +130,7 @@ To compile the `robotology-superbuild` code itself, you need to clone it, follow
 ### Compile the robotology-superbuild
 In a terminal in which you activate the `robsub` environment, you can compile.
 
-On **Linux** or **macOS**, run:
+On **Linux**, run:
 ~~~
 cd robotology-superbuild
 mkdir build
@@ -139,6 +139,31 @@ cmake ..
 cmake --build . --config Release 
 ~~~
 
+On **macOS**, because of https://github.com/robotology/robotology-superbuild/issues/916, the procedure is slightly different: 
+~~~
+cd robotology-superbuild
+mkdir build
+cd build
+cmake ..
+cmake --build . --config Release 
+~~~
+At this point, you will get the error message
+~~~
+CMake Error at cmake/YarpFindDependencies.cmake:187 (message):
+  Optional package ACE not found.  Please install it or enable the option
+  "SKIP_ACE" to build yarp.
+Call Stack (most recent call first):
+  cmake/YarpFindDependencies.cmake:703 (check_skip_dependency)
+  CMakeLists.txt:60 (include)
+~~~
+So, do the following steps
+~~~
+cd src/YARP
+cmake -DSKIP_ACE:BOOL=ON .
+cd ..
+cd ..
+cmake --build . --config Release 
+~~~
 
 On **Windows**, run:
 ~~~
