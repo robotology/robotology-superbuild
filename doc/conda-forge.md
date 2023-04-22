@@ -110,6 +110,13 @@ of the robotology-superbuild.**
 **IMPORTANT: On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.** 
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
+
+If you are on **Mac**
+~~~
+mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
+~~~
+
+If you are on **Linux**
 ~~~
 mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
 ~~~
