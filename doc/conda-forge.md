@@ -111,12 +111,12 @@ of the robotology-superbuild.**
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
-If you are on **Mac** with a *recent* (as per 2022/2023) ARM-based processor
+If you are on **macOS** with a *recent* (as per 2022/2023) ARM-based processor
 ~~~
 mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
 ~~~
 
-If you are on **Mac** with an Intel-based processor or you are on **Linux**,
+If you are on **macOS** with an Intel-based processor or you are on **Linux**,
 ~~~
 mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
 ~~~
@@ -137,7 +137,8 @@ To compile the `robotology-superbuild` code itself, you need to clone it, follow
 ### Compile the robotology-superbuild
 In a terminal in which you activate the `robsub` environment, you can compile.
 
-On **Linux**, run:
+On **Linux** or on **macOS** with an Intel-based processor, run:
+
 ~~~
 cd robotology-superbuild
 mkdir build
@@ -146,7 +147,7 @@ cmake ..
 cmake --build . --config Release 
 ~~~
 
-On **macOS**, because of https://github.com/robotology/robotology-superbuild/issues/916, the procedure is slightly different: 
+On **macOS** with a *recent* (as per 2022/2023) ARM-based processor, because of https://github.com/robotology/robotology-superbuild/issues/916, the procedure is slightly different: 
 ~~~
 cd robotology-superbuild
 mkdir build
