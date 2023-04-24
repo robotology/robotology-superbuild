@@ -110,6 +110,13 @@ of the robotology-superbuild.**
 **IMPORTANT: On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.** 
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
+
+If you are on **macOS** with a *recent* (as per 2022/2023) ARM-based processor
+~~~
+mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
+~~~
+
+If you are on **macOS** with an Intel-based processor or you are on **Linux**,
 ~~~
 mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull "cmake<=3.25" compilers make ninja pkg-config tomlplusplus
 ~~~
@@ -130,7 +137,8 @@ To compile the `robotology-superbuild` code itself, you need to clone it, follow
 ### Compile the robotology-superbuild
 In a terminal in which you activate the `robsub` environment, you can compile.
 
-On **Linux** or **macOS**, run:
+On **Linux** or on **macOS** with an Intel-based processor, run:
+
 ~~~
 cd robotology-superbuild
 mkdir build
@@ -139,6 +147,31 @@ cmake ..
 cmake --build . --config Release 
 ~~~
 
+On **macOS** with a *recent* (as per 2022/2023) ARM-based processor, because of https://github.com/robotology/robotology-superbuild/issues/916, the procedure is slightly different: 
+~~~
+cd robotology-superbuild
+mkdir build
+cd build
+cmake ..
+cmake --build . --config Release 
+~~~
+At this point, you will get the error message
+~~~
+CMake Error at cmake/YarpFindDependencies.cmake:187 (message):
+  Optional package ACE not found.  Please install it or enable the option
+  "SKIP_ACE" to build yarp.
+Call Stack (most recent call first):
+  cmake/YarpFindDependencies.cmake:703 (check_skip_dependency)
+  CMakeLists.txt:60 (include)
+~~~
+So, do the following steps
+~~~
+cd src/YARP
+cmake -DSKIP_ACE:BOOL=ON .
+cd ..
+cd ..
+cmake --build . --config Release 
+~~~
 
 On **Windows**, run:
 ~~~
