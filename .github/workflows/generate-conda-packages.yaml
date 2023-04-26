@@ -211,8 +211,15 @@ jobs:
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
        
-        - name: Generated installer with all packages
+        - name: Generated installer with all packages [Linyux/macOS]
           shell: bash -l {0}
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
+          run: |
+            cd build/conda/generated_constructor_recipe
+            constructor .
+
+        - name: Generated installer with all packages [Windows]
+          shell: cmd /C CALL {0}
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
           run: |
             cd build/conda/generated_constructor_recipe
