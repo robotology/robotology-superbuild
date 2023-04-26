@@ -1,6 +1,10 @@
 name: robotology-distro
 version: @CONDA_ROBOTOLOGY_SUPERBUILD_VERSION@
 
+installer_filename: robotology-distro-macos-x86_64.sh  # [osx]
+installer_filename: robotology-distro-linux-x86_64.sh  # [linux]
+installer_filename: robotology-distro-windows-x86_64.exe  # [win]
+
 channels_remap:
   -
       src: @CONDA_BUILD_CHANNEL@
@@ -15,3 +19,4 @@ specs:
   - conda
   - mamba
   - robotology-distro-all @CONDA_ROBOTOLOGY_SUPERBUILD_VERSION@
+
