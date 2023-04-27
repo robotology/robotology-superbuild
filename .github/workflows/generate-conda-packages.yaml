@@ -201,16 +201,16 @@ jobs:
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro-all
 
-        - name: Upload conda packages
-          shell: bash -l {0}
-          # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
-          if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
-          env:
-            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
-          run: |
-            cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
-            ls *.tar.bz2
-            anaconda upload --skip-existing *.tar.bz2
+        # - name: Upload conda packages
+        #  shell: bash -l {0}
+        #  # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
+        #  if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
+        #  env:
+        #    ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        #  run: |
+        #    cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
+        #    ls *.tar.bz2
+        #    anaconda upload --skip-existing *.tar.bz2
        
         - name: Generated installer with all packages
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
