@@ -153,12 +153,6 @@ jobs:
             cd build
             cmake -DCONDA_GENERATE_ROBOTOLOGY_METAPACKAGES:BOOL=ON .
 
-        - name: Run recipe generation on Command Prompt if on Windows
-          if: contains(matrix.os, 'windows')
-          shell: cmd /C CALL {0}
-          run: |
-            cd build
-            cmake .
 
         - name: Fail if both upload_conda_binaries and test_metapackages_generation are passed
           if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true'
@@ -219,18 +213,11 @@ jobs:
             anaconda upload --skip-existing *.tar.bz2
        
         - name: Generated installer with all packages [Linyux/macOS]
-          shell: bash -l {0}
-          if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')) && (contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu'))
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
           run: |
             cd build/conda/generated_constructor_recipe
             constructor .
 
-        - name: Generated installer with all packages [Windows]
-          shell: cmd /C CALL {0}
-          if: (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')) && contains(matrix.os, 'windows')
-          run: |
-            cd build/conda/generated_constructor_recipe
-            constructor .
 
     # If the  generate-conda-packages completed correctly and binaries are uploaded,
     # bump automatically the CONDA_BUILD_NUMBER in conda/cmake/CondaGenerationOptions.cmake
