@@ -212,12 +212,44 @@ jobs:
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
        
-        - name: Generated installer with all packages [Linyux/macOS]
+        - name: Generated installer with all packages
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
           run: |
             cd build/conda/generated_constructor_recipe
             constructor .
 
+        - name: Upload Full Installer [Windows]
+          if: github.event_name == 'release' && contains(matrix.os, 'windows')
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          with:
+            upload_url: ${{ github.event.release.upload_url }}
+            asset_path: build/conda/generated_constructor_recipe/robotology-distro-windows-x86_64.exe
+            asset_name: robotology-distro-windows-x86_64.exe
+            asset_content_type: application/octet-stream
+
+        - name: Upload Full Installer [macOS]
+          if: github.event_name == 'release' && contains(matrix.os, 'macos')
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          with:
+            upload_url: ${{ github.event.release.upload_url }}
+            asset_path: build/conda/generated_constructor_recipe/robotology-distro-macos-x86_64.sh
+            asset_name: robotology-distro-macos-x86_64.sh
+            asset_content_type: application/octet-stream
+
+        - name: Upload Full Installer [Linux]
+          if: github.event_name == 'release' && contains(matrix.os, 'ubuntu')
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          with:
+            upload_url: ${{ github.event.release.upload_url }}
+            asset_path: build/conda/generated_constructor_recipe/robotology-distro-linux-x86_64.sh
+            asset_name: robotology-distro-linux-x86_64.sh
+            asset_content_type: application/octet-stream
 
     # If the  generate-conda-packages completed correctly and binaries are uploaded,
     # bump automatically the CONDA_BUILD_NUMBER in conda/cmake/CondaGenerationOptions.cmake
