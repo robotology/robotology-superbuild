@@ -44,3 +44,8 @@ for subdir in ${subdirs}; do \
 done
 echo "--------------------------------------------"
 
+# Detect if running from terminal or from double-click. https://askubuntu.com/questions/729904/how-to-check-if-script-was-executed-via-command-line-or-double-clicked
+if (( SHLVL == 1 ))
+then 
+    read -p "Press enter to continue..."
+fi
