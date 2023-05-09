@@ -13,11 +13,7 @@ if(ROBOTOLOGY_ENABLE_ROBOT_TESTING)
   list(APPEND YARP_OPTIONAL_DEPS RobotTestingFramework)
 endif()
 
-# Workaround for https://github.com/robotology/robotology-superbuild/issues/377
 set(YARP_OPTIONAL_CMAKE_ARGS "")
-if(APPLE)
-  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DYARP_USE_SYSTEM_SQLite:BOOL=OFF")
-endif()
 
 if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA OR ROBOTOLOGY_USES_CSHARP)
   set(YARP_COMPILE_BINDINGS ON)
