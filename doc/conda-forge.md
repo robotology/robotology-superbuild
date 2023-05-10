@@ -131,6 +131,24 @@ If you are on **Windows**, you also need to install also the following packages:
 mamba install -c conda-forge freeglut
 ~~~
 
+For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
+
+#### `ROBOTOLOGY_USES_PYTHON`
+
+To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
+~~~
+mamba install -c conda-forge python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
+~~~
+
+#### `ROBOTOLOGY_USES_PCL_AND_VTK`
+
+If you install your dependencies with `conda`, just make sure to install the `pcl` and `vtk` packages:
+
+~~~
+mamba install -c conda-forge pcl vtk
+~~~
+
+
 ### Clone the repo
 To compile the `robotology-superbuild` code itself, you need to clone it, following the instructions in https://github.com/robotology/robotology-superbuild#clone-the-repo . 
 

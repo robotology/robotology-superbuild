@@ -121,12 +121,8 @@ Profile-specific documentation
 ## Core
 This profile is enabled by the `ROBOTOLOGY_ENABLE_CORE` CMake option.
 
-### System Dependencies
-The steps necessary to install the system dependencies of the Core profile are provided in
-[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt).
-
 ### Check the installation
-Follow the steps in http://wiki.icub.org/wiki/Check_your_installation to verify if your installation was successful.
+Follow the steps in https://icub-tech-iit.github.io/documentation/sw_installation/check_your_installation/#check-icub to verify if your installation was successful.
 
 ## Robot Testing
 This profile is enabled by the `ROBOTOLOGY_ENABLE_ROBOT_TESTING` CMake option.
@@ -135,10 +131,6 @@ On Windows, this profile creates some long paths during the build process. If yo
 keep the total path length of the robotology-superbuild build directory below 50 characters, or to enable the support for
 long path in Windows following the instructions in the [official Windows documentation](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later).
 
-### System Dependencies
-The steps necessary to install the system dependencies of the Robot Testing profile are provided in
-[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
-
 ### Check the installation
 If the profile has been correctly enabled and compiled, you should be able to run the `robottestingframework-testrunner` and `blocktestrunner` executable from the command line.
 
@@ -146,16 +138,9 @@ If the profile has been correctly enabled and compiled, you should be able to ru
 ## Dynamics
 This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS` CMake option.
 
-### System Dependencies
-The steps necessary to install the system dependencies of the Dynamics profile are provided in
-[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
-
 ## Dynamics full deps
 This profile is enabled by the `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` CMake option.
 
-### System Dependencies
-The steps necessary to install the system dependencies of the Dynamics full deps profile are provided in
-[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
 
 **Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` is not supported with apt dependencies on Ubuntu 18.04.**
 
@@ -200,28 +185,14 @@ should be working correctly. Furthermore, if the profile has been correctly enab
 
 This profile is enabled by the `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` CMake option.
 
-### System Dependencies
-The steps necessary to install the system dependencies of the iCub Basic Demos profile are provided in
-[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt), and no additional required system dependency is required.
-
 ### Check the installation
 If the iCub Basic Demos profile have been correctly installed, you should be able to find in your PATH and execute the `demoYoga` or `demoRedBall` executables.
 
 ## Teleoperation
 This profile is enabled by the `ROBOTOLOGY_ENABLE_TELEOPERATION` CMake option.
 
-### System Dependencies
 To run a teleoperation scenario, with real robot or in simulation, at least we need a Windows machine and Linux/macOS machine. If you are using iCub, the linux/macOS source code can be placed on the robot head. The teleoperation dependencies are also related to the teleoperation scenario you want to perform.
 
-#### Teleoperation without Cyberith treadmill
-In this scenario, we only use [Oculus](#oculus) for teleoperation, and we do not use Cyberith treadmill. In this case, the user can give the command for robot walking through the Oculus joypads. The dependencies for this scenario are as following:
-* Windows: [Oculus](#oculus).
-* Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
-
-#### Teleoperation with Cyberith treadmill
-In this scenario, we use both [Oculus](#oculus) and [cyberith treadmill](#cyberith) for teleopration. In this case, the user can give the command for robot walking through walking on cyberith treadmill. The dependencies for this scenario are as follwoing:
-* Windows: [Oculus](#oculus), [Cyberith](#cyberith).
-* Linux/macOS: [walking controller](https://github.com/robotology/walking-controllers).
 
 ## Human Dynamics
 This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
@@ -232,10 +203,6 @@ To run a human dynamics estimation scenario, we need a Windows machine to instal
 ## Event-driven
 This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. For the moment, Windows is not a supported platform.
 
-### System Dependencies
-The steps necessary to install the system dependencies of the Event-driven profile are provided in
-[operating system-specific installation documentation](../README.md#linux-from-source-with-dependencies-provided-by-apt).
-
 Dependencies-specific documentation
 ===================================
 
@@ -243,58 +210,13 @@ Dependencies-specific documentation
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option, that enables the software that depends on "Classic Gazebo".
 
-### System Dependencies
-
-#### Linux with apt
-On Linux with apt dependencies install Gazebo, if you are on:
-* Ubuntu 20.04
-* Buster 10
-
-follow the instructions available at https://gazebosim.org/tutorials?tut=install_ubuntu . Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
-
-Otherwise, if you are on other supported Debian/Ubuntu systems, just install the system provided gazebo package with:
-~~~~
-sudo apt install libgazebo-dev
-~~~~
-
-#### Linux/macOS/Windows with conda
-If you install your dependencies with `conda`, just make sure to install the `gazebo` package.
-
-#### Windows with vcpkg
-On Windows with vcpkg dependencies, make sure that you install the Windows dependencies using the `vcpkg-robotology-with-gazebo.zip` archive and you set
-the correct enviroment variables as documented in [`robotology-superbuild-dependencies-vcpkg` documentation](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg).
-
-#### macOS with Homebrew
-This option is not supported when using Homebrew to install your dependencies.
-
 ### Check the installation
 Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
 
 ## PCL and VTK
 
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_PCL_AND_VTK` CMake option, that enables the software that depends on PCL or VTK libraries.
 
-#### Linux with apt
-
-On any Debian or Ubuntu based system, install PCL and VTK via
-~~~~
-sudo apt install libpcl-dev
-~~~~
-
-#### Linux/macOS/Windows with conda
-
-If you install your dependencies with `conda`, just make sure to install the `pcl` and `vtk` packages:
-
-~~~
-mamba install -c conda-forge pcl vtk
-~~~
-
-#### Windows with vcpkg
-
-On Windows with vcpkg dependencies, make sure that you install the Windows dependencies using the `vcpkg-robotology-with-gazebo.zip` archive and you set
-the correct enviroment variables as documented in [`robotology-superbuild-dependencies-vcpkg` documentation](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg).
-
-#### macOS with Homebrew
-This option is not supported when using Homebrew to install your dependencies.
 
 ## Ignition
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_IGNITION` CMake option.
@@ -385,26 +307,13 @@ This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are 
 
 
 ## Octave
+
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCTAVE` CMake option.
 
-### System Dependencies
-
-#### Linux
-Install octave and the necessary development files using the following command:
-~~~
-sudo apt-get install liboctave-dev
-~~~
-
-#### macOS
-Install octave using the following command:
-~~~
-brew install octave
-~~~
-
-#### Windows
-The `ROBOTOLOGY_USES_OCTAVE` option is not supported on Windows, see https://github.com/robotology/robotology-superbuild/issues/139 for more info.
+The `ROBOTOLOGY_USES_OCTAVE` option is not supported when dependencies are installed by conda-forge.
 
 ### Configuration
+
 Add the `$ROBOTOLOGY_SUPERBUILD_SOURCE_DIR/build/install/octave` directory to your [Octave path](https://www.gnu.org/software/octave/doc/interpreter/Manipulating-the-Load-Path.html).
 
 ### Check the installation

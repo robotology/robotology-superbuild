@@ -104,6 +104,7 @@ All the software packages are installed using the `install` directory of the bui
 We also support two additional deprecated ways of compiling the superbuild, on Windows using dependencies provided by [vcpkg](https://vcpkg.io/) or on macOS using dependencies provided by Homebrew](https://brew.sh/). Documentation for them can be found in [`doc/deprecated-installation-methods.md`](doc/deprecated-installation-methods.md). 
 
 ## Linux from source with dependencies provided by apt
+
 ### System Dependencies
 On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMake and Eigen (and other dependencies necessary for the software include in `robotology-superbuild`) using `apt-get`. This can be done by installing the packages listed in the `apt.txt` file using the following script:
 ~~~
@@ -120,8 +121,45 @@ If instead you use an older distro in which the default version of CMake is olde
 * Debian 10 : use the CMake in the `buster-backports` repository, following the instructions to install from backports available in  [Debian documentation](https://backports.debian.org/Instructions/).
 More details can be found at https://github.com/robotology/QA/issues/364 .
 
-If you enabled any [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation (in particular, the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option):
-* [`ROBOTOLOGY_USES_GAZEBO`](doc/cmake-options.md#gazebo)
+For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
+
+Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option.
+
+#### `ROBOTOLOGY_USES_GAZEBO`
+
+On Linux with apt dependencies install Gazebo, if you are on:
+* Ubuntu 20.04
+* Buster 10
+
+follow the instructions available at https://gazebosim.org/tutorials?tut=install_ubuntu . Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
+
+Otherwise, if you are on other supported Debian/Ubuntu systems, just install the system provided gazebo package with:
+~~~~
+sudo apt install libgazebo-dev
+~~~~
+
+#### `ROBOTOLOGY_USES_PYTHON`
+
+Install Python and the necessary development files using the following command:
+~~~
+cd robotology-superbuild
+sudo bash ./scripts/install_apt_python_dependencies.sh
+~~~
+
+#### `ROBOTOLOGY_USES_PCL_AND_VTK`
+
+On any Debian or Ubuntu based system, install PCL and VTK via
+~~~~
+sudo apt install libpcl-dev
+~~~~
+
+#### `ROBOTOLOGY_USES_OCTAVE`
+
+Install octave and the necessary development files using the following command:
+~~~
+sudo apt-get install liboctave-dev
+~~~
+
 
 ### Compile the superbuild
 
