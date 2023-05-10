@@ -1,4 +1,4 @@
-# Copyright (C) 2017  iCub Facility, Istituto Italiano di Tecnologia
+# Copyright (C) Fondazione Istituto Italiano di Tecnologia
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
@@ -20,6 +20,9 @@ if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES AND WIN32)
   list(APPEND iDynTree_OPTIONAL_CMAKE_ARGS "-DIDYNTREE_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
 endif()
 
+# Hack for disabling IDYNTREE_USES_IRRLICHT on Ubuntu 18.04,
+# remove once https://github.com/robotology/robotology-superbuild/issues/481 is fixed
+find_package(glfw3 QUIET)
 
 ycm_ep_helper(iDynTree TYPE GIT
               STYLE GITHUB
@@ -29,7 +32,7 @@ ycm_ep_helper(iDynTree TYPE GIT
               FOLDER src
               CMAKE_ARGS -DIDYNTREE_USES_IPOPT:BOOL=ON
                          -DIDYNTREE_USES_OSQPEIGEN:BOOL=ON
-                         -DIDYNTREE_USES_IRRLICHT:BOOL=ON
+                         -DIDYNTREE_USES_IRRLICHT:BOOL=${glfw3_FOUND}
                          -DIDYNTREE_USES_ASSIMP:BOOL=ON
                          -DIDYNTREE_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
                          -DIDYNTREE_USES_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
