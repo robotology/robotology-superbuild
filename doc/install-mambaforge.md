@@ -101,7 +101,7 @@ If you are using a non-bash shell such as `zsh`, you also need to run:
 ~~~
 
 By default, this command also automatically initialize the [`base` conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment) whenever you start a terminal.
-As this could interfere with other uses of your system (for example compilation against libraries installed via `brew`), it is recommended to disable this by setting:
+As this could interfere with other uses of your system (for example compilation against libraries installed via `apt`), it is recommended to disable this by setting:
 ~~~
 conda config --set auto_activate_base false
 ~~~

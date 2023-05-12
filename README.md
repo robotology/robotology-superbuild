@@ -101,7 +101,7 @@ For each project, the repository will be downloaded in the `src/<package_name>` 
 The build directory for a given project will be instead the `src/<package_name>` subdirectory of the superbuild build directory. 
 All the software packages are installed using the `install` directory of the build as installation prefix.
 
-We also support two additional deprecated ways of compiling the superbuild, on Windows using dependencies provided by [vcpkg](https://vcpkg.io/) or on macOS using dependencies provided by Homebrew](https://brew.sh/). Documentation for them can be found in [`doc/deprecated-installation-methods.md`](doc/deprecated-installation-methods.md). 
+We also support an additional deprecated way of compiling the superbuild, on Windows using dependencies provided by [vcpkg](https://vcpkg.io/). Documentation for them can be found in [`doc/deprecated-installation-methods.md`](doc/deprecated-installation-methods.md). 
 
 ## Linux from source with dependencies provided by apt
 
