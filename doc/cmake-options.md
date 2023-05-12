@@ -62,6 +62,7 @@ The dependencies CMake options specify if the packages dependending on something
 
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
+| `ROBOTOLOGY_USES_GUI`  | Include software that depend on GUIs libraries such as Qt or Irrlicht.  | `ON` | |
 | `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](http://gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo) |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`  | Include software and plugins that depend on the [PCL](https://pointclouds.org/) or [VTK](https://vtk.org/). | `OFF`   | [Documentation on PCL and VTK dependency.](#pcl_and_vtk) |
 | `ROBOTOLOGY_USES_IGNITION` | Include software that depends on [Ignition](ignitionrobotics.org/). | `OFF` | [Documentation on Ignition Gazebo dependency.](#ignition) |
@@ -90,6 +91,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`<sup id="a6">[6!](#f6)</sup>  | ✔️   |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ❌              |
 | `ROBOTOLOGY_ENABLE_GRASPING`<sup id="a5">[5!](#f5)</sup>  | ✔️   |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
+| `ROBOTOLOGY_USES_GUI` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_PCL_AND_VTK` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
 | `ROBOTOLOGY_USES_IGNITION` |  ❌           |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ❌              |

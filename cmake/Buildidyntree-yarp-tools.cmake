@@ -17,7 +17,11 @@ ycm_ep_helper(idyntree-yarp-tools TYPE GIT
                       YARP
                       ICUB
               CMAKE_ARGS -DIDYNTREE_YARP_TOOLS_USES_ICUB_MAIN:BOOL=ON
-                         -DIDYNTREE_YARP_TOOLS_USES_QT:BOOL=ON
+                         -DIDYNTREE_YARP_TOOLS_USES_QT:BOOL=${ROBOTOLOGY_USES_GUI}
                          -DIDYNTREE_YARP_TOOLS_USES_QT_CHARTS:BOOL=OFF)
 
-set(idyntree-yarp-tools_CONDA_DEPENDENCIES eigen qt-main)
+set(idyntree-yarp-tools_CONDA_DEPENDENCIES eigen)
+
+if(ROBOTOLOGY_USES_GUI)
+  list(APPEND idyntree-yarp-tools_CONDA_DEPENDENCIES qt-main)
+endif()

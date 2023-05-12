@@ -24,6 +24,12 @@ endif()
 # remove once https://github.com/robotology/robotology-superbuild/issues/481 is fixed
 find_package(glfw3 QUIET)
 
+if(glfw3_FOUND AND ROBOTOLOGY_USES_GUI)
+  set(IDYNTREE_USES_IRRLICHT ON)
+else()
+  set(IDYNTREE_USES_IRRLICHT OFF)
+endif()
+
 ycm_ep_helper(iDynTree TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/idyntree.git
@@ -32,7 +38,7 @@ ycm_ep_helper(iDynTree TYPE GIT
               FOLDER src
               CMAKE_ARGS -DIDYNTREE_USES_IPOPT:BOOL=ON
                          -DIDYNTREE_USES_OSQPEIGEN:BOOL=ON
-                         -DIDYNTREE_USES_IRRLICHT:BOOL=${glfw3_FOUND}
+                         -DIDYNTREE_USES_IRRLICHT:BOOL=${IDYNTREE_USES_IRRLICHT}
                          -DIDYNTREE_USES_ASSIMP:BOOL=ON
                          -DIDYNTREE_USES_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB}
                          -DIDYNTREE_USES_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}

@@ -55,7 +55,8 @@ ycm_ep_helper(ICUB TYPE GIT
                    COMPONENT iCub
                    FOLDER src
                    CMAKE_ARGS -DICUB_INSTALL_WITH_RPATH:BOOL=ON
-                   CMAKE_CACHE_ARGS -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
+                   CMAKE_CACHE_ARGS -DICUB_USE_Qt5=${ROBOTOLOGY_USES_GUI}
+                                    -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
                                     -DENABLE_icubmod_cartesiancontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_gazecontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_serial:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
@@ -94,7 +95,11 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                                     -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA})
 
-set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt libode qt-main sdl)
+set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt libode sdl)
+
+if(ROBOTOLOGY_USES_GUI)
+  list(APPEND ICUB_CONDA_DEPENDENCIES qt-main)
+endif()
 
 if(NOT (APPLE OR WIN32))
   list(APPEND ICUB_CONDA_DEPENDENCIES libdc1394)

@@ -52,7 +52,7 @@ ycm_ep_helper(YARP TYPE GIT
                    FOLDER src
                    DEPENDS YCM
                            ${YARP_OPTIONAL_DEPS}
-                   CMAKE_ARGS -DYARP_COMPILE_GUIS:BOOL=ON
+                   CMAKE_ARGS -DYARP_COMPILE_GUIS:BOOL=${ROBOTOLOGY_USES_GUI}
                               -DYARP_USE_SYSTEM_SQLite:BOOL=ON
                               -DYARP_COMPILE_libYARP_math:BOOL=ON
                               -DYARP_COMPILE_CARRIER_PLUGINS:BOOL=ON
