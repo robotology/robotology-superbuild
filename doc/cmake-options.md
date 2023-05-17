@@ -78,34 +78,34 @@ The dependencies CMake options specify if the packages dependending on something
 
 Not all options are supported on all platforms. The following table provides a recap of which options are supported on each platform.
 
-| Option | Ubuntu/Debian, dependencies: apt |  macOS, dependencies: Homebrew | Windows, dependencies: vcpkg | conda on Linux, dependencies: conda-forge |  conda on macOS, dependencies: conda-forge | conda on Windows, dependencies: conda-forge |
-|:------:|:---------------------------------:|:----------------------------:|:-----------------------------:|:--------------------------------:|:-----------------------------:|:--------------------------------:|
-| `ROBOTOLOGY_ENABLE_CORE` |  ✔️           |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_ROBOT_TESTING`<sup id="a2">[2!](#f2)</sup>  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`<sup id="a1">[1!](#f1)</sup>  | ✔️   |        ✔️                      |           ❌                  |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_ICUB_HEAD`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_TELEOPERATION`<sup id="a4">[4!](#f4)</sup>  | ✔️   |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`  | ✔️   |        ✔️                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`<sup id="a6">[6!](#f6)</sup>  | ✔️   |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ❌              |
-| `ROBOTOLOGY_ENABLE_GRASPING`<sup id="a5">[5!](#f5)</sup>  | ✔️   |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_USES_GAZEBO` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_USES_PCL_AND_VTK` |  ✔️           |        ❌                     |             ✔️                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_USES_IGNITION` |  ❌           |        ❌                     |             ❌                |                 ✔️              |              ❌                |                 ❌              |
-| `ROBOTOLOGY_USES_MATLAB` |  ✔️           |        ✔️                     |             ❌                |                 ✔️              |              ✔️                |                 ✔️              |
-| `ROBOTOLOGY_USES_OCTAVE` |  ✔️           |        ✔️                     |              ❌                |                  ❌              |               ❌                |                  ❌              |
-| `ROBOTOLOGY_USES_PYTHON`<sup id="a3">[3!](#f3)</sup> |  ✔️           |         ❌                     |              ❌                |                  ✔️              |               ✔️               |                  ✔️              |
-| `ROBOTOLOGY_USES_OCULUS_SDK` |   ❌          |         ❌                     |             ✔️                |                  ❌              |               ❌                |                  ❌            |
-| `ROBOTOLOGY_USES_CYBERITH_SDK` |   ❌           |         ❌                     |            ✔️                  |                  ❌              |               ❌                |                 ✔️              |
-| `ROBOTOLOGY_USES_CFW2CAN` |  ✔️           |        ❌                      |             ❌                 |                 ✔️              |              ❌                 |                 ❌               |
-| `ROBOTOLOGY_USES_XSENS_MVN_SDK` |  ❌            |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ❌               |
-| `ROBOTOLOGY_USES_ESDCAN` |  ❌           |        ❌                      |             ✔️                |                 ❌               |              ❌                 |                 ✔️               |
-
-<b id="f1">1!</b>:Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` does not support building with apt dependencies on Ubuntu 18.04 .
-
-<b id="f2">2!</b>:Since 2021.11, `ROBOTOLOGY_ENABLE_ROBOT_TESTING` does not support building with apt dependencies on Ubuntu 18.04 .
-
+| Option                                                              | Ubuntu/Debian, dependencies: apt | Windows, dependencies: vcpkg | conda on Linux, dependencies: conda-forge |  conda on macOS, dependencies: conda-forge | conda on Windows, dependencies: conda-forge |
+|:-------------------------------------------------------------------:|:--------------------------------:|:----------------------------:|:-----------------------------------------:|:------------------------------------------:|:-------------------------------------------:|
+| `ROBOTOLOGY_ENABLE_CORE`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |                 ✔️                          |
+| `ROBOTOLOGY_ENABLE_ROBOT_TESTING`<sup id="a2">[2!](#f2)</sup>       | ✔️                               |             ✔️              |              ✔️                           |                 ✔️                        |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_DYNAMICS`                                        | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`<sup id="a1">[1!](#f1)</sup>  | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_ICUB_HEAD`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`                                | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_TELEOPERATION`<sup id="a4">[4!](#f4)</sup>       | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`                                  | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`<sup id="a6">[6!](#f6)</sup>        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
+| `ROBOTOLOGY_ENABLE_GRASPING`<sup id="a5">[5!](#f5)</sup>            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_IGNITION`                                          | ❌                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
+| `ROBOTOLOGY_USES_MATLAB`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_OCTAVE`                                            | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
+| `ROBOTOLOGY_USES_PYTHON`<sup id="a3">[3!](#f3)</sup>                | ✔️                               |              ❌             |                  ✔️                       |               ✔️                          |                  ✔️                         |
+| `ROBOTOLOGY_USES_OCULUS_SDK`                                        | ❌                               |             ✔️              |                  ❌                       |               ❌                          |                  ❌                         |
+| `ROBOTOLOGY_USES_CYBERITH_SDK`                                      | ❌                               |            ✔️               |                  ❌                       |               ❌                          |                 ✔️                          |
+| `ROBOTOLOGY_USES_CFW2CAN`                                           |  ✔️                              |             ❌              |                 ✔️                        |              ❌                           |                 ❌                          |
+| `ROBOTOLOGY_USES_XSENS_MVN_SDK`                                     |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ❌                          |
+| `ROBOTOLOGY_USES_ESDCAN`                                            |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ✔️                          |
+           
+<b id="f1">1!</b>:Since 2021.05, `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` does not support building with apt dependencies on Ubuntu 1.04 .           
+           
+<b id="f2">2!</b>:Since 2021.11, `ROBOTOLOGY_ENABLE_ROBOT_TESTING` does not support building with apt dependencies on Ubuntu 18.04 .           
+           
 <b id="f3">3!</b>:Since 2021.11, `ROBOTOLOGY_USES_PYTHON` does not support building with apt dependencies on Ubuntu 18.04 .
 
 <b id="f4">4!</b>:Since 2022.05, `ROBOTOLOGY_USES_TELEOPERATION` does not support building with apt dependencies on Ubuntu 18.04 and Debian Buster .

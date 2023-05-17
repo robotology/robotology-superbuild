@@ -48,7 +48,7 @@ ycm_ep_helper(<package>
                         
 * Add `find_or_build_package(<package>)` in the `cmake/RobotologySuperbuildLogic.cmake` file, under the `if(ROBOTOLOGY_ENABLE_<profile>)` of the selected profile.
 * If the package is important "enough" (it was not added just because it is a dependency) added it to the table in [`doc/cmake-options.md#profile-cmake-options`](cmake-options.md#profile-cmake-options) .
-* If the dependencies of the packages are available in `apt`, `homebrew` or Windows installers, document how to install them in the profile docs in the README. If any dependency is not available through this means, add it as a new package of the superbuid.
+* If the dependencies of the packages are available in `apt`, `conda-forge` or `vcpkg`, document how to install them in the documentation. If any dependency is not available through this means, add it as a new package of the superbuid.
 * For more details, see  upstream YCM docs http://robotology.github.io/ycm/gh-pages/latest/manual/ycm-superbuild-example.7.html#superbuild-example-developer-point-of-view
 
 ## How to add a new profile

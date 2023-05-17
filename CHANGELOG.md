@@ -3,11 +3,24 @@ All notable changes to this project will be documented in this file.
 
 The format of this document is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+Only major changes are documented in this file, and in general no version update of specific sub-packages is included,
+as those happen on regular basis.
+
 ## [Unreleased]
+
+### Removed
+
+- Compilation against Homebrew dependencies is removed from the CI.
+
+## [2023.02.0] - 2023-03-10
+
+### Added
 
 - Added `ergocub-software` to the core profile.
 
 ## [2022.09.1] - 2022-10-12
+
+### Changed
 
 - Bumped `robots-configuration` to v1.27.1 .
 

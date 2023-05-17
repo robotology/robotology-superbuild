@@ -260,7 +260,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-20.04, macos-latest, windows-2019]
+        os: [ubuntu-20.04, windows-2019]
         project_tags: [Default, Unstable, LatestReleases]
         include:
           - os: ubuntu-20.04
@@ -286,16 +286,7 @@ jobs:
         rm msdk_R2020b_mexa64.zip
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020b_mexa64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexa64" >> $GITHUB_ENV
-                
-    - name: Install files to enable compilation of mex files [macOS]
-      if: contains(matrix.os, 'macos') 
-      run: |
-        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexmaci64.zip
-        unzip msdk_R2020a_mexmaci64.zip
-        rm msdk_R2020a_mexmaci64.zip
-        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexmaci64" >> $GITHUB_ENV
-        echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
-    
+
     - name: Move robotology-superbuild in C under Windows
       if: contains(matrix.os, 'windows')
       shell: bash
@@ -310,7 +301,7 @@ jobs:
         echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/c/robotology-superbuild" >> $GITHUB_ENV
 
     - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
-      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+      if: contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
         echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
@@ -355,43 +346,6 @@ jobs:
         chmod +x ./.ci/install_debian.sh
         sudo bash ./.ci/install_debian.sh
 
-    - name: Dependencies [macOS]
-      if: contains(matrix.os, 'macos')
-      run: |
-        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
-        cmake --version
-        # Workaround for https://github.com/robotology/robotology-superbuild/issues/1321
-        # See https://github.com/actions/setup-python/issues/577#issuecomment-1365231810
-        rm /usr/local/bin/2to3 || true
-        rm /usr/local/bin/2to3-3.11 || true
-        rm /usr/local/bin/idle3 || true
-        rm /usr/local/bin/idle3.11 || true
-        rm /usr/local/bin/pydoc3 || true
-        rm /usr/local/bin/pydoc3.11 || true
-        rm /usr/local/bin/python3 || true
-        rm /usr/local/bin/python3.11 || true
-        rm /usr/local/bin/python3-config || true
-        rm /usr/local/bin/python3.11-config || true
-        # Workaround for https://github.com/robotology/robotology-superbuild/issues/1353
-        rm /usr/local/lib/libtcl8.6.dylib || true
-        rm /usr/local/lib/libtk8.6.dylib ||  true
-        # Workaround for https://github.com/robotology/robotology-superbuild/issues/1383
-        rm /usr/local/bin/go || true
-        rm /usr/local/bin/gofmt || true
-        # Update homebrew
-        brew update
-        brew upgrade
-        brew install --cask xquartz
-        # Core dependencies
-        brew install ace assimp bash-completion boost cmake eigen graphviz gsl ipopt jpeg libedit nlohmann-json opencv pkg-config portaudio qt@5 sqlite swig tinyxml tinyxml2
-        # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
-        brew install libmatio irrlicht spdlog
-        # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
-        brew install cppad qhull
-        # CI-specific dependencies
-        brew install ninja
-        cmake --version
-
     - name: Dependencies [Windows]
       if: contains(matrix.os, 'windows')
       run: |
@@ -409,21 +363,14 @@ jobs:
     # CMAKE-BASED PROJECT
     # ===================
 
-    - name: Configure [Ubuntu&macOS]
-      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+    - name: Configure [Ubuntu]
+      if: contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         mkdir -p build
         cd build
         cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
-
-    - name: Disable homebrew unsupported options
-      if: contains(matrix.os, 'macos')
-      run: |
-        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
-        cd build
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_PCL_AND_VTK:BOOL=OFF -DROBOTOLOGY_ENABLE_GRASPING:BOOL=OFF .
 
     - name: Disable options unsupported on Ubuntu 18.04
       if: contains(matrix.os, '18.04')
@@ -457,18 +404,12 @@ jobs:
         cd build
         cmake -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF .
 
-    - name: Build  [Ubuntu&macOS]
-      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+    - name: Build  [Ubuntu]
+      if:  contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
         cd build
-        # Workaround for https://github.com/osrf/homebrew-simulation/issues/1235
-        # taken from https://github.com/ignition-tooling/release-tools/pull/366
-        export LIBRARY_PATH=${LIBRARY_PATH}:/usr/local/opt/icu4c/lib 
         cmake --build . --config ${{ matrix.build_type }}
-      env:
-        # This is necessary only on macOS/homebrew, but on Linux it should be ignored
-        Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
 
     # Just for  release jobs we also compile Windows in Release, to ensure that Release libraries are included in the installer
     - name: Build (Release) [Windows]
