@@ -67,6 +67,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpcar_portmonitor:BOOL=ON
                               -DENABLE_yarppm_depthimage_to_mono:BOOL=ON
                               -DENABLE_yarppm_depthimage_to_rgb:BOOL=ON
+                              -DENABLE_yarppm_sound_compression_mp3:BOOL=ON
                               -DENABLE_yarpidl_thrift:BOOL=ON
                               -DYARP_COMPILE_DEVICE_PLUGINS:BOOL=ON
                               -DENABLE_yarpcar_human:BOOL=ON
