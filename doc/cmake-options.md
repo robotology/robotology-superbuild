@@ -90,7 +90,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`                                  | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`<sup id="a6">[6!](#f6)</sup>        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`<sup id="a5">[5!](#f5)</sup>            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_GAZEBO`<sup id="a7">[7!](#f7)</sup>                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_IGNITION`                                          | ❌                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_USES_MATLAB`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
@@ -113,6 +113,8 @@ Not all options are supported on all platforms. The following table provides a r
 <b id="f5">5!</b>:`ROBOTOLOGY_ENABLE_GRASPING` does not support building with apt dependencies on Ubuntu 18.04 .
 
 <b id="f6">6!</b>:`ROBOTOLOGY_ENABLE_EVENT_DRIVEN` does not support building with apt dependencies on Ubuntu 18.04 and Debian Buster .
+
+<b id="f7">7!</b>:`ROBOTOLOGY_USES_GAZEBO` does not support building with apt dependencies on Ubuntu 18.04 .
 
 
 Profile-specific documentation
