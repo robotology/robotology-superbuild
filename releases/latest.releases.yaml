@@ -30,7 +30,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.8.0
+    version: v3.8.1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -46,15 +46,15 @@ repositories:
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v4.6.0
+    version: v4.7.0
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v2.0.1
+    version: v2.1.0
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
-    version: v0.2.0
+    version: v0.3.0
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
@@ -66,7 +66,7 @@ repositories:
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
-    version: v1.24.0
+    version: v1.25.0
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
@@ -162,7 +162,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.22.0
+    version: v1.23.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
@@ -194,7 +194,7 @@ repositories:
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
-    version: v1.2.0
+    version: v1.2.1
   gym-ignition:
     type: git
     url: https://github.com/robotology/gym-ignition.git
