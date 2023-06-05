@@ -21,8 +21,8 @@ repositories:
     version: 20230000.0
   casadi:
     type: git
-    url: https://github.com/ami-iit/casadi.git
-    version: 3.6.2.1
+    url: https://github.com/casadi/casadi.git
+    version: 3.6.3
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
@@ -206,7 +206,7 @@ repositories:
   casadi-matlab-bindings:
     type: git
     url: https://github.com/ami-iit/casadi-matlab-bindings.git
-    version: v3.6.2.0
+    version: v3.6.3.0
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
