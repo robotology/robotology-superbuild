@@ -216,11 +216,13 @@ Note that you will need to restart your machine to make sure that this setting i
 
 ### Connect to a YARP server on a Windows host on WSL
 
-If you want your YARP applications on WSL to connect to a `yarpserver` that you launched on the Windows host, you need to add the following line to your WSL's `~/.bashrc`:
+If you want your YARP applications on WSL to connect to a `yarpserver` that you launched on the Windows native host (so on Command Prompt, not on WSL), you need to add the following line to your WSL's `~/.bashrc`:
 ~~~
 export WINDOWS_HOST=$(grep nameserver /etc/resolv.conf | awk '{print $2}')
 yarp conf ${WINDOWS_HOST} 10000 > /dev/null 2>&1
 ~~~
+
+**Important: do not use this line if you are launching `yarpserver` directly on WSL.**
 
 
 ## Update
