@@ -241,8 +241,8 @@ jobs:
        cd build
        cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF .
 
-    - name: Disable profiles that are not supported in Ubuntu Focal [Docker ubuntu:focal]
-      if: (matrix.docker_image == 'ubuntu:focal')
+    - name: Disable MuJoCo for other distros released before 2022 [Docker ubuntu:focal and debian:bullseye]
+      if: (matrix.docker_image == 'ubuntu:focal' || matrix.docker_image == 'debian:bullseye')
       run: |
        cd build
        cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
