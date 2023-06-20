@@ -7,7 +7,7 @@ find_or_build_package(mujoco QUIET)
 
 ycm_ep_helper(mujoco-simulink-blockset TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/mujoco-simulink-blockset-buildsystem.git
+              REPOSITORY ami-iit/mujoco-simulink-blockset-cmake-buildsystem.git
               TAG main
               COMPONENT dynamics
               FOLDER src
@@ -15,6 +15,6 @@ ycm_ep_helper(mujoco-simulink-blockset TYPE GIT
 
 # Metadata for conda package generation
 # If we do not set the package name, by default the repo name would be used
-# so in this case osqp-matlab-cmake-buildsystem that is not descriptive of the
+# so in this case mujoco-simulink-blockset-cmake-buildsystem that is not descriptive of the
 # generated artifact that is contained in the conda package
-set(osqp-matlab_CONDA_PKG_NAME "osqp-matlab")
+set(mujoco-simulink-blockset_CONDA_PKG_NAME "mujoco-simulink-blockset")
