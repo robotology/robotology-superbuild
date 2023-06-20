@@ -17,7 +17,7 @@ ycm_ep_helper(mujoco TYPE GIT
                          -DMUJOCO_BUILD_SIMULATE:BOOL=OFF
                          -DMUJOCO_BUILD_EXAMPLES:BOOL=OFF
                          -DMUJOCO_USE_SYSTEM_qhull:BOOL=ON
-                         -DMUJOCO_USE_SYSTEM_tinyxml2:BOOL=ON
+                         -DMUJOCO_USE_SYSTEM_tinyxml2:BOOL=OFF
                          -DMUJOCO_USE_SYSTEM_ccd:BOOL=ON
                          -DMUJOCO_USE_SYSTEM_Eigen3:BOOL=ON
               DEPENDS ${mujoco_DEPENDS})
