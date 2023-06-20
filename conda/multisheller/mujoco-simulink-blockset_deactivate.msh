@@ -1,0 +1,5 @@
+if_(is_set("COMSPEC")).then_([
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\mex\\mujoco_simulink_blockset"))
+]).else_([
+	sys.list_remove("MATLABPATH", path.join(env("CONDA_PREFIX"), "mex/mujoco_simulink_blockset"))
+])

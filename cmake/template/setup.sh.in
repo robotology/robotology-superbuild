@@ -57,3 +57,7 @@ export MATLABPATH=${MATLABPATH:+${MATLABPATH}:}${ROBOTOLOGY_SUPERBUILD_INSTALL_P
 # Avoid problems with buggy Linux drivers, see https://github.com/robotology/robotology-superbuild/issues/953
 export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS} -Djogl.disable.openglarbcontext=1"
 @endcmakeif ROBOTOLOGY_USES_MATLAB
+
+@cmakeif ROBOTOLOGY_USES_MATLAB AND ROBOTOLOGY_USES_MUJOCO
+export MATLABPATH=${MATLABPATH:+${MATLABPATH}:}${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/mex/mujoco_simulink_blockset
+@endcmakeif ROBOTOLOGY_USES_MATLAB AND ROBOTOLOGY_USES_MUJOCO

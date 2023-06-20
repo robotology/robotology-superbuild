@@ -255,3 +255,11 @@ repositories:
     type: git
     url: https://github.com/robotology/bayes-filters-lib.git
     version: 0.10.0
+  mujoco:
+    type: git
+    url: https://github.com/ami-iit/mujoco.git
+    version: 2.3.5.1
+  mujoco-simulink-blockset:
+    type: git
+    url: https://github.com/ami-iit/mujoco-simulink-blockset-cmake-buildsystem.git
+    version: v2.0.1

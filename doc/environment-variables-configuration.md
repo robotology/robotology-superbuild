@@ -89,3 +89,9 @@ For MATLAB to find the robot model files added by the repository [`matlab-whole-
 
 ### Python
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/python3.6/dist-packages` and `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/lib/python3.6/site-packages` must be appended to the `PYTHONPATH` environmental variable.
+
+
+### MuJoCo
+
+If both MATLAB and MuJoCo are enabled, the environment variable `MATLABPATH` has to be appended with the following robotology-superbuild related directory:
+* `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/mex/mujoco_simulink_blockset`
