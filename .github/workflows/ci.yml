@@ -385,6 +385,12 @@ jobs:
         cd build
         cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_ENABLE_GRASPING:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
+    - name: Disable options unsupported on Ubuntu 20.04 and vcpkg
+      if: contains(matrix.os, '20.04') || contains(matrix.os, 'windows')
+      run: |
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
+        cd build
+        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')

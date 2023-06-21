@@ -9,7 +9,7 @@ set(mujoco_DEPENDS "")
 ycm_ep_helper(mujoco TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/mujoco.git
-              TAG integration235
+              TAG integration236
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
