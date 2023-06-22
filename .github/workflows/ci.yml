@@ -132,6 +132,13 @@ jobs:
         # Disable options not tested on Conda for now
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
 
+    - name: Disable options not suppored on Visual Studio 2019 [Conda/Windows 2019]
+      if: contains(matrix.os, 'windows-2019')
+      shell: bash -l {0}
+      run: |
+        cd build
+        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
+
     - name: Configure Extra [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
       shell: bash -l {0}
