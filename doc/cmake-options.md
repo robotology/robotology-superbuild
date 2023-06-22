@@ -119,7 +119,7 @@ Not all options are supported on all platforms. The following table provides a r
 
 <b id="f7">7!</b>:`ROBOTOLOGY_USES_GAZEBO` does not support building with apt dependencies on Ubuntu 18.04 .
 
-<b id="f8">8!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022.
+<b id="f8">8!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022. Furthermore, it does not support build on Wndows with Visual Studio 2019, it requires Visual Studio 2022.
 
 
 
