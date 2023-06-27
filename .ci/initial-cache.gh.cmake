@@ -1,5 +1,6 @@
 # Dependencies options
 set(ROBOTOLOGY_USES_GAZEBO ON CACHE BOOL "")
+set(ROBOTOLOGY_USES_MUJOCO ON CACHE BOOL "")
 set(ROBOTOLOGY_USES_PCL_AND_VTK ON CACHE BOOL "")
 
 # Octave is not supported on Windows or on Conda

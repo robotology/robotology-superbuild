@@ -12,8 +12,9 @@ simLibMomVelDir   = [installDir, filesep, 'mex/+wbc/simulink/MomentumVelocityCon
 simModDir   = [installDir, filesep, 'mex/+wbc/examples'];
 shareDir     = [installDir, filesep, 'share/WBToolbox'];
 imgDir       = [shareDir, filesep, 'images'];
+mujocoDir   = [installDir, filesep, 'mex/mujoco_simulink_blockset'];
 
-for dirPath = {mexDir,simLibDir,simLibMomVelDir,simModDir,shareDir,imgDir}
+for dirPath = {mexDir,simLibDir,simLibMomVelDir,simModDir,shareDir,imgDir,mujocoDir}
     if exist(dirPath{1}, 'dir')
         addpath(dirPath{1});
     end

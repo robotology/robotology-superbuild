@@ -22,6 +22,7 @@ mark_as_advanced(ROBOTOLOGY_USES_CSHARP)
 ## Enable packages that depend on the Gazebo Classic simulator
 option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ON)
 option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" OFF)
+option(ROBOTOLOGY_USES_MUJOCO "Enable compilation of mujoco and software that depends on it" OFF)
 
 ## Enable packages that depend on the Ignition Gazebo simulator
 set(ROBOTOLOGY_USES_IGNITION_DEFAULT FALSE)

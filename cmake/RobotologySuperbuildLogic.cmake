@@ -159,6 +159,14 @@ if(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS)
   find_or_build_package(funny-things)
 endif()
 
+# MuJoCo
+if(ROBOTOLOGY_USES_MUJOCO)
+  find_or_build_package(mujoco)
+  if(ROBOTOLOGY_USES_MATLAB AND NOT ROBOTOLOGY_NOT_USE_SIMULINK)
+    find_or_build_package(mujoco-simulink-blockset)
+  endif()
+endif()
+
 # R1 Robot
 if(ROBOTOLOGY_ENABLE_R1_ROBOT)
   find_or_build_package(navigation)

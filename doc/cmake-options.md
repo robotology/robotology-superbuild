@@ -18,6 +18,7 @@ Table of Contents
     * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo simulator](#gazebo)
+    * [MuJoCo simulator](#mujoco)
     * [Ignition](#ignition)
     * [MATLAB](#matlab)
     * [Octave](#octave)
@@ -63,6 +64,7 @@ The dependencies CMake options specify if the packages dependending on something
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
 | `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](http://gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo) |
+| `ROBOTOLOGY_USES_MUJOCO`  | Include software and plugins that depend on the [MuJoCo simulator](https://mujoco.org/).  | `ON` | [Documentation on MuJoCo dependency.](#mujoco) |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`  | Include software and plugins that depend on the [PCL](https://pointclouds.org/) or [VTK](https://vtk.org/). | `OFF`   | [Documentation on PCL and VTK dependency.](#pcl_and_vtk) |
 | `ROBOTOLOGY_USES_IGNITION` | Include software that depends on [Ignition](ignitionrobotics.org/). | `OFF` | [Documentation on Ignition Gazebo dependency.](#ignition) |
 | `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) |
@@ -91,6 +93,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`<sup id="a6">[6!](#f6)</sup>        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`<sup id="a5">[5!](#f5)</sup>            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_GAZEBO`<sup id="a7">[7!](#f7)</sup>                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_MUJOCO`<sup id="a8">[8!](#f8)</sup>  | ✔️                               |           ❌                |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_IGNITION`                                          | ❌                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_USES_MATLAB`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
@@ -115,6 +118,9 @@ Not all options are supported on all platforms. The following table provides a r
 <b id="f6">6!</b>:`ROBOTOLOGY_ENABLE_EVENT_DRIVEN` does not support building with apt dependencies on Ubuntu 18.04 and Debian Buster .
 
 <b id="f7">7!</b>:`ROBOTOLOGY_USES_GAZEBO` does not support building with apt dependencies on Ubuntu 18.04 .
+
+<b id="f8">8!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022. Furthermore, it does not support build on Wndows with Visual Studio 2019, it requires Visual Studio 2022.
+
 
 
 Profile-specific documentation
@@ -214,6 +220,10 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake opt
 
 ### Check the installation
 Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
+
+## MuJoCo
+
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_MUJOCO` CMake option, that enables the software that depends on MuJoCo. Note that differently from other `ROBOTOLOGY_USES_<..>` options, in this case the main dependency (MuJoCo) is compiled by the superbuild.
 
 ## PCL and VTK
 
