@@ -262,4 +262,4 @@ repositories:
   mujoco-simulink-blockset:
     type: git
     url: https://github.com/ami-iit/mujoco-simulink-blockset-cmake-buildsystem.git
-    version: v2.0.1
+    version: v3.0.0
