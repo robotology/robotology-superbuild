@@ -213,6 +213,7 @@ macro(generate_metametadata_file)
          "qt-main" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "freeglut" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "glew" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
+         "glfw" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "irrlicht" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "idyntree" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
          "vtk" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
