@@ -10,6 +10,7 @@ as those happen on regular basis.
 
 ### Removed
 
+- Removed `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` CMake options and `yarp-device-ovrheadset` package ().
 - Compilation against Homebrew dependencies is removed from the CI.
 
 ## [2023.02.0] - 2023-03-10

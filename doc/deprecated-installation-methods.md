@@ -104,8 +104,6 @@ or creating the directories and extracting the archive through the File Explorer
 If you want to enable the `ROBOTOLOGY_USES_GAZEBO` option, you will need to download and extract the `vcpkg-robotology-with-gazebo.zip` archive. For instructions on how to correctly use this archives, please refer to documentation of the [`robotology-superbuild-dependencies-vcpkg`](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg) repo.
 
 If you want to enable a [profile](cmake-options.md#profile-cmake-options) or a [dependency](cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
-* [`ROBOTOLOGY_USES_OCULUS_SDK`](cmake-options.md#oculus)
-* [`ROBOTOLOGY_USES_CYBERITH_SDK`](cmake-options.md#cyberith)
 * [`ROBOTOLOGY_USES_XSENS_MVN_SDK`](cmake-options.md#xsens)
 * [`ROBOTOLOGY_USES_ESDCAN`](cmake-options.md#shoes)
 
