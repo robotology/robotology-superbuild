@@ -18,3 +18,4 @@ ycm_ep_helper(mujoco-simulink-blockset TYPE GIT
 # so in this case mujoco-simulink-blockset-cmake-buildsystem that is not descriptive of the
 # generated artifact that is contained in the conda package
 set(mujoco-simulink-blockset_CONDA_PKG_NAME "mujoco-simulink-blockset")
+set(mujoco-simulink-blockset_CONDA_DEPENDENCIES glfw)
