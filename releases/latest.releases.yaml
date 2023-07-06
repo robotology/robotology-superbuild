@@ -202,7 +202,7 @@ repositories:
   matlab-whole-body-simulator:
     type: git
     url: https://github.com/ami-iit/matlab-whole-body-simulator.git
-    version: v3.2.0
+    version: v3.3.0
   casadi-matlab-bindings:
     type: git
     url: https://github.com/ami-iit/casadi-matlab-bindings.git
