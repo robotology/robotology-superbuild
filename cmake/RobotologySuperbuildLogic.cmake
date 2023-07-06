@@ -172,7 +172,3 @@ if(ROBOTOLOGY_ENABLE_R1_ROBOT)
   find_or_build_package(navigation)
   find_or_build_package(cer)
 endif()
-
-if(ROBOTOLOGY_USES_OCULUS_SDK)
-  find_or_build_package(yarp-device-ovrheadset)
-endif()

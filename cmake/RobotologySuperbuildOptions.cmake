@@ -28,10 +28,6 @@ option(ROBOTOLOGY_USES_MUJOCO "Enable compilation of mujoco and software that de
 set(ROBOTOLOGY_USES_IGNITION_DEFAULT FALSE)
 option(ROBOTOLOGY_USES_IGNITION "Enable compilation of software that depends on Ignition Gazebo" ${ROBOTOLOGY_USES_IGNITION_DEFAULT})
 
-## Enable Oculus SDK and Cyberith treadmill options
-option(ROBOTOLOGY_USES_OCULUS_SDK "Enable compilation of software that depend on Oculus SDK" FALSE)
-option(ROBOTOLOGY_USES_CYBERITH_SDK "Enable compilation of software that depend on Cyberith SDK" FALSE)
-
 # Enable/disable different profiles
 option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." TRUE)
 option(ROBOTOLOGY_ENABLE_ROBOT_TESTING "Enable compilation of software for robot testing." FALSE)

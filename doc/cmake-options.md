@@ -23,8 +23,6 @@ Table of Contents
     * [MATLAB](#matlab)
     * [Octave](#octave)
     * [Python](#python)
-    * [Oculus](#oculus)
-    * [Cyberith](#cyberith)
     * [Xsens](#xsens)
     * [ESDCAN](#esdcan)
 
@@ -49,7 +47,7 @@ All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework) and its dependencies. |  [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework), [`manif`](https://github.com/artivis/manif), [`qhull`](https://github.com/qhull/qhull), [`casadi`](https://github.com/casadi/casadi). [`CppAD`](https://github.com/coin-or/CppAD). [`robot-log-visualizer`](https://github.com/ami-iit/robot-log-visualizer) if `ROBOTOLOGY_USES_PYTHON` option is enabled. | `OFF` | [Documentation on Dynamics full deps profile.](#dynamics-full-deps)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared), [`diagnostic-daemon`](https://github.com/robotology/diagnostic-daemon). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
-| `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation), [`https://github.com/ami-iit/yarp-openvr-trackers`](https://github.com/ami-iit/yarp-openvr-trackers) and [`https://github.com/ami-iit/yarp-device-openxrheadset`](https://github.com/ami-iit/yarp-device-openxrheadset). To use Oculus or Cyberith Omnidirectional Treadmill enable `ROBOTOLOGY_USES_OCULUS_SDK` and `ROBOTOLOGY_USES_CYBERITH_SDK` options. | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
+| `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation), [`https://github.com/ami-iit/yarp-openvr-trackers`](https://github.com/ami-iit/yarp-openvr-trackers) and [`https://github.com/ami-iit/yarp-device-openxrheadset`](https://github.com/ami-iit/yarp-device-openxrheadset). | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`yarp-devices-forcetorque`](https://github.com/robotology/yarp-devices-forcetorque). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` | The robotology software packages related to event-driven. | [`event-driven`](https://github.com/robotology/event-driven) | `OFF` | [Documentation on event-driven profile.](#event-driven)  |
 | `ROBOTOLOGY_ENABLE_GRASPING` | The robotology software packages related to grasping. | [`find-superquadric`](https://github.com/robotology/find-superquadric) if the `ROBOTOLOGY_USES_PCL_AND_VTK` option is enabled. | `OFF` | [Documentation on grasping profile.](#grasping)  |
@@ -70,8 +68,6 @@ The dependencies CMake options specify if the packages dependending on something
 | `ROBOTOLOGY_USES_MATLAB`  | Include software and plugins that depend on the [Matlab](https://mathworks.com/products/matlab.html). | `OFF` | [Documentation on MATLAB dependency.](#matlab) |
 | `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  [Documentation on Octave dependency.](#octave) |
 | `ROBOTOLOGY_USES_PYTHON`  | Include software that depends on [Python](https://www.python.org/).  | `OFF` |  [Documentation on Python dependency.](#python) |
-| `ROBOTOLOGY_USES_OCULUS_SDK`  | Include software and plugins that depend on [Oculus](https://www.oculus.com/).  | `OFF` |  [Documentation on Oculus dependency.](#oculus) |
-| `ROBOTOLOGY_USES_CYBERITH_SDK`  | Include software and plugins that depend on [Cyberith](https://www.cyberith.com/).  | `OFF` |  [Documentation on Cyberith dependency.](#cyberith) |
 | `ROBOTOLOGY_USES_CFW2CAN`  | Include software and plugins that depend on [CFW2 CAN custom board](http://wiki.icub.org/wiki/CFW_card).  | `OFF` | No specific documentation is available for this  option, as it is just used with the [iCub Head profile](#icub-head), in which the related documentation can be found.  |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK`  | Include software and plugins that depend on [Xsens MVN SDK](https://www.xsens.com/products/).  | `OFF` | [Documentation on Xsens MVN dependency](#xsens)  |
 | `ROBOTOLOGY_USES_ESDCAN`  | Include software and plugins that depend on [Esd Can bus](http://wiki.icub.org/wiki/Esd_Can_Bus).  | `OFF` | [Documentation on ESDCAN dependency](#esdcan)  |
@@ -99,8 +95,6 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_USES_MATLAB`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_OCTAVE`                                            | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
 | `ROBOTOLOGY_USES_PYTHON`<sup id="a3">[3!](#f3)</sup>                | ✔️                               |              ❌             |                  ✔️                       |               ✔️                          |                  ✔️                         |
-| `ROBOTOLOGY_USES_OCULUS_SDK`                                        | ❌                               |             ✔️              |                  ❌                       |               ❌                          |                  ❌                         |
-| `ROBOTOLOGY_USES_CYBERITH_SDK`                                      | ❌                               |            ✔️               |                  ❌                       |               ❌                          |                 ✔️                          |
 | `ROBOTOLOGY_USES_CFW2CAN`                                           |  ✔️                              |             ❌              |                 ✔️                        |              ❌                           |                 ❌                          |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK`                                     |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ❌                          |
 | `ROBOTOLOGY_USES_ESDCAN`                                            |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ✔️                          |
@@ -361,29 +355,6 @@ mamba install -c conda-forge python numpy swig pybind11 pyqt matplotlib h5py tor
 
 ### Check the installation
 Open a python interpreter and try to import modules, for example verify that `import yarp` works.
-
-## Oculus
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_OCULUS_SDK` CMake option.
-
-**Warning: at the moment the Oculus SDK does not support macOS and Linux, so this option is only supported
-on Windows.**
-
-### System Dependencies
-To check and install the Oculus SDK please follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
-
-### Configuration
-To configure the Oculus SDK follow the steps for Oculus SDK mentioned [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
-
-## Cyberith
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_CYBERITH_SDK` CMake option.
-
-**Warning: at the moment the Cyberith SDK does not support macOS and Linux, so this option is only supported on Windows.**
-
-### System Dependencies
-To check and install the Cyberith SDK, please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
-
-### Configuration
-To configure the Cyberith SDK please follow the steps for Cyberith SDK mentioned in [here](https://github.com/robotology/walking-teleoperation/blob/master/docs/Dependencies.md).
 
 ## Xsens
 Support for `ROBOTOLOGY_USES_XSENS_MVN_SDK` option is only enabled when the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option is set to ON.
