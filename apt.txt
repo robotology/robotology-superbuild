@@ -63,3 +63,12 @@ libglew-dev
 libglm-dev
 libfreetype6-dev
 libsqlite3-dev
+libavcodec-dev 
+libavdevice-dev
+libavfilter-dev
+libavformat-dev
+libavutil-dev
+libpostproc-dev
+libswresample-dev
+libswscale-dev
+zlib1g-dev
