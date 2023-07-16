@@ -50,7 +50,7 @@ repositories:
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v2.2.0
+    version: v2.2.2
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
@@ -226,7 +226,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.0.27
+    version: release-1.0.28
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -250,7 +250,7 @@ repositories:
   proxsuite:
     type: git
     url: https://github.com/Simple-Robotics/proxsuite.git
-    version: v0.3.7
+    version: v0.3.7-0-g8589609c560a83ca06d411ee16c645384da1b1b4
   BayesFilters:
     type: git
     url: https://github.com/robotology/bayes-filters-lib.git
