@@ -20,6 +20,9 @@ endif()
 
 set(onnxruntimebinaries_URL "https://github.com/microsoft/onnxruntime/releases/download/v${onnxruntimebinaries_VERSION}/onnxruntime-linux-${onnxruntimebinaries_ARCH}-${onnxruntimebinaries_VERSION}.tgz")
 
+# include FetchContent
+include(FetchContent)
+
 FetchContent_Declare(
   onnxruntimebinaries
   URL      ${onnxruntimebinaries_URL}
