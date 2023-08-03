@@ -150,7 +150,7 @@ If you already have a Python that you use in your system, make sure that you des
 
 After the installation has been completed, Mambaforge should have been installed in `%HOMEDRIVE%%HOMEPATH%\AppData\Local\mambaforge`. 
 
-If you explicitly selected the for All Users install, Mambaforge will be installed in `%ProgramData%\mambaforge`, in that case substitute `%HOMEDRIVE%%HOMEPATH%\AppData\Local\mambaforge` with `%ProgramData%\mambaforge` in the rest of the documentation.
+If you explicitly selected the for All Users install, Mambaforge will be installed in `%ProgramData%\mambaforge`, in that case substitute `%HOMEDRIVE%%HOMEPATH%\AppData\Local\mambaforge` with `%ProgramData%\mambaforge` in the rest of the documentation. In this case you should also have admin rights (or run the console as administrator) otherwise you will get an error ("ERROR during elevated execution").
 
 To ensure that the `conda` binary can be used in your terminal, open a Command Prompt and run:
 ~~~
