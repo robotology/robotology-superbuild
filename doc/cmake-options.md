@@ -249,12 +249,15 @@ Follow the official instructions to install Ignition on your platform, available
 Note: this installation method is not currently tested in Continuous Integration.
 
 ## MATLAB
+
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_MATLAB` CMake option.
 
 **Warning: differently from other optional dependencies, MATLAB is a commercial product that requires a license to be used.**
 
 ### System Dependencies
+
 If MATLAB is not installed on your computer, install it following the instruction in https://mathworks.com/help/install/ .
+**The minimum version of MATLAB supported by the robotology-superbuild is R2022a.**
 Once you installed it, make sure that the directory containing the `matlab` executable is present in the `PATH` of your system,
 as [CMake's FindMatlab module](https://cmake.org/cmake/help/v3.5/module/FindMatlab.html) relies on this to find MATLAB.
 

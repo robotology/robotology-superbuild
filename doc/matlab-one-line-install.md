@@ -2,6 +2,8 @@
 
 This guide provides a simple documentation to install Robotology MATLAB/Simulink packages in a pure MATLAB workflow (so without launching **anything else** via terminal, so for example no Gazebo simulation).
 
+**Note that he minimum version of MATLAB supported by the robotology-superbuild is R2022a.**
+
 ## Installation
 ~~~matlab
 websave('install_robotology_packages.m', 'https://raw.githubusercontent.com/robotology/robotology-superbuild/master/scripts/install_robotology_packages.m')
