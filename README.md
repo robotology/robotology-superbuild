@@ -296,6 +296,32 @@ The `robotology-superbuild` is based on [YCM](https://github.com/robotology/ycm)
   International Journal of Semantic Computing (IJSC), Vol. 13, No. 02, 2019
 
 
+### How do I solve the "Invalid MEX-file <...>" error message on Linux when using MATLAB or Simulink libraries?
+
+If you are on Linux and you encounter errors similar to:
+~~~
+Invalid MEX-file '/home/username/Software/robotology-superbuild/build/install/mex/WBToolbox.mexa64':
+ /home/username/Software/matlab/bin/glnxa64/../../sys/os/glnxa64/libstdc++.so.6:
+version `GLIBCXX_3.4.21' not found (required by /home/username/Software/robotology-superbuild/build/install/mex/WBToolbox.mexa64)
+~~~
+when running MATLAB or Simulink libraries installed by the robotology-superbuild, to solve the problem it should be sufficient to run:
+~~~
+sudo apt install matlab-support
+~~~
+and specify your MATLAB installation directory and when there is the question "Rename MATLAB's GCC libraries?" answer "Yes".
+
+If there are no configuration question when you run , probably that means that the package is already installed. In that case, you can just reconfigure it with the command:
+~~~
+sudo dpkg-reconfigure matlab-support
+~~~
+and again, specify your MATLAB installation directory and when there is the question "Rename MATLAB's GCC libraries?" answer "Yes".
+
+If the problem persists even after following this steps, please [open a new issue in the robotology-superbuild issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).
+
+
+
+
+
 Mantainers
 ==========
 

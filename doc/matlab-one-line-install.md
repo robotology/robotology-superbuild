@@ -20,6 +20,7 @@ vec.fromMatlab([1,2,3])
 vec.toString();
 ~~~
 
+If executing this script you obtain a "Invalid MEX-file ..." error, please check how to solve this problem in [the related FAQ question in robotology-superbuild's README](../README.md#how-do-i-solve-the-invalid-mex-file--error-message-on-linux-when-using-matlab-or-simulink-libraries).
 
 
 ### Installation on MATLAB Online

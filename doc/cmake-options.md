@@ -306,6 +306,7 @@ For more info on configuring MATLAB software with the robotology-superbuild, ple
 ### Check the installation
 To verify that the compilation of `ROBOTOLOGY_USES_MATLAB` option was successful, try to run a script that uses
 the Matlab bindings of `yarp` and see if it executes without any error, for example:
+
 ~~~matlab
 yarpVec = yarp.Vector();
 yarpVec.resize(3);
@@ -313,6 +314,8 @@ yarpVec.fromMatlab([1;2;3]);
 yarpVec.toMatlab()
 ~~~~
 This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are working correctly.
+
+If executing this script you obtain a "Invalid MEX-file ..." error, please check how to solve this problem in [the related FAQ question in robotology-superbuild's README](../README.md#how-do-i-solve-the-invalid-mex-file--error-message-on-linux-when-using-matlab-or-simulink-libraries).
 
 
 ## Octave
@@ -334,7 +337,8 @@ yarpVec.resize(3);
 yarpVec.fromMatlab([1;2;3]);
 yarpVec.toMatlab()
 ~~~~
-This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are working correctly.
+This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are working correctly. 
+
 
 
 ## Python
