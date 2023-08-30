@@ -137,7 +137,7 @@ jobs:
       shell: bash -l {0}
       run: |
         cd build
-        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=ON .
 
     - name: Configure Extra [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
