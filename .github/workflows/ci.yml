@@ -193,7 +193,7 @@ jobs:
       image: ${{ matrix.docker_image }}
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3.6.0
 
     - name: Upgrade apt packages Debian Testing [Debian Testing]
       if: matrix.docker_image == 'debian:testing'
