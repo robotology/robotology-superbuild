@@ -162,6 +162,7 @@ jobs:
       shell: bash -l {0}
       run: |
         cd build
+        cmake --build . --target mujoco --config ${{ matrix.build_type }}
         cmake --build . --config ${{ matrix.build_type }}
 
   docker-build:
