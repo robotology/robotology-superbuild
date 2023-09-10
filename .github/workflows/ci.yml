@@ -98,12 +98,6 @@ jobs:
         # Additional dependencies only useful on Windows
         mamba install -c conda-forge -c robotology esdcan freeglut
 
-    # Workaround for https://github.com/robotology/idyntree/issues/1109
-    - name: Dependencies [Conda/macOS]
-      if: contains(matrix.os, 'macos')
-      run: |
-        mamba install libblas=*=*netlib
-
     - name: Print used environment [Conda]
       shell: bash -l {0}
       run: |
