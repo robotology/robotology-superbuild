@@ -195,6 +195,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3.6.0
 
+    - name: Free Disk Space (Ubuntu)
+      uses: jlumbroso/free-disk-space@v1
+      with:
+        tool-cache: false
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        docker-images: false
+        swap-storage: false
+
     - name: Upgrade apt packages Debian Testing [Debian Testing]
       if: matrix.docker_image == 'debian:testing'
       run: |
