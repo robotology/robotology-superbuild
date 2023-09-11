@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v2.2.1
+    version: v2.3.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -42,7 +42,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v2.4.0
+    version: v2.5.0
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -50,11 +50,11 @@ repositories:
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v2.2.2
+    version: v2.3.0
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
-    version: v0.3.3
+    version: v0.4.0
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
@@ -110,7 +110,7 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: v0.9.1
+    version: v0.10.0
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
@@ -122,11 +122,11 @@ repositories:
   wearables:
     type: git
     url: https://github.com/robotology/wearables.git
-    version: v1.7.1
+    version: v1.7.2
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v2.7.1
+    version: v2.8.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -134,19 +134,19 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.35.0
+    version: v1.36.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.35.0
+    version: v1.36.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.35.0
+    version: v1.36.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
-    version: v1.35.0
+    version: v1.36.0
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
@@ -162,7 +162,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.23.0
+    version: v1.24.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
@@ -170,7 +170,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.14.1
+    version: v0.15.0
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
@@ -194,7 +194,7 @@ repositories:
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
-    version: v1.2.1
+    version: v1.2.2
   gym-ignition:
     type: git
     url: https://github.com/robotology/gym-ignition.git
