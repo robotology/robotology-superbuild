@@ -191,9 +191,20 @@ jobs:
 
     container:
       image: ${{ matrix.docker_image }}
+      volumes:
+        - /usr/local:/host_usr_local
 
     steps:
     - uses: actions/checkout@v3.6.0
+
+    - name: Free disk space in host machine
+      run: |
+        rm -rf /host_usr_local/graalvm/
+        rm -rf /host_usr_local/.ghcup/
+        rm -rf /host_usr_local/share/powershell
+        rm -rf /host_usr_local/share/chromium
+        rm -rf /host_usr_local/lib/android
+        rm -rf /host_usr_local/lib/node_modules
 
     - name: Upgrade apt packages Debian Testing [Debian Testing]
       if: matrix.docker_image == 'debian:testing'
