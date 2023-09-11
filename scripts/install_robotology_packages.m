@@ -83,7 +83,7 @@ function install_robotology_packages(varargin)
     packages_to_install = 'yarp-matlab-bindings idyntree-matlab-bindings wb-toolbox osqp-matlab casadi-matlab-bindings whole-body-controllers matlab-whole-body-simulator icub-models';
     if ismac
         % Workaround for https://github.com/robotology/idyntree/issues/1109
-        packages_to_install + " libblas=*=*netlib";
+        packages_to_install = packages_to_install + " libblas=*=*netlib";
     end
     system(sprintf('"%s" install -y -c conda-forge -c robotology %s', conda_full_path, packages_to_install));
     fprintf('Installation of robotology packages completed\n');
