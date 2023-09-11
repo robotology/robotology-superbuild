@@ -497,7 +497,7 @@ jobs:
 
     - name: Upload Full Installer [Windows]
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       with:
@@ -508,7 +508,7 @@ jobs:
 
     - name: Upload Dependencies installer  [Windows]
       if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       with:
