@@ -13,7 +13,7 @@ jobs:
         name: "Update latest releases"
         runs-on: [ubuntu-20.04]
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v4.0.0
 
         - name: Install dependencies
           run: |

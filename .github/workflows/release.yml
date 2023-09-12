@@ -11,7 +11,7 @@ jobs:
     name: Create the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 release
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.0.0
     - name: Modify the yaml file
       run: |
         cd releases

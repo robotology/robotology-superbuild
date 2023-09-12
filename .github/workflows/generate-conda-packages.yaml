@@ -33,7 +33,7 @@ jobs:
           conda_build_number: ${{ steps.step1.outputs.conda_build_number }}
 
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v4.0.0
           with:
             ref: 'master'
 
@@ -61,7 +61,7 @@ jobs:
                   conda_platform: win-64
 
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v4.0.0
 
         - uses: conda-incubator/setup-miniconda@v2
           with:
@@ -228,7 +228,7 @@ jobs:
         if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
 
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v4.0.0
           with:
             ref: 'master'
 
