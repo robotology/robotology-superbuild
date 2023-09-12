@@ -195,7 +195,7 @@ jobs:
         - /usr/local:/host_usr_local
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3.6.0
 
     - name: Free disk space in host machine
       run: |
