@@ -16,7 +16,7 @@ jobs:
 
         - name: Get Token
           id: get_workflow_token
-          uses: tibdex/github-app-token@v1
+          uses: tibdex/github-app-token@v2
           with:
             private_key: ${{ secrets.ICUB_TECH_IIT_APP_KEY }}
             app_id: ${{ secrets.ICUB_TECH_IIT_APP_ID }}
