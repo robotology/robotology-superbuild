@@ -23,7 +23,7 @@ jobs:
             repository: icub-tech-iit/code
 
         - name: Repository Dispatch
-          uses: peter-evans/repository-dispatch@v1
+          uses: peter-evans/repository-dispatch@v2
           env:
             GITHUB_APPS_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
           with:
