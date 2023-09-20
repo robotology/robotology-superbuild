@@ -214,7 +214,7 @@ repositories:
   pyqtconsole:
     type: git
     url: https://github.com/pyqtconsole/pyqtconsole.git
-    version: v1.2.2
+    version: v1.2.3
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
