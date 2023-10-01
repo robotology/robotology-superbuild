@@ -222,11 +222,11 @@ repositories:
   robot-log-visualizer:
     type: git
     url: https://github.com/ami-iit/robot-log-visualizer.git
-    version: v0.6.0
+    version: v0.6.1
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.0.29
+    version: release-1.0.30
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
