@@ -220,7 +220,7 @@ jobs:
         - name: Upload conda packages (noarch)
           shell: bash -l {0}
           # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
-          if: matrix.conda_platform == 'linux-64' and (github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true'))
+          if: matrix.conda_platform == 'linux-64' && (github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true'))
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           run: |
