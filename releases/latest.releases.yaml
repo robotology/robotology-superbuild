@@ -263,3 +263,7 @@ repositories:
     type: git
     url: https://github.com/ami-iit/mujoco-simulink-blockset-cmake-buildsystem.git
     version: v3.0.0
+  resolve-robotics-uri-py:
+    type: git
+    url: https://github.com/ami-iit/resolve-robotics-uri-py.git
+    version: v0.1.0
