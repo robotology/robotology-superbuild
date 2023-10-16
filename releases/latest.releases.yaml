@@ -222,7 +222,7 @@ repositories:
   robot-log-visualizer:
     type: git
     url: https://github.com/ami-iit/robot-log-visualizer.git
-    version: v0.6.1
+    version: v0.7.0
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
@@ -246,7 +246,7 @@ repositories:
   tomlplusplus:
     type: git
     url: https://github.com/marzer/tomlplusplus.git
-    version: v3.3.0
+    version: v3.4.0
   proxsuite:
     type: git
     url: https://github.com/Simple-Robotics/proxsuite.git
