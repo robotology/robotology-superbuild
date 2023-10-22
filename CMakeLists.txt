@@ -1,8 +1,8 @@
-# Copyright (C) 2017  iCub Facility, Istituto Italiano di Tecnologia
+# Copyright (C) Fondazione Istituto Italiano di Tecnologia
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.12...3.16)
 project(robotology-superbuild NONE)
 
 ## we have to enable C because it is currently used
