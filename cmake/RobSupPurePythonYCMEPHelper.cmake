@@ -26,11 +26,6 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
   # Dependencies
   find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
-  execute_process(COMMAND ${Python3_EXECUTABLE}
-                  -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
-                  OUTPUT_VARIABLE _PYTHON_INSTDIR)
-  string(STRIP ${_PYTHON_INSTDIR} ROBSUB_PYTHON_INSTALL_DIR)
-
   # Check arguments
   set(_options)
   set(_oneValueArgs COMPONENT
@@ -59,6 +54,6 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                          # See https://stackoverflow.com/questions/55708589/how-to-pass-an-environment-variable-to-externalproject-add-configure-command
                          # See https://github.com/robotology/robotology-superbuild/issues/1118
                          # To avoid the complexity of handling two commands, we just use the build step to uninstall any existing package
-                         BUILD_COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${YCM_EP_INSTALL_DIR}/${ROBSUB_PYTHON_INSTALL_DIR} pip uninstall -y ${_PYH_${_name}_PYTHON_PACKAGE_NAME}
-                         INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBSUB_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
+                         BUILD_COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} pip uninstall -y ${_PYH_${_name}_PYTHON_PACKAGE_NAME}
+                         INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
 endfunction()
