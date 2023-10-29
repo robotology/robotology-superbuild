@@ -13,9 +13,12 @@ enable_language(C)
 enable_language(CXX)
 
 ## Set CMP0094 to NEW
-if(POLICY CMP0094)
-  cmake_policy(SET CMP0094 NEW)
-endif ()
+# Not done on APPLE as a workaround for https://github.com/robotology/robotology-superbuild/issues/1510
+if(NOT APPLE)
+  if(POLICY CMP0094)
+    cmake_policy(SET CMP0094 NEW)
+  endif()
+endif()
 
 # Disable in source build
 if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
