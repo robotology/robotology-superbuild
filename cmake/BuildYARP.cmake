@@ -35,13 +35,8 @@ else()
   set(YARP_USE_I2C OFF)
 endif()
 
-# For what regards Python installation, the options changes depending
-# on whether we are installing YARP from source, or generating a
-# conda package on Windows as in that case the installation location
-# will need to be outside of CMAKE_INSTALL_PREFIX
-# See https://github.com/robotology/robotology-superbuild/issues/641
-if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES AND WIN32)
-  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DCMAKE_INSTALL_PYTHON3DIR:PATH=%SP_DIR%")
+if(ROBOTOLOGY_USES_PYTHON)
+  list(APPEND YARP_OPTIONAL_DEPS "-DCMAKE_INSTALL_PYTHON3DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
 endif()
 
 ycm_ep_helper(YARP TYPE GIT

@@ -50,8 +50,8 @@ endif()
 # will need to be outside of CMAKE_INSTALL_PREFIX
 # See https://github.com/robotology/robotology-superbuild/issues/641
 set(bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "")
-if(ROBOTOLOGY_USES_PYTHON AND ROBOTOLOGY_GENERATE_CONDA_RECIPES)
-  list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
+if(ROBOTOLOGY_USES_PYTHON)
+  list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_PYTHON_INSTALL_DIR:BOOL=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
 endif()
 
 if(ROBOTOLOGY_USES_PCL_AND_VTK)

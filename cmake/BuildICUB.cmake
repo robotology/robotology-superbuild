@@ -48,6 +48,12 @@ else()
   set(ICUB_COMPILE_BINDINGS OFF)
 endif()
 
+if(ROBOTOLOGY_USES_PYTHON AND NOT ROBOTOLOGY_GENERATE_CONDA_RECIPES)
+  set(ICUB_PYTHON_INSTALL_CMAKE_ARGS "-DCMAKE_INSTALL_PYTHONDIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
+else()
+  set(ICUB_PYTHON_INSTALL_CMAKE_ARGS "")
+endif()
+
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/icub-main.git
@@ -56,7 +62,7 @@ ycm_ep_helper(ICUB TYPE GIT
                    FOLDER src
                    CMAKE_ARGS -DICUB_INSTALL_WITH_RPATH:BOOL=ON
                    CMAKE_CACHE_ARGS -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
-                                    -DENABLE_icubmod_cartesiancontrollerclient:BOOL=ON
+                                    -DENABLE_icubmod_cartesiancontrollerclient:sBOOL=ON
                                     -DENABLE_icubmod_gazecontrollerclient:BOOL=ON
                                     -DENABLE_icubmod_serial:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                                     -DENABLE_icubmod_serialport:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
@@ -91,7 +97,8 @@ ycm_ep_helper(ICUB TYPE GIT
                                     -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS}
                                     -DICUB_COMPILE_BINDINGS:BOOL=${ICUB_COMPILE_BINDINGS}
                                     -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
-                                    -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA})
+                                    -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
+                                    ${ICUB_PYTHON_INSTALL_CMAKE_ARGS})
 
 set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt libode qt-main sdl)
 
