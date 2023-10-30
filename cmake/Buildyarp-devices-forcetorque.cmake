@@ -13,5 +13,5 @@ ycm_ep_helper(yarp-devices-forcetorque TYPE GIT
                                    COMPONENT iCub
                                    FOLDER src
                                    DEPENDS YARP
-                                   CMAKE_CACHE_ARGS -DENABLE_ftshoe:BOOL=ON)
+                                   CMAKE_ARGS -DENABLE_ftshoe:BOOL=ON)
 

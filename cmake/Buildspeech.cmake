@@ -16,5 +16,5 @@ ycm_ep_helper(speech TYPE GIT
                              ICUB
                              ICUBcontrib
                      COMPONENT ICUB_BASIC_DEMOS
-                     CMAKE_CACHE_ARGS -DBUILD_SVOX_SPEECH:BOOL=ON
+                     CMAKE_ARGS -DBUILD_SVOX_SPEECH:BOOL=ON
                      FOLDER src)
