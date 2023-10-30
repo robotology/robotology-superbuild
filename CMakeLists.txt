@@ -42,8 +42,13 @@ include(RobotologySuperbuildOptions)
 # Python-related logic
 if(ROBOTOLOGY_USES_PYTHON)
   find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-  execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
-     OUTPUT_VARIABLE _PYTHON_INSTDIR)
+  if(Python3_VERSION VERSION_GREATER_EQUAL 3.12)
+    execute_process(COMMAND ${Python3_EXECUTABLE} -c "import os;import sysconfig;relative_site_packages = sysconfig.get_path('purelib').replace(sysconfig.get_path('data'), '').lstrip(os.path.sep);print(relative_site_packages)"
+      OUTPUT_VARIABLE _PYTHON_INSTDIR)
+  else()
+    execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
+      OUTPUT_VARIABLE _PYTHON_INSTDIR)
+  endif()
   string(STRIP ${_PYTHON_INSTDIR} ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR)
   file(TO_CMAKE_PATH "${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}" ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR) 
 
