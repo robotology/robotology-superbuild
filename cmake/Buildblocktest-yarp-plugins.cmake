@@ -16,6 +16,6 @@ ycm_ep_helper(blocktest-yarp-plugins TYPE GIT
               FOLDER src
               DEPENDS YARP
                       blocktestcore
-              CMAKE_CACHE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)
+              CMAKE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)
               
 set(blocktest-yarp-plugins_CONDA_DEPENDENCIES boost-cpp)
