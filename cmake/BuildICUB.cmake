@@ -62,7 +62,7 @@ ycm_ep_helper(ICUB TYPE GIT
                    FOLDER src
                    CMAKE_ARGS -DICUB_INSTALL_WITH_RPATH:BOOL=ON
                               -DENABLE_icubmod_cartesiancontrollerserver:BOOL=ON
-                              -DENABLE_icubmod_cartesiancontrollerclient:sBOOL=ON
+                              -DENABLE_icubmod_cartesiancontrollerclient:BOOL=ON
                               -DENABLE_icubmod_gazecontrollerclient:BOOL=ON
                               -DENABLE_icubmod_serial:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_icubmod_serialport:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
