@@ -40,6 +40,7 @@ qtmultimedia5-dev
 libqt5opengl5-dev
 libqhull-dev
 swig
+nlohmann-json3-dev
 libmatio-dev
 libirrlicht-dev
 libspdlog-dev

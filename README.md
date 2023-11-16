@@ -105,6 +105,12 @@ We also support an additional deprecated way of compiling the superbuild, on Win
 
 ## Linux from source with dependencies provided by apt
 
+The following apt-based distributions are supported and tested by the robotology-superbuild:
+* Ubuntu 20.04 (Focal Fossa)
+* Ubuntu 22.04 (Jammy Jellyfish)
+* Debian 10 (Buster)
+* Debian 11 (Bullseye)
+
 ### System Dependencies
 On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMake and Eigen (and other dependencies necessary for the software include in `robotology-superbuild`) using `apt-get`. This can be done by installing the packages listed in the `apt.txt` file using the following script:
 ~~~
@@ -117,7 +123,6 @@ Besides the packages listed in `apt.txt` file, the script `install_apt_dependenc
 For what regards CMake, the robotology-superbuild requires CMake 3.16 . If you are using a recent Debian-based system such as Ubuntu 20.04, the default CMake is recent enough and you do not need to do further steps.
 
 If instead you use an older distro in which the default version of CMake is older, you can easily install a newer CMake version in several ways. For the following distributions, we recommend the following methods:  
-* Ubuntu 18.04 : use the latest CMake release in the [Kitware APT repository](https://apt.kitware.com/). You can find the full instructions for the installation on the website.
 * Debian 10 : use the CMake in the `buster-backports` repository, following the instructions to install from backports available in  [Debian documentation](https://backports.debian.org/Instructions/).
 More details can be found at https://github.com/robotology/QA/issues/364 .
 
@@ -129,7 +134,7 @@ Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you shou
 
 On Linux with apt dependencies install Gazebo, if you are on:
 * Ubuntu 20.04
-* Buster 10
+* Debian Buster 10
 
 follow the instructions available at https://gazebosim.org/tutorials?tut=install_ubuntu . Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
