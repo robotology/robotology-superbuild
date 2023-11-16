@@ -111,6 +111,8 @@ The following apt-based distributions are supported and tested by the robotology
 * Debian 10 (Buster)
 * Debian 11 (Bullseye)
 
+Other versions may be working, but they are not checked.
+
 ### System Dependencies
 On Debian based systems (as Ubuntu) you can install the C++ toolchain, Git, CMake and Eigen (and other dependencies necessary for the software include in `robotology-superbuild`) using `apt-get`. This can be done by installing the packages listed in the `apt.txt` file using the following script:
 ~~~
