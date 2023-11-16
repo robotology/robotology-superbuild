@@ -1,12 +1,8 @@
 # Changelog
-All notable changes to this project will be documented in this file.
 
-The format of this document is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+This file documents notable changes to this project done before August 2023. For changes after that take, plase refers to each release notes at https://github.com/robotology/robotology-superbuild/releases .
 
-Only major changes are documented in this file, and in general no version update of specific sub-packages is included,
-as those happen on regular basis.
-
-## [Unreleased]
+## [2023.08.0] - 2023-09-10
 
 ### Removed
 
