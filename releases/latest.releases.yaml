@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v2.3.0
+    version: v2.4.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -134,19 +134,19 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.36.0
+    version: v1.37.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.36.0
+    version: v1.37.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.36.0
+    version: v1.37.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
-    version: v1.36.0
+    version: v1.37.0
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
