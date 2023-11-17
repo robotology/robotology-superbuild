@@ -20,8 +20,10 @@ if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND iDynTree_OPTIONAL_CMAKE_ARGS "-DIDYNTREE_PYTHON_INSTALL_DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
 endif()
 
-# Hack for disabling IDYNTREE_USES_IRRLICHT on Ubuntu 18.04,
-# remove once https://github.com/robotology/robotology-superbuild/issues/481 is fixed
+# Hack for disabling IDYNTREE_USES_IRRLICHT on vcpkg,
+# remove once irrlicht+sdl is available on vcpkg,
+# and https://github.com/robotology/robotology-superbuild-dependencies-vcpkg
+# is modified to includ it
 find_package(glfw3 QUIET)
 
 ycm_ep_helper(iDynTree TYPE GIT

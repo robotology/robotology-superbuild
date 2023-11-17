@@ -24,12 +24,3 @@ then
 else
   apt-get install -y libdc1394-22-dev
 fi
-
-# Handle nlohmann-json3-dev dependency
-# Remove once Ubuntu 18.04 compatibility is dropped
-if [[ ("$ROBSUP_DISTRO_NAME" == "Ubuntu" && "$ROBSUP_DISTRO_VERSION" == "18.04") ]]
-then
-  :
-else
-  apt-get install -y nlohmann-json3-dev
-fi

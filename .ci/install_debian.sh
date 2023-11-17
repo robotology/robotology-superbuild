@@ -27,10 +27,8 @@ dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
 echo "lsb_dist: ${lsb_dist}"
 echo "dist_version: ${dist_version}"
 # Just a limited amount of distros are supported by OSRF repos, for all the other we use the 
-# gazebo packages in regular repos, while on bionic we do not use ROBOTOLOGY_USES_GAZEBO
-if [[ ("bionic" == "$dist_version") ]]; then
-    true
-elif [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
+# gazebo packages in regular repos
+if [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
     mkdir -p /etc/apt/sources.list.d
     echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
