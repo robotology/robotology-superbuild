@@ -42,7 +42,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v2.5.1
+    version: v2.5.2
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -94,7 +94,7 @@ repositories:
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
-    version: v0.6.0
+    version: v0.7.0
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
@@ -170,7 +170,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.16.0
+    version: v0.16.1
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
@@ -210,7 +210,7 @@ repositories:
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
-    version: v0.0.7
+    version: v0.0.8
   pyqtconsole:
     type: git
     url: https://github.com/pyqtconsole/pyqtconsole.git
