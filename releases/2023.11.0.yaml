@@ -1,0 +1,269 @@
+repositories:
+  qpOASES:
+    type: git
+    url: https://github.com/robotology-dependencies/qpOASES.git
+    version: v3.2.0.1
+  osqp:
+    type: git
+    url: https://github.com/oxfordcontrol/osqp.git
+    version: v0.6.3
+  manif:
+    type: git
+    url: https://github.com/robotology-dependencies/manif.git
+    version: 0.0.4.103
+  qhull:
+    type: git
+    url: https://github.com/qhull/qhull.git
+    version: 2020.2
+  CppAD:
+    type: git
+    url: https://github.com/coin-or/CppAD.git
+    version: 20230000.0
+  casadi:
+    type: git
+    url: https://github.com/casadi/casadi.git
+    version: 3.6.3
+  YCM:
+    type: git
+    url: https://github.com/robotology/ycm.git
+    version: v0.15.3
+  YARP:
+    type: git
+    url: https://github.com/robotology/yarp.git
+    version: v3.8.1
+  ICUB:
+    type: git
+    url: https://github.com/robotology/icub-main.git
+    version: v2.4.0
+  ICUBcontrib:
+    type: git
+    url: https://github.com/robotology/icub-contrib-common.git
+    version: v1.19.0
+  robots-configuration:
+    type: git
+    url: https://github.com/robotology/robots-configuration.git
+    version: v2.5.2
+  GazeboYARPPlugins:
+    type: git
+    url: https://github.com/robotology/gazebo-yarp-plugins.git
+    version: v4.9.0
+  icub-models:
+    type: git
+    url: https://github.com/robotology/icub-models.git
+    version: v2.4.1
+  ergocub-software:
+    type: git
+    url: https://github.com/icub-tech-iit/ergocub-software.git
+    version: v0.6.0
+  yarp-matlab-bindings:
+    type: git
+    url: https://github.com/robotology/yarp-matlab-bindings.git
+    version: v3.8.0
+  RobotTestingFramework:
+    type: git
+    url: https://github.com/robotology/robot-testing-framework.git
+    version: v2.0.1
+  icub-tests:
+    type: git
+    url: https://github.com/robotology/icub-tests.git
+    version: v1.25.0
+  blocktestcore:
+    type: git
+    url: https://github.com/robotology/blocktest.git
+    version: v2.3.7
+  blocktest-yarp-plugins:
+    type: git
+    url: https://github.com/robotology/blocktest-yarp-plugins.git
+    version: v1.1.4
+  iDynTree:
+    type: git
+    url: https://github.com/robotology/idyntree.git
+    version: v10.0.0
+  BlockFactory:
+    type: git
+    url: https://github.com/robotology/blockfactory.git
+    version: v0.8.3
+  WBToolbox:
+    type: git
+    url: https://github.com/robotology/wb-toolbox.git
+    version: v5.6.0
+  OsqpEigen:
+    type: git
+    url: https://github.com/robotology/osqp-eigen.git
+    version: v0.8.1
+  UnicyclePlanner:
+    type: git
+    url: https://github.com/robotology/unicycle-footstep-planner.git
+    version: v0.7.0
+  walking-controllers:
+    type: git
+    url: https://github.com/robotology/walking-controllers.git
+    version: v0.8.0
+  icub-gazebo-wholebody:
+    type: git
+    url: https://github.com/robotology/icub-gazebo-wholebody.git
+    version: v0.1.0
+  whole-body-controllers:
+    type: git
+    url: https://github.com/robotology/whole-body-controllers.git
+    version: v2.5.6
+  whole-body-estimators:
+    type: git
+    url: https://github.com/robotology/whole-body-estimators.git
+    version: v0.10.0
+  walking-teleoperation:
+    type: git
+    url: https://github.com/robotology/walking-teleoperation.git
+    version: v1.3.4
+  yarp-devices-forcetorque:
+    type: git
+    url: https://github.com/robotology/yarp-devices-forcetorque.git
+    version: v0.3.1
+  wearables:
+    type: git
+    url: https://github.com/robotology/wearables.git
+    version: v1.8.0
+  HumanDynamicsEstimation:
+    type: git
+    url: https://github.com/robotology/human-dynamics-estimation.git
+    version: v3.0.0
+  human-gazebo:
+    type: git
+    url: https://github.com/robotology/human-gazebo.git
+    version: v1.1.0
+  icub_firmware_shared:
+    type: git
+    url: https://github.com/robotology/icub-firmware-shared.git
+    version: v1.37.0
+  icub-firmware:
+    type: git
+    url: https://github.com/robotology/icub-firmware.git
+    version: v1.37.0
+  icub-firmware-build:
+    type: git
+    url: https://github.com/robotology/icub-firmware-build.git
+    version: v1.37.0
+  icub-firmware-models:
+    type: git
+    url: https://github.com/robotology/icub-firmware-models.git
+    version: v1.37.0
+  yarp-device-xsensmt:
+    type: git
+    url: https://github.com/robotology/yarp-device-xsensmt.git
+    version: v0.3.0
+  yarp-device-ovrheadset:
+    type: git
+    url: https://github.com/robotology/yarp-device-ovrheadset.git
+    version: v1.0.0
+  speech:
+    type: git
+    url: https://github.com/robotology/speech.git
+    version: v1.2.0
+  icub-basic-demos:
+    type: git
+    url: https://github.com/robotology/icub-basic-demos.git
+    version: v1.24.0
+  funny-things:
+    type: git
+    url: https://github.com/robotology/funny-things.git
+    version: v2.2.0
+  bipedal-locomotion-framework:
+    type: git
+    url: https://github.com/ami-iit/bipedal-locomotion-framework.git
+    version: v0.16.1
+  LieGroupControllers:
+    type: git
+    url: https://github.com/ami-iit/lie-group-controllers.git
+    version: v0.2.0
+  event-driven:
+    type: git
+    url: https://github.com/robotology/event-driven.git
+    version: v2.1
+  matioCpp:
+    type: git
+    url: https://github.com/ami-iit/matio-cpp.git
+    version: v0.2.3
+  diagnosticdaemon:
+    type: git
+    url: https://github.com/robotology/diagnostic-daemon.git
+    version: v1.0.0
+  osqp-matlab:
+    type: git
+    url: https://github.com/ami-iit/osqp-matlab-cmake-buildsystem.git
+    version: v0.6.2.3
+  robometry:
+    type: git
+    url: https://github.com/robotology/robometry.git
+    version: v1.2.2
+  gym-ignition:
+    type: git
+    url: https://github.com/robotology/gym-ignition.git
+    version: v1.3.1
+  matlab-whole-body-simulator:
+    type: git
+    url: https://github.com/ami-iit/matlab-whole-body-simulator.git
+    version: v3.3.0
+  casadi-matlab-bindings:
+    type: git
+    url: https://github.com/ami-iit/casadi-matlab-bindings.git
+    version: v3.6.3.0
+  idyntree-yarp-tools:
+    type: git
+    url: https://github.com/robotology/idyntree-yarp-tools.git
+    version: v0.0.8
+  pyqtconsole:
+    type: git
+    url: https://github.com/pyqtconsole/pyqtconsole.git
+    version: v1.2.3
+  meshcat-python:
+    type: git
+    url: https://github.com/rdeits/meshcat-python.git
+    version: v0.3.2
+  robot-log-visualizer:
+    type: git
+    url: https://github.com/ami-iit/robot-log-visualizer.git
+    version: v0.7.1
+  OpenXR:
+    type: git
+    url: https://github.com/KhronosGroup/OpenXR-SDK.git
+    version: release-1.0.31
+  OpenVR:
+    type: git
+    url: https://github.com/ami-iit/openvr.git
+    version: v1.16.8.1
+  yarp-device-openxrheadset:
+    type: git
+    url: https://github.com/ami-iit/yarp-device-openxrheadset.git
+    version: v0.0.3
+  yarp-openvr-trackers:
+    type: git
+    url: https://github.com/ami-iit/yarp-openvr-trackers.git
+    version: v0.0.1
+  find-superquadric:
+    type: git
+    url: https://github.com/robotology/find-superquadric.git
+    version: v1.1.1
+  tomlplusplus:
+    type: git
+    url: https://github.com/marzer/tomlplusplus.git
+    version: v3.4.0
+  proxsuite:
+    type: git
+    url: https://github.com/Simple-Robotics/proxsuite.git
+    version: v0.6.0
+  BayesFilters:
+    type: git
+    url: https://github.com/robotology/bayes-filters-lib.git
+    version: 0.10.0
+  mujoco:
+    type: git
+    url: https://github.com/ami-iit/mujoco.git
+    version: 2.3.5.1
+  mujoco-simulink-blockset:
+    type: git
+    url: https://github.com/ami-iit/mujoco-simulink-blockset-cmake-buildsystem.git
+    version: v3.0.0
+  resolve-robotics-uri-py:
+    type: git
+    url: https://github.com/ami-iit/resolve-robotics-uri-py.git
+    version: v0.1.0
