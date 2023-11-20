@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04, macos-latest, windows-latest]
-        matlab_version: [R2022a, R2022b, R2023a]
+        matlab_version: [R2022a, R2022b, R2023a, R2023b]
         exclude:
           # R2020* is not supported on Windows on GitHub Actions
           - os: windows-latest
