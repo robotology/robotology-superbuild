@@ -139,7 +139,7 @@ jobs:
 
         - name: Fail if both upload_conda_binaries and test_metapackages_generation are passed
           if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true'
-          uses: actions/github-script@v6
+          uses: actions/github-script@v7
           with:
             script: |
               core.setFailed('Build failed. It is not possible to set to true both upload_conda_binaries and test_metapackages_generation.')
