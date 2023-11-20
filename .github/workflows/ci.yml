@@ -75,7 +75,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
+        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
         # Python 
         mamba install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
 
@@ -87,8 +87,6 @@ jobs:
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
         mamba install bash-completion expat-cos7-x86_64 freeglut libdc1394 libi2c libselinux-cos7-x86_64 libxau-cos7-x86_64 libxcb-cos7-x86_64 libxdamage-cos7-x86_64 libxext-cos7-x86_64 libxfixes-cos7-x86_64 libxxf86vm-cos7-x86_64 mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
-        # Ignition Gazebo
-        mamba install libignition-gazebo6
 
     # Additional dependencies useful only on Windows
     - name: Dependencies [Conda/Windows]
@@ -138,11 +136,6 @@ jobs:
       run: |
         cd build
         cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
-
-    - name: Configure Extra [Conda/Linux]
-      if: contains(matrix.os, 'ubuntu')
-      shell: bash -l {0}
-      run: cmake -S . -B build/ -DROBOTOLOGY_USES_IGNITION:BOOL=ON
 
     # For some reason, the Strawberry perl's pkg-config is found
     # instead of the conda's one, so let's delete the /c/Strawberry directory
