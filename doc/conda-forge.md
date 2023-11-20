@@ -12,8 +12,21 @@ For an overview of advantages and disadvantages of conda and conda-forge, check 
 
 ## Binary installation
 
-This section describes how to compile and install the binary packages built from the robotology-superbuild on conda on Windows, macOS and Linux. 
-The binary packages are hosted in the [`robotology` conda channel](https://anaconda.org/robotology) . Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on CMake options](cmake-options.md)) are available as conda binary packages in the `robotology` channel. 
+This section describes how to install the binary packages built from the `robotology-superbuild` on conda on Windows, macOS and Linux. 
+
+Depending on the speficic package, the binary packages are hosted either in [`conda-forge`](https://anaconda.org/conda-forge) or [`robotology`](https://anaconda.org/robotology). Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on CMake options](cmake-options.md)) are available as conda binary packages.
+
+The following conda platforms are supported by all packages of the robotology-superbuild:
+
+* `linux-64` (Linux on x86-64)
+* `osx-64` (macOS on x86-64)
+* `win-64` (Windows on x86-64)
+
+Some packages are also available for:
+* `linux-aarch64` (Linux on ARM 64-bit)
+* `osx-arm64` (macOS on ARM 64-bit)
+
+If you need a binary package on a platform in which it is not available, feel free to [open an issue](https://github.com/robotology/robotology-superbuild/issues/new) requesting it.
 
 ### Install a conda distribution
 
@@ -25,7 +38,7 @@ To install `mambaforge`, please follow the instructions in our [`install-mambafo
 Even if you are not using `mambaforge` and you are using instead a different `conda` distribution, to follow the instructions on this document you need to install the `mamba` package in your `base` environment. [`mamba`](https://github.com/mamba-org/mamba) is a re-implementation of some functionalities of the `conda` package manager, that is much faster.
 
 
-### Create an environment 
+### Create an environment
 Differently from `apt` and `homebrew`, the `conda` package manager is an `environment`-oriented package manager, meaning that packages are not 
 installed in some global location, but rather you install packages in an `environment` (that is just a directory in your filesystem), so that you
 can easily have multiple different environments with different packages installed on your system. To read more about this, check https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html .
@@ -74,6 +87,14 @@ mamba install -c conda-forge compilers cmake pkg-config make ninja
 
 This section describes how to compile and install the robotology-superbuild with conda-forge provided dependencies on Windows, macOS and Linux. 
 
+In particular, this instructions cover the following conda platforms:
+
+* `linux-64` (Linux on x86-64)
+* `osx-64` (macOS on x86-64)
+* `win-64` (Windows on x86-64)
+* `linux-aarch64` (Linux on ARM 64-bit)
+* `osx-arm64` (macOS on ARM 64-bit)
+
 ### Install a conda distribution
 
 If you do not have a conda distribution on your system, we suggest to use the minimal 
@@ -111,19 +132,24 @@ of the robotology-superbuild.**
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
-If you are on **Linux**, **Windows**, or **macOS** with an Intel-based processor (and not a *recent* (as per 2022/2023) ARM-based processor)
+If you are on **Linux**, **Windows**, or **macOS** with an Intel-based processor:
 ~~~
 mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
 ~~~
 
-If you are on **macOS** with a *recent* (as per 2022/2023) ARM-based processor
+If you are on **macOS** with ARM-based processor:
 ~~~
 mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht jpeg libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
 ~~~
 
-If you are on **Linux**, you also need to install also the following packages:
+If you are on **Linux x86-64**, you also need to install also the following packages:
 ~~~
 mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat-cos7-x86_64 libselinux-cos7-x86_64 libxau-cos7-x86_64 libxcb-cos7-x86_64 libxdamage-cos7-x86_64 libxext-cos7-x86_64 libxfixes-cos7-x86_64 libxxf86vm-cos7-x86_64 mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
+~~~
+
+If you are on **Linux ARM 64-bit**, you also need to install also the following packages:
+~~~
+mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat-cos7-aarch64 libselinux-cos7-aarch64 libxau-cos7-aarch64 libxcb-cos7-aarch64 libxdamage-cos7-aarch64 libxext-cos7-aarch64 libxfixes-cos7-aarch64 libxxf86vm-cos7-aarch64 mesa-libgl-cos7-aarch64 mesa-libgl-devel-cos7-aarch64 libxshmfence-cos7-aarch64 libxshmfence-devel-cos7-aarch64 
 ~~~
 
 If you are on **Windows**, you also need to install also the following packages:
