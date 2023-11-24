@@ -17,3 +17,5 @@ ycm_ep_helper(ergocub-software
               FOLDER src
               DEPENDS YARP
               CMAKE_ARGS -DCOMPILE_ergoCubEmotions=BOOL:ON)
+
+set(ergocub-sofware_CONDA_DEPENDENCIES libopencv)              
