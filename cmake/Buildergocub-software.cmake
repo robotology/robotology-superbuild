@@ -6,6 +6,7 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
+find_or_build_package(YARP QUIET)
 
 ycm_ep_helper(ergocub-software
               TYPE GIT
