@@ -15,4 +15,5 @@ ycm_ep_helper(ergocub-software
               DEPENDS YARP
               COMPONENT core
               FOLDER src
+              DEPENDS YARP
               CMAKE_ARGS -DCOMPILE_ergoCubEmotions=BOOL:ON)
