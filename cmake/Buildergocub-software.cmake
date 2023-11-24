@@ -6,7 +6,6 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
-set(ergocub-software_OPTIONAL_CMAKE_ARGS "")
 
 ycm_ep_helper(ergocub-software
               TYPE GIT
@@ -16,4 +15,4 @@ ycm_ep_helper(ergocub-software
               DEPENDS YARP
               COMPONENT core
               FOLDER src
-              CMAKE_ARGS ${ergocub-software_OPTIONAL_CMAKE_ARGS})
+              CMAKE_ARGS -DCOMPILE_ergoCubEmotions=BOOL:ON)
