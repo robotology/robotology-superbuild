@@ -49,12 +49,14 @@ jobs:
       run: |
         mkdir -p /d/a/robotology-superbuild/robotology-superbuild/build/src/bipedal-locomotion-framework/src/YarpUtilities/CMakeFiles/yarp_idl_to_dir/thrifts/BipedalLocomotion/YarpUtilities/vectorscollection/
         echo "ReallyLongFile" > /d/a/robotology-superbuild/robotology-superbuild/build/src/bipedal-locomotion-framework/src/YarpUtilities/CMakeFiles/yarp_idl_to_dir/thrifts/BipedalLocomotion/YarpUtilities/vectorscollection/ReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFile.txt
+        cat /d/a/robotology-superbuild/robotology-superbuild/build/src/bipedal-locomotion-framework/src/YarpUtilities/CMakeFiles/yarp_idl_to_dir/thrifts/BipedalLocomotion/YarpUtilities/vectorscollection/ReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFile.txt
 
     - name: Try to create file with really long name [Conda/Windows/CommandPrompt]
       if: contains(matrix.os, 'windows') 
       run: |
-        mkdir D:\a\robotology-superbuild\robotology-superbuild\build\src\bipedal-locomotion-framework\src\YarpUtilities\CMakeFiles\yarp_idl_to_dir\thrifts\BipedalLocomotion\YarpUtilities\vectorscollection\
-        echo "ReallyLongFile" > D:\a\robotology-superbuild\robotology-superbuild\build\src\bipedal-locomotion-framework\src\YarpUtilities\CMakeFiles\yarp_idl_to_dir\thrifts\BipedalLocomotion\YarpUtilities\vectorscollection\ReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFile.txt
+        mkdir D:\a\robotology-superbuild\robotology-superbuild\build\src\bipedal-locomotion-framework\src\YarpUtilities\CMakeFiles\yarp_idl_to_dir\thrifts\BipedalLocomotion\YarpUtilities\vectorscollection2\
+        echo "ReallyLongFile" > D:\a\robotology-superbuild\robotology-superbuild\build\src\bipedal-locomotion-framework\src\YarpUtilities\CMakeFiles\yarp_idl_to_dir\thrifts\BipedalLocomotion\YarpUtilities\vectorscollection2\ReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFile.txt
+        type D:\a\robotology-superbuild\robotology-superbuild\build\src\bipedal-locomotion-framework\src\YarpUtilities\CMakeFiles\yarp_idl_to_dir\thrifts\BipedalLocomotion\YarpUtilities\vectorscollection2\ReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFile.txt
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu') 
