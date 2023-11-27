@@ -106,6 +106,8 @@ jobs:
       if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macos')
       shell: bash -l {0}
       run: |
+        which python
+        which python3
         echo "GHA_CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
 
     - name: Set CMake generator [Conda/Windows 2022]
