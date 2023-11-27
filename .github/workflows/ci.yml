@@ -111,9 +111,9 @@ jobs:
         which python3.12
         echo "GHA_CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
 
-    - name: Setup upterm session
+    - name: Setup tmate session
       if: contains(matrix.os, 'macos')
-      uses: lhotari/action-upterm@v1
+      uses: mxschmitt/action-tmate@v3
 
     - name: Set CMake generator [Conda/Windows 2022]
       if: contains(matrix.os, 'windows-2022')
