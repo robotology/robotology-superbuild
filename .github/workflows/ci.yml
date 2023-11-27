@@ -43,6 +43,12 @@ jobs:
         miniforge-variant: Mambaforge
         miniforge-version: latest
 
+    - name: Install files to enable compilation of mex files [Conda/Windows]
+      if: contains(matrix.os, 'windows') 
+      run: |
+        mkdir D:\a\robotology-superbuild\robotology-superbuild\build\src\bipedal-locomotion-framework\src\YarpUtilities\CMakeFiles\yarp_idl_to_dir\thrifts\BipedalLocomotion\YarpUtilities\vectorscollection\
+        echo "ReallyLongFile" > D:\a\robotology-superbuild\robotology-superbuild\build\src\bipedal-locomotion-framework\src\YarpUtilities\CMakeFiles\yarp_idl_to_dir\thrifts\BipedalLocomotion\YarpUtilities\vectorscollection\ReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFileReallyLongFile.txt
+
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu') 
       run: |
