@@ -11,6 +11,11 @@ find_or_build_package(wearables QUIET)
 find_or_build_package(osqp QUIET)
 find_or_build_package(OsqpEigen QUIET)
 
+if(ROBOTOLOGY_SUPERBUILD_BUILD_SEPARATE_YARP_ROS)
+  find_or_build_package(yarp-ros QUIET)
+  list(APPEND HumanDynamicsEstimation_OPTIONAL_DEPS yarp-ros)
+endf()
+
 ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/human-dynamics-estimation.git
@@ -23,6 +28,7 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
                       wearables
                       osqp
                       OsqpEigen
-                      ICUB)
+                      ICUB
+                      ${HumanDynamicsEstimation_OPTIONAL_DEPS})
 
 set(HumanDynamicsEstimation_CONDA_DEPENDENCIES eigen)
