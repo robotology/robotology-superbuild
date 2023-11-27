@@ -3,21 +3,15 @@
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
 cmake_minimum_required(VERSION 3.12)
-project(robotology-superbuild NONE)
 
-## we have to enable C because it is currently used
-## by CMake to describe packages (in Config*.cmake files)
-enable_language(C)
 
-## FindACE requires CXX
-enable_language(CXX)
+## We can't specify LANGUAGES NONE as have to enable C because it is currently used
+## by CMake to describe packages (in Config*.cmake files) and FindACE requires CXX
+project(robotology-superbuild LANGUAGES C CXX)
 
 ## Set CMP0094 to NEW
-# Not done on APPLE as a workaround for https://github.com/robotology/robotology-superbuild/issues/1510
-if(NOT APPLE)
-  if(POLICY CMP0094)
-    cmake_policy(SET CMP0094 NEW)
-  endif()
+if(POLICY CMP0094)
+  cmake_policy(SET CMP0094 NEW)
 endif()
 
 # Disable in source build
