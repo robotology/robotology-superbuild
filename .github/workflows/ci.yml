@@ -108,6 +108,7 @@ jobs:
       run: |
         which python
         which python3
+        which python3.12
         echo "GHA_CMAKE_GENERATOR=Ninja" >> $GITHUB_ENV
 
     - name: Set CMake generator [Conda/Windows 2022]
