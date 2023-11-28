@@ -2,8 +2,7 @@
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-cmake_minimum_required(VERSION 3.12)
-
+cmake_minimum_required(VERSION 3.12...3.27)
 
 ## We can't specify LANGUAGES NONE as have to enable C because it is currently used
 ## by CMake to describe packages (in Config*.cmake files) and FindACE requires CXX
