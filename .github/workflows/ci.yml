@@ -120,6 +120,9 @@ jobs:
       run: |
         echo "GHA_CMAKE_GENERATOR=Visual Studio 16 2019" >> $GITHUB_ENV
 
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v
+
     - name: Configure [Conda]
       shell: bash -l {0}
       run: |
