@@ -8,11 +8,6 @@ cmake_minimum_required(VERSION 3.12...3.27)
 ## by CMake to describe packages (in Config*.cmake files) and FindACE requires CXX
 project(robotology-superbuild LANGUAGES C CXX)
 
-## Set CMP0094 to NEW
-if(POLICY CMP0094)
-  cmake_policy(SET CMP0094 NEW)
-endif()
-
 # Disable in source build
 if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
    message(FATAL_ERROR "In-source builds of robotology-superbuild are not allowed. "
