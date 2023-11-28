@@ -170,14 +170,16 @@ jobs:
       run: |
         rm -rf /c/Strawberry
         
-    - name: Build  [Conda]
+    - name: Build  [Conda/Unix]
+      if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macos')
       shell: bash -l {0}
       run: |
         cd build
         cmake --build . --config ${{ matrix.build_type }}
 
-    - name: Build  [Conda]
-      shell: bash -l {0}
+    - name: Build  [Conda/Windows]
+      if: contains(matrix.os, 'windows')
+      shell: cmd /C CALL {0}
       run: |
         cd build
         cmake --build . --config ${{ matrix.build_type }}
