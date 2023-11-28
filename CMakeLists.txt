@@ -2,17 +2,11 @@
 # Authors: Silvio Traversaro <silvio.traversaro@iit.it>
 # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
 
-cmake_minimum_required(VERSION 3.12)
-
+cmake_minimum_required(VERSION 3.12...3.27)
 
 ## We can't specify LANGUAGES NONE as have to enable C because it is currently used
 ## by CMake to describe packages (in Config*.cmake files) and FindACE requires CXX
 project(robotology-superbuild LANGUAGES C CXX)
-
-## Set CMP0094 to NEW
-if(POLICY CMP0094)
-  cmake_policy(SET CMP0094 NEW)
-endif()
 
 # Disable in source build
 if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
