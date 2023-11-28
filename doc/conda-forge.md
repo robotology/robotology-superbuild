@@ -228,8 +228,11 @@ cmake --build . --config Release
 
 **IMPORTANT: If you use Visual Studio 2022, the fourth command needs to be changed in `cmake -G"Visual Studio 17 2022" ..`. Visual Studio 2017 or earlier are not supported.**
 
+**IMPORTANT: On Windows, you need to make sure that your Windows installation has enabled support long path, see how to do that in https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry#enable-long-paths-in-windows-10-version-1607-and-later.**
 
 **IMPORTANT: conda-forge does not provide Debug version of its libraries, so in Windows you can't compile in Debug mode if you are using conda-forge.**
+
+
 
 ### Run software installed
 
