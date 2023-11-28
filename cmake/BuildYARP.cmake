@@ -92,5 +92,5 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
                               ${YARP_OPTIONAL_CMAKE_ARGS})
 
-set(YARP_CONDA_PKG_NAME yarp-cxx)
+set(YARP_CONDA_PKG_NAME libyarp)
 set(YARP_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
