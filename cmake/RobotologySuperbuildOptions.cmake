@@ -45,6 +45,11 @@ option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necess
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
 
+# This is just a private undocumented option to download repos that are tracked in LatestReleases.yaml,
+# but they are not actually build by the superbuild
+option(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE "(Internal) Clone all repos for automatic version update." FALSE)
+mark_as_advanced(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE)
+
 include(CMakeDependentOption)
 
 cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
