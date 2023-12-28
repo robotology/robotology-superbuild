@@ -20,7 +20,8 @@ jobs:
           with:
             private_key: ${{ secrets.ICUB_TECH_IIT_APP_KEY }}
             app_id: ${{ secrets.ICUB_TECH_IIT_APP_ID }}
-            repository: icub-tech-iit/code
+            installation_retrieval_mode: repository
+            installation_retrieval_payload: icub-tech-iit/code
 
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v2
