@@ -46,6 +46,7 @@ ycm_ep_helper(casadi TYPE GIT
                          -DCMAKE_PREFIX:PATH=lib/cmake/casadi
                          -DLIB_PREFIX:PATH=lib
                          -DBIN_PREFIX:PATH=bin
+                         -DSWIG_IMPORT:BOOL=ON
                          -DWITH_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DWITH_PYTHON3:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          -DCASADI_PYTHON_PIP_METADATA_INSTALL:BOOL=${ROBOTOLOGY_USES_PYTHON}
