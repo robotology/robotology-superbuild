@@ -21,8 +21,8 @@ repositories:
     version: 20230000.0
   casadi:
     type: git
-    url: https://github.com/casadi/casadi.git
-    version: 3.6.3
+    url: https://github.com/wsfulton/casadi.git
+    version: swig-4.2-python-strings
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git

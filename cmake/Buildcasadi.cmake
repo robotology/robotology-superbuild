@@ -28,8 +28,8 @@ endif()
 
 ycm_ep_helper(casadi TYPE GIT
               STYLE GITHUB
-              REPOSITORY casadi/casadi.git
-              TAG 3.6.3
+              REPOSITORY wsfulton/casadi.git
+              TAG swig-4.2-python-strings
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
