@@ -134,12 +134,12 @@ Once you activated it, you can install packages in it. In particular the depende
 
 If you are on **Linux**, **Windows**, or **macOS** with an Intel-based processor:
 ~~~
-mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm "graphviz==8.*" gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
+mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm "graphviz==8.*" gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
 ~~~
 
 If you are on **macOS** with ARM-based processor:
 ~~~
-mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm "graphviz==8.*" gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
+mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm "graphviz==8.*" gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
 ~~~
 
 If you are on **Linux x86-64**, you also need to install also the following packages:
