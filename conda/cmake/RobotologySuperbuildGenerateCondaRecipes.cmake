@@ -183,6 +183,13 @@ macro(generate_metametadata_file)
       endforeach()
     endif()
     
+    if(NOT "${${_cmake_pkg}_CONDA_BUILD_DEPENDENCIES_EXPLICIT}" STREQUAL "")
+      string(APPEND metametadata_file_contents "    build_dependencies_explicit:\n")
+      foreach(_build_dep IN LISTS ${_cmake_pkg}_CONDA_BUILD_DEPENDENCIES_EXPLICIT)
+        string(APPEND metametadata_file_contents "      - ${_build_dep}\n")
+      endforeach()
+    endif()
+
     if(NOT "${${_cmake_pkg}_CONDA_ENTRY_POINTS}" STREQUAL "")
       string(APPEND metametadata_file_contents "    entry_points:\n")
       foreach(_entry_point IN LISTS ${_cmake_pkg}_CONDA_ENTRY_POINTS)
