@@ -24,6 +24,8 @@ requirements:
     - cmake
     - pkg-config
     - ninja
+{% for build_dep in build_dependencies_explicit %}    - {{ build_dep }}
+{% endfor %}
 {# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl #}
 {# libxcb, libxfixes, libxau and expat are not documented anywhere, but without those blocktest does not build correctly #}
 {% if require_opengl_linux %}{% raw %}    - {{ cdt('mesa-libgl-devel') }}
