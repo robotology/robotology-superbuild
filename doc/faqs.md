@@ -67,3 +67,7 @@ mamba install libblas=*=*netlib
 ~~~
 
 See https://github.com/robotology/idyntree/issues/1109 for more details.
+
+### I want to install packages from the `robotology` conda channel that were built in 2021 but I am not finding them, where I can find them?
+
+In January 2024 the packages that were contained in the `robotology` channel and were built in 2021 have been moved to the `robotology-2021` channel, see https://github.com/robotology/robotology-superbuild/issues/1585 for more details.
