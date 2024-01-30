@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-latest, macos-latest, windows-2019, windows-2022]
+        os: [ubuntu-latest, macos-12, macos-14, windows-2019, windows-2022]
         project_tags:
           - Default
           - Unstable
@@ -71,11 +71,18 @@ jobs:
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
 
+    - name: Install ace (on all platforms excluding macOS M1) [Conda]
+      if: matrix.os != 'macos-14'
+      shell: bash -l {0}
+      run: |
+        # Dependencies
+        mamba install ace
+
     - name: Dependencies [Conda]
       shell: bash -l {0}
       run: |
         # Dependencies
-        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz==8.* gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
+        mamba install asio assimp boost eigen freetype gazebo glew glfw glm graphviz==8.* gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
         # Python 
         mamba install python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
 
