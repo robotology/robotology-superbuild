@@ -59,7 +59,7 @@ jobs:
         echo "GHA_Matlab_MEX_EXTENSION=mexa64" >> $GITHUB_ENV
                 
     - name: Install files to enable compilation of mex files [Conda/macOS Intel]
-      if: matrix.os == 'macos12'
+      if: matrix.os == 'macos-12'
       run: |
         curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexmaci64.zip
         unzip msdk_R2020a_mexmaci64.zip
