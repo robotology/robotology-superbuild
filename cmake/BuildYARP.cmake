@@ -43,6 +43,10 @@ endif()
 # https://github.com/conda-forge/ace-feedstock/issues/29
 # See https://github.com/conda-forge/sleef-feedstock/blob/7fa2b0e5c9d9a10165809b4bb73a5840d72d0cdc/recipe/patches/353.patch#L6
 # for the logic of detecting arm builds on Apple
+message(STATUS "==========> ROBOTOLOGY_CONFIGURING_UNDER_CONDA: ${ROBOTOLOGY_CONFIGURING_UNDER_CONDA}")
+message(STATUS "==========> APPLE: ${APPLE}")
+message(STATUS "==========> CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR}")
+
 if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA AND APPLE
    AND CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm64")
    list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DSKIP_ACE:BOOL=ON")
