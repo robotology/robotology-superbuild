@@ -39,9 +39,15 @@ jobs:
     - uses: actions/checkout@v4
 
     - uses: conda-incubator/setup-miniconda@v3
+      if: matrix.os != 'macos-14'
       with:
         miniforge-variant: Mambaforge
         miniforge-version: latest
+
+    - uses: conda-incubator/setup-miniconda@v3
+      if: matrix.os == 'macos-14'
+      with:
+        installer-url: https://github.com/conda-forge/miniforge/releases/download/23.11.0-0/Mambaforge-23.11.0-0-MacOSX-arm64.sh
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu') 
