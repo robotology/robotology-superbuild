@@ -66,7 +66,16 @@ jobs:
         rm msdk_R2020a_mexmaci64.zip
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexmaci64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
-        
+
+    - name: Install files to enable compilation of mex files [Conda/macOS Intel]
+      if: matrix.os == 'macos-14'
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2023b_mexmaca64.zip
+        unzip msdk_R2023b_mexmaca64.zip
+        rm msdk_R2023b_mexmaca64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2023b_mexmaca64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
+
     - name: Install files to enable compilation of mex files [Conda/Windows]
       if: contains(matrix.os, 'windows') 
       shell: bash
@@ -134,24 +143,12 @@ jobs:
         echo "GHA_CMAKE_GENERATOR=Visual Studio 16 2019" >> $GITHUB_ENV
 
     - name: Configure [Conda]
-      if: matrix.os != 'macos-14'
       shell: bash -l {0}
       run: |
         set
         mkdir -p b
         cd b
         cmake -G"${GHA_CMAKE_GENERATOR}" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
-        # Disable options not tested on Conda for now
-        cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
-
-    - name: Configure [Conda]
-      if: matrix.os == 'macos-14'
-      shell: bash -l {0}
-      run: |
-        set
-        mkdir -p b
-        cd b
-        cmake -G"${GHA_CMAKE_GENERATOR}" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
 
