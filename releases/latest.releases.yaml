@@ -58,7 +58,7 @@ repositories:
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
-    version: v3.9.0
+    version: v3.9.1
   RobotTestingFramework:
     type: git
     url: https://github.com/robotology/robot-testing-framework.git
@@ -78,11 +78,11 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v10.2.0
+    version: v10.2.1
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
-    version: v0.8.4
+    version: v0.8.5
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
@@ -190,7 +190,7 @@ repositories:
   osqp-matlab:
     type: git
     url: https://github.com/ami-iit/osqp-matlab-cmake-buildsystem.git
-    version: v0.6.2.3
+    version: v0.6.2.4
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
