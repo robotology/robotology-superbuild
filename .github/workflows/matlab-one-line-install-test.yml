@@ -37,13 +37,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install MATLAB
-        uses: matlab-actions/setup-matlab@v1
+        uses: matlab-actions/setup-matlab@v2
         with:
           release: ${{ matrix.matlab_version }}
 
 
       - name: Install robotology packages
-        uses: matlab-actions/run-command@v1
+        uses: matlab-actions/run-command@v2
         with:
           command: |
             cd scripts
@@ -57,7 +57,7 @@ jobs:
           echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6" >> $GITHUB_ENV
      
       - name: Run MATLAB commands
-        uses: matlab-actions/run-command@v1
+        uses: matlab-actions/run-command@v2
         with:
           command: |
             cd scripts
