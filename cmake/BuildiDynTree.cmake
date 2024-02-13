@@ -24,7 +24,15 @@ endif()
 # remove once irrlicht+sdl is available on vcpkg,
 # and https://github.com/robotology/robotology-superbuild-dependencies-vcpkg
 # is modified to includ it
-find_package(GLFW3 QUIET)
+find_package(glfw3 QUIET)
+
+# See https://github.com/robotology/robotology-superbuild/pull/1598#issuecomment-1942172913
+if(glfw3_FOUND OR GLFW3_FOUND)
+  set(IDYNTREE_USES_IRRLICHT ON)
+else()
+  set(IDYNTREE_USES_IRRLICHT OFF)
+endif()
+
 
 ycm_ep_helper(iDynTree TYPE GIT
               STYLE GITHUB
@@ -34,7 +42,7 @@ ycm_ep_helper(iDynTree TYPE GIT
               FOLDER src
               CMAKE_ARGS -DIDYNTREE_USES_IPOPT:BOOL=ON
                          -DIDYNTREE_USES_OSQPEIGEN:BOOL=ON
-                         -DIDYNTREE_USES_IRRLICHT:BOOL=${GLFW3_FOUND}
+                         -DIDYNTREE_USES_IRRLICHT:BOOL=${IDYNTREE_USES_IRRLICHT}
                          -DIDYNTREE_USES_ASSIMP:BOOL=ON
                          -DCMAKE_DISABLE_FIND_PACKAGE_YARP:BOOL=ON
                          -DIDYNTREE_USES_YARP:BOOL=OFF
