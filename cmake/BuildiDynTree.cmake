@@ -23,8 +23,13 @@ endif()
 # Hack for disabling IDYNTREE_USES_IRRLICHT on vcpkg,
 # remove once irrlicht+sdl is available on vcpkg,
 # and https://github.com/robotology/robotology-superbuild-dependencies-vcpkg
-# is modified to includ it
-find_package(glfw3 NO_MODULE QUIET)
+# is modified to include it
+if(WIN32 AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+   # We assume that the case Win32 and not conda is vcpkg, where we do not have irrlicht+sdl
+   set(IDYNTREE_USES_IRRLICHT OFF)
+else()
+   set(IDYNTREE_USES_IRRLICHT ON)
+endif()
 
 ycm_ep_helper(iDynTree TYPE GIT
               STYLE GITHUB
@@ -34,7 +39,7 @@ ycm_ep_helper(iDynTree TYPE GIT
               FOLDER src
               CMAKE_ARGS -DIDYNTREE_USES_IPOPT:BOOL=ON
                          -DIDYNTREE_USES_OSQPEIGEN:BOOL=ON
-                         -DIDYNTREE_USES_IRRLICHT:BOOL=${glfw3_FOUND}
+                         -DIDYNTREE_USES_IRRLICHT:BOOL=${IDYNTREE_USES_IRRLICHT}
                          -DIDYNTREE_USES_ASSIMP:BOOL=ON
                          -DCMAKE_DISABLE_FIND_PACKAGE_YARP:BOOL=ON
                          -DIDYNTREE_USES_YARP:BOOL=OFF
