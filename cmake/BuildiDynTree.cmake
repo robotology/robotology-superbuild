@@ -24,7 +24,7 @@ endif()
 # remove once irrlicht+sdl is available on vcpkg,
 # and https://github.com/robotology/robotology-superbuild-dependencies-vcpkg
 # is modified to includ it
-find_package(glfw3 QUIET)
+find_package(glfw3 NO_MODULE QUIET)
 
 ycm_ep_helper(iDynTree TYPE GIT
               STYLE GITHUB
