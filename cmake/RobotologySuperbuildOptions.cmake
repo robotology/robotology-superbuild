@@ -3,10 +3,8 @@
 
 set(YCM_USE_CMAKE_PROPOSED TRUE CACHE BOOL "Use files including unmerged cmake patches")
 
-  set(CMAKE_EXPORT_COMPILE_COMMANDS "ON"
-    CACHE BOOL "Enable/Disable output of compile commands during generation."
-    )
-  mark_as_advanced(CMAKE_EXPORT_COMPILE_COMMANDS)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE BOOL "Enable/Disable output of compile commands during generation.")
+mark_as_advanced(CMAKE_EXPORT_COMPILE_COMMANDS)
 
 # YCM options
 option(YCM_DISABLE_SYSTEM_PACKAGES "Disable use of all the system installed packages" ON)
