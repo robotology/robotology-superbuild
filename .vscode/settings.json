@@ -1,4 +1,4 @@
 {
-    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/merged_compile_commands.json",
-    "cmake.mergedCompileCommands": "${workspaceFolder}/build/merged_compile_commands.json"
+    "C_Cpp.default.compileCommands": "${config:cmake.buildDirectory}/compile_commands.json",
+    "cmake.mergedCompileCommands": "${config:cmake.buildDirectory}/compile_commands.json",
 }
