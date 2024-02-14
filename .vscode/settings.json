@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.compileCommands": "${config:cmake.buildDirectory}/compile_commands.json",
+    "cmake.mergedCompileCommands": "${config:cmake.buildDirectory}/compile_commands.json",
+    "clangd.arguments": [
+        "--compile-commands-dir=${config:cmake.buildDirectory}/"
+    ],
+}
