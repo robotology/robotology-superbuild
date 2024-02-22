@@ -48,6 +48,12 @@ if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA AND APPLE
    list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DSKIP_ACE:BOOL=ON")
 endif()
 
+# Workaround for graphviz==9 failures with YARP <= 3.9
+# See https://github.com/robotology/robotology-superbuild/issues/1604
+if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DYARP_COMPILE_yarpviz:BOOL=OFF")
+endif()
+
 ycm_ep_helper(YARP TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/yarp.git
