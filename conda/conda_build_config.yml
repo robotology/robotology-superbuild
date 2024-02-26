@@ -20,3 +20,8 @@ swig:
 # Remove once ipopt31414 migration is completed
 ipopt:
  - 3.14.14
+
+# Workaround for:
+# libxcb 1.15 migration not completed and not pinned, see https://github.com/robotology/robotology-superbuild/pull/1606#issuecomment-1965508546
+libxcb:
+ - 1.15
