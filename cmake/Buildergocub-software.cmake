@@ -6,7 +6,12 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
-find_or_build_package(YARP QUIET)
+find_package(OpenCV QUIET)
+if(DEFINED OpenCV_VERSION AND OpenCV_VERSION VERSION_GREATER_EQUAL "4.5.2")
+  set(COMPILE_ergoCubEmotions ON)
+else()
+  set(COMPILE_ergoCubEmotions OFF)
+endif()
 
 ycm_ep_helper(ergocub-software
               TYPE GIT
@@ -17,6 +22,6 @@ ycm_ep_helper(ergocub-software
               COMPONENT core
               FOLDER src
               DEPENDS YARP
-              CMAKE_ARGS -DCOMPILE_ergoCubEmotions=BOOL:ON)
+              CMAKE_ARGS -DCOMPILE_ergoCubEmotions=BOOL:${COMPILE_ergoCubEmotions})
 
 set(ergocub-sofware_CONDA_DEPENDENCIES libopencv)              
