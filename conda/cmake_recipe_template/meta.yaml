@@ -38,6 +38,7 @@ requirements:
 {% endfor %}
 {# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl and https://github.com/conda-forge/qt-main-feedstock/blob/0a0caca0eef18d4f895ec81840dcb037a20dc844/recipe/meta.yaml#L67-L158 #}
 {# libxcb, libxfixes, libxau and expat are not documented anywhere, but without those blocktest does not build correctly #}
+{# xorg-libxrandr is actually needed by glfw 3.4 #}
 {% if require_opengl_linux %}    - xorg-libxfixes
     - xorg-libxdamage
     - xorg-libxxf86vm
@@ -45,6 +46,7 @@ requirements:
     - expat
     - xorg-libxau
     - libxcb
+    - xorg-libxrandr 
     - xorg-libxfixes {% endif %}
 {# Handle the constraint of macos >= 10.13 #}
   run:
