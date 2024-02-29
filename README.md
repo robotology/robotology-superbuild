@@ -108,7 +108,6 @@ We also support an additional deprecated way of compiling the superbuild, on Win
 The following apt-based distributions are supported and tested by the robotology-superbuild:
 * Ubuntu 20.04 (Focal Fossa)
 * Ubuntu 22.04 (Jammy Jellyfish)
-* Debian 10 (Buster)
 * Debian 11 (Bullseye)
 
 Other versions may be working, but they are not checked.
@@ -125,7 +124,6 @@ Besides the packages listed in `apt.txt` file, the script `install_apt_dependenc
 For what regards CMake, the robotology-superbuild requires CMake 3.16 . If you are using a recent Debian-based system such as Ubuntu 20.04, the default CMake is recent enough and you do not need to do further steps.
 
 If instead you use an older distro in which the default version of CMake is older, you can easily install a newer CMake version in several ways. For the following distributions, we recommend the following methods:  
-* Debian 10 : use the CMake in the `buster-backports` repository, following the instructions to install from backports available in  [Debian documentation](https://backports.debian.org/Instructions/).
 More details can be found at https://github.com/robotology/QA/issues/364 .
 
 For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
@@ -136,7 +134,6 @@ Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you shou
 
 On Linux with apt dependencies install Gazebo, if you are on:
 * Ubuntu 20.04
-* Debian Buster 10
 
 follow the instructions available at https://gazebosim.org/tutorials?tut=install_ubuntu . Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
