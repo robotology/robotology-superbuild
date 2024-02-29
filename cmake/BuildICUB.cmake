@@ -83,7 +83,6 @@ ycm_ep_helper(ICUB TYPE GIT
                               -DENABLE_icubmod_embObjFTsensor:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_icubmod_embObjMultipleFTsensors:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_icubmod_embObjIMU:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
-                              -DENABLE_icubmod_embObjInertials:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_icubmod_embObjMais:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_icubmod_embObjMotionControl:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_icubmod_embObjSkin:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
@@ -101,6 +100,7 @@ ycm_ep_helper(ICUB TYPE GIT
                               ${ICUB_PYTHON_INSTALL_CMAKE_ARGS})
 
 set(ICUB_CONDA_DEPENDENCIES ace libopencv gsl ipopt libode qt-main sdl)
+set(ICUB_CONDA_BUILD_DEPENDENCIES_EXPLICIT)
 
 if(NOT (APPLE OR WIN32))
   list(APPEND ICUB_CONDA_DEPENDENCIES libdc1394)
@@ -118,7 +118,7 @@ if(ROBOTOLOGY_USES_ESDCAN)
 endif()
 
 if(ICUB_COMPILE_BINDINGS)
-  list(APPEND ICUB_CONDA_DEPENDENCIES swig)
+  list(APPEND ICUB_CONDA_BUILD_DEPENDENCIES_EXPLICIT swig)
 endif()
 
 if(ROBOTOLOGY_USES_PYTHON)

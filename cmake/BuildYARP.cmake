@@ -21,7 +21,6 @@ else()
   set(YARP_COMPILE_BINDINGS OFF)
 endif()
 
-
 if (APPLE OR WIN32)
   set(ENABLE_USBCAMERA OFF)
 else()
@@ -37,6 +36,22 @@ endif()
 
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND YARP_OPTIONAL_DEPS "-DCMAKE_INSTALL_PYTHON3DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
+endif()
+
+# Workaround for ace not available on arm64 on Apple in conda-forge, see
+# https://github.com/robotology/robotology-superbuild/issues/916
+# https://github.com/conda-forge/ace-feedstock/issues/29
+# See https://github.com/conda-forge/sleef-feedstock/blob/7fa2b0e5c9d9a10165809b4bb73a5840d72d0cdc/recipe/patches/353.patch#L6
+# for the logic of detecting arm builds on Apple
+if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA AND APPLE
+   AND CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm64")
+   list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DSKIP_ACE:BOOL=ON")
+endif()
+
+# Workaround for graphviz==9 failures with YARP <= 3.9
+# See https://github.com/robotology/robotology-superbuild/issues/1604
+if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DYARP_COMPILE_yarpviz:BOOL=OFF")
 endif()
 
 ycm_ep_helper(YARP TYPE GIT
@@ -92,5 +107,5 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
                               ${YARP_OPTIONAL_CMAKE_ARGS})
 
-set(YARP_CONDA_PKG_NAME yarp-cxx)
+set(YARP_CONDA_PKG_NAME libyarp)
 set(YARP_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

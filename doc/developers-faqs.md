@@ -93,6 +93,7 @@ This action will automatically perform the following steps:
 | `<pkg>_CONDA_PKG_NAME`  | The name that will be used for the conda package name. The convention is to use lowercase names separated by dashes. | The name of the github repo of the package. | 
 | `<pkg>_CONDA_DEPENDENCIES` | The list of conda-forge dependencies required by this package. Note that dependencies managed by the robotology-superbuild should not be listed, as those are handled automatically. | The default value is empty. |
 | `<pkg>_CONDA_RUN_DEPENDENCIES_EXPLICIT` | The list of conda-forge run dependencies required by this package. Note that most C++ dependencies are not required as they have run_exports to automatically handle this, but this may be required for Python dependencies. | The default value is empty. |
+| `<pkg>_CONDA_BUILD_DEPENDENCIES_EXPLICIT` | The list of conda-forge build dependencies required by this package. Note that it is not necessary to explicitly add C/C++ compilers, `cmake`, `ninja`, `pkg-config` and `make`, as they are added automatically. |
 | `<pkg>_CONDA_VERSION` | The version that will be used for the conda package, by default it is not set as the value from the tag will be extracted. | The default value is to use the value of the tag, removing any occurence of the `v` letter. |
 | `<pkg>_CONDA_ENTRY_POINTS` | This option permits to specify explicitly the entry_points used by a pure_python package (see https://github.com/robotology/robotology-superbuild/issues/1105). | Empty. |
 

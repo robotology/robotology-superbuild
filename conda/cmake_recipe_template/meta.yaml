@@ -24,26 +24,30 @@ requirements:
     - cmake
     - pkg-config
     - ninja
-{# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl #}
-{# libxcb, libxfixes, libxau and expat are not documented anywhere, but without those blocktest does not build correctly #}
+{% for build_dep in build_dependencies_explicit %}    - {{ build_dep }}
+{% endfor %}
+{# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl and https://github.com/conda-forge/qt-main-feedstock/blob/0a0caca0eef18d4f895ec81840dcb037a20dc844/recipe/meta.yaml#L67-L158 #}
 {% if require_opengl_linux %}{% raw %}    - {{ cdt('mesa-libgl-devel') }}
     - {{ cdt('mesa-dri-drivers') }}
-    - {{ cdt('libselinux') }}
-    - {{ cdt('libxdamage') }}
-    - {{ cdt('libxxf86vm') }}
-    - {{ cdt('libxext') }}
-    - {{ cdt('libxcb') }}
-    - {{ cdt('libxfixes') }}
-    - {{ cdt('libxau') }}
-    - {{ cdt('expat') }}  {% endraw %}{% endif %}
+    - {{ cdt('libselinux') }}  {% endraw %}{% endif %}
 
 
   host:
 {# List all dependencies just a host. Run dependenencies should be correctly set by run_exports, except the one listed in #}
 {% for dep in dependencies %}    - {{ dep }}
 {% endfor %}
-{# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl #}
-{% if require_opengl_linux %}    - xorg-libxfixes {% endif %}
+{# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl and https://github.com/conda-forge/qt-main-feedstock/blob/0a0caca0eef18d4f895ec81840dcb037a20dc844/recipe/meta.yaml#L67-L158 #}
+{# libxcb, libxfixes, libxau and expat are not documented anywhere, but without those blocktest does not build correctly #}
+{# xorg-libxrandr is actually needed by glfw 3.4 #}
+{% if require_opengl_linux %}    - xorg-libxfixes
+    - xorg-libxdamage
+    - xorg-libxxf86vm
+    - xorg-libxext
+    - expat
+    - xorg-libxau
+    - libxcb
+    - xorg-libxrandr 
+    - xorg-libxfixes {% endif %}
 {# Handle the constraint of macos >= 10.13 #}
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]

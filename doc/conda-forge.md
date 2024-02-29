@@ -134,22 +134,22 @@ Once you activated it, you can install packages in it. In particular the depende
 
 If you are on **Linux**, **Windows**, or **macOS** with an Intel-based processor:
 ~~~
-mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz==8.* gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
+mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
 ~~~
 
 If you are on **macOS** with ARM-based processor:
 ~~~
-mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm graphviz==8.* gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
+mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
 ~~~
 
 If you are on **Linux x86-64**, you also need to install also the following packages:
 ~~~
-mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat-cos7-x86_64 libselinux-cos7-x86_64 libxau-cos7-x86_64 libxcb-cos7-x86_64 libxdamage-cos7-x86_64 libxext-cos7-x86_64 libxfixes-cos7-x86_64 libxxf86vm-cos7-x86_64 mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
+mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat  libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
 ~~~
 
 If you are on **Linux ARM 64-bit**, you also need to install also the following packages:
 ~~~
-mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat-cos7-aarch64 libselinux-cos7-aarch64 libxau-cos7-aarch64 libxcb-cos7-aarch64 libxdamage-cos7-aarch64 libxext-cos7-aarch64 libxfixes-cos7-aarch64 libxxf86vm-cos7-aarch64 mesa-libgl-cos7-aarch64 mesa-libgl-devel-cos7-aarch64 libxshmfence-cos7-aarch64 libxshmfence-devel-cos7-aarch64 
+mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat libselinux-cos7-aarch64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-aarch64 mesa-libgl-devel-cos7-aarch64 libxshmfence-cos7-aarch64 libxshmfence-devel-cos7-aarch64 
 ~~~
 
 If you are on **Windows**, you also need to install also the following packages:
@@ -163,7 +163,7 @@ For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](d
 
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-mamba install -c conda-forge python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
+mamba install -c conda-forge python numpy "swig==4.1.0" pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
 ~~~
 
 #### `ROBOTOLOGY_USES_PCL_AND_VTK`
@@ -188,32 +188,6 @@ cd robotology-superbuild
 mkdir build
 cd build
 cmake ..
-cmake --build . --config Release 
-~~~
-
-On **macOS** with a *recent* (as per 2022/2023) ARM-based processor, because of https://github.com/robotology/robotology-superbuild/issues/916, the procedure is slightly different: 
-~~~
-cd robotology-superbuild
-mkdir build
-cd build
-cmake ..
-cmake --build . --config Release 
-~~~
-At this point, you will get the error message
-~~~
-CMake Error at cmake/YarpFindDependencies.cmake:187 (message):
-  Optional package ACE not found.  Please install it or enable the option
-  "SKIP_ACE" to build yarp.
-Call Stack (most recent call first):
-  cmake/YarpFindDependencies.cmake:703 (check_skip_dependency)
-  CMakeLists.txt:60 (include)
-~~~
-So, do the following steps
-~~~
-cd src/YARP
-cmake -DSKIP_ACE:BOOL=ON .
-cd ..
-cd ..
 cmake --build . --config Release 
 ~~~
 

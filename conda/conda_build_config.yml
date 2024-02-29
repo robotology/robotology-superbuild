@@ -8,3 +8,20 @@ qt:
 
 qt_main:
   - 5.15
+
+# Workaround for:
+# * https://github.com/robotology/robotology-superbuild/pull/1574#issuecomment-1898498891
+# * https://github.com/robotology/robotology-superbuild/issues/1572#issuecomment-1911740644
+swig:
+ - 4.1.0
+
+# Workaround for:
+# * Giulio Romualdi's problem installing icub-main with latest blf 0.18.0
+# Remove once ipopt31414 migration is completed
+ipopt:
+ - 3.14.14
+
+# Workaround for:
+# libxcb 1.15 migration not completed and not pinned, see https://github.com/robotology/robotology-superbuild/pull/1606#issuecomment-1965508546
+libxcb:
+ - 1.15

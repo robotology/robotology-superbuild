@@ -19,8 +19,9 @@ set(ROBOTOLOGY_ENABLE_TELEOPERATION ON CACHE BOOL "")
 set(ROBOTOLOGY_ENABLE_EVENT_DRIVEN ON CACHE BOOL "")
 set(ROBOTOLOGY_ENABLE_GRASPING ON CACHE BOOL "")
 
-
-
-
-
-
+# Internal profile
+set(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE ON CACHE BOOL "")
+# all-options-enabled-cache.cmake is usd by the update-latest-releases action,
+# that requires repos to be cloned in a non-shallow way. So here we override
+# also the shallow options for the repos that have shallow enabled
+set(icub-firmware-build_SHALLOW ON CACHE BOOL "")

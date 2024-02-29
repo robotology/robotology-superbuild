@@ -3,6 +3,9 @@
 
 set(YCM_USE_CMAKE_PROPOSED TRUE CACHE BOOL "Use files including unmerged cmake patches")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE BOOL "Enable/Disable output of compile commands during generation.")
+mark_as_advanced(CMAKE_EXPORT_COMPILE_COMMANDS)
+
 # YCM options
 option(YCM_DISABLE_SYSTEM_PACKAGES "Disable use of all the system installed packages" ON)
 
@@ -44,6 +47,11 @@ option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on 
 option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necessary for iCub basic demonstrations." FALSE)
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
+
+# This is just a private undocumented option to download repos that are tracked in LatestReleases.yaml,
+# but they are not actually build by the superbuild
+option(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE "(Internal) Clone all repos for automatic version update." FALSE)
+mark_as_advanced(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE)
 
 include(CMakeDependentOption)
 

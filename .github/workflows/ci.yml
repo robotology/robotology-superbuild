@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-latest, macos-latest, windows-2019, windows-2022]
+        os: [ubuntu-latest, macos-12, macos-14, windows-2019, windows-2022]
         project_tags:
           - Default
           - Unstable
@@ -38,10 +38,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: conda-incubator/setup-miniconda@v2
+    - uses: conda-incubator/setup-miniconda@v3
+      if: matrix.os != 'macos-14'
       with:
         miniforge-variant: Mambaforge
         miniforge-version: latest
+
+    - uses: conda-incubator/setup-miniconda@v3
+      if: matrix.os == 'macos-14'
+      with:
+        installer-url: https://github.com/conda-forge/miniforge/releases/download/23.11.0-0/Mambaforge-23.11.0-0-MacOSX-arm64.sh
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu') 
@@ -52,15 +58,24 @@ jobs:
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020b_mexa64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexa64" >> $GITHUB_ENV
                 
-    - name: Install files to enable compilation of mex files [Conda/macOS]
-      if: contains(matrix.os, 'macos') 
+    - name: Install files to enable compilation of mex files [Conda/macOS Intel]
+      if: matrix.os == 'macos-12'
       run: |
         curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexmaci64.zip
         unzip msdk_R2020a_mexmaci64.zip
         rm msdk_R2020a_mexmaci64.zip
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexmaci64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
-        
+
+    - name: Install files to enable compilation of mex files [Conda/macOS Apple Silicon]
+      if: matrix.os == 'macos-14'
+      run: |
+        curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2023b_mexmaca64.zip
+        unzip msdk_R2023b_mexmaca64.zip
+        rm msdk_R2023b_mexmaca64.zip
+        echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2023b_mexmaca64" >> $GITHUB_ENV
+        echo "GHA_Matlab_MEX_EXTENSION=mexmaca64" >> $GITHUB_ENV
+
     - name: Install files to enable compilation of mex files [Conda/Windows]
       if: contains(matrix.os, 'windows') 
       shell: bash
@@ -71,13 +86,20 @@ jobs:
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
 
+    - name: Install ace (on all platforms excluding macOS M1) [Conda]
+      if: matrix.os != 'macos-14'
+      shell: bash -l {0}
+      run: |
+        # Dependencies
+        mamba install ace
+
     - name: Dependencies [Conda]
       shell: bash -l {0}
       run: |
         # Dependencies
-        mamba install ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz==8.* gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg
+        mamba install asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
         # Python 
-        mamba install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
+        mamba install python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
@@ -86,7 +108,7 @@ jobs:
       run: |
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
-        mamba install bash-completion expat-cos7-x86_64 freeglut libdc1394 libi2c libselinux-cos7-x86_64 libxau-cos7-x86_64 libxcb-cos7-x86_64 libxdamage-cos7-x86_64 libxext-cos7-x86_64 libxfixes-cos7-x86_64 libxxf86vm-cos7-x86_64 mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
+        mamba install bash-completion expat freeglut libdc1394 libi2c libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
 
     # Additional dependencies useful only on Windows
     - name: Dependencies [Conda/Windows]

@@ -63,13 +63,12 @@ if(APPLE OR WIN32)
   list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DENABLE_YarpRobotLoggerDevice:BOOL=OFF")
 endif()
 
-# onnxruntime
+
 # Just on Linux without conda, we download onnxruntime
-set(FRAMEWORK_USE_onnxruntime OFF)
+# On conda instead, we install onnxruntime-cpp package
 if(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
     include(Fetchonnxruntimebinaries)
-    set(FRAMEWORK_USE_onnxruntime ON)
   endif()
 endif()
 
@@ -89,7 +88,7 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_tomlplusplus:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
-                         -DFRAMEWORK_USE_onnxruntime:BOOL=${FRAMEWORK_USE_onnxruntime}
+                         -DFRAMEWORK_USE_onnxruntime:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_COMPILE_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
