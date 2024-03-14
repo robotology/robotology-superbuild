@@ -267,3 +267,7 @@ repositories:
     type: git
     url: https://github.com/ami-iit/resolve-robotics-uri-py.git
     version: v0.2.0
+  yarp-devices-ros:
+    type: git
+    url: https://github.com/robotology/yarp-devices-ros
+    version: v3.9.0
