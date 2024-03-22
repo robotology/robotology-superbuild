@@ -22,7 +22,8 @@ sh ./Miniforge3-Linux-x86_64.sh -b
 This will install miniforge in `~/miniforge3` .
 
 To use the `conda` command, you need to add the `~/miniforge3/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
-You can do this persistently by modifying the `.bashrc` via the command: 
+
+You can do this persistently by executing the following commands on the terminal: 
 ~~~
 ~/miniforge3/condabin/conda init
 ~~~
@@ -83,6 +84,7 @@ sh ./Miniforge3.sh -b
 This will install miniforge in `~/miniforge3` .
 
 To use the `conda` command, you need to add the `~/miniforge3/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
+
 You can do this persistently by modifying the appropriate file via the command: 
 ~~~
 ~/miniforge3/condabin/conda init

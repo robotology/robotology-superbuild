@@ -22,12 +22,12 @@ sh ./Mambaforge-$(uname)-$(uname -m).sh -b
 This will install mambaforge in `~/mambaforge` .
 
 To use the `conda` and `mamba` commands, you need to add the `~/mambaforge/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
+
 You can do this persistently by executing the following commands on the terminal: 
 ~~~
 ~/mambaforge/condabin/conda init
 ~/mambaforge/condabin/mamba init
 ~~~
-This will update the `.bashrc` file.
 
 If you are using a non-bash shell such as `zsh`, you also need to run:
 ~~~
@@ -88,6 +88,7 @@ sh ./Mambaforge.sh -b
 This will install mambaforge in `~/mambaforge` .
 
 To use the `conda` command, you need to add the `~/mambaforge/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
+
 You can do this persistently by writing the following commands on the terminal: 
 ~~~
 ~/mambaforge/condabin/conda init
