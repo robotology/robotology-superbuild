@@ -65,14 +65,29 @@ mark_as_advanced(ROBOTOLOGY_ENABLE_IOL)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_R1_ROBOT)
 
-#set default build type to "Release" in single-config generators
-if(NOT CMAKE_CONFIGURATION_TYPES)
+# Set default build type to "Release" in single-config generators
+get_property(IS_MULTICONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if(NOT IS_MULTICONFIG)
     if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release" CACHE STRING
+      set(CMAKE_BUILD_TYPE "Release" CACHE STRING
         "Choose the type of build, recommanded options are: Debug or Release" FORCE)
     endif()
-    set(ROBOTOLOGY_BUILD_TYPES "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${ROBOTOLOGY_BUILD_TYPES})
+endif()
+
+# Ensure that Debug mode is not used on Windows when using conda dependencies
+# Note: here we assume that CONDA_PREFIX env variable being defined means that we are compiling
+# against conda-forge dependencies and that no debug-compatible libraries are available, 
+# if that changes in the future please change or remove this check
+if(WIN32 AND DEFINED ENV{CONDA_PREFIX})
+    if(NOT IS_MULTICONFIG)
+        # Single config generators, raise a CMake error if CMAKE_BUILD_TYPE is Debug
+        if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+            message(FATAL_ERROR "Building with conda-forge dependencies on Windows does not support compiling in Debug, please compile in RelWithDebInfo.")
+        endif()
+    else()
+        # Multiple config generators, remove Debug from CMAKE_CONFIGURATION_TYPES, so it is not possible to compile in debug
+        list(REMOVE_ITEM CMAKE_CONFIGURATION_TYPES "Debug")
+    endif()
 endif()
 
 set(ROBOTOLOGY_PROJECT_TAGS "Stable" CACHE STRING "The tags to be used for the robotology projects: Stable, Unstable, LatestRelease or Custom. This can be changed only before the first configuration.")
