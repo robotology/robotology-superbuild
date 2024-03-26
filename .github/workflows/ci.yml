@@ -99,7 +99,7 @@ jobs:
         # Dependencies
         mamba install asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
         # Python 
-        mamba install python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
+        mamba install python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
@@ -174,6 +174,12 @@ jobs:
         # Go back to build once https://github.com/robotology/yarp/pull/3057 is merged and released
         cd b
         cmake --build . --config ${{ matrix.build_type }}
+
+    - name: Check python metadata of installed python packages are coherent [Conda]
+      shell: bash -l {0}
+      run: |
+        source ./b/install/share/robotology-superbuild/setup.sh
+        pip check
 
   docker-build:
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
