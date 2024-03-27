@@ -13,4 +13,5 @@ python3-u-msgpack
 python3-tornado
 python3-zmq
 python3-ipython
+python3-yaml
 libqt5multimedia5-plugins
