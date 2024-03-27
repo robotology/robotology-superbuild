@@ -5,7 +5,7 @@ include(RobSupPurePythonYCMEPHelper)
 
 rob_sup_pure_python_ycm_ep_helper(pyngrok
                                   REPOSITORY alexdlaird/pyngrok.git
-                                  TAG master
+                                  TAG main
                                   COMPONENT dynamics
                                   FOLDER src
                                   PYTHON_PACKAGE_NAME pyngrok)
