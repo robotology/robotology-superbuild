@@ -215,6 +215,10 @@ repositories:
     type: git
     url: https://github.com/pyqtconsole/pyqtconsole.git
     version: v1.2.3
+  pyngrok:
+    type: git
+    url: https://github.com/alexdlaird/pyngrok.git
+    version: 7.1.6
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
