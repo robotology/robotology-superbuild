@@ -177,7 +177,7 @@ jobs:
 
     # Skip on Apple Silicon https://github.com/robotology/robotology-superbuild/issues/1625
     - name: Check python metadata of installed python packages are coherent [Conda]
-      if: !contains(matrix.os, ' macos-14')
+      if: matrix.os != 'macos-14'
       shell: bash -l {0}
       run: |
         source ./b/install/share/robotology-superbuild/setup.sh
