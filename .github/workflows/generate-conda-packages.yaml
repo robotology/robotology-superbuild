@@ -99,7 +99,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller constructor
 
         - name: Print used environment
           shell: bash -l {0}
@@ -107,13 +107,28 @@ jobs:
             mamba list
             env
 
+        - name: Fail if both upload_conda_binaries and test_metapackages_generation are passed
+          if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true'
+          uses: actions/github-script@v3
+          with:
+            script: |
+              core.setFailed('Build failed. It is not possible to set to true both upload_conda_binaries and test_metapackages_generation.')
+
+        - name: If test_metapackages_generation is enabled set an arbitrary version number
+          if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true'
+          shell: bash -l {0}
+          run: |
+            sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION 1234.0)/g' ./packaging/windows/CMakeLists.txt
+            sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION 1234.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
+
         - name: Generate recipes [Linux&macOS]
           if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
           shell: bash -l {0}
           run: |
             mkdir build
             cd build
-            cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}} ..
+            # Removed -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake for faster tests
+            cmake -GNinja -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}} ..
 
         - name: Generate recipes [Windows]
           if: contains(matrix.os, 'windows')
@@ -121,7 +136,8 @@ jobs:
           run: |
             mkdir build
             cd build
-            cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}}  ..
+            # Removed -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake for faster tests
+            cmake -G"Visual Studio 16 2019"  -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}}  ..
 
         - name: Specify additional option if we are in a release and we need to generate robotology-distro metapackages
           if: github.event_name == 'release'
@@ -136,6 +152,7 @@ jobs:
           run: |
             cd build
             cmake -DCONDA_GENERATE_ROBOTOLOGY_METAPACKAGES:BOOL=ON .
+
 
         - name: Fail if both upload_conda_binaries and test_metapackages_generation are passed
           if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true'
@@ -169,30 +186,9 @@ jobs:
             # specifically because we can't use --skip-existing as these packages are part of the robotology channel
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
             rm -rf icub-contrib-common
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
-            rm -rf icub-firmware-shared
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
-            rm -rf robots-configuration
             # icub-main needs robotology channel as it also depends on esdcan, and local to avoid that robotology packages are used instead of local built one
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
             rm -rf icub-main
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
-            rm -rf wearables
-            # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge human-dynamics-estimation
-            rm -rf human-dynamics-estimation
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-log-visualizer
-            rm -rf robot-log-visualizer
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree-matlab-bindings
-            rm -rf idyntree-matlab-bindings
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
-            rm -rf blockfactory
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
-            rm -rf yarp-matlab-bindings
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wb-toolbox
-            rm -rf wb-toolbox
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
-            rm -rf blocktest
             conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
         - name: Build conda metapackages (if necessary)
@@ -205,16 +201,56 @@ jobs:
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro-all
 
-        - name: Upload conda packages
+        # - name: Upload conda packages
+        #  shell: bash -l {0}
+        #  # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
+        #  if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
+        #  env:
+        #    ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        #  run: |
+        #    cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
+        #    ls *.tar.bz2
+        #    anaconda upload --skip-existing *.tar.bz2
+       
+        - name: Generated installer with all packages
           shell: bash -l {0}
-          # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
-          if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
-          env:
-            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
           run: |
-            cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
-            ls *.tar.bz2
-            anaconda upload --skip-existing *.tar.bz2
+            cd build/conda/generated_constructor_recipe
+            constructor .
+
+        - name: Upload Full Installer [Windows]
+          if: github.event_name == 'release' && contains(matrix.os, 'windows')
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          with:
+            upload_url: ${{ github.event.release.upload_url }}
+            asset_path: build/conda/generated_constructor_recipe/robotology-distro-windows-x86_64.exe
+            asset_name: robotology-distro-windows-x86_64.exe
+            asset_content_type: application/octet-stream
+
+        - name: Upload Full Installer [macOS]
+          if: github.event_name == 'release' && contains(matrix.os, 'macos')
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          with:
+            upload_url: ${{ github.event.release.upload_url }}
+            asset_path: build/conda/generated_constructor_recipe/robotology-distro-macos-x86_64.sh
+            asset_name: robotology-distro-macos-x86_64.sh
+            asset_content_type: application/octet-stream
+
+        - name: Upload Full Installer [Linux]
+          if: github.event_name == 'release' && contains(matrix.os, 'ubuntu')
+          uses: actions/upload-release-asset@v1.0.1
+          env:
+            GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          with:
+            upload_url: ${{ github.event.release.upload_url }}
+            asset_path: build/conda/generated_constructor_recipe/robotology-distro-linux-x86_64.sh
+            asset_name: robotology-distro-linux-x86_64.sh
+            asset_content_type: application/octet-stream
 
         # Only on linux-64 we upload noarch packages (noarch packages need to be uploaded only once, as they can be reused across platforms)
         - name: Upload conda packages (noarch)

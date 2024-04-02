@@ -11,11 +11,11 @@ option(RI_INCLUDE_GAZEBO "If ON include the Gazebo simulator binaries." ON)
 option(RI_BUILD_FULL_INSTALLER "If ON build the full installer, otherwise the dependencies one." ON)
 
 if(RI_BUILD_FULL_INSTALLER)
-  project(robotology-full-installer
+  project(robotology-full-installer-vcpkg
           VERSION ${INSTALLER_VERSION}
           DESCRIPTION "Installer for robotology software and its dependencies.")
 else()
-  project(robotology-dependencies-installer
+  project(robotology-dependencies-installer-vcpkg
           VERSION ${INSTALLER_VERSION}
           DESCRIPTION "Installer for robotology software dependencies.")
 endif()
