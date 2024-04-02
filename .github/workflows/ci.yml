@@ -195,7 +195,6 @@ jobs:
         docker_image:
           - "ubuntu:focal"
           - "ubuntu:jammy"
-          - "debian:buster-backports"
           - "debian:bullseye"
 
         project_tags:
