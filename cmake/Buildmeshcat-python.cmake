@@ -3,8 +3,11 @@
 
 include(RobSupPurePythonYCMEPHelper)
 
+find_or_build_package(pyngrok QUIET)
+
 rob_sup_pure_python_ycm_ep_helper(meshcat-python
                                   REPOSITORY rdeits/meshcat-python.git
+                                  DEPENDS pyngrok
                                   TAG master
                                   COMPONENT dynamics
                                   FOLDER src

@@ -163,7 +163,7 @@ For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](d
 
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-mamba install -c conda-forge python numpy "swig==4.1.0" pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad
+mamba install -c conda-forge python numpy "swig==4.1.0" pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 ~~~
 
 #### `ROBOTOLOGY_USES_PCL_AND_VTK`
