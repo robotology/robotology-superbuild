@@ -185,7 +185,7 @@ jobs:
 
   docker-build:
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -195,7 +195,6 @@ jobs:
         docker_image:
           - "ubuntu:focal"
           - "ubuntu:jammy"
-          - "debian:buster-backports"
           - "debian:bullseye"
 
         project_tags:
@@ -237,10 +236,13 @@ jobs:
         chmod +x ./.ci/install_debian.sh
         bash ./.ci/install_debian.sh
 
-    - name: Install CMake 3.16 [Docker/Debian Buster]
-      if: matrix.docker_image == 'debian:buster-backports'
+    - name: Install recent CMake [Docker/Ubuntu Focal]
+      if: matrix.docker_image == 'ubuntu:focal'
       run: |
-        apt-get -y -t buster-backports install cmake
+        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+        echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
+        apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+        apt-get install cmake
 
     - name: Configure [Docker]
       run: |
@@ -248,17 +250,11 @@ jobs:
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
-    - name: Disable profiles that are not supported in docker for now [Docker debian-testing and debian-buster]
-      if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports')
+    - name: Disable profiles that are not supported in docker for now [Docker debian-testing]
+      if: (matrix.docker_image == 'debian:testing')
       run: |
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
-
-    - name: Disable profiles that are not supported in Debian Buster [Docker debian:buster-backports]
-      if: (matrix.docker_image == 'debian:buster-backports')
-      run: |
-       cd build
-       cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_EVENT_DRIVEN:BOOL=OFF .
 
     - name: Disable MuJoCo for other distros released before 2022 [Docker ubuntu:focal and debian:bullseye]
       if: (matrix.docker_image == 'ubuntu:focal' || matrix.docker_image == 'debian:bullseye')
@@ -278,10 +274,10 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-20.04, windows-2019]
+        os: [ubuntu-22.04, windows-2019]
         project_tags: [Default, Unstable, LatestReleases]
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             build_type: Release
             cmake_generator: "Ninja"
           - os: macos-latest
@@ -405,8 +401,8 @@ jobs:
         cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug  ${{ matrix.project_tags_cmake_options }} ..
         cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
-    - name: Disable options unsupported on Ubuntu 20.04 and vcpkg
-      if: contains(matrix.os, '20.04') || contains(matrix.os, 'windows')
+    - name: Disable options unsupported on vcpkg
+      if: contains(matrix.os, 'windows')
       shell: bash
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
