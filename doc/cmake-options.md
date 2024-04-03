@@ -17,7 +17,8 @@ Table of Contents
     * [Human Dynamics profile](#human-dynamics)
     * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
-    * [Gazebo simulator](#gazebo)
+    * [Gazebo Classic simulator](#gazebo-classic-simulator)
+    * [Gazebo simulator](#gazebo-simulator)
     * [MuJoCo simulator](#mujoco)
     * [Ignition](#ignition)
     * [MATLAB](#matlab)
@@ -61,7 +62,8 @@ The dependencies CMake options specify if the packages dependending on something
 
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
-| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](http://gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo) |
+| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](https://classic.gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo-classic-simulator) |
+| `ROBOTOLOGY_USES_GZ_SIM`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/). This and `ROBOTOLOGY_USES_GAZEBO` options are mutually exclusive. | `OFF` | [Documentation on Gazebo dependency.](#gazebo-simulator) |
 | `ROBOTOLOGY_USES_MUJOCO`  | Include software and plugins that depend on the [MuJoCo simulator](https://mujoco.org/).  | `ON` | [Documentation on MuJoCo dependency.](#mujoco) |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`  | Include software and plugins that depend on the [PCL](https://pointclouds.org/) or [VTK](https://vtk.org/). | `OFF`   | [Documentation on PCL and VTK dependency.](#pcl_and_vtk) |
 | `ROBOTOLOGY_USES_IGNITION` | Include software that depends on [Ignition](ignitionrobotics.org/). | `OFF` | [Documentation on Ignition Gazebo dependency.](#ignition) |
@@ -89,6 +91,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_GZ_SIM`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_MUJOCO`<sup id="a1">[1!](#f1)</sup>  | ✔️                               |           ❌                |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_IGNITION`                                          | ❌                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
@@ -193,12 +196,16 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. Fo
 Dependencies-specific documentation
 ===================================
 
-## Gazebo
+## Gazebo Classic simulator
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option, that enables the software that depends on "Classic Gazebo".
 
 ### Check the installation
 Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
+
+## Gazebo simulator
+
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ_SIM` CMake option, that enables the software that depends on "Gazebo".
 
 ## MuJoCo
 
