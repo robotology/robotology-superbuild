@@ -9,7 +9,7 @@ find_or_build_package(YARP QUIET)
 ycm_ep_helper(gz-sim-yarp-plugins TYPE GIT
                                 STYLE GITHUB
                                 REPOSITORY robotology/gz-sim-yarp-plugins
-                                TAG master
+                                TAG main
                                 COMPONENT core
                                 FOLDER src
                                 DEPENDS YARP)
