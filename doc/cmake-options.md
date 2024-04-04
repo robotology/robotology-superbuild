@@ -18,7 +18,7 @@ Table of Contents
     * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo Classic simulator](#gazebo-classic-simulator)
-    * [Gazebo simulator](#gazebo-simulator)
+    * [Modern Gazebo (gz-sim) simulator](#modern-gazebo-simulator)
     * [MuJoCo simulator](#mujoco)
     * [Ignition](#ignition)
     * [MATLAB](#matlab)
@@ -203,9 +203,9 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake opt
 ### Check the installation
 Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
 
-## Gazebo simulator
+## Modern Gazebo simulator
 
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ_SIM` CMake option, that enables the software that depends on "Gazebo".
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ_SIM` CMake option, that enables the software that depends on "Modern Gazebo" (gz-sim).
 
 ## MuJoCo
 
