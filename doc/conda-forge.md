@@ -73,9 +73,14 @@ For example, if you want to install yarp and icub-main, you simple need to insta
 mamba install -c conda-forge -c robotology yarp icub-main
 ~~~
 
-In addition, if you want to simulate the iCub in Gazebo, you should also install `icub-models` and `gazebo-yarp-plugins`:
+In addition, if you want to simulate the iCub in Gazebo Classic, you should also install `icub-models` and `gazebo-yarp-plugins`:
 ~~~
 mamba install -c conda-forge -c robotology gazebo-yarp-plugins icub-models
+~~~
+
+While if you want to simulate it with Modern Gazebo (gz-sim), you should install `icub-models` and `gz-sim-yarp-plugins`:
+~~~
+mamba install -c conda-forge -c robotology gz-sim-yarp-plugins icub-models
 ~~~
 
 If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
@@ -134,12 +139,12 @@ Once you activated it, you can install packages in it. In particular the depende
 
 If you are on **Linux**, **Windows**, or **macOS** with an Intel-based processor:
 ~~~
-mamba install -c conda-forge ace asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
+mamba install -c conda-forge ace asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
 ~~~
 
 If you are on **macOS** with ARM-based processor:
 ~~~
-mamba install -c conda-forge asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
+mamba install -c conda-forge asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
 ~~~
 
 If you are on **Linux x86-64**, you also need to install also the following packages:
@@ -174,6 +179,21 @@ If you install your dependencies with `conda`, just make sure to install the `pc
 mamba install -c conda-forge pcl vtk
 ~~~
 
+#### `ROBOTOLOGY_USES_GAZEBO`
+
+If you install your dependencies with `conda`, just make sure to install the `gazebo` package:
+
+~~~
+mamba install -c conda-forge gazebo
+~~~
+
+#### `ROBOTOLOGY_USES_GZ_SIM`
+
+If you install your dependencies with `conda`, just make sure to install the `gz-sim8` package:
+
+~~~
+mamba install -c conda-forge gz-sim8
+~~~
 
 ### Clone the repo
 To compile the `robotology-superbuild` code itself, you need to clone it, following the instructions in https://github.com/robotology/robotology-superbuild#clone-the-repo . 

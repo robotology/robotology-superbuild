@@ -27,6 +27,10 @@ option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Ga
 option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" OFF)
 option(ROBOTOLOGY_USES_MUJOCO "Enable compilation of mujoco and software that depends on it" OFF)
 
+## Enable packages that depend on the Modern Gazebo (gz-sim) simulator
+option(ROBOTOLOGY_USES_GZ "Enable compilation of software that depends on Modern Gazebo (gz-sim)" OFF)
+
+
 ## Enable packages that depend on the Ignition Gazebo simulator
 set(ROBOTOLOGY_USES_IGNITION_DEFAULT FALSE)
 option(ROBOTOLOGY_USES_IGNITION "Enable compilation of software that depends on Ignition Gazebo" ${ROBOTOLOGY_USES_IGNITION_DEFAULT})
