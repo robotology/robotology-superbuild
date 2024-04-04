@@ -21,7 +21,7 @@ source ${SCRIPT_DIR}/../scripts/install_apt_python_dependencies.sh
 # Octave
 apt-get install -y liboctave-dev
 
-# Gazebo
+# Gazebo Classic
 lsb_dist="$(. /etc/os-release && echo "$ID")"
 dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
 echo "lsb_dist: ${lsb_dist}"

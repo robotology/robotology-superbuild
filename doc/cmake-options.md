@@ -18,7 +18,7 @@ Table of Contents
     * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo Classic simulator](#gazebo-classic-simulator)
-    * [Modern Gazebo (gz-sim) simulator](#modern-gazebo-simulator)
+    * [Modern Gazebo simulator](#modern-gazebo-simulator)
     * [MuJoCo simulator](#mujoco)
     * [Ignition](#ignition)
     * [MATLAB](#matlab)
@@ -63,7 +63,7 @@ The dependencies CMake options specify if the packages dependending on something
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
 | `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](https://classic.gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo-classic-simulator) |
-| `ROBOTOLOGY_USES_GZ_SIM`  | Include software and plugins that depend on the [Gazebo simulator](http://gazebosim.org/). This and `ROBOTOLOGY_USES_GAZEBO` options are mutually exclusive. | `OFF` | [Documentation on Gazebo dependency.](#gazebo-simulator) |
+| `ROBOTOLOGY_USES_GZ_SIM`  | Include software and plugins that depend on the [Modern Gazebo (gz-sim) simulator](http://gazebosim.org/). | `OFF` | [Documentation on Modern Gazebo (gz-sim) dependency.](#modern-gazebo-simulator) |
 | `ROBOTOLOGY_USES_MUJOCO`  | Include software and plugins that depend on the [MuJoCo simulator](https://mujoco.org/).  | `ON` | [Documentation on MuJoCo dependency.](#mujoco) |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`  | Include software and plugins that depend on the [PCL](https://pointclouds.org/) or [VTK](https://vtk.org/). | `OFF`   | [Documentation on PCL and VTK dependency.](#pcl_and_vtk) |
 | `ROBOTOLOGY_USES_IGNITION` | Include software that depends on [Ignition](ignitionrobotics.org/). | `OFF` | [Documentation on Ignition Gazebo dependency.](#ignition) |

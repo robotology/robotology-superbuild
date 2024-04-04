@@ -26,7 +26,7 @@ export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH:+${GAZEBO_RESOURCE_PATH}:}${R
 
 @cmakeif ROBOTOLOGY_USES_GZ
 # ROBOTOLOGY_USES_GZ-specific lines
-# Gazebo related env variables (see https://gazebosim.org/api/sim/8/resources.html )
+# Modern Gazebo (gz-sim) related env variables (see https://gazebosim.org/api/sim/8/resources.html )
 export GZ_SIM_SYSTEM_PLUGIN_PATH=${GZ_SIM_SYSTEM_PLUGIN_PATH:+${GZ_SIM_SYSTEM_PLUGIN_PATH}:}${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
 export GZ_SIM_RESOURCE_PATH=${GZ_SIM_RESOURCE_PATH:+${GZ_SIM_RESOURCE_PATH}:}${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/iCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/ergoCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
 @endcmakeif ROBOTOLOGY_USES_GZ

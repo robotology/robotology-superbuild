@@ -75,7 +75,7 @@ endif()
 # Configure a setup.sh
 if(ROBOTOLOGY_USES_GAZEBO)
   if(WIN32 OR ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
-    # On Windows or Conda we assume that the Gazebo's enviroment variables are already set,
+    # On Windows or Conda we assume that the Gazebo Classic's environment variables are already set,
     # so we set as this name a file that does not exists and so will be ignored
     set(GAZEBO_SETUP_SH_PATH "on-windows-or-conda-we-assume-that-gazebo-env-variables-are-already-set")
   elseif(APPLE)

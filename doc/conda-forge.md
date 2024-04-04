@@ -73,9 +73,14 @@ For example, if you want to install yarp and icub-main, you simple need to insta
 mamba install -c conda-forge -c robotology yarp icub-main
 ~~~
 
-In addition, if you want to simulate the iCub in Gazebo, you should also install `icub-models` and `gazebo-yarp-plugins`:
+In addition, if you want to simulate the iCub in Gazebo Classic, you should also install `icub-models` and `gazebo-yarp-plugins`:
 ~~~
 mamba install -c conda-forge -c robotology gazebo-yarp-plugins icub-models
+~~~
+
+While if you want to simulate it with Modern Gazebo (gz-sim), you should install `icub-models` and `gz-sim-yarp-plugins`:
+~~~
+mamba install -c conda-forge -c robotology gz-sim-yarp-plugins icub-models
 ~~~
 
 If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:

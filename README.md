@@ -130,11 +130,11 @@ More details can be found at https://github.com/robotology/QA/issues/364 .
 
 For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
 
-Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option.
+Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo Classic unless you plan to disable this option.
 
 #### `ROBOTOLOGY_USES_GAZEBO`
 
-On Linux with apt dependencies install Gazebo classic, if you are on:
+On Linux with apt dependencies install Gazebo Classic, if you are on:
 * Ubuntu 20.04
 * Debian Buster 10
 
@@ -147,7 +147,7 @@ sudo apt install libgazebo-dev
 
 #### `ROBOTOLOGY_USES_GZ`
 
-On Ubuntu Jammy (22.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu .
+To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu .
 
 #### `ROBOTOLOGY_USES_PYTHON`
 
