@@ -9,15 +9,19 @@ if_(is_set("COMSPEC")).then_([
 ])
 
 # For some reason setting two times the same variable inside the same if does not work in command prompt
-# As a workaround, we move each GAZEBO_MODEL_PATH set to a separate if
+# As a workaround, we move each GAZEBO_MODEL_PATH and GZ_SIM_RESOURCE_PATH set to a separate if
 if_(is_set("COMSPEC")).then_([
 	sys.list_append("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "Library\\share\\ergoCub\\robots"))
+	sys.list_append("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "Library\\share\\ergoCub\\robots"))
 ]).else_([
 	sys.list_append("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "share/ergoCub/robots"))
+	sys.list_append("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "share/ergoCub/robots"))
 ])
 
 if_(is_set("COMSPEC")).then_([
 	sys.list_append("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "Library\\share"))
+	sys.list_append("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "Library\\share"))
 ]).else_([
 	sys.list_append("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "share"))
+	sys.list_append("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "share"))
 ])

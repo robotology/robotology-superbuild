@@ -59,7 +59,7 @@ and`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/Wearables` must be appended to t
 This section covers the configuration necessary for a specific dependency.
 For all dependecies option not listed, no additional configuration is necessary.
 
-### Gazebo
+### Gazebo Classic
 The following enviroment variables need to be appended with robotology-superbuild related directories:
 ~~~
 # Gazebo related env variables (see http://gazebosim.org/tutorials?tut=components#EnvironmentVariables )
@@ -68,6 +68,14 @@ source /usr/share/gazebo/setup.sh
 export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
 export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/iCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/ergoCub/robots
 export GAZEBO_RESOURCE_PATH=${GAZEBO_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
+~~~
+
+### Gazebo
+The following enviroment variables need to be appended with robotology-superbuild related directories:
+~~~
+# Gazebo related env variables (see https://gazebosim.org/api/sim/8/resources.html )
+export GZ_SIM_SYSTEM_PLUGIN_PATH=${GZ_SIM_SYSTEM_PLUGIN_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/lib
+export GZ_SIM_RESOURCE_PATH=${GZ_SIM_RESOURCE_PATH}:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/models:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/iCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/ergoCub/robots:${ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX}/share/gazebo/worlds
 ~~~
 
 ### MATLAB
@@ -82,9 +90,14 @@ For adding the multiple libraries to the MATLAB path, the environment variable `
 For MATLAB to find the robot model files added by the repository [`matlab-whole-body-simulator`](https://github.com/dic-iit/matlab-whole-body-simulator), you need to append `YARP_DATA_DIRS` the directory:
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/RRbot`
 
-#### MATLAB/Gazebo
+#### MATLAB/Gazebo Classic
 
 `GAZEBO_MODEL_PATH` needs to be appended with:
+* `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/RRbot/robots`
+
+#### MATLAB/Gazebo
+
+`GZ_SIM_RESOURCE_PATH` needs to be appended with:
 * `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/RRbot/robots`
 
 ### Python
