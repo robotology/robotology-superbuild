@@ -97,7 +97,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        mamba install asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
+        mamba install asio assimp boost eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
         # Python 
         mamba install python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 
@@ -244,11 +244,11 @@ jobs:
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
-    - name: Disable profiles that are not supported in docker for now [Docker debian-testing and debian-buster]
+    - name: Disable profiles that are not supported in Debian [Docker debian-testing and debian-buster]
       if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports')
       run: |
        cd build
-       cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+       cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
     - name: Disable MuJoCo for other distros released before 2022 [Docker ubuntu:focal and debian:bullseye]
       if: (matrix.docker_image == 'ubuntu:focal' || matrix.docker_image == 'debian:bullseye')
@@ -401,7 +401,7 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
-        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
     - name: Build  [Ubuntu]
       if:  contains(matrix.os, 'ubuntu')
