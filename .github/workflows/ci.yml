@@ -250,11 +250,11 @@ jobs:
        cd build
        cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
-    - name: Disable MuJoCo for other distros released before 2022 [Docker ubuntu:focal and debian:bullseye]
+    - name: Disable MuJoCo and gz-sim for distros released before 2022 [Docker ubuntu:focal and debian:bullseye]
       if: (matrix.docker_image == 'ubuntu:focal' || matrix.docker_image == 'debian:bullseye')
       run: |
        cd build
-       cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
+       cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |
