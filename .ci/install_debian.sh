@@ -26,11 +26,13 @@ dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
 echo "lsb_dist: ${lsb_dist}"
 echo "dist_version: ${dist_version}"
 
-# We enable osrf's gazebo binaries
-mkdir -p /etc/apt/sources.list.d
-echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
-apt-get update
+# We enable osrf's gazebo binaries only on Ubuntu
+if [[ ("ubuntu" == "$lsb_dist") ]]; then
+    mkdir -p /etc/apt/sources.list.d
+    echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+    apt-get update
+fi
 
 # Gazebo Classic
 
