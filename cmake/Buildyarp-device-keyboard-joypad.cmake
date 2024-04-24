@@ -9,7 +9,7 @@ find_or_build_package(YARP QUIET)
 ycm_ep_helper(yarp-device-keyboard-joypad TYPE GIT
                                           STYLE GITHUB
                                           REPOSITORY ami-iit/yarp-device-keyboard-joypad.git
-                                          TAG master
+                                          TAG main
                                           COMPONENT dynamics
                                           FOLDER src
                                           DEPENDS YCM
