@@ -2,22 +2,22 @@ if_(is_set("COMSPEC")).then_([
   sys.list_remove("YARP_DATA_DIRS", path.join(env("CONDA_PREFIX"), "Library\\share\\RRbot")),
   sys.list_remove("ROS_PACKAGE_PATH", path.join(env("CONDA_PREFIX"), "Library\\share")),
   sys.list_remove("AMENT_PREFIX_PATH", path.join(env("CONDA_PREFIX"), "Library")),
-  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "Library\\share\\RRbot\\robots"))
+  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "Library\\share\\RRbot\\robots")),
   sys.list_remove("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "Library\\share\\RRbot\\robots"))
 ]).else_([
   sys.list_remove("YARP_DATA_DIRS", path.join(env("CONDA_PREFIX"), "share/RRbot")),
   sys.list_remove("ROS_PACKAGE_PATH", path.join(env("CONDA_PREFIX"), "share")),
   sys.list_remove("AMENT_PREFIX_PATH", env("CONDA_PREFIX")),
-  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "share/RRbot/robots"))
+  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "share/RRbot/robots")),
   sys.list_remove("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "share/RRbot/robots"))
 ])
 
 # For some reason setting two times the same variable inside the same if does not work in command prompt
 # As a workaround, we move each GAZEBO_MODEL_PATH and GZ_SIM_RESOURCE_PATHset to a separate if
 if_(is_set("COMSPEC")).then_([
-  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "Library\\share"))
+  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "Library\\share")),
   sys.list_remove("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "Library\\share"))
 ]).else_([
-  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "share"))
+  sys.list_remove("GAZEBO_MODEL_PATH", path.join(env("CONDA_PREFIX"), "share")),
   sys.list_remove("GZ_SIM_RESOURCE_PATH", path.join(env("CONDA_PREFIX"), "share"))
 ])
