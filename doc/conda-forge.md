@@ -149,12 +149,12 @@ mamba install -c conda-forge asio assimp boost eigen freetype glew glfw glm grap
 
 If you are on **Linux x86-64**, you also need to install also the following packages:
 ~~~
-mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat  libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
+mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
 ~~~
 
 If you are on **Linux ARM 64-bit**, you also need to install also the following packages:
 ~~~
-mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c expat libselinux-cos7-aarch64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-aarch64 mesa-libgl-devel-cos7-aarch64 libxshmfence-cos7-aarch64 libxshmfence-devel-cos7-aarch64 
+mamba install -c conda-forge bash-completion freeglut libdc1394 libi2c libselinux-cos7-aarch64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-aarch64 mesa-libgl-devel-cos7-aarch64 libxshmfence-cos7-aarch64 libxshmfence-devel-cos7-aarch64 
 ~~~
 
 If you are on **Windows**, you also need to install also the following packages:
