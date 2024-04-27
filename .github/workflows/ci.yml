@@ -195,6 +195,7 @@ jobs:
         docker_image:
           - "ubuntu:focal"
           - "ubuntu:jammy"
+          - "ubuntu:24.04"
           - "debian:bullseye"
 
         project_tags:

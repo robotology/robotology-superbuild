@@ -54,6 +54,8 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                          # See https://stackoverflow.com/questions/55708589/how-to-pass-an-environment-variable-to-externalproject-add-configure-command
                          # See https://github.com/robotology/robotology-superbuild/issues/1118
                          # To avoid the complexity of handling two commands, we just use the build step to uninstall any existing package
-                         BUILD_COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} pip uninstall -y ${_PYH_${_name}_PYTHON_PACKAGE_NAME}
+                         # We pass --break-system-packages as it is required by Python 3.12 when operating outside a virtual env,
+                         # even if effectively we are kind in a virtual env defined by the superbuild in this case
+                         BUILD_COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} pip uninstall --break-system-packages -y ${_PYH_${_name}_PYTHON_PACKAGE_NAME}
                          INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
 endfunction()

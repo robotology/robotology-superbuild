@@ -36,6 +36,33 @@ else()
   set(ROBOTOLOGY_BUILD_tomlplusplus ON)
 endif()
 
+# I (@traversaro) am not particularly happy about this, but Ubuntu 24.04
+# got released with a version of swig (4.2.0) that contained several bugs.
+# The bugs were reported and fixed by swig authors (a huge thanks), and released
+# as swig 4.2.1 but the Ubuntu 24.04 sync with Debian happened exactly when
+# swig 4.2.0 was packaged in Debian, so now Ubuntu 24.04 contains a swig
+# that does not work with YARP. As swig is a tool just used as build time,
+# as workaround just for Ubuntu 24.04 with apt dependencies we download
+# a custom build of swig 4.2.1 locally
+if(LSB_RELEASE_CODENAME STREQUAL "noble" AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+  include(FetchContent)
+  FetchContent_Declare(
+    robotology_superbuild_local_noble_swig_4_2_1
+    URL "https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/swig_4_2_1_ubuntu_24_04.zip")
+
+  FetchContent_GetProperties(robotology_superbuild_local_noble_swig_4_2_1)
+  if(NOT robotology_superbuild_local_noble_swig_4_2_1_POPULATED)
+    message(STATUS "Downloading robotology_superbuild_local_noble_swig_4_2_1 binaries.")
+    FetchContent_Populate(robotology_superbuild_local_noble_swig_4_2_1)
+    message(STATUS "Downloaded a local copy of swig 4.2.1 in ${robotology_superbuild_local_noble_swig_4_2_1_SOURCE_DIR}")
+  endif()
+  set(ROBOTOLOGY_SUPERBUILD_USING_LOCAL_SWIG_4_2_1_WORKAROUND_ON_NOBLE ON)
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DSWIG_EXECUTABLE=${robotology_superbuild_local_noble_swig_4_2_1_SOURCE_DIR}/bin/swig")
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DSWIG_DIR=${robotology_superbuild_local_noble_swig_4_2_1_SOURCE_DIR}/share/swig/4.2.1")
+else()
+  set(ROBOTOLOGY_SUPERBUILD_USING_LOCAL_SWIG_4_2_1_WORKAROUND_ON_NOBLE OFF)
+endif()
+
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(YARP)
