@@ -19,7 +19,11 @@ source ${SCRIPT_DIR}/../scripts/install_apt_dependencies.sh
 source ${SCRIPT_DIR}/../scripts/install_apt_python_dependencies.sh
 
 # Octave
-apt-get install -y octave-dev
+if [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
+    apt-get install -y liboctave-dev
+else
+    apt-get install -y octave-dev
+fi
 
 # Gazebo Classic
 lsb_dist="$(. /etc/os-release && echo "$ID")"
