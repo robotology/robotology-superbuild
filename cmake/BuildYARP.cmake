@@ -59,6 +59,11 @@ if(ROBOTOLOGY_SUPERBUILD_USING_LOCAL_SWIG_4_2_1_WORKAROUND_ON_NOBLE)
   list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DSWIG_DIR=${robotology_superbuild_local_noble_swig_4_2_1_SOURCE_DIR}/share/swig/4.2.1")
 endif()
 
+if(LSB_RELEASE_CODENAME STREQUAL "noble" AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+  # Workaround for https://github.com/robotology/yarp/pull/3108
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DYARP_USE_Lua=OFF")
+endif()
+
 ycm_ep_helper(YARP TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/yarp.git
