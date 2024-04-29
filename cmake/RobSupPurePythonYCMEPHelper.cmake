@@ -41,6 +41,17 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
     set(_PYH_${_name}_PYTHON_PACKAGE_NAME ${_name})
   endif()
 
+  # We pass --break-system-packages as it is required by Python 3.12 when operating outside a virtual env,
+  # even if effectively we are kind in a virtual env defined by the superbuild in this case
+  # We need to make sure not to pass it for Python <= 3.11, as otherwise pip uninstall will fail as --break-system-packages
+  # is not an option
+  if(LSB_RELEASE_CODENAME STREQUAL "noble" AND NOT ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
+    set(BREAK_SYSTEM_PACKAGES_OPTION "--break-system-packages")
+  else()
+    set(BREAK_SYSTEM_PACKAGES_OPTION "")
+  endif()
+
+
   ycm_ep_helper(${_name} TYPE GIT
                          STYLE GITHUB
                          REPOSITORY ${_PYH_${_name}_REPOSITORY}
@@ -54,8 +65,6 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                          # See https://stackoverflow.com/questions/55708589/how-to-pass-an-environment-variable-to-externalproject-add-configure-command
                          # See https://github.com/robotology/robotology-superbuild/issues/1118
                          # To avoid the complexity of handling two commands, we just use the build step to uninstall any existing package
-                         # We pass --break-system-packages as it is required by Python 3.12 when operating outside a virtual env,
-                         # even if effectively we are kind in a virtual env defined by the superbuild in this case
-                         BUILD_COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} pip uninstall --break-system-packages -y ${_PYH_${_name}_PYTHON_PACKAGE_NAME}
+                         BUILD_COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} pip uninstall ${BREAK_SYSTEM_PACKAGES_OPTION} -y ${_PYH_${_name}_PYTHON_PACKAGE_NAME}
                          INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
 endfunction()
