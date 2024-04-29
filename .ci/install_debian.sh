@@ -18,6 +18,11 @@ source ${SCRIPT_DIR}/../scripts/install_apt_dependencies.sh
 # Python
 source ${SCRIPT_DIR}/../scripts/install_apt_python_dependencies.sh
 
+lsb_dist="$(. /etc/os-release && echo "$ID")"
+dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
+echo "lsb_dist: ${lsb_dist}"
+echo "dist_version: ${dist_version}"
+
 # Octave
 if [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
     apt-get install -y liboctave-dev
@@ -26,10 +31,6 @@ else
 fi
 
 # Gazebo Classic
-lsb_dist="$(. /etc/os-release && echo "$ID")"
-dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
-echo "lsb_dist: ${lsb_dist}"
-echo "dist_version: ${dist_version}"
 # Just a limited amount of distros are supported by OSRF repos, for all the other we use the 
 # gazebo packages in regular repos
 if [[ ("noble" == "$dist_version")]]; then
