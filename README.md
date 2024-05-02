@@ -128,7 +128,7 @@ If instead you use an older distro in which the default version of CMake is olde
 
 For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
 
-Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo Classic unless you plan to disable this option.
+Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default (except on Ubuntu 24.04 when installing with apt dependencies), so you should install Gazebo Classic unless you plan to disable this option.
 
 #### `ROBOTOLOGY_USES_GAZEBO`
 
@@ -141,6 +141,8 @@ Otherwise, if you are on other supported Debian/Ubuntu systems, just install the
 ~~~~
 sudo apt install libgazebo-dev
 ~~~~
+
+If you are on Ubuntu 24.04, please use conda if you want to install Gazebo Classic, as no Gazebo Classic packages are available via apt.
 
 #### `ROBOTOLOGY_USES_GZ`
 
@@ -165,7 +167,7 @@ sudo apt install libpcl-dev
 
 Install octave and the necessary development files using the following command:
 ~~~
-sudo apt-get install liboctave-dev
+sudo apt-get install octave-dev
 ~~~
 
 

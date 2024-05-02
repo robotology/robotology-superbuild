@@ -195,6 +195,7 @@ jobs:
         docker_image:
           - "ubuntu:focal"
           - "ubuntu:jammy"
+          - "ubuntu:24.04"
           - "debian:bullseye"
 
         project_tags:
@@ -255,6 +256,12 @@ jobs:
       run: |
        cd build
        cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
+
+    - name: Disable Gazebo Classic support for distro without Gazebo Classic binaries [Docker ubuntu:24.04]
+      if: (matrix.docker_image == 'ubuntu:24.04')
+      run: |
+       cd build
+       cmake  -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |

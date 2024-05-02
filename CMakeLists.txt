@@ -66,7 +66,6 @@ include(YCMEPHelper)
 # depending on which profiles are enabled
 include(RobotologySuperbuildLogic)
 
-
 if(ROBOTOLOGY_USES_MATLAB)
   # The following line is to properly configure the matlab and simulink software installed by the superbuild
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/startup_robotology_superbuild.m.in ${CMAKE_BINARY_DIR}/startup_robotology_superbuild.m)
