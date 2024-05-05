@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v12.2.0
+    version: v12.2.1
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -110,7 +110,7 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: v0.11.0
+    version: v0.11.1
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
