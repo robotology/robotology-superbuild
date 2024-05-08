@@ -261,7 +261,7 @@ jobs:
       if: (matrix.docker_image == 'ubuntu:24.04')
       run: |
        cd build
-       cmake  -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
+       cmake  -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |
