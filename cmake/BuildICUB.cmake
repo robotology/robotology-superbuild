@@ -54,6 +54,11 @@ else()
   set(ICUB_PYTHON_INSTALL_CMAKE_ARGS "")
 endif()
 
+if(ROBOTOLOGY_SUPERBUILD_USING_LOCAL_SWIG_4_2_1_WORKAROUND_ON_NOBLE)
+  list(APPEND ICUB_PYTHON_INSTALL_CMAKE_ARGS "-DSWIG_EXECUTABLE=${robotology_superbuild_local_noble_swig_4_2_1_SOURCE_DIR}/bin/swig")
+  list(APPEND ICUB_PYTHON_INSTALL_CMAKE_ARGS "-DSWIG_DIR=${robotology_superbuild_local_noble_swig_4_2_1_SOURCE_DIR}/share/swig/4.2.1")
+endif()
+
 ycm_ep_helper(ICUB TYPE GIT
                    STYLE GITHUB
                    REPOSITORY robotology/icub-main.git

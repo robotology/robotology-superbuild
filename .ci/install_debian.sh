@@ -18,9 +18,6 @@ source ${SCRIPT_DIR}/../scripts/install_apt_dependencies.sh
 # Python
 source ${SCRIPT_DIR}/../scripts/install_apt_python_dependencies.sh
 
-# Octave
-apt-get install -y liboctave-dev
-
 lsb_dist="$(. /etc/os-release && echo "$ID")"
 dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
 echo "lsb_dist: ${lsb_dist}"
@@ -36,9 +33,13 @@ fi
 
 # Gazebo Classic
 
-# Just a limited amount of distros are supported by OSRF repos, for all the other we use the 
-# gazebo packages in regular repos
-if [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
+# Just a limited amount of distros are supported by OSRF repos, 
+# for all the other we use the  gazebo packages in regular repos
+# or we do not install gazebo classic if it is not available in apt
+if [[ ("noble" == "$dist_version")]]; then
+    # There is no Gazebo Classic package for Noble
+    echo ""
+elif [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
     apt-get install -y libgazebo11-dev
 else
     apt-get install -y libgazebo-dev

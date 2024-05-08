@@ -24,4 +24,5 @@ ycm_ep_helper(ergocub-software
               DEPENDS YARP
               CMAKE_ARGS -DCOMPILE_ergoCubEmotions:BOOL=${COMPILE_ergoCubEmotions})
 
-set(ergocub-sofware_CONDA_DEPENDENCIES libopencv)              
+set(ergocub-software_CONDA_PKG_NAME ergocub-software)
+set(ergocub-software_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
