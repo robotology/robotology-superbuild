@@ -52,8 +52,8 @@ else
     apt-get install -y libgazebo-dev
 fi
 
-# gz-sim8 binaries are only available for jammy (Ubuntu 20.04) and noble (Ubuntu 22.04)
-if [[ ("jammy" == "$dist_version" || "noble" == "$dist_version") ]]; then
+# gz-sim8 binaries are only available for jammy (Ubuntu 22.04)
+if [[ ("jammy" == "$dist_version") ]]; then
     apt-get install -y gz-harmonic
 fi
 
