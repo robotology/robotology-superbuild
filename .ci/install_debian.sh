@@ -23,6 +23,13 @@ dist_version="$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)"
 echo "lsb_dist: ${lsb_dist}"
 echo "dist_version: ${dist_version}"
 
+# Octave
+if [[ ("focal" == "$dist_version" || "buster" == "$dist_version" || "bullseye" == "$dist_version") ]]; then
+    apt-get install -y liboctave-dev
+else
+    apt-get install -y octave-dev
+fi
+
 # We enable osrf's gazebo binaries only on Ubuntu
 if [[ ("ubuntu" == "$lsb_dist") ]]; then
     mkdir -p /etc/apt/sources.list.d
