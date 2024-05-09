@@ -106,7 +106,9 @@ Not all options are supported on all platforms. The following table provides a r
 <b id="f1">1!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022. Furthermore, it does not support build on Windows with Visual Studio 2019, it requires Visual Studio 2022.
 
 <b id="f2">2!</b>:`ROBOTOLOGY_ENABLE_ROBOT_TESTING` and `ROBOTOLOGY_ENABLE_ICUB_HEAD` do not support building with conda-forge dependencies on Apple Silicon.
+
 <b id="f3">3!</b>:`ROBOTOLOGY_USES_GZ_SIM`  with apt dependencies do not support building on Debian distros (only Ubuntu is supported). At the moment Ubuntu 24.04 apt packages are not available (https://github.com/gazebosim/gz-sim/issues/2390#issuecomment-2096728527). Furthermore it does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90).
+
 <b id="f4">4!</b>:`ROBOTOLOGY_USES_OCTAVE` do not support building with apt dependencies on Ubuntu 20.04.
 
 
