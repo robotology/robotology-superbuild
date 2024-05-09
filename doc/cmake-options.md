@@ -91,12 +91,12 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_USES_GZ_SIM`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_GZ_SIM`<sup id="a3">[3!](#f3)</sup>                                          | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_MUJOCO`<sup id="a1">[1!](#f1)</sup>  | ✔️                               |           ❌                |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_IGNITION`                                          | ❌                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_USES_MATLAB`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_USES_OCTAVE`<sup id="a3">[3!](#f3)</sup>                                            | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
+| `ROBOTOLOGY_USES_OCTAVE`<sup id="a4">[4!](#f4)</sup>                                            | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
 | `ROBOTOLOGY_USES_PYTHON`                | ✔️                               |              ❌             |                  ✔️                       |               ✔️                          |                  ✔️                         |
 | `ROBOTOLOGY_USES_CFW2CAN`                                           |  ✔️                              |             ❌              |                 ✔️                        |              ❌                           |                 ❌                          |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK`                                     |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ❌                          |
@@ -104,8 +104,12 @@ Not all options are supported on all platforms. The following table provides a r
            
 
 <b id="f1">1!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022. Furthermore, it does not support build on Windows with Visual Studio 2019, it requires Visual Studio 2022.
+
 <b id="f2">2!</b>:`ROBOTOLOGY_ENABLE_ROBOT_TESTING` and `ROBOTOLOGY_ENABLE_ICUB_HEAD` do not support building with conda-forge dependencies on Apple Silicon.
-<b id="f3">3!</b>:`ROBOTOLOGY_USES_OCTAVE` do not support building with apt dependencies on Ubuntu 20.04.
+
+<b id="f3">3!</b>:`ROBOTOLOGY_USES_GZ_SIM`  with apt dependencies do not support building on Debian distros (only Ubuntu is supported). At the moment Ubuntu 24.04 apt packages are not available (https://github.com/gazebosim/gz-sim/issues/2390#issuecomment-2096728527). Furthermore it does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90).
+
+<b id="f4">4!</b>:`ROBOTOLOGY_USES_OCTAVE` do not support building with apt dependencies on Ubuntu 20.04.
 
 
 Profile-specific documentation
@@ -205,6 +209,11 @@ Follow the steps in  https://github.com/robotology/icub-models#use-the-models-wi
 ## Modern Gazebo simulator
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ_SIM` CMake option, that enables the software that depends on "Modern Gazebo" (gz-sim).
+
+> [!IMPORTANT]  
+> At the moment the `ROBOTOLOGY_USES_GZ_SIM` does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90). Furthermore, it is not supported on non-Ubuntu Debian distributions with apt dependencies.
+
+
 
 ## MuJoCo
 

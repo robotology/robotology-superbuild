@@ -30,20 +30,31 @@ else
     apt-get install -y octave-dev
 fi
 
-# Gazebo Classic
-# Just a limited amount of distros are supported by OSRF repos, for all the other we use the 
-# gazebo packages in regular repos
-if [[ ("noble" == "$dist_version")]]; then
-    # There is no Gazebo Classic package for Noble
-    echo ""
-elif [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
+# We enable osrf's gazebo binaries only on Ubuntu
+if [[ ("ubuntu" == "$lsb_dist") ]]; then
     mkdir -p /etc/apt/sources.list.d
     echo deb http://packages.osrfoundation.org/gazebo/$lsb_dist\-stable $dist_version main > /etc/apt/sources.list.d/gazebo-stable.list
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
     apt-get update
+fi
+
+# Gazebo Classic
+
+# Just a limited amount of distros are supported by OSRF repos, 
+# for all the other we use the  gazebo packages in regular repos
+# or we do not install gazebo classic if it is not available in apt
+if [[ ("noble" == "$dist_version")]]; then
+    # There is no Gazebo Classic package for Noble
+    echo ""
+elif [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
     apt-get install -y libgazebo11-dev
 else
     apt-get install -y libgazebo-dev
+fi
+
+# gz-sim8 binaries are only available for jammy (Ubuntu 22.04)
+if [[ ("jammy" == "$dist_version") ]]; then
+    apt-get install -y gz-harmonic
 fi
 
 # PCL and VTK
