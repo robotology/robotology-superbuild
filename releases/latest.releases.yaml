@@ -275,3 +275,5 @@ repositories:
     type: git
     url: https://github.com/ami-iit/yarp-device-keyboard-joypad.git
     version: v0.0.1
+  gz-sim-yarp-plugins:
+    version: v0.2.0
