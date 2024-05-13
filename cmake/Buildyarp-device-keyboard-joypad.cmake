@@ -14,3 +14,6 @@ ycm_ep_helper(yarp-device-keyboard-joypad TYPE GIT
                                           FOLDER src
                                           DEPENDS YCM
                                                   YARP)
+
+
+set(yarp-device-keyboard-joypad_CONDA_DEPENDENCIES glew glfw imgui)
