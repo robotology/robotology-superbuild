@@ -250,7 +250,7 @@ repositories:
   proxsuite:
     type: git
     url: https://github.com/Simple-Robotics/proxsuite.git
-    version: v0.6.3
+    version: v0.6.4
   BayesFilters:
     type: git
     url: https://github.com/robotology/bayes-filters-lib.git
@@ -275,3 +275,7 @@ repositories:
     type: git
     url: https://github.com/ami-iit/yarp-device-keyboard-joypad.git
     version: v0.0.1
+  gz-sim-yarp-plugins:
+    type: git
+    url: https://github.com/robotology/gz-sim-yarp-plugins.git
+    version: v0.2.0
