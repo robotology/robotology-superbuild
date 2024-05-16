@@ -7,7 +7,7 @@ function install_robotology_packages(varargin)
 
     % Build package installation directory
     install_prefix = p.Results.installPrefix;
-    
+
     % If not on Windows, check if the install path contains a space as this
     % creates an installation error later (see
     % https://github.com/robotology/robotology-superbuild/issues/780)
@@ -31,14 +31,14 @@ function install_robotology_packages(varargin)
     fprintf('Installing robotology MATLAB/Simulink binaries in %s\n', install_prefix);
 
     % The install url is created following
-    mambaforge_url_prefix = 'https://github.com/conda-forge/miniforge/releases/latest/download/';
+    miniforge_url_prefix = 'https://github.com/conda-forge/miniforge/releases/latest/download/';
     if ispc
-        mambaforge_installer_name = 'Mambaforge-Windows-x86_64.exe';
+        miniforge_installer_name = 'miniforge-Windows-x86_64.exe';
     elseif ismac
         [~, uname_m] = system('uname -m');
         % Remove newline
         uname_m = strip(uname_m);
-        mambaforge_installer_name = sprintf('Mambaforge-MacOSX-%s.sh', uname_m);
+        miniforge_installer_name = sprintf('miniforge-MacOSX-%s.sh', uname_m);
     elseif isunix
         [~, uname] = system('uname');
         % Remove newline
@@ -46,29 +46,29 @@ function install_robotology_packages(varargin)
         [~, uname_m] = system('uname -m');
         % Remove newline
         uname_m = strip(uname_m);
-        mambaforge_installer_name = sprintf('Mambaforge-%s-%s.sh', uname, uname_m);
+        miniforge_installer_name = sprintf('miniforge-%s-%s.sh', uname, uname_m);
     end
 
-    fprintf('Downloading mambaforge installer \n');
-    mambaforge_installer_url = strcat(mambaforge_url_prefix, mambaforge_installer_name);
-    websave(mambaforge_installer_name, mambaforge_installer_url);
-    fprintf('Download of mambaforge installer completed\n');
+    fprintf('Downloading miniforge installer \n');
+    miniforge_installer_url = strcat(miniforge_url_prefix, miniforge_installer_name);
+    websave(miniforge_installer_name, miniforge_installer_url);
+    fprintf('Download of miniforge installer completed\n');
 
     % See https://github.com/conda-forge/miniforge#non-interactive-install
-    fprintf('Installing mambaforge\n');
+    fprintf('Installing miniforge\n');
     if ispc
-        system(sprintf('start /wait "" %s /InstallationType=JustMe /RegisterPython=0 /S /D=%s', mambaforge_installer_name, install_prefix));
-        conda_full_path = fullfile(install_prefix, 'condabin', 'mamba.bat');
+        system(sprintf('start /wait "" %s /InstallationType=JustMe /RegisterPython=0 /S /D=%s', miniforge_installer_name, install_prefix));
+        conda_full_path = fullfile(install_prefix, 'condabin', 'conda.bat');
         % On Windows, the files in conda are installed in the Library
         % subdirectory of the prefix
         robotology_install_prefix = fullfile(install_prefix, 'Library');
     elseif isunix
-        system(sprintf('sh %s -b -p "%s"', mambaforge_installer_name, install_prefix));
-        assert(length(['#!',install_prefix,'/bin python'])<=127,'install_prefix path is too long! Shebangs cannot be longer than 127 characters (see https://github.com/robotology/robotology-superbuild/pull/1145)')        
-        conda_full_path = fullfile(install_prefix, 'condabin', 'mamba');
+        system(sprintf('sh %s -b -p "%s"', miniforge_installer_name, install_prefix));
+        assert(length(['#!',install_prefix,'/bin python'])<=127,'install_prefix path is too long! Shebangs cannot be longer than 127 characters (see https://github.com/robotology/robotology-superbuild/pull/1145)')
+        conda_full_path = fullfile(install_prefix, 'condabin', 'conda');
         robotology_install_prefix = install_prefix;
     end
-    fprintf('Installation of mambaforge completed\n');
+    fprintf('Installation of miniforge completed\n');
 
 
 
@@ -120,8 +120,8 @@ function install_robotology_packages(varargin)
     fprintf(setupID, 'setenv("BLOCKFACTORY_PLUGIN_PATH",fullfile(robotology_install_prefix,rob_shlib_install_dir,"blockfactory"));\n');
     fclose(setupID);
 
-    fprintf('Deleting mambaforge installer\n');
-    delete(mambaforge_installer_name);
+    fprintf('Deleting miniforge installer\n');
+    delete(miniforge_installer_name);
 
     fprintf('robotology MATLAB and Simulink packages are successfully installed!\n');
     fprintf('Please run %s before using the packages,\n',setup_script)

@@ -99,12 +99,12 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
+            conda install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
 
         - name: Print used environment
           shell: bash -l {0}
           run: |
-            mamba list
+            conda list
             env
 
         - name: Generate recipes [Linux&macOS]
@@ -163,35 +163,35 @@ jobs:
             cat */build.sh
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
-            # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
+            # We manually specify the build order as an old workaround for mambabuild, in theory this can be avoided, but it needs to be tested
             # see https://github.com/mamba-org/boa/issues/117
             # We also manually delete the recipe directory to avoid that it is built again,
             # specifically because we can't use --skip-existing as these packages are part of the robotology channel
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-contrib-common
             rm -rf icub-contrib-common
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml icub-firmware-shared
             rm -rf icub-firmware-shared
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robots-configuration
             rm -rf robots-configuration
             # icub-main needs robotology channel as it also depends on esdcan, and local to avoid that robotology packages are used instead of local built one
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
             rm -rf icub-main
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
             rm -rf wearables
             # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge human-dynamics-estimation
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge human-dynamics-estimation
             rm -rf human-dynamics-estimation
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-log-visualizer
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml robot-log-visualizer
             rm -rf robot-log-visualizer
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree-matlab-bindings
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml idyntree-matlab-bindings
             rm -rf idyntree-matlab-bindings
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blockfactory
             rm -rf blockfactory
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml yarp-matlab-bindings
             rm -rf yarp-matlab-bindings
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wb-toolbox
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wb-toolbox
             rm -rf wb-toolbox
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
             rm -rf blocktest
             conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
@@ -202,8 +202,8 @@ jobs:
             cd build/conda/generated_recipes_metapackages
              # Debug generated recipes
             cat */meta.yaml
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro-all
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro
+            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro-all
 
         - name: Upload conda packages
           shell: bash -l {0}
