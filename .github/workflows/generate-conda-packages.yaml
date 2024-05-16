@@ -63,9 +63,9 @@ jobs:
         steps:
         - uses: actions/checkout@v4
 
-        - uses: conda-incubator/setup-miniconda@v2
+        - uses: conda-incubator/setup-miniconda@v3
           with:
-            miniforge-variant: Mambaforge
+            miniforge-variant: Miniforge3
             miniforge-version: latest
 
         - name: Install files to enable compilation of mex files [Conda/Linux]
