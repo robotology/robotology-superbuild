@@ -33,12 +33,12 @@ function install_robotology_packages(varargin)
     % The install url is created following
     miniforge_url_prefix = 'https://github.com/conda-forge/miniforge/releases/latest/download/';
     if ispc
-        miniforge_installer_name = 'miniforge-Windows-x86_64.exe';
+        miniforge_installer_name = 'Miniforge3-Windows-x86_64.exe';
     elseif ismac
         [~, uname_m] = system('uname -m');
         % Remove newline
         uname_m = strip(uname_m);
-        miniforge_installer_name = sprintf('miniforge-MacOSX-%s.sh', uname_m);
+        miniforge_installer_name = sprintf('Miniforge3-MacOSX-%s.sh', uname_m);
     elseif isunix
         [~, uname] = system('uname');
         % Remove newline
@@ -46,7 +46,7 @@ function install_robotology_packages(varargin)
         [~, uname_m] = system('uname -m');
         % Remove newline
         uname_m = strip(uname_m);
-        miniforge_installer_name = sprintf('miniforge-%s-%s.sh', uname, uname_m);
+        miniforge_installer_name = sprintf('Miniforge3-%s-%s.sh', uname, uname_m);
     end
 
     fprintf('Downloading miniforge installer \n');
