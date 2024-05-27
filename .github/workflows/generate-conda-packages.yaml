@@ -63,9 +63,9 @@ jobs:
         steps:
         - uses: actions/checkout@v4
 
-        - uses: conda-incubator/setup-miniconda@v2
+        - uses: conda-incubator/setup-miniconda@v3
           with:
-            miniforge-variant: Mambaforge
+            miniforge-variant: Miniforge3
             miniforge-version: latest
 
         - name: Install files to enable compilation of mex files [Conda/Linux]
@@ -99,12 +99,12 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
+            conda install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
 
         - name: Print used environment
           shell: bash -l {0}
           run: |
-            mamba list
+            conda list
             env
 
         - name: Generate recipes [Linux&macOS]
@@ -163,7 +163,7 @@ jobs:
             cat */build.sh
             # We use the conda_build_config from conda-forge-pinning, and our local one
             # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
-            # We manually specify the build order as conda build is too slow, and conda mambabuild does not support correctly multiple recipes
+            # We manually specify the build order as an old workaround for mambabuild, in theory this can be avoided, but it needs to be tested
             # see https://github.com/mamba-org/boa/issues/117
             # We also manually delete the recipe directory to avoid that it is built again,
             # specifically because we can't use --skip-existing as these packages are part of the robotology channel
@@ -193,7 +193,7 @@ jobs:
             rm -rf wb-toolbox
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml blocktest
             rm -rf blocktest
-            conda build -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
         - name: Build conda metapackages (if necessary)
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')

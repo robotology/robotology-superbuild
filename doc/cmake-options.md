@@ -357,7 +357,7 @@ sudo bash ./scripts/install_apt_python_dependencies.sh
 #### Conda
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-mamba install -c conda-forge python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
+conda install -c conda-forge python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
 ~~~
 
 ### Check the installation
@@ -380,7 +380,7 @@ The `ROBOTOLOGY_USES_ESDCAN` option is used to enable support for interacting wi
 
 ### System Dependencies
 To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`ecan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library.
-To install this library in conda, just run `mamba install -c conda-forge -c robotology esdcan` inside your conda environment. If you installed `icub-main` from conda binary packages, the `ecan` YARP driver enabled by the `ROBOTOLOGY_USES_ESDCAN` option is already included.
+To install this library in conda, just run `conda install -c conda-forge -c robotology esdcan` inside your conda environment. If you installed `icub-main` from conda binary packages, the `ecan` YARP driver enabled by the `ROBOTOLOGY_USES_ESDCAN` option is already included.
 
 To actually run the software that uses the esd CAN devices, you also need to install the esd CAN Driver for your specific esd CAN device.
 The installers for the esd CAN Driver should have been provided by esd, so ask for them to who provided you with the esd CAN device you want to use.

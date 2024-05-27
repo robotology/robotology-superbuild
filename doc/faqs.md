@@ -63,7 +63,7 @@ OMP: Hint This means that multiple copies of the OpenMP runtime have been linked
 ~~~
 when running MATLAB libraries installed by the robotology-superbuild, a simple workaround is to install the netlib version of libblas via:
 ~~~
-mamba install libblas=*=*netlib
+conda install libblas=*=*netlib
 ~~~
 
 See https://github.com/robotology/idyntree/issues/1109 for more details.
