@@ -68,15 +68,3 @@ jobs:
             cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
-
-        # Only on linux-64 we upload noarch packages (noarch packages need to be uploaded only once, as they can be reused across platforms)
-        - name: Upload conda packages (noarch)
-          shell: bash -l {0}
-          # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
-          if: matrix.conda_platform == 'linux-64' && (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
-          env:
-            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
-          run: |
-            cd ${CONDA_PREFIX}/conda-bld/noarch/
-            ls *.tar.bz2
-            anaconda upload --skip-existing *.tar.bz2
