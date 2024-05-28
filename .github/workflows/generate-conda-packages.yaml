@@ -1,5 +1,7 @@
-name: Generate conda packages
-# This action automatically generate conda packages for the packages in the robotology-superbuild
+name: Generate non-periodic conda packages
+# This action automatically generate conda packages for the packages
+# in conda/
+# It is not meant to be run periodically
 # Check doc/conda-recipe-generation.md for more info
 
 on:
