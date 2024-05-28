@@ -8,7 +8,7 @@ package:
 source:
   # dummy, I only use it to get the LICENSE file
   - url: https://github.com/ami-iit/resolve-robotics-uri-py/archive/refs/tags/v0.3.0.zip
-    sha256: 71764d4a060cfa07eae7aaabd176da38b155ef01c63103513339699fd8026e2f
+    sha256: d28e51bfa3ffe87e32cc97fa443d1886e98fd823d2e21492d9dbb96778c97506
 
 build:
   number: 0
