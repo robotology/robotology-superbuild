@@ -1,0 +1,37 @@
+{% set name = "vvv-school-activation" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  # dummy, I only use it to get the LICENSE file
+  - url: https://github.com/ami-iit/resolve-robotics-uri-py/archive/refs/tags/v0.3.0.zip
+    sha256: 71764d4a060cfa07eae7aaabd176da38b155ef01c63103513339699fd8026e2f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - multisheller
+
+test:
+  commands:
+    - test -f ${PREFIX}/etc/conda/activate.d/vvv-school-activation_activate.sh  # [unix]
+    - test -f ${PREFIX}/etc/conda/deactivate.d/vvv-school-activation_deactivate.sh  # [unix]
+    - if not exist %PREFIX%\\etc\\conda\\activate.d\\vvv-school-activation_activate.bat exit 1  # [win]
+    - if not exist %PREFIX%\\etc\\conda\\deactivate.d\\vvv-school-activation_deactivate.bat exit 1  # [win]
+
+about:
+  home: https://github.com/vvv-school
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Helper package that set environment variables required by vvv-school repositories in the activation scripts.
+  description: |
+    For more info, check https://github.com/vvv-school/vvv-school.github.io/blob/master/instructions/how-to-create-conda-environment-for-school.md .
+
+extra:
+  recipe-maintainers:
+    - traversaro
