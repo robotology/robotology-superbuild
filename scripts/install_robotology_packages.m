@@ -81,7 +81,7 @@ function install_robotology_packages(varargin)
     % Install all the robotology packages related to MATLAB or Simulink
     fprintf('Installing robotology packages\n');
     packages_to_install = 'yarp-matlab-bindings idyntree-matlab-bindings wb-toolbox osqp-matlab casadi-matlab-bindings whole-body-controllers matlab-whole-body-simulator icub-models';
-    if ismac
+    if ismac or ispc
         % Workaround for https://github.com/robotology/idyntree/issues/1109
         packages_to_install = packages_to_install + " libblas=*=*netlib";
     end
