@@ -54,7 +54,7 @@ and again, specify your MATLAB installation directory and when there is the ques
 If the problem persists even after following this steps, please [open a new issue in the robotology-superbuild issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).
 
 
-### How to I solved the "Initializing libomp.*, but found libiomp5.*dylib* already initialized." when using MATLAB libraries?
+### How to I solved the "Initializing libomp.\*, but found libiomp5.\* already initialized." when using MATLAB libraries?
 
 If you are on macOS and you encounter errors similar to:
 ~~~
