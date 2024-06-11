@@ -81,10 +81,10 @@ Not all options are supported on all platforms. The following table provides a r
 | Option                                                              | Ubuntu/Debian, dependencies: apt | Windows, dependencies: vcpkg | conda on Linux, dependencies: conda-forge |  conda on macOS, dependencies: conda-forge | conda on Windows, dependencies: conda-forge |
 |:-------------------------------------------------------------------:|:--------------------------------:|:----------------------------:|:-----------------------------------------:|:------------------------------------------:|:-------------------------------------------:|
 | `ROBOTOLOGY_ENABLE_CORE`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |                 ✔️                          |
-| `ROBOTOLOGY_ENABLE_ROBOT_TESTING`<sup id="a2">[2!](#f2)</sup>       | ✔️                               |             ✔️              |              ✔️                           |                 ✔️                        |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_ROBOT_TESTING`       | ✔️                               |             ✔️              |              ✔️                           |                 ✔️                        |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_DYNAMICS`                                        | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_ENABLE_ICUB_HEAD`<sup id="a2">[2!](#f2)</sup>                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_ICUB_HEAD`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`                                | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION`       | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`                                  | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
@@ -105,7 +105,6 @@ Not all options are supported on all platforms. The following table provides a r
 
 <b id="f1">1!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022. Furthermore, it does not support build on Windows with Visual Studio 2019, it requires Visual Studio 2022.
 
-<b id="f2">2!</b>:`ROBOTOLOGY_ENABLE_ROBOT_TESTING` and `ROBOTOLOGY_ENABLE_ICUB_HEAD` do not support building with conda-forge dependencies on Apple Silicon.
 
 <b id="f3">3!</b>:`ROBOTOLOGY_USES_GZ_SIM`  with apt dependencies do not support building on Debian distros (only Ubuntu is supported). Furthermore it does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90).
 
