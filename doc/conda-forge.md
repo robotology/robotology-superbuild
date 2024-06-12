@@ -129,27 +129,22 @@ of the robotology-superbuild.**
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
-If you are on **Linux**, **Windows**, or **macOS** with an Intel-based processor:
 ~~~
 conda install -c conda-forge ace asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
 ~~~
 
-If you are on **macOS** with ARM-based processor:
-~~~
-conda install -c conda-forge asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
-~~~
 
-If you are on **Linux x86-64**, you also need to install also the following packages:
+**Additionally** if you are on **Linux x86-64**, you **also** need to install also the following packages:
 ~~~
 conda install -c conda-forge bash-completion freeglut libdc1394 libi2c libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64
 ~~~
 
-If you are on **Linux ARM 64-bit**, you also need to install also the following packages:
+**Additionally** if you are on **Linux ARM 64-bit**, you **also** need to install also the following packages:
 ~~~
 conda install -c conda-forge bash-completion freeglut libdc1394 libi2c libselinux-cos7-aarch64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-aarch64 mesa-libgl-devel-cos7-aarch64 libxshmfence-cos7-aarch64 libxshmfence-devel-cos7-aarch64
 ~~~
 
-If you are on **Windows**, you also need to install also the following packages:
+**Additionally** if you are on **Windows**, you **also** need to install also the following packages:
 ~~~
 conda install -c conda-forge freeglut
 ~~~
