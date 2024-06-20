@@ -130,7 +130,7 @@ of the robotology-superbuild.**
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
 ~~~
-conda install -c conda-forge ace asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
+conda install -c conda-forge ace asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
 ~~~
 
 
@@ -163,7 +163,7 @@ conda install -c conda-forge python numpy "swig==4.1.0" pybind11 pyqt matplotlib
 If you install your dependencies with `conda`, just make sure to install the `pcl` and `vtk` packages:
 
 ~~~
-conda install -c conda-forge pcl vtk
+conda install -c conda-forge "pcl>=1.11.1" vtk
 ~~~
 
 #### `ROBOTOLOGY_USES_GAZEBO`
