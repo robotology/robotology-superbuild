@@ -15,14 +15,15 @@ For more information on conda and its use with the robotology-superbuild, please
 First of all, download the installer and install it in its default location:
 ~~~
 # Download
-curl -LO https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+curl -LO https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh
 # Install with default options
 sh ./Miniforge3-Linux-x86_64.sh -b
 ~~~
 This will install miniforge in `~/miniforge3` .
 
 To use the `conda` command, you need to add the `~/miniforge3/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
-You can do this persistently by modifying the `.bashrc` via the command: 
+
+You can do this persistently by executing the following commands on the terminal: 
 ~~~
 ~/miniforge3/condabin/conda init
 ~~~
@@ -83,7 +84,8 @@ sh ./Miniforge3.sh -b
 This will install miniforge in `~/miniforge3` .
 
 To use the `conda` command, you need to add the `~/miniforge3/condabin` directory to the [`PATH` environment variable](https://en.wikipedia.org/wiki/PATH_(variable)). 
-You can do this persistently by modifying the appropriate file via the command: 
+
+You can do this persistently by writing the following commands on the terminal:
 ~~~
 ~/miniforge3/condabin/conda init
 ~~~
@@ -133,13 +135,15 @@ rm -rf ~/.condarc
 
 ## Windows
 
+**For all the following instructions, we strongly suggest to use Command Prompt as shell on Windows. If you want to use Powershell, not all the mentioned feature may work, see [conda-powershell-troubleshooting documentation page](conda-powershell-troubleshooting.md) for more info.**
+
 First of all, download the installer from https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe and install it by double clicking on it.
 
 If you already have a Python that you use in your system, make sure that you deselect the "Register Miniforge3 Python as my default Python" during the installation.
 
 After the installation has been completed, Miniforge should have been installed in `%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3`. 
 
-If you explicitly selected the for All Users install, Miniforge will be installed in `%ProgramData%\miniforge3`, in that case substitute `%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3` with `%ProgramData%\miniforge3` in the rest of the documentation.
+If you explicitly selected the for All Users install, Miniforge will be installed in `%ProgramData%\miniforge3`, in that case substitute `%HOMEDRIVE%%HOMEPATH%\AppData\Local\miniforge3` with `%ProgramData%\miniforge3` in the rest of the documentation. In this case you should also have admin rights (or run the console as administrator) otherwise you will get an error ("ERROR during elevated execution").
 
 To ensure that the `conda` binary can be used in your terminal, open a Command Prompt and run:
 ~~~
@@ -174,3 +178,8 @@ First of all, open a command prompt and run:
 Then go to "Add or remove programs", search for Miniforge3 and uninstall it.
 
 After that, delete the `%HOMEDRIVE%%HOMEPATH%/.conda` directory and the `%HOMEDRIVE%%HOMEPATH%/.condarc` file.
+
+⚠️ On Windows, in case you forgot to follow the previous steps and now your Command Prompt is broken, you can try the following script in PowerShell as described in https://github.com/conda-forge/miniforge/issues/164#issuecomment-1092812732:  
+```
+C:\Windows\System32\reg.exe DELETE "HKCU\Software\Microsoft\Command Processor" /v AutoRun /f`
+```

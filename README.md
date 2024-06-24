@@ -49,9 +49,9 @@ The available releases can be seen on [GitHub's release page](https://github.com
 Binary Installation
 ===================
 
-We provide binary packages for Linux, macOS and Windows of the software contained in the robotology-superbuild via the [conda package manager](https://docs.conda.io), relying on the community-mantained [`conda-forge`](https://conda-forge.org/) channel and for some packages on on our own `robotology` conda channel. 
+We provide binary packages for Linux, macOS and Windows of the software contained in the robotology-superbuild via the [conda package manager](https://docs.conda.io), relying on the community-mantained [`conda-forge`](https://conda-forge.org/) channel and for some packages on our own `robotology` conda channel. 
 
-Please refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instruction on how to install the conda binary packages, in particualr the [`Binary Installation`](doc/conda-forge.md#binary-installation) section.
+Please refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instructions on how to install the conda binary packages, in particular the [`Binary Installation`](doc/conda-forge.md#binary-installation) section.
 
 Note that the default binary installed by the conda package manager is the latest available, so if you need to get exactly the version corresponding to a specific robotology-superbuild distro release (for example for compatibility with an existing robot setup), please install the required versions by inspecting the version tables of the specific distro you are interested in https://icub-tech-iit.github.io/documentation/sw_versioning_table/ .
 
@@ -108,7 +108,6 @@ We also support an additional deprecated way of compiling the superbuild, on Win
 The following apt-based distributions are supported and tested by the robotology-superbuild:
 * Ubuntu 20.04 (Focal Fossa)
 * Ubuntu 22.04 (Jammy Jellyfish)
-* Debian 10 (Buster)
 * Debian 11 (Bullseye)
 
 Other versions may be working, but they are not checked.
@@ -124,19 +123,17 @@ Besides the packages listed in `apt.txt` file, the script `install_apt_dependenc
 
 For what regards CMake, the robotology-superbuild requires CMake 3.16 . If you are using a recent Debian-based system such as Ubuntu 20.04, the default CMake is recent enough and you do not need to do further steps.
 
-If instead you use an older distro in which the default version of CMake is older, you can easily install a newer CMake version in several ways. For the following distributions, we recommend the following methods:  
-* Debian 10 : use the CMake in the `buster-backports` repository, following the instructions to install from backports available in  [Debian documentation](https://backports.debian.org/Instructions/).
-More details can be found at https://github.com/robotology/QA/issues/364 .
+If instead you use an older distro in which the default version of CMake is older, you can easily install a newer CMake version in several ways. For the following distributions, we recommend the following methods:
+* Ubuntu 20.04 : install a recent CMake via Kitware APT Repository, see https://apt.kitware.com/ .
 
 For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
 
-Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default, so you should install Gazebo unless you plan to disable this option.
+Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default (except on Ubuntu 24.04 when installing with apt dependencies), so you should install Gazebo Classic unless you plan to disable this option.
 
 #### `ROBOTOLOGY_USES_GAZEBO`
 
-On Linux with apt dependencies install Gazebo, if you are on:
+On Linux with apt dependencies install Gazebo Classic, if you are on:
 * Ubuntu 20.04
-* Debian Buster 10
 
 follow the instructions available at https://gazebosim.org/tutorials?tut=install_ubuntu . Make sure to install also the development files, i.e. `libgazebo*-dev` on Debian/Ubuntu.
 
@@ -144,6 +141,12 @@ Otherwise, if you are on other supported Debian/Ubuntu systems, just install the
 ~~~~
 sudo apt install libgazebo-dev
 ~~~~
+
+If you are on Ubuntu 24.04, please use conda if you want to install Gazebo Classic, as no Gazebo Classic packages are available via apt.
+
+#### `ROBOTOLOGY_USES_GZ`
+
+To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (20.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu .
 
 #### `ROBOTOLOGY_USES_PYTHON`
 
@@ -164,7 +167,7 @@ sudo apt install libpcl-dev
 
 Install octave and the necessary development files using the following command:
 ~~~
-sudo apt-get install liboctave-dev
+sudo apt-get install octave-dev
 ~~~
 
 

@@ -2,17 +2,12 @@ name: Test One-line Installation of Robotology MATLAB/Simulink Packages
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-      - 'releases/**'
     tags:
       - v*
-  pull_request:
   schedule:
   # * is a special character in YAML so you have to quote this string
-  # Execute a "nightly" build at 2 AM UTC 
-  - cron:  '0 2 * * *'
+  # Execute a "nightly" build twice a week 2 AM UTC
+  - cron:  '0 2 * * 2,5'
 
 
 jobs:
@@ -23,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, macos-latest, windows-latest]
+        os: [ubuntu-22.04, macos-13, windows-latest]
         matlab_version: [R2022a, R2022b, R2023a, latest]
         exclude:
           # R2020* is not supported on Windows on GitHub Actions

@@ -23,9 +23,29 @@ option(ROBOTOLOGY_USES_CSHARP "Enable compilation of software that depends on CS
 mark_as_advanced(ROBOTOLOGY_USES_CSHARP)
 
 ## Enable packages that depend on the Gazebo Classic simulator
-option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ON)
+if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OR APPLE OR WIN32)
+  set(ROBOTOLOGY_USES_GAZEBO_DEFAULT ON)
+else()
+  find_program(ROBSUB_LSB_RELEASE lsb_release)
+  if(ROBSUB_LSB_RELEASE)
+    execute_process(COMMAND lsb_release -cs
+      OUTPUT_VARIABLE LSB_RELEASE_CODENAME
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+  endif()
+  if(LSB_RELEASE_CODENAME STREQUAL "noble")
+    set(ROBOTOLOGY_USES_GAZEBO_DEFAULT OFF)
+  else()
+    set(ROBOTOLOGY_USES_GAZEBO_DEFAULT ON)
+  endif()
+endif()
+option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ${ROBOTOLOGY_USES_GAZEBO_DEFAULT})
 option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" OFF)
 option(ROBOTOLOGY_USES_MUJOCO "Enable compilation of mujoco and software that depends on it" OFF)
+
+## Enable packages that depend on the Modern Gazebo (gz-sim) simulator
+option(ROBOTOLOGY_USES_GZ "Enable compilation of software that depends on Modern Gazebo (gz-sim)" OFF)
+
 
 ## Enable packages that depend on the Ignition Gazebo simulator
 set(ROBOTOLOGY_USES_IGNITION_DEFAULT FALSE)
@@ -65,14 +85,29 @@ mark_as_advanced(ROBOTOLOGY_ENABLE_IOL)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_R1_ROBOT)
 
-#set default build type to "Release" in single-config generators
-if(NOT CMAKE_CONFIGURATION_TYPES)
+# Set default build type to "Release" in single-config generators
+get_property(IS_MULTICONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if(NOT IS_MULTICONFIG)
     if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release" CACHE STRING
+      set(CMAKE_BUILD_TYPE "Release" CACHE STRING
         "Choose the type of build, recommanded options are: Debug or Release" FORCE)
     endif()
-    set(ROBOTOLOGY_BUILD_TYPES "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${ROBOTOLOGY_BUILD_TYPES})
+endif()
+
+# Ensure that Debug mode is not used on Windows when using conda dependencies
+# Note: here we assume that CONDA_PREFIX env variable being defined means that we are compiling
+# against conda-forge dependencies and that no debug-compatible libraries are available, 
+# if that changes in the future please change or remove this check
+if(WIN32 AND DEFINED ENV{CONDA_PREFIX})
+    if(NOT IS_MULTICONFIG)
+        # Single config generators, raise a CMake error if CMAKE_BUILD_TYPE is Debug
+        if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+            message(FATAL_ERROR "Building with conda-forge dependencies on Windows does not support compiling in Debug, please compile in RelWithDebInfo.")
+        endif()
+    else()
+        # Multiple config generators, remove Debug from CMAKE_CONFIGURATION_TYPES, so it is not possible to compile in debug
+        list(REMOVE_ITEM CMAKE_CONFIGURATION_TYPES "Debug")
+    endif()
 endif()
 
 set(ROBOTOLOGY_PROJECT_TAGS "Stable" CACHE STRING "The tags to be used for the robotology projects: Stable, Unstable, LatestRelease or Custom. This can be changed only before the first configuration.")
