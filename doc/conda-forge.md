@@ -186,9 +186,14 @@ conda install -c conda-forge gz-sim8
 To compile the `robotology-superbuild` code itself, you need to clone it, following the instructions in https://github.com/robotology/robotology-superbuild#clone-the-repo .
 
 ### Compile the robotology-superbuild
+
 In a terminal in which you activate the `robsub` environment, you can compile.
 
-On **Linux** or on **macOS** with an Intel-based processor, run:
+> [!IMPORTANT]  
+> On `linux-aarch64` (Linux with ARM processors) and `macos-arm64` (macOS with ARM processors) before building you need to set the `QT_HOST_PATH` env variable to `${CONDA_PREFIX}` before the build as a workaround for https://github.com/conda-forge/qt-main-feedstock/issues/273 .
+
+
+On **Linux** or on **macOS**, run:
 
 ~~~
 cd robotology-superbuild
