@@ -55,3 +55,8 @@ ycm_ep_helper(casadi TYPE GIT
 
 set(casadi_CONDA_PKG_NAME casadi)
 set(casadi_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
+# This is a small hack. To avoid incompatibilities between the version tagged in the ami-iit fork
+# and the version available in conda-forge when generating conda metapackages
+# such as robotology-distro and robotology-distro-all, we override the conda package version of casadi
+# here. This needs to be removed as soon as we stop use our fork in the superbuild 
+set(casadi_CONDA_VERSION 3.6.5)
