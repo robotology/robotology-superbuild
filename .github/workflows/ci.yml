@@ -84,9 +84,9 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        conda install ace asio assimp boost eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
+        conda install ace asio assimp boost eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp "qt6-main>=6.7.2"
         # Python
-        conda install python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
+        conda install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
@@ -104,6 +104,13 @@ jobs:
       run: |
         # Additional dependencies only useful on Windows
         conda install -c conda-forge -c robotology esdcan freeglut
+
+    # Setting QT_HOST_PATH as a workaround for https://github.com/conda-forge/qt-main-feedstock/issues/273
+    - name: Set QT_HOST_PATH on osx-arm64
+      if: contains(matrix.os, 'macos-14')
+      shell: bash -l {0}
+      run: |
+        echo "QT_HOST_PATH=${CONDA_PREFIX}" >> $GITHUB_ENV
 
     - name: Print used environment [Conda]
       shell: bash -l {0}

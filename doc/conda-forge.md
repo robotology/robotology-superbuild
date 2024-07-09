@@ -50,11 +50,14 @@ Once you created the `robotologyenv` environment, you can "activate" it for the 
 conda activate robotologyenv
 ~~~
 
-**IMPORTANT: if you open a new terminal, you need to manually activate the environment also there.**
+> [!IMPORTANT]
+> If you open a new terminal, you need to manually activate the environment also there.
 
-**IMPORTANT: To avoid strange conflicts in environment variables, it is a good idea to remove from  the environment any variable that refers to libraries or software not installed with conda. For example, if you have a robotology-superbuild installed with apt dependencies, it is a good idea to remove the source of the `setup.sh` from the `.bashrc` before using conda environments, or in Windows it can make sense to check with [Rapid Environment Editor](https://www.rapidee.com) that the environment is clean.**
+> [!IMPORTANT]
+> To avoid strange conflicts in environment variables, it is a good idea to remove from  the environment any variable that refers to libraries or software not installed with conda. For example, if you have a robotology-superbuild installed with apt dependencies, it is a good idea to remove the source of the `setup.sh` from the `.bashrc` before using conda environments, or in Windows it can make sense to check with [Rapid Environment Editor](https://www.rapidee.com) that the environment is clean.
 
-**IMPORTANT: On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.**
+> [!IMPORTANT]
+> On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.
 
 ### Install robotology packages
 
@@ -120,17 +123,20 @@ Once you created the `robsub` environment, you can "activate" it for the current
 conda activate robsub
 ~~~
 
-**IMPORTANT: if you open a new terminal, you need to manually activate the environment also there. If you compiled a robotology-superbuild in a given conda environment, remember to activate it before trying to compile or run any package
-of the robotology-superbuild.**
+> [!IMPORTANT]
+> If you open a new terminal, you need to manually activate the environment also there. If you compiled a robotology-superbuild in a given conda environment, remember to activate it before trying to compile or run any package
+of the robotology-superbuild.
 
-**IMPORTANT: To avoid strange conflicts in environment variables, it is a good idea to remove from  the environment any variable that refers to libraries or software not installed with conda. For example, if you have a robotology-superbuild installed with apt dependencies, it is a good idea to remove the source of the `setup.sh` from the `.bashrc` before using conda environments, or in Windows it can make sense to check with [Rapid Environment Editor](https://www.rapidee.com) that the environment is clean.**
+> [!IMPORTANT]
+> To avoid strange conflicts in environment variables, it is a good idea to remove from  the environment any variable that refers to libraries or software not installed with conda. For example, if you have a robotology-superbuild installed with apt dependencies, it is a good idea to remove the source of the `setup.sh` from the `.bashrc` before using conda environments, or in Windows it can make sense to check with [Rapid Environment Editor](https://www.rapidee.com) that the environment is clean.
 
-**IMPORTANT: On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.**
+> [!IMPORTANT]
+> On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.
 
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
 ~~~
-conda install -c conda-forge ace asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
+conda install -c conda-forge ace asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
 ~~~
 
 
@@ -155,7 +161,7 @@ For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](d
 
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-conda install -c conda-forge python numpy "swig==4.1.0" pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
+conda install -c conda-forge python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 ~~~
 
 #### `ROBOTOLOGY_USES_PCL_AND_VTK`
@@ -186,9 +192,14 @@ conda install -c conda-forge gz-sim8
 To compile the `robotology-superbuild` code itself, you need to clone it, following the instructions in https://github.com/robotology/robotology-superbuild#clone-the-repo .
 
 ### Compile the robotology-superbuild
+
 In a terminal in which you activate the `robsub` environment, you can compile.
 
-On **Linux** or on **macOS** with an Intel-based processor, run:
+> [!IMPORTANT]  
+> On `linux-aarch64` (Linux with ARM processors) and `macos-arm64` (macOS with ARM processors) before building you need to set the `QT_HOST_PATH` env variable to `${CONDA_PREFIX}` before the build as a workaround for https://github.com/conda-forge/qt-main-feedstock/issues/273 .
+
+
+On **Linux** or on **macOS**, run:
 
 ~~~
 cd robotology-superbuild
@@ -207,11 +218,14 @@ cmake -G"Visual Studio 16 2019" ..
 cmake --build . --config Release
 ~~~
 
-**IMPORTANT: If you use Visual Studio 2022, the fourth command needs to be changed in `cmake -G"Visual Studio 17 2022" ..`. Visual Studio 2017 or earlier are not supported.**
+> [!IMPORTANT]
+> If you use Visual Studio 2022, the fourth command needs to be changed in `cmake -G"Visual Studio 17 2022" ..`. Visual Studio 2017 or earlier are not supported.
 
-**IMPORTANT: On Windows, you need to make sure that your Windows installation has enabled support long path, see how to do that in https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry#enable-long-paths-in-windows-10-version-1607-and-later.**
+> [!IMPORTANT]
+> On Windows, you need to make sure that your Windows installation has enabled support long path, see how to do that in https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry#enable-long-paths-in-windows-10-version-1607-and-later.
 
-**IMPORTANT: conda-forge does not provide Debug version of its libraries, so in Windows you can't compile in Debug mode if you are using conda-forge.**
+> [!IMPORTANT]
+> conda-forge does not provide Debug version of its libraries, so in Windows you can't compile in Debug mode if you are using conda-forge.
 
 
 
