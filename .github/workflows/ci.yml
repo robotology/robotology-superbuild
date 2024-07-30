@@ -234,11 +234,11 @@ jobs:
     - name: Install recent CMake [Docker/Ubuntu Focal]
       if: matrix.docker_image == 'ubuntu:20.04'
       run: |
-        apt-get install ca-certificates software-properties-common
+        apt-get install -y ca-certificates software-properties-common
         wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
         echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
         apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-        apt-get install cmake
+        apt-get install -y cmake
 
     - name: Configure [Docker]
       run: |
