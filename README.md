@@ -267,6 +267,9 @@ For this reason, if you are activly developing on a repository managed by the `r
 option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#developer-mode
 for more details on this options.
 
+> [!IMPORTANT]  
+> Before August 2024 the robotology-superbuild raised an error if you called `make update-all` or `ninja update-all` and there was repo with local modification with `YCM_EP_DEVEL_MODE_<package>` set to `OFF`. Since August 2024, instead the robotology-superbuild will silently discard the local modifications. To avoid losing data, **never call the `update-all` target** if you have local modifications in a package and you did not set `YCM_EP_DEVEL_MODE_<package>` to `ON` for that package.
+
 By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches, or use some fixed tags. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
 
 FAQs
