@@ -117,12 +117,11 @@ set_property(CACHE ROBOTOLOGY_PROJECT_TAGS PROPERTY STRINGS "Stable" "Unstable" 
 # For now, only YARP master (used in Unstable ROBOTOLOGY_PROJECT_TAGS) requires to have separate yarp-ros and yarp-ros-devices
 # However, we keep ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS as a user selectable option as some users could use ROBOTOLOGY_PROJECT_TAGS set to
 # Stable or a given release, and manually change the YARP to a version that does not contain yarp-ros functionality
+option(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS "If ON, build yarp-ros and yarp-ros-devices repository" OFF)
 if(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Unstable")
-    set(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS_DEFAULT_VALUE ON)
-else()
-    set(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS_DEFAULT_VALUE OFF)
+    # If ROBOTOLOGY_PROJECT_TAGS is Unstable, force the value to be ON
+    set(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS_DEFAULT_VALUE ON CACHE BOOL "" ON)
 endif()
-option(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS "If ON, build yarp-ros and yarp-ros-devices repository" ${ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS_DEFAULT_VALUE})
 
 if(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Stable")
     include(ProjectsTagsStable)
