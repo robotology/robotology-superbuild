@@ -10,7 +10,7 @@ find_or_build_package(blocktestcore QUIET)
 
 set(blocktest-yarp-plugins_OPTIONAL_DEPS "")
 
-if(ROBOTOLOGY_SUPERBUILD_BUILD_SEPARATE_YARP_ROS)
+if(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
   find_or_build_package(yarp-ros QUIET)
   list(APPEND blocktest-yarp-plugins_OPTIONAL_DEPS yarp-ros)
 endif()
@@ -25,5 +25,5 @@ ycm_ep_helper(blocktest-yarp-plugins TYPE GIT
                       blocktestcore
                       ${blocktest-yarp-plugins_OPTIONAL_DEPS}
               CMAKE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)
-              
+
 set(blocktest-yarp-plugins_CONDA_DEPENDENCIES boost-cpp)

@@ -66,7 +66,7 @@ endif()
 # Core
 if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(YARP)
-  if(ROBOTOLOGY_SUPERBUILD_BUILD_SEPARATE_YARP_ROS)
+  if(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
     find_or_build_package(yarp-ros)
   endif()
   find_or_build_package(yarp-devices-ros)
@@ -207,7 +207,7 @@ if(ROBOTOLOGY_ENABLE_R1_ROBOT)
   find_or_build_package(cer)
 endif()
 
-# Dummy option used to only clone repos to update them 
+# Dummy option used to only clone repos to update them
 # via update-latest-releases.yml GitHub Action
 if(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE)
   find_or_build_package(icub-firmware)

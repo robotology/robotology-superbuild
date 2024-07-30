@@ -6,7 +6,7 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
-if(ROBOTOLOGY_SUPERBUILD_BUILD_SEPARATE_YARP_ROS)
+if(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
   find_or_build_package(yarp-ros QUIET)
   list(APPEND YDR_OPTIONAL_DEPS yarp-ros)
 endif()
