@@ -190,7 +190,6 @@ jobs:
           - "ubuntu:20.04"
           - "ubuntu:22.04"
           - "ubuntu:24.04"
-          - "debian:bullseye"
 
         project_tags:
           - Default
@@ -218,14 +217,6 @@ jobs:
         rm -rf /host_usr_local/lib/android
         rm -rf /host_usr_local/lib/node_modules
 
-    - name: Upgrade apt packages Debian Testing [Debian Testing]
-      if: matrix.docker_image == 'debian:testing'
-      run: |
-        # The Debian testing docker image is generated only
-        # once a month, so to actually test with the latest
-        # packages we need to manually upgrade the packages
-        apt-get -y upgrade
-
     - name: Dependencies [Docker]
       run: |
         chmod +x ./.ci/install_debian.sh
@@ -247,15 +238,8 @@ jobs:
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
-    - name: Disable profiles that are not supported in Debian [Docker debian-testing and debian-buster]
-      if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports')
-      run: |
-       cd build
-       cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
-
-
-    - name: Disable MuJoCo and gz-sim for distros released before 2022 [Docker ubuntu:20.04 and debian:bullseye]
-      if: (matrix.docker_image == 'ubuntu:20.04' || matrix.docker_image == 'debian:bullseye')
+    - name: Disable MuJoCo and gz-sim for distros released before 2022 [Docker ubuntu:20.04]
+      if: (matrix.docker_image == 'ubuntu:20.04')
       run: |
        cd build
        cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
