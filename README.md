@@ -108,7 +108,7 @@ We also support an additional deprecated way of compiling the superbuild, on Win
 The following apt-based distributions are supported and tested by the robotology-superbuild:
 * Ubuntu 20.04 (Focal Fossa)
 * Ubuntu 22.04 (Jammy Jellyfish)
-* Debian 11 (Bullseye)
+* Ubuntu 24.04 (Noble Numbat)
 
 Other versions may be working, but they are not checked.
 
@@ -147,7 +147,7 @@ If you are on Ubuntu 24.04, please use conda if you want to install Gazebo Class
 
 #### `ROBOTOLOGY_USES_GZ`
 
-To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (20.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu .
+To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (24.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu .
 
 #### `ROBOTOLOGY_USES_PYTHON`
 
