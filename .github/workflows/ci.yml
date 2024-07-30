@@ -13,12 +13,12 @@ on:
     types: [published]
   schedule:
   # * is a special character in YAML so you have to quote this string
-  # Execute a "nightly" build at 2 AM UTC 
+  # Execute a "nightly" build at 2 AM UTC
   - cron:  '0 2 * * *'
 
 
 jobs:
-  conda-build:    
+  conda-build:
     name: '[conda:Tags:${{ matrix.project_tags }}@${{ matrix.os }}@${{ matrix.build_type }}]'
     runs-on: ${{ matrix.os }}
     strategy:
@@ -39,25 +39,19 @@ jobs:
     - uses: actions/checkout@v4
 
     - uses: conda-incubator/setup-miniconda@v3
-      if: matrix.os != 'macos-14'
       with:
-        miniforge-variant: Mambaforge
+        miniforge-variant: Miniforge3
         miniforge-version: latest
 
-    - uses: conda-incubator/setup-miniconda@v3
-      if: matrix.os == 'macos-14'
-      with:
-        installer-url: https://github.com/conda-forge/miniforge/releases/download/23.11.0-0/Mambaforge-23.11.0-0-MacOSX-arm64.sh
-
     - name: Install files to enable compilation of mex files [Conda/Linux]
-      if: contains(matrix.os, 'ubuntu') 
+      if: contains(matrix.os, 'ubuntu')
       run: |
         curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020b_mexa64.zip
         unzip msdk_R2020b_mexa64.zip
         rm msdk_R2020b_mexa64.zip
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020b_mexa64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexa64" >> $GITHUB_ENV
-                
+
     - name: Install files to enable compilation of mex files [Conda/macOS Intel]
       if: matrix.os == 'macos-12'
       run: |
@@ -77,7 +71,7 @@ jobs:
         echo "GHA_Matlab_MEX_EXTENSION=mexmaca64" >> $GITHUB_ENV
 
     - name: Install files to enable compilation of mex files [Conda/Windows]
-      if: contains(matrix.os, 'windows') 
+      if: contains(matrix.os, 'windows')
       shell: bash
       run: |
         curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexw64.zip
@@ -86,42 +80,42 @@ jobs:
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
 
-    - name: Install ace (on all platforms excluding macOS M1) [Conda]
-      if: matrix.os != 'macos-14'
-      shell: bash -l {0}
-      run: |
-        # Dependencies
-        mamba install ace
-
     - name: Dependencies [Conda]
       shell: bash -l {0}
       run: |
         # Dependencies
-        mamba install asio assimp boost eigen freetype gazebo glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json pcl vtk opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
-        # Python 
-        mamba install python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
+        conda install ace asio assimp boost eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp "qt6-main>=6.7.2"
+        # Python
+        conda install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
-      if: contains(matrix.os, 'ubuntu') 
+      if: contains(matrix.os, 'ubuntu')
       shell: bash -l {0}
       run: |
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
-        mamba install bash-completion expat freeglut libdc1394 libi2c libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64 
+        conda install bash-completion freeglut libdc1394 libi2c libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64
 
     # Additional dependencies useful only on Windows
     - name: Dependencies [Conda/Windows]
-      if: contains(matrix.os, 'windows') 
+      if: contains(matrix.os, 'windows')
       shell: bash -l {0}
       run: |
         # Additional dependencies only useful on Windows
-        mamba install -c conda-forge -c robotology esdcan freeglut
+        conda install -c conda-forge -c robotology esdcan freeglut
+
+    # Setting QT_HOST_PATH as a workaround for https://github.com/conda-forge/qt-main-feedstock/issues/273
+    - name: Set QT_HOST_PATH on osx-arm64
+      if: contains(matrix.os, 'macos-14')
+      shell: bash -l {0}
+      run: |
+        echo "QT_HOST_PATH=${CONDA_PREFIX}" >> $GITHUB_ENV
 
     - name: Print used environment [Conda]
       shell: bash -l {0}
       run: |
-        mamba list
+        conda list
         env
 
     - name: Set CMake generator [Conda/Linux and macOs]
@@ -166,7 +160,7 @@ jobs:
       shell: bash -l {0}
       run: |
         rm -rf /c/Strawberry
-        
+
     - name: Build  [Conda]
       shell: bash -l {0}
       run: |
@@ -193,8 +187,9 @@ jobs:
         cmake_generator:
           - "Ninja"
         docker_image:
-          - "ubuntu:focal"
-          - "ubuntu:jammy"
+          - "ubuntu:20.04"
+          - "ubuntu:22.04"
+          - "ubuntu:24.04"
           - "debian:bullseye"
 
         project_tags:
@@ -237,7 +232,7 @@ jobs:
         bash ./.ci/install_debian.sh
 
     - name: Install recent CMake [Docker/Ubuntu Focal]
-      if: matrix.docker_image == 'ubuntu:focal'
+      if: matrix.docker_image == 'ubuntu:20.04'
       run: |
         wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
         echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
@@ -250,17 +245,24 @@ jobs:
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
-    - name: Disable profiles that are not supported in docker for now [Docker debian-testing]
-      if: (matrix.docker_image == 'debian:testing')
+    - name: Disable profiles that are not supported in Debian [Docker debian-testing and debian-buster]
+      if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports')
       run: |
        cd build
-       cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+       cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
-    - name: Disable MuJoCo for other distros released before 2022 [Docker ubuntu:focal and debian:bullseye]
-      if: (matrix.docker_image == 'ubuntu:focal' || matrix.docker_image == 'debian:bullseye')
+
+    - name: Disable MuJoCo and gz-sim for distros released before 2022 [Docker ubuntu:20.04 and debian:bullseye]
+      if: (matrix.docker_image == 'ubuntu:20.04' || matrix.docker_image == 'debian:bullseye')
       run: |
        cd build
-       cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
+       cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
+
+    - name: Disable Gazebo Classic support for distro without Gazebo Classic binaries [Docker ubuntu:24.04]
+      if: (matrix.docker_image == 'ubuntu:24.04')
+      run: |
+       cd build
+       cmake  -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |
@@ -291,9 +293,9 @@ jobs:
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/latest.releases.yaml"
     steps:
     - uses: actions/checkout@master
-    
+
     - name: Install files to enable compilation of mex files [Linux]
-      if: contains(matrix.os, 'ubuntu') 
+      if: contains(matrix.os, 'ubuntu')
       run: |
         curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020b_mexa64.zip
         unzip msdk_R2020b_mexa64.zip
@@ -307,14 +309,14 @@ jobs:
       run: |
         ls /d/
         cp -r ${GITHUB_WORKSPACE} /c/
-        
-    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
+
+    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
         echo "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR=/c/robotology-superbuild" >> $GITHUB_ENV
 
-    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR 
+    - name: Define ROBOTOLOGY_SUPERBUILD_SOURCE_DIR
       if: contains(matrix.os, 'ubuntu')
       shell: bash
       run: |
@@ -364,7 +366,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
-        # To avoid spending a huge time compiling vcpkg dependencies, we download an archive  that comes precompiled with all the ports that we need 
+        # To avoid spending a huge time compiling vcpkg dependencies, we download an archive  that comes precompiled with all the ports that we need
         choco install -y wget unzip
         # To avoid problems with non-relocatable packages, we unzip the archive exactly in the same directory
         # that has been used to create the pre-compiled archive
@@ -384,7 +386,7 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         mkdir -p build
         cd build
-        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DYCM_USE_CMAKE_NEXT:BOOL=OFF -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
@@ -398,7 +400,7 @@ jobs:
         mkdir -p build
         cd build
         # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as it is unsupported on vcpkg
-        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug  ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug -DYCM_USE_CMAKE_NEXT:BOOL=OFF ${{ matrix.project_tags_cmake_options }} ..
         cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
     - name: Disable options unsupported on vcpkg
@@ -407,7 +409,7 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
-        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
     - name: Build  [Ubuntu]
       if:  contains(matrix.os, 'ubuntu')
@@ -422,7 +424,7 @@ jobs:
       shell: bash
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
-        cd build    
+        cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
         cmake --build . --config Release
@@ -433,7 +435,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash
       run: |
-        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR} 
+        cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh

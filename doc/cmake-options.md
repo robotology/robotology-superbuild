@@ -17,7 +17,8 @@ Table of Contents
     * [Human Dynamics profile](#human-dynamics)
     * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
-    * [Gazebo simulator](#gazebo)
+    * [Gazebo Classic simulator](#gazebo-classic-simulator)
+    * [Modern Gazebo simulator](#modern-gazebo-simulator)
     * [MuJoCo simulator](#mujoco)
     * [Ignition](#ignition)
     * [MATLAB](#matlab)
@@ -44,8 +45,8 @@ All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 | `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models), [`robots-configurations`](https://github.com/robotology/robots-configuration) and [`ergocub-software`](https://github.com/icub-tech-iit/ergocub-software). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. [`gym-ignition`](https://github.com/robotology/gym-ignition) if the `ROBOTOLOGY_USES_IGNITION` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
 | `ROBOTOLOGY_ENABLE_ROBOT_TESTING` | The robotology software packages related to robot testing. |  [`RobotTestingFramework`](https://github.com/robotology/robot-testing-framework), [`icub-tests`](https://github.com/robotology/icub-tests), [`blocktest`](https://github.com/robotology/blocktest) and [`blocktest-yarp-plugins`](https://github.com/robotology/blocktest-yarp-plugins) | `OFF` | [Documentation on Robot Testing profile.](#robot-testing)  |
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | [`iDynTree`](https://github.com/robotology/idyntree), [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers), [`matioCpp`](https://github.com/dic-iit/matio-cpp), [`robometry`](https://github.com/robotology/robometry). Furthermore, [`osqp-matlab`](https://github.com/dic-iit/osqp-matlab-cmake-buildsystem) and [`matlab-whole-body-simulator`](https://github.com/dic-iit/matlab-whole-body-simulator) if `ROBOTOLOGY_USES_MATLAB` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
-| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework) and its dependencies. |  [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework), [`manif`](https://github.com/artivis/manif), [`qhull`](https://github.com/qhull/qhull), [`casadi`](https://github.com/casadi/casadi). [`CppAD`](https://github.com/coin-or/CppAD). [`robot-log-visualizer`](https://github.com/ami-iit/robot-log-visualizer) if `ROBOTOLOGY_USES_PYTHON` option is enabled. | `OFF` | [Documentation on Dynamics full deps profile.](#dynamics-full-deps)  |
-| `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared), [`diagnostic-daemon`](https://github.com/robotology/diagnostic-daemon). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
+| `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework) and its dependencies. |  [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework), [`manif`](https://github.com/artivis/manif), [`qhull`](https://github.com/qhull/qhull), [`casadi`](https://github.com/casadi/casadi), [`CppAD`](https://github.com/coin-or/CppAD), [`yarp-device-keyboard-joypad`](https://github.com/ami-iit/yarp-device-keyboard-joypad) [`robot-log-visualizer`](https://github.com/ami-iit/robot-log-visualizer) if `ROBOTOLOGY_USES_PYTHON` option is enabled. | `OFF` | [Documentation on Dynamics full deps profile.](#dynamics-full-deps)  |
+| `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation), [`https://github.com/ami-iit/yarp-openvr-trackers`](https://github.com/ami-iit/yarp-openvr-trackers) and [`https://github.com/ami-iit/yarp-device-openxrheadset`](https://github.com/ami-iit/yarp-device-openxrheadset). | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`yarp-devices-forcetorque`](https://github.com/robotology/yarp-devices-forcetorque). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
@@ -61,7 +62,8 @@ The dependencies CMake options specify if the packages dependending on something
 
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
-| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](http://gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo) |
+| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](https://classic.gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo-classic-simulator) |
+| `ROBOTOLOGY_USES_GZ_SIM`  | Include software and plugins that depend on the [Modern Gazebo (gz-sim) simulator](http://gazebosim.org/). | `OFF` | [Documentation on Modern Gazebo (gz-sim) dependency.](#modern-gazebo-simulator) |
 | `ROBOTOLOGY_USES_MUJOCO`  | Include software and plugins that depend on the [MuJoCo simulator](https://mujoco.org/).  | `ON` | [Documentation on MuJoCo dependency.](#mujoco) |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`  | Include software and plugins that depend on the [PCL](https://pointclouds.org/) or [VTK](https://vtk.org/). | `OFF`   | [Documentation on PCL and VTK dependency.](#pcl_and_vtk) |
 | `ROBOTOLOGY_USES_IGNITION` | Include software that depends on [Ignition](ignitionrobotics.org/). | `OFF` | [Documentation on Ignition Gazebo dependency.](#ignition) |
@@ -82,18 +84,19 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_ROBOT_TESTING`<sup id="a2">[2!](#f2)</sup>       | ✔️                               |             ✔️              |              ✔️                           |                 ✔️                        |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_DYNAMICS`                                        | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_ENABLE_ICUB_HEAD`<sup id="a2">[2!](#f2)</sup>                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_ENABLE_ICUB_HEAD`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`                                | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION`       | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`                                  | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_GZ_SIM`<sup id="a3">[3!](#f3)</sup>                                          | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_MUJOCO`<sup id="a1">[1!](#f1)</sup>  | ✔️                               |           ❌                |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_IGNITION`                                          | ❌                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_USES_MATLAB`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_USES_OCTAVE`                                            | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
+| `ROBOTOLOGY_USES_OCTAVE`<sup id="a4">[4!](#f4)</sup>                                            | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
 | `ROBOTOLOGY_USES_PYTHON`                | ✔️                               |              ❌             |                  ✔️                       |               ✔️                          |                  ✔️                         |
 | `ROBOTOLOGY_USES_CFW2CAN`                                           |  ✔️                              |             ❌              |                 ✔️                        |              ❌                           |                 ❌                          |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK`                                     |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ❌                          |
@@ -101,8 +104,12 @@ Not all options are supported on all platforms. The following table provides a r
            
 
 <b id="f1">1!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022. Furthermore, it does not support build on Windows with Visual Studio 2019, it requires Visual Studio 2022.
-<b id="f2">2!</b>:`ROBOTOLOGY_ENABLE_ROBOT_TESTING` and `ROBOTOLOGY_ENABLE_ICUB_HEAD` do not support building with conda-forge dependencies on Apple Silicon.
 
+<b id="f2">2!</b>:`ROBOTOLOGY_ENABLE_ROBOT_TESTING` does not support building with conda-forge dependencies on Apple Silicon.
+
+<b id="f3">3!</b>:`ROBOTOLOGY_USES_GZ_SIM`  with apt dependencies do not support building on Debian distros (only Ubuntu is supported). Furthermore it does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90).
+
+<b id="f4">4!</b>:`ROBOTOLOGY_USES_OCTAVE` do not support building with apt dependencies on Ubuntu 20.04.
 
 
 Profile-specific documentation
@@ -148,7 +155,7 @@ On Linux all the software necessary to communicate with boards contained in the 
 
 On Windows to communicate with CAN devices via [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2) you need to set to ON the Windows-only CMake option [`ROBOTOLOGY_ENABLE_ESDCAN`](#esdcan).
 
-On macOS, communication with [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2) is not supported and `diagnosticdaemon` is not available because of https://github.com/robotology/robotology-superbuild/issues/439.
+On macOS, communication with [esd's CAN USB bridges](https://esd.eu/en/products/can-usb2).
 
 This section documents the iCub Head profile as any other profile, in a way agnostic of the specific machine in which it is installed. To get information on how to use the robotology-superbuild to install software on the machine mounted in the head of physical iCub robots, please check the documentation in [the official iCub documentation](https://icub-tech-iit.github.io/documentation/sw_installation/icub_head_superbuild/).
 
@@ -164,8 +171,7 @@ please always get in contact with [icub-support](https://github.com/robotology/i
 ### Check the installation
 The `ROBOTOLOGY_ENABLE_ICUB_HEAD` installs several YARP devices for communicating directly with embedded boards of the iCub.
 To check if the installation was correct, you can list all the available YARP devices using the `yarpdev --list` command,
-and check if devices whose name is starting with `embObj` are present in the list. If those devices are present, then the installation
-should be working correctly. Furthermore, if the profile has been correctly enabled and compiled, you should be able to run the `diagnosticdaemon` executable from the command line.
+and check if devices whose name is starting with `embObj` are present in the list. If those devices are present, then the installation should be working correctly. 
 
 
 ## iCub Basic Demos
@@ -193,12 +199,21 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. Fo
 Dependencies-specific documentation
 ===================================
 
-## Gazebo
+## Gazebo Classic simulator
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option, that enables the software that depends on "Classic Gazebo".
 
 ### Check the installation
 Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
+
+## Modern Gazebo simulator
+
+Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ_SIM` CMake option, that enables the software that depends on "Modern Gazebo" (gz-sim).
+
+> [!IMPORTANT]  
+> At the moment the `ROBOTOLOGY_USES_GZ_SIM` does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90). Furthermore, it is not supported on non-Ubuntu Debian distributions with apt dependencies.
+
+
 
 ## MuJoCo
 
@@ -342,7 +357,7 @@ sudo bash ./scripts/install_apt_python_dependencies.sh
 #### Conda
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-mamba install -c conda-forge python numpy swig==4.1.0 pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
+conda install -c conda-forge python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
 ~~~
 
 ### Check the installation
@@ -365,7 +380,7 @@ The `ROBOTOLOGY_USES_ESDCAN` option is used to enable support for interacting wi
 
 ### System Dependencies
 To compile the software enabled by the `ROBOTOLOGY_USES_ESDCAN` option (such as the `icub-main`'s [`ecan`](http://www.icub.org/software_documentation/classyarp_1_1dev_1_1EsdCan.html) YARP driver) you need to install the esd CAN C library.
-To install this library in conda, just run `mamba install -c conda-forge -c robotology esdcan` inside your conda environment. If you installed `icub-main` from conda binary packages, the `ecan` YARP driver enabled by the `ROBOTOLOGY_USES_ESDCAN` option is already included.
+To install this library in conda, just run `conda install -c conda-forge -c robotology esdcan` inside your conda environment. If you installed `icub-main` from conda binary packages, the `ecan` YARP driver enabled by the `ROBOTOLOGY_USES_ESDCAN` option is already included.
 
 To actually run the software that uses the esd CAN devices, you also need to install the esd CAN Driver for your specific esd CAN device.
 The installers for the esd CAN Driver should have been provided by esd, so ask for them to who provided you with the esd CAN device you want to use.
