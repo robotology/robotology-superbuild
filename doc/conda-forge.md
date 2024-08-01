@@ -180,7 +180,7 @@ If you install your dependencies with `conda`, just make sure to install the `ga
 conda install -c conda-forge gazebo
 ~~~
 
-#### `ROBOTOLOGY_USES_GZ_SIM`
+#### `ROBOTOLOGY_USES_GZ`
 
 If you install your dependencies with `conda`, just make sure to install the `gz-sim8` package:
 
