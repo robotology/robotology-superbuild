@@ -133,6 +133,10 @@ of the robotology-superbuild.
 > [!IMPORTANT]
 > On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.
 
+> [!IMPORTANT]
+> If it happens that conda cannot resolve the environment when sequentially installing the needed packages as reported later, please consider to install all the conda packages in a unique command.
+
+
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
 ~~~
