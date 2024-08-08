@@ -381,6 +381,13 @@ jobs:
         cd build
         cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE  -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
 
+    # Workaround for https://github.com/robotology/robotology-superbuild/issues/1680
+    - name: Define CMAKE_CONFIGURATION_TYPES
+      if: contains(matrix.os, 'windows')
+      shell: bash
+      run: |
+        echo "CMAKE_CONFIGURATION_TYPES=Debug;Release" >> $GITHUB_ENV
+
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
       shell: bash
