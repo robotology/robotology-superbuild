@@ -109,10 +109,19 @@ if(WIN32 AND DEFINED ENV{CONDA_PREFIX})
         list(REMOVE_ITEM CMAKE_CONFIGURATION_TYPES "Debug")
     endif()
 endif()
-
 set(ROBOTOLOGY_PROJECT_TAGS "Stable" CACHE STRING "The tags to be used for the robotology projects: Stable, Unstable, LatestRelease or Custom. This can be changed only before the first configuration.")
 set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE CACHE FILEPATH "If ROBOTOLOGY_PROJECT_TAGS is custom, this file will be loaded to specify the tags of the projects to use.")
 set_property(CACHE ROBOTOLOGY_PROJECT_TAGS PROPERTY STRINGS "Stable" "Unstable" "LatestRelease" "Custom")
+
+
+# For now, only YARP master (used in Unstable ROBOTOLOGY_PROJECT_TAGS) requires to have separate yarp-ros and yarp-ros-devices
+# However, we keep ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS as a user selectable option as some users could use ROBOTOLOGY_PROJECT_TAGS set to
+# Stable or a given release, and manually change the YARP to a version that does not contain yarp-ros functionality
+option(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS "If ON, build yarp-ros and yarp-ros-devices repository" OFF)
+if(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Unstable")
+    # If ROBOTOLOGY_PROJECT_TAGS is Unstable, force the value to be ON
+    set(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS ON CACHE BOOL "" FORCE)
+endif()
 
 if(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Stable")
     include(ProjectsTagsStable)
