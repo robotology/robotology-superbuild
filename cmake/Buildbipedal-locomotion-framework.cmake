@@ -44,6 +44,11 @@ if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   endif()
 endif()
 
+if(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
+  find_or_build_package(yarp-ros QUIET)
+  list(APPEND bipedal-locomotion-framework_DEPENDS yarp-ros)
+endif()
+
 # For what regards Python installation, the options changes depending
 # on whater we are installing blf in the superbuild, or we are generating a
 # conda package on Windows as in that case the installation location
