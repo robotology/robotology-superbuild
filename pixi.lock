@@ -1855,6 +1855,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/dlfcn-win32-1.4.1-h63175ca_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/double-conversion-3.3.0-h63175ca_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/eigen-3.4.0-h91493d7_0.conda
+      - conda: https://conda.anaconda.org/robotology/win-64/esdcan-6.3.0-h57928b3_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.2.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/executing-2.0.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/expat-2.6.2-h63175ca_0.conda
@@ -7133,6 +7134,17 @@ packages:
   license_family: LGPL
   size: 1184130
   timestamp: 1709347008329
+- kind: conda
+  name: esdcan
+  version: 6.3.0
+  build: h57928b3_0
+  subdir: win-64
+  url: https://conda.anaconda.org/robotology/win-64/esdcan-6.3.0-h57928b3_0.tar.bz2
+  md5: 89921468aa01f8367081eb10aa77fce4
+  arch: x86_64
+  platform: win
+  size: 23820
+  timestamp: 1638349754696
 - kind: conda
   name: exceptiongroup
   version: 1.2.2
