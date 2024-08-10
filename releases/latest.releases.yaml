@@ -5,8 +5,8 @@ repositories:
     version: v3.2.0.1
   osqp:
     type: git
-    url: https://github.com/oxfordcontrol/osqp.git
-    version: v0.6.3
+    url: https://github.com/robotology-dependencies/osqp.git
+    version: v0.6.3.1
   manif:
     type: git
     url: https://github.com/robotology-dependencies/manif.git
