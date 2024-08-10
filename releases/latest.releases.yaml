@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v12.3.3
+    version: v12.4.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -122,7 +122,7 @@ repositories:
   wearables:
     type: git
     url: https://github.com/robotology/wearables.git
-    version: v1.8.0
+    version: v1.9.0
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
@@ -214,7 +214,7 @@ repositories:
   pyngrok:
     type: git
     url: https://github.com/alexdlaird/pyngrok.git
-    version: 7.1.6
+    version: 7.2.0
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
