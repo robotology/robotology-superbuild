@@ -12,3 +12,8 @@ CTestTestfile.cmake
 *kdev*
 /src/
 *.user
+# pixi environments
+.pixi
+*.egg-info
+# build directory used by pixi
+/.build/
