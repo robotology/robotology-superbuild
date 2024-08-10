@@ -44,4 +44,8 @@ jobs:
     - name: Build
       shell: bash -l {0}
       run: |
+        # Avoid YCM complaining that the git user is not set
+        # Eventually we could consider removing that check in YCM
+        git config --global user.name PixiGHA User
+        git config --global user.email pixighauser@example.com
         pixi run build-all
