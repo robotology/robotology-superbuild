@@ -142,7 +142,11 @@ If you are on Ubuntu 24.04, please use conda if you want to install Gazebo Class
 
 #### `ROBOTOLOGY_USES_GZ`
 
-To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (20.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu .
+To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (20.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu . Furthermore, you also need to install the `cli11` dependency with:
+
+~~~
+sudo apt-get install libcli11-dev
+~~~
 
 #### `ROBOTOLOGY_USES_PYTHON`
 
