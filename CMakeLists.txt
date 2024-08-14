@@ -48,10 +48,6 @@ endif()
 set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.14.0)
-# Quick workaround for https://github.com/robotology/robotology-superbuild/issues/1690
-if(NOT ${YCM_TAG})
-  set(YCM_TAG v0.16.6)
-endif()
 option(YCM_USE_CMAKE_NEXT "Use legacy YCM fork of ExternalProject module instead of upstream CMake ExternalProject" OFF)
 
 # Include logic for generating Conda recipes (by default it is disabled) and exit
