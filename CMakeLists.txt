@@ -48,7 +48,6 @@ endif()
 set(YCM_FOLDER src)
 set(YCM_COMPONENT core)
 set(YCM_MINIMUM_VERSION 0.14.0)
-option(YCM_USE_CMAKE_NEXT "Use legacy YCM fork of ExternalProject module instead of upstream CMake ExternalProject" OFF)
 
 # Include logic for generating Conda recipes (by default it is disabled) and exit
 if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
