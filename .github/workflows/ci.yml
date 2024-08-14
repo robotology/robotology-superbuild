@@ -269,10 +269,10 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-20.04, windows-2019]
+        os: [ubuntu-22.04, windows-2019]
         project_tags: [Default, Unstable, LatestReleases]
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             build_type: Release
             cmake_generator: "Ninja"
           - os: macos-latest
