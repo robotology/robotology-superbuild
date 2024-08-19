@@ -150,6 +150,12 @@ jobs:
             sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION 1234.0)/g' ./packaging/windows/CMakeLists.txt
             sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION 1234.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
 
+        - name: Set CONDA_BLD_PATH on Windows to avoid long path issues
+          if: contains(matrix.os, 'windows')
+          shell: bash -l {0}
+          run: |
+            echo "CONDA_BLD_PATH=C:\bld\" >> $GITHUB_ENV
+
         - name: Build conda packages
           shell: bash -l {0}
           run: |
