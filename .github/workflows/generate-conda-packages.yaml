@@ -150,12 +150,18 @@ jobs:
             sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION 1234.0)/g' ./packaging/windows/CMakeLists.txt
             sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION 1234.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
 
-        - name: Set CONDA_BLD_PATH on Windows to avoid long path issues
+        - name: Set CONDA_BLD_PATH on Windows to avoid long path issues [Windows]
           if: contains(matrix.os, 'windows')
           shell: bash -l {0}
           run: |
-            echo "CONDA_BLD_PATH=C:\bld\" >> $GITHUB_ENV
+            echo "CONDA_BLD_PATH=C:\\bld" >> $GITHUB_ENV
 
+        - name: Set CONDA_BLD_PATH on non-Windows for consistency [non Windows]
+          if: !contains(matrix.os, 'windows')
+          shell: bash -l {0}
+          run: |
+            echo "CONDA_BLD_PATH=${CONDA_PREFIX}/conda-bld" >> $GITHUB_ENV
+            
         - name: Build conda packages
           shell: bash -l {0}
           run: |
@@ -217,7 +223,7 @@ jobs:
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           run: |
-            cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
+            cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
 
@@ -229,7 +235,7 @@ jobs:
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           run: |
-            cd ${CONDA_PREFIX}/conda-bld/noarch/
+            cd ${CONDA_BLD_PATH}/noarch/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
 
