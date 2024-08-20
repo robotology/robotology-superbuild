@@ -157,7 +157,7 @@ jobs:
             echo "CONDA_BLD_PATH=C:\\bld" >> $GITHUB_ENV
 
         - name: Set CONDA_BLD_PATH on non-Windows for consistency [non Windows]
-          if: !contains(matrix.os, 'windows')
+          if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
           shell: bash -l {0}
           run: |
             echo "CONDA_BLD_PATH=${CONDA_PREFIX}/conda-bld" >> $GITHUB_ENV
