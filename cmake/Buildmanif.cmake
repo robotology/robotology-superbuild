@@ -17,8 +17,4 @@ ycm_ep_helper(manif TYPE GIT
 
 set(manif_CONDA_PKG_NAME manif)
 set(manif_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
-# This is a small hack. To avoid incompatibilities between the version tagged in the ami-iit fork
-# (something like 0.0.4.x) and the version available in conda-forge when generating conda metapackages
-# such as robotology-distro and robotology-distro-all, we override the conda package version of manif
-# here. This needs to be removed as soon as we stop using our fork in the superbuild 
-set(manif_CONDA_VERSION 0.0.4)
+
