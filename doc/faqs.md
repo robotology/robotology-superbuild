@@ -82,3 +82,20 @@ See https://github.com/robotology/idyntree/issues/1109 for more details. The [On
 ### I want to install packages from the `robotology` conda channel that were built in 2021 but I am not finding them, where I can find them?
 
 In January 2024 the packages that were contained in the `robotology` channel and were built in 2021 have been moved to the `robotology-2021` channel, see https://github.com/robotology/robotology-superbuild/issues/1585 for more details.
+
+### I am trying to load pytorch on Windows and obtain I can't load the fbgemm.dll, what can I do?
+
+If you are on Windows and you obtain an error message like:
+
+~~~
+OSError: [WinError 182] The operating system cannot run %1. Error loading "D:\miniforge\envs\robsub\Lib\site-packages\torch\lib\fbgemm.dll" or one of its dependencies.
+~~~
+
+when trying to load `import torch`, then probably you have both `openmp` and `intel-openmp` installed in your conda environment. To fix your pytorch installation, just run:
+
+~~~
+conda uninstall openmp
+conda install intel-openmp --forge-reinstall
+~~~
+
+Note that this procedure can create problem when installing ipopt-related software. This will be probably be solved once conda-forge migrates to a modern fortran compiler on Windows, see https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/1359 for more infomation.
