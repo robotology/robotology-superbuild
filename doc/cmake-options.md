@@ -355,10 +355,27 @@ sudo bash ./scripts/install_apt_python_dependencies.sh
 ~~~
 
 #### Conda
+
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
 conda install -c conda-forge python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython
 ~~~
+
+##### Windows
+
+On Windows, enabling the  `ROBOTOLOGY_USES_PYTHON` requires some care. If you need to enable both `ROBOTOLOGY_USES_PYTHON` and `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS`, you need to make sure that
+you have the "C++ Clang Compiler for Windows" and "C++ Clang-cl for vXYZ build tools" components of Visual Studio are installed, you can install them from the Visual Studio Installer:
+
+![clangclinstall](https://github.com/user-attachments/assets/af1e66e3-910e-4b34-b2e2-f1ef3cdd18d5)
+
+Furthermore, due to Python ignoring the directories in `PATH`, before running python code that uses the superbuild dependencies you need to run before:
+
+~~~python
+import os
+os.add_dll_directory(os.path.join(os.environ['ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX'], bin))
+~~~
+
+see https://github.com/robotology/robotology-superbuild/issues/1268 for more details.
 
 ### Check the installation
 Open a python interpreter and try to import modules, for example verify that `import yarp` works.
