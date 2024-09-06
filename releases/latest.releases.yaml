@@ -5,12 +5,12 @@ repositories:
     version: v3.2.0.1
   osqp:
     type: git
-    url: https://github.com/oxfordcontrol/osqp.git
-    version: v0.6.3
+    url: https://github.com/robotology-dependencies/osqp.git
+    version: v0.6.3.1
   manif:
     type: git
-    url: https://github.com/robotology-dependencies/manif.git
-    version: 0.0.4.103
+    url: https://github.com/artivis/manif.git
+    version: 0.0.5
   qhull:
     type: git
     url: https://github.com/qhull/qhull.git
@@ -26,7 +26,7 @@ repositories:
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: v0.16.5
+    version: v0.16.8
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v2.6.2
+    version: v2.6.3
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -42,7 +42,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v2.6.2
+    version: v2.6.3
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -54,7 +54,7 @@ repositories:
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
-    version: v0.7.4
+    version: v0.7.5
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v12.3.3
+    version: v12.4.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -122,7 +122,7 @@ repositories:
   wearables:
     type: git
     url: https://github.com/robotology/wearables.git
-    version: v1.8.0
+    version: v1.9.0
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
@@ -134,15 +134,15 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.39.0
+    version: v1.40.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.39.0
+    version: v1.40.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.39.0
+    version: v1.40.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
@@ -162,7 +162,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.24.0
+    version: v1.25.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
@@ -214,7 +214,7 @@ repositories:
   pyngrok:
     type: git
     url: https://github.com/alexdlaird/pyngrok.git
-    version: 7.1.6
+    version: 7.2.0
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
@@ -226,7 +226,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.38
+    version: release-1.1.40
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -278,4 +278,4 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.2.0
+    version: v0.3.0

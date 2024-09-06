@@ -133,10 +133,14 @@ of the robotology-superbuild.
 > [!IMPORTANT]
 > On Windows, it is recommended to use Command Prompt to manage conda environments, as some packages (see https://github.com/conda-forge/gazebo-feedstock/issues/42 and https://github.com/RoboStack/ros-noetic/issues/21) have problems in activating environments on Powershell.
 
+> [!IMPORTANT]
+> If it happens that conda cannot resolve the environment when sequentially installing the needed packages as reported later, please consider to install all the conda packages in a unique command.
+
+
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
 ~~~
-conda install -c conda-forge ace asio assimp boost eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
+conda install -c conda-forge ace asio assimp boost cli11 eigen freetype glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
 ~~~
 
 
@@ -161,7 +165,7 @@ For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](d
 
 To install python and the other required dependencies when using `conda-forge` provided dependencies, use:
 ~~~
-conda install -c conda-forge python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
+conda install -c conda-forge python pip numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 ~~~
 
 #### `ROBOTOLOGY_USES_PCL_AND_VTK`
@@ -180,7 +184,7 @@ If you install your dependencies with `conda`, just make sure to install the `ga
 conda install -c conda-forge gazebo
 ~~~
 
-#### `ROBOTOLOGY_USES_GZ_SIM`
+#### `ROBOTOLOGY_USES_GZ`
 
 If you install your dependencies with `conda`, just make sure to install the `gz-sim8` package:
 

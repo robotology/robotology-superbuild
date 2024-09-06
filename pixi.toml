@@ -1,0 +1,163 @@
+[project]
+name = "robotology-superbuild"
+# As this version is currently ignored, we do not
+# waste effort in mantain it in synch with the value
+# specified in CMakeLists.txt
+version = "0.0.0"
+description = "CMake/YCM-based superbuild to simplify the build process of robotology projects."
+authors = ["Silvio Traversaro <silvio@traversaro.it>"]
+channels = ["conda-forge", "robotology"]
+platforms = ["linux-64", "linux-aarch64", "win-64", "osx-64", "osx-arm64"]
+
+[system-requirements]
+linux = "4.18"
+
+[activation]
+scripts = ["pixi_activation.sh", ".build/install/share/robotology-superbuild/setup.sh"]
+
+[target.win-64.activation]
+scripts = ["pixi_activation.bat", ".build/install/share/robotology-superbuild/setup.bat"]
+
+
+[tasks]
+configure = { cmd = [
+    "cmake",
+    "-DCMAKE_BUILD_TYPE=Release",
+    # Use the cross-platform Ninja generator
+    "-G",
+    "Ninja",
+    # The source is in the root directory
+    "-S",
+    ".",
+    # We wanna build in the .build directory
+    "-B",
+    ".build",
+]}
+
+configure-all = { cmd = [
+    "cmake",
+    "-DCMAKE_BUILD_TYPE=Release",
+    # Enable all options
+    "-DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON",
+    "-DROBOTOLOGY_USES_PYTHON:BOOL=ON",
+    "-DROBOTOLOGY_USES_GAZEBO:BOOL=ON",
+    "-DROBOTOLOGY_USES_PCL_AND_VTK:BOOL=ON",
+    "-DROBOTOLOGY_USES_GZ:BOOL=ON",
+    "-DROBOTOLOGY_USES_ESDCAN:BOOL=$ROBOTOLOGY_USES_ESDCAN",
+    # Use the cross-platform Ninja generator
+    "-G",
+    "Ninja",
+    # The source is in the root directory
+    "-S",
+    ".",
+    # We wanna build in the .build directory
+    "-B",
+    ".build",
+]}
+
+# We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
+# and each project will run itself a number of compilation threads equal to ninja defaults,
+# if we do not do this there is an high change that the system running out of memory
+# if you want to run with a custom number of threads, run pixi run cmake --build .build --config Release --parallel N
+build = { cmd = "cmake --build .build --config Release --parallel 1", depends_on = ["configure"] }
+build-all = { cmd = "cmake --build .build --config Release --parallel 1", depends_on = ["configure-all"] }
+
+
+[dependencies]
+
+# C++ dev dependencies
+compilers = "*"
+ninja = "*"
+cmake = "*"
+make  = "*"
+pkg-config = "*"
+
+# C++ libraries dependencies
+ace = "*"
+asio = "*"
+assimp = "*"
+boost = "*"
+cli11 = "*"
+eigen = "*"
+freetype = "*"
+glew = "*"
+glfw = "*"
+glm = "*"
+graphviz = "*"
+gsl = "*"
+ipopt = "*"
+irrlicht = "*"
+libjpeg-turbo = "*"
+libmatio = "*"
+libode = "*"
+libxml2 = "*"
+nlohmann_json = "*"
+qhull = "*"
+pcl = ">=1.11.1"
+libopencv = ">=4.10.0"
+opencv = "*"
+portaudio = "*"
+qt-main = "*"
+sdl = "*"
+sdl2 = "*"
+sqlite = "*"
+tinyxml = "*"
+tinyxml2 = "*"
+spdlog = "*"
+lua = "*"
+soxr = "*"
+tomlplusplus = "*"
+libzlib = "*"
+ffmpeg = "6.*"
+onnxruntime-cpp = "*"
+vtk = "*"
+
+# ROBOTOLOGY_USES_GAZEBO
+gazebo = "*"
+
+# ROBOTOLOGY_USES_GZ
+gz-sim8 = "*"
+
+# ROBOTOLOGY_USES_PYTHON
+python = "*"
+pip = "*"
+numpy = "*"
+swig = "*"
+pybind11 = "*"
+pyqt = "*"
+matplotlib = "*"
+h5py = "*"
+tornado = "*"
+u-msgpack-python = "*"
+pyzmq = "*"
+ipython = "*"
+gst-plugins-good = "*"
+gst-plugins-bad = "*"
+pyqtwebengine = "*"
+qtpy = "*"
+pyyaml = "*"
+
+
+[target.win-64.dependencies]
+freeglut = "*"
+# ROBOTOLOGY_USES_ESDCAN
+esdcan = { version = "*", channel = "robotology" }
+
+[target.linux-64.dependencies]
+bash-completion = "*"
+freeglut = "*"
+libdc1394 = "*"
+libi2c = "*"
+mesa-libgl-devel-cos7-x86_64 = "*"
+
+[target.linux-aarch64.dependencies]
+bash-completion = "*"
+freeglut = "*"
+libdc1394 = "*"
+libi2c = "*"
+mesa-libgl-cos7-aarch64 = "*"

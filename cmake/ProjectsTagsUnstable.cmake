@@ -5,9 +5,9 @@ macro(set_tag tag_name tag_value)
 endmacro()
 
 # External projects
-set_tag(osqp_TAG v0.6.3)
-set_tag(manif_REPOSITORY robotology-dependencies/manif.git)
-set_tag(manif_TAG 0.0.4.103)
+set_tag(osqp_REPOSITORY robotology-dependencies/osqp.git)
+set_tag(osqp_TAG v0.6.3.1)
+set_tag(manif_TAG 0.0.5)
 set_tag(qhull_TAG 2020.2)
 set_tag(CppAD_TAG 20240000.2)
 set_tag(proxsuite_TAG v0.6.4)

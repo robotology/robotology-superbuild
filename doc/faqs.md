@@ -54,20 +54,48 @@ and again, specify your MATLAB installation directory and when there is the ques
 If the problem persists even after following this steps, please [open a new issue in the robotology-superbuild issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).
 
 
-### How to I solved the "Initializing libomp.dylib, but found libiomp5.dylib already initialized." when using MATLAB libraries?
+### How to I solved the "Initializing libomp.\*, but found libiomp5.\* already initialized." when using MATLAB libraries?
 
 If you are on macOS and you encounter errors similar to:
 ~~~
 OMP: Error #15: Initializing libomp.dylib, but found libiomp5.dylib already initialized.
 OMP: Hint This means that multiple copies of the OpenMP runtime have been linked into the program. That is dangerous, since it can degrade performance or cause incorrect results. The best thing to do is to ensure that only a single OpenMP runtime is linked into the process, e.g. by avoiding static linking of the OpenMP runtime in any library. As an unsafe, unsupported, undocumented workaround you can set the environment variable KMP_DUPLICATE_LIB_OK=TRUE to allow the program to continue to execute, but that may cause crashes or silently produce incorrect results. For more information, please see http://openmp.llvm.org/
 ~~~
+
+or you are on Windows if you encounter errors similar to:
+~~~
+OMP: Error https://github.com/ami-iit/element_aerodynamics-control/issues/15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized. 
+OMP: Hint This means that multiple copies of the OpenMP runtime have been linked into the program. 
+That is dangerous, since it can degrade performance or cause incorrect results. 
+The best thing to do is to ensure that only a single OpenMP runtime is linked into the process, e.g. by avoiding static linking of the OpenMP runtime in any library. 
+As an unsafe, unsupported, undocumented workaround you can set the environment variable KMP_DUPLICATE_LIB_OK=TRUE to allow the program to continue to execute, but that may cause crashes or silently produce incorrect results. 
+For more information, please see http://www.intel.com/software/products/support/.
+~~~
+
 when running MATLAB libraries installed by the robotology-superbuild, a simple workaround is to install the netlib version of libblas via:
 ~~~
 conda install libblas=*=*netlib
 ~~~
 
-See https://github.com/robotology/idyntree/issues/1109 for more details.
+See https://github.com/robotology/idyntree/issues/1109 for more details. The [One-line Installation of Robotology MATLAB/Simulink Packages](./matlab-one-line-install.md) installs `libblas=*=*netlib` to mitigate this problem.
 
 ### I want to install packages from the `robotology` conda channel that were built in 2021 but I am not finding them, where I can find them?
 
 In January 2024 the packages that were contained in the `robotology` channel and were built in 2021 have been moved to the `robotology-2021` channel, see https://github.com/robotology/robotology-superbuild/issues/1585 for more details.
+
+### I am trying to load pytorch on Windows and obtain I can't load the fbgemm.dll, what can I do?
+
+If you are on Windows and you obtain an error message like:
+
+~~~
+OSError: [WinError 182] The operating system cannot run %1. Error loading "D:\miniforge\envs\robsub\Lib\site-packages\torch\lib\fbgemm.dll" or one of its dependencies.
+~~~
+
+when trying to load `import torch`, then probably you have both `openmp` and `intel-openmp` installed in your conda environment. To fix your pytorch installation, just run:
+
+~~~
+conda uninstall openmp
+conda install intel-openmp --forge-reinstall
+~~~
+
+Note that this procedure can create problem when installing ipopt-related software. This will be probably be solved once conda-forge migrates to a modern fortran compiler on Windows, see https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/1359 for more infomation.

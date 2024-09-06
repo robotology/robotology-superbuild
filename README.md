@@ -8,10 +8,6 @@ A [YCM Superbuild](http://robotology.github.io/ycm/gh-pages/git-master/index.htm
 If you are familiar with ROS, it is something similar to [catkin](http://wiki.ros.org/catkin/workspaces) or [colcon workspace](https://colcon.readthedocs.io/en/released/user/quick-start.html), but using pure CMake for portability reasons and for customizing the build via CMake options. Furthermore, the `robotology-superbuild` also contains some infrastructure to build **binaries** of the contained projects for some platforms. 
 You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/index.html) or in the [related IRC paper](http://lornat75.github.io/papers/2018/domenichelli-irc.pdf).
 
-| System  | Continuous Integration Status |
-|:------:|:------:|
-|  Linux/macOS/Windows  |  ![GitHub Actions Status](https://github.com/robotology/robotology-superbuild/workflows/C++%20CI%20Workflow/badge.svg)     |
-
 Table of Contents
 =================
   * [Superbuild](#superbuild)
@@ -89,7 +85,7 @@ For the list of actually available tags, see the [GitHub's releases page](https:
 
 Once you cloned the repo, to go forward you can follow the different instructions on how to install robotology-superbuild from the source code, depending on your operating system and the package manager you want to use to install the required dependencies:
 * [**Linux with dependencies provided by apt**](#linux-from-source-with-dependencies-provided-by-apt): use the superbuild on Debian/Ubuntu distributions installing the dependencies with apt,
-* [**Linux, macOS or Windows with dependencies provided by conda-forge**](#linux-macos-or-windows-from-source-with-dependencies-provided-by-conda-forge): use the superbuild on any supported operating system, installing the dependencies with conda package manager,
+* [**Linux, macOS or Windows with dependencies provided by conda-forge**](#linux-macos-or-windows-from-source-with-dependencies-provided-by-conda-forge): use the superbuild on any supported operating system, installing the dependencies with conda or pixi package manager,
 * [**Windows Subsystem For Linux**](#windows-subsystem-for-linux-from-source): use the superbuild on [Windows Subsystem For Linux](https://docs.microsoft.com/en-us/windows/wsl/about).
 
 The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
@@ -147,7 +143,10 @@ If you are on Ubuntu 24.04, please use conda if you want to install Gazebo Class
 
 #### `ROBOTOLOGY_USES_GZ`
 
-To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (24.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu .
+To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (24.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu . Furthermore, you also need to install the `cli11` dependency with:
+~~~
+sudo apt-get install libcli11-dev
+~~~
 
 #### `ROBOTOLOGY_USES_PYTHON`
 
@@ -204,7 +203,9 @@ If for any reason you do not want to use the provided `setup.sh` script and you 
 
 ## Linux, macOS or Windows from source with dependencies provided by conda-forge
 
-Please refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instruction on how to compile the superbuild from source using the conda-forge provided dependencies, in particular the [`Source Installation`](doc/conda-forge.md#source-installation) section.
+If you want to use the `conda` package manager refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instruction on how to compile the superbuild from source using the conda-forge provided dependencies, in particular the [`Source Installation`](doc/conda-forge.md#source-installation) section.
+
+Otherwise, if you want to use the `pixi` package manager to install and build the superbuild, refer to the [`doc/pixi.md`](doc/pixi.md) document.
 
 ## Windows Subsystem for Linux from source
 
@@ -267,6 +268,9 @@ Note that the update will try to update all the software in the `robotology-supe
 For this reason, if you are activly developing on a repository managed by the `robotology-superbuild`, remember to switch the `YCM_EP_DEVEL_MODE_<package_name>`
 option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#developer-mode
 for more details on this options.
+
+> [!IMPORTANT]  
+> Before August 2024 the robotology-superbuild raised an error if you called `make update-all` or `ninja update-all` and there was repo with local modification with `YCM_EP_DEVEL_MODE_<package>` set to `OFF`. Since August 2024, instead the robotology-superbuild will silently discard the local modifications. To avoid losing data, **never call the `update-all` target** if you have local modifications in a package and you did not set `YCM_EP_DEVEL_MODE_<package>` to `ON` for that package.
 
 By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches, or use some fixed tags. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
 

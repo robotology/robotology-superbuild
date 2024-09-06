@@ -84,7 +84,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        conda install ace asio assimp boost eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp "qt6-main>=6.7.2"
+        conda install ace asio assimp boost cli11 eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp "qt6-main>=6.7.2"
         # Python
         conda install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 
@@ -372,7 +372,14 @@ jobs:
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         mkdir -p build
         cd build
-        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DYCM_USE_CMAKE_NEXT:BOOL=OFF -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -G"${{ matrix.cmake_generator }}" -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DYCM_BOOTSTRAP_VERBOSE=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE  -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.project_tags_cmake_options }} ..
+
+    # Workaround for https://github.com/robotology/robotology-superbuild/issues/1680
+    - name: Define CMAKE_CONFIGURATION_TYPES
+      if: contains(matrix.os, 'windows')
+      shell: bash
+      run: |
+        echo "CMAKE_CONFIGURATION_TYPES=Debug;Release" >> $GITHUB_ENV
 
     - name: Configure [Windows]
       if: contains(matrix.os, 'windows')
@@ -386,7 +393,7 @@ jobs:
         mkdir -p build
         cd build
         # ROBOTOLOGY_ENABLE_TELEOPERATION is OFF as it is unsupported on vcpkg
-        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug -DYCM_USE_CMAKE_NEXT:BOOL=OFF ${{ matrix.project_tags_cmake_options }} ..
+        cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug ${{ matrix.project_tags_cmake_options }} ..
         cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
     - name: Disable options unsupported on vcpkg
