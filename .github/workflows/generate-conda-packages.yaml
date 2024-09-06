@@ -251,12 +251,12 @@ jobs:
         - name: Upload robotology-distro-all metapackage
           shell: bash -l {0}
           # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
-          if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true')
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
-            ls *.tar.bz2
+            ls robotology-distro-all-*.tar.bz2
             anaconda upload --skip-existing robotology-distro-all-*.tar.bz2
 
   
