@@ -214,7 +214,6 @@ jobs:
              # Debug generated recipes
             cat */meta.yaml
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro-all
 
         - name: Upload conda packages
           shell: bash -l {0}
