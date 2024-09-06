@@ -206,7 +206,7 @@ jobs:
             rm -rf blocktest
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
-        - name: Build conda metapackages (if necessary)
+        - name: Build robotology-distro conda metapackage (if necessary)
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
           shell: bash -l {0}
           run: |
@@ -238,6 +238,28 @@ jobs:
             cd ${CONDA_BLD_PATH}/noarch/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
+
+        - name: Build robotology-distro-all conda metapackage (if necessary)
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
+          shell: bash -l {0}
+          run: |
+            cd build/conda/generated_recipes_metapackages
+             # Debug generated recipes
+            cat */meta.yaml
+            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology robotology-distro-all
+
+        - name: Upload robotology-distro-all metapackage
+          shell: bash -l {0}
+          # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
+          if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
+          env:
+            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+          run: |
+            cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
+            ls *.tar.bz2
+            anaconda upload --skip-existing robotology-distro-all-*.tar.bz2
+
+  
 
     # If the  generate-conda-packages completed correctly and binaries are uploaded,
     # bump automatically the CONDA_BUILD_NUMBER in conda/cmake/CondaGenerationOptions.cmake
