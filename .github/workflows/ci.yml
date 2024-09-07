@@ -29,11 +29,14 @@ jobs:
         project_tags:
           - Default
           - Unstable
+          - LatestReleases
         include:
           - project_tags: Default
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
+          - project_tags: LatestReleases
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/latest.releases.yaml"
 
     steps:
     - uses: actions/checkout@v4
