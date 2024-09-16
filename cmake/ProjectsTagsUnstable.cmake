@@ -12,7 +12,7 @@ set_tag(qhull_TAG 2020.2)
 set_tag(CppAD_TAG 20240000.2)
 set_tag(proxsuite_TAG v0.6.4)
 set_tag(casadi_TAG 3.6.6)
-set_tag(casadi-matlab-bindings_TAG v3.6.6)
+set_tag(casadi-matlab-bindings_TAG v3.6.6.0)
 
 # Robotology projects
 set_tag(YARP_TAG yarp-3.9)
