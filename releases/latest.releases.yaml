@@ -202,7 +202,7 @@ repositories:
   casadi-matlab-bindings:
     type: git
     url: https://github.com/ami-iit/casadi-matlab-bindings.git
-    version: v3.6.6
+    version: v3.6.6.0
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
