@@ -221,10 +221,16 @@ jobs:
           if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+            PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
+            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
+            for condapackage in *.tar.bz2; do
+              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+            done
+            pixi auth logout https://prefix.dev
 
         # Only on linux-64 we upload noarch packages (noarch packages need to be uploaded only once, as they can be reused across platforms)
         - name: Upload conda packages (noarch)
@@ -233,10 +239,16 @@ jobs:
           if: matrix.conda_platform == 'linux-64' && (github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true'))
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+            PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/noarch/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
+            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
+            for condapackage in *.tar.bz2; do
+              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+            done
+            pixi auth logout https://prefix.dev
 
         - name: Build robotology-distro-all conda metapackage (if necessary)
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
@@ -253,11 +265,16 @@ jobs:
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true')
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+            PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
             ls robotology-distro-all-*.tar.bz2
             anaconda upload --skip-existing robotology-distro-all-*.tar.bz2
-
+            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
+            for condapackage in robotology-distro-all-*.tar.bz2; do
+              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+            done
+            pixi auth logout https://prefix.dev
   
 
     # If the  generate-conda-packages completed correctly and binaries are uploaded,

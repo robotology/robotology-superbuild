@@ -94,7 +94,7 @@ To ensure redundancy, the `robotology` channel is available on two servers:
 * [`prefix.dev`](https://prefix.dev/channels/robotology)
 * [`anaconda.org`](https://anaconda.org/robotology/)
 
-The full history of packages is available on the prefix.dev mirror, so if you aim for reproducibility, try to use the prefix.dev mirror by specifying the channel via `-c https://repo.prefix.dev/robotology`. On the anaconda.org, some packages built before 1st of July 2022 are not available, so if you only care for the latest packages, you can also install packages by simply passing `-c robotology` to conda.
+The full history of packages is available on the prefix.dev mirror, so if you aim for reproducibility, try to use the prefix.dev mirror by specifying the channel via `-c https://repo.prefix.dev/robotology`. On the anaconda.org, some packages built before 1st of January 2023 are not available, so if you only care for the latest packages, you can also install packages by simply passing `-c robotology` to conda.
 
 ## Source installation
 
