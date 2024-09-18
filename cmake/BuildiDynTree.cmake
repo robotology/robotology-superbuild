@@ -11,7 +11,7 @@ set(iDynTree_DEPENDS "")
 list(APPEND iDynTree_DEPENDS OsqpEigen)
 
 # For what regards Python installation, the options changes depending
-# on whether we are installing YARP from source, or generating a
+# on whether we are installing iDynTree from source, or generating a
 # conda package on Windows as in that case the installation location
 # will need to be outside of CMAKE_INSTALL_PREFIX
 # See https://github.com/robotology/robotology-superbuild/issues/641
