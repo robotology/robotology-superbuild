@@ -18,10 +18,10 @@ find_or_build_package(OsqpEigen QUIET)
 set(HDE_OPTIONAL_CMAKE_ARGS "")
 if(ROBOTOLOGY_USES_PYTHON) 
   if (NOT ROBOTOLOGY_GENERATE_CONDA_RECIPES)
-    // If we are not generating a conda recipe, the bindings need to go in the ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR
+    # If we are not generating a conda recipe, the bindings need to go in the ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR
     list(APPEND HDE_OPTIONAL_CMAKE_ARGS "-DHDE_PYTHON_INSTALL_DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
   else()
-    // If we are building a conda package, the active environment is the correct place were to install the python bindings
+    # If we are building a conda package, the active environment is the correct place were to install the python bindings
     list(APPEND HDE_OPTIONAL_CMAKE_ARGS "-DHDE_DETECT_ACTIVE_PYTHON_SITEPACKAGES:BOOL=ON")
   endif()
 endif()
