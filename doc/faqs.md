@@ -91,11 +91,11 @@ If you are on Windows and you obtain an error message like:
 OSError: [WinError 182] The operating system cannot run %1. Error loading "D:\miniforge\envs\robsub\Lib\site-packages\torch\lib\fbgemm.dll" or one of its dependencies.
 ~~~
 
-when trying to load `import torch`, then probably you have both `openmp` and `intel-openmp` installed in your conda environment. To fix your pytorch installation, just run:
+when trying to load `import torch`, then probably you have both `openmp` and `intel-openmp` installed in your conda environment, and they both install files with the same name. 
+To fix your pytorch installation you need to ensure that the files from `intel-openmp` are used, to do so you can run:
 
 ~~~
-conda uninstall openmp
-conda install intel-openmp --forge-reinstall
+conda install intel-openmp --force-reinstall
 ~~~
 
-Note that this procedure can create problem when installing ipopt-related software. This will be probably be solved once conda-forge migrates to a modern fortran compiler on Windows, see https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/1359 for more infomation.
+This will be probably be solved once conda-forge migrates to a modern fortran compiler on Windows, see https://github.com/conda-forge/conda-forge-pinning-feedstock/pull/1359 for more infomation.
