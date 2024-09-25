@@ -372,7 +372,7 @@ Furthermore, due to Python ignoring the directories in `PATH`, before running py
 
 ~~~python
 import os
-os.add_dll_directory(os.path.join(os.environ['ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX'], bin))
+os.add_dll_directory(os.path.join(os.environ['ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX'], 'bin'))
 ~~~
 
 see https://github.com/robotology/robotology-superbuild/issues/1268 for more details.
