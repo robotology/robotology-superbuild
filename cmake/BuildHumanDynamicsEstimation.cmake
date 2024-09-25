@@ -18,7 +18,7 @@ endif()
 ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/human-dynamics-estimation.git
-              TAG merge-wearables
+              TAG master
               COMPONENT human_dynamics
               FOLDER src
               CMAKE_ARGS -DHUMANSTATEPROVIDER_ENABLE_VISUALIZER:BOOL=ON ${HDE_CMAKE_ARGS}
