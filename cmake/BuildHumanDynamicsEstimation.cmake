@@ -7,9 +7,13 @@ include(FindOrBuildPackage)
 find_or_build_package(YARP QUIET)
 find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
-find_or_build_package(wearables QUIET)
 find_or_build_package(osqp QUIET)
 find_or_build_package(OsqpEigen QUIET)
+find_or_build_package(robometry QUIET)
+
+if(WIN32)
+    list(APPEND HDE_CMAKE_ARGS -DXSENS_MVN_USE_SDK:BOOL=${ROBOTOLOGY_USES_XSENS_MVN_SDK} -DENABLE_XsensSuit:BOOL=${ROBOTOLOGY_USES_XSENS_MVN_SDK} )
+endif()
 
 ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               STYLE GITHUB
@@ -17,12 +21,12 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               TAG master
               COMPONENT human_dynamics
               FOLDER src
-              CMAKE_ARGS -DHUMANSTATEPROVIDER_ENABLE_VISUALIZER:BOOL=ON
+              CMAKE_ARGS -DHUMANSTATEPROVIDER_ENABLE_VISUALIZER:BOOL=ON ${HDE_CMAKE_ARGS}
               DEPENDS iDynTree
                       YARP
-                      wearables
                       osqp
                       OsqpEigen
-                      ICUB)
+                      ICUB
+                      robometry)
 
 set(HumanDynamicsEstimation_CONDA_DEPENDENCIES eigen)

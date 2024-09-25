@@ -51,8 +51,7 @@ For all profile options not listed, no additional configuration is required.
 
 ### Human Dynamics
 `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/human-gazebo`,
-`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/HumanDynamicsEstimation`,
-and`$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/Wearables` must be appended to the `YARP_DATA_DIRS` environmental variable.
+and `$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX/share/HumanDynamicsEstimation`` must be appended to the `YARP_DATA_DIRS` environmental variable.
 
 ## Dependency-specific configuration steps
 
