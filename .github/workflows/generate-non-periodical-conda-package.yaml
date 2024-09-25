@@ -20,8 +20,8 @@ jobs:
               include:
                 - os: ubuntu-20.04
                   conda_platform: linux-64
-                - os: macos-11.0
-                  conda_platform: osx-64
+                - os: macos-14
+                  conda_platform: osx-arm64
                 - os: windows-2019
                   conda_platform: win-64
 

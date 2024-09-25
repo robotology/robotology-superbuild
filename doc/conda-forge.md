@@ -19,12 +19,14 @@ Depending on the speficic package, the binary packages are hosted either in [`co
 The following conda platforms are supported by all packages of the robotology-superbuild:
 
 * `linux-64` (Linux on x86-64)
-* `osx-64` (macOS on x86-64)
+* `osx-arm64` (macOS on ARM 64-bit)
 * `win-64` (Windows on x86-64)
 
 Some packages are also available for:
 * `linux-aarch64` (Linux on ARM 64-bit)
-* `osx-arm64` (macOS on ARM 64-bit)
+* `osx-64` (macOS on x86-64)
+
+As the switch from building the `robotology` channel packages from `osx-64` to `osx-arm64` happened in September 2024 (see https://github.com/robotology/robotology-superbuild/pull/1712), it may happen that some older packages are only available for `osx-64` and not `osx-arm64`.
 
 If you need a binary package on a platform in which it is not available, feel free to [open an issue](https://github.com/robotology/robotology-superbuild/issues/new) requesting it.
 
