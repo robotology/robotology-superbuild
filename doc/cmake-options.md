@@ -372,9 +372,8 @@ Furthermore, due to Python ignoring the directories in `PATH`, before running py
 
 ~~~python
 import os
-import platform
 
-if platform.system() == "Windows":
+if os.name == "nt":
     superbuild_dll_path = os.path.join(os.environ.get('ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX',""), 'bin')
     if (os.exists(superbuild_dll_path)):
         os.add_dll_directory(superbuild_dll_path)
