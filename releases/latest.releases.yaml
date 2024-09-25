@@ -46,11 +46,11 @@ repositories:
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v4.11.2
+    version: v4.12.0
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v2.7.0
+    version: v2.8.0
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v12.4.0
+    version: v13.0.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -119,14 +119,10 @@ repositories:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
     version: v0.3.1
-  wearables:
-    type: git
-    url: https://github.com/robotology/wearables.git
-    version: v1.9.0
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v3.1.0
+    version: v4.0.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git

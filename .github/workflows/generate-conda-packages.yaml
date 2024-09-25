@@ -54,8 +54,8 @@ jobs:
               include:
                 - os: ubuntu-20.04
                   conda_platform: linux-64
-                - os: macos-11.0
-                  conda_platform: osx-64
+                - os: macos-14
+                  conda_platform: osx-arm64
                 - os: windows-2019
                   conda_platform: win-64
 
@@ -79,11 +79,11 @@ jobs:
         - name: Install files to enable compilation of mex files [Conda/macOS]
           if: contains(matrix.os, 'macos')
           run: |
-            curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2020a_mexmaci64.zip
-            unzip msdk_R2020a_mexmaci64.zip
-            rm msdk_R2020a_mexmaci64.zip
-            echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexmaci64" >> $GITHUB_ENV
-            echo "GHA_Matlab_MEX_EXTENSION=mexmaci64" >> $GITHUB_ENV
+            curl -L -O https://github.com/robotology/robotology-vcpkg-ports/releases/download/storage/msdk_R2023b_mexmaca64.zip
+            unzip msdk_R2023b_mexmaca64.zip
+            rm msdk_R2023b_mexmaca64.zip
+            echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2023b_mexmaca64" >> $GITHUB_ENV
+            echo "GHA_Matlab_MEX_EXTENSION=mexmaca64" >> $GITHUB_ENV
 
         - name: Install files to enable compilation of mex files [Conda/Windows]
           if: contains(matrix.os, 'windows')
@@ -98,7 +98,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            conda install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller
+            conda install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller pixi
 
         - name: Print used environment
           shell: bash -l {0}
@@ -187,8 +187,6 @@ jobs:
             # icub-main needs robotology channel as it also depends on esdcan, and local to avoid that robotology packages are used instead of local built one
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology icub-main
             rm -rf icub-main
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml wearables
-            rm -rf wearables
             # Channels specified explicitly due to https://github.com/robotology/robotology-superbuild/issues/1140
             conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge human-dynamics-estimation
             rm -rf human-dynamics-estimation
@@ -221,10 +219,16 @@ jobs:
           if: github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true')
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+            PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
+            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
+            for condapackage in *.tar.bz2; do
+              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+            done
+            pixi auth logout https://prefix.dev
 
         # Only on linux-64 we upload noarch packages (noarch packages need to be uploaded only once, as they can be reused across platforms)
         - name: Upload conda packages (noarch)
@@ -233,10 +237,16 @@ jobs:
           if: matrix.conda_platform == 'linux-64' && (github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true'))
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+            PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/noarch/
             ls *.tar.bz2
             anaconda upload --skip-existing *.tar.bz2
+            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
+            for condapackage in *.tar.bz2; do
+              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+            done
+            pixi auth logout https://prefix.dev
 
         - name: Build robotology-distro-all conda metapackage (if necessary)
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
@@ -253,11 +263,16 @@ jobs:
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true' && github.event.inputs.upload_conda_binaries == 'true')
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+            PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
             ls robotology-distro-all-*.tar.bz2
             anaconda upload --skip-existing robotology-distro-all-*.tar.bz2
-
+            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
+            for condapackage in robotology-distro-all-*.tar.bz2; do
+              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+            done
+            pixi auth logout https://prefix.dev
   
 
     # If the  generate-conda-packages completed correctly and binaries are uploaded,

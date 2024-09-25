@@ -7,9 +7,9 @@ include(FindOrBuildPackage)
 find_or_build_package(YARP QUIET)
 find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
-find_or_build_package(wearables QUIET)
 find_or_build_package(osqp QUIET)
 find_or_build_package(OsqpEigen QUIET)
+find_or_build_package(robometry QUIET)
 
 # For what regards Python installation, the options changes depending
 # on whether we are installing HDE in the superbuild, or generating a
@@ -26,6 +26,11 @@ if(ROBOTOLOGY_USES_PYTHON)
   endif()
 endif()
 
+
+if(WIN32)
+    list(APPEND HDE_OPTIONAL_CMAKE_ARGS -DXSENS_MVN_USE_SDK:BOOL=${ROBOTOLOGY_USES_XSENS_MVN_SDK} -DENABLE_XsensSuit:BOOL=${ROBOTOLOGY_USES_XSENS_MVN_SDK} )
+endif()
+
 ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/human-dynamics-estimation.git
@@ -35,10 +40,10 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               CMAKE_ARGS -DHUMANSTATEPROVIDER_ENABLE_VISUALIZER:BOOL=ON -DHDE_COMPILE_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON} ${HDE_OPTIONAL_CMAKE_ARGS}
               DEPENDS iDynTree
                       YARP
-                      wearables
                       osqp
                       OsqpEigen
-                      ICUB)
+                      ICUB
+                      robometry)
 
 set(HumanDynamicsEstimation_CONDA_DEPENDENCIES eigen)
 
