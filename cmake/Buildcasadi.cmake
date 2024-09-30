@@ -29,7 +29,7 @@ endif()
 ycm_ep_helper(casadi TYPE GIT
               STYLE GITHUB
               REPOSITORY casadi/casadi.git
-              TAG 3.6.6
+              TAG 3.6.7
               COMPONENT external
               FOLDER src
               CMAKE_ARGS -DWITH_IPOPT:BOOL=ON
