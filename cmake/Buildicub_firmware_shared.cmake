@@ -11,3 +11,6 @@ ycm_ep_helper(icub_firmware_shared TYPE GIT
                                    COMPONENT iCub
                                    FOLDER src
                                    DEPENDS YCM)
+
+set(icub_firmware_shared_CONDA_PKG_NAME icub-firmware-shared)
+set(icub_firmware_shared_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

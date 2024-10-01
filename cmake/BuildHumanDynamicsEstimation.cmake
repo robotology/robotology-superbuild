@@ -45,9 +45,5 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
                       ICUB
                       robometry)
 
-set(HumanDynamicsEstimation_CONDA_DEPENDENCIES eigen)
-
-if(ROBOTOLOGY_USES_PYTHON)
-    list(APPEND HumanDynamicsEstimation_CONDA_DEPENDENCIES python)
-    list(APPEND HumanDynamicsEstimation_CONDA_DEPENDENCIES pybind11)
-endif()
+set(HumanDynamicsEstimation_CONDA_PKG_NAME human-dynamics-estimation)
+set(HumanDynamicsEstimation_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
