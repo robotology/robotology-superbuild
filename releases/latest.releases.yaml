@@ -18,7 +18,7 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 20240000.4
+    version: 20240000.7
   casadi:
     type: git
     url: https://github.com/casadi/casadi.git
@@ -122,7 +122,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v4.0.2
+    version: v4.0.3
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -246,7 +246,7 @@ repositories:
   proxsuite:
     type: git
     url: https://github.com/Simple-Robotics/proxsuite.git
-    version: v0.6.4
+    version: v0.6.7
   BayesFilters:
     type: git
     url: https://github.com/robotology/bayes-filters-lib.git

@@ -34,7 +34,8 @@ requirements:
 
 test:
   commands:
-    - pip check
+    # Do not run pip check on arm64 as pip list does not list qtpy5 and qtwebengine
+    - pip check  # [not arm64]
   requires:
     - pip
 
