@@ -7,11 +7,15 @@ cd {{ source_subdir }}
 mkdir build
 cd build
 
+# QT_HOST_PATH is added as it is required on osx-arm64 for all
+# packages that depend (even transitively) on qt6-main
+# Workaround for https://github.com/conda-forge/qt-main-feedstock/issues/273
 cmake .. \
     -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DQT_HOST_PATH=$PREFIX \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_VERBOSE_MAKEFILE=OFF \
     -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True \
