@@ -420,6 +420,10 @@ jobs:
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
+        # Make sure that YARP's dll are in the path in case some repos use a code generator
+        # in their build that uses YARP's dll
+        # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
+        export PATH=$PATH:${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/build/install/bin
         cmake --build . --config Release
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
@@ -433,6 +437,10 @@ jobs:
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
         cmake --build . --config Debug
+        # Make sure that YARP's dll are in the path in case some repos use a code generator
+        # in their build that uses YARP's dll
+        # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
+        export PATH=$PATH:${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/build/install/bin
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
 
