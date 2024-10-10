@@ -18,11 +18,11 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 20240000.7
+    version: 20240000.4
   casadi:
     type: git
     url: https://github.com/casadi/casadi.git
-    version: 3.6.7
+    version: 3.6.5
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
@@ -46,11 +46,11 @@ repositories:
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v4.12.0
+    version: v4.11.2
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v2.8.0
+    version: v2.7.0
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
@@ -78,15 +78,15 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v13.0.0
+    version: v12.4.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
-    version: v0.8.6
+    version: v0.8.5
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
-    version: v5.7.0
+    version: v5.6.1
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
@@ -119,10 +119,14 @@ repositories:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
     version: v0.3.1
+  wearables:
+    type: git
+    url: https://github.com/robotology/wearables.git
+    version: v1.9.0
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v4.0.3
+    version: v3.1.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -166,7 +170,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.19.0
+    version: v0.18.0
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
@@ -198,7 +202,7 @@ repositories:
   casadi-matlab-bindings:
     type: git
     url: https://github.com/ami-iit/casadi-matlab-bindings.git
-    version: v3.6.7.0
+    version: v3.6.5.0
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
@@ -222,7 +226,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.41
+    version: release-1.1.40
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -246,7 +250,7 @@ repositories:
   proxsuite:
     type: git
     url: https://github.com/Simple-Robotics/proxsuite.git
-    version: v0.6.7
+    version: v0.6.4
   BayesFilters:
     type: git
     url: https://github.com/robotology/bayes-filters-lib.git

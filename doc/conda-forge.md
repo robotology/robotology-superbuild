@@ -14,17 +14,19 @@ For an overview of advantages and disadvantages of conda and conda-forge, check 
 
 This section describes how to install the binary packages built from the `robotology-superbuild` on conda on Windows, macOS and Linux.
 
-Depending on the speficic package, the binary packages are hosted either in [`conda-forge`](https://anaconda.org/conda-forge) or [`robotology`](https://anaconda.org/robotology). Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on CMake options](cmake-options.md)) are available as conda binary packages.
+Depending on the speficic package, the binary packages are hosted either in [`conda-forge`](https://prefix.dev/channels/conda-forge) or [`robotology`](https://prefix.dev/channels/robotology) channels. Only packages that are built as part of the profiles and options that are supported on Conda (see [documentation on CMake options](cmake-options.md)) are available as conda binary packages.
 
 The following conda platforms are supported by all packages of the robotology-superbuild:
 
 * `linux-64` (Linux on x86-64)
-* `osx-64` (macOS on x86-64)
+* `osx-arm64` (macOS on ARM 64-bit)
 * `win-64` (Windows on x86-64)
 
 Some packages are also available for:
 * `linux-aarch64` (Linux on ARM 64-bit)
-* `osx-arm64` (macOS on ARM 64-bit)
+* `osx-64` (macOS on x86-64)
+
+As the switch from building the `robotology` channel packages from `osx-64` to `osx-arm64` happened in September 2024 (see https://github.com/robotology/robotology-superbuild/pull/1712), it may happen that some older packages are only available for `osx-64` and not `osx-arm64`.
 
 If you need a binary package on a platform in which it is not available, feel free to [open an issue](https://github.com/robotology/robotology-superbuild/issues/new) requesting it.
 
@@ -63,30 +65,38 @@ conda activate robotologyenv
 
 Once you are in an activated environment, you can install robotology packages by just running the command:
 ~~~
-conda install -c conda-forge -c robotology <packagename>
+conda install -c conda-forge -c https://repo.prefix.dev/robotology <packagename>
 ~~~
 
 The list of available packages is available at https://anaconda.org/robotology/repo .
 
 For example, if you want to install yarp and icub-main, you simple need to install:
 ~~~
-conda install -c conda-forge -c robotology yarp icub-main
+conda install -c conda-forge -c https://repo.prefix.dev/robotology yarp icub-main
 ~~~
 
 In addition, if you want to simulate the iCub in Gazebo Classic, you should also install `icub-models` and `gazebo-yarp-plugins`:
 ~~~
-conda install -c conda-forge -c robotology gazebo-yarp-plugins icub-models
+conda install -c conda-forge gazebo-yarp-plugins icub-models
 ~~~
 
 While if you want to simulate it with Modern Gazebo (gz-sim), you should install `icub-models` and `gz-sim-yarp-plugins`:
 ~~~
-conda install -c conda-forge -c robotology gz-sim-yarp-plugins icub-models
+conda install -c conda-forge gz-sim-yarp-plugins icub-models
 ~~~
 
 If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
 ~~~
 conda install -c conda-forge compilers cmake pkg-config make ninja
 ~~~
+
+### Advanced: robotology channel mirrors
+
+To ensure redundancy, the `robotology` channel is available on two servers:
+* [`prefix.dev`](https://prefix.dev/channels/robotology)
+* [`anaconda.org`](https://anaconda.org/robotology/)
+
+The full history of packages is available on the prefix.dev mirror, so if you aim for reproducibility, try to use the prefix.dev mirror by specifying the channel via `-c https://repo.prefix.dev/robotology`. On the anaconda.org, some packages built before 1st of January 2023 are not available, so if you only care for the latest packages, you can also install packages by simply passing `-c robotology` to conda.
 
 ## Source installation
 

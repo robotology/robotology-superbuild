@@ -26,4 +26,4 @@ ycm_ep_helper(blocktest-yarp-plugins TYPE GIT
                       ${blocktest-yarp-plugins_OPTIONAL_DEPS}
               CMAKE_ARGS -DENABLE_MSVC_WARNINGS:BOOL=OFF)
 
-set(blocktest-yarp-plugins_CONDA_DEPENDENCIES boost-cpp)
+set(blocktest-yarp-plugins_CONDA_DEPENDENCIES libboost-devel)

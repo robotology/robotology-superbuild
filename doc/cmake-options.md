@@ -49,7 +49,7 @@ All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
 | `ROBOTOLOGY_ENABLE_TELEOPERATION` | The robotology software packages related to teleoperation. | [`walking-teleoperation`](https://github.com/robotology/walking-teleoperation), [`https://github.com/ami-iit/yarp-openvr-trackers`](https://github.com/ami-iit/yarp-openvr-trackers) and [`https://github.com/ami-iit/yarp-device-openxrheadset`](https://github.com/ami-iit/yarp-device-openxrheadset). | `OFF` | [Documentation on teleoperation profile.](#teleoperation)  |
-| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`wearables`](https://github.com/robotology/wearables), [`yarp-devices-forcetorque`](https://github.com/robotology/yarp-devices-forcetorque). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
+| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`yarp-devices-forcetorque`](https://github.com/robotology/yarp-devices-forcetorque). For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` | The robotology software packages related to event-driven. | [`event-driven`](https://github.com/robotology/event-driven) | `OFF` | [Documentation on event-driven profile.](#event-driven)  |
 | `ROBOTOLOGY_ENABLE_GRASPING` | The robotology software packages related to grasping. | [`find-superquadric`](https://github.com/robotology/find-superquadric) if the `ROBOTOLOGY_USES_PCL_AND_VTK` option is enabled. | `OFF` | [Documentation on grasping profile.](#grasping)  |
 
@@ -372,7 +372,11 @@ Furthermore, due to Python ignoring the directories in `PATH`, before running py
 
 ~~~python
 import os
-os.add_dll_directory(os.path.join(os.environ['ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX'], bin))
+
+if os.name == "nt":
+    superbuild_dll_path = os.path.join(os.environ.get('ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX',""), 'bin')
+    if (os.exists(superbuild_dll_path)):
+        os.add_dll_directory(superbuild_dll_path)
 ~~~
 
 see https://github.com/robotology/robotology-superbuild/issues/1268 for more details.

@@ -28,7 +28,7 @@ endmacro()
 include(RobotologySuperbuildOptions)
 
 # Python-related logic
-if(ROBOTOLOGY_USES_PYTHON)
+if(ROBOTOLOGY_USES_PYTHON AND NOT ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
   if(Python3_VERSION VERSION_GREATER_EQUAL 3.12)
     execute_process(COMMAND ${Python3_EXECUTABLE} -c "import os;import sysconfig;relative_site_packages = sysconfig.get_path('purelib').replace(sysconfig.get_path('data'), '').lstrip(os.path.sep);print(relative_site_packages)"

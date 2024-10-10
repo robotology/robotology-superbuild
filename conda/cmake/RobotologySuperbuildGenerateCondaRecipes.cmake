@@ -134,10 +134,10 @@ macro(generate_metametadata_file)
       list(APPEND ${_cmake_pkg}_CONDA_DEPENDENCIES ${${_cmake_dep}_CONDA_PKG_NAME})
     endforeach()
     
-    # If vtk is in the dependencies, we also need boost-cpp
+    # If vtk is in the dependencies, we also need libboost-devel
     # See https://github.com/robotology/robotology-superbuild/issues/1276
     if("vtk" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
-      list(APPEND ${_cmake_pkg}_CONDA_DEPENDENCIES "boost-cpp")
+      list(APPEND ${_cmake_pkg}_CONDA_DEPENDENCIES "libboost-devel")
     endif()
 
     # Compute conda github repository
