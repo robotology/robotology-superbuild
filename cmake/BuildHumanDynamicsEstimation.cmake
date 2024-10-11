@@ -48,7 +48,8 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
                       osqp
                       OsqpEigen
                       ICUB
-                      robometry)
+                      robometry
+                      ${HumanDynamicsEstimation_OPTIONAL_DEPS})
 
 set(HumanDynamicsEstimation_CONDA_PKG_NAME human-dynamics-estimation)
 set(HumanDynamicsEstimation_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
