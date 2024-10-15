@@ -44,6 +44,11 @@ if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   endif()
 endif()
 
+if(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
+  find_or_build_package(yarp-ros QUIET)
+  list(APPEND bipedal-locomotion-framework_DEPENDS yarp-ros)
+endif()
+
 set(bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "")
 if(ROBOTOLOGY_USES_PYTHON)
   list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_PYTHON_INSTALL_DIR:PATH=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")

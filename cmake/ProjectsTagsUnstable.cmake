@@ -15,8 +15,6 @@ set_tag(casadi_TAG 3.6.6)
 set_tag(casadi-matlab-bindings_TAG v3.6.6.0)
 
 # Robotology projects
-set_tag(YARP_TAG yarp-3.9)
-set_tag(yarp-matlab-bindings_TAG yarp-3.9)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
 set_tag(blockTest_TAG devel)
