@@ -2,7 +2,7 @@
 # to ensure that binaries belonging to different rebuilds
 # can be distinguished even if the version number is the same
 if(NOT CONDA_BUILD_NUMBER)
-  set(CONDA_BUILD_NUMBER 144)
+  set(CONDA_BUILD_NUMBER 145)
 endif()
 
 # This option is enabled only when the metapackages robotology-distro and robotology-distro-all are
