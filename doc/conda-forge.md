@@ -220,6 +220,7 @@ cd robotology-superbuild
 mkdir build
 cd build
 cmake ..
+source ./install/share/robotology-superbuild/setup.sh
 cmake --build . --config Release
 ~~~
 
@@ -229,6 +230,7 @@ cd robotology-superbuild
 mkdir build
 cd build
 cmake -G"Visual Studio 16 2019" ..
+call .\install\share\robotology-superbuild\setup.bat
 cmake --build . --config Release
 ~~~
 

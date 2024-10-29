@@ -179,6 +179,7 @@ cd robotology-superbuild
 mkdir build
 cd build
 ccmake ../
+source ./install/share/robotology-superbuild.sh
 make
 ```
 You can configure the ccmake environment if you know you will use some particular set of software (put them in "ON").
