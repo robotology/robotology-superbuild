@@ -427,7 +427,7 @@ jobs:
         # Make sure that YARP's dll are in the path in case some repos use a code generator
         # in their build that uses YARP's dll
         # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
-        export PATH=$PATH:${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/build/install/bin
+        source ./install/share/robotology-superbuild/setup.sh
         cmake --build . --config Release
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
@@ -443,7 +443,7 @@ jobs:
         # Make sure that YARP's dll are in the path in case some repos use a code generator
         # in their build that uses YARP's dll
         # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
-        export PATH=$PATH:${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/build/install/bin
+        source ./install/share/robotology-superbuild/setup.sh
         cmake --build . --config Debug
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
