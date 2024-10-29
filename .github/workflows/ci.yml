@@ -167,6 +167,10 @@ jobs:
         # Using b instead of build as a temporary workaround to https://github.com/robotology/robotology-superbuild/issues/1542#issuecomment-1827682957
         # Go back to build once https://github.com/robotology/yarp/pull/3057 is merged and released
         cd b
+        # Make sure that (on Windows) YARP's dll are in the path in case some repos use a code generator
+        # in their build that uses YARP's dll
+        # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
+        source ./install/share/robotology-superbuild/setup.sh
         cmake --build . --config ${{ matrix.build_type }}
 
     # Skip on Apple Silicon https://github.com/robotology/robotology-superbuild/issues/1625
