@@ -167,6 +167,10 @@ jobs:
         # Using b instead of build as a temporary workaround to https://github.com/robotology/robotology-superbuild/issues/1542#issuecomment-1827682957
         # Go back to build once https://github.com/robotology/yarp/pull/3057 is merged and released
         cd b
+        # Make sure that (on Windows) YARP's dll are in the path in case some repos use a code generator
+        # in their build that uses YARP's dll
+        # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
+        source ./install/share/robotology-superbuild/setup.sh
         cmake --build . --config ${{ matrix.build_type }}
 
     # Skip on Apple Silicon https://github.com/robotology/robotology-superbuild/issues/1625
@@ -179,7 +183,7 @@ jobs:
 
   docker-build:
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -187,10 +191,9 @@ jobs:
         cmake_generator:
           - "Ninja"
         docker_image:
-          - "ubuntu:focal"
-          - "ubuntu:jammy"
+          - "ubuntu:20.04"
+          - "ubuntu:22.04"
           - "ubuntu:24.04"
-          - "debian:bullseye"
 
         project_tags:
           - Default
@@ -218,20 +221,20 @@ jobs:
         rm -rf /host_usr_local/lib/android
         rm -rf /host_usr_local/lib/node_modules
 
-    - name: Upgrade apt packages Debian Testing [Debian Testing]
-      if: matrix.docker_image == 'debian:testing'
-      run: |
-        # The Debian testing docker image is generated only
-        # once a month, so to actually test with the latest
-        # packages we need to manually upgrade the packages
-        apt-get -y upgrade
-
     - name: Dependencies [Docker]
       run: |
         chmod +x ./.ci/install_debian.sh
         bash ./.ci/install_debian.sh
 
-
+    - name: Install recent CMake [Docker/Ubuntu Focal]
+      if: matrix.docker_image == 'ubuntu:20.04'
+      run: |
+        apt-get -y update
+        apt-get install -y ca-certificates software-properties-common gpg wget
+        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+        echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
+        apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+        apt-get install -y cmake
 
     - name: Configure [Docker]
       run: |
@@ -239,14 +242,8 @@ jobs:
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
 
-    - name: Disable profiles that are not supported in Debian [Docker debian-testing and debian-buster]
-      if: (matrix.docker_image == 'debian:testing' || matrix.docker_image == 'debian:buster-backports')
-      run: |
-       cd build
-       cmake -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
-
-    - name: Disable MuJoCo and gz-sim for distros released before 2022 [Docker ubuntu:focal and debian:bullseye]
-      if: (matrix.docker_image == 'ubuntu:focal' || matrix.docker_image == 'debian:bullseye')
+    - name: Disable MuJoCo and gz-sim for distros released before 2022 [Docker ubuntu:20.04]
+      if: (matrix.docker_image == 'ubuntu:20.04')
       run: |
        cd build
        cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
@@ -403,8 +400,8 @@ jobs:
         cmake -C ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}/.ci/initial-cache.gh.cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:/robotology/vcpkg/scripts/buildsystems/vcpkg.cmake -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DYCM_BOOTSTRAP_VERBOSE=ON -DYCM_EP_INSTALL_DIR=C:/robotology/robotology -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=Debug ${{ matrix.project_tags_cmake_options }} ..
         cmake -DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=OFF .
 
-    - name: Disable options unsupported on Ubuntu 20.04 and vcpkg
-      if: contains(matrix.os, '20.04') || contains(matrix.os, 'windows')
+    - name: Disable options unsupported on vcpkg
+      if: contains(matrix.os, 'windows')
       shell: bash
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
@@ -427,6 +424,10 @@ jobs:
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
+        # Make sure that YARP's dll are in the path in case some repos use a code generator
+        # in their build that uses YARP's dll
+        # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
+        source /c/robotology/robotology/share/robotology-superbuild/setup.sh
         cmake --build . --config Release
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology
@@ -439,6 +440,10 @@ jobs:
         cd build
         # Make sure that vcpkg's ace .dll are on the PATH
         source /c/robotology/scripts/setup-deps.sh
+        # Make sure that YARP's dll are in the path in case some repos use a code generator
+        # in their build that uses YARP's dll
+        # https://github.com/robotology/robotology-superbuild/pull/1547#issuecomment-2278151057
+        source /c/robotology/robotology/share/robotology-superbuild/setup.sh
         cmake --build . --config Debug
         # Cleanup build directories to avoid to fill the disk
         rm -rf ./robotology

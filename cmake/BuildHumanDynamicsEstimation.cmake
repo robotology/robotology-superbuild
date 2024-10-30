@@ -31,6 +31,11 @@ if(WIN32)
     list(APPEND HDE_OPTIONAL_CMAKE_ARGS -DXSENS_MVN_USE_SDK:BOOL=${ROBOTOLOGY_USES_XSENS_MVN_SDK} -DENABLE_XsensSuit:BOOL=${ROBOTOLOGY_USES_XSENS_MVN_SDK} )
 endif()
 
+if(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
+  find_or_build_package(yarp-ros QUIET)
+  list(APPEND HumanDynamicsEstimation_OPTIONAL_DEPS yarp-ros)
+endif()
+
 ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/human-dynamics-estimation.git
@@ -43,7 +48,8 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
                       osqp
                       OsqpEigen
                       ICUB
-                      robometry)
+                      robometry
+                      ${HumanDynamicsEstimation_OPTIONAL_DEPS})
 
 set(HumanDynamicsEstimation_CONDA_PKG_NAME human-dynamics-estimation)
 set(HumanDynamicsEstimation_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

@@ -104,7 +104,7 @@ We also support an additional deprecated way of compiling the superbuild, on Win
 The following apt-based distributions are supported and tested by the robotology-superbuild:
 * Ubuntu 20.04 (Focal Fossa)
 * Ubuntu 22.04 (Jammy Jellyfish)
-* Debian 11 (Bullseye)
+* Ubuntu 24.04 (Noble Numbat)
 
 Other versions may be working, but they are not checked.
 
@@ -117,10 +117,11 @@ sudo bash ./scripts/install_apt_dependencies.sh
 
 Besides the packages listed in `apt.txt` file, the script `install_apt_dependencies.sh` also installs some other packages depending on the distribution used, please inspect the script for more information.
 
-For what regards CMake, the robotology-superbuild requires CMake 3.16 . If you are using a recent Debian-based system such as Ubuntu 20.04, the default CMake is recent enough and you do not need to do further steps.
+For what regards CMake, the robotology-superbuild requires CMake 3.19 . If you are using a recent Debian-based system such as Ubuntu 22.04, the default CMake is recent enough and you do not need to do further steps.
 
 If instead you use an older distro in which the default version of CMake is older, you can easily install a newer CMake version in several ways. For the following distributions, we recommend the following methods:
-* Ubuntu 20.04 : install a recent CMake via Kitware APT Repository, see https://apt.kitware.com/ .
+* Ubuntu 20.04 "Focal" : install a recent CMake via Kitware APT Repository, see https://apt.kitware.com/ .
+
 
 For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
 
@@ -142,8 +143,7 @@ If you are on Ubuntu 24.04, please use conda if you want to install Gazebo Class
 
 #### `ROBOTOLOGY_USES_GZ`
 
-To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (20.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu . Furthermore, you also need to install the `cli11` dependency with:
-
+To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (24.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu . Furthermore, you also need to install the `cli11` dependency with:
 ~~~
 sudo apt-get install libcli11-dev
 ~~~
@@ -179,6 +179,7 @@ cd robotology-superbuild
 mkdir build
 cd build
 ccmake ../
+source ./install/share/robotology-superbuild.sh
 make
 ```
 You can configure the ccmake environment if you know you will use some particular set of software (put them in "ON").
