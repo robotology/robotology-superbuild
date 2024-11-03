@@ -78,7 +78,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v13.1.0
+    version: v13.1.1
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
