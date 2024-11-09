@@ -14,5 +14,5 @@ ycm_ep_helper(sharedlibpp TYPE GIT
               DEPENDS YCM
               CMAKE_ARGS)
 
-set(sharedlibpp_CONDA_PKG_NAME sharedlibpp)
+set(sharedlibpp_CONDA_PKG_NAME libsharedlibpp)
 set(sharedlibpp_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
