@@ -10,11 +10,15 @@ else()
   set(BLOCKFACTORY_USES_SIMULINK OFF)
 endif()
 
+find_or_build_package(sharedlibpp QUIET)
+
 ycm_ep_helper(BlockFactory TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/blockfactory.git
               TAG master
               COMPONENT dynamics
               FOLDER src
+              DEPENDS sharedlibpp
               CMAKE_ARGS -DUSES_MATLAB:BOOL=${BLOCKFACTORY_USES_SIMULINK}
+                         -DBLOCKFACTORY_USES_SYSTEM_SHAREDLIBPP:BOOL=ON
                          -DENABLE_WARNINGS:BOOL=OFF)

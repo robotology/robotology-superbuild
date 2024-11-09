@@ -9,8 +9,10 @@ find_or_build_package(YARP QUIET)
 find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(qpOASES QUIET)
+find_or_build_package(sharedlibpp QUIET)
 find_or_build_package(BlockFactory QUIET)
 find_or_build_package(OsqpEigen QUIET)
+find_or_build_package(QpSolversEigen QUIET)
 
 ycm_ep_helper(WBToolbox TYPE GIT
               STYLE GITHUB
@@ -27,6 +29,8 @@ ycm_ep_helper(WBToolbox TYPE GIT
                       iDynTree
                       qpOASES
                       BlockFactory
-                      OsqpEigen)
+                      OsqpEigen
+                      sharedlibpp
+                      QpSolversEigen)
 
 set(WBToolbox_CONDA_DEPENDENCIES eigen) 
