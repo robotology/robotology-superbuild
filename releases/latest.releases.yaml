@@ -82,7 +82,7 @@ repositories:
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
-    version: v1.0.0
+    version: v1.0.1
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
