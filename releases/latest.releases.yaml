@@ -82,11 +82,11 @@ repositories:
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
-    version: v0.8.6
+    version: v1.0.1
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
-    version: v5.7.0
+    version: v6.0.0
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
@@ -275,3 +275,11 @@ repositories:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
     version: v0.3.0
+  sharedlibpp:
+    type: git
+    url: https://github.com/ami-iit/sharedlibpp.git
+    version: v0.0.3
+  QpSolversEigen:
+    type: git
+    url: https://github.com/ami-iit/qpsolvers-eigen.git
+    version: v0.0.1
