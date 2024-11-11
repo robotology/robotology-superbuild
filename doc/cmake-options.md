@@ -375,7 +375,7 @@ import os
 
 if os.name == "nt":
     superbuild_dll_path = os.path.join(os.environ.get('ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX',""), 'bin')
-    if (os.exists(superbuild_dll_path)):
+    if (os.path.exists(superbuild_dll_path)):
         os.add_dll_directory(superbuild_dll_path)
 ~~~
 
