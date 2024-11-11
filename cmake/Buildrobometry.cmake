@@ -5,6 +5,7 @@
 include(YCMEPHelper)
 
 find_or_build_package(YARP QUIET)
+find_or_build_package(ICUB QUIET)
 find_or_build_package(matioCpp QUIET)
 
 ycm_ep_helper(robometry TYPE GIT
@@ -15,6 +16,7 @@ ycm_ep_helper(robometry TYPE GIT
               FOLDER src
               DEPENDS YCM
                       YARP
+                      ICUB
                       matioCpp)
 
 set(robometry_CONDA_PKG_NAME librobometry)
