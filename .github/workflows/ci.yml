@@ -84,7 +84,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        conda install ace asio assimp boost cli11 eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp "qt6-main>=6.7.2"
+        conda install ace asio assimp boost cli11 eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl "ipopt>=3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp "qt6-main>=6.7.2"
         # Python
         conda install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 
