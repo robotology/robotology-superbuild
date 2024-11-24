@@ -30,7 +30,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.9.0
+    version: v3.9.1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -282,4 +282,4 @@ repositories:
   QpSolversEigen:
     type: git
     url: https://github.com/ami-iit/qpsolvers-eigen.git
-    version: v0.0.1
+    version: v0.1.0
