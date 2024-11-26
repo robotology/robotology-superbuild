@@ -21,8 +21,9 @@ scripts = ["pixi_activation.bat", ".build/install/share/robotology-superbuild/se
 [feature.ros2.activation]
 scripts = ["pixi_activation.sh", ".build-ros2/install/share/robotology-superbuild/setup.sh"]
 
-[feature.ros2.target.win-64.activation]
-scripts = ["pixi_activation.bat", ".build-ros2/install/share/robotology-superbuild/setup.bat"]
+# Uncomment when we support win-64 in ros2 environment
+#[feature.ros2.target.win-64.activation]
+#scripts = ["pixi_activation.bat", ".build-ros2/install/share/robotology-superbuild/setup.bat"]
 
 
 [tasks]
@@ -107,8 +108,8 @@ libode = "*"
 libxml2 = "*"
 nlohmann_json = "*"
 qhull = "*"
-pcl = ">=1.11.1"
-libopencv = ">=4.10.0"
+pcl = "*"
+libopencv = "*"
 opencv = "*"
 portaudio = "*"
 qt-main = "*"
@@ -171,21 +172,32 @@ libdc1394 = "*"
 libi2c = "*"
 mesa-libgl-cos7-aarch64 = "*"
 
+[feature.base.dependencies]
+# These additional constraints are incompatible with robostack
+# packages as of November 2025
+pcl = ">=1.11.1"
+libopencv = ">=4.10.0"
+
 # As the ROS 2 dependencies are hosted on robostack and can lag behind
 # all the different conda-forge ABI migrations, we use a separate ros2
 # environment to test them
 [feature.ros2]
 channels = [{channel = "robostack-staging", priority = -1}]
 
+# All platforms except for linux-64 are not supported as robostack does not have a build of
+# ros-humble-moveit-visual-tools  as of November 2024
+platforms = ["linux-64"]
+
+
 [feature.ros2.dependencies]
 # ROBOTOLOGY_ENABLE_ROS2 dependencies
-ros-humble-base = "*"
-ros-humble-tests-msgs = "*"
+ros-humble-ros-base = "*"
+ros-humble-test-msgs = "*"
 
 # ROBOTOLOGY_ENABLE_MOVEIT dependencies
 ros-humble-moveit = "*"
-ros-humble-hardware-interfaces = "*"
-ros-moveit-visual-tools = "*"
+ros-humble-hardware-interface = "*"
+ros-humble-moveit-visual-tools = "*"
 ros-humble-gazebo-msgs = "*"
 ros-humble-controller-manager = "*"
 
@@ -194,6 +206,8 @@ ros-humble-controller-manager = "*"
 configure = { cmd = [
     "cmake",
     "-DCMAKE_BUILD_TYPE=Release",
+    # Remove once yarp-3.10 is used in the superbuild
+    "-DROBOTOLOGY_PROJECT_TAGS:BOOL=Unstable",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
@@ -210,6 +224,8 @@ configure = { cmd = [
 configure-all = { cmd = [
     "cmake",
     "-DCMAKE_BUILD_TYPE=Release",
+    # Remove once yarp-3.10 is used in the superbuild
+    "-DROBOTOLOGY_PROJECT_TAGS:BOOL=Unstable",
     # Enable all options
     "-DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON",
     "-DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON",
@@ -246,5 +262,5 @@ build-all = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", d
 # * The `default` one, used for all the options that do not depend on ROS 2
 # * The `ros2` one, used for all the options including the one that depend on ROS 2
 [environments]
-default = ["default", "base"]
-ros2 = ["default", "ros2"]
+default = ["base"]
+ros2 = ["ros2"]

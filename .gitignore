@@ -15,5 +15,5 @@ CTestTestfile.cmake
 # pixi environments
 .pixi
 *.egg-info
-# build directory used by pixi
-/.build/
+# build directories used by pixi
+/.build*/
