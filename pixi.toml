@@ -203,7 +203,7 @@ ros-humble-controller-manager = "*"
 
 # Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
 [feature.ros2.tasks]
-configure = { cmd = [
+configure-ros2 = { cmd = [
     "cmake",
     "-DCMAKE_BUILD_TYPE=Release",
     # Remove once yarp-3.10 is used in the superbuild
@@ -221,7 +221,7 @@ configure = { cmd = [
     "-DROBOTOLOGY_USES_MOVEIT:BOOL=ON",
 ]}
 
-configure-all = { cmd = [
+configure-all-ros2 = { cmd = [
     "cmake",
     "-DCMAKE_BUILD_TYPE=Release",
     # Remove once yarp-3.10 is used in the superbuild
@@ -255,8 +255,8 @@ configure-all = { cmd = [
 # and each project will run itself a number of compilation threads equal to ninja defaults,
 # if we do not do this there is an high change that the system running out of memory
 # if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --config Release --parallel N
-build = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure"] }
-build-all = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-all"] }
+build-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-ros2"] }
+build-all-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-all-ros2"] }
 
 # We have two environments:
 # * The `default` one, used for all the options that do not depend on ROS 2
