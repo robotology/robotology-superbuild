@@ -87,6 +87,12 @@ if(ROBOTOLOGY_ENABLE_CORE)
   if(ROBOTOLOGY_USES_MATLAB OR ROBOTOLOGY_USES_OCTAVE)
     find_or_build_package(yarp-matlab-bindings)
   endif()
+  if(ROBOTOLOGY_USES_ROS2)
+    find_or_build_package(yarp-devices-ros2)
+  endif()
+  if(ROBOTOLOGY_USES_MOVEIT)
+    find_or_build_package(xcub-moveit2)
+  endif()
 endif()
 
 # Robot Testing

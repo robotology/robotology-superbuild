@@ -148,6 +148,18 @@ To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (24.04) and 
 sudo apt-get install libcli11-dev
 ~~~
 
+#### `ROBOTOLOGY_USES_ROS2`
+
+To install ROS 2 on Ubuntu Jammy (22.04) or Noble (24.04) with apt packages, follow the official instructions:
+* Ubuntu 22.04 / ROS 2 Humble : https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+* Ubuntu 24.04 / ROS 2 Jazzy : https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
+
+#### `ROBOTOLOGY_USES_MOVEIT`
+
+To install MoveIt! on Ubuntu Jammy (22.04) or Noble (24.04) with apt packages, follow the instructions to enable the `ROBOTOLOGY_USES_ROS2` option, and then install the additional packages:
+* Ubuntu 22.04 / ROS 2 Humble : `sudo apt install ros-humble-moveit`
+* Ubuntu 24.04 / ROS 2 Jazzy : `sudo apt install ros-jazzy-moveit`
+
 #### `ROBOTOLOGY_USES_PYTHON`
 
 Install Python and the necessary development files using the following command:

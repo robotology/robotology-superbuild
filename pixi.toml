@@ -12,11 +12,17 @@ platforms = ["linux-64", "linux-aarch64", "win-64", "osx-64", "osx-arm64"]
 [system-requirements]
 linux = "4.18"
 
-[activation]
+[feature.base.activation]
 scripts = ["pixi_activation.sh", ".build/install/share/robotology-superbuild/setup.sh"]
 
-[target.win-64.activation]
+[feature.base.target.win-64.activation]
 scripts = ["pixi_activation.bat", ".build/install/share/robotology-superbuild/setup.bat"]
+
+[feature.ros2.activation]
+scripts = ["pixi_activation.sh", ".build-ros2/install/share/robotology-superbuild/setup.sh"]
+
+[feature.ros2.target.win-64.activation]
+scripts = ["pixi_activation.bat", ".build-ros2/install/share/robotology-superbuild/setup.bat"]
 
 
 [tasks]
@@ -49,6 +55,9 @@ configure-all = { cmd = [
     "-DROBOTOLOGY_USES_PCL_AND_VTK:BOOL=ON",
     "-DROBOTOLOGY_USES_GZ:BOOL=ON",
     "-DROBOTOLOGY_USES_ESDCAN:BOOL=$ROBOTOLOGY_USES_ESDCAN",
+    # This options are currently not supported in pixi
+    "-DROBOTOLOGY_USES_ROS2:BOOL=OFF",
+    "-DROBOTOLOGY_USES_MOVEIT:BOOL=OFF",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
@@ -161,3 +170,81 @@ freeglut = "*"
 libdc1394 = "*"
 libi2c = "*"
 mesa-libgl-cos7-aarch64 = "*"
+
+# As the ROS 2 dependencies are hosted on robostack and can lag behind
+# all the different conda-forge ABI migrations, we use a separate ros2
+# environment to test them
+[feature.ros2]
+channels = [{channel = "robostack-staging", priority = -1}]
+
+[feature.ros2.dependencies]
+# ROBOTOLOGY_ENABLE_ROS2 dependencies
+ros-humble-base = "*"
+ros-humble-tests-msgs = "*"
+
+# ROBOTOLOGY_ENABLE_MOVEIT dependencies
+ros-humble-moveit = "*"
+ros-humble-hardware-interfaces = "*"
+ros-moveit-visual-tools = "*"
+ros-humble-gazebo-msgs = "*"
+ros-humble-controller-manager = "*"
+
+# Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
+[feature.ros2.tasks]
+configure = { cmd = [
+    "cmake",
+    "-DCMAKE_BUILD_TYPE=Release",
+    # Use the cross-platform Ninja generator
+    "-G",
+    "Ninja",
+    # The source is in the root directory
+    "-S",
+    ".",
+    # We wanna build in the .build directory
+    "-B",
+    ".build-ros2",
+    "-DROBOTOLOGY_USES_ROS2:BOOL=ON",
+    "-DROBOTOLOGY_USES_MOVEIT:BOOL=ON",
+]}
+
+configure-all = { cmd = [
+    "cmake",
+    "-DCMAKE_BUILD_TYPE=Release",
+    # Enable all options
+    "-DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_TELEOPERATION:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=ON",
+    "-DROBOTOLOGY_ENABLE_HUMAN_DYNAMICS:BOOL=ON",
+    "-DROBOTOLOGY_USES_PYTHON:BOOL=ON",
+    "-DROBOTOLOGY_USES_GAZEBO:BOOL=ON",
+    "-DROBOTOLOGY_USES_PCL_AND_VTK:BOOL=ON",
+    "-DROBOTOLOGY_USES_GZ:BOOL=ON",
+    "-DROBOTOLOGY_USES_ESDCAN:BOOL=$ROBOTOLOGY_USES_ESDCAN",
+    "-DROBOTOLOGY_USES_ROS2:BOOL=ON",
+    "-DROBOTOLOGY_USES_MOVEIT:BOOL=ON",
+    # Use the cross-platform Ninja generator
+    "-G",
+    "Ninja",
+    # The source is in the root directory
+    "-S",
+    ".",
+    # We wanna build in the .build directory
+    "-B",
+    ".build-ros2",
+]}
+
+# We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
+# and each project will run itself a number of compilation threads equal to ninja defaults,
+# if we do not do this there is an high change that the system running out of memory
+# if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --config Release --parallel N
+build = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure"] }
+build-all = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-all"] }
+
+# We have two environments:
+# * The `default` one, used for all the options that do not depend on ROS 2
+# * The `ros2` one, used for all the options including the one that depend on ROS 2
+[environments]
+default = ["default", "base"]
+ros2 = ["default", "ros2"]
