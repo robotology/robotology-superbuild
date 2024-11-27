@@ -266,7 +266,11 @@ repositories:
   yarp-devices-ros:
     type: git
     url: https://github.com/robotology/yarp-devices-ros.git
-    version: v3.9.1
+    version: v3.10.0
+  yarp-ros:
+    type: git
+    url: https://github.com/robotology/yarp-ros.git
+    version: v3.10.0
   yarp-device-keyboard-joypad:
     type: git
     url: https://github.com/ami-iit/yarp-device-keyboard-joypad.git
