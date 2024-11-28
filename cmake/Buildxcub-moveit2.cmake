@@ -10,9 +10,8 @@ find_or_build_package(yarp-devices-ros2 QUIET)
 
 ycm_ep_helper(xcub-moveit2 TYPE GIT
                                 STYLE GITHUB
-                                # Temporary fork
-                                REPOSITORY traversaro/xcub-moveit2.git
-                                TAG superbuildsupport
+                                REPOSITORY icub-tech-iit/xcub-moveit2.git
+                                TAG master
                                 COMPONENT core
                                 FOLDER src
                                 DEPENDS YARP yarp-devices-ros2
@@ -20,4 +19,4 @@ ycm_ep_helper(xcub-moveit2 TYPE GIT
                                 # composed by multiple CMake projects, for compatibility with CMake
                                 # we added an all_packages folder with CMakeLists.txt that add each 
                                 # subfolder with add_subdirectory
-                                SOURCE_SUBDIR xcub_moveit2_all_packages)
+                                SOURCE_SUBDIR xcub_moveit_all_packages)
