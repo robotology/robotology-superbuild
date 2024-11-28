@@ -30,7 +30,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.9.0
+    version: v3.10.1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -58,7 +58,7 @@ repositories:
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
-    version: v3.9.1
+    version: v3.10.0
   RobotTestingFramework:
     type: git
     url: https://github.com/robotology/robot-testing-framework.git
@@ -118,7 +118,7 @@ repositories:
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
-    version: v0.3.1
+    version: v0.3.2
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
@@ -266,7 +266,11 @@ repositories:
   yarp-devices-ros:
     type: git
     url: https://github.com/robotology/yarp-devices-ros.git
-    version: v3.9.1
+    version: v3.10.0
+  yarp-ros:
+    type: git
+    url: https://github.com/robotology/yarp-ros.git
+    version: v3.10.0
   yarp-device-keyboard-joypad:
     type: git
     url: https://github.com/ami-iit/yarp-device-keyboard-joypad.git
@@ -274,7 +278,7 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.3.0
+    version: v0.3.1
   sharedlibpp:
     type: git
     url: https://github.com/ami-iit/sharedlibpp.git
