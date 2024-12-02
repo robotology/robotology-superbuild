@@ -215,7 +215,7 @@ conda install -c conda-forge -c robostack-staging  ros-humble-ros-base ros-humbl
 If you install your dependencies with `conda`, just make sure to install the required packages from the `robostack-staging` channel:
 
 ~~~
-conda install -c conda-forge -c robostack-staging ros-humble-moveit
+conda install -c conda-forge -c robostack-staging ros-humble-moveit  ros-humble-hardware-interface ros-humble-moveit-visual-tools ros-humble-gazebo-msgs ros-humble-controller-manager = "*"
 ~~~
 
 ### Clone the repo
