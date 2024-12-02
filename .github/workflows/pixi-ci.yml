@@ -66,4 +66,6 @@ jobs:
         # needs to be called before calling pixi run build-all, so
         # we explicitly call pixi run configure-all
         pixi run configure-all
+        # Workaround for build-ros2 builds
+        pixi run configure-ros2
         pixi run ${{ matrix.pixi_task }}
