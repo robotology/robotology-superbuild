@@ -26,7 +26,7 @@ repositories:
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: v0.17.1
+    version: v0.18.0
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
@@ -34,7 +34,7 @@ repositories:
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v2.6.3
+    version: v2.7.1
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -114,7 +114,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.3.4
+    version: v1.3.5
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
@@ -122,7 +122,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v4.0.3
+    version: v4.1.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -130,19 +130,19 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.40.0
+    version: v1.41.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.40.0
+    version: v1.41.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.40.0
+    version: v1.41.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
-    version: v1.39.0
+    version: v1.41.0
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
@@ -178,7 +178,7 @@ repositories:
   matioCpp:
     type: git
     url: https://github.com/ami-iit/matio-cpp.git
-    version: v0.2.5
+    version: v0.2.6
   osqp-matlab:
     type: git
     url: https://github.com/ami-iit/osqp-matlab-cmake-buildsystem.git
@@ -222,7 +222,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.42
+    version: release-1.1.43
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -230,7 +230,7 @@ repositories:
   yarp-device-openxrheadset:
     type: git
     url: https://github.com/ami-iit/yarp-device-openxrheadset.git
-    version: v0.0.4
+    version: v0.0.5
   yarp-openvr-trackers:
     type: git
     url: https://github.com/ami-iit/yarp-openvr-trackers.git
@@ -286,4 +286,4 @@ repositories:
   QpSolversEigen:
     type: git
     url: https://github.com/ami-iit/qpsolvers-eigen.git
-    version: v0.0.1
+    version: v0.1.0
