@@ -62,4 +62,4 @@ jobs:
         # Eventually we could consider removing that check in YCM
         git config --global user.name PixiGHA User
         git config --global user.email pixighauser@example.com
-        pixi run build-all
+        pixi run ${{ matrix.pixi_task }}
