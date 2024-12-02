@@ -236,7 +236,7 @@ configure-ros2 = { cmd = [
     "-B",
     ".build-ros2",
     "-DROBOTOLOGY_USES_ROS2:BOOL=ON",
-    "-DROBOTOLOGY_USES_MOVEIT:BOOL=ON",
+    "-DROBOTOLOGY_USES_MOVEIT:BOOL=OFF",
 ]}
 
 configure-all-ros2 = { cmd = [
@@ -255,7 +255,7 @@ configure-all-ros2 = { cmd = [
     "-DROBOTOLOGY_USES_GZ:BOOL=ON",
     "-DROBOTOLOGY_USES_ESDCAN:BOOL=$ROBOTOLOGY_USES_ESDCAN",
     "-DROBOTOLOGY_USES_ROS2:BOOL=ON",
-    "-DROBOTOLOGY_USES_MOVEIT:BOOL=ON",
+    "-DROBOTOLOGY_USES_MOVEIT:BOOL=OFF",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
