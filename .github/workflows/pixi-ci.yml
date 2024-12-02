@@ -23,7 +23,7 @@ jobs:
       matrix:
         build_type: [Release]
         os: [ubuntu-22.04, macos-13, macos-14, windows-2019]
-        pixi_taks: [build-all, build-all-ros2, build-all-ros2moveit]
+        pixi_task: [build-all, build-all-ros2, build-all-ros2moveit]
         exclude:
           # ros is not supported on osx-arm64 (incompatibility with gz-sim8)
           - os: macos-14
