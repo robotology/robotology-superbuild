@@ -16,7 +16,7 @@ on:
 
 jobs:
   build-with-pixi:
-    name: '[pixi:${{ matrix.os }}]'
+    name: '[pixi:${{ matrix.os }}@task:${{ matrix.pixi_task }}]'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
