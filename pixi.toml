@@ -222,11 +222,10 @@ ros-humble-controller-manager = "*"
 
 # Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
 [feature.ros2.tasks]
+
 configure-ros2 = { cmd = [
     "cmake",
     "-DCMAKE_BUILD_TYPE=Release",
-    # Remove once yarp-3.10 is used in the superbuild
-    "-DROBOTOLOGY_PROJECT_TAGS:BOOL=Unstable",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
@@ -243,8 +242,6 @@ configure-ros2 = { cmd = [
 configure-all-ros2 = { cmd = [
     "cmake",
     "-DCMAKE_BUILD_TYPE=Release",
-    # Remove once yarp-3.10 is used in the superbuild
-    "-DROBOTOLOGY_PROJECT_TAGS:BOOL=Unstable",
     # Enable all options
     "-DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON",
     "-DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON",
@@ -269,6 +266,14 @@ configure-all-ros2 = { cmd = [
     "-B",
     ".build-ros2",
 ]}
+
+# We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
+# and each project will run itself a number of compilation threads equal to ninja defaults,
+# if we do not do this there is an high change that the system running out of memory
+# if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --config Release --parallel N
+build-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-ros2"] }
+build-all-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-all-ros2"] }
+
 
 # Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
 [feature.ros2moveit.tasks]
