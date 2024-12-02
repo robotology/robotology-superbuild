@@ -23,21 +23,21 @@ jobs:
       matrix:
         build_type: [Release]
         os: [ubuntu-22.04, macos-13, macos-14, windows-2019]
-        pixi_task: [build-all, build-all-ros2, build-all-ros2moveit]
+        pixi_task: [build-all, build-ros2, build-ros2moveit]
         exclude:
           # ros is not supported on osx-arm64 (incompatibility with gz-sim8)
           - os: macos-14
-            pixi_task: build-all-ros2
+            pixi_task: build-ros2
           # We already test linux-64 and ros2 in build-all-ros2moveit
           - os: ubuntu-22.04
-            pixi_task: build-all-ros2
+            pixi_task: build-ros2
           # moveit is only supported on Linux for now (missing required package in robostack)
           - os: macos-13
-            pixi_task: build-all-ros2moveit
+            pixi_task: build-ros2moveit
           - os: macos-14
-            pixi_task: build-all-ros2moveit
+            pixi_task: build-ros2moveit
           - os: windows-2019
-            pixi_task: build-all-ros2moveit
+            pixi_task: build-ros2moveit
     steps:
     - uses: actions/checkout@v4
 
