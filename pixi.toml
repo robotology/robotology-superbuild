@@ -22,7 +22,7 @@ scripts = ["pixi_activation.bat", ".build/install/share/robotology-superbuild/se
 scripts = ["pixi_activation.sh", ".build-ros2/install/share/robotology-superbuild/setup.sh"]
 
 [feature.ros2.target.win-64.activation]
-#scripts = ["pixi_activation.bat", ".build-ros2/install/share/robotology-superbuild/setup.bat"]
+scripts = ["pixi_activation.bat", ".build-ros2/install/share/robotology-superbuild/setup.bat"]
 
 [feature.ros2moveit.activation]
 scripts = ["pixi_activation.sh", ".build-ros2moveit/install/share/robotology-superbuild/setup.sh"]
