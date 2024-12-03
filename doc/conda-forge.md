@@ -202,6 +202,22 @@ If you install your dependencies with `conda`, just make sure to install the `gz
 conda install -c conda-forge gz-sim8
 ~~~
 
+#### `ROBOTOLOGY_USES_ROS2`
+
+If you install your dependencies with `conda`, just make sure to install the required packages from the `robostack-staging` channel:
+
+~~~
+conda install -c conda-forge -c robostack-staging  ros-humble-ros-base ros-humble-test-msgs
+~~~
+
+#### `ROBOTOLOGY_USES_MOVEIT`
+
+If you install your dependencies with `conda`, just make sure to install the required packages from the `robostack-staging` channel:
+
+~~~
+conda install -c conda-forge -c robostack-staging ros-humble-moveit  ros-humble-hardware-interface ros-humble-moveit-visual-tools ros-humble-gazebo-msgs ros-humble-controller-manager
+~~~
+
 ### Clone the repo
 To compile the `robotology-superbuild` code itself, you need to clone it, following the instructions in https://github.com/robotology/robotology-superbuild#clone-the-repo .
 

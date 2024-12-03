@@ -19,6 +19,8 @@ Table of Contents
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo Classic simulator](#gazebo-classic-simulator)
     * [Modern Gazebo simulator](#modern-gazebo-simulator)
+    * [ROS 2](#ros-2)
+    * [MoveIt](#moveit)
     * [MuJoCo simulator](#mujoco)
     * [Ignition](#ignition)
     * [MATLAB](#matlab)
@@ -64,6 +66,8 @@ The dependencies CMake options specify if the packages dependending on something
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
 | `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](https://classic.gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo-classic-simulator) |
 | `ROBOTOLOGY_USES_GZ`  | Include software and plugins that depend on the [Modern Gazebo (gz-sim) simulator](http://gazebosim.org/). | `OFF` | [Documentation on Modern Gazebo (gz-sim) dependency.](#modern-gazebo-simulator) |
+| `ROBOTOLOGY_USES_ROS2`  | Include software and plugins that depend on [ROS 2](https://www.ros.org/). | `OFF` | [Documentation on ROS 2 dependency.](#ros-2) |
+| `ROBOTOLOGY_USES_MOVEIT`  | Include software and plugins that depend on the [MoveIt motion planning framework](https://moveit.ai/). | `OFF` | [Documentation on MoveIt dependency.](#moveit) |
 | `ROBOTOLOGY_USES_MUJOCO`  | Include software and plugins that depend on the [MuJoCo simulator](https://mujoco.org/).  | `ON` | [Documentation on MuJoCo dependency.](#mujoco) |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`  | Include software and plugins that depend on the [PCL](https://pointclouds.org/) or [VTK](https://vtk.org/). | `OFF`   | [Documentation on PCL and VTK dependency.](#pcl_and_vtk) |
 | `ROBOTOLOGY_USES_IGNITION` | Include software that depends on [Ignition](ignitionrobotics.org/). | `OFF` | [Documentation on Ignition Gazebo dependency.](#ignition) |
@@ -94,6 +98,8 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_USES_GZ`<sup id="a3">[3!](#f3)</sup>                                          | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_MUJOCO`<sup id="a1">[1!](#f1)</sup>  | ✔️                               |           ❌                |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_ROS2`                                       |   ✔️                             |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| `ROBOTOLOGY_USES_MOVEIT`                                       | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |                  ❌                        |
 | `ROBOTOLOGY_USES_IGNITION`                                          | ❌                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_USES_MATLAB`                                            | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_OCTAVE`<sup id="a4">[4!](#f4)</sup>                                            | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
@@ -204,6 +210,7 @@ Dependencies-specific documentation
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option, that enables the software that depends on "Classic Gazebo".
 
 ### Check the installation
+
 Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
 
 ## Modern Gazebo simulator
@@ -213,6 +220,20 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ` CMake option,
 > [!IMPORTANT]  
 > At the moment the `ROBOTOLOGY_USES_GZ` does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90). Furthermore, it is not supported on non-Ubuntu Debian distributions with apt dependencies.
 
+## ROS 2
+
+This option enables the compilation of the [`yarp-devices-ros2` repo](https://github.com/robotology/yarp-devices-ros2).
+
+> [!WARNING]  
+> No conda binaries are available for the `yarp-devices-ros2` package at the moment, neither in `conda-forge` nor the `robotology` channel.
+
+
+## MoveIt
+
+This option enables the compilation of the [`xcub-moveit2` repo](https://github.com/icub-tech-iit/xcub-moveit2).
+
+> [!WARNING]  
+> No conda binaries are available for the `xcub-moveit2` package at the moment, neither in `conda-forge` nor the `robotology` channel.
 
 
 ## MuJoCo

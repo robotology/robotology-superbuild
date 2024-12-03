@@ -41,6 +41,8 @@ else()
 endif()
 option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ${ROBOTOLOGY_USES_GAZEBO_DEFAULT})
 option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" OFF)
+option(ROBOTOLOGY_USES_ROS2 "Enable compilation of software that depends on ROS 2" OFF)
+option(ROBOTOLOGY_USES_MOVEIT "Enable compilation of software that depends on MoveIt" OFF)
 option(ROBOTOLOGY_USES_MUJOCO "Enable compilation of mujoco and software that depends on it" OFF)
 
 ## Enable packages that depend on the Modern Gazebo (gz-sim) simulator
