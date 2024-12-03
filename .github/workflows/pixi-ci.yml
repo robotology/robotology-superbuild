@@ -59,7 +59,8 @@ jobs:
 
     - uses: prefix-dev/setup-pixi@v0.8.1
 
-    - name: Build
+    - name: Workaround on Windows
+      if: contains(matrix.os, 'windows')
       shell: bash
       run: |
         # Avoid YCM complaining that the git user is not set
@@ -72,4 +73,12 @@ jobs:
         pixi run configure-all
         # Workaround for build-ros2 builds
         pixi run configure-ros2
+
+    - name: Build
+      shell: bash
+      run: |
+        # Avoid YCM complaining that the git user is not set
+        # Eventually we could consider removing that check in YCM
+        git config --global user.name PixiGHA User
+        git config --global user.email pixighauser@example.com
         pixi run ${{ matrix.pixi_task }}
