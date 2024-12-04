@@ -287,3 +287,15 @@ repositories:
     type: git
     url: https://github.com/ami-iit/qpsolvers-eigen.git
     version: v0.1.0
+  yarp-devices-ros2:
+    type: git
+    url: https://github.com/robotology/yarp-devices-ros2
+    version: v1.0.0
+  xcub-moveit2:
+    type: git
+    url: https://github.com/icub-tech-iit/xcub-moveit2
+    version: v1.0.0
+  icub-tech-iit-documentation:
+    type: git
+    url: https://github.com/icub-tech-iit/documentation
+    version: v1.0.0
