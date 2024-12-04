@@ -294,7 +294,7 @@ repositories:
   xcub-moveit2:
     type: git
     url: https://github.com/icub-tech-iit/xcub-moveit2
-    version: v1.0.0
+    version: v0.2.0
   icub-tech-iit-documentation:
     type: git
     url: https://github.com/icub-tech-iit/documentation
