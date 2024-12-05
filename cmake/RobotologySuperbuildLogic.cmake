@@ -113,7 +113,11 @@ if(ROBOTOLOGY_ENABLE_DYNAMICS)
     find_or_build_package(idyntree-matlab-bindings)
   endif()
   find_or_build_package(OsqpEigen QUIET)
-  find_or_build_package(idyntree-yarp-tools)
+  # Let's not generate conda packages for idyntree-yarp-tools until
+  # https://github.com/robotology/idyntree-yarp-tools/issues/50 is fixed
+  if(NOT ROBOTOLOGY_GENERATE_CONDA_RECIPES)
+    find_or_build_package(idyntree-yarp-tools)
+  endif()
   find_or_build_package(qpOASES)
   find_or_build_package(BlockFactory)
   find_or_build_package(WBToolbox)
