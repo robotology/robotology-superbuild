@@ -19,3 +19,5 @@ set_tag(YCM_TAG master)
 set_tag(YARP_TAG yarp-3.10)
 set_tag(yarp-matlab-bindings_TAG yarp-3.10)
 set_tag(gym-ignition_TAG v1.3.1)
+# Workaround for https://github.com/robotology/icub-firmware-build/pull/184
+set_tag(icub-firmware-build_TAG v1.41.0)
