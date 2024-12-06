@@ -8,3 +8,13 @@ qt:
 
 qt_main:
   - 5.15
+
+# The boost 1.86 is taking a lot of time,
+# so better to manually pin boost to 1.86 to avoid being locked
+# to use old boost builds
+libboost_devel:
+  - '1.86'
+libboost_headers:
+  - '1.86'
+libboost_python_devel:
+  - '1.86'
