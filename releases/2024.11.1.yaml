@@ -66,11 +66,11 @@ repositories:
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
-    version: v1.27.0
+    version: v1.28.0
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.3.8
+    version: v2.3.9
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
@@ -158,7 +158,7 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.25.0
+    version: v1.26.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
@@ -186,7 +186,7 @@ repositories:
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
-    version: v1.2.4
+    version: v1.2.5
   gym-ignition:
     type: git
     url: https://github.com/robotology/gym-ignition.git
