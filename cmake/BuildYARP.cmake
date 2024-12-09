@@ -35,7 +35,12 @@ else()
 endif()
 
 if(ROBOTOLOGY_USES_PYTHON)
-  list(APPEND YARP_OPTIONAL_DEPS "-DCMAKE_INSTALL_PYTHON3DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
+  # Differently from other libraries, the `CMAKE_INSTALL_PYTHON3DIR` is a PATH CACHE variable,
+  # so if we pass a relative path, it gets automatically expanded to the absolute path w.r.t.
+  # to the current work directory where cmake is invoked, while we want it to be relative w.r.t.
+  # ${YCM_EP_INSTALL_DIR} (i.e. the variable that is passed as `CMAKE_INSTALL_PREFIX` to all projects)
+  file(TO_NATIVE_PATH "${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}" ROBOTOLOGY_SUPERBUILD_PYTHON_FULL_INSTALL_DIR)
+  list(APPEND YARP_OPTIONAL_CMAKE_ARGS "-DCMAKE_INSTALL_PYTHON3DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_FULL_INSTALL_DIR}")
 endif()
 
 # Workaround for graphviz==9 failures with YARP <= 3.9
