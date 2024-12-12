@@ -90,7 +90,7 @@ Once you cloned the repo, to go forward you can follow the different instruction
 
 The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
 
-Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html).
+Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](https://robotology.github.io/ycm-cmake-modules/gh-pages/latest/manual/ycm-superbuild.7.html).
 
 When compiled from source, `robotology-superbuild` will download and build a number of software.
 For each project, the repository will be downloaded in the `src/<package_name>` subdirectory of the superbuild root. 
@@ -279,7 +279,7 @@ using Xcode on macOS.
 
 Note that the update will try to update all the software in the `robotology-superbuild`, and it will complain if the repository is not in the expected branch.
 For this reason, if you are activly developing on a repository managed by the `robotology-superbuild`, remember to switch the `YCM_EP_DEVEL_MODE_<package_name>`
-option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-superbuild.7.html#developer-mode
+option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm-cmake-modules/gh-pages/latest/manual/ycm-superbuild.7.html?#developer-mode
 for more details on this options.
 
 > [!IMPORTANT]  
