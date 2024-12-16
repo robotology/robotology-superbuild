@@ -86,11 +86,11 @@ For the list of actually available tags, see the [GitHub's releases page](https:
 Once you cloned the repo, to go forward you can follow the different instructions on how to install robotology-superbuild from the source code, depending on your operating system and the package manager you want to use to install the required dependencies:
 * [**Linux with dependencies provided by apt**](#linux-from-source-with-dependencies-provided-by-apt): use the superbuild on Debian/Ubuntu distributions installing the dependencies with apt,
 * [**Linux, macOS or Windows with dependencies provided by conda-forge**](#linux-macos-or-windows-from-source-with-dependencies-provided-by-conda-forge): use the superbuild on any supported operating system, installing the dependencies with conda or pixi package manager,
-* [**Windows Subsystem For Linux**](#windows-subsystem-for-linux-from-source): use the superbuild on [Windows Subsystem For Linux](https://docs.microsoft.com/en-us/windows/wsl/about).
+* [**Windows Subsystem For Linux**](#windows-subsystem-for-linux-from-source): use the superbuild on [Windows SubsystComplete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](https://robotology.github.io/ycm-cmake-modules/gh-pages/latest/manual/ycm-superbuild.7.html).
+em For Linux](https://docs.microsoft.com/en-us/windows/wsl/about).
 
 The exact versions of the operating systems supported by the robotology-superbuild follow the one supported by the YARP library, that are documented in https://github.com/robotology/yarp/blob/master/.github/CONTRIBUTING.md#supported-systems .
 
-Complete documentation on how to use a YCM-based superbuild is available in the [YCM documentation](https://robotology.github.io/ycm-cmake-modules-cmake-modules/gh-pages/latest/manual/ycm-cmake-modules-superbuild.7.html).
 
 When compiled from source, `robotology-superbuild` will download and build a number of software.
 For each project, the repository will be downloaded in the `src/<package_name>` subdirectory of the superbuild root. 
@@ -294,7 +294,7 @@ FAQs for robotology-superbuild can be found at [`doc/faqs.md`](doc/faqs.md).
 
 For questions related to how to modify the rootology-superbuild itself, such as how to add a new package, how to do a release, check the Developers' FAQs document at [`doc/developers-faqs.md`](doc/developers-faqs.md).
 
-As robotology-superbuild is based on YCM,  also [YCM's FAQs](http://robotology.github.io/ycm/gh-pages/git-master/manual/ycm-faq.7.html) could be relevant.
+As robotology-superbuild is based on YCM,  also [YCM's FAQs](http://robotology.github.io/ycm-cmake-modules/gh-pages/git-master/manual/ycm-faq.7.html) could be relevant.
 
 
 Mantainers
