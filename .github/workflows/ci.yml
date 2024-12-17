@@ -95,8 +95,8 @@ jobs:
       run: |
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
-        conda install 
-        
+        conda install bash-completion freeglut libdc1394 libi2c xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr libgl-devel
+
     # Additional dependencies useful only on Windows
     - name: Dependencies [Conda/Windows]
       if: contains(matrix.os, 'windows')
