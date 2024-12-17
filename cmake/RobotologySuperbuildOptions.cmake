@@ -70,6 +70,12 @@ option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necess
 option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
 
+# This is option is not meant to be used in general, but it can be useful in setups where there is a single
+# robots-configuration installed outside of the robotology-superbuild that is shared by different robotology-superbuild,
+# that are build in different environments or container images
+option(ROBOTOLOGY_SKIP_ROBOTS_CONFIGURATION "If ON, do not clone and install the robotology/robots-configuration repository." FALSE)
+mark_as_advanced(ROBOTOLOGY_SKIP_ROBOTS_CONFIGURATION)
+
 # This is just a private undocumented option to download repos that are tracked in LatestReleases.yaml,
 # but they are not actually build by the superbuild
 option(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE "(Internal) Clone all repos for automatic version update." FALSE)
