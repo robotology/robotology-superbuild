@@ -150,18 +150,13 @@ of the robotology-superbuild.
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
 ~~~
-conda install -c conda-forge ace asio assimp boost cli11 eigen freetype glew glfw glm graphviz gsl "ipopt>3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib "ffmpeg==6.*" onnxruntime-cpp
+conda install -c conda-forge ace asio assimp libboost-devel cli11 eigen freetype glew glfw glm graphviz gsl "ipopt>3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake compilers make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
 ~~~
 
 
-**Additionally** if you are on **Linux x86-64**, you **also** need to install also the following packages:
+**Additionally** if you are on **Linux**, you **also** need to install also the following packages:
 ~~~
-conda install -c conda-forge bash-completion freeglut libdc1394 libi2c libselinux-cos7-x86_64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-x86_64 mesa-libgl-devel-cos7-x86_64 libxshmfence-cos7-x86_64 libxshmfence-devel-cos7-x86_64
-~~~
-
-**Additionally** if you are on **Linux ARM 64-bit**, you **also** need to install also the following packages:
-~~~
-conda install -c conda-forge bash-completion freeglut libdc1394 libi2c libselinux-cos7-aarch64 xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr mesa-libgl-cos7-aarch64 mesa-libgl-devel-cos7-aarch64 libxshmfence-cos7-aarch64 libxshmfence-devel-cos7-aarch64
+conda install -c conda-forge bash-completion freeglut libdc1394 libi2c xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr libgl-devel
 ~~~
 
 **Additionally** if you are on **Windows**, you **also** need to install also the following packages:
