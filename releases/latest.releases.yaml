@@ -134,11 +134,11 @@ repositories:
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.41.0
+    version: v1.41.1
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.41.0
+    version: v1.41.1
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
@@ -210,7 +210,7 @@ repositories:
   pyngrok:
     type: git
     url: https://github.com/alexdlaird/pyngrok.git
-    version: 7.2.2
+    version: 7.2.3
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
