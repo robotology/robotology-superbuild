@@ -203,6 +203,10 @@ jobs:
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
+        exclude:
+          # Not supported anymore, see https://github.com/robotology/robotology-superbuild/issues/1783
+          - project_tags: Unstable
+            docker_image: "ubuntu:20.04"
 
     container:
       image: ${{ matrix.docker_image }}
