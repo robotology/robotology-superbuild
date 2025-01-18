@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-22.04, macos-13, macos-14, windows-2019]
+        os: [ubuntu-22.04, ubuntu-24.04-arm, macos-13, macos-14, windows-2019]
         pixi_task: [build-all, build-ros2, build-ros2moveit]
         exclude:
           # ros is not supported on osx-arm64 (incompatibility with gz-sim8)
@@ -36,6 +36,8 @@ jobs:
           - os: windows-2019
             pixi_task: build-ros2
           # moveit is only supported on Linux for now (missing required package in robostack)
+          - os: ubuntu-24.04-arm
+            pixi_task: build-ros2moveit
           - os: macos-13
             pixi_task: build-ros2moveit
           - os: macos-14
