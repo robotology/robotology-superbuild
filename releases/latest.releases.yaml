@@ -246,7 +246,7 @@ repositories:
   proxsuite:
     type: git
     url: https://github.com/Simple-Robotics/proxsuite.git
-    version: v0.6.7
+    version: v0.7.1
   BayesFilters:
     type: git
     url: https://github.com/robotology/bayes-filters-lib.git
