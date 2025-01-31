@@ -74,6 +74,7 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
+                         -DFRAMEWORK_COMPILE_Ros1Publisher:BOOL=OFF
                          -DFRAMEWORK_USE_YARP:BOOL=ON
                          -DFRAMEWORK_USE_OsqpEigen:BOOL=ON
                          -DFRAMEWORK_USE_matioCpp:BOOL=ON
