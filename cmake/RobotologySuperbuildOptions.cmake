@@ -121,12 +121,6 @@ set(ROBOTOLOGY_PROJECT_TAGS "Stable" CACHE STRING "The tags to be used for the r
 set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE CACHE FILEPATH "If ROBOTOLOGY_PROJECT_TAGS is custom, this file will be loaded to specify the tags of the projects to use.")
 set_property(CACHE ROBOTOLOGY_PROJECT_TAGS PROPERTY STRINGS "Stable" "Unstable" "LatestRelease" "Custom")
 
-
-# Since YARP 3.10 this requires to have separate yarp-ros and yarp-ros-devices
-# However, we keep ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS as a user selectable option to easily revert to the old behaviour
-option(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS "If ON, build yarp-ros and yarp-ros-devices repository" ON)
-mark_as_advanced(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
-
 if(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Stable")
     include(ProjectsTagsStable)
 elseif(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Unstable")
