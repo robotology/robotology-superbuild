@@ -10,11 +10,6 @@ find_or_build_package(blocktestcore QUIET)
 
 set(blocktest-yarp-plugins_OPTIONAL_DEPS "")
 
-if(ROBOTOLOGY_BUILD_SEPARATE_YARP_ROS)
-  find_or_build_package(yarp-ros QUIET)
-  list(APPEND blocktest-yarp-plugins_OPTIONAL_DEPS yarp-ros)
-endif()
-
 ycm_ep_helper(blocktest-yarp-plugins TYPE GIT
               STYLE GITHUB
               REPOSITORY robotology/blocktest-yarp-plugins.git
