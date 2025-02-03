@@ -10,5 +10,5 @@ ycm_ep_helper(ResolveRoboticsURICpp TYPE GIT
                                     COMPONENT core
                                     FOLDER src)
 
-set(YCM_CONDA_PKG_NAME resolve-robotics-uri-cpp)
-set(YCM_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
+set(ResolveRoboticsURICpp_CONDA_PKG_NAME libresolve-robotics-uri-cpp)
+set(ResolveRoboticsURICpp_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
