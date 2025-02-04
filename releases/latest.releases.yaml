@@ -299,3 +299,7 @@ repositories:
     type: git
     url: https://github.com/icub-tech-iit/documentation.git
     version: v1.0.0
+  ResolveRoboticsURICpp:
+    type: git
+    url: https://github.com/ami-iit/resolve-robotics-uri-cpp.git
+    version: v0.0.2
