@@ -12,6 +12,11 @@ platforms = ["linux-64", "linux-aarch64", "win-64", "osx-64", "osx-arm64"]
 [system-requirements]
 linux = "4.18"
 
+[activation.env]
+# This is a single place where CMAKE_BUILD_TYPE is defined, change its value here and
+# delete .build or .build-ros2 to change build type 
+CMAKE_BUILD_TYPE = "Release"
+
 [feature.base.activation]
 scripts = ["pixi_activation.sh", ".build/install/share/robotology-superbuild/setup.sh"]
 
@@ -34,7 +39,6 @@ scripts = ["pixi_activation.sh", ".build-ros2moveit/install/share/robotology-sup
 [tasks]
 configure = { cmd = [
     "cmake",
-    "-DCMAKE_BUILD_TYPE=Release",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
@@ -48,7 +52,6 @@ configure = { cmd = [
 
 configure-all = { cmd = [
     "cmake",
-    "-DCMAKE_BUILD_TYPE=Release",
     # Enable all options
     "-DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON",
     "-DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON",
@@ -78,9 +81,9 @@ configure-all = { cmd = [
 # We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
 # and each project will run itself a number of compilation threads equal to ninja defaults,
 # if we do not do this there is an high change that the system running out of memory
-# if you want to run with a custom number of threads, run pixi run cmake --build .build --config Release --parallel N
-build = { cmd = "cmake --build .build --config Release --parallel 1", depends-on = ["configure"] }
-build-all = { cmd = "cmake --build .build --config Release --parallel 1", depends-on = ["configure-all"] }
+# if you want to run with a custom number of threads, run pixi run cmake --build .build --parallel N
+build = { cmd = "cmake --build .build --parallel 1", depends-on = ["configure"] }
+build-all = { cmd = "cmake --build .build --parallel 1", depends-on = ["configure-all"] }
 
 
 [dependencies]
@@ -225,7 +228,6 @@ ros-humble-controller-manager = "*"
 
 configure-ros2 = { cmd = [
     "cmake",
-    "-DCMAKE_BUILD_TYPE=Release",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
@@ -241,7 +243,6 @@ configure-ros2 = { cmd = [
 
 configure-all-ros2 = { cmd = [
     "cmake",
-    "-DCMAKE_BUILD_TYPE=Release",
     # Enable all options
     "-DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON",
     "-DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON",
@@ -270,16 +271,15 @@ configure-all-ros2 = { cmd = [
 # We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
 # and each project will run itself a number of compilation threads equal to ninja defaults,
 # if we do not do this there is an high change that the system running out of memory
-# if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --config Release --parallel N
-build-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends-on = ["configure-ros2"] }
-build-all-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends-on = ["configure-all-ros2"] }
+# if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --parallel N
+build-ros2 = { cmd = "cmake --build .build-ros2 --parallel 1", depends-on = ["configure-ros2"] }
+build-all-ros2 = { cmd = "cmake --build .build-ros2 --parallel 1", depends-on = ["configure-all-ros2"] }
 
 
 # Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
 [feature.ros2moveit.tasks]
 configure-ros2moveit = { cmd = [
     "cmake",
-    "-DCMAKE_BUILD_TYPE=Release",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
@@ -295,7 +295,6 @@ configure-ros2moveit = { cmd = [
 
 configure-all-ros2moveit = { cmd = [
     "cmake",
-    "-DCMAKE_BUILD_TYPE=Release",
     # Enable all options
     "-DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON",
     "-DROBOTOLOGY_ENABLE_DYNAMICS:BOOL=ON",
@@ -324,9 +323,9 @@ configure-all-ros2moveit = { cmd = [
 # We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
 # and each project will run itself a number of compilation threads equal to ninja defaults,
 # if we do not do this there is an high change that the system running out of memory
-# if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --config Release --parallel N
-build-ros2moveit = { cmd = "cmake --build .build-ros2moveit --config Release --parallel 1", depends-on = ["configure-ros2moveit"] }
-build-all-ros2moveit = { cmd = "cmake --build .build-ros2moveit --config Release --parallel 1", depends-on = ["configure-all-ros2moveit"] }
+# if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --parallel N
+build-ros2moveit = { cmd = "cmake --build .build-ros2moveit --parallel 1", depends-on = ["configure-ros2moveit"] }
+build-all-ros2moveit = { cmd = "cmake --build .build-ros2moveit --parallel 1", depends-on = ["configure-all-ros2moveit"] }
 
 # We have two environments:
 # * The `default` one, used for all the options that do not depend on ROS 2
