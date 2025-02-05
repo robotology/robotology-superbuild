@@ -79,8 +79,8 @@ configure-all = { cmd = [
 # and each project will run itself a number of compilation threads equal to ninja defaults,
 # if we do not do this there is an high change that the system running out of memory
 # if you want to run with a custom number of threads, run pixi run cmake --build .build --config Release --parallel N
-build = { cmd = "cmake --build .build --config Release --parallel 1", depends_on = ["configure"] }
-build-all = { cmd = "cmake --build .build --config Release --parallel 1", depends_on = ["configure-all"] }
+build = { cmd = "cmake --build .build --config Release --parallel 1", depends-on = ["configure"] }
+build-all = { cmd = "cmake --build .build --config Release --parallel 1", depends-on = ["configure-all"] }
 
 
 [dependencies]
@@ -271,8 +271,8 @@ configure-all-ros2 = { cmd = [
 # and each project will run itself a number of compilation threads equal to ninja defaults,
 # if we do not do this there is an high change that the system running out of memory
 # if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --config Release --parallel N
-build-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-ros2"] }
-build-all-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends_on = ["configure-all-ros2"] }
+build-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends-on = ["configure-ros2"] }
+build-all-ros2 = { cmd = "cmake --build .build-ros2 --config Release --parallel 1", depends-on = ["configure-all-ros2"] }
 
 
 # Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
@@ -325,8 +325,8 @@ configure-all-ros2moveit = { cmd = [
 # and each project will run itself a number of compilation threads equal to ninja defaults,
 # if we do not do this there is an high change that the system running out of memory
 # if you want to run with a custom number of threads, run pixi run cmake --build .build-ros2 --config Release --parallel N
-build-ros2moveit = { cmd = "cmake --build .build-ros2moveit --config Release --parallel 1", depends_on = ["configure-ros2moveit"] }
-build-all-ros2moveit = { cmd = "cmake --build .build-ros2moveit --config Release --parallel 1", depends_on = ["configure-all-ros2moveit"] }
+build-ros2moveit = { cmd = "cmake --build .build-ros2moveit --config Release --parallel 1", depends-on = ["configure-ros2moveit"] }
+build-all-ros2moveit = { cmd = "cmake --build .build-ros2moveit --config Release --parallel 1", depends-on = ["configure-all-ros2moveit"] }
 
 # We have two environments:
 # * The `default` one, used for all the options that do not depend on ROS 2
