@@ -222,7 +222,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.43
+    version: release-1.1.45
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -302,4 +302,4 @@ repositories:
   ResolveRoboticsURICpp:
     type: git
     url: https://github.com/ami-iit/resolve-robotics-uri-cpp.git
-    version: v0.0.2
+    version: v0.18.1
