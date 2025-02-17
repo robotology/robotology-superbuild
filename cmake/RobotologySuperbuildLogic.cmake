@@ -70,6 +70,15 @@ if(ROBOTOLOGY_ENABLE_CORE)
   find_or_build_package(ICUBcontrib)
   find_or_build_package(icub-models)
   find_or_build_package(ergocub-software)
+  find_or_build_package(iDynTree)
+  # If we are generating conda-recipes, then we also need to build idyntree-matlab-bindings
+  # as the iDynTree package provided by conda-forge does not have MATLAB bindings, so we generate
+  # this package in the robotology channel
+  if(ROBOTOLOGY_GENERATE_CONDA_RECIPES AND ROBOTOLOGY_USES_MATLAB)
+    find_or_build_package(idyntree-matlab-bindings)
+  endif()
+  find_or_build_package(whole-body-estimators)
+  
   if(NOT ROBOTOLOGY_SKIP_ROBOTS_CONFIGURATION)
     find_or_build_package(robots-configuration)
   endif()
@@ -103,13 +112,7 @@ endif()
 
 # Dynamics
 if(ROBOTOLOGY_ENABLE_DYNAMICS)
-  find_or_build_package(iDynTree)
-  # If we are generating conda-recipes, then we also need to build idyntree-matlab-bindings
-  # as the iDynTree package provided by conda-forge does not have MATLAB bindings, so we generate
-  # this package in the robotology channel
-  if(ROBOTOLOGY_GENERATE_CONDA_RECIPES AND ROBOTOLOGY_USES_MATLAB)
-    find_or_build_package(idyntree-matlab-bindings)
-  endif()
+
   find_or_build_package(OsqpEigen QUIET)
   # Let's not generate conda packages for idyntree-yarp-tools until
   # https://github.com/robotology/idyntree-yarp-tools/issues/50 is fixed
@@ -122,7 +125,6 @@ if(ROBOTOLOGY_ENABLE_DYNAMICS)
   find_or_build_package(osqp)
   find_or_build_package(OsqpEigen)
   find_or_build_package(UnicyclePlanner)
-  find_or_build_package(whole-body-estimators)
   find_or_build_package(whole-body-controllers)
   find_or_build_package(matioCpp)
   find_or_build_package(robometry)
