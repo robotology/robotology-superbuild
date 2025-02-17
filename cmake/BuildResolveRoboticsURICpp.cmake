@@ -7,6 +7,7 @@ include(FindOrBuildPackage)
 ycm_ep_helper(ResolveRoboticsURICpp TYPE GIT
                                     STYLE GITHUB
                                     REPOSITORY ami-iit/resolve-robotics-uri-cpp.git
+                                    TAG main
                                     COMPONENT core
                                     FOLDER src)
 
