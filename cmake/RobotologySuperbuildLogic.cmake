@@ -8,27 +8,6 @@ else()
   set(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OFF)
 endif()
 
-
-# We only build qhull on Ubuntu 20.04, not on any other platform
-# See https://github.com/robotology/robotology-superbuild/issues/1269#issuecomment-1257811559
-# See https://stackoverflow.com/questions/26919334/detect-underlying-platform-flavour-in-cmake
-if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OR APPLE OR WIN32)
-  set(ROBOTOLOGY_BUILD_QHULL OFF)
-else()
-  find_program(ROBSUB_LSB_RELEASE lsb_release)
-  if(ROBSUB_LSB_RELEASE)
-    execute_process(COMMAND lsb_release -cs
-      OUTPUT_VARIABLE LSB_RELEASE_CODENAME
-      OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-  endif()
-  if(LSB_RELEASE_CODENAME STREQUAL "focal")
-    set(ROBOTOLOGY_BUILD_QHULL ON)
-  else()
-    set(ROBOTOLOGY_BUILD_QHULL OFF)
-  endif()
-endif()
-
 # On conda-forge we get tomlplusplus from conda-forge, otherwise we build it
 if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA)
   set(ROBOTOLOGY_BUILD_tomlplusplus OFF)
@@ -78,7 +57,7 @@ if(ROBOTOLOGY_ENABLE_CORE)
     find_or_build_package(idyntree-matlab-bindings)
   endif()
   find_or_build_package(whole-body-estimators)
-  
+
   if(NOT ROBOTOLOGY_SKIP_ROBOTS_CONFIGURATION)
     find_or_build_package(robots-configuration)
   endif()
