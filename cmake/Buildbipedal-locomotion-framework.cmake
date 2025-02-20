@@ -33,11 +33,6 @@ if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
   list(APPEND bipedal-locomotion-framework_DEPENDS CppAD)
   list(APPEND bipedal-locomotion-framework_DEPENDS LieGroupControllers)
 
-  if (ROBOTOLOGY_BUILD_QHULL)
-    find_or_build_package(qhull QUIET)
-    list(APPEND bipedal-locomotion-framework_DEPENDS qhull)
-  endif()
-
   if (ROBOTOLOGY_BUILD_tomlplusplus)
     find_or_build_package(tomlplusplus QUIET)
     list(APPEND bipedal-locomotion-framework_DEPENDS tomlplusplus)
