@@ -18,7 +18,7 @@ set_tag(casadi-matlab-bindings_TAG v3.6.6.0)
 # Pin YARP and yarp-devices-ros2 to a version before the yarp::dev::ReturnValue changes
 set_tag(YARP_REPOSITORY traversaro/yarp.git)
 set_tag(YARP_TAG fixpublicheaders)
-set_tag(yarp-devices-ros2_TAG e4ba8fa2efe7486edd3ade40b2236e69acb6ab37)
+set_tag(yarp-devices-ros2_TAG master)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
 set_tag(blockTest_TAG devel)
