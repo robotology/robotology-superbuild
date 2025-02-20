@@ -191,7 +191,6 @@ jobs:
         cmake_generator:
           - "Ninja"
         docker_image:
-          - "ubuntu:20.04"
           - "ubuntu:22.04"
           - "ubuntu:24.04"
 
@@ -203,10 +202,6 @@ jobs:
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
-        exclude:
-          # Not supported anymore, see https://github.com/robotology/robotology-superbuild/issues/1783
-          - project_tags: Unstable
-            docker_image: "ubuntu:20.04"
 
     container:
       image: ${{ matrix.docker_image }}
@@ -230,27 +225,11 @@ jobs:
         chmod +x ./.ci/install_debian.sh
         bash ./.ci/install_debian.sh
 
-    - name: Install recent CMake [Docker/Ubuntu Focal]
-      if: matrix.docker_image == 'ubuntu:20.04'
-      run: |
-        apt-get -y update
-        apt-get install -y ca-certificates software-properties-common gpg wget
-        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-        echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
-        apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-        apt-get install -y cmake
-
     - name: Configure [Docker]
       run: |
         mkdir -p build
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
-
-    - name: Disable MuJoCo and gz-sim for distros released before 2022 [Docker ubuntu:20.04]
-      if: (matrix.docker_image == 'ubuntu:20.04')
-      run: |
-       cd build
-       cmake  -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
 
     - name: Disable Gazebo Classic support for distro without Gazebo Classic binaries [Docker ubuntu:24.04]
       if: (matrix.docker_image == 'ubuntu:24.04')
