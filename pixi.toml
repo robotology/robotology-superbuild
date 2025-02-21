@@ -160,19 +160,13 @@ freeglut = "*"
 # ROBOTOLOGY_USES_ESDCAN
 esdcan = { version = "*", channel = "robotology" }
 
-[target.linux-64.dependencies]
+[target.linux.dependencies]
 bash-completion = "*"
 freeglut = "*"
 libdc1394 = "*"
 libi2c = "*"
 libgl-devel = "*"
-
-[target.linux-aarch64.dependencies]
-bash-completion = "*"
-freeglut = "*"
-libdc1394 = "*"
-libi2c = "*"
-libgl-devel = "*"
+xorg-xorgproto = "*"
 
 
 # As the ROS 2 dependencies are hosted on robostack and can lag behind
