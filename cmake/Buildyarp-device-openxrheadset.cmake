@@ -6,6 +6,7 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 find_or_build_package(OpenXR QUIET)
+find_or_build_package(iDynTree QUIET)
 
 ycm_ep_helper(yarp-device-openxrheadset TYPE GIT
               STYLE GITHUB
@@ -14,6 +15,7 @@ ycm_ep_helper(yarp-device-openxrheadset TYPE GIT
               COMPONENT dynamics
               FOLDER src
               DEPENDS YARP
-                      OpenXR)
+                      OpenXR
+                      iDynTree)
 
 set(yarp-device-openxrheadset_CONDA_DEPENDENCIES glew glm glfw xorg-xproto)
