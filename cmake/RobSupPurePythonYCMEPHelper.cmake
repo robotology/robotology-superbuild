@@ -66,5 +66,5 @@ function(ROB_SUP_PURE_PYTHON_YCM_EP_HELPER _name)
                          # See https://github.com/robotology/robotology-superbuild/issues/1118
                          # To avoid the complexity of handling two commands, we just use the build step to uninstall any existing package
                          BUILD_COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} pip uninstall ${BREAK_SYSTEM_PACKAGES_OPTION} -y ${_PYH_${_name}_PYTHON_PACKAGE_NAME}
-                         INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --target=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
+                         INSTALL_COMMAND ${Python3_EXECUTABLE} -m pip install --upgrade --no-deps --no-build-isolation --target=${YCM_EP_INSTALL_DIR}/${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR} -VV <SOURCE_DIR>)
 endfunction()
