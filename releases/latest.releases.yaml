@@ -114,7 +114,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.3.5
+    version: v1.3.6
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
@@ -122,7 +122,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v4.1.0
+    version: v4.2.0
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -202,7 +202,7 @@ repositories:
   idyntree-yarp-tools:
     type: git
     url: https://github.com/robotology/idyntree-yarp-tools.git
-    version: v0.0.10
+    version: v0.0.11
   pyqtconsole:
     type: git
     url: https://github.com/pyqtconsole/pyqtconsole.git
@@ -230,7 +230,7 @@ repositories:
   yarp-device-openxrheadset:
     type: git
     url: https://github.com/ami-iit/yarp-device-openxrheadset.git
-    version: v0.0.5
+    version: v0.0.6
   yarp-openvr-trackers:
     type: git
     url: https://github.com/ami-iit/yarp-openvr-trackers.git
@@ -278,7 +278,7 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.3.1
+    version: v0.4.0
   sharedlibpp:
     type: git
     url: https://github.com/ami-iit/sharedlibpp.git
