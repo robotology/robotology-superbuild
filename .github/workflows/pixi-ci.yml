@@ -59,7 +59,7 @@ jobs:
       run: |
         env
 
-    - uses: prefix-dev/setup-pixi@v0.8.2
+    - uses: prefix-dev/setup-pixi@v0.8.3
 
     - name: Workaround on Windows
       if: contains(matrix.os, 'windows')
