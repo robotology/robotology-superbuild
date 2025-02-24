@@ -26,7 +26,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.10.1
+    version: v3.11.1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -226,7 +226,7 @@ repositories:
   yarp-device-openxrheadset:
     type: git
     url: https://github.com/ami-iit/yarp-device-openxrheadset.git
-    version: v0.0.6
+    version: v0.0.7
   yarp-openvr-trackers:
     type: git
     url: https://github.com/ami-iit/yarp-openvr-trackers.git
