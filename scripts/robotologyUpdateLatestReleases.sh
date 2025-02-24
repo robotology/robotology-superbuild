@@ -18,7 +18,7 @@
 # External repos are in the list as we updated them manually
 # event-driven does not have a recent release
 # CppAD does not tags release on master, so the logic used in this script does not work
-projects_to_skip=("ICUBcontrib" "qhull" "CppAD" "casadi" "manif" "osqp" "proxsuite" "event-driven")
+projects_to_skip=("ICUBcontrib" "CppAD" "casadi" "manif" "osqp" "proxsuite" "event-driven")
 
 getParentDir () {
     SOURCE="${1}"
