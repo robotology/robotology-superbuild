@@ -23,27 +23,13 @@ jobs:
       matrix:
         build_type: [Release]
         os: [ubuntu-22.04, ubuntu-24.04-arm, macos-13, macos-14, windows-2019]
-        pixi_task: [build-all, build-ros2, build-ros2moveit]
+        pixi_task: [build-all, build-ros2]
         exclude:
-          # ros is not supported on osx-arm64 (incompatibility with gz-sim8)
-          - os: macos-14
-            pixi_task: build-ros2
-          # We already test linux-64 and ros2 in build-all-ros2moveit
-          - os: ubuntu-22.04
-            pixi_task: build-ros2
-          # Windows build fail due to length of build folder
+          # Windows build fail due to length of build folder and other CI-specific issues, skip for now
           # See https://github.com/robotology/robotology-superbuild/pull/1746#issuecomment-2514352629
           - os: windows-2019
             pixi_task: build-ros2
-          # moveit is only supported on Linux for now (missing required package in robostack)
-          - os: ubuntu-24.04-arm
-            pixi_task: build-ros2moveit
-          - os: macos-13
-            pixi_task: build-ros2moveit
-          - os: macos-14
-            pixi_task: build-ros2moveit
-          - os: windows-2019
-            pixi_task: build-ros2moveit
+
     steps:
     - uses: actions/checkout@v4
 
