@@ -24,6 +24,11 @@ jobs:
         build_type: [Release]
         os: [ubuntu-22.04, ubuntu-24.04-arm, macos-13, macos-14, windows-2019]
         pixi_task: [build-all, build-ros2]
+        exclude:
+          # Windows build fail due to length of build folder and other CI-specific issues, skip for now
+          # See https://github.com/robotology/robotology-superbuild/pull/1746#issuecomment-2514352629
+          - os: windows-2019
+            pixi_task: build-ros2
 
     steps:
     - uses: actions/checkout@v4
