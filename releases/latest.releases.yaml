@@ -110,7 +110,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.3.6
+    version: v1.3.7
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
