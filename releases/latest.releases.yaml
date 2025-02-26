@@ -26,11 +26,11 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.10.1
+    version: v3.11.1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v2.7.1
+    version: v2.8.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -50,7 +50,7 @@ repositories:
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
-    version: v0.7.6
+    version: v0.7.7
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
@@ -126,19 +126,19 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.41.0
+    version: v1.42.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.41.1
+    version: v1.42.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.41.1
+    version: v1.42.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
-    version: v1.41.0
+    version: v1.42.0
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
@@ -182,7 +182,7 @@ repositories:
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
-    version: v1.2.5
+    version: v1.2.6
   gym-ignition:
     type: git
     url: https://github.com/robotology/gym-ignition.git
@@ -286,11 +286,11 @@ repositories:
   yarp-devices-ros2:
     type: git
     url: https://github.com/robotology/yarp-devices-ros2.git
-    version: v1.0.0
+    version: v1.1.0
   xcub-moveit2:
     type: git
     url: https://github.com/icub-tech-iit/xcub-moveit2.git
-    version: v0.2.0
+    version: v0.3.0
   icub-tech-iit-documentation:
     type: git
     url: https://github.com/icub-tech-iit/documentation.git
