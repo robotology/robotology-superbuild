@@ -286,11 +286,11 @@ repositories:
   yarp-devices-ros2:
     type: git
     url: https://github.com/robotology/yarp-devices-ros2.git
-    version: v1.0.0
+    version: v1.1.0
   xcub-moveit2:
     type: git
     url: https://github.com/icub-tech-iit/xcub-moveit2.git
-    version: v0.2.0
+    version: v0.3.0
   icub-tech-iit-documentation:
     type: git
     url: https://github.com/icub-tech-iit/documentation.git
