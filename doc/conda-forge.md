@@ -68,21 +68,16 @@ Once you are in an activated environment, you can install robotology packages by
 conda install -c conda-forge -c https://repo.prefix.dev/robotology <packagename>
 ~~~
 
-The list of available packages is available at https://anaconda.org/robotology/repo .
+The list of available packages is available at https://prefix.dev/channels/robotology .
 
 For example, if you want to install yarp and icub-main, you simple need to install:
 ~~~
 conda install -c conda-forge -c https://repo.prefix.dev/robotology yarp icub-main
 ~~~
 
-In addition, if you want to simulate the iCub in Gazebo Classic, you should also install `icub-models` and `gazebo-yarp-plugins`:
+In addition, if you want to simulate the iCub and ergoCub with Modern Gazebo (gz-sim), you should install `icub-models` and `gz-sim-yarp-plugins`:
 ~~~
-conda install -c conda-forge gazebo-yarp-plugins icub-models
-~~~
-
-While if you want to simulate it with Modern Gazebo (gz-sim), you should install `icub-models` and `gz-sim-yarp-plugins`:
-~~~
-conda install -c conda-forge gz-sim-yarp-plugins icub-models
+conda install -c conda-forge gz-sim-yarp-plugins icub-models ergocub-models
 ~~~
 
 If you want to develop some C++ code on the top of these libraries, it is recommended to also install the necessary compiler and development tools directly in the same environment:
@@ -96,7 +91,7 @@ To ensure redundancy, the `robotology` channel is available on two servers:
 * [`prefix.dev`](https://prefix.dev/channels/robotology)
 * [`anaconda.org`](https://anaconda.org/robotology/)
 
-The full history of packages is available on the prefix.dev mirror, so if you aim for reproducibility, try to use the prefix.dev mirror by specifying the channel via `-c https://repo.prefix.dev/robotology`. On the anaconda.org, some packages built before 1st of January 2023 are not available, so if you only care for the latest packages, you can also install packages by simply passing `-c robotology` to conda.
+The full history of packages is available on the prefix.dev mirror, so if you aim for reproducibility and use use a tool that produces lockfiles like [`pixi`](https://pixi.sh/) or [`conda-lock`](https://github.com/conda/conda-lock), try to use the prefix.dev mirror by specifying the channel via `-c https://repo.prefix.dev/robotology`. On the anaconda.org, only packages built after the 1st of July 2023 are available, so if you only care for the latest packages, you can also install packages by simply passing `-c robotology` to conda.
 
 ## Source installation
 
