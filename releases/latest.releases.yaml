@@ -22,7 +22,7 @@ repositories:
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: v0.18.1
+    version: v0.18.2
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
@@ -42,11 +42,11 @@ repositories:
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v4.12.0
+    version: v4.12.1
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v3.0.0
+    version: v3.1.0
   ergocub-software:
     type: git
     url: https://github.com/icub-tech-iit/ergocub-software.git
@@ -106,7 +106,7 @@ repositories:
   whole-body-estimators:
     type: git
     url: https://github.com/robotology/whole-body-estimators.git
-    version: v0.11.2
+    version: v0.11.3
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
@@ -118,7 +118,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v4.2.0
+    version: v4.2.1
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
