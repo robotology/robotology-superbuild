@@ -14,7 +14,8 @@ list(APPEND QpSolversEigen_DEPENDS OsqpEigen)
 
 
 # proxqp only supports MSVC Toolset v143, i.e. Visual Studio 2022
-if(NOT MSVC OR MSVC_VERSION VERSION_GREATER_EQUAL 1930)
+# 1943 skipped due to https://github.com/robotology/robotology-superbuild/issues/1814#issuecomment-2690292052
+if(NOT MSVC OR (MSVC_VERSION VERSION_GREATER_EQUAL 1930 AND NOT MSVC_VERSION VERSION_EQUAL 1943))
   find_or_build_package(proxsuite QUIET)
   list(APPEND QpSolversEigen_DEPENDS proxsuite)
   set(QPSOLVERSEIGEN_ENABLE_PROXQP ON)

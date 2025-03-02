@@ -61,7 +61,7 @@ Source Installation
 ## Clone the repo
 The first step to install `robotology-superbuild` from source is to download the `robotology-superbuild` code itself, and this is done through [Git](https://git-scm.com/).
 
-Once you install Git, you need to set your name and email to sign your commits, as this is required by the superbuild:
+Once you install Git, it is suggest that you set your name and email to sign your commits, to ensure that commits will have meaningful metadata:
 ```
 git config --global user.name FirstName LastName
 git config --global user.email user@email.domain
