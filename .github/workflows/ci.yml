@@ -41,7 +41,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v3
       with:
         miniforge-variant: Miniforge3
-        miniforge-version: latest
+        miniforge-version: 25.1.1
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
@@ -79,13 +79,6 @@ jobs:
         rm msdk_R2020a_mexw64.zip
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
-
-    # se latest conda-libmamba-solver to avoid segfaults on Windows
-    - name: Use latest conda-libmamba-solver to avoid segfaults on Windows [Conda/Windows]
-      if: contains(matrix.os, 'windows')
-      shell: bash -l {0}
-      run: |
-        conda install -n base conda-libmamba-solver>=25.1.1
 
     - name: Dependencies [Conda]
       shell: bash -l {0}
