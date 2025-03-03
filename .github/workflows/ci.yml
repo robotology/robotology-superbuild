@@ -41,7 +41,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v3
       with:
         miniforge-variant: Miniforge3
-        miniforge-version: 25.1.1
+        miniforge-version: 25.1.1-0
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
