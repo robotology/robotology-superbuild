@@ -80,6 +80,13 @@ jobs:
         echo "GHA_Matlab_ROOT_DIR=${GITHUB_WORKSPACE}/msdk_R2020a_mexw64" >> $GITHUB_ENV
         echo "GHA_Matlab_MEX_EXTENSION=mexw64" >> $GITHUB_ENV
 
+    # se latest conda-libmamba-solver to avoid segfaults on Windows
+    - name: Use latest conda-libmamba-solver to avoid segfaults on Windows [Conda/Windows]
+      if: contains(matrix.os, 'windows')
+      shell: bash -l {0}
+      run: |
+        conda -n base conda-libmamba-solver>=25.1.1
+
     - name: Dependencies [Conda]
       shell: bash -l {0}
       run: |
