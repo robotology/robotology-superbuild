@@ -41,7 +41,10 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v3
       with:
         miniforge-variant: Miniforge3
+        # This is to use mamba 2.* 
+        # Change back to latest once 25.1.1 gets officially released
         miniforge-version: 25.1.1-0
+        conda-remove-defaults: "true"
 
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
