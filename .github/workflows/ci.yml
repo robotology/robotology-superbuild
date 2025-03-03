@@ -85,7 +85,7 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: bash -l {0}
       run: |
-        conda -n base conda-libmamba-solver>=25.1.1
+        conda install -n base conda-libmamba-solver>=25.1.1
 
     - name: Dependencies [Conda]
       shell: bash -l {0}
