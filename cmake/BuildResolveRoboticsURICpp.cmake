@@ -12,7 +12,7 @@ ycm_ep_helper(ResolveRoboticsURICpp TYPE GIT
                                     TAG main
                                     COMPONENT core
                                     FOLDER src
-                                    CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF RRUP_USE_SYSTEM_YCM:BOOL=ON
+                                    CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DRRUP_USE_SYSTEM_YCM:BOOL=ON
                                     DEPENDS YCM)
 
 set(ResolveRoboticsURICpp_CONDA_PKG_NAME libresolve-robotics-uri-cpp)
