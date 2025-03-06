@@ -298,4 +298,4 @@ repositories:
   ResolveRoboticsURICpp:
     type: git
     url: https://github.com/ami-iit/resolve-robotics-uri-cpp.git
-    version: v0.0.2
+    version: v0.0.3
