@@ -22,18 +22,21 @@ jobs:
     name: '[conda:Tags:${{ matrix.project_tags }}@${{ matrix.os }}@${{ matrix.build_type }}]'
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         build_type: [Release]
         os: [ubuntu-latest, macos-13, macos-14, windows-2019, windows-2022]
         project_tags:
           - Default
           - Unstable
+          - LatestReleases
         include:
           - project_tags: Default
             project_tags_cmake_options: ""
           - project_tags: Unstable
             project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Unstable"
+          - project_tags: LatestReleases
+            project_tags_cmake_options: "-DROBOTOLOGY_PROJECT_TAGS=Custom -DROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE=${GITHUB_WORKSPACE}/releases/latest.releases.yaml"
 
     steps:
     - uses: actions/checkout@v4
@@ -188,7 +191,7 @@ jobs:
     name: '[docker:Tags:${{ matrix.project_tags }}@${{ matrix.docker_image }}@${{ matrix.build_type }}]'
     runs-on: ubuntu-22.04
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         build_type: [Debug]
         cmake_generator:
@@ -249,7 +252,7 @@ jobs:
     name: '[Tags:${{ matrix.project_tags }}@${{ matrix.os }}@${{ matrix.build_type }}]'
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         build_type: [Release]
         os: [ubuntu-22.04, windows-2019]
