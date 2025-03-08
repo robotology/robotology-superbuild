@@ -180,7 +180,7 @@ jobs:
           run: |
             cd build/conda/
              # Debug generated recipes
-            cat ./generated_recipes_metapackages/*/meta.yaml
+            cat ./generated_recipes_metapackages/*/recipe.yaml
             rattler-build build --recipe-dir ./generated_recipes_metapackages -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml -c local -c conda-forge -c robotology
 
         - name: Upload conda packages
