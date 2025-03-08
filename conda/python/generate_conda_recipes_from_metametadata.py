@@ -123,7 +123,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--metametadata", type=str, help="metametadata .yaml file")
     parser.add_argument("-o", "--recipes_dir", type=dir_path, help="directory of generated recipes directory")
-    parser.add_argument('--generate_distro_metapackages', action='store_true', help="if passed also generates the recipes for the robotology-distro and robotology-distro-all metapackages ")
+    parser.add_argument('--generate_distro_metapackages', action='store_true', help="if passed also generates the recipes for the robotology-distro metapackage ")
     args = parser.parse_args()
 
     # Get cmake recipe template fles

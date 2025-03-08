@@ -247,7 +247,7 @@ macro(generate_metametadata_file)
     string(APPEND metametadata_file_contents "\n")
   endforeach()
 
-  # If we generate robotology-distro and robotology-distro-all metapackages, we need also to add the
+  # If we generate robotology-distro metapackages, we need also to add the
   # conda-metapackages-metametadata: section that will be used to generate the metapackages recipes
   # To the people from the future: I am really sorry about the amount of "meta" in these names
   if(CONDA_GENERATE_ROBOTOLOGY_METAPACKAGES)
