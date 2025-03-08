@@ -161,7 +161,7 @@ jobs:
           shell: bash -l {0}
           run: |
             echo "CONDA_BLD_PATH=${CONDA_PREFIX}/conda-bld" >> $GITHUB_ENV
-            
+
         - name: Build conda packages
           shell: bash -l {0}
           run: |
@@ -172,7 +172,7 @@ jobs:
             cat ./generated_recipes/*/recipe.yaml
             cat ./generated_recipes/*/build.bat
             cat ./generated_recipes/*/build.sh
-            rattler-build build --recipe-dir ./generated_recipes -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
+            rattler-build build --recipe-dir ./generated_recipes -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml
 
         - name: Build robotology-distro conda metapackage (if necessary)
           if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')

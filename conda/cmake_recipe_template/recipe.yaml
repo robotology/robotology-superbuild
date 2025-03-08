@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-{{ 'name: ' }} "{{ name }}"
+{{ '  name: ' }} "{{ name }}"
 
 package:
 {% raw %}  name: ${{ name }} {% endraw %}
@@ -17,8 +17,9 @@ build:
 requirements:
   build:
 {# A C/C++ compiler and CMake are required by all packages #}
-{% raw %}    - {{ compiler('c') }}
-    - {{ compiler('cxx') }} {% endraw %}
+{% raw %}    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }} {% endraw %}
     - cmake
     - pkg-config
     - ninja
@@ -38,8 +39,8 @@ requirements:
     - xorg-libxext
     - xorg-libxau
     - libxcb
-    - xorg-libxrandr 
-    - xorg-libxfixes 
+    - xorg-libxrandr
+    - xorg-libxfixes
     - libgl-devel  {% endif %}
 {# List additional run dependencies that are not covered by run_exports #}
 {% for dep in run_dependencies_explicit %}    - {{ dep }}
@@ -47,10 +48,10 @@ requirements:
 {% if add_python_runtime_dep %}    - python {% endif %}
 {% if add_numpy_runtime_dep %}    - numpy {% endif %}
 
-    run_exports:
-{% raw %}      # As robotology-superbuild packages tipically do not worry about ABI compatibility,
-      # we explicitly specify that for every patch version the ABI changes
-      - ${{ pin_subpackage(name, upper_bound='x.x.x') }}
+  run_exports:
+{% raw %}     # As robotology-superbuild packages tipically do not worry about ABI compatibility,
+    # we explicitly specify that for every patch version the ABI changes
+    - ${{ pin_subpackage(name, upper_bound='x.x.x') }}
 {% endraw %}
 
 about:
