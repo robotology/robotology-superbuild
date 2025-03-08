@@ -37,8 +37,6 @@ about:
   summary: Helper package that set environment variables required by vvv-school repositories in the activation scripts.
   description: |
     For more info, check https://github.com/vvv-school/vvv-school.github.io/blob/master/instructions/how-to-create-conda-environment-for-school.md .
-
-
   homepage: https://github.com/vvv-school
 
 extra:
