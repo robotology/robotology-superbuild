@@ -215,7 +215,7 @@ def main():
             template_metapackage = jinja_env_meta.get_template(template_file_metapackage)
             print(metametadata['conda-metapackages-metametadata'])
             template_output = template_metapackage.render(metametadata['conda-metapackages-metametadata'])
-            with open(os.path.join(recipe_dir, "meta.yaml"), 'w') as f:
+            with open(os.path.join(recipe_dir, "recipe.yaml"), 'w') as f:
                 f.write(template_output)
                 
 if __name__ == '__main__':

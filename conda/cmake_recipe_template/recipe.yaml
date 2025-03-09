@@ -1,32 +1,30 @@
-{{ '{% set name =' }} "{{ name }}" {{ '%}' }}
+schema_version: 1
+
+context:
+{{ '  name: ' }} "{{ name }}"
 
 package:
-{% raw %}  name: {{ name }} {% endraw %}
+{% raw %}  name: ${{ name }} {% endraw %}
   version: "{{ version.replace("v","").replace("release-","") }}"
 
 source:
-  git_url: https://github.com/{{ github_repo }}.git
-  git_rev: {{ github_tag }}
+  git: https://github.com/{{ github_repo }}.git
+  tag: {{ github_tag }}
 
 build:
   number: {{ conda_build_number }}
-  run_exports:
-{% raw %}    # As robotology-superbuild packages tipically do not worry about ABI compatibility,
-    # we explicitly specify that for every patch version the ABI changes
-    - {{ pin_subpackage(name, max_pin='x.x.x') }}
-{% endraw %}
 
 requirements:
   build:
 {# A C/C++ compiler and CMake are required by all packages #}
-{% raw %}    - {{ compiler('c') }}
-    - {{ compiler('cxx') }} {% endraw %}
+{% raw %}    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }} {% endraw %}
     - cmake
     - pkg-config
     - ninja
 {% for build_dep in build_dependencies_explicit %}    - {{ build_dep }}
 {% endfor %}
-
 
   host:
 {# List all dependencies just a host. Run dependenencies should be correctly set by run_exports, except the one listed in #}
@@ -41,17 +39,20 @@ requirements:
     - xorg-libxext
     - xorg-libxau
     - libxcb
-    - xorg-libxrandr 
-    - xorg-libxfixes 
+    - xorg-libxrandr
+    - xorg-libxfixes
     - libgl-devel  {% endif %}
-{# Handle the constraint of macos >= 10.13 #}
-  run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 {# List additional run dependencies that are not covered by run_exports #}
 {% for dep in run_dependencies_explicit %}    - {{ dep }}
 {% endfor %}
 {% if add_python_runtime_dep %}    - python {% endif %}
-{% if add_numpy_runtime_dep %}{% raw %}    - {{ pin_compatible('numpy') }}  {% endraw %}{% endif %}
+{% if add_numpy_runtime_dep %}    - numpy {% endif %}
+
+  run_exports:
+{% raw %}     # As robotology-superbuild packages tipically do not worry about ABI compatibility,
+    # we explicitly specify that for every patch version the ABI changes
+    - ${{ pin_subpackage(name, upper_bound='x.x.x') }}
+{% endraw %}
 
 about:
-  home: https://github.com/{{ github_repo }}
+  homepage: https://github.com/{{ github_repo }}

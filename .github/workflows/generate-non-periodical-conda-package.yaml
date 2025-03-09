@@ -36,7 +36,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            conda install pyyaml jinja2 conda-build ninja anaconda-client conda-forge-pinning mamba boa multisheller pixi
+            conda install pyyaml jinja2 rattler-build ninja anaconda-client conda-forge-pinning multisheller pixi
 
         - name: Print used environment
           shell: bash -l {0}
@@ -49,14 +49,8 @@ jobs:
           run: |
             conda config --remove channels defaults
             conda config --env --set channel_priority strict
-            cd conda/non_periodical_recipes
-            # We use the conda_build_config from conda-forge-pinning, and our local one
-            # See https://docs.conda.io/projects/conda-build/en/latest/resources/variants.html#creating-conda-build-variant-config-files
-            # We manually specify the build order as an old workaround for mambabuild, in theory this can be avoided, but it needs to be tested
-            # see https://github.com/mamba-org/boa/issues/117
-            # We also manually delete the recipe directory to avoid that it is built again,
-            # specifically because we can't use --skip-existing as these packages are part of the robotology channel
-            conda mambabuild -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
+            cd conda
+            rattler-build build --recipe-dir ./non_periodical_recipes -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml
 
         - name: Upload conda packages
           shell: bash -l {0}
