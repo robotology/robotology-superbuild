@@ -218,7 +218,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.45
+    version: release-1.1.46
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -258,7 +258,7 @@ repositories:
   resolve-robotics-uri-py:
     type: git
     url: https://github.com/ami-iit/resolve-robotics-uri-py.git
-    version: v0.3.0
+    version: v0.3.1
   yarp-devices-ros:
     type: git
     url: https://github.com/robotology/yarp-devices-ros.git
@@ -274,7 +274,7 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.4.0
+    version: v0.4.1
   sharedlibpp:
     type: git
     url: https://github.com/ami-iit/sharedlibpp.git
