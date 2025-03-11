@@ -11,9 +11,9 @@ find_or_build_package(iDynTree QUIET)
 
 set(BiomechanicalAnalysisFramework_DEPENDS_DEPENDS "")
 list(APPEND BiomechanicalAnalysisFramework_DEPENDS YARP)
-list(APPEND BiomechanicalAnalysisFramework_DEPENDS_DEPENDS manif)
-list(APPEND BiomechanicalAnalysisFramework_DEPENDS_DEPENDS bipedal-locomotion-framework)
-list(APPEND BiomechanicalAnalysisFramework_DEPENDS_DEPENDS iDynTree)
+list(APPEND BiomechanicalAnalysisFramework_DEPENDS manif)
+list(APPEND BiomechanicalAnalysisFramework_DEPENDS bipedal-locomotion-framework)
+list(APPEND BiomechanicalAnalysisFramework_DEPENDS iDynTree)
 
 set(BiomechanicalAnalysisFramework_OPTIONAL_CMAKE_ARGS "")
 if(ROBOTOLOGY_USES_PYTHON)
