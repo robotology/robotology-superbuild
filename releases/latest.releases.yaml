@@ -299,3 +299,7 @@ repositories:
     type: git
     url: https://github.com/ami-iit/resolve-robotics-uri-cpp.git
     version: v0.0.3
+  BiomechanicalAnalysisFramework:
+    type: git
+    url: https://github.com/ami-iit/biomechanical-analysis-framework.git
+    version: v0.1.0
