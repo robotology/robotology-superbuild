@@ -23,7 +23,7 @@ endif()
 ycm_ep_helper(BiomechanicalAnalysisFramework TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/biomechanical-analysis-framework.git
-              TAG master
+              TAG main
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DFRAMEWORK_COMPILE_YarpImplementation:BOOL=ON
