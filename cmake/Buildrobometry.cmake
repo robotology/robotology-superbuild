@@ -17,7 +17,8 @@ ycm_ep_helper(robometry TYPE GIT
               DEPENDS YCM
                       YARP
                       ICUB
-                      matioCpp)
+                      matioCpp
+              CMAKE_ARGS -DROBOMETRY_USES_SYSTEM_nlohmann_json:BOOL=ON)
 
 set(robometry_CONDA_PKG_NAME librobometry)
 set(robometry_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
