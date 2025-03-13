@@ -11,6 +11,9 @@ find_or_build_package(OsqpEigen QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(matioCpp QUIET)
 find_or_build_package(UnicyclePlanner QUIET)
+find_or_build_package(manif QUIET)
+find_or_build_package(LieGroupControllers QUIET)
+
 
 set(bipedal-locomotion-framework_DEPENDS "")
 list(APPEND bipedal-locomotion-framework_DEPENDS YARP)
@@ -19,24 +22,21 @@ list(APPEND bipedal-locomotion-framework_DEPENDS iDynTree)
 list(APPEND bipedal-locomotion-framework_DEPENDS matioCpp)
 list(APPEND bipedal-locomotion-framework_DEPENDS UnicyclePlanner)
 list(APPEND bipedal-locomotion-framework_DEPENDS robometry)
+list(APPEND bipedal-locomotion-framework_DEPENDS manif)
+list(APPEND bipedal-locomotion-framework_DEPENDS LieGroupControllers)
+
+if (ROBOTOLOGY_BUILD_tomlplusplus)
+  find_or_build_package(tomlplusplus QUIET)
+  list(APPEND bipedal-locomotion-framework_DEPENDS tomlplusplus)
+endif()
 
 set(bipedal-locomotion-framework_USES_CppAD OFF)
 
 if (ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
-  find_or_build_package(manif QUIET)
   find_or_build_package(casadi QUIET)
   find_or_build_package(CppAD QUIET)
-  find_or_build_package(LieGroupControllers QUIET)
-
-  list(APPEND bipedal-locomotion-framework_DEPENDS manif)
   list(APPEND bipedal-locomotion-framework_DEPENDS casadi)
   list(APPEND bipedal-locomotion-framework_DEPENDS CppAD)
-  list(APPEND bipedal-locomotion-framework_DEPENDS LieGroupControllers)
-
-  if (ROBOTOLOGY_BUILD_tomlplusplus)
-    find_or_build_package(tomlplusplus QUIET)
-    list(APPEND bipedal-locomotion-framework_DEPENDS tomlplusplus)
-  endif()
 endif()
 
 set(bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "")
@@ -73,12 +73,12 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_YARP:BOOL=ON
                          -DFRAMEWORK_USE_OsqpEigen:BOOL=ON
                          -DFRAMEWORK_USE_matioCpp:BOOL=ON
-                         -DFRAMEWORK_USE_manif:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         -DFRAMEWORK_USE_manif:BOOL=ON
                          -DFRAMEWORK_USE_Qhull:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_cppad:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_USE_casadi:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
-                         -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
-                         -DFRAMEWORK_USE_tomlplusplus:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
+                         -DFRAMEWORK_USE_LieGroupControllers:BOOL=ON
+                         -DFRAMEWORK_USE_tomlplusplus:BOOL=ON
                          -DFRAMEWORK_USE_onnxruntime:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_COMPILE_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}

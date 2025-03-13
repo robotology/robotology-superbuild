@@ -141,6 +141,7 @@ if(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS)
   find_or_build_package(yarp-devices-forcetorque)
   find_or_build_package(HumanDynamicsEstimation)
   find_or_build_package(human-gazebo)
+  find_or_build_package(BiomechanicalAnalysisFramework)
 endif()
 
 # Grasping
