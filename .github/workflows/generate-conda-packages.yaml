@@ -192,10 +192,10 @@ jobs:
             PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
-            ls *.tar.bz2
-            anaconda upload --skip-existing *.tar.bz2
+            ls *.conda
+            anaconda upload --skip-existing *.conda
             pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
-            for condapackage in *.tar.bz2; do
+            for condapackage in *.conda; do
               pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
             done
             pixi auth logout https://prefix.dev
@@ -210,10 +210,10 @@ jobs:
             PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
           run: |
             cd ${CONDA_BLD_PATH}/noarch/
-            ls *.tar.bz2
-            anaconda upload --skip-existing *.tar.bz2
+            ls *.conda
+            anaconda upload --skip-existing *.conda
             pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
-            for condapackage in *.tar.bz2; do
+            for condapackage in *.conda; do
               pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
             done
             pixi auth logout https://prefix.dev
