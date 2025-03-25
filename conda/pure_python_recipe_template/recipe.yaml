@@ -38,8 +38,9 @@ tests:
       # Do not run pip check on arm64 as pip list does not list qtpy5 and qtwebengine
       - if: not arm64
         then: pip check
-    requires:
-      - pip
+    requirements:
+      run:
+        - pip
 
 about:
   home: https://github.com/{{ github_repo }}
