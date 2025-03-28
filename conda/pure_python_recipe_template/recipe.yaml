@@ -15,8 +15,9 @@ build:
   noarch: python
   number: {{ conda_build_number }}
 {% raw %}  script: ${{ PYTHON }} -m pip install . --no-build-isolation --no-deps -vv {% endraw %}
-  entry_points:
-{% for entry_point in entry_points %}    - {{ entry_point }}
+  python:
+    entry_points:
+{% for entry_point in entry_points %}      - {{ entry_point }}
 {% endfor %}
 
 requirements:
@@ -43,4 +44,5 @@ tests:
         - pip
 
 about:
-  home: https://github.com/{{ github_repo }}
+  homepage: https://github.com/{{ github_repo }}
+  repository: https://github.com/{{ github_repo }}
