@@ -9,6 +9,8 @@ ycm_ep_helper(OpenVR TYPE GIT
               TAG fix_upstream
               COMPONENT external
               FOLDER src
-              CMAKE_ARGS -DBUILD_SHARED:BOOL=ON)
+              CMAKE_ARGS -DBUILD_SHARED:BOOL=ON
+                         # Workaround for CMake 4.0 compatibility, this is a reason why we need to drop OpenVR
+                         -DCMAKE_POLICY_VERSION_MINIMUM=3.10)
 
 set(OpenVR_CONDA_PKG_NAME openvr)
