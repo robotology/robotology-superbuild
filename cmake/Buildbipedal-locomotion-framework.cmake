@@ -65,7 +65,7 @@ endif()
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/bipedal-locomotion-framework.git
-              TAG master
+              TAG fixcmake4numpy2
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
