@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+{{ '  name: ' }} "{{ name }}"
+
+package:
+{% raw %}  name: ${{ name }} {% endraw %}
+  version: "{{ version.replace("v","").replace("release-","") }}"
+
+source:
+  git: https://github.com/{{ github_repo }}.git
+  tag: {{ github_tag }}
+
+build:
+  noarch: python
+  number: {{ conda_build_number }}
+{% raw %}  script: ${{ PYTHON }} -m pip install . --no-build-isolation --no-deps -vv {% endraw %}
+  python:
+    entry_points:
+{% for entry_point in entry_points %}      - {{ entry_point }}
+{% endfor %}
+
+requirements:
+  build:
+
+  host:
+    - python
+    - pip
+    - setuptools-scm
+{% for dep in dependencies %}    - {{ dep }}
+{% endfor %}
+  run:
+    - python
+{% for dep in dependencies %}    - {{ dep }}
+{% endfor %}
+
+tests:
+  - script:
+      # Do not run pip check on arm64 as pip list does not list qtpy5 and qtwebengine
+      - if: not arm64
+        then: pip check
+    requirements:
+      run:
+        - pip
+
+about:
+  homepage: https://github.com/{{ github_repo }}
+  repository: https://github.com/{{ github_repo }}
