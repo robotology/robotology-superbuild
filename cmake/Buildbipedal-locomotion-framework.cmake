@@ -65,7 +65,7 @@ endif()
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/bipedal-locomotion-framework.git
-              TAG fixcmake4numpy2
+              TAG master
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF
@@ -82,6 +82,8 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_onnxruntime:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_COMPILE_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON}
                          ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
+                         # Remove once https://github.com/ami-iit/bipedal-locomotion-framework/pull/955 is merged and released
+                         -DCMAKE_POLICY_VERSION_MINIMUM=3.16
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
 
 set(bipedal-locomotion-framework_CONDA_PKG_NAME bipedal-locomotion-framework)
