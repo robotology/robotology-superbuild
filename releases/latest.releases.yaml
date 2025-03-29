@@ -90,7 +90,7 @@ repositories:
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
-    version: v0.8.0
+    version: v0.8.1
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
@@ -114,7 +114,7 @@ repositories:
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
-    version: v0.3.2
+    version: v0.3.3
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git

@@ -12,7 +12,9 @@ ycm_ep_helper(osqp TYPE GIT
               FOLDER src
               CMAKE_ARGS -DUNITTESTS:BOOL=OFF
                          -DOSQP_BUILD_STATIC_LIB:BOOL=OFF
-                         -DQDLDL_BUILD_STATIC_LIB:BOOL=OFF)
+                         -DQDLDL_BUILD_STATIC_LIB:BOOL=OFF
+                         # Workaround for CMake 4.0 compatibility, drop when we update to osqp 1.0.0
+                         -DCMAKE_POLICY_VERSION_MINIMUM=3.10)
 
 set(osqp_CONDA_PKG_NAME libosqp)
 set(osqp_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
