@@ -11,7 +11,7 @@ set_tag(manif_TAG 0.0.5)
 set_tag(CppAD_TAG 20250000.2)
 set_tag(proxsuite_TAG v0.7.1)
 set_tag(casadi_TAG 3.7.0)
-set_tag(casadi-matlab-bindings_TAG v3.6.7.0)
+set_tag(casadi-matlab-bindings_TAG v3.7.0.0)
 
 # Robotology projects
 # Pin YARP and yarp-devices-ros2 to a version before the yarp::dev::ReturnValue changes
