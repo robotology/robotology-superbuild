@@ -167,6 +167,10 @@ pyqtwebengine = "*"
 qtpy = "*"
 pyyaml = "*"
 
+# Not actually used by any project by default, but used
+# by many projects when BUILD_TESTING is enabled
+catch2 = "*"
+
 
 [target.win-64.dependencies]
 freeglut = "*"
