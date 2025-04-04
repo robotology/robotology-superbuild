@@ -30,7 +30,8 @@ ycm_ep_helper(GazeboYARPPlugins TYPE GIT
                                 COMPONENT core
                                 FOLDER src
                                 DEPENDS YARP
-                                CMAKE_ARGS -DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=ON)
+                                # CMAKE_POLICY_VERSION_MINIMUM is a workaround for https://github.com/robotology/robotology-superbuild/pull/1837#issuecomment-2778698649
+                                CMAKE_ARGS -DGAZEBO_YARP_PLUGINS_HAS_OPENCV:BOOL=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5)
 
 set(GazeboYARPPlugins_CONDA_PKG_NAME libgazebo-yarp-plugins)
 set(GazeboYARPPlugins_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)

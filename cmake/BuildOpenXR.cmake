@@ -12,7 +12,10 @@ ycm_ep_helper(OpenXR TYPE GIT
               FOLDER src
               CMAKE_ARGS -DBUILD_SHARED_LIBS:BOOL=ON
                          -DHAVE_FILESYSTEM_WITHOUT_LIB:BOOL=OFF
-                         -DDYNAMIC_LOADER:BOOL=ON)
+                         -DDYNAMIC_LOADER:BOOL=ON
+                         # Workaround for jsonCppConfig.cmake not being compatible with CMake 4.0, remove
+                         # once we drop support for Ubuntu 22.04 with apt dependencies
+                         -DCMAKE_POLICY_VERSION_MINIMUM=3.5)
 
 set(OpenXR_CONDA_PKG_NAME openxr-sdk)
 set(OpenXR_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
