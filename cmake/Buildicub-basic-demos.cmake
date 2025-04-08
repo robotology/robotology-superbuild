@@ -15,6 +15,9 @@ ycm_ep_helper(icub-basic-demos TYPE GIT
                                FOLDER src
                                DEPENDS YARP
                                        ICUB
-                                       ICUBcontrib)
+                                       ICUBcontrib
+                               # CMAKE_POLICY_VERSION_MINIMUM is a workaround for https://github.com/robotology/robotology-superbuild/pull/1837#issuecomment-2778698649
+                               CMAKE_ARGS -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+)
 
 set(icub-basic-demos_CONDA_DEPENDENCIES libopencv qt-main)
