@@ -48,12 +48,6 @@ if(ROBOTOLOGY_USES_PCL_AND_VTK)
   list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DFRAMEWORK_USE_PCL:BOOL=ON")
 endif()
 
-# Workaround for part of https://github.com/robotology/robotology-superbuild/issues/1307
-if(APPLE OR WIN32)
-  list(APPEND bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS "-DENABLE_YarpRobotLoggerDevice:BOOL=OFF")
-endif()
-
-
 # Just on Linux without conda, we download onnxruntime
 # On conda instead, we install onnxruntime-cpp package
 if(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS)
