@@ -170,7 +170,8 @@ pyyaml = "*"
 # Not actually used by any project by default, but used
 # by many projects when BUILD_TESTING is enabled
 catch2 = "*"
-
+# Similar reason, used by gz-sim-yarp-plugins if BUILD_TESTING is enabled
+gtest = "*"
 
 [target.win-64.dependencies]
 freeglut = "*"
