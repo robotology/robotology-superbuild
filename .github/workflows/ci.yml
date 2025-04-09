@@ -90,7 +90,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        conda install ace asio assimp libboost-devel cli11 eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl "ipopt>=3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake cxx-compiler make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp "qt6-main>=6.7.2"
+        conda install ace asio assimp libboost-devel cli11 eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl "ipopt>=3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake cxx-compiler make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp "qt6-main>=6.7.2" catch2 gtest
         # Python
         conda install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 
@@ -101,7 +101,7 @@ jobs:
       run: |
         # Additional dependencies only useful on Linux
         # See https://github.com/robotology/robotology-superbuild/issues/477
-        conda install bash-completion freeglut libdc1394 libi2c xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr libgl-devel
+        conda install bash-completion freeglut libdc1394 libi2c xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr libgl-devel mold fortran-compiler
 
     # Additional dependencies useful only on Windows
     - name: Dependencies [Conda/Windows]
