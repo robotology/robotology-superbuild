@@ -12,6 +12,13 @@ This option can be used also for CMake options that are related to a single proj
 
 For more information on this option, see the [official YCM documentation](http://robotology.github.io/ycm/gh-pages/latest/manual/ycm-superbuild.7.html#specifying-additional-cmake-arguments-for-all-subprojects).
 
+### On Linux, how can I speed up the linking time?
+
+When developing C++ projects, it happens quite frequently that a few modifications are done to C++ files, and then the rebuild time is dominated by the time spent by the linker. On Linux this time can be drastically improved by using the [`mold` linker](https://github.com/rui314/mold). If you have `mold` installed in your development environment and a recent enough CMake (>=3.29), you can pass the option
+`-DCMAKE_LINKER_TYPE=MOLD` to the robotology-superbuild configuration, and the option will automatically propagate to all subprojects.
+
+To avoid cornercase behaviours, it is recommened to only set the `-DCMAKE_LINKER_TYPE=MOLD` option before a clean build. To go back to use the default linker, you can pass the `-DCMAKE_LINKER_TYPE=DEFAULT` option to the robotology-superbuild configuration.
+
 ### How can I check the status of each subproject?
 
 It is possible to run the bash script named ``robotologyGitStatus.sh`` in the ``scripts`` folder. For example, on linux, from the ``robotology-superbuild`` root run ``bash scripts/robotologyGitStatus.sh`` to print the status of each subproject.

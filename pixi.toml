@@ -17,6 +17,16 @@ linux = "4.18"
 # delete .build or .build-ros2 to change build type
 CMAKE_BUILD_TYPE = "Release"
 
+# This platform-specific activation are used to only set the mold linker automatically on Linux
+[target.linux.activation.env]
+ROBSUB_PIXI_LINKER_CMAKE_OPTIONS = "-DCMAKE_LINKER_TYPE=MOLD"
+
+[target.osx.activation.env]
+ROBSUB_PIXI_LINKER_CMAKE_OPTIONS = ""
+
+[target.win.activation.env]
+ROBSUB_PIXI_LINKER_CMAKE_OPTIONS = ""
+
 [feature.base.activation]
 scripts = ["pixi_activation.sh", ".build/install/share/robotology-superbuild/setup.sh"]
 
@@ -41,6 +51,7 @@ configure = { cmd = [
     # We wanna build in the .build directory
     "-B",
     ".build",
+    "$ROBSUB_PIXI_LINKER_CMAKE_OPTIONS",
 ]}
 
 configure-all = { cmd = [
@@ -69,6 +80,7 @@ configure-all = { cmd = [
     # We wanna build in the .build directory
     "-B",
     ".build",
+    "$ROBSUB_PIXI_LINKER_CMAKE_OPTIONS",
 ]}
 
 # We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
@@ -82,9 +94,10 @@ build-all = { cmd = "cmake --build .build --parallel 1", depends-on = ["configur
 [dependencies]
 
 # C++ dev dependencies
-compilers = "*"
+cxx-compiler = "*"
 ninja = "*"
-cmake = "*"
+# Minimum version with CMAKE_LINKER_TYPE support
+cmake = ">=3.29.0"
 make  = "*"
 pkg-config = "*"
 
@@ -154,6 +167,11 @@ pyqtwebengine = "*"
 qtpy = "*"
 pyyaml = "*"
 
+# Not actually used by any project by default, but used
+# by many projects when BUILD_TESTING is enabled
+catch2 = "*"
+# Similar reason, used by gz-sim-yarp-plugins if BUILD_TESTING is enabled
+gtest = "*"
 
 [target.win-64.dependencies]
 freeglut = "*"
@@ -167,7 +185,10 @@ libdc1394 = "*"
 libi2c = "*"
 libgl-devel = "*"
 xorg-xorgproto = "*"
-
+mold = "*"
+# until we use casadi 3.6.7, using mold requires having an up-to-date fortran-compiler,
+# we can remove this workaround when we update (also in latest releases) to casadi 3.7.0
+fortran-compiler = "*"
 
 # As the ROS 2 dependencies are hosted on robostack and can lag behind
 # all the different conda-forge ABI migrations, we use a separate ros2
@@ -204,6 +225,7 @@ configure-ros2 = { cmd = [
     ".build-ros2",
     "-DROBOTOLOGY_USES_ROS2:BOOL=ON",
     "-DROBOTOLOGY_USES_MOVEIT:BOOL=ON",
+    "$ROBSUB_PIXI_LINKER_CMAKE_OPTIONS",
 ]}
 
 configure-all-ros2 = { cmd = [
@@ -231,6 +253,7 @@ configure-all-ros2 = { cmd = [
     # We wanna build in the .build directory
     "-B",
     ".build-ros2",
+    "$ROBSUB_PIXI_LINKER_CMAKE_OPTIONS",
 ]}
 
 # We limit the number of concurrent ninja builds to 1 as the superbuild will run one project at the time,
