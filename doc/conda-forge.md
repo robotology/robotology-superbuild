@@ -151,7 +151,7 @@ conda install -c conda-forge ace asio assimp libboost-devel cli11 eigen freetype
 
 **Additionally** if you are on **Linux**, you **also** need to install also the following packages:
 ~~~
-conda install -c conda-forge bash-completion freeglut libdc1394 libi2c xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr libgl-devel mold
+conda install -c conda-forge bash-completion freeglut libdc1394 libi2c xorg-libxau libxcb xorg-libxdamage xorg-libxext xorg-libxfixes xorg-libxxf86vm xorg-libxrandr libgl-devel mold fortran-compiler
 ~~~
 
 **Additionally** if you are on **Windows**, you **also** need to install also the following packages:
