@@ -145,7 +145,7 @@ of the robotology-superbuild.
 Once you activated it, you can install packages in it. In particular the dependencies for the robotology-superbuild can be installed as:
 
 ~~~
-conda install -c conda-forge ace asio assimp libboost-devel cli11 eigen freetype glew glfw glm graphviz gsl "ipopt>3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake cxx-compiler make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp
+conda install -c conda-forge ace asio assimp libboost-devel cli11 eigen freetype glew glfw glm graphviz gsl "ipopt>3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml tinyxml2 spdlog lua soxr qhull cmake cxx-compiler make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp catch2 gtest
 ~~~
 
 
