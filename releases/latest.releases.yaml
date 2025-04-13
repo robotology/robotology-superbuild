@@ -218,7 +218,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.46
+    version: release-1.1.47
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
