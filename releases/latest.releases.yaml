@@ -226,7 +226,7 @@ repositories:
   yarp-device-openxrheadset:
     type: git
     url: https://github.com/ami-iit/yarp-device-openxrheadset.git
-    version: v0.0.8
+    version: v0.0.9
   yarp-openvr-trackers:
     type: git
     url: https://github.com/ami-iit/yarp-openvr-trackers.git
