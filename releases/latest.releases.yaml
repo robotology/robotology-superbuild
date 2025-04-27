@@ -206,7 +206,7 @@ repositories:
   pyngrok:
     type: git
     url: https://github.com/alexdlaird/pyngrok.git
-    version: 7.2.3
+    version: 7.2.5
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
@@ -274,7 +274,7 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.4.1
+    version: v0.4.2
   sharedlibpp:
     type: git
     url: https://github.com/ami-iit/sharedlibpp.git
