@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04, macos-13, windows-latest]
+        os: [ubuntu-24.04, macos-14, windows-latest]
         matlab_version: [R2022a, R2023a, R2024a, latest]
     runs-on: ${{ matrix.os }}
     
