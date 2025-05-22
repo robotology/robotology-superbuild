@@ -153,6 +153,11 @@ if(WIN32 AND ROBOTOLOGY_CONFIGURING_UNDER_CONDA AND EXISTS $ENV{CONDA_PREFIX}/qt
   configure_file($ENV{CONDA_PREFIX}/qt.conf ${YCM_EP_INSTALL_DIR}/bin/qt.conf COPYONLY)
 endif()
 
+# Install qt6.conf on Windows on conda as a workaround for https://github.com/conda-forge/qt-main-feedstock/issues/275
+if(WIN32 AND ROBOTOLOGY_CONFIGURING_UNDER_CONDA AND EXISTS $ENV{CONDA_PREFIX}/Library/bin/qt6.conf)
+  configure_file($ENV{CONDA_PREFIX}/Library/bin/qt6.conf ${YCM_EP_INSTALL_DIR}/bin/qt.conf COPYONLY)
+endif()
+
 ycm_write_dot_file(${CMAKE_CURRENT_BINARY_DIR}/robotology-superbuild.dot)
 
 set_package_properties(Git PROPERTIES TYPE RUNTIME)
