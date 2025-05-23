@@ -14,8 +14,7 @@ set_tag(casadi_TAG 3.7.0)
 set_tag(casadi-matlab-bindings_TAG v3.7.0.0)
 
 # Robotology projects
-# Pin YARP and yarp-devices-ros2 to a version before the yarp::dev::ReturnValue changes
-set_tag(YARP_TAG yarp-3.11)
+set_tag(YARP_TAG master)
 set_tag(ICUB_TAG devel)
 set_tag(RobotTestingFramework_TAG devel)
 set_tag(blockTest_TAG devel)
