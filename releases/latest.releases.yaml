@@ -110,7 +110,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: v1.3.7
+    version: v1.3.8
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
@@ -162,7 +162,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.21.0
+    version: v0.21.1
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
