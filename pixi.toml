@@ -186,9 +186,6 @@ libi2c = "*"
 libgl-devel = "*"
 xorg-xorgproto = "*"
 mold = "*"
-# until we use casadi 3.6.7, using mold requires having an up-to-date fortran-compiler,
-# we can remove this workaround when we update (also in latest releases) to casadi 3.7.0
-fortran-compiler = "*"
 
 # As the ROS 2 dependencies are hosted on robostack and can lag behind
 # all the different conda-forge ABI migrations, we use a separate ros2
