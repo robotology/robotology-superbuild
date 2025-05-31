@@ -74,3 +74,4 @@ libpostproc-dev
 libswresample-dev
 libswscale-dev
 zlib1g-dev
+libsimde-dev

@@ -145,6 +145,7 @@ libzlib = "*"
 ffmpeg = "*"
 onnxruntime-cpp = "*"
 vtk = "*"
+simde = "*"
 
 # ROBOTOLOGY_USES_GAZEBO
 gazebo = "*"
