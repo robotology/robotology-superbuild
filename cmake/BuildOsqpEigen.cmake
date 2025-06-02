@@ -12,7 +12,7 @@ ycm_ep_helper(OsqpEigen TYPE GIT
               TAG master
               COMPONENT dynamics
               FOLDER src
-              CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DOSQP_IS_V1:BOOL=OFF -DOSQP_IS_V1_FINAL:BOOL=OFF
+              CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DOSQP_IS_V1:BOOL=ON -DOSQP_IS_V1_FINAL:BOOL=ON
               DEPENDS osqp)
 
 set(OsqpEigen_CONDA_PKG_NAME osqp-eigen)

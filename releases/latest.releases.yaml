@@ -5,8 +5,8 @@ repositories:
     version: v3.2.0.1
   osqp:
     type: git
-    url: https://github.com/robotology-dependencies/osqp.git
-    version: v0.6.3.1
+    url: https://github.com/osqp/osqp.git
+    version: v1.0.0
   manif:
     type: git
     url: https://github.com/artivis/manif.git
@@ -17,8 +17,8 @@ repositories:
     version: 20250000.2
   casadi:
     type: git
-    url: https://github.com/casadi/casadi.git
-    version: 3.7.0
+    url: https://github.com/ami-iit/casadi.git
+    version: 3.7.0.1
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
