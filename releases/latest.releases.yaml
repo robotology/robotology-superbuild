@@ -5,8 +5,8 @@ repositories:
     version: v3.2.0.1
   osqp:
     type: git
-    url: https://github.com/osqp/osqp.git
-    version: v1.0.0
+    url: https://github.com/robotology-dependencies/osqp.git
+    version: v0.6.3.1
   manif:
     type: git
     url: https://github.com/artivis/manif.git
@@ -178,7 +178,7 @@ repositories:
   osqp-matlab:
     type: git
     url: https://github.com/ami-iit/osqp-matlab-cmake-buildsystem.git
-    version: v0.9.0.0
+    version: v0.6.2.4
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
