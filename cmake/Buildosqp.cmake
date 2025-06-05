@@ -12,14 +12,7 @@ ycm_ep_helper(osqp TYPE GIT
               FOLDER src
               CMAKE_ARGS -DUNITTESTS:BOOL=OFF
                          -DOSQP_BUILD_STATIC_LIB:BOOL=OFF
-                         -DQDLDL_BUILD_STATIC_LIB:BOOL=OFF
-                         # Workaround for CMake 4.0 compatibility, drop when we update to osqp 1.0.0
-                         -DCMAKE_POLICY_VERSION_MINIMUM=3.10)
+                         -DQDLDL_BUILD_STATIC_LIB:BOOL=OFF)
 
 set(osqp_CONDA_PKG_NAME libosqp)
 set(osqp_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
-# This is a small hack. To avoid incompatibilities between the version tagged in the robotology-dependencies fork
-# (something like 0.6.3.x) and the version available in conda-forge when generating conda metapackages
-# such as robotology-distro, we override the conda package version of manif
-# here. This needs to be removed as soon as we stop using our fork in the superbuild 
-set(osqp_CONDA_VERSION 0.6.3)
