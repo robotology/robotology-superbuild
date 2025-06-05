@@ -92,7 +92,10 @@ ycm_ep_helper(YARP TYPE GIT
                               -DENABLE_yarpmod_portaudio:BOOL=ON
                               -DENABLE_yarpmod_portaudioPlayer:BOOL=ON
                               -DENABLE_yarpmod_portaudioRecorder:BOOL=ON
+                              # YARP <= 3.11
                               -DENABLE_yarpmod_opencv_grabber:BOOL=ON
+                              # YARP >= 3.12
+                              -DENABLE_yarpmod_openCVGrabber:BOOL=ON
                               # Enable all "fake" devices in YARP, as they are quite useful for tutorials
                               -DYARP_COMPILE_ALL_FAKE_DEVICES:BOOL=ON
                               -DYARP_COMPILE_RobotTestingFramework_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
