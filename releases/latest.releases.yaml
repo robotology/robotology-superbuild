@@ -42,7 +42,7 @@ repositories:
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v4.12.1
+    version: v4.12.2
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
