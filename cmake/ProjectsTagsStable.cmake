@@ -6,7 +6,7 @@ endmacro()
 
 # External projects
 set_tag(osqp_TAG v1.0.0)
-set_tag(osqp-matlab_TAG v0.9.0.0)
+set_tag(osqp-matlab_TAG v0.9.0.1)
 set_tag(manif_TAG 0.0.5)
 set_tag(CppAD_TAG 20250000.2)
 set_tag(proxsuite_TAG v0.7.1)
