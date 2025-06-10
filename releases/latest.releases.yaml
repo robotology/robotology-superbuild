@@ -74,7 +74,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v13.4.0
+    version: v13.4.2
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -130,11 +130,11 @@ repositories:
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.42.0
+    version: v1.43.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.42.0
+    version: v1.43.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
@@ -218,7 +218,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.48
+    version: release-1.1.49
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
