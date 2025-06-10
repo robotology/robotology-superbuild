@@ -5,7 +5,8 @@ macro(set_tag tag_name tag_value)
 endmacro()
 
 # External projects
-set_tag(osqp_TAG v1.0.0)
+set_tag(osqp_REPOSITORY robotology-dependencies/osqp.git)
+set_tag(osqp_TAG v1.0.0.1)
 set_tag(osqp-matlab_TAG v0.9.0.1)
 set_tag(manif_TAG 0.0.5)
 set_tag(CppAD_TAG 20250000.2)
