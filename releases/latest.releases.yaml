@@ -6,7 +6,7 @@ repositories:
   osqp:
     type: git
     url: https://github.com/robotology-dependencies/osqp.git
-    version: v0.6.3.1
+    version: v1.0.0.1
   manif:
     type: git
     url: https://github.com/artivis/manif.git
@@ -17,8 +17,8 @@ repositories:
     version: 20250000.2
   casadi:
     type: git
-    url: https://github.com/casadi/casadi.git
-    version: 3.7.0
+    url: https://github.com/ami-iit/casadi.git
+    version: 3.7.0.1
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
@@ -86,7 +86,7 @@ repositories:
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
-    version: v0.10.0
+    version: v0.10.1
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
@@ -162,7 +162,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.21.1
+    version: v0.22.0
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
@@ -178,7 +178,7 @@ repositories:
   osqp-matlab:
     type: git
     url: https://github.com/ami-iit/osqp-matlab-cmake-buildsystem.git
-    version: v0.6.2.4
+    version: v0.9.0.1
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
