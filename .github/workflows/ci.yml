@@ -25,7 +25,7 @@ jobs:
       fail-fast: true
       matrix:
         build_type: [Release]
-        os: [ubuntu-latest, macos-13, macos-14, windows-2019, windows-2022]
+        os: [ubuntu-latest, macos-13, macos-14, windows-2022]
         project_tags:
           - Default
           - Unstable
@@ -132,12 +132,6 @@ jobs:
       run: |
         echo "GHA_CMAKE_GENERATOR=Visual Studio 17 2022" >> $GITHUB_ENV
 
-    - name: Set CMake generator [Conda/Windows 2019]
-      if: contains(matrix.os, 'windows-2019')
-      shell: bash -l {0}
-      run: |
-        echo "GHA_CMAKE_GENERATOR=Visual Studio 16 2019" >> $GITHUB_ENV
-
     - name: Configure [Conda]
       shell: bash -l {0}
       run: |
@@ -147,13 +141,6 @@ jobs:
         cmake -G"${GHA_CMAKE_GENERATOR}" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
         # Disable options not tested on Conda for now
         cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF .
-
-    - name: Disable options not suppored on Visual Studio 2019 [Conda/Windows 2019]
-      if: contains(matrix.os, 'windows-2019')
-      shell: bash -l {0}
-      run: |
-        cd b
-        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF .
 
     # For some reason, the Strawberry perl's pkg-config is found
     # instead of the conda's one, so let's delete the /c/Strawberry directory
@@ -251,13 +238,10 @@ jobs:
       fail-fast: true
       matrix:
         build_type: [Release]
-        os: [ubuntu-22.04, windows-2019]
+        os: [ubuntu-22.04, windows-2022]
         project_tags: [Default, Unstable, LatestReleases]
         include:
           - os: ubuntu-22.04
-            build_type: Release
-            cmake_generator: "Ninja"
-          - os: macos-latest
             build_type: Release
             cmake_generator: "Ninja"
           - project_tags: Default
@@ -435,7 +419,7 @@ jobs:
 
     # Just for release builds we generate the installer
     - name: Generate installer [Windows]
-      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
+      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2022'
       shell: bash
       run: |
         # Download QtIFW
@@ -462,7 +446,7 @@ jobs:
         mv *.exe /c/robotology-dependencies-installer-win64.exe
 
     - name: Upload Full Installer [Windows]
-      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
+      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2022'
       uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -473,7 +457,7 @@ jobs:
           asset_content_type: application/octet-stream
 
     - name: Upload Dependencies installer  [Windows]
-      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2019'
+      if: github.event_name == 'release' && matrix.project_tags == 'Default' && matrix.os == 'windows-2022'
       uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
