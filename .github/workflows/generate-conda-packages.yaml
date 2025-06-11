@@ -56,7 +56,7 @@ jobs:
                   conda_platform: linux-64
                 - os: macos-14
                   conda_platform: osx-arm64
-                - os: windows-2019
+                - os: windows-2022
                   conda_platform: win-64
 
         steps:
