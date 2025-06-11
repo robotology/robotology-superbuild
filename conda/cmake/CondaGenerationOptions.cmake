@@ -11,7 +11,7 @@ option(CONDA_GENERATE_ROBOTOLOGY_METAPACKAGES "If on, generate recipes for robot
 
 # This variable is automatically set to contain the robotology-superbuild version in case of releases
 if(NOT CONDA_ROBOTOLOGY_SUPERBUILD_VERSION)
-  set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")
+  set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION 2025.05.0)
 endif()
 
 # For more conda generation options, check the specific project Build<CMakeProject>.cmake
