@@ -16,7 +16,7 @@ jobs:
           cache: false
       - name: Update pixi lock file
         run: |
-          export RUST_BACKTRACE=1
+          export RUST_BACKTRACE=full
           rm pixi.lock
           pixi install
       - uses: peter-evans/create-pull-request@v7
