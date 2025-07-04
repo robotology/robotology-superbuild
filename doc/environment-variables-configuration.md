@@ -5,6 +5,8 @@ During the configuration process, the robotology-superbuild installs the `setup.
 These scripts can be used to automatically add to the [enviroment variables](https://en.wikipedia.org/wiki/Environment_variable)
 of the process the variables necessary to successfully launch the software installed by the robotology-superbuild, even if it is not installed in the system install prefix.
 
+Additionally, the robotology-superbuild also generates `deactivate.sh` (in Linux and macOS) and `deactivate.bat` (in Windows) scripts that can be used to remove the robotology-superbuild paths from the environment variables. These deactivate scripts are useful when you need to temporarily disable the robotology-superbuild environment and you are in a terminal in which the activation script were already called.
+
 However, for some use cases it may be necessary to manually deal with the necessary enviroment modification, and so all the enviroment variables
 that are needed by the software installed by the robotology-superbuild are documented in this page.
 

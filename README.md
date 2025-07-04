@@ -5,7 +5,7 @@ download and compile software developed in the robotology GitHub organization, s
 
 [CMake](https://cmake.org/) is an open-source, cross-platform family of tools designed to build, test and package software.
 A [YCM Superbuild](http://robotology.github.io/ycm-cmake-modules/gh-pages/git-master/index.html#superbuild) is a CMake project whose only goal is to download and build several other projects.
-If you are familiar with ROS, it is something similar to [catkin](http://wiki.ros.org/catkin/workspaces) or [colcon workspace](https://colcon.readthedocs.io/en/released/user/quick-start.html), but using pure CMake for portability reasons and for customizing the build via CMake options. Furthermore, the `robotology-superbuild` also contains some infrastructure to build **binaries** of the contained projects for some platforms. 
+If you are familiar with ROS, it is something similar to [catkin](http://wiki.ros.org/catkin/workspaces) or [colcon workspace](https://colcon.readthedocs.io/en/released/user/quick-start.html), but using pure CMake for portability reasons and for customizing the build via CMake options. Furthermore, the `robotology-superbuild` also contains some infrastructure to build **binaries** of the contained projects for some platforms.
 You can read more about the superbuild concept in [YCM documentation](http://robotology.github.io/ycm-cmake-modules/gh-pages/latest/index.html) or in the [related IRC paper](http://lornat75.github.io/papers/2018/domenichelli-irc.pdf).
 
 Table of Contents
@@ -20,10 +20,10 @@ Table of Contents
   * [FAQs](#faqs)
   * [Mantainers](#mantainers)
 
-Superbuild 
+Superbuild
 ==========
 
-The `robotology-superbuild` is an infrastructure to simplify development and use of **open source research software** developed at the **[Italian Institute of Technology](https://iit.it/)**, in particular as part of the **[iCub project](https://icub.iit.it/)**. 
+The `robotology-superbuild` is an infrastructure to simplify development and use of **open source research software** developed at the **[Italian Institute of Technology](https://iit.it/)**, in particular as part of the **[iCub project](https://icub.iit.it/)**.
 
 ### Profiles and Optional Dependencies
 As a huge number of software projects are contained in the `robotology-superbuild`, and a tipical user is only interested in some of them, there are several **options** to instruct the superbuild on which packages should be built and which one should not be built. In particular, the robotology-superbuild is divided in different **profiles**, that specify the specific subset of robotology packages to build. You can read more on the available **profiles** and how to enable them in the [`doc/cmake-options.md#profile-specific-documentation`](doc/cmake-options.md#profile-specific-documentation).
@@ -31,7 +31,7 @@ As a huge number of software projects are contained in the `robotology-superbuil
 Furthermore, some **dependencies** of software contained in the `robotology-superbuild` are either tricky to install or proprietary, and for this reason software that depends on those  optional dependencies can be **enabled** or **disabled** with specific options,as documented in [`doc/cmake-options.md#dependencies-specific-documentation`](doc/cmake-options.md#dependencies-specific-documentation).
 
 ### Versioning
-For what regards versioning, software in the robotology-superbuild can be consumed in two forms: 
+For what regards versioning, software in the robotology-superbuild can be consumed in two forms:
 
 #### [Rolling update](https://en.wikipedia.org/wiki/Rolling_release)
 In this form, the superbuild will get the latest changes for a branch of each subproject, and will build it. This has the advantage that you get all the latest changes from the software contained in the `robotology-superbuild`, while the downside that the specific software that you use may change at each update. The **rolling update** can be used only when building robotology-superbuild software **from source**. By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).
@@ -45,7 +45,7 @@ The available releases can be seen on [GitHub's release page](https://github.com
 Binary Installation
 ===================
 
-We provide binary packages for Linux, macOS and Windows of the software contained in the robotology-superbuild via the [conda package manager](https://docs.conda.io), relying on the community-mantained [`conda-forge`](https://conda-forge.org/) channel and for some packages on our own `robotology` conda channel. 
+We provide binary packages for Linux, macOS and Windows of the software contained in the robotology-superbuild via the [conda package manager](https://docs.conda.io), relying on the community-mantained [`conda-forge`](https://conda-forge.org/) channel and for some packages on our own `robotology` conda channel.
 
 Please refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instructions on how to install the conda binary packages, in particular the [`Binary Installation`](doc/conda-forge.md#binary-installation) section.
 
@@ -97,7 +97,7 @@ For each project, the repository will be downloaded in the `src/<package_name>` 
 The build directory for a given project will be instead the `src/<package_name>` subdirectory of the superbuild build directory. 
 All the software packages are installed using the `install` directory of the build as installation prefix.
 
-We also support an additional deprecated way of compiling the superbuild, on Windows using dependencies provided by [vcpkg](https://vcpkg.io/). Documentation for them can be found in [`doc/deprecated-installation-methods.md`](doc/deprecated-installation-methods.md). 
+We also support an additional deprecated way of compiling the superbuild, on Windows using dependencies provided by [vcpkg](https://vcpkg.io/). Documentation for them can be found in [`doc/deprecated-installation-methods.md`](doc/deprecated-installation-methods.md).
 
 ## Linux from source with dependencies provided by apt
 
@@ -241,7 +241,7 @@ yarp conf ${WINDOWS_HOST} 10000 > /dev/null 2>&1
 
 
 ## Update
-If you are using the `robotology-superbuild` in its default branch and not from a release tag (i.e. in **rolling update** mode), to update the superbuild you need to first update the 
+If you are using the `robotology-superbuild` in its default branch and not from a release tag (i.e. in **rolling update** mode), to update the superbuild you need to first update the
 `robotology-superbuild` repository itself with the git command:
 ~~~
 git pull
@@ -272,7 +272,7 @@ For this reason, if you are activly developing on a repository managed by the `r
 option to `TRUE`. This option will ensure that the superbuild will not try to automatically update the `<package_name>` repository. See  https://robotology.github.io/ycm-cmake-modules/gh-pages/latest/manual/ycm-superbuild.7.html?#developer-mode
 for more details on this options.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Before August 2024 the robotology-superbuild raised an error if you called `make update-all` or `ninja update-all` and there was repo with local modification with `YCM_EP_DEVEL_MODE_<package>` set to `OFF`. Since August 2024, instead the robotology-superbuild will silently discard the local modifications. To avoid losing data, **never call the `update-all` target** if you have local modifications in a package and you did not set `YCM_EP_DEVEL_MODE_<package>` to `ON` for that package.
 
 By default, the `robotology-superbuild` uses the latest "stable" branches of the robotology repositories, but in some cases it may be necessary to use the "unstable" active development branches, or use some fixed tags. For this advanced functionalities, please refer to the documentation on changing the default project tags, available at [`doc/change-project-tags.md`](doc/change-project-tags.md).

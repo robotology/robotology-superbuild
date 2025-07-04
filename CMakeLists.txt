@@ -135,11 +135,13 @@ else()
   set(ROBOTOLOGY_WITH_MATLAB_AND_MUJOCO OFF)
 endif()
 configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.sh.in ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/setup.sh @ONLY)
+configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/deactivate.sh.in ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/deactivate.sh @ONLY)
 
 if(WIN32)
   file(TO_NATIVE_PATH ${PROJECT_SOURCE_DIR} PROJECT_SOURCE_DIR_NATIVE_PATH)
   file(TO_NATIVE_PATH ${YCM_EP_INSTALL_DIR} YCM_EP_INSTALL_DIR_NATIVE_PATH)
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/setup.bat.in ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/setup.bat @ONLY)
+  configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/deactivate.bat.in ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/deactivate.bat @ONLY)
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/addPathsToUserEnvVariables.ps1.in
                               ${YCM_EP_INSTALL_DIR}/share/${PROJECT_NAME}/addPathsToUserEnvVariables.ps1 @ONLY)
   configure_file_with_cmakeif(${CMAKE_CURRENT_SOURCE_DIR}/cmake/template/removePathsFromUserEnvVariables.ps1.in

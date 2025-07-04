@@ -264,3 +264,15 @@ On **Windows with cmd prompt**:
 conda activate robsub
 call ./robotology-superbuild/build/install/share/robotology-superbuild/setup.bat
 ~~~
+
+If you need to deactivate the robotology-superbuild environment, you can use the deactivate scripts:
+
+On **Linux**, **macOS** or **Windows with Git Bash**:
+~~~
+source ./robotology-superbuild/build/install/share/robotology-superbuild/deactivate.sh
+~~~
+
+On **Windows with cmd prompt**:
+~~~
+call ./robotology-superbuild/build/install/share/robotology-superbuild/deactivate.bat
+~~~

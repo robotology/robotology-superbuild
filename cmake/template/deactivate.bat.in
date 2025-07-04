@@ -1,0 +1,144 @@
+rem Automatically generated deactivate file for @PROJECT_NAME@
+
+rem Function to remove a value from an environment variable (semicolon-separated list)
+rem This is implemented inline since batch doesn't have functions like bash
+
+rem Check if robotology-superbuild environment is active
+if "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%"=="" (
+    echo Warning: robotology-superbuild environment variables not found. Nothing to deactivate.
+    goto :eof
+)
+
+set "ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL=%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX%"
+set "ROBOTOLOGY_SUPERBUILD_SOURCE_DIR="
+set "ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX="
+
+rem Cleanup PATH
+call :remove_from_path PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\bin"
+
+rem Cleanup YARP related env variables
+call :remove_from_env YARP_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\yarp"
+call :remove_from_env YARP_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\iCub"
+call :remove_from_env YARP_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\ergoCub"
+call :remove_from_env YARP_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\ICUBcontrib"
+
+rem Cleanup CMAKE_PREFIX_PATH
+call :remove_from_env CMAKE_PREFIX_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%"
+
+rem Cleanup BLOCKFACTORY_PLUGIN_PATH
+call :remove_from_env BLOCKFACTORY_PLUGIN_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\@BLOCKFACTORY_PLUGIN_PATH_DIRECTORY@\blockfactory"
+
+rem Cleanup variables useful to find resources in URDF and SDF files
+call :remove_from_env ROS_PACKAGE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share"
+call :remove_from_env AMENT_PREFIX_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%"
+call :remove_from_env GAZEBO_MODEL_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\gazebo\models"
+call :remove_from_env GAZEBO_MODEL_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\iCub\robots"
+call :remove_from_env GAZEBO_MODEL_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\ergoCub\robots"
+call :remove_from_env GAZEBO_MODEL_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share"
+
+rem Cleanup XDG_DATA_DIRS
+call :remove_from_env XDG_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share"
+
+@cmakeif ROBOTOLOGY_USES_GAZEBO
+rem Cleanup ROBOTOLOGY_USES_GAZEBO-specific lines
+call :remove_from_env GAZEBO_PLUGIN_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\bin"
+call :remove_from_env GAZEBO_RESOURCE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\gazebo\worlds"
+@endcmakeif ROBOTOLOGY_USES_GAZEBO
+
+@cmakeif ROBOTOLOGY_USES_GZ
+rem Cleanup ROBOTOLOGY_USES_GZ-specific lines
+call :remove_from_env GZ_SIM_SYSTEM_PLUGIN_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\bin"
+call :remove_from_env GZ_SIM_RESOURCE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\gazebo\models"
+call :remove_from_env GZ_SIM_RESOURCE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\iCub\robots"
+call :remove_from_env GZ_SIM_RESOURCE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\ergoCub\robots"
+call :remove_from_env GZ_SIM_RESOURCE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share"
+call :remove_from_env GZ_SIM_RESOURCE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\gazebo\worlds"
+@endcmakeif ROBOTOLOGY_USES_GZ
+
+@cmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
+rem Cleanup ROBOTOLOGY_ENABLE_ROBOT_TESTING-specific lines
+call :remove_from_path PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\lib\robottestingframework"
+call :remove_from_env YARP_DATA_DIRS "@PROJECT_SOURCE_DIR_NATIVE_PATH@\src\icub-tests\suites"
+call :remove_from_env BLOCKTEST_RESOURCE_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\bin"
+@endcmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
+
+@cmakeif ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS
+rem Cleanup ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS-specific lines
+call :remove_from_env YARP_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\human-gazebo"
+call :remove_from_env YARP_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\HumanDynamicsEstimation"
+@endcmakeif ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS
+
+@cmakeif ROBOTOLOGY_USES_PYTHON
+rem Cleanup the python bindings directory from the PYTHON_PATH
+call :remove_from_env PYTHONPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\@ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR@"
+rem Remove from the PATH where pure python packages install the scripts
+call :remove_from_path PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\@ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR@\bin"
+@endcmakeif ROBOTOLOGY_USES_PYTHON
+
+@cmakeif ROBOTOLOGY_USES_MATLAB
+rem Cleanup ROBOTOLOGY_USES_MATLAB-specific lines
+call :remove_from_env YARP_DATA_DIRS "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\RRbot"
+call :remove_from_env GAZEBO_MODEL_PATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\RRbot\robots"
+call :remove_from_env MATLABPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\mex"
+call :remove_from_env MATLABPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\mex\+wbc\simulink"
+call :remove_from_env MATLABPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\mex\+wbc\simulink\MomentumVelocityControl"
+call :remove_from_env MATLABPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\mex\+wbc\examples"
+call :remove_from_env MATLABPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\WBToolbox"
+call :remove_from_env MATLABPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\share\WBToolbox\images"
+@endcmakeif ROBOTOLOGY_USES_MATLAB
+
+@cmakeif ROBOTOLOGY_WITH_MATLAB_AND_MUJOCO
+call :remove_from_env MATLABPATH "%ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL%\mex\mujoco_simulink_blockset"
+@endcmakeif ROBOTOLOGY_WITH_MATLAB_AND_MUJOCO
+
+goto :eof
+
+rem Function to remove a value from an environment variable
+:remove_from_env
+setlocal enabledelayedexpansion
+set "var_name=%~1"
+set "value_to_remove=%~2"
+call set "current_value=%%%var_name%%%"
+
+if "!current_value!"=="" goto :eof
+
+set "new_value="
+for %%i in ("!current_value:;=" "!") do (
+    set "item=%%~i"
+    if not "!item!"=="!value_to_remove!" (
+        if "!new_value!"=="" (
+            set "new_value=!item!"
+        ) else (
+            set "new_value=!new_value!;!item!"
+        )
+    )
+)
+
+if "!new_value!"=="" (
+    set "%var_name%="
+) else (
+    set "%var_name%=!new_value!"
+)
+endlocal & set "%var_name%=%new_value%"
+goto :eof
+
+rem Function to remove a value from PATH specifically (since PATH is special)
+:remove_from_path
+setlocal enabledelayedexpansion
+set "value_to_remove=%~2"
+set "current_path=%PATH%"
+
+set "new_path="
+for %%i in ("!current_path:;=" "!") do (
+    set "item=%%~i"
+    if not "!item!"=="!value_to_remove!" (
+        if "!new_path!"=="" (
+            set "new_path=!item!"
+        ) else (
+            set "new_path=!new_path!;!item!"
+        )
+    )
+)
+
+endlocal & set "PATH=%new_path%"
+goto :eof

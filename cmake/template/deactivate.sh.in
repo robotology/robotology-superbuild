@@ -1,0 +1,138 @@
+# Automatically generated deactivate file for @PROJECT_NAME@
+
+# Remove a given environment variable
+remove_env_variable() {
+    local var_name="$1"
+    unset "$var_name"
+}
+
+# Remove a value from a given environment variable (colon-separated list)
+remove_value_from_env_variable() {
+    local var_name="$1"
+    local value="$2"
+
+    # Get current value of the environment variable
+    local curr_var
+    eval "curr_var=\$$var_name"
+
+    # If the env variable is empty, do nothing
+    if [ -z "$curr_var" ]; then
+        return
+    fi
+
+    # Remove the value from the colon-separated list
+    local new_var=""
+    local first=true
+    IFS=':'
+    for item in $curr_var; do
+        if [ "$item" != "$value" ]; then
+            if [ "$first" = "true" ]; then
+                new_var="$item"
+                first=false
+            else
+                new_var="$new_var:$item"
+            fi
+        fi
+    done
+    unset IFS
+
+    # If the resulting variable is empty, unset it, otherwise export the new value
+    if [ -z "$new_var" ]; then
+        unset "$var_name"
+    else
+        export "$var_name"="$new_var"
+    fi
+}
+
+# Check if robotology-superbuild environment is active
+if [ -z "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX" ]; then
+    echo "Warning: robotology-superbuild environment variables not found. Nothing to deactivate."
+    return 0
+fi
+
+remove_env_variable ROBOTOLOGY_SUPERBUILD_SOURCE_DIR
+ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL="$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX"
+remove_env_variable ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX
+
+# Cleanup PATH
+remove_value_from_env_variable PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/bin"
+
+# Cleanup YARP related env variables (see http://www.yarp.it/yarp_data_dirs.html )
+remove_value_from_env_variable YARP_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/yarp"
+remove_value_from_env_variable YARP_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/iCub"
+remove_value_from_env_variable YARP_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/ergoCub"
+remove_value_from_env_variable YARP_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/ICUBcontrib"
+
+# Cleanup CMAKE_PREFIX_PATH (see https://cmake.org/cmake/help/v3.8/variable/CMAKE_PREFIX_PATH.html )
+remove_value_from_env_variable CMAKE_PREFIX_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL"
+
+# Cleanup shared library path
+remove_value_from_env_variable @SHLIB_ENV_VAR@ "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/lib"
+
+# Cleanup BLOCKFACTORY_PLUGIN_PATH
+remove_value_from_env_variable BLOCKFACTORY_PLUGIN_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/@BLOCKFACTORY_PLUGIN_PATH_DIRECTORY@/blockfactory"
+
+# Cleanup variables useful to find resources in URDF and SDF files
+remove_value_from_env_variable ROS_PACKAGE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share"
+remove_value_from_env_variable AMENT_PREFIX_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL"
+remove_value_from_env_variable GAZEBO_MODEL_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/gazebo/models"
+remove_value_from_env_variable GAZEBO_MODEL_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/iCub/robots"
+remove_value_from_env_variable GAZEBO_MODEL_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/ergoCub/robots"
+remove_value_from_env_variable GAZEBO_MODEL_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share"
+
+# Cleanup XDG_DATA_DIRS
+remove_value_from_env_variable XDG_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share"
+
+@cmakeif ROBOTOLOGY_USES_GAZEBO
+# Cleanup ROBOTOLOGY_USES_GAZEBO-specific lines
+remove_value_from_env_variable GAZEBO_PLUGIN_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/lib"
+remove_value_from_env_variable GAZEBO_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/gazebo/worlds"
+@endcmakeif ROBOTOLOGY_USES_GAZEBO
+
+@cmakeif ROBOTOLOGY_USES_GZ
+# Cleanup ROBOTOLOGY_USES_GZ-specific lines
+remove_value_from_env_variable GZ_SIM_SYSTEM_PLUGIN_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/lib"
+remove_value_from_env_variable GZ_SIM_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/gazebo/models"
+remove_value_from_env_variable GZ_SIM_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/iCub/robots"
+remove_value_from_env_variable GZ_SIM_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/ergoCub/robots"
+remove_value_from_env_variable GZ_SIM_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share"
+remove_value_from_env_variable GZ_SIM_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/gazebo/worlds"
+@endcmakeif ROBOTOLOGY_USES_GZ
+
+@cmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
+# Cleanup ROBOTOLOGY_ENABLE_ROBOT_TESTING-specific lines
+remove_value_from_env_variable @SHLIB_ENV_VAR@ "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/lib/robottestingframework"
+remove_value_from_env_variable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR_SETUP_SH@/src/icub-tests/suites"
+remove_value_from_env_variable BLOCKTEST_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/bin"
+@endcmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
+
+@cmakeif ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS
+# Cleanup ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS-specific lines
+remove_value_from_env_variable YARP_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/human-gazebo"
+remove_value_from_env_variable YARP_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/HumanDynamicsEstimation"
+@endcmakeif ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS
+
+@cmakeif ROBOTOLOGY_USES_PYTHON
+# Cleanup the python bindings directory from the PYTHON_PATH
+remove_value_from_env_variable PYTHONPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/@ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR_SETUP_SH@"
+# Remove from the PATH where pure python packages (such as robot-log-visualizer) install the scripts
+remove_value_from_env_variable PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/@ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR_SETUP_SH@/bin"
+@endcmakeif ROBOTOLOGY_USES_PYTHON
+
+@cmakeif ROBOTOLOGY_USES_MATLAB
+# Cleanup ROBOTOLOGY_USES_MATLAB-specific lines
+remove_value_from_env_variable YARP_DATA_DIRS "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/RRbot"
+remove_value_from_env_variable GAZEBO_MODEL_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/RRbot/robots"
+remove_value_from_env_variable GZ_SIM_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/RRbot/robots"
+remove_value_from_env_variable MATLABPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/mex"
+remove_value_from_env_variable MATLABPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/mex/+wbc/simulink/MomentumVelocityControl"
+remove_value_from_env_variable MATLABPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/mex/+wbc/simulink"
+remove_value_from_env_variable MATLABPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/mex/+wbc/examples"
+remove_value_from_env_variable MATLABPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/WBToolbox"
+remove_value_from_env_variable MATLABPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/share/WBToolbox/images"
+# Note: JAVA_TOOL_OPTIONS is tricky to clean up properly, so we leave it as is
+@endcmakeif ROBOTOLOGY_USES_MATLAB
+
+@cmakeif ROBOTOLOGY_WITH_MATLAB_AND_MUJOCO
+remove_value_from_env_variable MATLABPATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/mex/mujoco_simulink_blockset"
+@endcmakeif ROBOTOLOGY_WITH_MATLAB_AND_MUJOCO
