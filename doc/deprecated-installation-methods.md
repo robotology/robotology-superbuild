@@ -126,11 +126,18 @@ To check the values of the enviroment variables modified by the powershell scrip
 If you do not want to modify the user enviroment variables permanently, the superbuild provides an automatically generated `setup.bat` batch script in `<directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.bat`. This script will set
 all the necessary enviromental variables to use the software installed by the robotology-superbuild. However, as in Windows there is no `.bashrc` file-equivalent, you will need to call this script every time you open a batch terminal in which you want to run the software installed by the robotology-superbuild.
 
+If you need to deactivate the robotology-superbuild environment, you can use the automatically generated `deactivate.bat` script in `<directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/deactivate.bat`.
+
 Another option if you do not want to to modify the user enviroment variables permanently and you use the Git Bash as your main terminal,
 is to use the automatically generated `setup.sh` script,  available in `<directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh`.
 You can source automatically this script for any new Git Bash instance by creating a `.bash_profile` file  in your `C:/Users/<UserName>`  directory, and by adding in it the file:
 ~~~
 source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/setup.sh
+~~~
+
+Similarly, if you are using Git Bash and need to deactivate the robotology-superbuild environment, you can use:
+~~~
+source <directory-where-you-downloaded-robotology-superbuild>/build/install/share/robotology-superbuild/deactivate.sh
 ~~~
 
 If for any reason you do not want to use the provided scripts and you want to manage your enviroment variables manually, for example because you want to cleanup the enviroment variables modified by `addPathsToUserEnvVariables.ps1`  and you delete the corresponding `removePathsFromUserEnvVariables.ps1`, please refer to the documentation available at [`doc/environment-variables-configuration.md `](environment-variables-configuration.md).
