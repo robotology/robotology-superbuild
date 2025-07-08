@@ -417,6 +417,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyqt-5.15.11-py311he22028a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyqt5-sip-12.17.0-py311hfdbb021_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyqtwebengine-5.15.11-py311h5dacb8b_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyside6-6.9.1-py311h846acb3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/python-3.11.13-h9e4cc4f_0_cpython.conda
@@ -925,6 +926,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyqt-5.15.11-py310h27ebcef_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyqt5-sip-12.17.0-py310he30c3ed_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyqtwebengine-5.15.11-py310hc14d580_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyside6-6.9.1-py310hd3bda28_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/python-3.10.18-h256493d_0_cpython.conda
@@ -1389,6 +1391,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/pyqt-5.15.11-py310h6e944e8_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/pyqt5-sip-12.17.0-py310hd6d74de_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/pyqtwebengine-5.15.11-py310habaa6e9_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/python-3.10.18-h93e8a92_0_cpython.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhe01879c_2.conda
@@ -1830,6 +1833,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pyqt-5.15.11-py311h2146069_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pyqt5-sip-12.17.0-py311h155a34a_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pyqtwebengine-5.15.11-py311h888a3b4_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.11.13-hc22306f_0_cpython.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/python-dateutil-2.9.0.post0-pyhe01879c_2.conda
@@ -2237,6 +2241,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyqt-5.15.11-py313hbdd460c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyqt5-sip-12.17.0-py313h5813708_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyqtwebengine-5.15.11-py313h12291d0_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyside6-6.9.1-py313hd8d090c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/python-3.13.5-h7de537c_102_cp313.conda
@@ -2764,6 +2769,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyqt-5.15.11-py311he22028a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyqt5-sip-12.17.0-py311hfdbb021_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyqtwebengine-5.15.11-py311h5dacb8b_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/pyside6-6.8.3-py311h9053184_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pytest-8.4.1-pyhd8ed1ab_0.conda
@@ -3584,6 +3590,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyqt-5.15.11-py311h70a6756_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyqt5-sip-12.17.0-py311h89d996e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyqtwebengine-5.15.11-py311hffe1bd2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pyside6-6.8.3-py311habb2604_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pytest-8.4.1-pyhd8ed1ab_0.conda
@@ -4360,6 +4367,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/pyqt-5.15.11-py311hc765f6a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/pyqt5-sip-12.17.0-py311h74e74b8_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/pyqtwebengine-5.15.11-py311hee9461d_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pytest-8.4.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/python-3.11.13-h9ccd52b_0_cpython.conda
@@ -5113,6 +5121,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pyqt-5.15.11-py311h2146069_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pyqt5-sip-12.17.0-py311h155a34a_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pyqtwebengine-5.15.11-py311h888a3b4_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pytest-8.4.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/python-3.11.13-hc22306f_0_cpython.conda
@@ -5830,6 +5839,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyqt-5.15.11-py311h2d05f59_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyqt5-sip-12.17.0-py311hda3d55a_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyqtwebengine-5.15.11-py311hd90e686_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/pyside6-6.8.3-py311h4238720_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pytest-8.4.1-pyhd8ed1ab_0.conda
@@ -39473,6 +39483,19 @@ packages:
   license_family: GPL
   size: 75459
   timestamp: 1749224745935
+- conda: https://conda.anaconda.org/conda-forge/noarch/pyqtgraph-0.13.7-pyhd8ed1ab_1.conda
+  sha256: bc3ca92c679dc421d37feeabe2d8d8c35247e93227bb22bd02aedbf5531eaadb
+  md5: 569357b4d0b4565c57698a6e2dade74e
+  depends:
+  - numpy >=1.22
+  - python >=3.9
+  constrains:
+  - pyqt >=5.15
+  - pyside2 >=5.15
+  license: MIT
+  license_family: MIT
+  size: 1442486
+  timestamp: 1733894574912
 - conda: https://conda.anaconda.org/conda-forge/linux-64/pyqtwebengine-5.15.11-py311h5dacb8b_1.conda
   sha256: 41ff489723f249ab9a100ef3ba259d72d345e8285f99eaaa3621f55ba5ad52e0
   md5: 5977121af8d45a2e6c166e5f70d39417
