@@ -88,7 +88,7 @@ jobs:
         # Dependencies
         conda install ace asio assimp libboost-devel cli11 eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl "ipopt>=3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake cxx-compiler make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp "qt6-main>=6.7.2" catch2 gtest
         # Python
-        conda install python numpy swig pybind11 pyqt matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
+        conda install python numpy swig pybind11 pyqt pyqtgraph matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyqtwebengine qtpy pyyaml
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
