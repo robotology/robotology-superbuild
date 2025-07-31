@@ -97,6 +97,9 @@ ycm_ep_helper(ICUB TYPE GIT
                               -DENABLE_icubmod_embObjPOS:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DENABLE_icubmod_xsensmtx:BOOL=${ENABLE_icubmod_xsensmtx}
                               -DENABLE_icubmod_socketcan:BOOL=${ENABLE_icubmod_socketcan}
+                              -DENABLE_icubmod_rawValuesPublisherClient:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                              -DENABLE_icubmod_rawValuesPublisherServer:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
+                              -DENABLE_icubmod_fineCalibrationChecker:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DICUB_USE_icub_firmware_shared:BOOL=${ROBOTOLOGY_ENABLE_ICUB_HEAD}
                               -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS}
                               -DICUB_COMPILE_BINDINGS:BOOL=${ICUB_COMPILE_BINDINGS}
