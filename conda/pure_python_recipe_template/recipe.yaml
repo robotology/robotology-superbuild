@@ -37,6 +37,7 @@ requirements:
 tests:
   - script:
       # Do not run pip check on arm64 as pip list does not list qtpy5 and qtwebengine
+      - echo "Running tests"
       - if: not arm64
         then: pip check
     requirements:
