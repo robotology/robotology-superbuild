@@ -18,7 +18,8 @@
 # External repos are in the list as we updated them manually
 # event-driven does not have a recent release
 # CppAD does not tags release on master, so the logic used in this script does not work
-projects_to_skip=("ICUBcontrib" "CppAD" "casadi" "casadi-matlab-bindings" "manif" "osqp" "proxsuite" "event-driven")
+# pyngrok as a workaround for https://github.com/robotology/robotology-superbuild/issues/1890
+projects_to_skip=("ICUBcontrib" "CppAD" "casadi" "casadi-matlab-bindings" "manif" "osqp" "proxsuite" "event-driven" "pyngrok")
 
 getParentDir () {
     SOURCE="${1}"
@@ -51,10 +52,21 @@ containsElement () {
   return 1
 }
 
+folder_to_package_name () {
+  case "$1" in
+    # See https://github.com/robotology/robotology-superbuild/issues/1889 and https://github.com/robotology/robotology-superbuild/pull/1882
+    icub-firmware-shared) echo "icub_firmware_shared" ;;
+    # default: use the folder name as-is
+    *) echo "$1" ;;
+  esac
+}
+
 updateLatestRelease () {
     cd $1
-    # Extract package name
-    package_name=`basename $1`
+    # Extract folder name
+    folder_name=`basename $1`
+    package_name="$(folder_to_package_name "$folder_name")"
+
     # Check if package is in skip list
     containsElement "$package_name" "${projects_to_skip[@]}"
     is_contained=$?

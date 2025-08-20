@@ -22,7 +22,7 @@ repositories:
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: v0.18.3
+    version: v0.18.4
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
@@ -66,7 +66,7 @@ repositories:
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.3.9
+    version: v2.3.10
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
@@ -86,7 +86,7 @@ repositories:
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
-    version: v0.10.1
+    version: v0.10.2
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
@@ -206,7 +206,7 @@ repositories:
   pyngrok:
     type: git
     url: https://github.com/alexdlaird/pyngrok.git
-    version: 7.2.11
+    version: 7.2.12
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
@@ -214,11 +214,11 @@ repositories:
   robot-log-visualizer:
     type: git
     url: https://github.com/ami-iit/robot-log-visualizer.git
-    version: v0.9.0
+    version: v0.10.0
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.49
+    version: release-1.1.50
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -274,7 +274,7 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.4.2
+    version: v0.5.0
   sharedlibpp:
     type: git
     url: https://github.com/ami-iit/sharedlibpp.git
