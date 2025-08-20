@@ -303,5 +303,3 @@ repositories:
     type: git
     url: https://github.com/ami-iit/biomechanical-analysis-framework.git
     version: v0.2.2
-  icub-firmware-shared:
-    version: v1.43.0
