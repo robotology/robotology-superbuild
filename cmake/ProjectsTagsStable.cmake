@@ -14,6 +14,8 @@ set_tag(proxsuite_TAG v0.7.2)
 set_tag(casadi_REPOSITORY ami-iit/casadi.git)
 set_tag(casadi_TAG 3.7.0.1)
 set_tag(casadi-matlab-bindings_TAG v3.7.0.0)
+# Workaround for https://github.com/robotology/robotology-superbuild/issues/1890
+set_tag(pyngrok_TAG 7.2.12)
 
 # Robotology projects
 set_tag(YCM_TAG master)

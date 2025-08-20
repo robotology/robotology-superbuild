@@ -18,7 +18,8 @@
 # External repos are in the list as we updated them manually
 # event-driven does not have a recent release
 # CppAD does not tags release on master, so the logic used in this script does not work
-projects_to_skip=("ICUBcontrib" "CppAD" "casadi" "casadi-matlab-bindings" "manif" "osqp" "proxsuite" "event-driven")
+# pyngrok as a workaround for https://github.com/robotology/robotology-superbuild/issues/1890
+projects_to_skip=("ICUBcontrib" "CppAD" "casadi" "casadi-matlab-bindings" "manif" "osqp" "proxsuite" "event-driven" "pyngrok")
 
 getParentDir () {
     SOURCE="${1}"

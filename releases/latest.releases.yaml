@@ -206,7 +206,7 @@ repositories:
   pyngrok:
     type: git
     url: https://github.com/alexdlaird/pyngrok.git
-    version: 7.3.0
+    version: 7.2.12
   meshcat-python:
     type: git
     url: https://github.com/rdeits/meshcat-python.git
