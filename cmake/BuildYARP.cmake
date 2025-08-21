@@ -34,7 +34,7 @@ else()
   set(YARP_USE_I2C OFF)
 endif()
 
-if(ROBOTOLOGY_USES_PYTHON)
+if(ROBOTOLOGY_USES_PYTHON AND NOT ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   # Differently from other libraries, the `CMAKE_INSTALL_PYTHON3DIR` is a PATH CACHE variable,
   # so if we pass a relative path, it gets automatically expanded to the absolute path w.r.t.
   # to the current work directory where cmake is invoked, while we want it to be relative w.r.t.

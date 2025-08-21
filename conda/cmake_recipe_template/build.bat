@@ -5,9 +5,8 @@ cd {{ source_subdir }}
 mkdir build
 cd build
 
-:: Hardcoding Visual Studio 2019 as GitHub Actions does not have VS2019
 cmake ^
-    -G"Visual Studio 16 2019" ^
+    -G"Ninja" ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
