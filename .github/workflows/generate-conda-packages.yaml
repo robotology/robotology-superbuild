@@ -98,7 +98,7 @@ jobs:
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            conda install pyyaml jinja2 rattler-build cmake ninja anaconda-client conda-forge-pinning multisheller pixi
+            conda install pyyaml jinja2 rattler-build cmake cxx-compiler ninja anaconda-client conda-forge-pinning multisheller pixi
 
         - name: Print used environment
           shell: bash -l {0}
