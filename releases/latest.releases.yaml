@@ -150,7 +150,7 @@ repositories:
   speech:
     type: git
     url: https://github.com/robotology/speech.git
-    version: v1.2.0
+    version: v1.3.0
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
