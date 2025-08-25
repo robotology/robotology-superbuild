@@ -3,13 +3,13 @@
 # As a workaround, we move each append in its own "if" statement.
 
 if_(is_set("COMSPEC")).then_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox"))
+	sys.list_prepend("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox"))
 ]).else_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox"))
+	sys.list_prepend("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox"))
 ])
 
 if_(is_set("COMSPEC")).then_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox\\images"))
+	sys.list_prepend("MATLABPATH", path.join(env("CONDA_PREFIX"), "Library\\share\\WBToolbox\\images"))
 ]).else_([
-	sys.list_append("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox/images"))
+	sys.list_prepend("MATLABPATH", path.join(env("CONDA_PREFIX"), "share/WBToolbox/images"))
 ])
