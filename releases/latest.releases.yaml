@@ -135,6 +135,10 @@ repositories:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
     version: v1.43.0
+  simulink-arsenal:
+    type: git
+    url: https://github.com/icub-tech-iit/simunlink-arsenal.git
+    version: v1.0.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
