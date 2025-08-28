@@ -201,6 +201,7 @@ endif()
 # via update-latest-releases.yml GitHub Action
 if(ROBOTOLOGY_INTERNAL_CLONE_ALL_REPOS_FOR_UPDATE)
   find_or_build_package(icub-firmware)
+  find_or_build_package(simulink-arsenal)
   find_or_build_package(icub-firmware-models)
   find_or_build_package(icub-tech-iit-documentation)
 endif()
