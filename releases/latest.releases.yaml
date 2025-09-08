@@ -26,11 +26,11 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.12.0
+    version: v3.12.1
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v2.9.0
+    version: v2.10.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
@@ -38,7 +38,7 @@ repositories:
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v2.11.0
+    version: v2.12.0
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
@@ -86,7 +86,7 @@ repositories:
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
-    version: v0.10.2
+    version: v0.10.3
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
@@ -126,15 +126,15 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.43.0
+    version: v1.44.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.43.0
+    version: v1.44.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.43.0
+    version: v1.44.0
   simulink-arsenal:
     type: git
     url: https://github.com/icub-tech-iit/simunlink-arsenal.git
@@ -142,7 +142,7 @@ repositories:
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
-    version: v1.43.0
+    version: v1.44.0
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
@@ -218,11 +218,11 @@ repositories:
   robot-log-visualizer:
     type: git
     url: https://github.com/ami-iit/robot-log-visualizer.git
-    version: v0.10.0
+    version: v0.11.0
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.50
+    version: release-1.1.51
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
