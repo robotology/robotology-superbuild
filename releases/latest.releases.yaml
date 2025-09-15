@@ -137,7 +137,7 @@ repositories:
     version: v1.44.0
   simulink-arsenal:
     type: git
-    url: https://github.com/icub-tech-iit/simunlink-arsenal.git
+    url: https://github.com/icub-tech-iit/simulink-arsenal.git
     version: v1.0.0
   icub-firmware-models:
     type: git
