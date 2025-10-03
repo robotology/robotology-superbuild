@@ -73,7 +73,7 @@ configure-all = { cmd = [
     "-DROBOTOLOGY_USES_ROS2:BOOL=OFF",
     "-DROBOTOLOGY_USES_MOVEIT:BOOL=OFF",
     # Temporary, disable PCL
-    "-DYCM_EP_ADDITIONAL_CMAKE_ARGS='-DCMAKE_DISABLE_FIND_PACKAGE_PCL:BOOL=ON'"
+    "-DYCM_EP_ADDITIONAL_CMAKE_ARGS='-DCMAKE_DISABLE_FIND_PACKAGE_PCL:BOOL=ON'",
     # Use the cross-platform Ninja generator
     "-G",
     "Ninja",
