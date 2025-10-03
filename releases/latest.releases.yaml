@@ -222,7 +222,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.51
+    version: release-1.1.52
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -278,7 +278,7 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.5.0
+    version: v0.5.1
   sharedlibpp:
     type: git
     url: https://github.com/ami-iit/sharedlibpp.git
