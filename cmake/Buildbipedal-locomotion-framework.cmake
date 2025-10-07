@@ -75,6 +75,7 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_tomlplusplus:BOOL=ON
                          -DFRAMEWORK_USE_onnxruntime:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
                          -DFRAMEWORK_COMPILE_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON}
+                         -DFRAMEWORK_USE_PCL:BOOL=OFF
                          ${bipedal-locomotion-framework_OPTIONAL_CMAKE_ARGS}
                          # Remove once https://github.com/ami-iit/bipedal-locomotion-framework/pull/955 is merged and released
                          -DCMAKE_POLICY_VERSION_MINIMUM=3.16
