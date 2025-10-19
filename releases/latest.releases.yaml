@@ -82,11 +82,11 @@ repositories:
   WBToolbox:
     type: git
     url: https://github.com/robotology/wb-toolbox.git
-    version: v6.0.1
+    version: v6.0.2
   OsqpEigen:
     type: git
     url: https://github.com/robotology/osqp-eigen.git
-    version: v0.10.3
+    version: v0.11.0
   UnicyclePlanner:
     type: git
     url: https://github.com/robotology/unicycle-footstep-planner.git
@@ -94,7 +94,7 @@ repositories:
   walking-controllers:
     type: git
     url: https://github.com/robotology/walking-controllers.git
-    version: v0.8.0
+    version: v0.9.0
   icub-gazebo-wholebody:
     type: git
     url: https://github.com/robotology/icub-gazebo-wholebody.git
@@ -118,7 +118,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v4.2.1
+    version: v4.2.2
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -170,7 +170,7 @@ repositories:
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
-    version: v0.3.0
+    version: v0.3.1
   event-driven:
     type: git
     url: https://github.com/robotology/event-driven.git
@@ -222,7 +222,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.52
+    version: release-1.1.53
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
@@ -250,7 +250,7 @@ repositories:
   BayesFilters:
     type: git
     url: https://github.com/robotology/bayes-filters-lib.git
-    version: 0.10.0
+    version: v0.10.1
   mujoco:
     type: git
     url: https://github.com/ami-iit/mujoco.git
@@ -278,7 +278,7 @@ repositories:
   gz-sim-yarp-plugins:
     type: git
     url: https://github.com/robotology/gz-sim-yarp-plugins.git
-    version: v0.5.1
+    version: v0.5.2
   sharedlibpp:
     type: git
     url: https://github.com/ami-iit/sharedlibpp.git
