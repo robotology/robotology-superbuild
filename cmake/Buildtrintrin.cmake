@@ -15,7 +15,7 @@ endif()
 ycm_ep_helper(trintrin TYPE GIT
               STYLE GITHUB
               REPOSITORY ami-iit/trintrin.git
-              TAG master
+              TAG main
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS-DTRINTRIN_COMPILE_PYTHON_BINDINGS:BOOL=${ROBOTOLOGY_USES_PYTHON} ${TRINTRIN_OPTIONAL_CMAKE_ARGS}
