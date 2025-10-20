@@ -13,6 +13,7 @@ find_or_build_package(matioCpp QUIET)
 find_or_build_package(UnicyclePlanner QUIET)
 find_or_build_package(manif QUIET)
 find_or_build_package(LieGroupControllers QUIET)
+find_or_build_package(trintrin QUIET)
 
 
 set(bipedal-locomotion-framework_DEPENDS "")
@@ -24,6 +25,7 @@ list(APPEND bipedal-locomotion-framework_DEPENDS UnicyclePlanner)
 list(APPEND bipedal-locomotion-framework_DEPENDS robometry)
 list(APPEND bipedal-locomotion-framework_DEPENDS manif)
 list(APPEND bipedal-locomotion-framework_DEPENDS LieGroupControllers)
+list(APPEND bipedal-locomotion-framework_DEPENDS trintrin)
 
 if (ROBOTOLOGY_BUILD_tomlplusplus)
   find_or_build_package(tomlplusplus QUIET)

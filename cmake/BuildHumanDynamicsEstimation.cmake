@@ -10,6 +10,7 @@ find_or_build_package(iDynTree QUIET)
 find_or_build_package(osqp QUIET)
 find_or_build_package(OsqpEigen QUIET)
 find_or_build_package(robometry QUIET)
+find_or_build_package(trintrin QUIET)
 
 # For what regards Python installation, the options changes depending
 # on whether we are installing HDE in the superbuild, or generating a
@@ -44,6 +45,7 @@ ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
                       OsqpEigen
                       ICUB
                       robometry
+                      trintrin
                       ${HumanDynamicsEstimation_OPTIONAL_DEPS})
 
 set(HumanDynamicsEstimation_CONDA_PKG_NAME human-dynamics-estimation)

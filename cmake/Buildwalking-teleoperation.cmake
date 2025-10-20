@@ -8,6 +8,7 @@ find_or_build_package(YARP QUIET)
 find_or_build_package(ICUB QUIET)
 find_or_build_package(iDynTree QUIET)
 find_or_build_package(HumanDynamicsEstimation QUIET)
+find_or_build_package(trintrin QUIET)
 
 ycm_ep_helper(walking-teleoperation TYPE GIT
               STYLE GITHUB
@@ -18,6 +19,7 @@ ycm_ep_helper(walking-teleoperation TYPE GIT
               DEPENDS iDynTree
                       ICUB
                       YARP
-                      HumanDynamicsEstimation)
+                      HumanDynamicsEstimation
+                      trintrin)
 
 set(walking-teleoperation_CONDA_DEPENDENCIES "eigen")
