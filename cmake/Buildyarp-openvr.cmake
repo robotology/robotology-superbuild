@@ -7,9 +7,9 @@ include(FindOrBuildPackage)
 find_or_build_package(YARP QUIET)
 find_or_build_package(OpenVR QUIET)
 
-ycm_ep_helper(yarp-openvr-trackers TYPE GIT
+ycm_ep_helper(yarp-openvr TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/yarp-openvr-trackers.git
+              REPOSITORY ami-iit/yarp-openvr.git
               TAG master
               COMPONENT dynamics
               FOLDER src
