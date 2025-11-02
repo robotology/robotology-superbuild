@@ -74,7 +74,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v13.4.2
+    version: v14.0.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -186,7 +186,7 @@ repositories:
   robometry:
     type: git
     url: https://github.com/robotology/robometry.git
-    version: v1.2.8
+    version: v1.3.0
   gym-ignition:
     type: git
     url: https://github.com/robotology/gym-ignition.git
@@ -226,7 +226,7 @@ repositories:
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
-    version: v1.16.8.1
+    version: v1.16.8
   yarp-device-openxrheadset:
     type: git
     url: https://github.com/ami-iit/yarp-device-openxrheadset.git
@@ -262,7 +262,7 @@ repositories:
   resolve-robotics-uri-py:
     type: git
     url: https://github.com/ami-iit/resolve-robotics-uri-py.git
-    version: v0.3.1
+    version: v0.4.1
   yarp-devices-ros:
     type: git
     url: https://github.com/robotology/yarp-devices-ros.git
@@ -306,8 +306,10 @@ repositories:
   BiomechanicalAnalysisFramework:
     type: git
     url: https://github.com/ami-iit/biomechanical-analysis-framework.git
-    version: v0.2.2
+    version: v0.2.3
   trintrin:
     type: git
     url: https://github.com/ami-iit/trintrin.git
+    version: v0.0.1
+  yarp-openvr:
     version: v0.0.1
