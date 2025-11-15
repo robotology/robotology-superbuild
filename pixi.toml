@@ -16,6 +16,10 @@ linux = "4.18"
 # This is a single place where CMAKE_BUILD_TYPE is defined, change its value here and
 # delete .build or .build-ros2 to change build type
 CMAKE_BUILD_TYPE = "Release"
+# ccache support
+CMAKE_C_COMPILER_LAUNCHER="ccache"
+CMAKE_CXX_COMPILER_LAUNCHER="ccache"
+CCACHE_BASEDIR="$PIXI_PROJECT_ROOT"
 
 # This platform-specific activation are used to only set the mold linker automatically on Linux
 [target.linux.activation.env]
@@ -100,6 +104,7 @@ ninja = "*"
 cmake = ">=3.29.0"
 make  = "*"
 pkg-config = "*"
+ccache = "*"
 
 # C++ libraries dependencies
 ace = "*"

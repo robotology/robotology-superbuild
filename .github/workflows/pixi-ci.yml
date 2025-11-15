@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-22.04, ubuntu-24.04-arm, macos-13, macos-14, windows-2022]
+        os: [ubuntu-22.04, ubuntu-24.04-arm, macos-15-intel, macos-14, windows-2022]
         pixi_task: [build-all, build-ros2]
         exclude:
           # Windows build fail due to length of build folder and other CI-specific issues, skip for now
@@ -30,7 +30,22 @@ jobs:
           - os: windows-2022
             pixi_task: build-ros2
 
+    env:
+      CCACHE_DIR: ${GITHUB_WORKSPACE}/.ccache
+      CCACHE_COMPRESS: true
+      CCACHE_COMPRESSLEVEL: 5
+
     steps:
+
+    - name: Restore ccache
+      id: cache-restore
+      uses: actions/cache/restore@v4
+      with:
+        path: .ccache
+        # allow a later run to pick up a cache that has an extra suffix
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.pixi_task }}-
+
     - uses: actions/checkout@v4
 
     # On periodic jobs and when delete_pixi_lock option is true, delete the pixi.lock to check that the project compiles with latest version of dependencies
@@ -70,3 +85,10 @@ jobs:
         git config --global user.name PixiGHA User
         git config --global user.email pixighauser@example.com
         pixi run ${{ matrix.pixi_task }}
+
+    - name: Save ccache
+      uses: actions/cache/save@v4
+      if: always()
+      with:
+        path: .ccache
+        key: ${{ runner.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
