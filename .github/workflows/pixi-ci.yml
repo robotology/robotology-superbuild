@@ -42,6 +42,7 @@ jobs:
       uses: actions/cache/restore@v4
       with:
         path: .ccache
+        key: ${{ runner.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
         # allow a later run to pick up a cache that has an extra suffix
         restore-keys: |
           ${{ runner.os }}-${{ matrix.pixi_task }}-
@@ -92,3 +93,4 @@ jobs:
       with:
         path: .ccache
         key: ${{ runner.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
+
