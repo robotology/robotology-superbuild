@@ -66,6 +66,7 @@ jobs:
     - name: Print ccache stats before build
       shell: bash
       run: |
+        pixi run ccache -k cache_dir
         pixi run ccache -s
 
     - name: Workaround on Windows
@@ -95,6 +96,7 @@ jobs:
     - name: Print ccache stats after build
       shell: bash
       run: |
+        pixi run ccache -k cache_dir
         pixi run ccache -s
 
     - name: Save ccache
@@ -103,4 +105,5 @@ jobs:
       with:
         path: .ccache
         key: ${{ matrix.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
+
 
