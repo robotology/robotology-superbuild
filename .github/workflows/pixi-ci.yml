@@ -34,6 +34,7 @@ jobs:
       CCACHE_DIR: ${{ github.workspace }}/.ccache
 
     steps:
+    - uses: actions/checkout@v4
 
     - name: Restore ccache
       id: cache-restore
@@ -44,8 +45,6 @@ jobs:
         # allow a later run to pick up a cache that has an extra suffix
         restore-keys: |
           ${{ matrix.os }}-${{ matrix.pixi_task }}-
-
-    - uses: actions/checkout@v4
 
     # On periodic jobs and when delete_pixi_lock option is true, delete the pixi.lock to check that the project compiles with latest version of dependencies
     - name: Delete pixi.lock on scheduled jobs or if delete_pixi_lock is true
@@ -103,6 +102,7 @@ jobs:
       with:
         path: ${{ github.workspace }}/.ccache
         key: ${{ matrix.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
+
 
 
 
