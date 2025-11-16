@@ -30,21 +30,8 @@ jobs:
           - os: windows-2022
             pixi_task: build-ros2
 
-    env:
-      CCACHE_DIR: ${{ github.workspace }}/.ccache
-
     steps:
     - uses: actions/checkout@v4
-
-    - name: Restore ccache
-      id: cache-restore
-      uses: actions/cache/restore@v4
-      with:
-        path: ${{ github.workspace }}/.ccache
-        key: ${{ matrix.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
-        # allow a later run to pick up a cache that has an extra suffix
-        restore-keys: |
-          ${{ matrix.os }}-${{ matrix.pixi_task }}-
 
     # On periodic jobs and when delete_pixi_lock option is true, delete the pixi.lock to check that the project compiles with latest version of dependencies
     - name: Delete pixi.lock on scheduled jobs or if delete_pixi_lock is true
@@ -60,11 +47,10 @@ jobs:
 
     - uses: prefix-dev/setup-pixi@v0.9.1
 
-    - name: Print ccache stats before build
-      shell: bash
-      run: |
-        pixi run ccache -p
-        pixi run ccache -s
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: ${{ matrix.os }}-${{ matrix.pixi_task }}
 
     - name: Workaround on Windows
       if: contains(matrix.os, 'windows')
@@ -89,23 +75,3 @@ jobs:
         git config --global user.name PixiGHA User
         git config --global user.email pixighauser@example.com
         pixi run ${{ matrix.pixi_task }}
-
-    - name: Print ccache stats after build
-      shell: bash
-      run: |
-        pixi run ccache -p
-        pixi run ccache -s
-
-    - name: Save ccache
-      uses: actions/cache/save@v4
-      if: always()
-      with:
-        path: ${{ github.workspace }}/.ccache
-        key: ${{ matrix.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
-
-
-
-
-
-
-
