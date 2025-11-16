@@ -31,7 +31,7 @@ jobs:
             pixi_task: build-ros2
 
     env:
-      CCACHE_DIR: ${GITHUB_WORKSPACE}/.ccache
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
 
     steps:
 
@@ -39,7 +39,7 @@ jobs:
       id: cache-restore
       uses: actions/cache/restore@v4
       with:
-        path: .ccache
+        path: ${{ github.workspace }}/.ccache
         key: ${{ matrix.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
         # allow a later run to pick up a cache that has an extra suffix
         restore-keys: |
@@ -103,8 +103,9 @@ jobs:
       uses: actions/cache/save@v4
       if: always()
       with:
-        path: .ccache
+        path: ${{ github.workspace }}/.ccache
         key: ${{ matrix.os }}-${{ matrix.pixi_task }}-${{ github.run_id }}-${{ github.run_attempt }}
+
 
 
 
