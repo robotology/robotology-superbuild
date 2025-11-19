@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-22.04, ubuntu-24.04-arm, macos-13, macos-14, windows-2022]
+        os: [ubuntu-22.04, ubuntu-24.04-arm, macos-15-intel, macos-14, windows-2022]
         pixi_task: [build-all, build-ros2]
         exclude:
           # Windows build fail due to length of build folder and other CI-specific issues, skip for now
@@ -47,6 +47,10 @@ jobs:
 
     - uses: prefix-dev/setup-pixi@v0.9.1
 
+    - uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: ${{ matrix.os }}-${{ matrix.pixi_task }}
+
     - name: Workaround on Windows
       if: contains(matrix.os, 'windows')
       shell: bash
@@ -70,3 +74,4 @@ jobs:
         git config --global user.name PixiGHA User
         git config --global user.email pixighauser@example.com
         pixi run ${{ matrix.pixi_task }}
+
