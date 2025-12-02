@@ -1,13 +1,10 @@
-[project]
+[workspace]
 name = "robotology-superbuild"
-# As this version is currently ignored, we do not
-# waste effort in mantain it in synch with the value
-# specified in CMakeLists.txt
-version = "0.0.0"
 description = "CMake/YCM-based superbuild to simplify the build process of robotology projects."
 authors = ["Silvio Traversaro <silvio@traversaro.it>"]
 channels = ["conda-forge", "robotology"]
 platforms = ["linux-64", "linux-aarch64", "win-64", "osx-64", "osx-arm64"]
+requires-pixi = ">=0.45"
 
 [system-requirements]
 linux = "4.18"
