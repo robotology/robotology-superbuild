@@ -203,22 +203,23 @@ jobs:
             pixi auth logout https://prefix.dev
 
         # Only on linux-64 we upload noarch packages (noarch packages need to be uploaded only once, as they can be reused across platforms)
-        - name: Upload conda packages (noarch)
-          shell: bash -l {0}
-          # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
-          if: matrix.conda_platform == 'linux-64' && (github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true'))
-          env:
-            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
-            PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
-          run: |
-            cd ${CONDA_BLD_PATH}/noarch/
-            ls *.conda
-            anaconda upload --skip-existing *.conda
-            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
-            for condapackage in *.conda; do
-              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
-            done
-            pixi auth logout https://prefix.dev
+        # This is disable until we re-enable robot-log-visualizer package
+        #- name: Upload conda packages (noarch)
+        #  shell: bash -l {0}
+        #  # Upload by default on schedule events, and on workflow dispatch only if input upload_conda_binaries is 'true'
+        #  if: matrix.conda_platform == 'linux-64' && (github.event_name == 'schedule' || github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload_conda_binaries == 'true'))
+        #  env:
+        #    ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        #    PREFIX_DEV_TOKEN: ${{ secrets.PREFIX_DEV_TOKEN }}
+        #  run: |
+        #    cd ${CONDA_BLD_PATH}/noarch/
+        #    ls *.conda
+        #    anaconda upload --skip-existing *.conda
+        #    pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
+        #    for condapackage in *.conda; do
+        #      pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+        #    done
+        #    pixi auth logout https://prefix.dev
 
     # If the  generate-conda-packages completed correctly and binaries are uploaded,
     # bump automatically the CONDA_BUILD_NUMBER in conda/cmake/CondaGenerationOptions.cmake

@@ -34,4 +34,7 @@ ycm_ep_helper(walking-controllers TYPE GIT
               FOLDER src
               DEPENDS ${walking-controllers_DEPENDS})
 
-set(walking-controllers_CONDA_DEPENDENCIES eigen tomlplusplus)
+# fmt and spdlog are not direct dependencies but a transitive dep 
+# via blf, they are added as a workaround for
+# https://github.com/robotology/walking-controllers/issues/207
+set(walking-controllers_CONDA_DEPENDENCIES eigen tomlplusplus fmt spdlog)
