@@ -46,6 +46,7 @@ jobs:
         miniforge-variant: Miniforge3
 
     - uses: mathio/gha-cleanup@v1
+      if: contains(matrix.os, 'ubuntu')
       with:
         remove-browsers: true
         verbose: true
