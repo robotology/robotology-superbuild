@@ -45,6 +45,11 @@ jobs:
       with:
         miniforge-variant: Miniforge3
 
+    - uses: mathio/gha-cleanup@v1
+      with:
+        remove-browsers: true
+        verbose: true
+
     - name: Install files to enable compilation of mex files [Conda/Linux]
       if: contains(matrix.os, 'ubuntu')
       run: |
