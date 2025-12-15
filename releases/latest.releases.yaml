@@ -310,6 +310,6 @@ repositories:
   trintrin:
     type: git
     url: https://github.com/ami-iit/trintrin.git
-    version: v0.0.1
+    version: v0.0.2
   yarp-openvr:
     version: v0.0.1
