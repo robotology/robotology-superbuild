@@ -4,6 +4,8 @@ environments:
     channels:
     - url: https://conda.anaconda.org/conda-forge/
     - url: https://conda.anaconda.org/robotology/
+    options:
+      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -2314,7 +2316,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/vc-14.3-h41ae7f8_26.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vc14_runtime-14.44.35208-h818238b_26.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vs2015_runtime-14.44.35208-h38c0c73_26.conda
-      - conda: https://conda.anaconda.org/conda-forge/win-64/vs2022_win-64-19.44.35207-ha74f236_26.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/vs2022_win-64-19.44.35207-ha74f236_33.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/vswhere-3.1.7-h40126e0_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vtk-9.4.2-hbf458c8_3.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vtk-base-9.4.2-py39ha1f65a8_1.conda
@@ -2345,6 +2347,8 @@ environments:
     - url: https://conda.anaconda.org/conda-forge/
     - url: https://conda.anaconda.org/robotology/
     - url: https://conda.anaconda.org/robostack-humble/
+    options:
+      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -6206,7 +6210,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/vc-14.3-h41ae7f8_26.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vc14_runtime-14.44.35208-h818238b_26.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vs2015_runtime-14.44.35208-h38c0c73_26.conda
-      - conda: https://conda.anaconda.org/conda-forge/win-64/vs2022_win-64-19.44.35207-ha74f236_26.conda
+      - conda: https://conda.anaconda.org/conda-forge/win-64/vs2022_win-64-19.44.35207-ha74f236_33.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/vswhere-3.1.7-h40126e0_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vtk-9.3.1-qt_py311h85ceb33_215.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/vtk-base-9.3.1-qt_py311h86964fa_215.conda
@@ -73515,9 +73519,9 @@ packages:
   license_family: BSD
   size: 17888
   timestamp: 1750371463202
-- conda: https://conda.anaconda.org/conda-forge/win-64/vs2022_win-64-19.44.35207-ha74f236_26.conda
-  sha256: 43c833a91c04bf53c85deff4bea505fa5173a79981909dc8116e7b6709bae39c
-  md5: 3b88259844a981083c4efab022071768
+- conda: https://conda.anaconda.org/conda-forge/win-64/vs2022_win-64-19.44.35207-ha74f236_33.conda
+  sha256: 021eea50461e147d64eb5954340ff4e7b403d2c4d0c7180b97321eb8a49113c7
+  md5: c4fc0aeef78517591c76a4b20f0e7fe5
   depends:
   - vswhere
   constrains:
@@ -73526,8 +73530,8 @@ packages:
   - vc14
   license: BSD-3-Clause
   license_family: BSD
-  size: 20679
-  timestamp: 1750371462464
+  size: 22665
+  timestamp: 1765216328494
 - conda: https://conda.anaconda.org/conda-forge/noarch/vswhere-3.1.7-h40126e0_1.conda
   sha256: b72270395326dc56de9bd6ca82f63791b3c8c9e2b98e25242a9869a4ca821895
   md5: f622897afff347b715d046178ad745a5
