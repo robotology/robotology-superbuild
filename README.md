@@ -18,6 +18,7 @@ Table of Contents
     * [Linux, macOS or Windows with dependencies provided by conda-forge](#linux-macos-or-windows-from-source-with-dependencies-provided-by-conda-forge)
     * [Update](#update)
   * [FAQs](#faqs)
+  * [GitHub Actions Documentation](#github-actions-documentation)
   * [Mantainers](#mantainers)
 
 Superbuild
@@ -73,10 +74,10 @@ git clone https://github.com/robotology/robotology-superbuild
 ~~~
 this will clone the superbuild in its default branch.
 
-You can download and use the `robotology-superbuild` anywhere on your system, but if you are installing it 
+You can download and use the `robotology-superbuild` anywhere on your system, but if you are installing it
 on an [**iCub robot laptop** following the official iCub instructions](https://icub-tech-iit.github.io/documentation/icub_operating_systems/other-machines/generic-machine/), you should clone it in the `/usr/local/src/robot` directory.
 
-If instead you want to use a **specific release** of the robotology superbuild, after you clone switch to use to a specific release tag: 
+If instead you want to use a **specific release** of the robotology superbuild, after you clone switch to use to a specific release tag:
 ~~~
 git checkout v<YYYY.MM>
 ~~~
@@ -93,8 +94,8 @@ The exact versions of the operating systems supported by the robotology-superbui
 
 
 When compiled from source, `robotology-superbuild` will download and build a number of software.
-For each project, the repository will be downloaded in the `src/<package_name>` subdirectory of the superbuild root. 
-The build directory for a given project will be instead the `src/<package_name>` subdirectory of the superbuild build directory. 
+For each project, the repository will be downloaded in the `src/<package_name>` subdirectory of the superbuild root.
+The build directory for a given project will be instead the `src/<package_name>` subdirectory of the superbuild build directory.
 All the software packages are installed using the `install` directory of the build as installation prefix.
 
 We also support an additional deprecated way of compiling the superbuild, on Windows using dependencies provided by [vcpkg](https://vcpkg.io/). Documentation for them can be found in [`doc/deprecated-installation-methods.md`](doc/deprecated-installation-methods.md).
@@ -285,6 +286,11 @@ FAQs for robotology-superbuild can be found at [`doc/faqs.md`](doc/faqs.md).
 For questions related to how to modify the rootology-superbuild itself, such as how to add a new package, how to do a release, check the Developers' FAQs document at [`doc/developers-faqs.md`](doc/developers-faqs.md).
 
 As robotology-superbuild is based on YCM,  also [YCM's FAQs](http://robotology.github.io/ycm-cmake-modules/gh-pages/git-master/manual/ycm-faq.7.html) could be relevant.
+
+GitHub Actions Documentation
+=============================
+
+The robotology-superbuild uses GitHub Actions for continuous integration, automated testing, and release management. For detailed information about all workflows, including CI builds, conda package generation, release automation, and more, see the [GitHub Actions Documentation](doc/github_actions.md).
 
 
 Mantainers
