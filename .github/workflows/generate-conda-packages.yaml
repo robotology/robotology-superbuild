@@ -198,7 +198,7 @@ jobs:
             # Anaconda
             pixi auth login https://anaconda.org --conda-token $ANACONDA_API_TOKEN
             for condapackage in *.conda; do
-              pixi upload anaconda --channel robotology "$condapackage"
+              pixi upload anaconda --owner Nicogene --channel robotology "$condapackage"
             done
             pixi auth logout https://anaconda.org
             # Pixi
