@@ -195,10 +195,16 @@ jobs:
           run: |
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
             ls *.conda
-            anaconda upload --skip-existing *.conda
+            # Anaconda
+            pixi auth login https://anaconda.org --token $ANACONDA_API_TOKEN
+            for condapackage in *.conda; do
+              pixi upload anaconda --channel robotology "$condapackage"
+            done
+            pixi auth logout https://anaconda.org
+            # Pixi  
             pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
             for condapackage in *.conda; do
-              pixi upload https://prefix.dev/api/v1/upload/robotology "$condapackage"
+              pixi upload prefix --channel robotology "$condapackage"
             done
             pixi auth logout https://prefix.dev
 
