@@ -74,7 +74,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
-    version: v14.1.0
+    version: v14.2.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -138,7 +138,7 @@ repositories:
   simulink-arsenal:
     type: git
     url: https://github.com/icub-tech-iit/simulink-arsenal.git
-    version: v1.0.0
+    version: v1.2.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
@@ -298,7 +298,7 @@ repositories:
   icub-tech-iit-documentation:
     type: git
     url: https://github.com/icub-tech-iit/documentation.git
-    version: v1.0.0
+    version: v2.0.0
   ResolveRoboticsURICpp:
     type: git
     url: https://github.com/ami-iit/resolve-robotics-uri-cpp.git
@@ -310,6 +310,6 @@ repositories:
   trintrin:
     type: git
     url: https://github.com/ami-iit/trintrin.git
-    version: v0.0.2
+    version: v0.1.0
   yarp-openvr:
     version: v0.0.1
