@@ -62,15 +62,9 @@ jobs:
           run: |
             cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
             ls *.conda
-            # Anaconda
-            pixi auth login https://anaconda.org --conda-token $ANACONDA_API_TOKEN
             for condapackage in *.conda; do
-              pixi upload anaconda --owner Nicogene --channel robotology "$condapackage"
+              # Anaconda
+              pixi upload anaconda --api-key $ANACONDA_API_TOKEN --owner robotology --channel robotology "$condapackage"
+              # Prefix.dev
+              pixi upload prefix --api-key $PREFIX_DEV_TOKEN --channel robotology "$condapackage"
             done
-            pixi auth logout https://anaconda.org
-            # Pixi
-            pixi auth login https://prefix.dev --token $PREFIX_DEV_TOKEN
-            for condapackage in *.conda; do
-              pixi upload prefix --channel robotology "$condapackage"
-            done
-            pixi auth logout https://prefix.dev
