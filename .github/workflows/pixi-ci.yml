@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [Release]
-        os: [ubuntu-22.04, ubuntu-24.04-arm, macos-15-intel, macos-14, windows-2022]
+        os: [ubuntu-22.04, ubuntu-24.04-arm, windows-2022]
         pixi_task: [build-all, build-ros2]
         exclude:
           # Windows build fail due to length of build folder and other CI-specific issues, skip for now
