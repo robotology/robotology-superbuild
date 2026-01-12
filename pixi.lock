@@ -4,6 +4,8 @@ environments:
     channels:
     - url: https://conda.anaconda.org/conda-forge/
     - url: https://conda.anaconda.org/robotology/
+    options:
+      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -445,6 +447,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/sdl3-3.2.16-he3e324a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/simbody-3.7-h64f3f5a_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/simde-0.8.2-h84d6215_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/sip-6.10.0-py311hfdbb021_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/snappy-1.2.1-h8bd8927_1.conda
@@ -957,6 +960,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/sdl3-3.2.16-h7e2c5d6_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/simbody-3.7-h43d9ae1_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/simde-0.8.2-h17cf362_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/sip-6.12.0-py310h58aa515_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/snappy-1.2.1-hd4fb6f5_1.conda
@@ -1424,6 +1428,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/sigtool-0.1.3-h88f4db0_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/simbody-3.7-h43072b6_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/simde-0.8.2-h37c8870_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/sip-6.10.0-py310h6954a95_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/snappy-1.2.1-haf3c120_1.conda
@@ -1869,6 +1874,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/sigtool-0.1.3-h44b9a77_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/simbody-3.7-h4b178c3_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/simde-0.8.2-h7b3277c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/sip-6.12.0-py311h155a34a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/snappy-1.2.1-h98b9ce2_1.conda
@@ -2280,6 +2286,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/sdl3-3.2.16-ha4196fd_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/simbody-3.7-hade3207_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/win-64/simde-0.8.2-hc790b64_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/sip-6.10.0-py39ha51f57c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/snappy-1.2.1-h500f7fa_1.conda
@@ -2345,6 +2352,8 @@ environments:
     - url: https://conda.anaconda.org/conda-forge/
     - url: https://conda.anaconda.org/robotology/
     - url: https://conda.anaconda.org/robostack-humble/
+    options:
+      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -3091,6 +3100,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/sdl3-3.2.14-he3e324a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/simbody-3.7-h64f3f5a_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/simde-0.8.2-h84d6215_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/sip-6.10.0-py311hfdbb021_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/snappy-1.2.1-h8bd8927_1.conda
@@ -3915,6 +3925,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/sdl3-3.2.14-h7e2c5d6_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/simbody-3.7-h43d9ae1_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/simde-0.8.2-h17cf362_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/sip-6.12.0-py311h2e0833b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/snappy-1.2.1-hd4fb6f5_1.conda
@@ -4694,6 +4705,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/sigtool-0.1.3-h88f4db0_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-64/simbody-3.7-h43072b6_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/simde-0.8.2-h37c8870_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/sip-6.10.0-py311hc356e98_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/snappy-1.2.1-haf3c120_1.conda
@@ -5451,6 +5463,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/sigtool-0.1.3-h44b9a77_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/simbody-3.7-h4b178c3_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/simde-0.8.2-h7b3277c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/sip-6.12.0-py311h155a34a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/snappy-1.2.1-h98b9ce2_1.conda
@@ -6169,6 +6182,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/sdl3-3.2.16-ha4196fd_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/setuptools-80.9.0-pyhff2d567_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/simbody-3.7-hade3207_3.tar.bz2
+      - conda: https://conda.anaconda.org/conda-forge/win-64/simde-0.8.2-hc790b64_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/sip-6.10.0-py311hda3d55a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/snappy-1.2.1-h500f7fa_1.conda
@@ -71495,6 +71509,51 @@ packages:
   license_family: APACHE
   size: 38489737
   timestamp: 1642766069740
+- conda: https://conda.anaconda.org/conda-forge/linux-64/simde-0.8.2-h84d6215_0.conda
+  sha256: c055f966ebd72a768e25994ea7bdea0f0eecf481128c01e26f68c4ab11ae21b7
+  md5: aa4dd437f90aa209a0309313af213964
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  license: MIT
+  license_family: MIT
+  size: 480387
+  timestamp: 1724439702451
+- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/simde-0.8.2-h17cf362_0.conda
+  sha256: beff700530110b5144f2cdac82289b0cad144f158558193a5fb544ec5eb23226
+  md5: 931529bca35b7ab540cf0254787d4967
+  license: MIT
+  license_family: MIT
+  size: 481595
+  timestamp: 1724439796936
+- conda: https://conda.anaconda.org/conda-forge/osx-64/simde-0.8.2-h37c8870_0.conda
+  sha256: fc44261e4a4e8f4bdab010d7788fa2d90d8bef51d37e1b8ec61ece047443e037
+  md5: e456c3a390b37a3192eb460bfe33587f
+  depends:
+  - __osx >=10.13
+  license: MIT
+  license_family: MIT
+  size: 483653
+  timestamp: 1724439763303
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/simde-0.8.2-h7b3277c_0.conda
+  sha256: 282929ab21b49577fd81c5a8d2d461c028086a4be6044762f6a5f546e423f299
+  md5: fc5b5caefb2778064799b76751a69b69
+  depends:
+  - __osx >=11.0
+  license: MIT
+  license_family: MIT
+  size: 482908
+  timestamp: 1724439819598
+- conda: https://conda.anaconda.org/conda-forge/win-64/simde-0.8.2-hc790b64_0.conda
+  sha256: 518995344f4ac4c94c2eb207fb806af960a82fca5f87cab066de6ada20a974c0
+  md5: 3dc81609aedcf489d8c2abe82c9ceb46
+  depends:
+  - ucrt >=10.0.20348.0
+  - vc >=14.2,<15
+  - vc14_runtime >=14.29.30139
+  license: MIT
+  license_family: MIT
+  size: 483090
+  timestamp: 1714665491492
 - conda: https://conda.anaconda.org/conda-forge/linux-64/sip-6.10.0-py311hfdbb021_0.conda
   sha256: 1eae0d5f0152714cdabb5cd3d480080e164b3fb5f7bd8208df7925d8e173d36b
   md5: 78e5e37d25d5ab01fb5e91b8653b8f6d
