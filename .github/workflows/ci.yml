@@ -309,9 +309,9 @@ jobs:
         # To avoid problems with non-relocatable packages, we unzip the archive exactly in the same directory
         # that has been used to create the pre-compiled archive
         cd C:/
-        wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/latest/download/vcpkg-robotology-with-gazebo.zip
-        unzip vcpkg-robotology-with-gazebo.zip -d C:/
-        rm vcpkg-robotology-with-gazebo.zip
+        wget https://github.com/robotology/robotology-superbuild-dependencies-vcpkg/releases/latest/download/vcpkg-robotology.zip
+        unzip vcpkg-robotology.zip -d C:/
+        rm vcpkg-robotology.zip
 
     # ===================
     # CMAKE-BASED PROJECT
@@ -354,7 +354,7 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
-        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF .
+        cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Build  [Ubuntu]
       if:  contains(matrix.os, 'ubuntu')
