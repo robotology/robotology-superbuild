@@ -184,6 +184,7 @@ gtest = "*"
 freeglut = "*"
 # ROBOTOLOGY_USES_ESDCAN
 esdcan = { version = "*", channel = "robotology" }
+vs2022_win-64 = ">=19.44.35207,<20"
 
 [target.linux.dependencies]
 bash-completion = "*"
