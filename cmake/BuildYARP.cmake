@@ -107,6 +107,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DCREATE_CSHARP:BOOL=${ROBOTOLOGY_USES_CSHARP}
                               -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA}
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
+                              -DCMAKE_DISABLE_FIND_PACKAGE_PCL:BOOL=ON
                               ${YARP_OPTIONAL_CMAKE_ARGS})
 
 set(YARP_CONDA_PKG_NAME libyarp)
