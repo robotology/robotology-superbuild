@@ -211,8 +211,8 @@ ros-humble-test-msgs = "*"
 ros-humble-moveit = "*"
 ros-humble-hardware-interface = "*"
 ros-humble-moveit-visual-tools = "*"
-ros-humble-gazebo-msgs = "*"
 ros-humble-controller-manager = "*"
+ros-humble-ros-gz-interfaces = "*"
 
 # Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
 [feature.ros2.tasks]
