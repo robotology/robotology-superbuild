@@ -204,10 +204,10 @@ platforms = ["linux-64", "linux-aarch64", "win-64", "osx-64", "osx-arm64"]
 
 
 [feature.ros2.dependencies]
-# ROBOTOLOGY_ENABLE_ROS2 dependencies
+# ROBOTOLOGY_USES_ROS2 dependencies
 ros-humble-ros-base = "*"
 ros-humble-test-msgs = "*"
-# ROBOTOLOGY_ENABLE_MOVEIT dependencies
+# ROBOTOLOGY_USES_MOVEIT dependencies
 ros-humble-moveit = "*"
 ros-humble-hardware-interface = "*"
 ros-humble-moveit-visual-tools = "*"
