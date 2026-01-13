@@ -354,6 +354,9 @@ jobs:
       run: |
         cd ${ROBOTOLOGY_SUPERBUILD_SOURCE_DIR}
         cd build
+        # blocktestcore is not compiling with vcpkg's boost, I am not sure if we want to invest time to fix it
+        cmake -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=OFF .
+        # Mujoco and Gazebo are not available on vcpkg
         cmake -DROBOTOLOGY_USES_MUJOCO:BOOL=OFF -DROBOTOLOGY_USES_GZ:BOOL=OFF -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Build  [Ubuntu]
