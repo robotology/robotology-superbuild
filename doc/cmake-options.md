@@ -64,7 +64,7 @@ The dependencies CMake options specify if the packages dependending on something
 
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
-| `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](https://classic.gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo-classic-simulator) |
+| [DEPRECATED] `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](https://classic.gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo-classic-simulator) |
 | `ROBOTOLOGY_USES_GZ`  | Include software and plugins that depend on the [Modern Gazebo (gz-sim) simulator](http://gazebosim.org/). | `OFF` | [Documentation on Modern Gazebo (gz-sim) dependency.](#modern-gazebo-simulator) |
 | `ROBOTOLOGY_USES_ROS2`  | Include software and plugins that depend on [ROS 2](https://www.ros.org/). | `OFF` | [Documentation on ROS 2 dependency.](#ros-2) |
 | `ROBOTOLOGY_USES_MOVEIT`  | Include software and plugins that depend on the [MoveIt motion planning framework](https://moveit.ai/). | `OFF` | [Documentation on MoveIt dependency.](#moveit) |
@@ -94,7 +94,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`                                  | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
+| [DEPRECATED] `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_GZ`<sup id="a3">[3!](#f3)</sup>                                          | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_MUJOCO`<sup id="a1">[1!](#f1)</sup>  | ✔️                               |           ❌                |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
@@ -107,7 +107,7 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_USES_CFW2CAN`                                           |  ✔️                              |             ❌              |                 ✔️                        |              ❌                           |                 ❌                          |
 | `ROBOTOLOGY_USES_XSENS_MVN_SDK`                                     |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ❌                          |
 | `ROBOTOLOGY_USES_ESDCAN`                                            |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ✔️                          |
-           
+
 
 <b id="f1">1!</b>:`ROBOTOLOGY_USES_MUJOCO` does not support building with apt dependencies on Debian or Ubuntu distributions older than 2022. Furthermore, it does not support build on Windows with Visual Studio 2019, it requires Visual Studio 2022.
 
@@ -176,7 +176,7 @@ please always get in contact with [icub-support](https://github.com/robotology/i
 ### Check the installation
 The `ROBOTOLOGY_ENABLE_ICUB_HEAD` installs several YARP devices for communicating directly with embedded boards of the iCub.
 To check if the installation was correct, you can list all the available YARP devices using the `yarpdev --list` command,
-and check if devices whose name is starting with `embObj` are present in the list. If those devices are present, then the installation should be working correctly. 
+and check if devices whose name is starting with `embObj` are present in the list. If those devices are present, then the installation should be working correctly.
 
 
 ## iCub Basic Demos
@@ -216,14 +216,14 @@ Follow the steps in  https://github.com/robotology/icub-models#use-the-models-wi
 
 Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ` CMake option, that enables the software that depends on "Modern Gazebo" (gz-sim).
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > At the moment the `ROBOTOLOGY_USES_GZ` does not run on Windows (https://github.com/gazebosim/gz-sim/issues/2089) and have known problems on macOS (https://github.com/robotology/gz-sim-yarp-plugins/issues/90). Furthermore, it is not supported on non-Ubuntu Debian distributions with apt dependencies.
 
 ## ROS 2
 
 This option enables the compilation of the [`yarp-devices-ros2` repo](https://github.com/robotology/yarp-devices-ros2).
 
-> [!WARNING]  
+> [!WARNING]
 > No conda binaries are available for the `yarp-devices-ros2` package at the moment, neither in `conda-forge` nor the `robotology` channel.
 
 
@@ -231,7 +231,7 @@ This option enables the compilation of the [`yarp-devices-ros2` repo](https://gi
 
 This option enables the compilation of the [`xcub-moveit2` repo](https://github.com/icub-tech-iit/xcub-moveit2).
 
-> [!WARNING]  
+> [!WARNING]
 > No conda binaries are available for the `xcub-moveit2` package at the moment, neither in `conda-forge` nor the `robotology` channel.
 
 
@@ -357,7 +357,7 @@ yarpVec.resize(3);
 yarpVec.fromMatlab([1;2;3]);
 yarpVec.toMatlab()
 ~~~~
-This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are working correctly. 
+This scripts should print a `1 2 3` vector, but only if the `yarp` bindings are working correctly.
 
 
 

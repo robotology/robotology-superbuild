@@ -74,7 +74,7 @@ jobs:
       shell: bash -l {0}
       run: |
         # Dependencies
-        conda install ace asio assimp libboost-devel cli11 eigen freetype gazebo gz-sim8 glew glfw glm graphviz gsl "ipopt>=3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake cxx-compiler make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp "qt6-main>=6.7.2" catch2 gtest
+        conda install ace asio assimp libboost-devel cli11 eigen freetype gz-sim8 glew glfw glm graphviz gsl "ipopt>=3.13.0" irrlicht libjpeg-turbo libmatio libode libxml2 nlohmann_json qhull "pcl>=1.11.1" vtk "libopencv>=4.10.0" opencv portaudio qt-main sdl sdl2 sqlite tinyxml spdlog lua soxr cmake cxx-compiler make ninja pkg-config tomlplusplus libzlib ffmpeg onnxruntime-cpp "qt6-main>=6.7.2" catch2 gtest
         # Python
         conda install python numpy swig pybind11 qtpy pyqt pyqtgraph pyqtwebengine pyside2 matplotlib h5py tornado u-msgpack-python pyzmq ipython gst-plugins-good gst-plugins-bad pyyaml
 
@@ -198,12 +198,6 @@ jobs:
         mkdir -p build
         cd build
         cmake -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -G"${{ matrix.cmake_generator }}" -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
-
-    - name: Disable Gazebo Classic support for distro without Gazebo Classic binaries [Docker ubuntu:24.04]
-      if: (matrix.docker_image == 'ubuntu:24.04')
-      run: |
-       cd build
-       cmake  -DROBOTOLOGY_USES_GAZEBO:BOOL=OFF .
 
     - name: Build  [Docker]
       run: |

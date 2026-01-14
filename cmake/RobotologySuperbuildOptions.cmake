@@ -22,24 +22,11 @@ option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Pyt
 option(ROBOTOLOGY_USES_CSHARP "Enable compilation of software that depends on CSharp" FALSE)
 mark_as_advanced(ROBOTOLOGY_USES_CSHARP)
 
-## Enable packages that depend on the Gazebo Classic simulator
-if(ROBOTOLOGY_CONFIGURING_UNDER_CONDA OR APPLE OR WIN32)
-  set(ROBOTOLOGY_USES_GAZEBO_DEFAULT ON)
-else()
-  find_program(ROBSUB_LSB_RELEASE lsb_release)
-  if(ROBSUB_LSB_RELEASE)
-    execute_process(COMMAND lsb_release -cs
-      OUTPUT_VARIABLE LSB_RELEASE_CODENAME
-      OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-  endif()
-  if(LSB_RELEASE_CODENAME STREQUAL "noble")
-    set(ROBOTOLOGY_USES_GAZEBO_DEFAULT OFF)
-  else()
-    set(ROBOTOLOGY_USES_GAZEBO_DEFAULT ON)
-  endif()
+option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" OFF)
+# Warn because Gazebo Classic support is deprecated and superseded by ROBOTOLOGY_USES_GZ
+if(ROBOTOLOGY_USES_GAZEBO)
+    message(WARNING "ROBOTOLOGY_USES_GAZEBO is deprecated since Gazebo Classic reached EOL in January 2025. This option will be removed in a future release; use ROBOTOLOGY_USES_GZ instead.")
 endif()
-option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" ${ROBOTOLOGY_USES_GAZEBO_DEFAULT})
 option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" OFF)
 option(ROBOTOLOGY_USES_ROS2 "Enable compilation of software that depends on ROS 2" OFF)
 option(ROBOTOLOGY_USES_MOVEIT "Enable compilation of software that depends on MoveIt" OFF)
@@ -104,7 +91,7 @@ endif()
 
 # Ensure that Debug mode is not used on Windows when using conda dependencies
 # Note: here we assume that CONDA_PREFIX env variable being defined means that we are compiling
-# against conda-forge dependencies and that no debug-compatible libraries are available, 
+# against conda-forge dependencies and that no debug-compatible libraries are available,
 # if that changes in the future please change or remove this check
 if(WIN32 AND DEFINED ENV{CONDA_PREFIX})
     if(NOT IS_MULTICONFIG)

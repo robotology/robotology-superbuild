@@ -178,6 +178,9 @@ conda install -c conda-forge "pcl>=1.11.1" vtk
 
 #### `ROBOTOLOGY_USES_GAZEBO`
 
+> [!important]
+> Gazebo classic reached EOL in January 2025, this option is deprecated, and will removed soon, for using gz-sim use `ROBOTOLOGY_USES_GZ`
+
 If you install your dependencies with `conda`, just make sure to install the `gazebo` package:
 
 ~~~
@@ -215,7 +218,7 @@ To compile the `robotology-superbuild` code itself, you need to clone it, follow
 
 In a terminal in which you activate the `robsub` environment, you can compile.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > On `linux-aarch64` (Linux with ARM processors) and `macos-arm64` (macOS with ARM processors) before building you need to set the `QT_HOST_PATH` env variable to `${CONDA_PREFIX}` before the build as a workaround for https://github.com/conda-forge/qt-main-feedstock/issues/273 .
 
 
