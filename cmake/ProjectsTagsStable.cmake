@@ -19,7 +19,7 @@ set_tag(pyngrok_TAG 7.2.12)
 
 # Robotology projects
 set_tag(YCM_TAG master)
-set_tag(YARP_TAG yarp-3.12)
+set_tag(YARP_TAG Nicogene-patch-1)
 set_tag(yarp-matlab-bindings_TAG yarp-3.12)
 set_tag(yarp-devices-ros2_TAG v2.0.0)
 set_tag(gym-ignition_TAG v1.3.1)
