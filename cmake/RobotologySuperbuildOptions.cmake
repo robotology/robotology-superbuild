@@ -32,8 +32,23 @@ option(ROBOTOLOGY_USES_ROS2 "Enable compilation of software that depends on ROS 
 option(ROBOTOLOGY_USES_MOVEIT "Enable compilation of software that depends on MoveIt" OFF)
 option(ROBOTOLOGY_USES_MUJOCO "Enable compilation of mujoco and software that depends on it" OFF)
 
+set(ROBOTOLOGY_USES_GZ_DEFAULT OFF)
+if(UNIX)
+  find_program(ROBSUB_LSB_RELEASE lsb_release)
+  if(ROBSUB_LSB_RELEASE)
+    execute_process(COMMAND lsb_release -cs
+      OUTPUT_VARIABLE LSB_RELEASE_CODENAME
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+  endif()
+  if(LSB_RELEASE_CODENAME STREQUAL "noble")
+    set(ROBOTOLOGY_USES_GZ_DEFAULT ON)
+  else()
+    set(ROBOTOLOGY_USES_GZ_DEFAULT OFF)
+  endif()
+endif()
 ## Enable packages that depend on the Modern Gazebo (gz-sim) simulator
-option(ROBOTOLOGY_USES_GZ "Enable compilation of software that depends on Modern Gazebo (gz-sim)" OFF)
+option(ROBOTOLOGY_USES_GZ "Enable compilation of software that depends on Modern Gazebo (gz-sim)" ${ROBOTOLOGY_USES_GZ_DEFAULT})
 
 
 ## Enable packages that depend on the Ignition Gazebo simulator
