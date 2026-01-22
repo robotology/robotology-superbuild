@@ -125,6 +125,9 @@ Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default (except on U
 
 #### `ROBOTOLOGY_USES_GAZEBO`
 
+> [!important]
+> Gazebo classic reached EOL in January 2025, this option is deprecated, and will removed soon, for using gz-sim see `ROBOTOLOGY_USES_GZ`
+
 If you are on Ubuntu 22.04 or another Debian/Ubuntu systems where the `libgazebo-dev` Gazebo Classic package is available in apt, just install the system provided gazebo package with:
 ~~~~
 sudo apt install libgazebo-dev
