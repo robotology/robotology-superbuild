@@ -298,5 +298,8 @@ The robotology-superbuild uses GitHub Actions for continuous integration, automa
 
 Mantainers
 ==========
+* Nicolo' Genesio [@Nicogene](https://github.com/Nicogene)
 
+Original author
+===============
 * Silvio Traversaro [@traversaro](https://github.com/traversaro)
