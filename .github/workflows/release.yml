@@ -8,14 +8,44 @@ on:
         required: true
 jobs:
   PrepareRelease:
-    name: Create the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 release
+    name: Create the ${{ github.event.inputs.superbuild_year_month_prefix }} release
     runs-on: [ubuntu-latest]
+    outputs:
+      patch_version: ${{ steps.determine-version.outputs.patch_version }}
+      release_version: ${{ steps.determine-version.outputs.release_version }}
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Determine patch version
+      id: determine-version
+      run: |
+        # Check if the release branch already exists
+        if git rev-parse --verify origin/releases/${{ github.event.inputs.superbuild_year_month_prefix }} >/dev/null 2>&1; then
+          # Branch exists, find the latest patch version
+          LATEST_TAG=$(git tag -l "v${{ github.event.inputs.superbuild_year_month_prefix }}.*" | sort -V | tail -1)
+          if [ -z "$LATEST_TAG" ]; then
+            # No tags found, start with 0
+            PATCH_VERSION=0
+          else
+            # Extract patch version from tag (e.g., v2026.02.5 -> 5)
+            PATCH_VERSION=$(echo "$LATEST_TAG" | sed 's/.*\.\([0-9]*\)$/\1/')
+            PATCH_VERSION=$((PATCH_VERSION + 1))
+          fi
+        else
+          # Branch doesn't exist, start with 0
+          PATCH_VERSION=0
+        fi
+        RELEASE_VERSION="${{ github.event.inputs.superbuild_year_month_prefix }}.$PATCH_VERSION"
+        echo "patch_version=$PATCH_VERSION" >> "$GITHUB_OUTPUT"
+        echo "release_version=$RELEASE_VERSION" >> "$GITHUB_OUTPUT"
+        echo "Release version: $RELEASE_VERSION"
+
     - name: Modify the yaml file
       run: |
         cd releases
-        cp ./latest.releases.yaml ./${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml
+        cp ./latest.releases.yaml ./${{ steps.determine-version.outputs.release_version }}.yaml
 
     - name: Configure Git
       run: |
@@ -24,31 +54,44 @@ jobs:
         git config --global user.email "actions@github.com"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-    - name: Commit and push the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 yaml
+    - name: Commit and push the release yaml
       run: |
         git add .
-        git commit -m "Copying latest.releases.yaml to ${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml"
+        git commit -m "Copying latest.releases.yaml to ${{ steps.determine-version.outputs.release_version }}.yaml"
         git push
 
     - name: Prepare and push releases/${{ github.event.inputs.superbuild_year_month_prefix }} branch
       run: |
-        git checkout -b releases/${{ github.event.inputs.superbuild_year_month_prefix }}
-        sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "\${CMAKE_CURRENT_SOURCE_DIR}\/releases\/${{ github.event.inputs.superbuild_year_month_prefix }}.0.yaml"/g' ./cmake/RobotologySuperbuildOptions.cmake
+        # Check if the branch exists
+        if git rev-parse --verify origin/releases/${{ github.event.inputs.superbuild_year_month_prefix }} >/dev/null 2>&1; then
+          # Branch exists, check it out
+          git checkout releases/${{ github.event.inputs.superbuild_year_month_prefix }}
+          git pull origin releases/${{ github.event.inputs.superbuild_year_month_prefix }}
+        else
+          # Branch doesn't exist, create it from current HEAD
+          git checkout -b releases/${{ github.event.inputs.superbuild_year_month_prefix }}
+        fi
+
+        # Update the configuration files with the release version
+        sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE/set(ROBOTOLOGY_PROJECT_TAGS_CUSTOM_FILE "\${CMAKE_CURRENT_SOURCE_DIR}\/releases\/${{ steps.determine-version.outputs.release_version }}.yaml"/g' ./cmake/RobotologySuperbuildOptions.cmake
         sed -i -e 's/set(ROBOTOLOGY_PROJECT_TAGS "Stable"/set(ROBOTOLOGY_PROJECT_TAGS "Custom"/g' ./cmake/RobotologySuperbuildOptions.cmake
         git add .
-        git commit -m "Updating RobotologySuperbuildOptions.cmake"
-        sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION ${{ github.event.inputs.superbuild_year_month_prefix }}.0)/g' ./packaging/windows/CMakeLists.txt
+        git commit -m "Updating RobotologySuperbuildOptions.cmake for ${{ steps.determine-version.outputs.release_version }}"
+
+        sed -i -e 's/set(INSTALLER_VERSION "")/set(INSTALLER_VERSION ${{ steps.determine-version.outputs.release_version }})/g' ./packaging/windows/CMakeLists.txt
         git add .
-        git commit -m "Updating packaging/windows/CMakeLists.txt"
-        sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION ${{ github.event.inputs.superbuild_year_month_prefix }}.0)/g' ./conda/cmake/CondaGenerationOptions.cmake
+        git commit -m "Updating packaging/windows/CMakeLists.txt for ${{ steps.determine-version.outputs.release_version }}"
+
+        sed -i -e 's/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION "")/set(CONDA_ROBOTOLOGY_SUPERBUILD_VERSION ${{ steps.determine-version.outputs.release_version }})/g' ./conda/cmake/CondaGenerationOptions.cmake
         git add .
-        git commit -m "Updating conda/cmake/CondaGenerationOptions.cmake"
+        git commit -m "Updating conda/cmake/CondaGenerationOptions.cmake for ${{ steps.determine-version.outputs.release_version }}"
+
         git push --set-upstream origin releases/${{ github.event.inputs.superbuild_year_month_prefix }}
 
-    - name: Create and push the ${{ github.event.inputs.superbuild_year_month_prefix }}.0 tag
+    - name: Create and push the release tag
       run: |
         git checkout releases/${{ github.event.inputs.superbuild_year_month_prefix }}
         git reset --hard origin/releases/${{ github.event.inputs.superbuild_year_month_prefix }}
-        git tag v${{ github.event.inputs.superbuild_year_month_prefix }}.0
+        git tag v${{ steps.determine-version.outputs.release_version }}
         git push --tags
 
