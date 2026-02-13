@@ -40,6 +40,9 @@ jobs:
             cd scripts
             install_robotology_packages()
 
+      - name: Ensure libgcc_s is installed
+        run: sudo apt-get update && sudo apt-get install -y libgcc1
+
       # workaround for https://github.com/robotology/robotology-superbuild/issues/64
       # and https://github.com/robotology/idyntree/issues/995
       - name: Do not use MATLAB's stdc++ to avoid incompatibilities with other libraries
