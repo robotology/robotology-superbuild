@@ -53,8 +53,8 @@ jobs:
       # and https://github.com/robotology/idyntree/issues/995
       - name: Do not use MATLAB's stdc++ to avoid incompatibilities with other libraries
         if: contains(matrix.os, 'ubuntu')
-        run:
-          echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6" >> $GITHUB_ENV
+        run: |
+          echo "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6:/usr/lib/x86_64-linux-gnu/libgcc_s.so.1" >> $GITHUB_ENV
 
       - name: Run MATLAB commands
         uses: matlab-actions/run-command@v2
