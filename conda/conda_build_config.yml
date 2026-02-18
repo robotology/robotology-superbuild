@@ -8,3 +8,10 @@ qt:
 
 qt_main:
   - 5.15
+
+# Remove once the fmt121_spdlog117 conda-forge migration is completed,
+# see https://github.com/gbionics/walking-controllers/issues/208#issuecomment-3916889576
+fmt:
+  - '12.1'
+spdlog:
+  - '1.17'
