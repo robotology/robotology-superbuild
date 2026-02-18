@@ -186,9 +186,9 @@ jobs:
             ls *.conda
             for condapackage in *.conda; do
               # Anaconda
-              pixi upload anaconda --force --verbose --api-key $ANACONDA_API_TOKEN --owner robotology --channel robotology "$condapackage"
+              pixi upload anaconda --verbose --api-key $ANACONDA_API_TOKEN --owner robotology --channel robotology "$condapackage"
               # Prefix.dev
-              pixi upload prefix --force --verbose --api-key $PREFIX_DEV_TOKEN --channel robotology "$condapackage"
+              pixi upload prefix --verbose --api-key $PREFIX_DEV_TOKEN --channel robotology "$condapackage"
             done
 
         # Only on linux-64 we upload noarch packages (noarch packages need to be uploaded only once, as they can be reused across platforms)
