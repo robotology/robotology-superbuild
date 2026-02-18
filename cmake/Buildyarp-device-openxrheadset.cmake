@@ -18,4 +18,4 @@ ycm_ep_helper(yarp-device-openxrheadset TYPE GIT
                       OpenXR
                       iDynTree)
 
-set(yarp-device-openxrheadset_CONDA_DEPENDENCIES glew glm glfw xorg-xproto)
+set(yarp-device-openxrheadset_CONDA_DEPENDENCIES glew glm glfw xorg-xproto freetype)
