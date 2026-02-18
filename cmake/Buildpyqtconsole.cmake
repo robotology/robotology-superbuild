@@ -5,7 +5,7 @@ include(RobSupPurePythonYCMEPHelper)
 
 rob_sup_pure_python_ycm_ep_helper(pyqtconsole
                                   REPOSITORY pyqtconsole/pyqtconsole.git
-                                  TAG master
+                                  TAG v1.3.0
                                   COMPONENT dynamics
                                   FOLDER src)
 
