@@ -169,6 +169,7 @@ pyzmq = "*"
 ipython = "*"
 gst-plugins-good = "*"
 gst-plugins-bad = "*"
+gst-libav = "*"
 pyyaml = "*"
 
 # Not actually used by any project by default, but used
