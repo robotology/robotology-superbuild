@@ -138,7 +138,7 @@ repositories:
   simulink-arsenal:
     type: git
     url: https://github.com/icub-tech-iit/simulink-arsenal.git
-    version: v1.2.0
+    version: v1.3.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
@@ -166,7 +166,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/ami-iit/bipedal-locomotion-framework.git
-    version: v0.23.1
+    version: v0.24.0
   LieGroupControllers:
     type: git
     url: https://github.com/ami-iit/lie-group-controllers.git
