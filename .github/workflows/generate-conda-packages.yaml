@@ -231,7 +231,7 @@ jobs:
           run: |
             sh ./scripts/robotologyBumpCondaBuildNumber.sh
 
-        - uses: EndBug/add-and-commit@v9.1.4
+        - uses: EndBug/add-and-commit@v10.0.0
           with:
             default_author: github_actions
             message: 'Bump CONDA_BUILD_NUMBER after successful Conda packages build and upload'
