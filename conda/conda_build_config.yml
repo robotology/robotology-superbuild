@@ -15,3 +15,7 @@ fmt:
   - '12.1'
 spdlog:
   - '1.17'
+
+# Remove once the migration to eigen 5 is finished
+eigen:
+  - '3.4.0'
