@@ -118,7 +118,7 @@ repositories:
   HumanDynamicsEstimation:
     type: git
     url: https://github.com/robotology/human-dynamics-estimation.git
-    version: v5.0.0
+    version: v5.0.1
   human-gazebo:
     type: git
     url: https://github.com/robotology/human-gazebo.git
@@ -138,7 +138,7 @@ repositories:
   simulink-arsenal:
     type: git
     url: https://github.com/icub-tech-iit/simulink-arsenal.git
-    version: v1.3.0
+    version: v1.4.0
   icub-firmware-models:
     type: git
     url: https://github.com/robotology/icub-firmware-models.git
@@ -222,7 +222,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.57
+    version: release-1.1.58
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
