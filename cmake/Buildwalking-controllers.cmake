@@ -28,13 +28,13 @@ list(APPEND walking-controllers_DEPENDS trintrin)
 
 ycm_ep_helper(walking-controllers TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/walking-controllers.git
+              REPOSITORY gbionics/walking-controllers.git
               TAG master
               COMPONENT dynamics
               FOLDER src
               DEPENDS ${walking-controllers_DEPENDS})
 
-# fmt and spdlog are not direct dependencies but a transitive dep 
+# fmt and spdlog are not direct dependencies but a transitive dep
 # via blf, they are added as a workaround for
 # https://github.com/robotology/walking-controllers/issues/207
 set(walking-controllers_CONDA_DEPENDENCIES eigen tomlplusplus fmt spdlog)

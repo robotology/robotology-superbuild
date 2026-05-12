@@ -73,7 +73,7 @@ repositories:
     version: v1.1.5
   iDynTree:
     type: git
-    url: https://github.com/robotology/idyntree.git
+    url: https://github.com/gbionics/idyntree.git
     version: v15.0.0
   BlockFactory:
     type: git
@@ -93,7 +93,7 @@ repositories:
     version: v0.8.1
   walking-controllers:
     type: git
-    url: https://github.com/robotology/walking-controllers.git
+    url: https://github.com/gbionics/walking-controllers.git
     version: v0.10.0
   icub-gazebo-wholebody:
     type: git
@@ -105,11 +105,11 @@ repositories:
     version: v2.5.6
   whole-body-estimators:
     type: git
-    url: https://github.com/robotology/whole-body-estimators.git
+    url: https://github.com/gbionics/whole-body-estimators.git
     version: v0.11.3
   walking-teleoperation:
     type: git
-    url: https://github.com/robotology/walking-teleoperation.git
+    url: https://github.com/gbionics/walking-teleoperation.git
     version: v1.3.9
   yarp-devices-forcetorque:
     type: git
@@ -117,7 +117,7 @@ repositories:
     version: v0.3.3
   HumanDynamicsEstimation:
     type: git
-    url: https://github.com/robotology/human-dynamics-estimation.git
+    url: https://github.com/gbionics/human-dynamics-estimation.git
     version: v5.0.1
   human-gazebo:
     type: git
@@ -165,11 +165,11 @@ repositories:
     version: v2.3.1
   bipedal-locomotion-framework:
     type: git
-    url: https://github.com/ami-iit/bipedal-locomotion-framework.git
+    url: https://github.com/gbionics/bipedal-locomotion-framework.git
     version: v0.24.0
   LieGroupControllers:
     type: git
-    url: https://github.com/ami-iit/lie-group-controllers.git
+    url: https://github.com/gbionics/lie-group-controllers.git
     version: v0.3.1
   event-driven:
     type: git
@@ -177,7 +177,7 @@ repositories:
     version: v2.1
   matioCpp:
     type: git
-    url: https://github.com/ami-iit/matio-cpp.git
+    url: https://github.com/gbionics/matio-cpp.git
     version: v0.3.0
   osqp-matlab:
     type: git
@@ -201,7 +201,7 @@ repositories:
     version: v3.7.0.0
   idyntree-yarp-tools:
     type: git
-    url: https://github.com/robotology/idyntree-yarp-tools.git
+    url: https://github.com/gbionics/idyntree-yarp-tools.git
     version: v0.0.11
   pyqtconsole:
     type: git
@@ -217,7 +217,7 @@ repositories:
     version: v0.3.2
   robot-log-visualizer:
     type: git
-    url: https://github.com/ami-iit/robot-log-visualizer.git
+    url: https://github.com/gbionics/robot-log-visualizer.git
     version: v0.14.0
   OpenXR:
     type: git
@@ -229,11 +229,11 @@ repositories:
     version: v2.12.14.1
   yarp-device-openxrheadset:
     type: git
-    url: https://github.com/ami-iit/yarp-device-openxrheadset.git
+    url: https://github.com/gbionics/yarp-device-openxrheadset.git
     version: v0.0.10
-  yarp-openvr-trackers:
+  yarp-openvr:
     type: git
-    url: https://github.com/ami-iit/yarp-openvr-trackers.git
+    url: https://github.com/gbionics/yarp-openvr.git
     version: v0.0.1
   find-superquadric:
     type: git
@@ -261,7 +261,7 @@ repositories:
     version: v3.0.0
   resolve-robotics-uri-py:
     type: git
-    url: https://github.com/ami-iit/resolve-robotics-uri-py.git
+    url: https://github.com/gbionics/resolve-robotics-uri-py.git
     version: v0.4.1
   yarp-devices-ros:
     type: git
@@ -273,7 +273,7 @@ repositories:
     version: v3.10.0
   yarp-device-keyboard-joypad:
     type: git
-    url: https://github.com/ami-iit/yarp-device-keyboard-joypad.git
+    url: https://github.com/gbionics/yarp-device-keyboard-joypad.git
     version: v0.0.2
   gz-sim-yarp-plugins:
     type: git
@@ -281,11 +281,11 @@ repositories:
     version: v0.5.3
   sharedlibpp:
     type: git
-    url: https://github.com/ami-iit/sharedlibpp.git
+    url: https://github.com/gbionics/sharedlibpp.git
     version: v0.0.3
   QpSolversEigen:
     type: git
-    url: https://github.com/ami-iit/qpsolvers-eigen.git
+    url: https://github.com/gbionics/qpsolvers-eigen.git
     version: v0.2.0
   yarp-devices-ros2:
     type: git
@@ -301,15 +301,15 @@ repositories:
     version: v2.0.0
   ResolveRoboticsURICpp:
     type: git
-    url: https://github.com/ami-iit/resolve-robotics-uri-cpp.git
+    url: https://github.com/gbionics/resolve-robotics-uri-cpp.git
     version: v0.0.3
   BiomechanicalAnalysisFramework:
     type: git
-    url: https://github.com/ami-iit/biomechanical-analysis-framework.git
+    url: https://github.com/gbionics/biomechanical-analysis-framework.git
     version: v0.2.3
   trintrin:
     type: git
-    url: https://github.com/ami-iit/trintrin.git
+    url: https://github.com/gbionics/trintrin.git
     version: v0.1.0
   yarp-openvr:
     version: v0.0.1

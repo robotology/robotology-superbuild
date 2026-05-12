@@ -8,7 +8,7 @@ find_or_build_package(YCM QUIET)
 
 ycm_ep_helper(ResolveRoboticsURICpp TYPE GIT
                                     STYLE GITHUB
-                                    REPOSITORY ami-iit/resolve-robotics-uri-cpp.git
+                                    REPOSITORY gbionics/resolve-robotics-uri-cpp.git
                                     TAG main
                                     COMPONENT core
                                     FOLDER src

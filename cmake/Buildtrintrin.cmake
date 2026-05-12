@@ -6,7 +6,7 @@ include(FindOrBuildPackage)
 
 find_or_build_package(YARP QUIET)
 
-if(ROBOTOLOGY_USES_PYTHON) 
+if(ROBOTOLOGY_USES_PYTHON)
   # If we are not generating a conda recipe, the bindings need to go in the ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR
   list(APPEND TRINTRIN_OPTIONAL_CMAKE_ARGS "-DTRINTRIN_PYTHON_INSTALL_DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
 endif()
@@ -14,7 +14,7 @@ endif()
 
 ycm_ep_helper(trintrin TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/trintrin.git
+              REPOSITORY gbionics/trintrin.git
               TAG main
               COMPONENT dynamics
               FOLDER src

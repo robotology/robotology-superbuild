@@ -10,7 +10,7 @@ find_or_build_package(iDynTree QUIET)
 
 ycm_ep_helper(yarp-device-openxrheadset TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/yarp-device-openxrheadset.git
+              REPOSITORY gbionics/yarp-device-openxrheadset.git
               TAG main
               COMPONENT dynamics
               FOLDER src

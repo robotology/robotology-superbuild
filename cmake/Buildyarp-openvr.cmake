@@ -9,7 +9,7 @@ find_or_build_package(OpenVR QUIET)
 
 ycm_ep_helper(yarp-openvr TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/yarp-openvr.git
+              REPOSITORY gbionics/yarp-openvr.git
               TAG master
               COMPONENT dynamics
               FOLDER src

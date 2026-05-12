@@ -8,7 +8,7 @@ find_or_build_package(meshcat-python QUIET)
 find_or_build_package(iDynTree QUIET)
 
 rob_sup_pure_python_ycm_ep_helper(robot-log-visualizer
-                                  REPOSITORY ami-iit/robot-log-visualizer.git
+                                  REPOSITORY gbionics/robot-log-visualizer.git
                                   DEPENDS meshcat-python
                                           pyqtconsole
                                           iDynTree

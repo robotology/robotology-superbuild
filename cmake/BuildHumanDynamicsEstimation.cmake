@@ -17,7 +17,7 @@ find_or_build_package(trintrin QUIET)
 # conda package
 # See https://github.com/robotology/robotology-superbuild/issues/641
 set(HDE_OPTIONAL_CMAKE_ARGS "")
-if(ROBOTOLOGY_USES_PYTHON) 
+if(ROBOTOLOGY_USES_PYTHON)
   if (NOT ROBOTOLOGY_GENERATE_CONDA_RECIPES)
     # If we are not generating a conda recipe, the bindings need to go in the ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR
     list(APPEND HDE_OPTIONAL_CMAKE_ARGS "-DHDE_PYTHON_INSTALL_DIR=${ROBOTOLOGY_SUPERBUILD_PYTHON_INSTALL_DIR}")
@@ -34,7 +34,7 @@ endif()
 
 ycm_ep_helper(HumanDynamicsEstimation TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/human-dynamics-estimation.git
+              REPOSITORY gbionics/human-dynamics-estimation.git
               TAG master
               COMPONENT human_dynamics
               FOLDER src

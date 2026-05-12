@@ -22,7 +22,7 @@ endif()
 
 ycm_ep_helper(BiomechanicalAnalysisFramework TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/biomechanical-analysis-framework.git
+              REPOSITORY gbionics/biomechanical-analysis-framework.git
               TAG main
               COMPONENT dynamics
               FOLDER src

@@ -9,7 +9,7 @@ find_or_build_package(ICUB QUIET)
 
 ycm_ep_helper(idyntree-yarp-tools TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/idyntree-yarp-tools.git
+              REPOSITORY gbionics/idyntree-yarp-tools.git
               TAG main
               COMPONENT dynamics
               FOLDER src

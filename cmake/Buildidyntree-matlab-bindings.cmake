@@ -10,7 +10,7 @@ set(idyntree-matlab-bindings_TAG ${iDynTree_TAG})
 
 ycm_ep_helper(idyntree-matlab-bindings TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/idyntree.git
+              REPOSITORY gbionics/idyntree.git
               TAG master
               COMPONENT dynamics
               FOLDER src

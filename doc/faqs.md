@@ -71,11 +71,11 @@ OMP: Hint This means that multiple copies of the OpenMP runtime have been linked
 
 or you are on Windows if you encounter errors similar to:
 ~~~
-OMP: Error https://github.com/ami-iit/element_aerodynamics-control/issues/15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized. 
-OMP: Hint This means that multiple copies of the OpenMP runtime have been linked into the program. 
-That is dangerous, since it can degrade performance or cause incorrect results. 
-The best thing to do is to ensure that only a single OpenMP runtime is linked into the process, e.g. by avoiding static linking of the OpenMP runtime in any library. 
-As an unsafe, unsupported, undocumented workaround you can set the environment variable KMP_DUPLICATE_LIB_OK=TRUE to allow the program to continue to execute, but that may cause crashes or silently produce incorrect results. 
+OMP: Error https://github.com/ami-iit/element_aerodynamics-control/issues/15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.
+OMP: Hint This means that multiple copies of the OpenMP runtime have been linked into the program.
+That is dangerous, since it can degrade performance or cause incorrect results.
+The best thing to do is to ensure that only a single OpenMP runtime is linked into the process, e.g. by avoiding static linking of the OpenMP runtime in any library.
+As an unsafe, unsupported, undocumented workaround you can set the environment variable KMP_DUPLICATE_LIB_OK=TRUE to allow the program to continue to execute, but that may cause crashes or silently produce incorrect results.
 For more information, please see http://www.intel.com/software/products/support/.
 ~~~
 
@@ -84,7 +84,7 @@ when running MATLAB libraries installed by the robotology-superbuild, a simple w
 conda install libblas=*=*netlib
 ~~~
 
-See https://github.com/robotology/idyntree/issues/1109 for more details. The [One-line Installation of Robotology MATLAB/Simulink Packages](./matlab-one-line-install.md) installs `libblas=*=*netlib` to mitigate this problem.
+See https://github.com/gbionics/idyntree/issues/1109 for more details. The [One-line Installation of Robotology MATLAB/Simulink Packages](./matlab-one-line-install.md) installs `libblas=*=*netlib` to mitigate this problem.
 
 ### I want to install packages from the `robotology` conda channel that were built in 2021 but I am not finding them, where I can find them?
 

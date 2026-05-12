@@ -5,7 +5,7 @@ include(YCMEPHelper)
 
 ycm_ep_helper(matioCpp TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/matio-cpp.git
+              REPOSITORY gbionics/matio-cpp.git
               TAG master
               COMPONENT dynamics
               FOLDER src
