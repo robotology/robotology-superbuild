@@ -25,7 +25,7 @@ endif()
 
 ycm_ep_helper(QpSolversEigen TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/qpsolvers-eigen.git
+              REPOSITORY gbionics/qpsolvers-eigen.git
               TAG main
               COMPONENT dynamics
               FOLDER src

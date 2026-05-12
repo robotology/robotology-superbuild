@@ -8,7 +8,7 @@ find_or_build_package(manif QUIET)
 
 ycm_ep_helper(LieGroupControllers TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/lie-group-controllers.git
+              REPOSITORY gbionics/lie-group-controllers.git
               TAG master
               COMPONENT dynamics
               FOLDER src

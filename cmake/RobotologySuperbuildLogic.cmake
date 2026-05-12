@@ -94,7 +94,7 @@ if(ROBOTOLOGY_ENABLE_DYNAMICS)
 
   find_or_build_package(OsqpEigen QUIET)
   # Let's not generate conda packages for idyntree-yarp-tools until
-  # https://github.com/robotology/idyntree-yarp-tools/issues/50 is fixed
+  # https://github.com/gbionics/idyntree-yarp-tools/issues/50 is fixed
   if(NOT ROBOTOLOGY_GENERATE_CONDA_RECIPES)
     find_or_build_package(idyntree-yarp-tools)
   endif()

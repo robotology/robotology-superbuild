@@ -17,10 +17,10 @@ list(APPEND whole-body-estimators_DEPENDS iDynTree)
 
 ycm_ep_helper(whole-body-estimators TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/whole-body-estimators.git
+              REPOSITORY gbionics/whole-body-estimators.git
               TAG master
               COMPONENT dynamics
               FOLDER src
               DEPENDS ${whole-body-estimators_DEPENDS})
-              
+
 set(whole-body-estimators_CONDA_DEPENDENCIES "eigen")

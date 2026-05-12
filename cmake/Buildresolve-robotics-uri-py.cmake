@@ -4,7 +4,7 @@
 include(RobSupPurePythonYCMEPHelper)
 
 rob_sup_pure_python_ycm_ep_helper(resolve-robotics-uri-py
-                                  REPOSITORY ami-iit/resolve-robotics-uri-py.git
+                                  REPOSITORY gbionics/resolve-robotics-uri-py.git
                                   TAG main
                                   COMPONENT dynamics
                                   FOLDER src)

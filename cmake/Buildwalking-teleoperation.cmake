@@ -12,7 +12,7 @@ find_or_build_package(trintrin QUIET)
 
 ycm_ep_helper(walking-teleoperation TYPE GIT
               STYLE GITHUB
-              REPOSITORY robotology/walking-teleoperation.git
+              REPOSITORY gbionics/walking-teleoperation.git
               TAG master
               COMPONENT teleoperation
               FOLDER src

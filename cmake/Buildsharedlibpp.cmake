@@ -7,7 +7,7 @@ find_or_build_package(YCM QUIET)
 
 ycm_ep_helper(sharedlibpp TYPE GIT
               STYLE GITHUB
-              REPOSITORY ami-iit/sharedlibpp.git
+              REPOSITORY gbionics/sharedlibpp.git
               TAG main
               COMPONENT dynamics
               FOLDER src
