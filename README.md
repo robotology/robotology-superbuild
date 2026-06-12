@@ -39,7 +39,7 @@ In this form, the superbuild will get the latest changes for a branch of each su
 
 
 #### [Releases](https://en.wikipedia.org/wiki/Software_release_life_cycle)
-Once every three months, a set of releases of the software in the robotology-superbuild is freezed and used as a "Distro Release", following the policies of iCub software described in https://icub-tech-iit.github.io/documentation/sw_versioning_table/ . **Releases** can be used both when **building the software from source**, and when obtaining it **from binaries**.
+Once every three months, a set of releases of the software in the robotology-superbuild is freezed and used as a "Distro Release", following the policies of iCub software described in https://mesh-iit.github.io/documentation/sw_versioning_table/ . **Releases** can be used both when **building the software from source**, and when obtaining it **from binaries**.
 
 The available releases can be seen on [GitHub's release page](https://github.com/robotology/robotology-superbuild/releases).
 
@@ -50,7 +50,7 @@ We provide binary packages for Linux, macOS and Windows of the software containe
 
 Please refer to [`doc/conda-forge.md`](doc/conda-forge.md) document for instructions on how to install the conda binary packages, in particular the [`Binary Installation`](doc/conda-forge.md#binary-installation) section.
 
-Note that the default binary installed by the conda package manager is the latest available, so if you need to get exactly the version corresponding to a specific robotology-superbuild distro release (for example for compatibility with an existing robot setup), please install the required versions by inspecting the version tables of the specific distro you are interested in https://icub-tech-iit.github.io/documentation/sw_versioning_table/ .
+Note that the default binary installed by the conda package manager is the latest available, so if you need to get exactly the version corresponding to a specific robotology-superbuild distro release (for example for compatibility with an existing robot setup), please install the required versions by inspecting the version tables of the specific distro you are interested in https://mesh-iit.github.io/documentation/sw_versioning_table/ .
 
 If you need to use the robotology packages with dependencies provided by other package managers, for example with the `apt`packages on Debina/Ubuntu distributions, please install [robotology-superbuild from source code](#source-installation) as explained in the approprate section, as we do not provide binary packages for all software contained in the robotology-superbuild for the `apt` package manager.
 
@@ -75,7 +75,7 @@ git clone https://github.com/robotology/robotology-superbuild
 this will clone the superbuild in its default branch.
 
 You can download and use the `robotology-superbuild` anywhere on your system, but if you are installing it
-on an [**iCub robot laptop** following the official iCub instructions](https://icub-tech-iit.github.io/documentation/icub_operating_systems/other-machines/generic-machine/), you should clone it in the `/usr/local/src/robot` directory.
+on an [**iCub robot laptop** following the official iCub instructions](https://mesh-iit.github.io/documentation/icub_operating_systems/other-machines/generic-machine/), you should clone it in the `/usr/local/src/robot` directory.
 
 If instead you want to use a **specific release** of the robotology superbuild, after you clone switch to use to a specific release tag:
 ~~~
