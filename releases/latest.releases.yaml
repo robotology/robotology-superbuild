@@ -166,7 +166,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/gbionics/bipedal-locomotion-framework.git
-    version: v0.24.0
+    version: v0.25.0
   LieGroupControllers:
     type: git
     url: https://github.com/gbionics/lie-group-controllers.git
@@ -230,7 +230,7 @@ repositories:
   yarp-device-openxrheadset:
     type: git
     url: https://github.com/gbionics/yarp-device-openxrheadset.git
-    version: v0.0.10
+    version: v0.0.11
   yarp-openvr:
     type: git
     url: https://github.com/gbionics/yarp-openvr.git
