@@ -22,7 +22,7 @@ repositories:
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
-    version: v0.18.4
+    version: v0.18.5
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
@@ -218,7 +218,7 @@ repositories:
   robot-log-visualizer:
     type: git
     url: https://github.com/gbionics/robot-log-visualizer.git
-    version: v0.14.0
+    version: v0.14.1
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
