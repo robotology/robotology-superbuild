@@ -19,3 +19,7 @@ spdlog:
 # Remove once the migration to eigen 5 is finished
 eigen:
   - '3.4.0'
+
+# Remove once the migration to OpenCV 5 is finished
+libopencv:
+  - '4.13.0'
