@@ -74,7 +74,7 @@ repositories:
   iDynTree:
     type: git
     url: https://github.com/gbionics/idyntree.git
-    version: v15.0.0
+    version: v15.1.0
   BlockFactory:
     type: git
     url: https://github.com/robotology/blockfactory.git
@@ -262,7 +262,7 @@ repositories:
   resolve-robotics-uri-py:
     type: git
     url: https://github.com/gbionics/resolve-robotics-uri-py.git
-    version: v0.4.1
+    version: v0.5.1
   yarp-devices-ros:
     type: git
     url: https://github.com/robotology/yarp-devices-ros.git
@@ -302,7 +302,7 @@ repositories:
   ResolveRoboticsURICpp:
     type: git
     url: https://github.com/gbionics/resolve-robotics-uri-cpp.git
-    version: v0.0.3
+    version: v0.1.0
   BiomechanicalAnalysisFramework:
     type: git
     url: https://github.com/gbionics/biomechanical-analysis-framework.git
