@@ -67,7 +67,6 @@ Tests the superbuild in clean Docker containers.
 - Frees disk space by removing unnecessary GitHub Actions tools
 - Installs Debian-based dependencies
 - Configures and builds the superbuild
-- Disables Gazebo Classic support on Ubuntu 24.04 (no binaries available)
 
 #### 3. `normal-build`
 Tests the superbuild without using conda, directly with system dependencies.

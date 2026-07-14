@@ -38,20 +38,6 @@ if [[ ("ubuntu" == "$lsb_dist") ]]; then
     apt-get update
 fi
 
-# Gazebo Classic
-
-# Just a limited amount of distros are supported by OSRF repos, 
-# for all the other we use the  gazebo packages in regular repos
-# or we do not install gazebo classic if it is not available in apt
-if [[ ("noble" == "$dist_version")]]; then
-    # There is no Gazebo Classic package for Noble
-    echo ""
-elif [[ ("focal" == "$dist_version" || "buster" == "$dist_version") ]]; then
-    apt-get install -y libgazebo11-dev
-else
-    apt-get install -y libgazebo-dev
-fi
-
 # gz-sim8 binaries are only available for jammy (Ubuntu 22.04) and noble (Ubuntu 24.04)
 if [[ ("jammy" == "$dist_version") || ("noble" == "$dist_version") ]]; then
     apt-get install -y gz-harmonic libcli11-dev
@@ -59,5 +45,4 @@ fi
 
 # PCL and VTK
 apt-get install -y libpcl-dev
-
 

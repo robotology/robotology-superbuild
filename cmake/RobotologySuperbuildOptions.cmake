@@ -22,11 +22,6 @@ option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Pyt
 option(ROBOTOLOGY_USES_CSHARP "Enable compilation of software that depends on CSharp" FALSE)
 mark_as_advanced(ROBOTOLOGY_USES_CSHARP)
 
-option(ROBOTOLOGY_USES_GAZEBO "Enable compilation of software that depends on Gazebo Classic" OFF)
-# Warn because Gazebo Classic support is deprecated and superseded by ROBOTOLOGY_USES_GZ
-if(ROBOTOLOGY_USES_GAZEBO)
-    message(WARNING "ROBOTOLOGY_USES_GAZEBO is deprecated since Gazebo Classic reached EOL in January 2025. This option will be removed in a future release; use ROBOTOLOGY_USES_GZ instead.")
-endif()
 option(ROBOTOLOGY_USES_PCL_AND_VTK "Enable compilation of software that depends on PCL and VTK" OFF)
 option(ROBOTOLOGY_USES_ROS2 "Enable compilation of software that depends on ROS 2" OFF)
 option(ROBOTOLOGY_USES_MOVEIT "Enable compilation of software that depends on MoveIt" OFF)

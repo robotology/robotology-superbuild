@@ -121,20 +121,6 @@ For what regards CMake, the robotology-superbuild requires CMake 3.19 . If you a
 
 For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](doc/cmake-options.md#dependencies-cmake-options) specific CMake option you may need to install additional system dependencies, following the dependency-specific documentation listed in the following. If you do not want to enable an option, you should ignore the corresponding section and continue with the installation process.
 
-Note that the `ROBOTOLOGY_USES_GAZEBO` option is enabled by default (except on Ubuntu 24.04 when installing with apt dependencies), so you should install Gazebo Classic unless you plan to disable this option.
-
-#### `ROBOTOLOGY_USES_GAZEBO`
-
-> [!important]
-> Gazebo classic reached EOL in January 2025, this option is deprecated, and will removed soon, for using gz-sim see `ROBOTOLOGY_USES_GZ`
-
-If you are on Ubuntu 22.04 or another Debian/Ubuntu systems where the `libgazebo-dev` Gazebo Classic package is available in apt, just install the system provided gazebo package with:
-~~~~
-sudo apt install libgazebo-dev
-~~~~
-
-If you are on Ubuntu 24.04, please use conda or pixi to install robotology-superbuild dependencies if you want to install Gazebo Classic, as no Gazebo Classic packages are available via apt.
-
 #### `ROBOTOLOGY_USES_GZ`
 
 To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (24.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/ionic/install_ubuntu#binary-installation-on-ubuntu or  https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu . Furthermore, you also need to install the `cli11` dependency with:
