@@ -92,7 +92,6 @@ remove_value_from_env_variable GZ_SIM_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INST
 @cmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
 # Cleanup ROBOTOLOGY_ENABLE_ROBOT_TESTING-specific lines
 remove_value_from_env_variable @SHLIB_ENV_VAR@ "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/lib/robottestingframework"
-remove_value_from_env_variable YARP_DATA_DIRS "@PROJECT_SOURCE_DIR_SETUP_SH@/src/icub-tests/suites"
 remove_value_from_env_variable BLOCKTEST_RESOURCE_PATH "$ROBOTOLOGY_SUPERBUILD_INSTALL_PREFIX_LOCAL/bin"
 @endcmakeif ROBOTOLOGY_ENABLE_ROBOT_TESTING
 
