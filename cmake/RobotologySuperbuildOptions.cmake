@@ -68,7 +68,6 @@ else()
 endif()
 option(ROBOTOLOGY_ENABLE_ICUB_HEAD "Enable compilation of software necessary on the system running in the head of the iCub robot." FALSE)
 option(ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS "Enable compilation of software necessary for iCub basic demonstrations." FALSE)
-option(ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS "Enable compilation of software for human dynamics estimation." FALSE)
 option(ROBOTOLOGY_ENABLE_GRASPING "Enable compilation of software for grasping." FALSE)
 
 # This is option is not meant to be used in general, but it can be useful in setups where there is a single
@@ -86,7 +85,6 @@ include(CMakeDependentOption)
 
 cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software that runs on the head of the iCub and depends on CFW2CAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
 cmake_dependent_option(ROBOTOLOGY_USES_ESDCAN "Enable compilation of software that runs on the head of the iCub and depends on ESDCAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
-cmake_dependent_option(ROBOTOLOGY_USES_XSENS_MVN_SDK "Enable compilation of software that runs on the wearable producer machine and depends on Xsens MVN SDK." FALSE "ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS" FALSE)
 
 
 option(ROBOTOLOGY_ENABLE_IOL "Enable compilation of software necessary for the Interactive Objects Learning demo." FALSE)

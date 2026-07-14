@@ -104,7 +104,6 @@ or creating the directories and extracting the archive through the File Explorer
 If you want to enable the `ROBOTOLOGY_USES_GAZEBO` option, you will need to download and extract the `vcpkg-robotology-with-gazebo.zip` archive. For instructions on how to correctly use this archives, please refer to documentation of the [`robotology-superbuild-dependencies-vcpkg`](https://github.com/robotology/robotology-superbuild-dependencies-vcpkg) repo.
 
 If you want to enable a [profile](cmake-options.md#profile-cmake-options) or a [dependency](cmake-options.md#dependencies-cmake-options) specific CMake option, you may need to install additional system dependencies following the dependency-specific documentation:
-* [`ROBOTOLOGY_USES_XSENS_MVN_SDK`](cmake-options.md#xsens)
 * [`ROBOTOLOGY_USES_ESDCAN`](cmake-options.md#shoes)
 
 ### Superbuild
@@ -143,5 +142,4 @@ source <directory-where-you-downloaded-robotology-superbuild>/build/install/shar
 If for any reason you do not want to use the provided scripts and you want to manage your enviroment variables manually, for example because you want to cleanup the enviroment variables modified by `addPathsToUserEnvVariables.ps1`  and you delete the corresponding `removePathsFromUserEnvVariables.ps1`, please refer to the documentation available at [`doc/environment-variables-configuration.md `](environment-variables-configuration.md).
 
  **If you have problems in Windows in launching executables or using libraries installed by superbuild, it is possible that due to some existing software on your machine your executables are not loading the correct `dll` for some of the dependencies. This is the so-called [DLL Hell](https://en.wikipedia.org/wiki/DLL_Hell#Causes), and for example it can happen if you are using the [Anaconda](https://www.anaconda.com/) Python distribution on your Windows installation.  To troubleshoot this kind of problems, you can open the library or executable that is not working correctly using the [`Dependencies`](https://github.com/lucasg/Dependencies) software. This software will show you which DLL your executable or library is loading. If you have any issue of this kind and need help, feel free to [open an issue in our issue tracker](https://github.com/robotology/robotology-superbuild/issues/new).**
-
 
