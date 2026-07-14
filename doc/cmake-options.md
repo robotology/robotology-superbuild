@@ -13,7 +13,6 @@ Table of Contents
     * [Dynamics full deps profile](#dynamics-full-deps)
     * [iCub Head profile](#icub-head)
     * [iCub Basic Demos profile](#icub-basic-demos)
-    * [Human Dynamics profile](#human-dynamics)
     * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
     * [Gazebo Classic simulator](#gazebo-classic-simulator)
@@ -25,7 +24,6 @@ Table of Contents
     * [MATLAB](#matlab)
     * [Octave](#octave)
     * [Python](#python)
-    * [Xsens](#xsens)
     * [ESDCAN](#esdcan)
 
 
@@ -49,7 +47,6 @@ All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework) and its dependencies. |  [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework), [`qhull`](https://github.com/qhull/qhull), [`casadi`](https://github.com/casadi/casadi), [`CppAD`](https://github.com/coin-or/CppAD), [`yarp-device-keyboard-joypad`](https://github.com/gbionics/yarp-device-keyboard-joypad) [`robot-log-visualizer`](https://github.com/gbionics/robot-log-visualizer) if `ROBOTOLOGY_USES_PYTHON` option is enabled. | `OFF` | [Documentation on Dynamics full deps profile.](#dynamics-full-deps)  |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD` | The robotology software packages needed on the system that is running on the head of the iCub robot, or in general to communicate directly with iCub low-level devices. | [`icub-firmware`](https://github.com/robotology/icub-firmware), [`icub-firmware-shared`](https://github.com/robotology/icub-firmware-shared). Furthermore, several additional devices are compiled in `YARP` and `ICUB` if this option is enabled. | `OFF` | [Documentation on iCub Head profile.](#icub-head)  |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` | The robotology software packages needed to run basic demonstrations with the iCub robot. | [`icub-basic-demos`](https://github.com/robotology/icub-basic-demos), [`speech`](https://github.com/robotology/speech),  [`funny-things`](https://github.com/robotology/funny-things). | `OFF` | [Documentation on iCub Basic Demos profile.](#icub-basic-demos)  |
-| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` | The robotology software packages related to human dynamics estimation. | [`human-dynamics-estimation`](https://github.com/robotology/human-dynamics-estimation), [`yarp-devices-forcetorque`](https://github.com/robotology/yarp-devices-forcetorque), [`biomechanical-analysis-framework`](https://github.com/gbionics/biomechanical-analysis-framework) For options check the profile documentation. | `OFF` | [Documentation on human dynamics profile.](#human-dynamics)  |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` | The robotology software packages related to event-driven. | [`event-driven`](https://github.com/robotology/event-driven) | `OFF` | [Documentation on event-driven profile.](#event-driven)  |
 | `ROBOTOLOGY_ENABLE_GRASPING` | The robotology software packages related to grasping. | [`find-superquadric`](https://github.com/robotology/find-superquadric) if the `ROBOTOLOGY_USES_PCL_AND_VTK` option is enabled. | `OFF` | [Documentation on grasping profile.](#grasping)  |
 
@@ -73,7 +70,6 @@ The dependencies CMake options specify if the packages dependending on something
 | `ROBOTOLOGY_USES_OCTAVE`  | Include software and plugins that depend on [Octave](https://www.gnu.org/software/octave/).  | `OFF` |  [Documentation on Octave dependency.](#octave) |
 | `ROBOTOLOGY_USES_PYTHON`  | Include software that depends on [Python](https://www.python.org/).  | `OFF` |  [Documentation on Python dependency.](#python) |
 | `ROBOTOLOGY_USES_CFW2CAN`  | Include software and plugins that depend on [CFW2 CAN custom board](http://wiki.icub.org/wiki/CFW_card).  | `OFF` | No specific documentation is available for this  option, as it is just used with the [iCub Head profile](#icub-head), in which the related documentation can be found.  |
-| `ROBOTOLOGY_USES_XSENS_MVN_SDK`  | Include software and plugins that depend on [Xsens MVN SDK](https://www.xsens.com/products/).  | `OFF` | [Documentation on Xsens MVN dependency](#xsens)  |
 | `ROBOTOLOGY_USES_ESDCAN`  | Include software and plugins that depend on [Esd Can bus](http://wiki.icub.org/wiki/Esd_Can_Bus).  | `OFF` | [Documentation on ESDCAN dependency](#esdcan)  |
 
 ## Platform Support Table
@@ -88,7 +84,6 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_ICUB_HEAD`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`                                | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS`                                  | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | [DEPRECATED] `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
@@ -102,7 +97,6 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_USES_OCTAVE`                                           | ✔️                               |              ❌             |                  ❌                       |        )       ❌                          |                  ❌                         |
 | `ROBOTOLOGY_USES_PYTHON`                | ✔️                               |              ❌             |                  ✔️                       |               ✔️                          |                  ✔️                         |
 | `ROBOTOLOGY_USES_CFW2CAN`                                           |  ✔️                              |             ❌              |                 ✔️                        |              ❌                           |                 ❌                          |
-| `ROBOTOLOGY_USES_XSENS_MVN_SDK`                                     |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ❌                          |
 | `ROBOTOLOGY_USES_ESDCAN`                                            |  ❌                              |             ✔️              |                 ❌                        |              ❌                           |                 ✔️                          |
 
 
@@ -182,12 +176,6 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS` CMake option
 
 ### Check the installation
 If the iCub Basic Demos profile have been correctly installed, you should be able to find in your PATH and execute the `demoYoga` or `demoRedBall` executables.
-
-## Human Dynamics
-This profile is enabled by the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option.
-
-### System Dependencies
-To run a human dynamics estimation scenario, we need a Windows machine to install the Xsens suit SDK for getting the sensory information of the human motions from [Xsens](https://www.xsens.com/) and [ESD USB CAN driver](https://esd.eu/en/products/can-usb2) to get the FTShoes/FTSkShoes sensory information. Refer to [Xsens](#xsens) and [ESDCAN](#esdcan) for more information about the dependencies.
 
 ## Event-driven
 This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. For the moment, Windows is not a supported platform.
@@ -394,18 +382,6 @@ see https://github.com/robotology/robotology-superbuild/issues/1268 for more det
 
 ### Check the installation
 Open a python interpreter and try to import modules, for example verify that `import yarp` works.
-
-## Xsens
-Support for `ROBOTOLOGY_USES_XSENS_MVN_SDK` option is only enabled when the `ROBOTOLOGY_ENABLE_HUMAN_DYNAMICS` CMake option is set to ON.
-
-**Warning: at the moment the Xsens MVN SDK does not support macOS and Linux, so this option is only supported
-on Windows.**
-
-### System Dependencies
-To check and install the Xsens MVN SDK, please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows).
-
-### Configuration
-To configure the Xsens MVN SDK please follow the steps for Xsens MVN SDK mentioned in [here](https://github.com/robotology/human-dynamics-estimation/wiki/Set-up-Machine-for-running-HDE#xsens-only-for-windows).
 
 ## ESDCAN
 The `ROBOTOLOGY_USES_ESDCAN` option is used to enable support for interacting with [esd CAN devices](https://esd.eu/en/products/can-usb2) on Windows. On Linux no special option is necessary, as the interconnection with esd CAN device is supported  using the default [SocketCAN](https://www.kernel.org/doc/Documentation/networking/can.txt) Linux driver. Use of [esd CAN devices](https://esd.eu/en/products/can-usb2) is not supported in macOS .
