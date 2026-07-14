@@ -89,7 +89,7 @@ Tests the superbuild without using conda, directly with system dependencies.
 - Moves source to C:\ drive to avoid path length limitations
 - Disables Git symlinks
 - Uses vcpkg toolchain for dependency management
-- Disables unsupported options (TELEOPERATION, MUJOCO, GZ)
+- Disables unsupported options (MUJOCO, GZ)
 
 ---
 

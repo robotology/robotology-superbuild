@@ -107,10 +107,6 @@ repositories:
     type: git
     url: https://github.com/gbionics/whole-body-estimators.git
     version: v0.11.3
-  walking-teleoperation:
-    type: git
-    url: https://github.com/gbionics/walking-teleoperation.git
-    version: v1.3.9
   yarp-devices-forcetorque:
     type: git
     url: https://github.com/robotology/yarp-devices-forcetorque.git
@@ -219,22 +215,6 @@ repositories:
     type: git
     url: https://github.com/gbionics/robot-log-visualizer.git
     version: v0.14.1
-  OpenXR:
-    type: git
-    url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.61
-  OpenVR:
-    type: git
-    url: https://github.com/ami-iit/openvr.git
-    version: v2.12.14.1
-  yarp-device-openxrheadset:
-    type: git
-    url: https://github.com/gbionics/yarp-device-openxrheadset.git
-    version: v0.0.11
-  yarp-openvr:
-    type: git
-    url: https://github.com/gbionics/yarp-openvr.git
-    version: v0.0.1
   find-superquadric:
     type: git
     url: https://github.com/robotology/find-superquadric.git
@@ -311,5 +291,3 @@ repositories:
     type: git
     url: https://github.com/gbionics/trintrin.git
     version: v0.1.0
-  yarp-openvr:
-    version: v0.0.1

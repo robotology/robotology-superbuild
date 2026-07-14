@@ -60,7 +60,6 @@ option(ROBOTOLOGY_ENABLE_CORE "Enable compilation of core software libraries." T
 option(ROBOTOLOGY_ENABLE_ROBOT_TESTING "Enable compilation of software for robot testing." FALSE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS "Enable compilation of software for balancing and walking." FALSE)
 option(ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS "Enable compilation of all the dependencies of bipedal-locomotion-framework." FALSE)
-option(ROBOTOLOGY_ENABLE_TELEOPERATION "Enable compilation of software for teleoperation." FALSE)
 # ROBOTOLOGY_ENABLE_EVENT_DRIVEN is not supported on Windows, do not show the option there
 if(WIN32 OR APPLE)
   set(ROBOTOLOGY_ENABLE_EVENT_DRIVEN FALSE)
