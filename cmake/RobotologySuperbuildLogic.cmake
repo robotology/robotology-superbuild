@@ -138,14 +138,6 @@ if(ROBOTOLOGY_ENABLE_EVENT_DRIVEN)
   find_or_build_package(event-driven)
 endif()
 
-# IOL
-if(ROBOTOLOGY_ENABLE_IOL)
-  if(NOT ROBOTOLOGY_USES_LUA)
-    message(FATAL_ERROR "Impossible to set ROBOTOLOGY_ENABLE_IOL to TRUE if ROBOTOLOGY_USES_LUA is set to false")
-  endif()
-  find_or_build_package(iol)
-endif()
-
 # iCub Robot
 if(ROBOTOLOGY_ENABLE_ICUB_HEAD)
   find_or_build_package(icub_firmware_shared)

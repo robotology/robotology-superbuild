@@ -42,7 +42,7 @@ else()
   set(ENABLE_icubmod_socketcan OFF)
 endif()
 
-if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA)
+if(ROBOTOLOGY_USES_PYTHON)
   set(ICUB_COMPILE_BINDINGS ON)
 else()
   set(ICUB_COMPILE_BINDINGS OFF)
@@ -104,7 +104,7 @@ ycm_ep_helper(ICUB TYPE GIT
                               -DICUBMAIN_COMPILE_SIMULATORS:BOOL=${ICUBMAIN_COMPILE_SIMULATORS}
                               -DICUB_COMPILE_BINDINGS:BOOL=${ICUB_COMPILE_BINDINGS}
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
-                              -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
+                              -DCREATE_LUA:BOOL=OFF
                               ${ICUB_PYTHON_INSTALL_CMAKE_ARGS})
 
 set(ICUB_CONDA_PKG_NAME icub-main)

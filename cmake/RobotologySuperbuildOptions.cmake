@@ -16,8 +16,6 @@ option(ROBOTOLOGY_NOT_USE_SIMULINK "Disable compilation of software that depend 
 
 ## Other dynamic languages options
 option(ROBOTOLOGY_USES_OCTAVE "Enable compilation of software that depend on Octave" FALSE)
-option(ROBOTOLOGY_USES_LUA "Enable compilation of software that depend on Lua" FALSE)
-mark_as_advanced(ROBOTOLOGY_USES_LUA)
 option(ROBOTOLOGY_USES_PYTHON "Enable compilation of software that depend on Python" FALSE)
 option(ROBOTOLOGY_USES_CSHARP "Enable compilation of software that depends on CSharp" FALSE)
 mark_as_advanced(ROBOTOLOGY_USES_CSHARP)
@@ -82,8 +80,6 @@ cmake_dependent_option(ROBOTOLOGY_USES_CFW2CAN "Enable compilation of software t
 cmake_dependent_option(ROBOTOLOGY_USES_ESDCAN "Enable compilation of software that runs on the head of the iCub and depends on ESDCAN." FALSE "ROBOTOLOGY_ENABLE_ICUB_HEAD" FALSE)
 
 
-option(ROBOTOLOGY_ENABLE_IOL "Enable compilation of software necessary for the Interactive Objects Learning demo." FALSE)
-mark_as_advanced(ROBOTOLOGY_ENABLE_IOL)
 option(ROBOTOLOGY_ENABLE_R1_ROBOT "Enable compilation of software necessary on the pc running on the R1 robot." FALSE)
 mark_as_advanced(ROBOTOLOGY_ENABLE_R1_ROBOT)
 
