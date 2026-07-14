@@ -176,17 +176,6 @@ If you install your dependencies with `conda`, just make sure to install the `pc
 conda install -c conda-forge "pcl>=1.11.1" vtk
 ~~~
 
-#### `ROBOTOLOGY_USES_GAZEBO`
-
-> [!important]
-> Gazebo classic reached EOL in January 2025, this option is deprecated, and will removed soon, for using gz-sim use `ROBOTOLOGY_USES_GZ`
-
-If you install your dependencies with `conda`, just make sure to install the `gazebo` package:
-
-~~~
-conda install -c conda-forge gazebo
-~~~
-
 #### `ROBOTOLOGY_USES_GZ`
 
 If you install your dependencies with `conda`, just make sure to install the `gz-sim9` (Gazebo Ionic) or `gz-sim8` (Gazebo Harmonic) package:

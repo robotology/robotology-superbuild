@@ -15,7 +15,6 @@ Table of Contents
     * [iCub Basic Demos profile](#icub-basic-demos)
     * [Event-driven profile](#event-driven)
   * [Dependencies-specific documentation](#dependencies-specific-documentation)
-    * [Gazebo Classic simulator](#gazebo-classic-simulator)
     * [Modern Gazebo simulator](#modern-gazebo-simulator)
     * [ROS 2](#ros-2)
     * [MoveIt](#moveit)
@@ -41,7 +40,7 @@ All these options are named `ROBOTOLOGY_ENABLE_<profile>` .
 
 | CMake Option | Description | Main packages included | Default Value | Profile-specific documentation |
 |:------------:|:-----------:|:---------------------:|:-------------:|:----:|
-| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models), [`robots-configurations`](https://github.com/robotology/robots-configuration), [`iDynTree`](https://github.com/gbionics/idyntree), [`whole-body-estimators`](https://github.com/robotology/whole-body-estimators) and [`ergocub-software`](https://github.com/icub-tech-iit/ergocub-software). [`GazeboYARPPlugins`](https://github.com/robotology/GazeboYARPPlugins) if the `ROBOTOLOGY_USES_GAZEBO` option is enabled. | `ON` | [Documentation on Core profile.](#core) |
+| `ROBOTOLOGY_ENABLE_CORE` | The core robotology software packages, necessary for most users. | [`YARP`](https://github.com/robotology/yarp), [`ICUB`](https://github.com/robotology/icub-main), [`ICUBcontrib`](https://github.com/robotology/icub-contrib-common), [`icub-models`](https://github.com/robotology/icub-models), [`robots-configurations`](https://github.com/robotology/robots-configuration), [`iDynTree`](https://github.com/gbionics/idyntree), [`whole-body-estimators`](https://github.com/robotology/whole-body-estimators) and [`ergocub-software`](https://github.com/icub-tech-iit/ergocub-software). | `ON` | [Documentation on Core profile.](#core) |
 | `ROBOTOLOGY_ENABLE_ROBOT_TESTING` | The robotology software packages related to robot testing. |  [`RobotTestingFramework`](https://github.com/robotology/robot-testing-framework), [`icub-tests`](https://github.com/robotology/icub-tests), [`blocktest`](https://github.com/robotology/blocktest) and [`blocktest-yarp-plugins`](https://github.com/robotology/blocktest-yarp-plugins) | `OFF` | [Documentation on Robot Testing profile.](#robot-testing)  |
 | `ROBOTOLOGY_ENABLE_DYNAMICS` | The robotology software packages related to balancing, walking and force control. | , [`blockfactory`](https://github.com/robotology/blockfactory), [`wb-Toolbox`](https://github.com/robotology/wb-Toolbox), [`whole-body-controllers`](https://github.com/robotology/whole-body-controllers), [`walking-controllers`](https://github.com/robotology/walking-controllers), [`matioCpp`](https://github.com/dic-iit/matio-cpp), [`manif`](https://github.com/artivis/manif), [`robometry`](https://github.com/robotology/robometry). Furthermore, [`osqp-matlab`](https://github.com/dic-iit/osqp-matlab-cmake-buildsystem) and [`matlab-whole-body-simulator`](https://github.com/dic-iit/matlab-whole-body-simulator) if `ROBOTOLOGY_USES_MATLAB` option is enabled. | `OFF` | [Documentation on Dynamics profile.](#dynamics)  |
 | `ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS` | [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework) and its dependencies. |  [`bipedal-locomotion-framework`](https://github.com/dic-iit/bipedal-locomotion-framework), [`qhull`](https://github.com/qhull/qhull), [`casadi`](https://github.com/casadi/casadi), [`CppAD`](https://github.com/coin-or/CppAD), [`yarp-device-keyboard-joypad`](https://github.com/gbionics/yarp-device-keyboard-joypad) [`robot-log-visualizer`](https://github.com/gbionics/robot-log-visualizer) if `ROBOTOLOGY_USES_PYTHON` option is enabled. | `OFF` | [Documentation on Dynamics full deps profile.](#dynamics-full-deps)  |
@@ -59,7 +58,6 @@ The dependencies CMake options specify if the packages dependending on something
 
 | CMake Option | Description | Default Value | Dependency-specific documentation |
 |:------------:|:-----------:|:-------------:|:---------------------------------:|
-| [DEPRECATED] `ROBOTOLOGY_USES_GAZEBO`  | Include software and plugins that depend on the [Gazebo Classic simulator](https://classic.gazebosim.org/).  | `ON` | [Documentation on Gazebo Classic dependency.](#gazebo-classic-simulator) |
 | `ROBOTOLOGY_USES_GZ`  | Include software and plugins that depend on the [Modern Gazebo (gz-sim) simulator](http://gazebosim.org/). | `OFF` | [Documentation on Modern Gazebo (gz-sim) dependency.](#modern-gazebo-simulator) |
 | `ROBOTOLOGY_USES_ROS2`  | Include software and plugins that depend on [ROS 2](https://www.ros.org/). | `OFF` | [Documentation on ROS 2 dependency.](#ros-2) |
 | `ROBOTOLOGY_USES_MOVEIT`  | Include software and plugins that depend on the [MoveIt motion planning framework](https://moveit.ai/). | `OFF` | [Documentation on MoveIt dependency.](#moveit) |
@@ -86,7 +84,6 @@ Not all options are supported on all platforms. The following table provides a r
 | `ROBOTOLOGY_ENABLE_ICUB_BASIC_DEMOS`                                | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_ENABLE_EVENT_DRIVEN`        | ✔️                               |             ❌              |                 ✔️                        |              ❌                           |               ❌                            |
 | `ROBOTOLOGY_ENABLE_GRASPING`            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
-| [DEPRECATED] `ROBOTOLOGY_USES_GAZEBO`                                            | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_GZ`<sup id="a3">[3!](#f3)</sup>                                          | ✔️                               |             ❌              |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_MUJOCO`<sup id="a1">[1!](#f1)</sup>  | ✔️                               |           ❌                |                 ✔️                        |              ✔️                           |               ✔️                            |
 | `ROBOTOLOGY_USES_PCL_AND_VTK`                                       | ✔️                               |             ✔️              |                 ✔️                        |              ✔️                           |               ✔️                            |
@@ -182,14 +179,6 @@ This profile is enabled by the `ROBOTOLOGY_ENABLE_EVENT_DRIVEN` CMake option. Fo
 
 Dependencies-specific documentation
 ===================================
-
-## Gazebo Classic simulator
-
-Support for this dependency is enabled by the `ROBOTOLOGY_USES_GAZEBO` CMake option, that enables the software that depends on "Classic Gazebo".
-
-### Check the installation
-
-Follow the steps in  https://github.com/robotology/icub-models#use-the-models-with-gazebo to check if the Gazebo-based iCub simulation works fine.
 
 ## Modern Gazebo simulator
 
