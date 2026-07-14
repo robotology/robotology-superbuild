@@ -15,7 +15,7 @@ endif()
 
 set(YARP_OPTIONAL_CMAKE_ARGS "")
 
-if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_LUA OR ROBOTOLOGY_USES_CSHARP)
+if(ROBOTOLOGY_USES_PYTHON OR ROBOTOLOGY_USES_CSHARP)
   set(YARP_COMPILE_BINDINGS ON)
 else()
   set(YARP_COMPILE_BINDINGS OFF)
@@ -103,7 +103,7 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_USE_I2C:BOOL=${YARP_USE_I2C}
                               -DYARP_USE_SDL:BOOL=ON
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
-                              -DCREATE_LUA:BOOL=${ROBOTOLOGY_USES_LUA}
+                              -DCREATE_LUA:BOOL=OFF
                               -DCREATE_CSHARP:BOOL=${ROBOTOLOGY_USES_CSHARP}
                               -DENABLE_yarpmod_usbCamera:BOOL=${ENABLE_USBCAMERA}
                               -DENABLE_yarpmod_usbCameraRaw:BOOL=${ENABLE_USBCAMERA}
