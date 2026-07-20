@@ -26,7 +26,7 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.12.2
+    version: v3.12.3
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
@@ -166,7 +166,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/gbionics/bipedal-locomotion-framework.git
-    version: v0.25.0
+    version: v0.26.0
   LieGroupControllers:
     type: git
     url: https://github.com/gbionics/lie-group-controllers.git
@@ -222,7 +222,7 @@ repositories:
   OpenXR:
     type: git
     url: https://github.com/KhronosGroup/OpenXR-SDK.git
-    version: release-1.1.60
+    version: release-1.1.61
   OpenVR:
     type: git
     url: https://github.com/ami-iit/openvr.git
