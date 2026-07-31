@@ -298,7 +298,7 @@ repositories:
   icub-tech-iit-documentation:
     type: git
     url: https://github.com/icub-tech-iit/documentation.git
-    version: v2.0.0
+    version: v2.1.0
   ResolveRoboticsURICpp:
     type: git
     url: https://github.com/gbionics/resolve-robotics-uri-cpp.git
