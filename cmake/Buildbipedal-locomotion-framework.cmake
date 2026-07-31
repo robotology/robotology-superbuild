@@ -60,7 +60,7 @@ endif()
 
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
-              REPOSITORY gbionics/bipedal-locomotion-framework.git
+              REPOSITORY robotology/bipedal-locomotion-framework-iit.git
               TAG master
               COMPONENT dynamics
               FOLDER src

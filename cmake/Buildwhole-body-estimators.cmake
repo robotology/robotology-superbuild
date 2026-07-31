@@ -17,7 +17,7 @@ list(APPEND whole-body-estimators_DEPENDS iDynTree)
 
 ycm_ep_helper(whole-body-estimators TYPE GIT
               STYLE GITHUB
-              REPOSITORY gbionics/whole-body-estimators.git
+              REPOSITORY robotology/whole-body-estimators-iit.git
               TAG master
               COMPONENT dynamics
               FOLDER src

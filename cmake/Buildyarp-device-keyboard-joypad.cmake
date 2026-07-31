@@ -8,7 +8,7 @@ find_or_build_package(YARP QUIET)
 
 ycm_ep_helper(yarp-device-keyboard-joypad TYPE GIT
                                           STYLE GITHUB
-                                          REPOSITORY gbionics/yarp-device-keyboard-joypad.git
+                                          REPOSITORY robotology/yarp-device-keyboard-joypad-iit.git
                                           TAG main
                                           COMPONENT dynamics
                                           FOLDER src

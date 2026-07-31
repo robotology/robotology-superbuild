@@ -14,7 +14,7 @@ endif()
 
 ycm_ep_helper(trintrin TYPE GIT
               STYLE GITHUB
-              REPOSITORY gbionics/trintrin.git
+              REPOSITORY robotology/trintrin-iit.git
               TAG main
               COMPONENT dynamics
               FOLDER src
