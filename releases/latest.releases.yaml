@@ -89,7 +89,7 @@ repositories:
     version: v0.8.1
   walking-controllers:
     type: git
-    url: https://github.com/gbionics/walking-controllers.git
+    url: https://github.com//robotology/walking-controllers-iit.git
     version: v0.10.0
   icub-gazebo-wholebody:
     type: git
@@ -101,7 +101,7 @@ repositories:
     version: v2.5.6
   whole-body-estimators:
     type: git
-    url: https://github.com/gbionics/whole-body-estimators.git
+    url: https://github.com/robotology/whole-body-estimators-iit.git
     version: v0.11.3
   icub_firmware_shared:
     type: git
@@ -145,7 +145,7 @@ repositories:
     version: v2.3.1
   bipedal-locomotion-framework:
     type: git
-    url: https://github.com/gbionics/bipedal-locomotion-framework.git
+    url: https://github.com/robotology/bipedal-locomotion-framework-iit.git
     version: v0.26.0
   LieGroupControllers:
     type: git
@@ -181,7 +181,7 @@ repositories:
     version: v3.7.0.0
   idyntree-yarp-tools:
     type: git
-    url: https://github.com/gbionics/idyntree-yarp-tools.git
+    url: https://github.com/robotology/idyntree-yarp-tools-iit.git
     version: v0.0.11
   pyqtconsole:
     type: git
@@ -237,7 +237,7 @@ repositories:
     version: v3.10.0
   yarp-device-keyboard-joypad:
     type: git
-    url: https://github.com/gbionics/yarp-device-keyboard-joypad.git
+    url: https://github.com/robotology/yarp-device-keyboard-joypad-iit.git
     version: v0.0.2
   gz-sim-yarp-plugins:
     type: git
@@ -269,5 +269,5 @@ repositories:
     version: v0.1.0
   trintrin:
     type: git
-    url: https://github.com/gbionics/trintrin.git
+    url: https://github.com/robotology/trintrin-iit.git
     version: v0.1.0

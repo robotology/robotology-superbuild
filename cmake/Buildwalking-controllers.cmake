@@ -28,7 +28,7 @@ list(APPEND walking-controllers_DEPENDS trintrin)
 
 ycm_ep_helper(walking-controllers TYPE GIT
               STYLE GITHUB
-              REPOSITORY gbionics/walking-controllers.git
+              REPOSITORY /robotology/walking-controllers-iit.git
               TAG master
               COMPONENT dynamics
               FOLDER src
