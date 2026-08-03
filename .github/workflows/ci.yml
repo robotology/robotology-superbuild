@@ -23,7 +23,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         build_type: [Release]
         os: [ubuntu-latest, windows-2022]
