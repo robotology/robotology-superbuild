@@ -151,7 +151,7 @@ python = "*"
 pip = "*"
 numpy = "*"
 # Required by YARP 3.11.0
-swig = ">=4.2.1"
+swig = "==4.4.1"
 pybind11 = "*"
 qtpy = "*"
 pyqt = "*"
