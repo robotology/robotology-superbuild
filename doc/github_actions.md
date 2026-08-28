@@ -130,6 +130,7 @@ Automatically generates and uploads conda packages for all components in the rob
 
 ### Triggers
 - Manual dispatch with options:
+  - `target_release`: Checks out and builds a release tag (for example, `v2026.08.0`), including the robotology-distro metapackages; leave empty for a regular build from the selected branch
   - `upload_conda_binaries`: Controls whether to upload packages (default: true)
   - `test_metapackages_generation`: Tests metapackage generation without upload
 - Scheduled weekly (Tuesdays at midnight UTC)
@@ -150,7 +151,7 @@ Builds conda packages for each platform.
 - Sets up Miniforge3 and installs build tools (rattler-build, anaconda-client, pixi)
 - Installs MATLAB MEX compilation files for each platform
 - Configures CMake with `ROBOTOLOGY_GENERATE_CONDA_RECIPES=ON`
-- On releases, also generates robotology-distro metapackages
+- On published releases, or when `target_release` is set for a manual run, checks out the release tag and also generates robotology-distro metapackages
 - Builds packages using `rattler-build` with conda-forge pinning
 - Uploads to both Anaconda Cloud and prefix.dev (robotology channel)
 - Temporarily excludes robot-log-visualizer package

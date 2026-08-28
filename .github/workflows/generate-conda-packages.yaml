@@ -4,6 +4,10 @@ name: Generate conda packages
 on:
   workflow_dispatch:
     inputs:
+      target_release:
+        description: 'Release tag to build (for example v2026.08.0). Leave empty for a regular build from the selected branch.'
+        required: false
+        default: ''
       upload_conda_binaries:
         description: 'If true, upload conda binaries, for any other value only generate them without uploading.'
         required: true
@@ -59,6 +63,10 @@ jobs:
 
         steps:
         - uses: actions/checkout@v4
+          with:
+            # A published release is checked out by its tag. Allow a manual run
+            # to reproduce the same build by explicitly selecting that tag.
+            ref: ${{ github.event.release.tag_name || github.event.inputs.target_release || github.ref }}
 
         - uses: conda-incubator/setup-miniconda@v4
           with:
@@ -111,8 +119,8 @@ jobs:
             cd build
             cmake -G"Visual Studio 17 2022" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake  -DYCM_EP_ADDITIONAL_CMAKE_ARGS:STRING="-DMatlab_ROOT_DIR:PATH=${GHA_Matlab_ROOT_DIR} -DMatlab_MEX_EXTENSION:STRING=${GHA_Matlab_MEX_EXTENSION}" -DROBOTOLOGY_USES_MATLAB:BOOL=ON -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -DCONDA_BUILD_NUMBER=${{needs.get-conda-build-number.outputs.conda_build_number}}  ..
 
-        - name: Specify additional option if we are in a release and we need to generate robotology-distro metapackages
-          if: github.event_name == 'release'
+        - name: Configure robotology-distro metapackages for a release
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_release != '')
           shell: bash -l {0}
           run: |
             cd build
@@ -164,7 +172,7 @@ jobs:
             rattler-build build --recipe-dir ./generated_recipes -m ${CONDA_PREFIX}/conda_build_config.yaml -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml
 
         - name: Build robotology-distro conda metapackage (if necessary)
-          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_metapackages_generation == 'true')
+          if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.target_release != '' || github.event.inputs.test_metapackages_generation == 'true'))
           shell: bash -l {0}
           run: |
             cd build/conda/
