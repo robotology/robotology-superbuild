@@ -183,8 +183,8 @@ jobs:
             cd ${CONDA_BLD_PATH}/${{ matrix.conda_platform}}/
             ls *.conda
             for condapackage in *.conda; do
-              # Anaconda
-              pixi upload anaconda --verbose --api-key $ANACONDA_API_TOKEN --owner robotology --channel robotology "$condapackage"
+              # Anaconda disabled until https://github.com/robotology/robotology-superbuild/issues/2001 isn't resolved
+              # pixi upload anaconda --verbose --api-key $ANACONDA_API_TOKEN --owner robotology --channel robotology "$condapackage"
               # Prefix.dev
               pixi upload prefix --verbose --api-key $PREFIX_DEV_TOKEN --channel robotology "$condapackage"
             done
@@ -201,8 +201,8 @@ jobs:
             cd ${CONDA_BLD_PATH}/noarch/
             ls *.conda
             for condapackage in *.conda; do
-              # Anaconda
-              pixi upload anaconda --verbose --api-key $ANACONDA_API_TOKEN --owner robotology --channel robotology "$condapackage"
+              # Anaconda disabled until https://github.com/robotology/robotology-superbuild/issues/2001 isn't resolved
+              # pixi upload anaconda --verbose --api-key $ANACONDA_API_TOKEN --owner robotology --channel robotology "$condapackage"
               # Prefix.dev
               pixi upload prefix --verbose --api-key $PREFIX_DEV_TOKEN --channel robotology "$condapackage"
             done
