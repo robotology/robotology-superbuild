@@ -100,6 +100,9 @@ ycm_ep_helper(YARP TYPE GIT
                               -DYARP_COMPILE_ALL_FAKE_DEVICES:BOOL=ON
                               -DYARP_COMPILE_RobotTestingFramework_ADDONS:BOOL=${ROBOTOLOGY_ENABLE_ROBOT_TESTING}
                               -DYARP_COMPILE_BINDINGS:BOOL=${YARP_COMPILE_BINDINGS}
+                              # YARP >= 4 uses Python in the portmonitor carrier whenever it is found.
+                              # Keep that feature aligned with the superbuild Python option.
+                              -DYARP_USE_Python:BOOL=${ROBOTOLOGY_USES_PYTHON}
                               -DYARP_USE_I2C:BOOL=${YARP_USE_I2C}
                               -DYARP_USE_SDL:BOOL=ON
                               -DCREATE_PYTHON:BOOL=${ROBOTOLOGY_USES_PYTHON}
