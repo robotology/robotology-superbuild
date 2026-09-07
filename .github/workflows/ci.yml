@@ -46,6 +46,13 @@ jobs:
       with:
         miniforge-variant: Miniforge3
 
+    - name: Debug Conda version and solver
+      shell: bash -l {0}
+      run: |
+        conda --version
+        conda config --show solver
+        conda list -n base conda-libmamba-solver
+
     - uses: mathio/gha-cleanup@v1
       if: contains(matrix.os, 'ubuntu')
       with:
