@@ -3,9 +3,11 @@ build-essential
 cmake
 cmake-curses-gui
 coinor-libipopt-dev
+curl
 gfortran
 freeglut3-dev
 git
+gnupg
 libace-dev
 libassimp-dev
 libboost-filesystem-dev
@@ -17,6 +19,7 @@ libeigen3-dev
 libgsl0-dev
 libi2c-dev
 libjpeg-dev
+libcli11-dev
 libode-dev
 libopencv-dev
 libsdl1.2-dev

@@ -123,10 +123,14 @@ For some [profile](doc/cmake-options.md#profile-cmake-options) or [dependency](d
 
 #### `ROBOTOLOGY_USES_GZ`
 
-To install Modern Gazebo (gz-sim) on Ubuntu Jammy (22.04) and Noble (24.04) and other supported Debian/Ubuntu systems, follow the instructions available at https://gazebosim.org/docs/ionic/install_ubuntu#binary-installation-on-ubuntu or  https://gazebosim.org/docs/harmonic/install_ubuntu#binary-installation-on-ubuntu . Furthermore, you also need to install the `cli11` dependency with:
-~~~
-sudo apt-get install libcli11-dev
-~~~
+The `scripts/install_apt_dependencies.sh` script installs `libcli11-dev` and
+selects a compatible Modern Gazebo (gz-sim) release automatically:
+
+* Ubuntu 22.04 (Jammy): Gazebo Harmonic (`gz-sim8`)
+* Ubuntu 24.04 (Noble): Gazebo Jetty (`gz-sim10`)
+
+Gazebo installation is skipped on other distributions and unsupported Ubuntu
+releases.
 
 #### `ROBOTOLOGY_USES_ROS2`
 
