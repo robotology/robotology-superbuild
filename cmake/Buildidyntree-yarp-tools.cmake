@@ -22,3 +22,4 @@ ycm_ep_helper(idyntree-yarp-tools TYPE GIT
                          -DIDYNTREE_YARP_TOOLS_USES_QT_CHARTS:BOOL=OFF)
 
 set(idyntree-yarp-tools_CONDA_DEPENDENCIES eigen qt-main)
+set(idyntree-yarp-tools_CONDA_PKG_NAME idyntree-yarp-tools)
