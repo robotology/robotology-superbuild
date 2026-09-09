@@ -24,3 +24,4 @@ ycm_ep_helper(whole-body-estimators TYPE GIT
               DEPENDS ${whole-body-estimators_DEPENDS})
 
 set(whole-body-estimators_CONDA_DEPENDENCIES "eigen")
+set(whole-body-estimators_CONDA_PKG_NAME whole-body-estimators)

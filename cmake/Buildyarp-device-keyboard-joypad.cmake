@@ -17,3 +17,4 @@ ycm_ep_helper(yarp-device-keyboard-joypad TYPE GIT
 
 
 set(yarp-device-keyboard-joypad_CONDA_DEPENDENCIES glew glfw imgui)
+set(yarp-device-keyboard-joypad_CONDA_PKG_NAME yarp-device-keyboard-joypad)

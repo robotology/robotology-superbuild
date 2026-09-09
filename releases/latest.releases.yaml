@@ -89,7 +89,7 @@ repositories:
     version: v0.8.1
   walking-controllers:
     type: git
-    url: https://github.com//robotology/walking-controllers-iit.git
+    url: https://github.com/robotology/walking-controllers-iit.git
     version: v0.10.0
   icub-gazebo-wholebody:
     type: git
