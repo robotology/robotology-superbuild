@@ -46,12 +46,27 @@ jobs:
       with:
         miniforge-variant: Miniforge3
 
+    # The libmamba solver occasionally takes several hours to solve this large
+    # environment on Windows. Use the rattler solver there while keeping the
+    # stable default solver on the other platforms.
+    - name: Enable rattler solver [Conda/Windows]
+      if: contains(matrix.os, 'windows')
+      shell: bash -l {0}
+      run: |
+        conda install --name base conda-rattler-solver
+        conda config --set solver rattler
+
     - name: Debug Conda version and solver
       shell: bash -l {0}
       run: |
         conda --version
         conda config --show solver
         conda list -n base conda-libmamba-solver
+
+    - name: Debug rattler solver version [Conda/Windows]
+      if: contains(matrix.os, 'windows')
+      shell: bash -l {0}
+      run: conda list -n base conda-rattler-solver
 
     - uses: mathio/gha-cleanup@v1
       if: contains(matrix.os, 'ubuntu')
