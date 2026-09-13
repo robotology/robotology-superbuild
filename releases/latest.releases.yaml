@@ -142,11 +142,11 @@ repositories:
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
-    version: v2.3.1
+    version: v2.3.2
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/robotology/bipedal-locomotion-framework-iit.git
-    version: v0.26.0
+    version: v0.27.0
   LieGroupControllers:
     type: git
     url: https://github.com/gbionics/lie-group-controllers.git
