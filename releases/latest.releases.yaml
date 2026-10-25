@@ -226,7 +226,7 @@ repositories:
   resolve-robotics-uri-py:
     type: git
     url: https://github.com/gbionics/resolve-robotics-uri-py.git
-    version: v0.5.1
+    version: v0.6.0
   yarp-devices-ros:
     type: git
     url: https://github.com/robotology/yarp-devices-ros.git
@@ -266,7 +266,7 @@ repositories:
   ResolveRoboticsURICpp:
     type: git
     url: https://github.com/gbionics/resolve-robotics-uri-cpp.git
-    version: v0.1.0
+    version: v0.6.0
   trintrin:
     type: git
     url: https://github.com/robotology/trintrin-iit.git
