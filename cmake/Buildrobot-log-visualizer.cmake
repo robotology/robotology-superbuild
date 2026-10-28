@@ -15,6 +15,5 @@ rob_sup_pure_python_ycm_ep_helper(robot-log-visualizer
                                   TAG main
                                   COMPONENT dynamics
                                   FOLDER src)
-
-set(robot-log-visualizer_CONDA_DEPENDENCIES numpy qtpy pyqt pyqtwebengine pyqtgraph h5py gst-plugins-good gst-plugins-bad gst-libav)
+set(robot-log-visualizer_CONDA_DEPENDENCIES numpy qtpy pyqt pyqtwebengine pyqtgraph h5py gst-plugins-good gst-plugins-bad gst-libav av)
 set(robot-log-visualizer_CONDA_ENTRY_POINTS "robot-log-visualizer = robot_log_visualizer.__main__:main")
