@@ -1,3 +1,6 @@
+channel_sources:
+  - conda-forge,robostack-jazzy
+
 # bipedal-locomotion-framework requires 10.13 for std::bad_cast_any
 # robometry requeries 10.15 for std::filesystem
 MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]

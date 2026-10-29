@@ -113,6 +113,7 @@ Tests the superbuild using Pixi package manager for dependency management.
 ### Key Steps
 - Optionally deletes `pixi.lock` on scheduled runs or manual trigger to test against latest dependencies
 - Sets up Pixi environment
+- Uses ROS 2 Jazzy and MoveIt in the `ros2` environment
 - Uses ccache for faster compilation
 - Configures Git user for YCM compliance
 - On Windows, explicitly runs configuration tasks before build
@@ -149,9 +150,9 @@ Builds conda packages for each platform.
 **Key Steps:**
 - Sets up Miniforge3 and installs build tools (rattler-build, anaconda-client, pixi)
 - Installs MATLAB MEX compilation files for each platform
-- Configures CMake with `ROBOTOLOGY_GENERATE_CONDA_RECIPES=ON`
+- Configures CMake with `ROBOTOLOGY_GENERATE_CONDA_RECIPES=ON` and `ROBOTOLOGY_USES_ROS2=ON`, including `yarp-devices-ros2`
 - On published releases, or when `target_release` is set for a manual run, checks out the release tag and also generates robotology-distro metapackages
-- Builds packages using `rattler-build` with conda-forge pinning
+- Builds packages using `rattler-build` with conda-forge pinning and the `robostack-jazzy` channel for ROS 2 dependencies
 - Uploads to both Anaconda Cloud and prefix.dev (robotology channel)
 - Temporarily excludes robot-log-visualizer package
 

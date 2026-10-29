@@ -191,8 +191,9 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ` CMake option,
 
 This option enables the compilation of the [`yarp-devices-ros2` repo](https://github.com/robotology/yarp-devices-ros2).
 
-> [!WARNING]
-> No conda binaries are available for the `yarp-devices-ros2` package at the moment, neither in `conda-forge` nor the `robotology` channel.
+The [`generate-conda-packages`](../.github/workflows/generate-conda-packages.yaml) workflow includes
+`yarp-devices-ros2` for Linux and Windows. Its ROS 2 Jazzy dependencies come from the
+`robostack-jazzy` channel, which must also be enabled when installing the package.
 
 
 ## MoveIt
