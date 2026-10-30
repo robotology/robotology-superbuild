@@ -12,6 +12,16 @@ pixi run build-all
 
 This creates a CMake build of the superbuild in the `robotology-superbuild/.build` folder.
 
+To build with ROS 2 Jazzy and MoveIt, use the separate `ros2` environment:
+
+~~~
+pixi run -e ros2 build-ros2
+~~~
+
+This uses dependencies from `robostack-jazzy` and builds in `.build-ros2`.
+When migrating an existing Humble build, start with a fresh `.build-ros2` directory
+to avoid cached paths to the previous ROS distribution.
+
 > [!IMPORTANT]
 > All the dependencies of the superbuild are automatically downloaded and installed in the `robotology-superbuild/.pixi` directory by pixi itself. If you are on Windows, the only additional dependency that you need to install manually is the VS2019 C++ compiler installed in your system.
 

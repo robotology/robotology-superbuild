@@ -186,20 +186,20 @@ mold = "*"
 # all the different conda-forge ABI migrations, we use a separate ros2
 # environment to test them
 [feature.ros2]
-channels = [{channel = "robostack-humble", priority = -1}]
+channels = [{channel = "robostack-jazzy", priority = -1}]
 platforms = ["linux-64", "linux-aarch64", "win-64", "osx-64", "osx-arm64"]
 
 
 [feature.ros2.dependencies]
 # ROBOTOLOGY_USES_ROS2 dependencies
-ros-humble-ros-base = "*"
-ros-humble-test-msgs = "*"
+ros-jazzy-ros-base = "*"
+ros-jazzy-test-msgs = "*"
 # ROBOTOLOGY_USES_MOVEIT dependencies
-ros-humble-moveit = "*"
-ros-humble-hardware-interface = "*"
-ros-humble-moveit-visual-tools = "*"
-ros-humble-controller-manager = "*"
-ros-humble-ros-gz-interfaces = "*"
+ros-jazzy-moveit = "*"
+ros-jazzy-hardware-interface = "*"
+ros-jazzy-moveit-visual-tools = "*"
+ros-jazzy-controller-manager = "*"
+ros-jazzy-ros-gz-interfaces = "*"
 
 # Ideally we should not duplicate the tasks for each feature, but unfortunatly this is currently required
 [feature.ros2.tasks]

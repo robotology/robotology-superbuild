@@ -186,18 +186,18 @@ conda install -c conda-forge gz-sim9
 
 #### `ROBOTOLOGY_USES_ROS2`
 
-If you install your dependencies with `conda`, just make sure to install the required packages from the `robostack-staging` channel:
+If you install your dependencies with `conda`, just make sure to install the required packages from the `robostack-jazzy` channel:
 
 ~~~
-conda install -c conda-forge -c robostack-staging  ros-humble-ros-base ros-humble-test-msgs
+conda install -c conda-forge -c robostack-jazzy  ros-jazzy-ros-base ros-jazzy-test-msgs
 ~~~
 
 #### `ROBOTOLOGY_USES_MOVEIT`
 
-If you install your dependencies with `conda`, just make sure to install the required packages from the `robostack-staging` channel:
+If you install your dependencies with `conda`, just make sure to install the required packages from the `robostack-jazzy` channel:
 
 ~~~
-conda install -c conda-forge -c robostack-staging ros-humble-moveit  ros-humble-hardware-interface ros-humble-moveit-visual-tools ros-humble-gazebo-msgs ros-humble-controller-manager
+conda install -c conda-forge -c robostack-jazzy ros-jazzy-moveit  ros-jazzy-hardware-interface ros-jazzy-moveit-visual-tools ros-jazzy-ros-gz-interfaces ros-jazzy-controller-manager
 ~~~
 
 ### Clone the repo
