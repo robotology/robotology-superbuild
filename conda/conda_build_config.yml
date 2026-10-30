@@ -1,5 +1,7 @@
 channel_sources:
-  - conda-forge,robostack-jazzy
+  - if: linux
+    then: conda-forge,robostack-jazzy
+    else: conda-forge
 
 # bipedal-locomotion-framework requires 10.13 for std::bad_cast_any
 # robometry requeries 10.15 for std::filesystem

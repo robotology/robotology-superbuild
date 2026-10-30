@@ -150,9 +150,9 @@ Builds conda packages for each platform.
 **Key Steps:**
 - Sets up Miniforge3 and installs build tools (rattler-build, anaconda-client, pixi)
 - Installs MATLAB MEX compilation files for each platform
-- Configures CMake with `ROBOTOLOGY_GENERATE_CONDA_RECIPES=ON` and `ROBOTOLOGY_USES_ROS2=ON`, including `yarp-devices-ros2`
+- Configures CMake with `ROBOTOLOGY_GENERATE_CONDA_RECIPES=ON`; enables `ROBOTOLOGY_USES_ROS2` only on Linux to generate `yarp-devices-ros2` packages
 - On published releases, or when `target_release` is set for a manual run, checks out the release tag and also generates robotology-distro metapackages
-- Builds packages using `rattler-build` with conda-forge pinning and the `robostack-jazzy` channel for ROS 2 dependencies
+- Builds packages using `rattler-build` with conda-forge pinning; adds `robostack-jazzy` only on Linux for ROS 2 dependencies
 - Uploads to both Anaconda Cloud and prefix.dev (robotology channel)
 - Temporarily excludes robot-log-visualizer package
 
