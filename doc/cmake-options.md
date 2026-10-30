@@ -191,9 +191,12 @@ Support for this dependency is enabled by the `ROBOTOLOGY_USES_GZ` CMake option,
 
 This option enables the compilation of the [`yarp-devices-ros2` repo](https://github.com/robotology/yarp-devices-ros2).
 
-The [`generate-conda-packages`](../.github/workflows/generate-conda-packages.yaml) workflow includes
-`yarp-devices-ros2` for Linux and Windows. Its ROS 2 Jazzy dependencies come from the
-`robostack-jazzy` channel, which must also be enabled when installing the package.
+The [`generate-conda-packages`](../.github/workflows/generate-conda-packages.yaml) workflow generates
+`yarp-devices-ros2` packages on Linux and Windows, using ROS 2 Jazzy from `robostack-jazzy`.
+On Windows, the recipe requires CMake 4.2 or newer and uses
+`CMAKE_INTERMEDIATE_DIR_STRATEGY=SHORT` to shorten generated object paths.
+To build from source with ROS 2 Jazzy,
+use the [`ros2` Pixi environment](pixi.md).
 
 
 ## MoveIt

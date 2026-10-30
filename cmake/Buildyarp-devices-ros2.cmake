@@ -22,6 +22,10 @@ if(ROBOTOLOGY_GENERATE_CONDA_RECIPES)
   list(APPEND LOCAL_CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF)
   # Set the Python interpreter used to generate the ROS 2 interfaces.
   if(WIN32)
+    # Shorten the ROS interface object paths to avoid MSVC C1083.
+    # SHORT requires CMake 4.2 or newer in the package build environment.
+    list(APPEND LOCAL_CMAKE_ARGS -DCMAKE_INTERMEDIATE_DIR_STRATEGY=SHORT)
+    set(yarp-devices-ros2_CONDA_BUILD_DEPENDENCIES_EXPLICIT "cmake >=4.2")
     list(APPEND LOCAL_CMAKE_ARGS "-DPYTHON_EXECUTABLE:FILEPATH=%PYTHON%"
                                  "-DPython_EXECUTABLE:FILEPATH=%PYTHON%"
                                  "-DPython3_EXECUTABLE:FILEPATH=%PYTHON%")
