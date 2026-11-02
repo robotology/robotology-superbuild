@@ -3,6 +3,10 @@ channel_sources:
     then: conda-forge,robostack-jazzy
     else: conda-forge
 
+# Override conda-forge-pinning since even the migration is finished, the pinning is still 3.12.2
+libyarp:
+  - '3.12.3'
+
 # bipedal-locomotion-framework requires 10.13 for std::bad_cast_any
 # robometry requeries 10.15 for std::filesystem
 MACOSX_DEPLOYMENT_TARGET:      # [osx and x86_64]
