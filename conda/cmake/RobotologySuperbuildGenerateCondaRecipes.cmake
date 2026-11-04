@@ -153,6 +153,17 @@ macro(generate_metametadata_file)
     string(APPEND metametadata_file_contents "    conda_build_number: ${CONDA_BUILD_NUMBER}\n")
     string(APPEND metametadata_file_contents "    build_type: ${${_cmake_pkg}_CONDA_BUILD_TYPE}\n")
 
+    if(${_cmake_pkg}_CONDA_RUN_EXPORTS_EXACT)
+      string(APPEND metametadata_file_contents "    run_exports_exact: true\n")
+    endif()
+
+    if(NOT "${${_cmake_pkg}_CONDA_RUN_CONSTRAINTS}" STREQUAL "")
+      string(APPEND metametadata_file_contents "    run_constraints:\n")
+      foreach(_constraint IN LISTS ${_cmake_pkg}_CONDA_RUN_CONSTRAINTS)
+        string(APPEND metametadata_file_contents "      - ${_constraint}\n")
+      endforeach()
+    endif()
+
     if(_YH_${_cmake_pkg}_SOURCE_SUBDIR)
       string(APPEND metametadata_file_contents "    source_subdir: ${_YH_${_cmake_pkg}_SOURCE_SUBDIR}\n")
     endif()

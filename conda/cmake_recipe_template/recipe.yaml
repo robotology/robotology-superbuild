@@ -54,11 +54,22 @@ requirements:
 {% endfor %}
 {% endif %}
 
+{% if run_constraints %}
+  run_constraints:
+{% for constraint in run_constraints %}    - {{ constraint }}
+{% endfor %}
+{% endif %}
+
   run_exports:
+{% if run_exports_exact %}
+{% raw %}    - ${{ pin_subpackage(name, exact=true) }}
+{% endraw %}
+{% else %}
 {% raw %}     # As robotology-superbuild packages tipically do not worry about ABI compatibility,
     # we explicitly specify that for every patch version the ABI changes
     - ${{ pin_subpackage(name, upper_bound='x.x.x') }}
 {% endraw %}
+{% endif %}
 
 about:
   homepage: https://github.com/{{ github_repo }}
